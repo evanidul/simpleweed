@@ -22,11 +22,16 @@
 
 .write-review-button {
 	display:inline;
-	margin-left : 180px; 
+	margin-left : 269px; 
 }
 
 #gmap_canvas {
+	margin-top: 123px;
 	float:right;
 	height:350px;
 	width:350px;	
+}
+
+#description {
+	margin-top: 15px;
 }
