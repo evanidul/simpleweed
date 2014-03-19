@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140319070045) do
+ActiveRecord::Schema.define(version: 20140319162526) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,13 @@ ActiveRecord::Schema.define(version: 20140319070045) do
     t.string   "phonenumber"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "dailyspecialsmonday"
+    t.string   "dailyspecialstuesday"
+    t.string   "dailyspecialswednesday"
+    t.string   "dailyspecialsthursday"
+    t.string   "dailyspecialsfriday"
+    t.string   "dailyspecialssaturday"
+    t.string   "dailyspecialssunday"
   end
 
 end
