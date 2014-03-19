@@ -12,7 +12,7 @@
               <!-- <img src=<%= asset_path('pot.jpg') %> height="80" width="80" alt="store image" style="float:left;"> -->
               <%= image_tag("pot.jpg", size:"80", class: "store-image") %>
               <div>
-              <%= link_to store.name, store_path(store) , data: { toggle: "modal", target: "#modal", remote: store_path(store)}  %> </br>
+              <%= link_to store.name, store_path(store, modal:true) , data: { toggle: "modal", target: "#modal", remote: store_path(store, modal:true)}  %> </br>
               <%= store.addressline1 %> </br>
               <%= store.city %>, <%= store.state %> <%= store.zip %> </br>
               <%= store.phonenumber %>

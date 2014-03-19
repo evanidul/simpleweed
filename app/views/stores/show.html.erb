@@ -1,40 +1,22 @@
-<div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title" id="myModalLabel"><%= @store.name %></h4>      
-      	</div>
-        <div class="modal-body">
-			<p id="name">
-			  	<strong>Name:</strong>			  	
-			  	<%= @store.name %>
-			</p>
-			<p id="addressline1">
-				<strong>Address Line 1:</strong>
-				<%= @store.addressline1  %>
-			</p>
-			<p id="city">
-				<strong>City:</strong>
-				<%= @store.city  %>
-			</p>
-			<p id="state">
-				<strong>State:</strong>
-				<%= @store.state  %>
-			</p>
-			<p id="zip">
-				<strong>Zip:</strong>
-				<%= @store.zip  %>
-			</p>
-			<p id="phonenumber">
-				<strong>Phone Number:</strong>
-				<%= @store.phonenumber  %>
-			</p>
+<h2 id="name"><%= @store.name %></h2>      
+<p id="addressline1">
+	<strong>Address Line 1:</strong>
+	<%= @store.addressline1  %>
+</p>
+<p id="city">
+	<strong>City:</strong>
+	<%= @store.city  %>
+</p>
+<p id="state">
+	<strong>State:</strong>
+	<%= @store.state  %>
+</p>
+<p id="zip">
+	<strong>Zip:</strong>
+	<%= @store.zip  %>
+</p>
+<p id="phonenumber">
+	<strong>Phone Number:</strong>
+	<%= @store.phonenumber  %>
+</p>
 
-		</div> <!-- modal-body -->
-		<div class="modal-footer">
-			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			<%= link_to 'Edit Store', edit_store_path(@store), class: 'btn btn-primary' , id: "edit_store" %>
-			<%= link_to 'Delete', store_path(@store), class: 'btn btn-danger',
-			                    method: :delete, data: { confirm: 'Are you sure?' } , id: "delete_store" %>
-		</div> <!-- modal-footer -->
-    </div>
-</div>    

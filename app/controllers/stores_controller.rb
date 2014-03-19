@@ -15,9 +15,18 @@ class StoresController < ApplicationController
 		redirect_to :action => 'index'  			
 	end
 
+	def peak
+		@store = Store.find(params[:id])
+		render layout: false		
+	end
+
 	def show
 		@store = Store.find(params[:id])
-		render layout: false
+		# render layout: false, 'peak'
+		if params[:modal]
+			render "peak", :layout => false
+		end
+		
 	end
 
 	def destroy
