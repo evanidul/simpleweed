@@ -27,10 +27,32 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0.0.beta'
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'database_cleaner'
+  gem 'pry'
+end
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
+
+  #heroku docs modifications
+  gem 'rails_12factor', group: :production
+
+  ruby "2.0.0"
+
+  gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+
+  gem 'bootstrap-sass', '~> 3.0.3.0'
+  group :development do
+    gem 'rails_layout'
+  end
+
 end
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
