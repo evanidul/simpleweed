@@ -12,8 +12,7 @@
          
         <% @stores.each do |store| %>
           <tr>    
-            <td><%= link_to store.name, store_path(store) , data: { toggle: "modal", target: "#modal", remote: store_path(store)}  %></td>
-            <td><%= store.name %></td>
+            <td><%= link_to store.name, store_path(store) , data: { toggle: "modal", target: "#modal", remote: store_path(store)}  %></td>            
             <td><%= store.addressline1 %></td>
           </tr>
         <% end %>
