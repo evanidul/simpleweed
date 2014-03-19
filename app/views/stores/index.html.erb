@@ -2,18 +2,26 @@
   <div class="container">
     <div class="row-fluid">
       <div class="col-md-12">
-        <h1>Listing Stores</h1>
+        <h1>Manage Dispensaries</h1>
 
         <table class="table">
-          <tr>
-            <th>Name</th>
-            <th>Address</th>
-          </tr>
          
         <% @stores.each do |store| %>
-          <tr>    
-            <td><%= link_to store.name, store_path(store) , data: { toggle: "modal", target: "#modal", remote: store_path(store)}  %></td>            
-            <td><%= store.addressline1 %></td>
+          <tr>
+            <td>
+              <img src="/assets/pot.jpg" height="80" width="80" alt="store image" style="float:left;">
+              <div>
+              <%= link_to store.name, store_path(store) , data: { toggle: "modal", target: "#modal", remote: store_path(store)}  %> </br>
+              <%= store.addressline1 %> </br>
+              <%= store.city %>, <%= store.state %> <%= store.zip %> </br>
+              <%= store.phonenumber %>
+            </div>
+            </td>            
+            <td>
+              Monthly Subscription: $0.00 </br>
+              Subscription Package: Unlimited </br>
+              Expires: 1/20/2016 </br>
+            </td>
           </tr>
         <% end %>
         </table>
