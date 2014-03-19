@@ -6,6 +6,7 @@ class Admin::StoresController < ApplicationController
 
 	# loaded from modal, so don't use layout
 	def new
+		@store = Store.new
 		render layout: false
 	end
 
@@ -19,6 +20,12 @@ class Admin::StoresController < ApplicationController
 		@store = Store.find(params[:id])
 		render layout: false
 	end
+
+	def edit
+	  @store = Store.find(params[:id])
+	end
+
+
 
 	def destroy
 	  @store = Store.find(params[:id])

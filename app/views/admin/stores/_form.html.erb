@@ -1,0 +1,31 @@
+<%= form_for @store do |f| %>
+  <p class = "form-group">
+    <%= f.label :name,  "Name"  %><br>
+    <%= f.text_field :name, :class => 'form-control' , :required => true   %>
+  </p>             
+  <p class = "form-group">
+    <%= f.label :addressline1, "Address Line 1" %><br>
+    <%= f.text_field :addressline1, :class => 'form-control'  ,:required => true %>
+  </p>
+  <p class = "form-group">
+    <%= f.label :city %><br>
+    <%= f.text_field :city, :class => 'form-control'  ,:required => true %>
+  </p>
+  <p class = "form-group">
+    <%= f.label :state, "State" %><br>
+    <%= f.text_field :state, :class => 'form-control'  ,:required => true %>
+  </p>
+  <p class = "form-group">
+    <%= f.label :zip, "Zip Code" %><br>
+    <%= f.text_field :zip, :class => 'form-control'  ,:required => true %>
+  </p>
+  <p class = "form-group">
+    <%= f.label :phonenumber, "Phone Number" %><br>
+    <%= f.text_field :phonenumber, :class => 'form-control'  ,:required => true %>
+  </p>
+                
+  <p class = "form-group pull-right">               
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    <%= f.submit :class => 'btn btn-primary' , :id => 'save_store'%>
+  </p>
+<% end %>

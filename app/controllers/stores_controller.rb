@@ -6,13 +6,15 @@ class StoresController < ApplicationController
 
 	# loaded from modal, so don't use layout
 	def new
-		render layout: false
+		render layout: false		
 	end
 
+	# called from /admin/stores, so send it back to that controller
 	def create
 		@store = Store.new(store_params)
 		@store.save
-		redirect_to :action => 'index'  			
+		# redirect_to :action => 'index' 
+		redirect_to :controller => 'admin/stores', :action => 'index' 			
 	end
 
 
@@ -23,6 +25,17 @@ class StoresController < ApplicationController
 			render "peak", :layout => false
 		end
 		
+	end
+
+	def update
+	  @store = Store.find(params[:id])
+	 
+	  if @store.update(params[:store].permit(:name,:addressline1,:city, :state, :zip, :phonenumber))
+	    # redirect_to :action => 'index'
+	    redirect_to :controller => 'admin/stores', :action => 'index'
+	  else
+	    render 'edit'
+	  end
 	end
 
 	def destroy
