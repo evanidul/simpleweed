@@ -9,7 +9,8 @@
         <% @stores.each do |store| %>
           <tr>
             <td>
-              <img src="/assets/pot.jpg" height="80" width="80" alt="store image" style="float:left;">
+              <img src=<%= asset_path('pot.jpg') %> height="80" width="80" alt="store image" style="float:left;">
+              
               <div>
               <%= link_to store.name, store_path(store) , data: { toggle: "modal", target: "#modal", remote: store_path(store)}  %> </br>
               <%= store.addressline1 %> </br>
