@@ -1,0 +1,26 @@
+<div id="register">
+  <div class="container">
+    <div class="row-fluid">
+      <div class="col-md-12">
+        <h1>Listing Stores</h1>
+
+        <table class="table">
+          <tr>
+            <th>Name</th>
+            <th>Address</th>
+          </tr>
+         
+        <% @stores.each do |store| %>
+          <tr>    
+            <td><%= link_to store.name, store_path(store) , data: { toggle: "modal", target: "#modal", remote: store_path(store)}  %></td>
+            <td><%= store.name %></td>
+            <td><%= store.addressline1 %></td>
+          </tr>
+        <% end %>
+        </table>
+
+        <%= link_to "New store", new_store_path, id: "new_store", data: { toggle: "modal", target: "#modal" , remote: new_store_path} , class: 'btn btn-primary'%>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,14 +1,48 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Smellyleaf</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "Smelly leaf" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Smelly Leaf" %>">
+    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+    <!-- FONTAWESOME -->
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
-<%= yield %>
+  <%= yield :head %>
+  </head>
+  <body>
+    <header class="header">
+      <%= render 'layouts/navigation' %>
+    </header>
+    
+    <main role="main" class="container">
+      <div>
+        <%= render 'layouts/messages' %>
+      </div>
+      <%= yield %>
+      <div class="modal" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      </div><!-- /.modal -->
+      <!-- 
+        Twitters modal has a bug where it won't reload after items that refresh
+        it's content.  This is the workaround from : 
+        http://stackoverflow.com/questions/12449890/reload-content-in-modal-twitter-bootstrap -->
+      <script>
 
-</body>
+        $("a[data-target=#modal]").click(function(ev) {
+            ev.preventDefault();
+            var target = $(this).attr("href");
+            
+            // load the url and show modal on success
+            $("#modal").load(target, function() { 
+                 $("#modal").modal("show"); 
+            });
+        });
+
+      </script>
+      
+      <%= yield :script %>
+    </main>
+  </body>
 </html>
