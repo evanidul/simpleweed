@@ -47,7 +47,7 @@ private
 
 private 
 	def store_item_params
-		params.require(:store_item).permit(:name, :store_id, :description)		
+		params.require(:store_item).permit(:name, :store_id, :description, :thc, :cbd, :cbn)		
 	end		
 
 end
