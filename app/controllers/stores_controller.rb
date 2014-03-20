@@ -31,7 +31,8 @@ class StoresController < ApplicationController
 	  @store = Store.find(params[:id])
 	 
 	  if @store.update(params[:store].permit(:name,:addressline1,:city, :state, :zip, :phonenumber, :dailyspecialsmonday, :dailyspecialstuesday,
-			:dailyspecialswednesday, :dailyspecialsthursday, :dailyspecialsfriday, :dailyspecialssaturday, :dailyspecialssunday))
+			:dailyspecialswednesday, :dailyspecialsthursday, :dailyspecialsfriday, :dailyspecialssaturday, :dailyspecialssunday,
+			:acceptscreditcards))
 	    # redirect_to :action => 'index'
 	    redirect_to :controller => 'admin/stores', :action => 'index'
 	  else
@@ -50,7 +51,8 @@ class StoresController < ApplicationController
 	private 
 	def store_params
 		params.require(:store).permit(:name,:addressline1,:city, :state, :zip, :phonenumber, :dailyspecialsmonday, :dailyspecialstuesday,
-			:dailyspecialswednesday, :dailyspecialsthursday, :dailyspecialsfriday, :dailyspecialssaturday, :dailyspecialssunday)		
+			:dailyspecialswednesday, :dailyspecialsthursday, :dailyspecialsfriday, :dailyspecialssaturday, :dailyspecialssunday,
+			:acceptscreditcards)		
 	end		
 
 

@@ -57,6 +57,11 @@
 				<strong>Sunday:</strong>
 			    <%= @store.dailyspecialssunday %>
 			</p>
+			<h3>Dispensary Features</h3>
+			<p class = "form-group">
+				<strong>Accepts Credit Card</strong>			    
+			    <%= check_box_tag :acceptscreditcards , 1 , @store.acceptscreditcards ? true : false, disabled: true %>
+			</p>
 
 			  
 		</div> <!-- modal-body -->

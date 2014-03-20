@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140319162526) do
+ActiveRecord::Schema.define(version: 20140320021649) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20140319162526) do
     t.string   "dailyspecialsfriday"
     t.string   "dailyspecialssaturday"
     t.string   "dailyspecialssunday"
+    t.boolean  "acceptscreditcards"
   end
 
 end
