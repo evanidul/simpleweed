@@ -32,7 +32,7 @@
 		</div> <!-- modal-body -->
 		<div class="modal-footer">
 			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			<%= link_to 'View Full Page', store_path(@store), class: 'btn btn-primary' , id: "edit_store" %>
+			<%= link_to 'View Full Page', store_path(@store), class: 'btn btn-primary' , id: "edit_store", 'data-no-turbolink' => true %>
 		</div> <!-- modal-footer -->
     </div>
 </div>    
