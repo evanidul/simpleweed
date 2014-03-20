@@ -1,6 +1,6 @@
 <h2><%= link_to @store.name, store_path(@store)%> Item Menu</h2>
 
-<% content_for :head do -%>
+<% content_for :head do %>
   <script type='text/javascript' src='https://www.google.com/jsapi'></script>
   <script type='text/javascript'>
     google.load('visualization', '1', {packages:['table']});
@@ -44,7 +44,7 @@
   }
 
   </script>
-<% end -%>
+<% end %>
 
 <script>
   $(document).ready(function () {
