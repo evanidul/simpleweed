@@ -6,22 +6,34 @@
   <p class = "form-group">
     <%= f.label :description,  "Description"  %><br>
     <%= f.text_field :description, :class => 'form-control' , :required => true   %>
-  </p>             
-  <p class = "form-group">
-    <%= f.label :thc,  "THC %"  %><br>
-    <!-- validates %, 0-99 -->
-    <%= f.text_field :thc, :class => 'form-control' , :pattern => '(?!^0*$)(?!^0*\.0*$)^\d{1,2}(\.\d{1,2})?$' , :id => 'thc-percent' %>
-  </p>             
-  <p class = "form-group">
-    <%= f.label :cbd,  "CBD %"  %><br>
-    <!-- validates %, 0-99 -->
-    <%= f.text_field :cbd, :class => 'form-control' , :pattern => '(?!^0*$)(?!^0*\.0*$)^\d{1,2}(\.\d{1,2})?$' , :id => 'cbd-percent' %>
-  </p>             
-  <p class = "form-group">
-    <%= f.label :cbn,  "CBN %"  %><br>
-    <!-- validates %, 0-99 -->
-    <%= f.text_field :cbn, :class => 'form-control' , :pattern => '(?!^0*$)(?!^0*\.0*$)^\d{1,2}(\.\d{1,2})?$' , :id => 'cbn-percent' %>
-  </p>             
+  </p>   
+  <h4>Lab Information</h4>          
+  <table id="lab-information">
+  	<tr>
+  		<td>
+  			<p class = "form-group">
+			    <%= f.label :thc,  "THC %"  %><br>
+			    <!-- validates %, 0-99 -->
+			    <%= f.text_field :thc, :class => 'form-control' , :pattern => '(?!^0*$)(?!^0*\.0*$)^\d{1,2}(\.\d{1,2})?$' , :id => 'thc-percent' %>
+		  </p>             
+		</td>
+		<td>
+			<p class = "form-group">
+			    <%= f.label :cbd,  "CBD %"  %><br>
+			    <!-- validates %, 0-99 -->
+			    <%= f.text_field :cbd, :class => 'form-control' , :pattern => '(?!^0*$)(?!^0*\.0*$)^\d{1,2}(\.\d{1,2})?$' , :id => 'cbd-percent' %>
+			</p>             
+		</td>
+		<td>
+			<p class = "form-group">
+			    <%= f.label :cbn,  "CBN %"  %><br>
+			    <!-- validates %, 0-99 -->
+			    <%= f.text_field :cbn, :class => 'form-control' , :pattern => '(?!^0*$)(?!^0*\.0*$)^\d{1,2}(\.\d{1,2})?$' , :id => 'cbn-percent' %>
+		  	</p>             
+		</td>  
+  	</tr>
+  </table>
+  
   
 
   <p class = "form-group pull-right">               
