@@ -83,7 +83,46 @@
 				<td>Sunday</td>
 				<td><%= @store.dailyspecialssunday %></td>
 			</tr>
-
+		</table>
+		<h3>Dispensary Features</h3>
+		<table id="dispensaryfeatures">
+			<tr>
+				<td>Accepts Credit/Debit cards</td>
+				<td><%= check_box_tag :acceptscreditcards , 1 , @store.acceptscreditcards ? true : false, disabled: true %></td>
+			</tr>
+			<tr>
+				<td>ATM Access</td>
+				<td><%= check_box_tag :atmaccess , 1 , @store.atmaccess ? true : false, disabled: true %></td>
+			</tr>
+			<tr>
+				<td>Automatic Dispensing Machines</td>
+				<td><%= check_box_tag :automaticdispensingmachines , 1 , @store.automaticdispensingmachines ? true : false, disabled: true %></td>
+			</tr>
+			<tr>
+				<td>Delivery Service</td>
+				<td><%= check_box_tag :deliveryservice , 1 , @store.deliveryservice ? true : false, disabled: true %></td>
+			</tr>
+			<tr>
+				<td>First Time Patient Deals</td>
+				<td><%= check_box_tag :firsttimepatientdeals , 1 , @store.firsttimepatientdeals ? true : false, disabled: true %></td>
+			</tr>
+			<tr>
+				<td>Handicap Access</td>
+				<td><%= check_box_tag :handicapaccess , 1 , @store.handicapaccess ? true : false, disabled: true %></td>
+			</tr>
+			<tr>
+				<td>Lounge Area</td>
+				<td><%= check_box_tag :loungearea , 1 , @store.loungearea ? true : false, disabled: true %></td>
+			</tr>
+			<tr>
+				<td>Pet Friendly</td>
+				<td><%= check_box_tag :petfriendly , 1 , @store.petfriendly ? true : false, disabled: true %></td>
+			</tr>
+			<tr>
+				<td>Security Guard</td>
+				<td><%= check_box_tag :securityguard , 1 , @store.securityguard ? true : false, disabled: true %></td>
+			</tr>			
+		</table>
     </div><!-- end right, side bar -->
 </div> <!-- end of 'row' -->
 
