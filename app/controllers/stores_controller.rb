@@ -20,6 +20,7 @@ class StoresController < ApplicationController
 
 	def show
 		@store = Store.find(params[:id])
+		@store_items = @store.store_items
 		# render layout: false, 'peak'
 		if params[:modal]
 			render "peak", :layout => false
