@@ -1,17 +1,58 @@
 <h2><%= link_to @store.name, store_path(@store)%> Item Menu</h2>
 
-<table class="table">
-	<tr>
-        <th>Name</th>
-    </tr>
-	<% @store_items.each do |store_item| %>
-	<tr>
-		<td>			
-			<%= link_to store_item.name, edit_store_store_item_path(@store, store_item), data: { toggle: "modal", target: "#modal" , remote: edit_store_store_item_path(@store, store_item)} %>
-		</td>
-	</tr>
-    <% end %>
-</table>
+<% content_for :head do -%>
+  <script type='text/javascript' src='https://www.google.com/jsapi'></script>
+  <script type='text/javascript'>
+    google.load('visualization', '1', {packages:['table']});
+    // google.setOnLoadCallback(drawTable);
+    
+    
+    function drawTable() {
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Name');
+      data.addColumn('string', 'DOGO');
+      data.addColumn('string', 'Description');
+      data.addColumn('string', 'THC');
+      data.addColumn('string', 'CBD');
+      data.addColumn('string', 'CBN');
+      data.addColumn('string', '.5 g');
+      data.addColumn('string', '1 g');
+      data.addColumn('string', '1/8 oz');
+      data.addColumn('string', '1/4 oz');
+      data.addColumn('string', '1/2 oz');
+      data.addColumn('string', '1 oz');
 
+      <% @store_items.each do |store_item| %>
+        data.addRow(['<%= link_to store_item.name, edit_store_store_item_path(@store, store_item),  data: { toggle: "modal", target: "#modal" , remote: edit_store_store_item_path(@store, store_item)} %>' , '<%= store_item.dogo %>', '<%= store_item.description %>', '<%= store_item.thc %>',
+          '<%= store_item.cbd %>', '<%= store_item.cbn %>', '<%= store_item.costhalfgram %>',
+          '<%= store_item.costonegram %>', '<%= store_item.costeighthoz %>','<%= store_item.costquarteroz %>','<%= store_item.costhalfoz %>','<%= store_item.costoneoz %>']);
+      <% end %>      
+      var table = new google.visualization.Table(document.getElementById('table_div'));
+      table.draw(data, {showRowNumber: false, allowHtml: true});
 
+      google.visualization.events.addListener(table, 'select', selectHandler);
+
+      function selectHandler(e) {
+        var selection = table.getSelection();         /** gets everything that's selected **/
+        var item = selection[0];                      /** we only support selecting one at this time, if more than one is selected, we'll just use the first    item **/
+        var str = data.getFormattedValue(item.row, 0); /** gets the link stored in the first column of the selected row, ie <a data-remote="/students/29" data-                                                   target="#modal" data-toggle="modal" href="/students/29">Davvy</a>  **/
+        var target = $(str).attr("href");   /** from that string, only extract the href attr **/
+        $("#modal").load(target, function() {   /** and load that href into the modal.  This is similar to the modal code in application.html.erb **/
+          $("#modal").modal("show"); 
+        });
+      }
+  }
+
+  </script>
+<% end -%>
+
+<script>
+  $(document).ready(function () {
+      drawTable();
+  });
+</script>
+
+<div id='table_div'></div>
+
+</br>
 <%= link_to "Add Item", new_store_store_item_path, id: "new_store_item", data: { toggle: "modal", target: "#modal" , remote: new_store_store_item_path} , class: 'btn btn-primary'%>
