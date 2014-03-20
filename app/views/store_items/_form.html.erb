@@ -33,7 +33,38 @@
 		</td>  
   	</tr>
   </table>
-  
+  <h4>Pricing</h4>
+  <table id="price-table">
+	 <tr>
+	 	<th>.5 g</th>
+	 	<th>1 g</th>
+	 	<th>1/8 oz</th>
+	 	<th>1/4 oz</th>
+	 	<th>1/2 oz</th>
+	 	<th>1 oz</th>
+	 </tr>
+	 <tr>
+	 	<td>
+		    <%= f.text_field :costhalfgram, :class => 'form-control price-inputs' %>
+		</td>
+	 	<td>
+	 		<%= f.text_field :costonegram, :class => 'form-control price-inputs' %>
+	 	</td>
+	 	<td>
+	 		<%= f.text_field :costeighthoz, :class => 'form-control price-inputs' %>
+	 	</td>
+	 	<td>
+	 		<%= f.text_field :costquarteroz, :class => 'form-control price-inputs' %>
+	 	</td>
+	 	<td>
+	 		<%= f.text_field :costhalfoz, :class => 'form-control price-inputs' %>
+	 	</td>
+	 	<td>
+	 		<%= f.text_field :costoneoz, :class => 'form-control price-inputs' %>
+	 	</td>
+	  </tr>
+	</table>  	
+
   
 
   <p class = "form-group pull-right">               
