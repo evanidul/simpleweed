@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140320021649) do
+ActiveRecord::Schema.define(version: 20140320030552) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,14 @@ ActiveRecord::Schema.define(version: 20140320021649) do
     t.string   "dailyspecialssaturday"
     t.string   "dailyspecialssunday"
     t.boolean  "acceptscreditcards"
+    t.boolean  "automaticdispensingmachines"
+    t.boolean  "firsttimepatientdeals"
+    t.boolean  "handicapaccess"
+    t.boolean  "loungearea"
+    t.boolean  "petfriendly"
+    t.boolean  "securityguard"
+    t.boolean  "atmaccess"
+    t.boolean  "deliveryservice"
   end
 
 end

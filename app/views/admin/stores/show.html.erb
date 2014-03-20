@@ -62,6 +62,40 @@
 				<strong>Accepts Credit Card</strong>			    
 			    <%= check_box_tag :acceptscreditcards , 1 , @store.acceptscreditcards ? true : false, disabled: true %>
 			</p>
+			<p class = "form-group">
+				<strong>ATM Access</strong>			    
+			    <%= check_box_tag :atmaccess , 1 , @store.atmaccess ? true : false, disabled: true %>
+			</p>
+			<p class = "form-group">
+				<strong>Automatic Dispensing Machines</strong>			    
+			    <%= check_box_tag :automaticdispensingmachines , 1 , @store.automaticdispensingmachines ? true : false, disabled: true %>
+			</p>
+			<p class = "form-group">
+				<strong>Delivery Service</strong>			    
+			    <%= check_box_tag :deliveryservice , 1 , @store.deliveryservice ? true : false, disabled: true %>
+			</p>
+			<p class = "form-group">
+				<strong>First Time Patient Deals</strong>			    
+			    <%= check_box_tag :firsttimepatientdeals , 1 , @store.firsttimepatientdeals ? true : false, disabled: true %>
+			</p>
+			<p class = "form-group">
+				<strong>Handicap Access</strong>			    
+			    <%= check_box_tag :handicapaccess , 1 , @store.handicapaccess ? true : false, disabled: true %>
+			</p>
+			<p class = "form-group">
+				<strong>Lounge Area</strong>			    
+			    <%= check_box_tag :loungearea , 1 , @store.loungearea ? true : false, disabled: true %>
+			</p>
+			<p class = "form-group">
+				<strong>Pet Friendly</strong>			    
+			    <%= check_box_tag :petfriendly , 1 , @store.petfriendly ? true : false, disabled: true %>
+			</p>
+			<p class = "form-group">
+				<strong>Security Guard</strong>			    
+			    <%= check_box_tag :securityguard , 1 , @store.securityguard ? true : false, disabled: true %>
+			</p>
+
+
 
 			  
 		</div> <!-- modal-body -->
