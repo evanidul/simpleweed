@@ -10,7 +10,7 @@ Smellyleaf::Application.routes.draw do
     end
 
   resources :stores do
-    resources :storeitems
+    resources :store_items
   end    
 
   # The priority is based upon order of creation: first created -> highest priority.
