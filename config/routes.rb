@@ -1,13 +1,17 @@
 Smellyleaf::Application.routes.draw do
 
   root 'welcome#index'
-  resources :stores
+  # resources :stores
 
   namespace :admin do
       # Directs /admin/products/* to Admin::ProductsController
       # (app/controllers/admin/products_controller.rb)
       resources :stores
     end
+
+  resources :stores do
+    resources :storeitems
+  end    
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
