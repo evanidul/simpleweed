@@ -1,0 +1,13 @@
+<%= form_for ([@store, @store_item]) do |f| %>
+  <p class = "form-group">
+    <%= f.label :name,  "Name"  %><br>
+    <%= f.text_field :name, :class => 'form-control' , :required => true   %>
+  </p>             
+  
+
+
+  <p class = "form-group pull-right">               
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    <%= f.submit :class => 'btn btn-primary' , :id => 'save_store_item'%>
+  </p>
+<% end %>

@@ -1,0 +1,17 @@
+<h2><%= link_to @store.name, store_path(@store)%> Item Menu</h2>
+
+<table class="table">
+	<tr>
+        <th>First Name</th>
+    </tr>
+	<% @store_items.each do |store_item| %>
+	<tr>
+		<td>
+			<%= store_item.name %>
+		</td>
+	</tr>
+    <% end %>
+</table>
+
+
+<%= link_to "Add Item", new_store_store_item_path, id: "new_store_item", data: { toggle: "modal", target: "#modal" , remote: new_store_store_item_path} , class: 'btn btn-primary'%>
