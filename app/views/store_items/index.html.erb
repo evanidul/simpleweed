@@ -2,12 +2,12 @@
 
 <table class="table">
 	<tr>
-        <th>First Name</th>
+        <th>Name</th>
     </tr>
 	<% @store_items.each do |store_item| %>
 	<tr>
-		<td>
-			<%= store_item.name %>
+		<td>			
+			<%= link_to store_item.name, edit_store_store_item_path(@store, store_item), data: { toggle: "modal", target: "#modal" , remote: edit_store_store_item_path(@store, store_item)} %>
 		</td>
 	</tr>
     <% end %>

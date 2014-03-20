@@ -21,7 +21,24 @@ class StoreItemsController < ApplicationController
 		redirect_to :action => 'index'  			
 	end
 
+	def show
+		@store_item = StoreItem.find(params[:id])
+	end
 
+	def edit		
+	  	@store_item = StoreItem.find(params[:id])
+	  	render layout: false
+	end
+
+	def update
+		@store_item = StoreItem.find(params[:id])
+
+		if @store_item.update(store_item_params)
+			redirect_to :action => 'index'
+		else
+			render 'edit'
+		end
+	end
 
 private
     def load_store
