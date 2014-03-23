@@ -47,13 +47,16 @@
             </li>
           <% else %>
           <li>
-            <%= link_to "Sign up", new_user_registration_path  %>
+            <!-- <%= link_to "Sign up", new_user_registration_path  %> -->
+            <a href=""  data-toggle="modal" data-target="#register-modal">Sign up</a>
           </li>
           <li> 
             <!-- <%= link_to "Login", new_user_session_path %> -->            
             <a href=""  data-toggle="modal" data-target="#sign-in-modal">Login</a>
-            <!-- dvu: modal login form -->
+            <!-- dvu: modal login form (layouts/_login.html.erb)-->
             <%= render 'layouts/login' %>
+            <!-- dvu: modal register form (layouts/_register.html.erb)-->
+            <%= render 'layouts/register' %>
 
           </li>
           <% end %>
