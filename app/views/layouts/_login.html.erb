@@ -1,0 +1,27 @@
+<div class="modal fade" id="sign-in-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+      <h4 class="modal-title" id="myModalLabel">Sign In</h4>          
+      </div>
+      <div class="modal-body">
+        <%= form_for(:user, :url => session_path(:user)) do |f| %>
+        <%= f.label :email %>
+        <%= f.text_field :email , :class => 'form-control'%>
+        <%= f.label :password %>
+        <%= f.password_field :password , :class => 'form-control'%>
+        </br>
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me %>
+        </br>
+        <%= f.submit "Sign in" , :class => 'btn btn-primary pull-right' %>
+        <br/>
+        <% end %>
+      </div> <!-- modal-body -->
+      <div class="modal-footer">
+        <%= link_to "Forgot your password?", new_password_path(:user) %>
+      </div><!-- modal-footer -->
+
+    </div><!-- modal-content -->
+  </div>
+</div>
