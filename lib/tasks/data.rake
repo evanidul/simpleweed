@@ -2,6 +2,8 @@
 
 namespace :data do
   desc "import dispensaries from files to database"
+  
+#dvu: don't need this.  Use importMenuItems to create stores instead
   task :import => :environment do
     file = File.open("/Users/evanidul/Weed/samplestores.txt")
     file.each do |line|
@@ -19,13 +21,24 @@ namespace :data do
   task :importMenuItems => :environment do
     file = File.open("/Users/evanidul/Weed/samplemenuitems.txt")
     file.each do |line|
-      attrs = line.split(":")      
+      attrs = line.split(",")      
       # the file hardcodes primary keys
-      @store = Store.find_by_name(attrs[0].strip)
+      # @store = Store.find_by_name(attrs[0].strip)
+
+      @store = Store.find_or_create_by(name: attrs[0].strip)
       
       # @store_item =  @store.store_items.new
       @store_item = @store.store_items.build
 	  @store_item.name = attrs[1]
+	  #:costhalfgram, :costonegram, :costeighthoz, :costquarteroz,
+	  #:costhalfoz, :costoneoz
+	  @store_item.costonegram = attrs[3]
+	  @store_item.costhalfgram = attrs[4]	  
+	  @store_item.costeighthoz = attrs[5]
+	  @store_item.costquarteroz = attrs[6]
+	  @store_item.costhalfoz = attrs[7]
+	  @store_item.costoneoz = attrs[8]
+
 	  @store_item.save
       
       
