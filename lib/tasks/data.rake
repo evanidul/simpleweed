@@ -32,6 +32,7 @@ namespace :data do
 	  @store_item.name = attrs[1]
 	  #:costhalfgram, :costonegram, :costeighthoz, :costquarteroz,
 	  #:costhalfoz, :costoneoz
+	  @store_item.category = attrs[2]
 	  @store_item.costonegram = attrs[3]
 	  @store_item.costhalfgram = attrs[4]	  
 	  @store_item.costeighthoz = attrs[5]
