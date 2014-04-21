@@ -46,20 +46,25 @@
 
 		
 		</br></br>
-		<table class="store-item-table">
+			
+			<% @grouped_store_items.each do |category, store_items| %>
+  			<h3><%= category %></h3>
+  			<table class="store-item-table">
 			<tr>
 				<th>Strain Name</th>
-				<th>Description</th>
+				<th>Category</th>
 				<th>1 g</th>
 				<th>1/8 oz</th>
 				<th>1/4 oz</th>
 				<th>1/2 oz</th>
 				<th>1 oz</th>
 			</tr>
-			<% @store_items.each do |store_item| %>				
+		
+  			<% store_items.each do |store_item| %>
+		
 			<tr>
 				<td><%= store_item.name %></td>
-				<td><%= store_item.description %></td>
+				<td><%= store_item.category %></td>
 				<td><%= store_item.costonegram %></td>
 				<td><%= store_item.costeighthoz %></td>
 				<td><%= store_item.costquarteroz %></td>
@@ -67,7 +72,9 @@
 				<td><%= store_item.costoneoz %></td>
 			</tr>
 			<% end %>
+			
 		</table>
+		<% end %>
 
     </div> <!-- end of left container -->
 

@@ -20,7 +20,8 @@ class StoresController < ApplicationController
 
 	def show
 		@store = Store.find(params[:id])
-		@store_items = @store.store_items
+		@store_items = @store.store_items.order('name ASC')
+		@grouped_store_items = @store_items.group_by &:category
 		# render layout: false, 'peak'
 		if params[:modal]
 			render "peak", :layout => false
