@@ -1,6 +1,14 @@
 
 <% content_for :head do %>
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type='text/javascript' src='https://www.google.com/jsapi'></script>
+<script type='text/javascript'>
+	google.load('visualization', '1', {packages:['table']});
+	// google.setOnLoadCallback(drawTable);
+
+
+</script>	
+
 <% end %>
 
 <div class="row">
@@ -49,31 +57,41 @@
 			
 			<% @grouped_store_items.each do |category, store_items| %>
   			<h3><%= category %></h3>
-  			<table class="store-item-table">
-			<tr>
-				<th>Strain Name</th>
-				<th>Category</th>
-				<th>1 g</th>
-				<th>1/8 oz</th>
-				<th>1/4 oz</th>
-				<th>1/2 oz</th>
-				<th>1 oz</th>
-			</tr>
+  			<div id="table_<%= category %>" ></div>
+
+<script>
+	(function drawTable() {
+	  var data = new google.visualization.DataTable();
+	  data.addColumn('string', 'Name');
+	  data.addColumn('string', 'Category');
+	  data.addColumn('string', '1g');
+	  data.addColumn('string', '1/8');
+	  data.addColumn('string', '1/4');
+	  data.addColumn('string', '1/2');
+	  data.addColumn('string', '1 oz');
+      
+        <% store_items.each do |store_item| %>
+    data.addRow(['<%= store_item.name %>',   
+     '<%= store_item.category %>',
+     '<%= store_item.costonegram %>',
+     
+     '<%= store_item.costeighthoz %>',
+     '<%= store_item.costquarteroz %>',
+     '<%= store_item.costhalfoz %>',
+     '<%= store_item.costoneoz %>']);
+  <% end %>      
+
+
+      var table = new google.visualization.Table(document.getElementById("table_<%= category %>"));
+      table.draw(data, {showRowNumber: false, allowHtml: true});
+      
+	})();
+</script>
+
 		
-  			<% store_items.each do |store_item| %>
-		
-			<tr>
-				<td><%= store_item.name %></td>
-				<td><%= store_item.category %></td>
-				<td><%= store_item.costonegram %></td>
-				<td><%= store_item.costeighthoz %></td>
-				<td><%= store_item.costquarteroz %></td>
-				<td><%= store_item.costhalfoz %></td>
-				<td><%= store_item.costoneoz %></td>
-			</tr>
-			<% end %>
 			
-		</table>
+			
+		
 		<% end %>
 
     </div> <!-- end of left container -->
@@ -103,7 +121,8 @@
 		</div>
 		<div id="phonenumber">			
 			<%= @store.phonenumber  %>
-		</div>		
+		</div>
+
 		<h3>Daily Specials</h3>
 		<table id="dailyspecials">
 			<tr>
