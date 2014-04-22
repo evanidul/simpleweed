@@ -85,6 +85,10 @@
       var table = new google.visualization.Table(document.getElementById("table_<%= category %>"));
       table.draw(data, {showRowNumber: false, allowHtml: true});
       
+      //set width of the 'Name' column
+      var title = "Name";
+      var width = "400px";
+      $('.google-visualization-table-th:contains(' + title + ')').css('width', width);
 	})();
 </script>
 
