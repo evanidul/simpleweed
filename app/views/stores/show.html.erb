@@ -121,17 +121,22 @@
 		</script>
 		</div>
 		<!-- end of google maps -->
-		
-		<div id="addressline1">	
-			<%= @store.addressline1  %>
-		</div>
-		<div>
-			<%= @store.city  %>, <%= @store.state  %> <%= @store.zip  %>
-		</div>
-		<div id="phonenumber">			
-			<%= @store.phonenumber  %>
-		</div>
+		<div id="contact">
+			<h3>Contact</h3>
+			<address>
+				<strong><%= @store.name  %></strong><br>
+				<%= @store.addressline1  %><br>
+				<% if !@store.addressline2.empty?  %>
+					<%= @store.addressline2  %><br>
+				<% end %>	
+				<%= @store.city  %>, <%= @store.state  %> <%= @store.zip  %><br>
+			</address>
 
+			<div id="phonenumber">			
+				<%= @store.phonenumber  %>
+			</div>
+		</div>
+		
 		<h3>Daily Specials</h3>
 		<table id="dailyspecials">
 			<tr>
