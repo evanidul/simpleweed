@@ -19,7 +19,7 @@ namespace :data do
   end
 
   task :importMenuItems => :environment do
-    file = File.open("/Users/evanidul/Weed/samplemenuitems.txt")
+    file = File.open("./lib/tasks/samplemenuitems.txt")
     file.each do |line|
       attrs = line.split(",")      
       # the file hardcodes primary keys
