@@ -1,9 +1,8 @@
 # http://stackoverflow.com/questions/3346108/how-to-write-rake-task-to-import-data-to-rails-app
 
 namespace :data do
-  desc "import dispensaries from files to database"
-  
-#dvu: don't need this.  Use importMenuItems to create stores instead
+  desc "import dispensaries from files to database"  
+  #dvu: don't need this.  Use importMenuItems to create stores instead
   task :import => :environment do
     file = File.open("/Users/evanidul/Weed/samplestores.txt")
     file.each do |line|
@@ -18,20 +17,16 @@ namespace :data do
     end
   end
 
+  # this task will create dispensaries if they don't exist.  Run this first
   task :importMenuItems => :environment do
     file = File.open("./lib/tasks/samplemenuitems.txt")
     file.each do |line|
-      attrs = line.split(",")      
-      # the file hardcodes primary keys
-      # @store = Store.find_by_name(attrs[0].strip)
+      attrs = line.split("<")            
 
       @store = Store.find_or_create_by(name: attrs[0].strip)
       
-      # @store_item =  @store.store_items.new
       @store_item = @store.store_items.build
 	  @store_item.name = attrs[1]
-	  #:costhalfgram, :costonegram, :costeighthoz, :costquarteroz,
-	  #:costhalfoz, :costoneoz
 	  @store_item.category = attrs[2]
 	  @store_item.costonegram = attrs[3]
 	  @store_item.costhalfgram = attrs[4]	  
@@ -41,9 +36,30 @@ namespace :data do
 	  @store_item.costoneoz = attrs[8]
 
 	  @store_item.save
-      
-      
     end
   end
+
+  #assumes dispensaries are created already
+  task :importAddresses => :environment do
+    file = File.open("./lib/tasks/addresses.txt")
+    file.each do |line|
+      attrs = line.split("<")            
+
+      @store = Store.find_by name: attrs[0].strip
+      if (@store)
+      	if( attrs.last != "ERROR: check fields")
+      		@store.addressline1 = attrs[2];
+      		@store.addressline2 = attrs[3];
+      		@store.city = attrs[4];
+      		@store.state = attrs[5];
+      		@store.zip = attrs[6];
+
+      		@store.save
+      	end	
+	  end       
+
+    end
+  end
+
 
 end
