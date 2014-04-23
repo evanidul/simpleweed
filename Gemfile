@@ -29,6 +29,9 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'devise'
 
+# https://github.com/alexreisner/geocoder :: get lat/long for addresses and nearby location services
+gem 'geocoder'
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0.beta'
   gem 'capybara'
