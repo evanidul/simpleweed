@@ -32,7 +32,7 @@ class StoresController < ApplicationController
 	def update
 	  @store = Store.find(params[:id])
 	 
-	  if @store.update(params[:store].permit(:name,:addressline1,:city, :state, :zip, :phonenumber, :dailyspecialsmonday, :dailyspecialstuesday,
+	  if @store.update(params[:store].permit(:name,:addressline1, :addressline2, :city, :state, :zip, :phonenumber, :dailyspecialsmonday, :dailyspecialstuesday,
 			:dailyspecialswednesday, :dailyspecialsthursday, :dailyspecialsfriday, :dailyspecialssaturday, :dailyspecialssunday,
 			:acceptscreditcards, :atmaccess, :automaticdispensingmachines, :deliveryservice, :firsttimepatientdeals, :handicapaccess,
 			:loungearea, :petfriendly, :securityguard))
@@ -53,7 +53,7 @@ class StoresController < ApplicationController
 
 	private 
 	def store_params
-		params.require(:store).permit(:name,:addressline1,:city, :state, :zip, :phonenumber, :dailyspecialsmonday, :dailyspecialstuesday,
+		params.require(:store).permit(:name,:addressline1, :addressline2, :city, :state, :zip, :phonenumber, :dailyspecialsmonday, :dailyspecialstuesday,
 			:dailyspecialswednesday, :dailyspecialsthursday, :dailyspecialsfriday, :dailyspecialssaturday, :dailyspecialssunday,
 			:acceptscreditcards, :atmaccess, :automaticdispensingmachines, :deliveryservice, :firsttimepatientdeals, :handicapaccess,
 			:loungearea, :petfriendly, :securityguard)		
