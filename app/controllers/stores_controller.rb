@@ -1,7 +1,12 @@
 class StoresController < ApplicationController
 
 	def index
-	  @stores = Store.all	 
+		if params[:search]
+      		#@stores = Store.find(:all, :limit => 5).reverse
+      		@stores = Store.near(params[:search])
+    	else
+			@stores = Store.all	       
+		end
 	end
 
 	# loaded from modal, so don't use layout
