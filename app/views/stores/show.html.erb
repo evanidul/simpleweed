@@ -115,16 +115,19 @@
 
   			function codeAddress() {
 				    //In this case it gets the address from an element on the page, but obviously you  could just pass it to the method instead
-				    //var address = document.getElementById("address").value;
+				    
+				<% fulladdress = @store.addressline1 + ',' + @store.city + ',' + @store.state + @store.zip  %>
+
 				    geocoder = new google.maps.Geocoder();
-				    var address = "7110 Rock Valley Court, San Diego, CA 92122";
+				    //var address = "7110 Rock Valley Court, San Diego, CA 92122";
+				    var address = "<%= escape_javascript fulladdress %>";
 
 				    geocoder.geocode( { 'address': address}, function(results, status) {
 				      if (status == google.maps.GeocoderStatus.OK) {
 				        //In this case it creates a marker, but you can get the lat and lng from the location.LatLng
 				        console.log(results[0].geometry.location);
 						var myOptions = {
-							zoom:16,
+							zoom:15,
 							center: new google.maps.LatLng(results[0].geometry.location),
 							mapTypeId: google.maps.MapTypeId.ROADMAP
 						}
