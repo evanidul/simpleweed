@@ -1,8 +1,12 @@
 class Store < ActiveRecord::Base
 	has_many :store_items
 	validates :name, presence: true
-	geocoded_by :address
-	after_validation :geocode
+	# these next two lines cause data:importMenuItems to be really slow.
+	# I'm guessing since it creates new stores, it's generating api requests to 
+	# geocode all the stores...  Just comment it out and turn it back on later...
+	
+	# geocoded_by :address
+	# after_validation :geocode
 
 	def address
 		"#{addressline1}, #{city}, #{state} #{zip}"

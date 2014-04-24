@@ -23,17 +23,20 @@ namespace :data do
     file.each do |line|
       attrs = line.split("<")            
 
-      @store = Store.find_or_create_by(name: attrs[0].strip)
-      
+      #@store = Store.find_or_create_by(name: attrs[0].strip)
+      @store = Store.find_or_create_by(id: attrs[0])
+      @store.name = attrs[1];
+      @store.save
+
       @store_item = @store.store_items.build
-	  @store_item.name = attrs[1]
-	  @store_item.category = attrs[2]
-	  @store_item.costonegram = attrs[3]
-	  @store_item.costhalfgram = attrs[4]	  
-	  @store_item.costeighthoz = attrs[5]
-	  @store_item.costquarteroz = attrs[6]
-	  @store_item.costhalfoz = attrs[7]
-	  @store_item.costoneoz = attrs[8]
+	  @store_item.name = attrs[2]
+	  @store_item.category = attrs[3]
+	  @store_item.costonegram = attrs[4]
+	  @store_item.costhalfgram = attrs[5]	  
+	  @store_item.costeighthoz = attrs[6]
+	  @store_item.costquarteroz = attrs[7]
+	  @store_item.costhalfoz = attrs[8]
+	  @store_item.costoneoz = attrs[9]
 
 	  @store_item.save
     end
@@ -45,9 +48,10 @@ namespace :data do
     file.each do |line|
       attrs = line.split("<")            
 
-      @store = Store.find_by name: attrs[0].strip
+      # @store = Store.find_by find_or_initialize_by_id: attrs[0].strip
+      @store = Store.find_or_initialize_by_id(attrs[0])
       if (@store)
-      	if( attrs.last != "ERROR: check fields")
+      	if( attrs.last != "ERROR: check fields")      		
       		@store.addressline1 = attrs[2];
       		@store.addressline2 = attrs[3];
       		@store.city = attrs[4];
