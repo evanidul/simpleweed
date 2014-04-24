@@ -43,6 +43,7 @@ namespace :data do
   end
 
   #assumes dispensaries are created already
+  #can be run to refresh addresses
   task :importAddresses => :environment do
     file = File.open("./lib/tasks/addresses.txt")
     file.each do |line|
