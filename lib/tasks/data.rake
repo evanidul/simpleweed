@@ -48,7 +48,6 @@ namespace :data do
     file.each do |line|
       attrs = line.split("<")            
 
-      # @store = Store.find_by find_or_initialize_by_id: attrs[0].strip
       @store = Store.find_or_initialize_by_id(attrs[0])
       if (@store)
       	if( attrs.last != "ERROR: check fields")      		
@@ -60,10 +59,29 @@ namespace :data do
 
       		@store.save
       	end	
-	  end       
+	  end #if
 
-    end
-  end
+    end # file.each do
+  end # task
+
+#assumes dispensaries are created already
+  task :importPhonenumbers => :environment do
+    file = File.open("./lib/tasks/phonenumbers.txt")
+    file.each do |line|
+      attrs = line.split("<")            
+
+      @store = Store.find_or_initialize_by_id(attrs[0])
+      if (@store)
+      	if( attrs.last != "ERROR: check fields")      		
+      		@store.phonenumber = attrs[2];
+
+      		@store.save
+      	end	
+	  end #if
+
+    end # file.each do
+  end # task
+
 
 
 end
