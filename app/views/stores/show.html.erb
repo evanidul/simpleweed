@@ -133,10 +133,17 @@
 				        map.setCenter(results[0].geometry.location);
 				        var marker = new google.maps.Marker({
 				            map: map, 
-				            position: results[0].geometry.location
+				            position: results[0].geometry.location,				            
 				        });
-				        ;
-						
+				        
+						// infowindow = new google.maps.InfoWindow
+						// 	({
+						// 		content:"<span class='gmap'><%= @store.name  %></span>" 
+						// 	});
+						// google.maps.event.addListener(marker, "click", function(){infowindow.open(map,marker);});
+	
+						// infowindow.open(map,marker);
+
 						
 				      } else {
 				        alert("Geocode was not successful for the following reason: " + status);
