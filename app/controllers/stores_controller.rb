@@ -25,6 +25,9 @@ class StoresController < ApplicationController
 
 	def show
 		@store = Store.find(params[:id])
+
+		@timezone = TZWhere.lookup(@store.latitude, @store.longitude);
+
 		@store_items = @store.store_items.order('name ASC')
 		@grouped_store_items = @store_items.group_by &:category
 		# render layout: false, 'peak'
