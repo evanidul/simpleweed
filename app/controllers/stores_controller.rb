@@ -26,7 +26,9 @@ class StoresController < ApplicationController
 	def show
 		@store = Store.find(params[:id])
 
-		@timezone = TZWhere.lookup(@store.latitude, @store.longitude);
+		@timezone = TZWhere.lookup(@store.latitude, @store.longitude)
+
+		@currenttime = Time.now.in_time_zone(@timezone)
 
 		@store_items = @store.store_items.order('name ASC')
 		@grouped_store_items = @store_items.group_by &:category
