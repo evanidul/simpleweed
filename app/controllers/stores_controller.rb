@@ -30,6 +30,10 @@ class StoresController < ApplicationController
 
 		@currenttime = Time.now.in_time_zone(@timezone)
 
+		#0 is Sunday
+		@dayint = @currenttime.to_date.wday  
+		@day = Date::DAYNAMES[@dayint]
+
 		@store_items = @store.store_items.order('name ASC')
 		@grouped_store_items = @store_items.group_by &:category
 		# render layout: false, 'peak'
