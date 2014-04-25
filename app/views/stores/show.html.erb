@@ -173,7 +173,7 @@
 		</div>
 
 		<h3>Hours</h3>
-		<table id="dailyspecials">
+		<table id="storehours">
 			<tr>
 			<tr>
 				<td>Sunday</td>
@@ -207,6 +207,10 @@
 		<h3>Daily Specials</h3>
 		<table id="dailyspecials">
 			<tr>
+				<td>Sunday</td>
+				<td><%= @store.dailyspecialssunday %></td>
+			</tr>		
+			<tr>
 				<td>Monday</td>
 				<td><%= @store.dailyspecialsmonday %></td>
 			</tr>
@@ -229,10 +233,6 @@
 			<tr>
 				<td>Saturday</td>
 				<td><%= @store.dailyspecialssaturday %></td>
-			</tr>
-			<tr>
-				<td>Sunday</td>
-				<td><%= @store.dailyspecialssunday %></td>
 			</tr>
 		</table>
 		<h3>Dispensary Features</h3>
