@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140423121639) do
+ActiveRecord::Schema.define(version: 20140425142039) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,13 @@ ActiveRecord::Schema.define(version: 20140423121639) do
     t.string   "addressline2"
     t.float    "latitude"
     t.float    "longitude"
+    t.string   "storehourssunday"
+    t.string   "storehoursmonday"
+    t.string   "storehourstuesday"
+    t.string   "storehourswednesday"
+    t.string   "storehoursthursday"
+    t.string   "storehoursfriday"
+    t.string   "storehourssaturday"
   end
 
   create_table "users", force: true do |t|
