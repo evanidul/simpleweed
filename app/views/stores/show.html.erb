@@ -170,11 +170,39 @@
 				 <%= @currenttime %><br>
 				 <%= @day %><br>
 			</address>
-			
-						
-				
-			
 		</div>
+
+		<h3>Hours</h3>
+		<table id="dailyspecials">
+			<tr>
+			<tr>
+				<td>Sunday</td>
+				<td><%= @store.storehourssunday %></td>
+			</tr>				
+				<td>Monday</td>
+				<td><%= @store.storehoursmonday %></td>
+			</tr>
+			<tr>
+				<td>Tuesday</td>
+				<td><%= @store.storehourstuesday %></td>
+			</tr>
+			<tr>
+				<td>Wednesday</td>
+				<td><%= @store.storehourswednesday %></td>
+			</tr>
+			<tr>
+				<td>Thursday</td>
+				<td><%= @store.storehoursthursday %></td>
+			</tr>
+			<tr>
+				<td>Friday</td>
+				<td><%= @store.storehoursfriday %></td>
+			</tr>
+			<tr>
+				<td>Saturday</td>
+				<td><%= @store.storehourssaturday %></td>
+			</tr>
+		</table>
 
 		<h3>Daily Specials</h3>
 		<table id="dailyspecials">

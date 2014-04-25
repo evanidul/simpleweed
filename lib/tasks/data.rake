@@ -83,6 +83,29 @@ namespace :data do
     end # file.each do
   end # task
 
+#assumes dispensaries are created already
+  task :importStorehours => :environment do
+    file = File.open("./lib/tasks/storehours.txt")
+    file.each do |line|
+      attrs = line.split("<")            
+
+      @store = Store.find_or_initialize_by_id(attrs[0])
+      if (@store)
+      	if( attrs.last != "ERROR: check fields")      		
+      		@store.storehourssunday = attrs[2];
+      		@store.storehoursmonday = attrs[3];
+      		@store.storehourstuesday = attrs[4];
+      		@store.storehourswednesday = attrs[5];
+      		@store.storehoursthursday = attrs[6];
+      		@store.storehoursfriday = attrs[7];
+      		@store.storehourssaturday = attrs[8];
+
+      		@store.save
+      	end	
+	  end #if
+
+    end # file.each do
+  end # task
 
 
 end
