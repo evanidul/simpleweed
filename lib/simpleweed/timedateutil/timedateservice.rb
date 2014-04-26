@@ -85,6 +85,10 @@ module Simpleweed
 	  		# closed - seconds since midnight
 	  		# current time - passed as seconds since midnight
 	  		def doesTimeOccurDuringBusinessHours(open, closed, current)
+	  			# if open == closed, this store is open 24 hours a day
+	  			if ( open == closed )
+	  				return true
+	  			end
 	  			return current.between?(open, closed)
 	  		end #doesTimeOccurDuringBusinessHours
 
