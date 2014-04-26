@@ -101,6 +101,37 @@ class Timedateservice < ActiveSupport::TestCase
 		assert_equal( true, result, 'This store is open at 2AM but is not')
 	end	
 
-	
+	test "it's 3:15AM. The stores hours are 5AM - 3AM. The store should be closed" do
+		service = Simpleweed::Timedateutil::Timedateservice.new
+		current = (3 * 60 * 60) + (15 * 60) #3:15AM
+		open = 5 * 60 * 60 #5AM
+		closed = 3 * 60 * 60 #3AM
+		previousDayOpen = 5 * 60 * 60 #5AM
+		previousDayClose = 3 * 60 * 60 #3AM
+		result = service.doesTimeOccurDuringBusinessHours(open, closed, current, previousDayOpen, previousDayClose)
+		assert_equal( false, result, 'This store is closed at 3:15AM but is not')
+	end
+
+	test "it's 2AM.  The stores hours are 5AM - 12AM. The store should be closed" do
+		service = Simpleweed::Timedateutil::Timedateservice.new
+		current = 2 * 60 * 60 #2AM
+		open = 5 * 60 * 60 #5AM
+		closed = 0 #12AM
+		previousDayOpen = 5 * 60 * 60 #5AM
+		previousDayClose = 0 #12AM
+		result = service.doesTimeOccurDuringBusinessHours(open, closed, current, previousDayOpen, previousDayClose)
+		assert_equal( false, result, 'This store is closed at 2AM but is not')
+	end	
+
+	test "it's 11:50PM.  The stores hours are 5AM - 12AM. The store should be open" do
+		service = Simpleweed::Timedateutil::Timedateservice.new
+		current = (23 * 60 * 60) + (50 *60) #11:50PM
+		open = 5 * 60 * 60 #5AM
+		closed = 0 #12AM
+		previousDayOpen = 5 * 60 * 60 #5AM
+		previousDayClose = 0 #12AM
+		result = service.doesTimeOccurDuringBusinessHours(open, closed, current, previousDayOpen, previousDayClose)
+		assert_equal( true, result, 'This store is open at 11:50PM but is not')
+	end	
 
 end
