@@ -21,8 +21,7 @@
 }
 
 .write-review-button {
-	display:inline;
-	margin-left : 269px; 
+	float:right;
 }
 
 #gmap_canvas {
@@ -47,4 +46,12 @@
 
 .store-item-table {
 	width: 100%;
+}
+
+#storehours {
+	width: 100%;
+}
+
+#review-controls {
+	margin-bottom: 25px;
 }

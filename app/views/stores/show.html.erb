@@ -15,27 +15,28 @@
 	<!-- left, main section -->
     <div class="col-md-8">
 		<h1 id="name"><%= @store.name %></h1>      
+		<div id="review-controls">
+			<!-- pro coding right here -->
+			<div class="star-rank">
+				<%= image_tag("yellowstar.jpeg", size:"20", class: "star-image") %>
+				<%= image_tag("yellowstar.jpeg", size:"20", class: "star-image") %>
+				<%= image_tag("yellowstar.jpeg", size:"20", class: "star-image") %>
+				<%= image_tag("yellowstar.jpeg", size:"20", class: "star-image") %>
+				<%= image_tag("yellowstar.jpeg", size:"20", class: "star-image") %>
+				<%= image_tag("yellowstar.jpeg", size:"20", class: "star-image") %>
+				<%= image_tag("yellowstar.jpeg", size:"20", class: "star-image") %>
+				<%= image_tag("yellowstar.jpeg", size:"20", class: "star-image") %>
+				<%= image_tag("yellowstar.jpeg", size:"20", class: "star-image") %>
+				<%= image_tag("yellowstar.jpeg", size:"20", class: "star-image") %>
+			</div>
+			<div class="reviews-link">
+				Reviews (100)
+			</div>	
 
-		<!-- pro coding right here -->
-		<div class="star-rank">
-			<%= image_tag("yellowstar.jpeg", size:"20", class: "star-image") %>
-			<%= image_tag("yellowstar.jpeg", size:"20", class: "star-image") %>
-			<%= image_tag("yellowstar.jpeg", size:"20", class: "star-image") %>
-			<%= image_tag("yellowstar.jpeg", size:"20", class: "star-image") %>
-			<%= image_tag("yellowstar.jpeg", size:"20", class: "star-image") %>
-			<%= image_tag("yellowstar.jpeg", size:"20", class: "star-image") %>
-			<%= image_tag("yellowstar.jpeg", size:"20", class: "star-image") %>
-			<%= image_tag("yellowstar.jpeg", size:"20", class: "star-image") %>
-			<%= image_tag("yellowstar.jpeg", size:"20", class: "star-image") %>
-			<%= image_tag("yellowstar.jpeg", size:"20", class: "star-image") %>
+			<div class="write-review-button">
+				<%= link_to 'Write a Review', store_path(@store), class: 'btn btn-primary' , id: "write-review-button" %>
+			</div>	
 		</div>
-		<div class="reviews-link">
-			Reviews (100)
-		</div>	
-
-		<div class="write-review-button">
-			<%= link_to 'Write a Review', store_path(@store), class: 'btn btn-primary' , id: "write-review-button" %>
-		</div>	
 		<p id="description">
 			He moonlight difficult engrossed an it sportsmen. Interested has all devonshire difficulty gay assistance joy. Unaffected at ye of compliment alteration to. Place voice no arise along to. Parlors waiting so against me no. Wishing calling are warrant settled was luckily. Express besides it present if at an opinion visitor. 
 
