@@ -195,4 +195,95 @@ class Timedateservice < ActiveSupport::TestCase
 		assert_equal( false, result, 'This store is close at 12:50AM but is not')
 	end	
 
+	# 5AM - 5AM store, 24 hour store
+	test "it's 2AM.  The stores hours are 5AM - 5AM. The store is always open" do
+		service = Simpleweed::Timedateutil::Timedateservice.new
+		current = 2 * 60 * 60 #2AM
+		open = 5 * 60 * 60 #5AM
+		closed = 5 * 60 * 60 #5AM
+		previousDayOpen = 5 * 60 * 60 #5AM
+		previousDayClose = 5 * 60 * 60 #5AM
+		result = service.doesTimeOccurDuringBusinessHours(open, closed, current, previousDayOpen, previousDayClose)
+		assert_equal( true, result, 'This store is open at 2AM but is not')
+	end	
+	
+	test "it's 5AM.  The stores hours are 5AM - 5AM. The store is always open" do
+		service = Simpleweed::Timedateutil::Timedateservice.new
+		current = 5 * 60 * 60 #5AM
+		open = 5 * 60 * 60 #5AM
+		closed = 5 * 60 * 60 #3AM
+		previousDayOpen = 5 * 60 * 60 #5AM
+		previousDayClose = 5 * 60 * 60 #5AM
+		result = service.doesTimeOccurDuringBusinessHours(open, closed, current, previousDayOpen, previousDayClose)
+		assert_equal( true, result, 'This store is open at 5AM but is not')
+	end	
+
+	test "it's 4:59AM.  The stores hours are 5AM - 5AM. The store is always open" do
+		service = Simpleweed::Timedateutil::Timedateservice.new
+		current = (4 * 60 * 60) + (59 *60) #4:59AM
+		open = 5 * 60 * 60 #5AM
+		closed = 5 * 60 * 60 #3AM
+		previousDayOpen = 5 * 60 * 60 #5AM
+		previousDayClose = 5 * 60 * 60 #5AM
+		result = service.doesTimeOccurDuringBusinessHours(open, closed, current, previousDayOpen, previousDayClose)
+		assert_equal( true, result, 'This store is open at 4:59AM but is not')
+	end	
+
+	test "it's 5:01AM.  The stores hours are 5AM - 5AM. The store is always open" do
+		service = Simpleweed::Timedateutil::Timedateservice.new
+		current = (5 * 60 * 60) + (1 *60) #5:01AM
+		open = 5 * 60 * 60 #5AM
+		closed = 5 * 60 * 60 #3AM
+		previousDayOpen = 5 * 60 * 60 #5AM
+		previousDayClose = 5 * 60 * 60 #5AM
+		result = service.doesTimeOccurDuringBusinessHours(open, closed, current, previousDayOpen, previousDayClose)
+		assert_equal( true, result, 'This store is open at 5:01AM but is not')
+	end	
+
+	test "it's noon.  The stores hours are 5AM - 5AM. The store is always open" do
+		service = Simpleweed::Timedateutil::Timedateservice.new
+		current = (12 * 60 * 60)  #12:00 PM
+		open = 5 * 60 * 60 #5AM
+		closed = 5 * 60 * 60 #3AM
+		previousDayOpen = 5 * 60 * 60 #5AM
+		previousDayClose = 5 * 60 * 60 #5AM
+		result = service.doesTimeOccurDuringBusinessHours(open, closed, current, previousDayOpen, previousDayClose)
+		assert_equal( true, result, 'This store is open at 12:00PM but is not')
+	end	
+
+	test "it's midnight.  The stores hours are 5AM - 5AM. The store is always open" do
+		service = Simpleweed::Timedateutil::Timedateservice.new
+		current = 0 # 12:00 AM
+		open = 5 * 60 * 60 #5AM
+		closed = 5 * 60 * 60 #3AM
+		previousDayOpen = 5 * 60 * 60 #5AM
+		previousDayClose = 5 * 60 * 60 #5AM
+		result = service.doesTimeOccurDuringBusinessHours(open, closed, current, previousDayOpen, previousDayClose)
+		assert_equal( true, result, 'This store is open at 12:00AM but is not')
+	end	
+
+	# 8AM - 5PM store
+	test "it's midnight.  The stores hours are 8AM - 5PM. The store is closed" do
+		service = Simpleweed::Timedateutil::Timedateservice.new
+		current = 0 # 12:00 AM
+		open = 8 * 60 * 60 #8AM
+		closed = 20 * 60 * 60 #8PM
+		previousDayOpen = 8 * 60 * 60 #8AM
+		previousDayClose = 20 * 60 * 60 #8PM
+		result = service.doesTimeOccurDuringBusinessHours(open, closed, current, previousDayOpen, previousDayClose)
+		assert_equal( false, result, 'This store is closed at 12:00AM but is not')
+	end	
+
+	test "it's noon.  The stores hours are 8AM - 5PM. The store is open" do
+		service = Simpleweed::Timedateutil::Timedateservice.new
+		current = 12 * 60 * 60 # 12:00 PM
+		open = 8 * 60 * 60 #8AM
+		closed = 20 * 60 * 60 #8PM
+		previousDayOpen = 8 * 60 * 60 #8AM
+		previousDayClose = 20 * 60 * 60 #8PM
+		result = service.doesTimeOccurDuringBusinessHours(open, closed, current, previousDayOpen, previousDayClose)
+		assert_equal( true, result, 'This store is open at 12:00AM but is not')
+	end	
+
+
 end
