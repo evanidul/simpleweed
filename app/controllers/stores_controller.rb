@@ -41,8 +41,8 @@ class StoresController < ApplicationController
 		@debug = dido.sayHi
 		ripz = Bar::Ripz.new
 		@debug = ripz.sayHi
-		lightz = Bar::Zippo::Lightz.new
-		@debug = lightz.sayHi
+		tds = Simpleweed::Timedateutil::Timedateservice.new
+		@debug = tds.sayHi
 
 
 		@store_items = @store.store_items.order('name ASC')
