@@ -54,6 +54,40 @@ module Simpleweed
 
 	  		end #getSecondsSinceMidnight
 
+	  		def isStoreOpen(currenttime, store)
+				dayint = currenttime.to_date.wday  
+				secondsSinceMidnight = currenttime.seconds_since_midnight()
+
+				case dayint
+				when 0
+					return doesTimeOccurDuringBusinessHours(store.storehourssundayopen, store.storehourssundayclosed, secondsSinceMidnight);
+				when 1	
+					return doesTimeOccurDuringBusinessHours(store.storehoursmondayopen, store.storehoursmondayclosed, secondsSinceMidnight);
+				when 2	
+					return doesTimeOccurDuringBusinessHours(store.storehourstuesdayopen, store.storehourstuesdayclosed, secondsSinceMidnight);
+				when 3	
+					return doesTimeOccurDuringBusinessHours(store.storehourswednesdayopen, store.storehourswednesdayclosed, secondsSinceMidnight);
+				when 4	
+					return doesTimeOccurDuringBusinessHours(store.storehoursthursdayopen, store.storehoursthursdayclosed, secondsSinceMidnight);
+				when 5	
+					return doesTimeOccurDuringBusinessHours(store.storehoursfridayopen, store.storehoursfridayclosed, secondsSinceMidnight);
+				when 6	
+					return doesTimeOccurDuringBusinessHours(store.storehourssaturdayopen, store.storehourssaturdayclosed, secondsSinceMidnight);
+
+				else
+					return true #by default, just pretend it's open...
+				end # case	
+
+	  		end #isStoreOpen	
+
+	  		### only works for CURRENT DAY!  so if they close at 3AM, 3AM is technically the next day and this method won't work.
+	  		# open - seconds since midnigtht, open hours
+	  		# closed - seconds since midnight
+	  		# current time - passed as seconds since midnight
+	  		def doesTimeOccurDuringBusinessHours(open, closed, current)
+	  			return current.between?(open, closed)
+	  		end #doesTimeOccurDuringBusinessHours
+
 		end #class
 	end
 end

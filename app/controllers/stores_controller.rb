@@ -35,15 +35,12 @@ class StoresController < ApplicationController
 		@dayint = @currenttime.to_date.wday  
 		@day = Date::DAYNAMES[@dayint]
 
-		duh = Foo.new
-		@debug = duh.sayHi
-		dido = Bar::Baz.new
-		@debug = dido.sayHi
-		ripz = Bar::Ripz.new
-		@debug = ripz.sayHi
+		#debug
 		tds = Simpleweed::Timedateutil::Timedateservice.new
 		@debug = tds.sayHi
 
+		#is the store open?
+		@is_open = tds.isStoreOpen(@currenttime, @store)
 
 		@store_items = @store.store_items.order('name ASC')
 		@grouped_store_items = @store_items.group_by &:category
