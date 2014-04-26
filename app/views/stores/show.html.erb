@@ -167,13 +167,16 @@
 				<%= @store.city  %>, <%= @store.state  %> <%= @store.zip  %><br>
 				 
 				 <abbr title="Phone">P:</abbr> <%= @store.phonenumber  %><br>
-				 <%= @timezone %><br>
-				 <%= @currenttime %><br>
-				 <%= @secondsSinceMidnight %><br>
-				 <%= @day %><br>
-				 <%= @debug %><br>
 			</address>
 		</div>
+
+		<h3>Debug</h3>
+		 <%= @timezone %><br>
+		 <%= @currenttime %><br>
+		 <%= @secondsSinceMidnight %><br>
+		 <%= @day %><br>
+		 <%= @debug %><br>
+		<%= @store.storehoursfridayopen%>		<%= @store.storehoursfridayclosed %> <br>
 
 		<h3>Hours</h3>
 		<table id="storehours">

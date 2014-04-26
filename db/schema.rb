@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140425142039) do
+ActiveRecord::Schema.define(version: 20140426085622) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,20 @@ ActiveRecord::Schema.define(version: 20140425142039) do
     t.string   "storehoursthursday"
     t.string   "storehoursfriday"
     t.string   "storehourssaturday"
+    t.integer  "storehourssundayopen"
+    t.integer  "storehourssundayclosed"
+    t.integer  "storehoursmondayopen"
+    t.integer  "storehoursmondayclosed"
+    t.integer  "storehourstuesdayopen"
+    t.integer  "storehourstuesdayclosed"
+    t.integer  "storehourswednesdayopen"
+    t.integer  "storehourswednesdayclosed"
+    t.integer  "storehoursthursdayopen"
+    t.integer  "storehoursthursdayclosed"
+    t.integer  "storehoursfridayopen"
+    t.integer  "storehoursfridayclosed"
+    t.integer  "storehourssaturdayopen"
+    t.integer  "storehourssaturdayclosed"
   end
 
   create_table "users", force: true do |t|
