@@ -30,10 +30,18 @@ class StoresController < ApplicationController
 
 		@currenttime = Time.now.in_time_zone(@timezone)
 		@secondsSinceMidnight = @currenttime.seconds_since_midnight()
-		
+
 		#0 is Sunday
 		@dayint = @currenttime.to_date.wday  
 		@day = Date::DAYNAMES[@dayint]
+
+		duh = Foo.new
+		@debug = duh.sayHi
+		dido = Bar::Baz.new
+		@debug = dido.sayHi
+		ripz = Bar::Ripz.new
+		@debug = ripz.sayHi
+
 
 		@store_items = @store.store_items.order('name ASC')
 		@grouped_store_items = @store_items.group_by &:category
