@@ -29,7 +29,8 @@ class StoresController < ApplicationController
 		@timezone = TZWhere.lookup(@store.latitude, @store.longitude)
 
 		@currenttime = Time.now.in_time_zone(@timezone)
-
+		@secondsSinceMidnight = @currenttime.seconds_since_midnight()
+		
 		#0 is Sunday
 		@dayint = @currenttime.to_date.wday  
 		@day = Date::DAYNAMES[@dayint]
