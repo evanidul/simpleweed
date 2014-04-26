@@ -6,7 +6,7 @@ module Simpleweed
 		      return "timedateservice"		   
 	  		end
 
-	  		# rake test test/lib/simpleweed/timedateservice.rb
+	  		# @Tested: rake test test/lib/simpleweed/timedateservice.rb
 	  		def getSecondsSinceMidnight(timestring)
 
 	  			if !timestring.is_a? String
@@ -80,10 +80,13 @@ module Simpleweed
 
 	  		end #isStoreOpen	
 
-	  		### only works for CURRENT DAY!  so if they close at 3AM, 3AM is technically the next day and this method won't work.
+
+	  		# @Tested: rake test test/lib/simpleweed/timedateservice.rb	  		
 	  		# open - seconds since midnigtht, open hours
 	  		# closed - seconds since midnight
 	  		# current time - passed as seconds since midnight
+	  		# previousDayOpen - seconds since midnight
+	  		# previousDayClose - seconds since midnight
 	  		def doesTimeOccurDuringBusinessHours(open, closed, current, previousDayOpen, previousDayClose)
 	  			# if open == closed, this store is open 24 hours a day
 	  			if open == closed 
