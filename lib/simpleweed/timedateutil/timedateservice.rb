@@ -60,19 +60,19 @@ module Simpleweed
 
 				case dayint
 				when 0
-					return doesTimeOccurDuringBusinessHours(store.storehourssundayopen, store.storehourssundayclosed, secondsSinceMidnight);
-				when 1	
-					return doesTimeOccurDuringBusinessHours(store.storehoursmondayopen, store.storehoursmondayclosed, secondsSinceMidnight);
+					return doesTimeOccurDuringBusinessHours(store.storehourssundayopen, store.storehourssundayclosed, secondsSinceMidnight, store.storehourssaturdayopen, store.storehourssaturdayclosed )
+				when 1
+					return doesTimeOccurDuringBusinessHours(store.storehoursmondayopen, store.storehoursmondayclosed, secondsSinceMidnight, store.storehourssundayopen, store.storehourssundayclosed)
 				when 2	
-					return doesTimeOccurDuringBusinessHours(store.storehourstuesdayopen, store.storehourstuesdayclosed, secondsSinceMidnight);
+					return doesTimeOccurDuringBusinessHours(store.storehourstuesdayopen, store.storehourstuesdayclosed, secondsSinceMidnight, store.storehoursmondayopen, store.storehoursmondayclosed)
 				when 3	
-					return doesTimeOccurDuringBusinessHours(store.storehourswednesdayopen, store.storehourswednesdayclosed, secondsSinceMidnight);
+					return doesTimeOccurDuringBusinessHours(store.storehourswednesdayopen, store.storehourswednesdayclosed, secondsSinceMidnight, store.storehourstuesdayopen, store.storehourstuesdayclosed)
 				when 4	
-					return doesTimeOccurDuringBusinessHours(store.storehoursthursdayopen, store.storehoursthursdayclosed, secondsSinceMidnight);
+					return doesTimeOccurDuringBusinessHours(store.storehoursthursdayopen, store.storehoursthursdayclosed, secondsSinceMidnight, store.storehourswednesdayopen, store.storehourswednesdayclosed)
 				when 5	
-					return doesTimeOccurDuringBusinessHours(store.storehoursfridayopen, store.storehoursfridayclosed, secondsSinceMidnight);
+					return doesTimeOccurDuringBusinessHours(store.storehoursfridayopen, store.storehoursfridayclosed, secondsSinceMidnight, store.storehoursthursdayopen, store.storehoursthursdayclosed)
 				when 6	
-					return doesTimeOccurDuringBusinessHours(store.storehourssaturdayopen, store.storehourssaturdayclosed, secondsSinceMidnight);
+					return doesTimeOccurDuringBusinessHours(store.storehourssaturdayopen, store.storehourssaturdayclosed, secondsSinceMidnight, store.storehoursfridayopen, store.storehoursfridayclosed)
 
 				else
 					return true #by default, just pretend it's open...
@@ -84,12 +84,26 @@ module Simpleweed
 	  		# open - seconds since midnigtht, open hours
 	  		# closed - seconds since midnight
 	  		# current time - passed as seconds since midnight
-	  		def doesTimeOccurDuringBusinessHours(open, closed, current)
+	  		def doesTimeOccurDuringBusinessHours(open, closed, current, previousDayOpen, previousDayClose)
 	  			# if open == closed, this store is open 24 hours a day
-	  			if ( open == closed )
+	  			if open == closed 
 	  				return true
 	  			end
-	  			return current.between?(open, closed)
+
+	  			if current.between?(0, open)   #if the current time is between midnight and the previous day's opening hours..
+	  				if previousDayClose < previousDayOpen  # .. check and see if the previous day's close is 3AM
+	  																  #..and that 3 AM is before the open at 5 AM
+	  					return current.between?(0, previousDayClose)  # if so, the store is still open if the current time is
+	  																  #between 00:00 and the closing time (3AM)
+	  				end # if	
+	  			end # if
+
+	  			if ( closed < open )
+	  				return current.between?(open, 86400) # is closed is before open, it's something like 5AM - 3AM, so it's 
+	  													 # open between 5AM and midnight
+	  			else
+	  				return current.between?(open, closed)
+	  			end
 	  		end #doesTimeOccurDuringBusinessHours
 
 		end #class
