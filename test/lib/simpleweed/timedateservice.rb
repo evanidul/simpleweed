@@ -89,6 +89,18 @@ class Timedateservice < ActiveSupport::TestCase
 		assert_equal( 0, result, 'Expected 0 to be result')
 	end
 	
+	## doesTimeOccurDuringBusinessHours(open, closed, current, previousDayOpen, previousDayClose)
+	test "it's 2AM.  The stores hours are 5AM - 3AM. The store should be open" do
+		service = Simpleweed::Timedateutil::Timedateservice.new
+		current = 2 * 60 * 60 #2AM
+		open = 5 * 60 * 60 #5AM
+		closed = 3 * 60 * 60 #3AM
+		previousDayOpen = 5 * 60 * 60 #5AM
+		previousDayClose = 3 * 60 * 60 #3AM
+		result = service.doesTimeOccurDuringBusinessHours(open, closed, current, previousDayOpen, previousDayClose)
+		assert_equal( true, result, 'This store is open at 2AM but is not')
+	end	
 
+	
 
 end
