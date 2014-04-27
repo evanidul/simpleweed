@@ -35,9 +35,7 @@ class StoresController < ApplicationController
 		@dayint = @currenttime.to_date.wday  
 		@day = Date::DAYNAMES[@dayint]
 
-		#debug
 		tds = Simpleweed::Timedateutil::Timedateservice.new
-		@debug = tds.sayHi
 
 		#is the store open?
 		@is_open = tds.isStoreOpen(@currenttime, @store)
