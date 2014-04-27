@@ -307,4 +307,51 @@ class Timedateservice < ActiveSupport::TestCase
 		assert_equal( true, result, 'This store is open at 8:01AM but is not')
 	end	
 
+	# Store is closed sundays, but open saturdays 
+	test "it's 8:01AM Sunday.  The store is closed sunday, but was open Saturday from 10AM-8PM" do
+		service = Simpleweed::Timedateutil::Timedateservice.new
+		current = (8 * 60 * 60) + (1 * 60) # 8:51 AM
+		open = -1 #closed
+		closed = -1 #closed
+		previousDayOpen = 10 * 60 * 60 #10AM
+		previousDayClose = 20 * 60 * 60 #8PM
+		result = service.doesTimeOccurDuringBusinessHours(open, closed, current, previousDayOpen, previousDayClose)
+		assert_equal( false, result, 'This store is closed at 8:01AM but is not')
+	end	
+	
+	test "it's 2:01AM Sunday.  The store is closed sunday, but was open Saturday from 10AM-3AM" do
+		service = Simpleweed::Timedateutil::Timedateservice.new
+		current = (2 * 60 * 60) + (1 * 60) # 2:01 AM
+		open = -1 #closed
+		closed = -1 #closed
+		previousDayOpen = 10 * 60 * 60 #10AM
+		previousDayClose = 3 * 60 * 60 #3AM
+		result = service.doesTimeOccurDuringBusinessHours(open, closed, current, previousDayOpen, previousDayClose)
+		assert_equal( true, result, 'This store is open at 2:01AM but is not')
+	end	
+
+	test "it's 3:01AM Sunday.  The store is closed sunday, but was open Saturday from 10AM-3AM" do
+		service = Simpleweed::Timedateutil::Timedateservice.new
+		current = (3 * 60 * 60) + (1 * 60) # 3:01 AM
+		open = -1 #closed
+		closed = -1 #closed
+		previousDayOpen = 10 * 60 * 60 #10AM
+		previousDayClose = 3 * 60 * 60 #3AM
+		result = service.doesTimeOccurDuringBusinessHours(open, closed, current, previousDayOpen, previousDayClose)
+		assert_equal( false, result, 'This store is closed at 3:01AM but is not')
+	end	
+
+	# store is closed weekends
+	test "it's 10AM Sunday.  The store is closed sunday and saturday" do
+		service = Simpleweed::Timedateutil::Timedateservice.new
+		current = (10 * 60 * 60) + (0 * 60) # 10:00 AM
+		open = -1 #closed
+		closed = -1 #closed
+		previousDayOpen = -1
+		previousDayClose = -1
+		result = service.doesTimeOccurDuringBusinessHours(open, closed, current, previousDayOpen, previousDayClose)
+		assert_equal( false, result, 'This store is closed on weekends but is not')
+	end	
+
+
 end

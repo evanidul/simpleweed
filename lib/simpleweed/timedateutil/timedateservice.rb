@@ -14,6 +14,10 @@ module Simpleweed
 	  				return -1
 	  			end
 
+	  			if timestring == "Closed"
+	  				return -1
+	  			end
+
 	  			#mutable strings lead to crazy bugs
 	  			timestring.freeze	  			
 
@@ -88,11 +92,24 @@ module Simpleweed
 	  		# current time - passed as seconds since midnight
 	  		# previousDayOpen - seconds since midnight
 	  		# previousDayClose - seconds since midnight
+	  		# the store is open 24 hours a day if open and closed are equal, and neither is -1
+	  		# the store is closed all day if open and closed are both -1
 	  		def doesTimeOccurDuringBusinessHours(open, closed, current, previousDayOpen, previousDayClose)
 	  			# if open == closed, this store is open 24 hours a day
-	  			if open == closed 
+	  			if ((open == closed) && !((open == -1) && (closed == -1)))  # is the store open 24 hours a day?
 	  				return true
 	  			end
+
+	  			if ((open == -1) && (closed == -1))   #the store is closed today..but we need to check if it's open from yesterday
+	  				if previousDayClose < previousDayOpen  # .. check and see if the previous day's close is 3AM
+	  																  #..and that 3 AM is before the open at 5 AM
+	  					return current.between?(0, previousDayClose)  # if so, the store is still open if the current time is
+	  																  #between 00:00 and the closing time (3AM)
+	  				else
+	  					return false												  
+	  				end # if	
+
+	  			end # if
 
 	  			if current.between?(0, open)   #if the current time is between midnight and the previous day's opening hours..
 	  				if previousDayClose < previousDayOpen  # .. check and see if the previous day's close is 3AM

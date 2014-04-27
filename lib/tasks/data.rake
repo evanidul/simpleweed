@@ -92,7 +92,7 @@ namespace :data do
       @store = Store.find_or_initialize_by_id(attrs[0])
       if (@store)
       	if( attrs.last != "ERROR: check fields")      		
-      		@store.storehourssunday = attrs[2]; # attrs[2].split("-") : results[0], 10AM results[1], 12AM (close)
+      		@store.storehourssunday = attrs[2]; # attrs[2].split("-") : results[0], 10AM results[1], 12AM (close)      		
       		sunday =  attrs[2].split("-")
       		@store.storehourssundayopen = tds.getSecondsSinceMidnight(sunday[0])
       		@store.storehourssundayclosed = tds.getSecondsSinceMidnight(sunday[1])
