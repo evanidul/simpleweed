@@ -7,6 +7,7 @@ module Simpleweed
 	  		end
 
 	  		# @Tested: rake test test/lib/simpleweed/timedateservice.rb
+	  		# need to handle "Closed" case
 	  		def getSecondsSinceMidnight(timestring)
 
 	  			if !timestring.is_a? String
