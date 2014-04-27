@@ -178,35 +178,64 @@
 		 <%= @debug %><br>
 		<%= @store.storehoursfridayopen%>		<%= @store.storehoursfridayclosed %> <br>
 		is open? <%= @is_open %>
+
+		<script type="text/javascript">
+			
+			$( document ).ready(function() {
+				var isStoreOpen = <%= @is_open %>;				
+				var dayInt = "<%= @dayint %>";
+				if ( isStoreOpen ) {
+					setStoreStatus(dayInt , "Open now", "green");
+				} else {
+					setStoreStatus(dayInt, "Closed now", "red");
+				}  
+			});
+
+			function setStoreStatus(dayint, status, color) {
+				var idPrefix = "store-status-";
+				var divid = idPrefix + dayint;				
+				var selector = "#" + divid ;
+				$(selector).html(status);				
+				$(selector).addClass(color)
+			}
+
+		</script>
 		<h3>Hours</h3>
 		<table id="storehours">
-			<tr>
+			
 			<tr>
 				<td>Sunday</td>
 				<td><%= @store.storehourssunday %></td>
+				<td id="store-status-0"></td>
 			</tr>				
 				<td>Monday</td>
 				<td><%= @store.storehoursmonday %></td>
+				<td id="store-status-1"></td>
 			</tr>
 			<tr>
 				<td>Tuesday</td>
 				<td><%= @store.storehourstuesday %></td>
+				<td id="store-status-2"></td>
 			</tr>
 			<tr>
 				<td>Wednesday</td>
 				<td><%= @store.storehourswednesday %></td>
+				<td id="store-status-3"></td>
 			</tr>
 			<tr>
 				<td>Thursday</td>
 				<td><%= @store.storehoursthursday %></td>
+				<td id="store-status-4"></td>
 			</tr>
 			<tr>
 				<td>Friday</td>
 				<td><%= @store.storehoursfriday %></td>
+				<td id="store-status-5"></td>
 			</tr>
 			<tr>
 				<td>Saturday</td>
 				<td><%= @store.storehourssaturday %></td>
+				<td id="store-status-6"></td>
 			</tr>
 		</table>
 
