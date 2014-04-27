@@ -5,8 +5,8 @@ class Store < ActiveRecord::Base
 	# I'm guessing since it creates new stores, it's generating api requests to 
 	# geocode all the stores...  Just comment it out and turn it back on later...
 	# Comment this back in: rake geocode:all CLASS=Store will not work otherwise
-	# geocoded_by :address
-	# after_validation :geocode
+	geocoded_by :address
+	after_validation :geocode
 
 	def address
 		"#{addressline1}, #{city}, #{state} #{zip}"
