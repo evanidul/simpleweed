@@ -74,12 +74,18 @@
 	background: white;
 }
 
+.simple-weed-google-table-header-cell {
+	
+}
+
 /** overrides for "//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" **/
 .ui-accordion .ui-accordion-content {
 	padding:0 !important;
+	border: none !important;
 }
 
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
-	background : white !important;
-	//background : rgb(238, 244, 250);
+	//background : white !important;
+	background : rgb(238, 244, 250) !important;
+	border: none !important;
 }
