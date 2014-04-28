@@ -8,7 +8,10 @@
 
 
 </script>	
-
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<!-- <link rel="stylesheet" href="http://jqueryui.com/resources/demos/style.css"> -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+ 
 <% end %>
 
 <div class="row">
@@ -57,10 +60,12 @@
 
 		
 		</br></br>
-			
+		<div id="accordion">			
 			<% @grouped_store_items.each do |category, store_items| %>
   			<h3><%= category %></h3>
-  			<div id="table_<%= category %>" ></div>
+  			<div> <!-- empty div required for jquery accordion -->
+  				
+  				<div id="table_<%= category %>" ></div>
 
 <script>
 	(function drawTable() {
@@ -86,7 +91,9 @@
 
 
       var table = new google.visualization.Table(document.getElementById("table_<%= category %>"));
-      table.draw(data, {showRowNumber: false, allowHtml: true});
+      
+ 	  var cssClassNames = {headerRow: "simple-weed-google-table-header"};
+      table.draw(data, {showRowNumber: false, allowHtml: true, cssClassNames: cssClassNames});
       
       
       google.visualization.events.addListener(table, 'sort', setWidth);
@@ -103,8 +110,21 @@
 		
 			
 			
+			</div>	
 		
 		<% end %>
+
+		</div> <!-- accordion -->
+		  <script>
+		  $(function() {
+
+		    $( "#accordion" ).accordion({
+		      heightStyle: "content", //allows divs to be different height.  Very important
+		      collapsible: true, 	//allows all elements to be collabsible		      
+		    });
+		  });
+  		</script>
+
 
     </div> <!-- end of left container -->
 

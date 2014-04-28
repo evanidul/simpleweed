@@ -69,3 +69,17 @@
 .day {
 	font-weight : bold;
 }
+
+.simple-weed-google-table-header {
+	background: white;
+}
+
+/** overrides for "//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" **/
+.ui-accordion .ui-accordion-content {
+	padding:0 !important;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+	background : white !important;
+	//background : rgb(238, 244, 250);
+}
