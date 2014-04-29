@@ -122,6 +122,25 @@ namespace :data do
     end # file.each do
   end # task
 
+#assumes dispensaries are created already
+  task :importSocial => :environment do
+    file = File.open("./lib/tasks/social.txt")
+    file.each do |line|
+      attrs = line.split("<")            
+
+      @store = Store.find_or_initialize_by_id(attrs[0])
+      if (@store)
+      	if( attrs.last != "ERROR: check fields")      		
+      		@store.facebook = attrs[2];
+      		@store.twitter = attrs[3];
+      		@store.instagram = attrs[4];      		
+
+      		@store.save
+      	end	
+	  end #if
+
+    end # file.each do
+  end # task
 
 #assumes dispensaries are created already
   task :importFirsttimepatientdeals => :environment do
