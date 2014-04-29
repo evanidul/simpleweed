@@ -102,6 +102,28 @@ namespace :data do
   end # task
 
 #assumes dispensaries are created already
+  task :importStoreFeatures => :environment do
+    file = File.open("./lib/tasks/storefeatures.txt")
+    file.each do |line|
+      attrs = line.split("<")            
+
+      @store = Store.find_or_initialize_by_id(attrs[0])
+      if (@store)
+      	if( attrs.last != "ERROR: check fields")      		
+      		@store.handicapaccess = attrs[2];
+      		@store.securityguard = attrs[3];
+      		@store.acceptscreditcards = attrs[4];
+      		@store.deliveryservice = attrs[5];
+
+      		@store.save
+      	end	
+	  end #if
+
+    end # file.each do
+  end # task
+
+
+#assumes dispensaries are created already
   task :importFirsttimepatientdeals => :environment do
     file = File.open("./lib/tasks/firsttimepatientdeals.txt")
     file.each do |line|
