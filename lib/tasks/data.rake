@@ -128,6 +128,24 @@ namespace :data do
   end # task
 
 #assumes dispensaries are created already
+  task :importAnnouncements => :environment do
+    file = File.open("./lib/tasks/announcements.txt")
+    file.each do |line|
+      attrs = line.split(":::")            
+
+      @store = Store.find_or_initialize_by_id(attrs[0])
+      if (@store)
+      	if( attrs.last != "ERROR: check fields")      		
+      		@store.announcement = attrs[2];
+
+      		@store.save
+      	end	
+	  end #if
+
+    end # file.each do
+  end # task  
+
+#assumes dispensaries are created already
   task :importSocial => :environment do
     file = File.open("./lib/tasks/social.txt")
     file.each do |line|
