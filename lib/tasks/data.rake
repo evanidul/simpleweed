@@ -101,6 +101,23 @@ namespace :data do
     end # file.each do
   end # task
 
+#assumes dispensaries are created already
+  task :importEmails => :environment do
+    file = File.open("./lib/tasks/emails.txt")
+    file.each do |line|
+      attrs = line.split("<")         #can't use "<" since this contains html
+
+      @store = Store.find_or_initialize_by_id(attrs[0])
+      if (@store)
+      	if( attrs.last != "ERROR: check fields")      		
+      		@store.email = attrs[2];
+
+      		@store.save
+      	end	
+	  end #if
+
+    end # file.each do
+  end # task
 
 #assumes dispensaries are created already
   task :importStorehours => :environment do
