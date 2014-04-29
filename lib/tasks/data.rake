@@ -115,6 +115,11 @@ namespace :data do
       		@store.acceptscreditcards = attrs[4];
       		@store.deliveryservice = attrs[5];
 
+      		@store.labtested = attrs[6];
+      		@store.eighteenplus = attrs[7];
+      		@store.twentyoneplus = attrs[8];
+      		@store.hasphotos = attrs[9];
+
       		@store.save
       	end	
 	  end #if

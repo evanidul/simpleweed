@@ -333,6 +333,23 @@
 				<td>Security Guard</td>
 				<td><%= check_box_tag :securityguard , 1 , @store.securityguard ? true : false, disabled: true %></td>
 			</tr>			
+			<tr>
+				<td>Lab Tested</td>
+				<td><%= check_box_tag :labtested , 1 , @store.labtested ? true : false, disabled: true %></td>
+			</tr>			
+			<tr>
+				<td>18+</td>
+				<td><%= check_box_tag :eighteenplus , 1 , @store.eighteenplus ? true : false, disabled: true %></td>
+			</tr>			
+			<tr>
+				<td>21+</td>
+				<td><%= check_box_tag :twentyoneplus , 1 , @store.twentyoneplus ? true : false, disabled: true %></td>
+			</tr>			
+			<tr>
+				<td>Photos</td>
+				<td><%= check_box_tag :hasphotos , 1 , @store.hasphotos ? true : false, disabled: true %></td>
+			</tr>			
+
 		</table>
     </div><!-- end right, side bar -->
 </div> <!-- end of 'row' -->
