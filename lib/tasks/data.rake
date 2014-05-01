@@ -24,7 +24,7 @@ namespace :data do
       attrs = line.split("<")            
 
       #@store = Store.find_or_create_by(name: attrs[0].strip)
-      @store = Store.find_or_create_by(id: attrs[0])
+      @store = Store.find_or_create_by(id: attrs[0])      
       @store.name = attrs[1];
       @store.save
 
@@ -37,6 +37,7 @@ namespace :data do
 	  @store_item.costquarteroz = attrs[7]
 	  @store_item.costhalfoz = attrs[8]
 	  @store_item.costoneoz = attrs[9]
+	  @store_item.priceperunit = attrs[10]
 
 	  @store_item.save
     end

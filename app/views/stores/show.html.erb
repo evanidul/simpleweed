@@ -67,23 +67,31 @@
 
 <script>
 	(function drawTable() {
+	  var pricePerUnit = "<%=  store_items.first.priceperunit %>";
 	  var data = new google.visualization.DataTable();
-	  data.addColumn('string', '');	  
-	  data.addColumn('string', '1g');
-	  data.addColumn('string', '1/8');
-	  data.addColumn('string', '1/4');
-	  data.addColumn('string', '1/2');
-	  data.addColumn('string', '1 oz');
+
+	  if(pricePerUnit > 0) {
+		  data.addColumn('string', '');	  
+		  data.addColumn('string', 'each');
+	  } else {
+		  data.addColumn('string', '');	  
+		  data.addColumn('string', '1g');
+		  data.addColumn('string', '1/8');
+		  data.addColumn('string', '1/4');
+		  data.addColumn('string', '1/2');
+		  data.addColumn('string', '1 oz');
+	  }
+
+	  
       
         <% store_items.each do |store_item| %>
-    data.addRow(['<%= store_item.name %>',        
-     '<%= store_item.costonegram %>',
-     
-     '<%= store_item.costeighthoz %>',
-     '<%= store_item.costquarteroz %>',
-     '<%= store_item.costhalfoz %>',
-     '<%= store_item.costoneoz %>']);
-  <% end %>      
+		    if (pricePerUnit > 0) {
+		    	data.addRow(['<%= store_item.name %>','<%= store_item.priceperunit %>'])
+		    } else {
+		    	data.addRow(['<%= store_item.name %>','<%= store_item.costonegram %>','<%= store_item.costeighthoz %>',
+		     	'<%= store_item.costquarteroz %>','<%= store_item.costhalfoz %>','<%= store_item.costoneoz %>']);		    	
+		    }
+  		<% end %>      
 
 
       var table = new google.visualization.Table(document.getElementById("table_<%= category %>"));
