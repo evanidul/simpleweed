@@ -119,6 +119,24 @@ namespace :data do
     end # file.each do
   end # task
 
+#assumes dispensaries are created already
+  task :importFilepath => :environment do
+    file = File.open("./lib/tasks/filepath.txt")
+    file.each do |line|
+      attrs = line.split("<")            
+
+      @store = Store.find_or_initialize_by_id(attrs[0])
+      if (@store)
+      	if( attrs.last != "ERROR: check fields")      		
+      		@store.filepath = attrs[2];
+
+      		@store.save
+      	end	
+	  end #if
+
+    end # file.each do
+  end # task
+
 
 #assumes dispensaries are created already
   task :importStoreFeatures => :environment do
