@@ -67,7 +67,7 @@
 
 <script>
 	(function drawTable() {
-	  var pricePerUnit = "<%=  store_items.first.priceperunit %>";
+	  var pricePerUnit = "<%=  store_items.first.costperunit %>";
 	  var data = new google.visualization.DataTable();
 
 	  if(pricePerUnit > 0) {
@@ -86,7 +86,7 @@
       
         <% store_items.each do |store_item| %>
 		    if (pricePerUnit > 0) {
-		    	data.addRow(['<%= store_item.name %>','<%= store_item.priceperunit %>'])
+		    	data.addRow(['<%= store_item.name %>','<%= store_item.costperunit %>'])
 		    } else {
 		    	data.addRow(['<%= store_item.name %>','<%= store_item.costonegram %>','<%= store_item.costeighthoz %>',
 		     	'<%= store_item.costquarteroz %>','<%= store_item.costhalfoz %>','<%= store_item.costoneoz %>']);		    	
