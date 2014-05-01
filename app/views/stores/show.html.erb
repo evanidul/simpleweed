@@ -225,10 +225,13 @@
 			}
 
 		</script>
-		<h3>Announcement</h3>
-		<div>
-			<%= raw @store.announcement %>
-		</div>
+
+		<% if  @store.announcement && !@store.announcement.empty?  %>			
+			<h3>Announcement</h3>
+			<div>
+				<%= raw @store.announcement %>
+			</div>
+		<% end %>	
 
 		<h3>Hours</h3>
 		<table id="storehours">
@@ -359,6 +362,14 @@
 				<td><%= check_box_tag :hasphotos , 1 , @store.onsitetesting ? true : false, disabled: true %></td>
 			</tr>			
 		</table>
+
+		<% if  @store.deliveryarea && !@store.deliveryarea.empty?  %>			
+			<h3>Delivery Areas</h3>
+			<div>
+				<%= raw @store.deliveryarea %>
+			</div>
+		<% end %>	
+
     </div><!-- end right, side bar -->
 </div> <!-- end of 'row' -->
 
