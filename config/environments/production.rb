@@ -77,4 +77,7 @@ Smellyleaf::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  # dvu: devise, email upon registration for verification
+  config.action_mailer.default_url_options = { :host => 'dry-ridge-1106.herokuapp.com' }
 end
