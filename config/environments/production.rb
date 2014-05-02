@@ -80,4 +80,5 @@ Smellyleaf::Application.configure do
 
   # dvu: devise, email upon registration for verification
   config.action_mailer.default_url_options = { :host => 'dry-ridge-1106.herokuapp.com' }
+  Rails.application.routes.default_url_options[:host] = 'dry-ridge-1106.herokuapp.com'
 end
