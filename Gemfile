@@ -35,6 +35,9 @@ gem 'geocoder'
 # https://github.com/adam12/tzwhere :: get timezone info from lat/long
 gem 'tzwhere' 
 
+# authorization lib : https://github.com/CanCanCommunity/cancancan
+gem 'cancancan', '~> 1.7'
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0.beta'
   gem 'capybara'

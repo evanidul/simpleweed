@@ -54,10 +54,15 @@
 		<% end %>
 
 		<h3>Menu</h3>
-		<%= link_to 'Edit Menu', store_store_items_path(@store), class: 'btn btn-primary' , id: "edit_store_items" , 'data-no-turbolink' => true %>
+		<% if can? :manage, Store %>		  
+	  		<%= link_to 'Edit Menu', store_store_items_path(@store), class: 'btn btn-primary' , id: "edit_store_items" , 'data-no-turbolink' => true %>
+	  		</br></br>
+		<% end %>
+
+
 
 		
-		</br></br>
+		
 		<div id="accordion">			
 			<% @grouped_store_items.each do |category, store_items| %>
   			<h3><%= category %></h3>
