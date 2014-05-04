@@ -14,12 +14,15 @@ class Admin::StoresController < ApplicationController
 		render layout: false
 	end
 
-	def create
-		authorize! :manage, Store
-		@store = Store.new(store_params)
-		@store.save
-		redirect_to :action => 'index'  			
-	end
+	# DEADCODE?
+	# def create
+	# 	authorize! :manage, Store
+	# 	#@store = Store.new(store_params)
+	# 	#@store.save
+	# 	# redirect_to :action => 'index'
+	# 	# redirect_to store_path(@store)  
+	# 	redirect_to :controller => 'stores', :action => 'show'			
+	# end
 
 	def show
 		authorize! :manage, Store

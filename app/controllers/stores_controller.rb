@@ -19,14 +19,17 @@ class StoresController < ApplicationController
 		@store = Store.new(store_params)
 		@store.save
 		# redirect_to :action => 'index' 
-		redirect_to :controller => 'admin/stores', :action => 'index' 			
+		# redirect_to :controller => 'admin/stores', :action => 'index' 			
+		redirect_to store_path(@store)
 	end
 
 
 	def show
 		@store = Store.find(params[:id])
 
-		@timezone = TZWhere.lookup(@store.latitude, @store.longitude)
+		if(@store.latitude && @store.longitude)
+			@timezone = TZWhere.lookup(@store.latitude, @store.longitude)
+		end
 
 		@currenttime = Time.now.in_time_zone(@timezone)
 		@secondsSinceMidnight = @currenttime.seconds_since_midnight()
