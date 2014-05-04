@@ -23,11 +23,11 @@ class Roles < ActiveSupport::TestCase
 		store_other.name = "CostCo Weed"
 		store_other.save
 
-		user.add_role :storeowner, Store.first # sets a role for a resource instance
-		result = user.has_role? :storeowner, Store.first
+		user.add_role :storeowner, store # sets a role for a resource instance
+		result = user.has_role? :storeowner, store
 		assert_equal( true, result, 'User should have storeowner role assigned but does not')
 
-		result_other_store = user.has_role? :storeowner, Store.last
+		result_other_store = user.has_role? :storeowner, store_other
 		
 		#binding.pry
 		assert_equal( false, result_other_store, 'User should NOT have storeowner role assigned but does')
