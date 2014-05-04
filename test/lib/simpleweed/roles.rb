@@ -1,5 +1,7 @@
 require 'test_helper'
  
+# Tests our integraiton with Rollify at a model level.  Does not test at a view level.
+
 class Roles < ActiveSupport::TestCase
 
 	test "add basic admin role via rollify" do
@@ -70,6 +72,6 @@ class Roles < ActiveSupport::TestCase
 		result_after_adding_it_back = user.has_role? :storeowner, store
 		assert_equal( true, result_after_adding_it_back, 'User should have storeowner role assigned but does not')
 	end	
-	
+
 
 end

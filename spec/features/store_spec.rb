@@ -6,6 +6,13 @@ feature "store page" , :js => true do
 	  	@basicauthname = "ddadmin"
 	  	@basicauthpassword = "idontreallysmoke" 
 	  	page.visit("http://#{@basicauthname}:#{@basicauthpassword}@#{Capybara.current_session.server.host}:#{Capybara.current_session.server.port}/")
+
+	  	@adminemail = "evanidul@gmail.com"
+	  	@adminpassword = "password"
+		user = User.new(:email => @adminemail, :password => @adminpassword, :password_confirmation => @adminpassword)
+		user.save
+		user.add_role :admin # sets a global role
+
 	end
 
 	scenario "" do
@@ -16,10 +23,10 @@ feature "store page" , :js => true do
   	end
 
 	scenario "" do
-		# Run the generator again with the --webrat flag if you want to use webrat methods/matchers
-		# page.visit("http://#{@basicauthname}:#{@basicauthpassword}@#{Capybara.current_session.server.host}:#{Capybara.current_session.server.port}/")
-		page.visit("/stores/26888")
-		expect(page).to have_content("024"), "or else!"          
+				
+		page.visit("/users/sign_in")
+		
+		
   	end
 
 
