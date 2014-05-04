@@ -8,6 +8,8 @@ class Store < ActiveRecord::Base
 	geocoded_by :address
 	after_validation :geocode
 
+	resourcify
+
 	def address
 		"#{addressline1}, #{city}, #{state} #{zip}"
 	end

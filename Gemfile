@@ -27,7 +27,8 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
-gem 'devise'
+# authentication, user registration
+gem 'devise' 
 
 # https://github.com/alexreisner/geocoder :: get lat/long for addresses and nearby location services
 gem 'geocoder'
@@ -37,6 +38,9 @@ gem 'tzwhere'
 
 # authorization lib : https://github.com/CanCanCommunity/cancancan
 gem 'cancancan', '~> 1.7'
+
+# roles per model (ie, this user is the store manager for Store #5)
+gem "rolify"
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0.beta'
