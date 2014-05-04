@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'capybara/rails'
+require 'pages/loginpage'
 
 feature "store page" , :js => true do
 	before :each do
@@ -25,8 +26,13 @@ feature "store page" , :js => true do
 	scenario "" do
 				
 		page.visit("/users/sign_in")
-		
-		
+		login_page = LoginPage.new
+		login_page.has_username_input?
+		login_page.has_username_password_input?
+
+		login_page.username_input.set @adminemail
+    	login_page.username_password_input.set @adminpassword
+
   	end
 
 

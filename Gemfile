@@ -43,10 +43,22 @@ gem 'cancancan', '~> 1.7'
 gem "rolify"
 
 group :development, :test do
+  # automated testing
   gem 'rspec-rails', '~> 3.0.0.beta'
+  
+  # Selenium test driver
   gem 'capybara'
+
+  # Selenium test driver
   gem 'selenium-webdriver'
-  gem 'database_cleaner'
+  
+  # truncates the db after Selenium tests
+  gem 'database_cleaner' 
+  
+  # allows you to use Page Pattern for Selenium tests: https://github.com/natritmeyer/site_prism
+  gem 'site_prism'
+
+  # break points in tests
   gem 'pry'
 end
 
@@ -59,6 +71,7 @@ group :doc do
 
   ruby "2.0.0"
 
+  # Credit Card processing....still waiting to see if we can use this..
   gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
   gem 'bootstrap-sass', '~> 3.0.3.0'
