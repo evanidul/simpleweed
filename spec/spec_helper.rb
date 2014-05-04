@@ -26,6 +26,11 @@ RSpec.configure do |config|
   # config.mock_with :flexmock
   # config.mock_with :rr
 
+  # dvu: stuff deprecation warnings into a file
+  #config.deprecation_stream = 'log/deprecations.log'
+  # or  ...doesnt' WORK!
+  #config.deprecation_stream = File.open("#{::Rails.root}/log/testdeprecations", "w")
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
