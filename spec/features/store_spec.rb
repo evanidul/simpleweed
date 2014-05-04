@@ -49,6 +49,34 @@ feature "store page" , :js => true do
 
   	end
 
+	scenario "non-admins can't access admin store section" do
 
+		email = "john@gmail.com"
+		password = "password"
+		user = User.new(:email => email, :password => password , :password_confirmation => password)
+		user.skip_confirmation!
+		user.save		
+				
+		page.visit("/users/sign_in")
+		login_page = LoginPage.new
+		login_page.has_username_input?
+		login_page.has_username_password_input?
+
+		login_page.username_input.set email
+    	login_page.username_password_input.set password
+    	login_page.sign_in_button.click
+
+    	header = HeaderPageComponent.new
+		header.has_edituserlink?
+    	expect(header.edituserlink.text).to have_text(email)
+
+    	stores_page = StoresPage.new
+    	
+    	# expect authorization exception and redirect
+    	stores_page.load
+    	
+    	# should not be on the store admin page
+    	stores_page.has_no_newstore_button?    	
+  	end
 
 end

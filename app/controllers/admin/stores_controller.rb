@@ -1,6 +1,9 @@
 class Admin::StoresController < ApplicationController
 
+	before_action :authenticate_user!
+
 	def index
+	  authorize! :manage, Store
 	  @stores = Store.all	 
 	end
 
