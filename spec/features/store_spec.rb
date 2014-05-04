@@ -2,6 +2,7 @@ require 'spec_helper'
 require 'capybara/rails'
 require 'pages/loginpage'
 require 'page_components/header'
+require 'pages/admin/stores'
 
 feature "store page" , :js => true do
 	before :each do
@@ -39,6 +40,12 @@ feature "store page" , :js => true do
     	header = HeaderPageComponent.new
 		header.has_edituserlink?
     	expect(header.edituserlink.text).to have_text(@adminemail)
+
+    	stores_page = StoresPage.new
+    	stores_page.load
+    	stores_page.has_newstore_button?    	
+    	stores_page.newstore_button.click
+
 
   	end
 
