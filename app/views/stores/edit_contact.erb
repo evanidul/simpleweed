@@ -1,0 +1,64 @@
+ <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">Edit Contact</h4>          
+        </div>
+        <div class="modal-body">
+            <%= form_for :store, url: update_contact_store_path, method: "put" do |f| %>
+                
+                <p class = "form-group">
+                  <%= f.label :addressline1, "Address Line 1" %><br>
+                  <%= f.text_field :addressline1, :class => 'form-control'  ,:required => true %>
+                </p>
+                <p class = "form-group">
+                  <%= f.label :addressline2, "Address Line 2" %><br>
+                  <%= f.text_field :addressline2, :class => 'form-control'  ,:required => false %>
+                </p>                
+                <p class = "form-group">
+                  <%= f.label :city %><br>
+                  <%= f.text_field :city, :class => 'form-control'  ,:required => true %>
+                </p>
+                <p class = "form-group">
+                  <%= f.label :state, "State" %><br>
+                  <%= f.text_field :state, :class => 'form-control'  ,:required => true %>
+                </p>
+                <p class = "form-group">
+                  <%= f.label :zip, "Zip Code" %><br>
+                  <%= f.text_field :zip, :class => 'form-control'  ,:required => true %>
+                </p>
+                <p class = "form-group">
+                  <%= f.label :phonenumber, "Phone Number" %><br>
+                  <%= f.text_field :phonenumber, :class => 'form-control'  ,:required => true %>
+                </p>
+                <p class = "form-group">
+                  <%= f.label :email, "Email" %><br>
+                  <%= f.text_field :email, :class => 'form-control'  ,:required => true %>
+                </p>
+                <p class = "form-group">
+                  <%= f.label :website, "Website" %><br>
+                  <%= f.text_field :website, :class => 'form-control'  ,:required => false %>
+                </p>
+                <p class = "form-group">
+                  <%= f.label :facebook, "Facebook" %><br>
+                  <%= f.text_field :facebook, :class => 'form-control'  ,:required => false %>
+                </p>
+                <p class = "form-group">
+                  <%= f.label :twitter, "Twitter" %><br>
+                  <%= f.text_field :twitter, :class => 'form-control'  ,:required => false %>
+                </p>
+                <p class = "form-group">
+                  <%= f.label :instagram, "Instagram" %><br>
+                  <%= f.text_field :instagram, :class => 'form-control'  ,:required => false %>
+                </p>
+
+                           
+              <p class = "form-group pull-right">              	
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <%= f.submit :class => 'btn btn-primary' , :id => 'save_store_contact_button'%>
+              </p>
+            <% end %>
+            <div class="modal-footer">
+            </div>
+          </div><!-- modal-footer -->
+      </div> <!-- modal-content -->
+</div>    

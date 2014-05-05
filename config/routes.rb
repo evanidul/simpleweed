@@ -20,6 +20,8 @@ Smellyleaf::Application.routes.draw do
       put 'update_firsttimepatientdeals'
       get 'edit_dailyspecials'
       put 'update_dailyspecials'
+      get 'edit_contact'
+      put 'update_contact'
 
     end
     resources :store_items

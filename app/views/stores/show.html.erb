@@ -191,21 +191,40 @@
 		</div>
 		<!-- end of google maps -->
 		<div id="contact">
-			<h3>Contact</h3>
+			<h3 class = "inline-header">Contact</h3>
+			<%= link_to 'Edit', edit_contact_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_contact_store_path(@store)} , id: "edit-contact-link" %>
+
 			<address>
 				<strong><%= @store.name  %></strong><br>
-				<%= @store.addressline1  %><br>
+				<span id="addressline1"><%= @store.addressline1  %></span>
+					<br>
 				<% if  @store.addressline2 && !@store.addressline2.empty?  %>
-					<%= @store.addressline2  %><br>
+					<span id="addressline2"><%= @store.addressline2  %></span>
+					<br>
 				<% end %>	
-				<%= @store.city  %>, <%= @store.state  %> <%= @store.zip  %><br>
+				<span id="city"><%= @store.city  %></span>, 
+				<span id="state"><%= @store.state  %></span>
+				<span id="zip"><%= @store.zip  %></span>
+				<br />
 				 
-				 <abbr title="Phone">P:</abbr> <%= @store.phonenumber  %><br>
-				 <abbr title="Email">E:</abbr> <%= @store.email  %><br>
-				 <abbr title="Website">W:</abbr> <%= @store.website  %><br>
-				 <abbr title="Facebook">Facebook:</abbr> <%= raw @store.facebook  %><br>
-				 <abbr title="Twitter">Twitter:</abbr> <%= raw @store.twitter  %><br>
-				 <abbr title="Instagram">Instagram:</abbr> <%= raw @store.instagram  %><br>
+				 <abbr title="Phone">P:</abbr> 
+				 <span id="phonenumber"><%= @store.phonenumber  %></span>
+				 <br />
+				 <abbr title="Email">E:</abbr> 
+				 <span id="email"><%= @store.email  %></span>
+				 <br />
+				 <abbr title="Website">W:</abbr> 
+				 <span id="website"><%= @store.website  %></span>
+				 <br />
+				 <abbr title="Facebook">Facebook:</abbr> 
+				 <span id="facebook"><%= raw @store.facebook  %></span>
+				 <br>
+				 <abbr title="Twitter">Twitter:</abbr> 
+				 <span id="twitter"><%= raw @store.twitter  %> </span>
+			 	<br/>
+				 <abbr title="Instagram">Instagram:</abbr> 
+				 <span id="instagram"><%= raw @store.instagram  %></span>
+				 <br>
 			</address>
 		</div>
 

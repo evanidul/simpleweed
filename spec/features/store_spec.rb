@@ -166,6 +166,52 @@ feature "store page" , :js => true do
 		expect(store_page.dailyspecials_friday_text.text).to have_text("Friday's Special")    			
 		expect(store_page.dailyspecials_saturday_text.text).to have_text("Saturday's Special")    	
 
+		#contact check defaults and update
+		expect(store_page.addressline1.text).to have_text("500 Montgomery St.")    			
+		expect(store_page.city.text).to have_text("San Francisco")    						
+		expect(store_page.state.text).to have_text("CA")    						
+		expect(store_page.zip.text).to have_text("94705")    						
+    	expect(store_page.phonenumber.text).to have_text("1 (415) GHOSTBUSTERS")    						
+
+    	store_page.edit_contact_link.click
+    	new_addressline1 = "7110 Rock Valley Court"
+    	store_page.addressline1_input.set new_addressline1
+    	new_addressline2 = "Apt. 506"
+    	store_page.addressline2_input.set new_addressline2
+    	new_city = "Denver"	
+    	store_page.city_input.set new_city
+    	new_state = "CO"
+    	store_page.state_input.set new_state
+    	new_zip = "92122"
+    	store_page.zip_input.set new_zip
+    	new_phonenumber = "1-415-123-1234"
+    	store_page.phonenumber_input.set new_phonenumber
+    	new_email = "evanidul@gmail.com"
+    	store_page.email_input.set new_email
+    	new_website = "www.evanidul.com"
+    	store_page.website_input.set new_website
+    	new_fb = "www.facebook.com/mypage"
+    	store_page.facebook_input.set new_fb
+    	new_twitter = "www.twitter.com/asd"
+    	store_page.twitter_input.set new_twitter
+    	new_instagram = "www.instagram.com/asdf"
+    	store_page.instagram_input.set new_instagram
+
+    	store_page.save_store_contact_button.click
+
+		expect(store_page.addressline1.text).to have_text(new_addressline1)    			
+		expect(store_page.addressline2.text).to have_text(new_addressline2)    			
+		expect(store_page.city.text).to have_text(new_city)    						
+		expect(store_page.state.text).to have_text(new_state)    						
+		expect(store_page.zip.text).to have_text(new_zip)    						
+    	expect(store_page.phonenumber.text).to have_text(new_phonenumber)    						
+    	expect(store_page.email.text).to have_text(new_email)
+    	expect(store_page.website.text).to have_text(new_website)
+    	expect(store_page.facebook.text).to have_text(new_fb)
+    	expect(store_page.twitter.text).to have_text(new_twitter)
+    	expect(store_page.instagram.text).to have_text(new_instagram)
+	
+    	
 
 
   	end

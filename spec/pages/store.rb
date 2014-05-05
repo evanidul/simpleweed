@@ -3,19 +3,21 @@ class StorePage < SitePrism::Page
 
 	element :name_header, "#name"
 
-	#description
+	#description (main page)
 	element :description, "#description"
 	element :description_edit_link, "#edit-description-link"
+	#description (modal)
 	element :store_description_input, "#store_description_input"
 	element :save_store_description_button, "#save_store_description_button"
 
-	#first time patient deals
+	#first time patient deals (main page)
 	element :first_time_patient_deals_text, "#first-time-patient-deals"
 	element :edit_first_time_patient_deals_link, "#edit-first-time-patient-deals-link"
+	#first time patient deals (modal)
 	element :first_time_patient_deals_input, "#store_first_time_patient_deals_input"
 	element :save_first_time_patient_deals_button, "#save_store_first_time_patient_deals_button"
 
-	#daily specials
+	#daily specials (main page)
 	element :dailyspecials_sunday_text, "#dailyspecials_sunday"
 	element :dailyspecials_monday_text, "#dailyspecials_monday"
 	element :dailyspecials_tuesday_text, "#dailyspecials_tuesday"
@@ -23,7 +25,7 @@ class StorePage < SitePrism::Page
 	element :dailyspecials_thursday_text, "#dailyspecials_thursday"
 	element :dailyspecials_friday_text, "#dailyspecials_friday"
 	element :dailyspecials_saturday_text, "#dailyspecials_saturday"
-
+	#daily specials (modal)
 	element :dailyspecials_sunday_input, "#store_dailyspecialssunday"
 	element :dailyspecials_monday_input, "#store_dailyspecialsmonday"
 	element :dailyspecials_tuesday_input, "#store_dailyspecialstuesday"
@@ -35,4 +37,35 @@ class StorePage < SitePrism::Page
 	element :edit_daily_specials_link, "#edit-daily-specials-link"
 	element :save_store_daily_specials_button ,"#save_store_daily_specials_button"
 
+	#contact (main page)
+	element :addressline1, "#addressline1"
+	element :addressline2, "#addressline2"
+	element :city, "#city"
+	element :state, "#state"
+	element :zip, "#zip"
+	element :phonenumber, "#phonenumber"
+	element :email, "#email"
+	element :website, "#website"
+	element :facebook, "#facebook"
+	element :twitter, "#twitter"
+	element :instagram, "#instagram"
+
+	element :edit_contact_link, "#edit-contact-link"
+
+	#contact (edit modal)
+	element :addressline1_input, "#store_addressline1"
+	element :addressline2_input, "#store_addressline2"
+	element :city_input, "#store_city"
+	element :state_input, "#store_state"
+	element :zip_input, "#store_zip"
+	element :phonenumber_input, "#store_phonenumber"
+	element :email_input, "#store_email"
+	element :website_input, "#store_website"
+	element :facebook_input, "#store_facebook"
+	element :twitter_input, "#store_twitter"
+	element :instagram_input, "#store_instagram"
+
+	element :save_store_contact_button, "#save_store_contact_button"
+
+	
 end
