@@ -80,7 +80,7 @@ feature "store page" , :js => true do
     	stores_page.has_no_newstore_button?    	
   	end
 
-	scenario "sign in as admin, create a new store, edit description" do
+	scenario "sign in as admin, create a new store, edit description, edit first time patient deals" do
 				
 		page.visit("/users/sign_in")
 		login_page = LoginPage.new
@@ -108,16 +108,29 @@ feature "store page" , :js => true do
     	store_page.has_name_header?
 		expect(store_page.name_header.text).to have_text(store_name)    	
 		store_page.has_description?
+		
 		# check has default description
 		expect(store_page.description.text).to have_text("Lorem ipsum dolor sit")    	
 		store_page.has_description_edit_link?
 		store_page.description_edit_link.click
+		
 		# change description
 		new_description = "My New Description"
 		store_page.store_description_input.set new_description
 		store_page.has_save_store_description_button?
 		store_page.save_store_description_button.click
-		expect(store_page.description.text).to have_text(new_description)    	
+		expect(store_page.description.text).to have_text(new_description)   
+
+		# change first time patient deals
+		store_page.has_first_time_patient_deals_text?		
+		expect(store_page.first_time_patient_deals_text.text).to have_text("Lorem ipsum dolor sit")    	
+		store_page.has_edit_first_time_patient_deals_link?
+		store_page.edit_first_time_patient_deals_link.click
+		new_ftpd = "No new deals today!"
+		store_page.first_time_patient_deals_input.set new_ftpd
+		store_page.save_first_time_patient_deals_button.click
+		expect(store_page.first_time_patient_deals_text.text).to have_text(new_ftpd)    	
+
 
   	end
 end

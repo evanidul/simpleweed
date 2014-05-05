@@ -23,21 +23,6 @@ class StoresController < ApplicationController
 		redirect_to store_path(@store)
 	end
 
-	def edit_description
-		@store = Store.find(params[:id])
-		render layout: false		
-	end
-
-	def update_description
-		@store = Store.find(params[:id])
-	    if @store.update(params[:store].permit(:description))
-			redirect_to store_path(@store)
-		else
-			redirect_to edit_description_store_path(@store)
-		end
-	end
-
-
 	def show
 		@store = Store.find(params[:id])
 
@@ -87,6 +72,36 @@ class StoresController < ApplicationController
 	  redirect_to stores_path
 	end
 
+	## 
+	## Store Edit Endpoints
+	##
+	def edit_description
+		@store = Store.find(params[:id])
+		render layout: false		
+	end
+
+	def update_description
+		@store = Store.find(params[:id])
+	    if @store.update(params[:store].permit(:description))
+			redirect_to store_path(@store)
+		else
+			redirect_to edit_description_store_path(@store)
+		end
+	end
+
+	def edit_firsttimepatientdeals
+		@store = Store.find(params[:id])
+		render layout: false		
+	end
+
+	def update_firsttimepatientdeals
+		@store = Store.find(params[:id])
+	    if @store.update(params[:store].permit(:firsttimepatientdeals))
+			redirect_to store_path(@store)
+		else
+			redirect_to edit_firsttimepatientdeals(@store)
+		end
+	end
 
 	private 
 	def store_params

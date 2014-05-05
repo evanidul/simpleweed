@@ -48,8 +48,8 @@
 		<% end %>
 
 		<% if  @store.firsttimepatientdeals && !@store.firsttimepatientdeals.empty?  %>
-			<h4 class = "inline-header">First Time Patient Deals </h4>
-			<%= link_to 'Edit', store_path(@store), class: 'store-edit-link' , id: "edit-first-time-patient-deals-link" %>
+			<h4 class = "inline-header">First Time Patient Deals </h4>			
+			<%= link_to 'Edit', edit_firsttimepatientdeals_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_firsttimepatientdeals_store_path(@store)} , id: "edit-first-time-patient-deals-link" %>
 			<p id="first-time-patient-deals">
 				<%= raw @store.firsttimepatientdeals %>
 			</p>
