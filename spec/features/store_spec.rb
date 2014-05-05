@@ -229,8 +229,40 @@ feature "store page" , :js => true do
 		store_page.hasphotos.should_not be_checked
 		store_page.onsitetesting.should_not be_checked
 
+		store_page.edit_features_link.click
+		
+		# update features
+		store_page.acceptscreditcards_input.set true
+		store_page.atmaccess_input.set true		
+		store_page.automaticdispensingmachines_input.set true		
+		store_page.deliveryservice_input.set true		
+		store_page.handicapaccess_input.set true		
+		store_page.loungearea_input.set true		
+		store_page.petfriendly_input.set true		
+		store_page.securityguard_input.set true		
+		store_page.labtested_input.set true		
+		store_page.eighteenplus_input.set true		
+		store_page.twentyoneplus_input.set true		
+		store_page.hasphotos_input.set true		
+		store_page.onsitetesting_input.set true		
 
+		store_page.save_store_features_button.click
 
+		store_page.firsttimepatientdeals.should be_checked  #we didn't change this, so still checked
+
+		store_page.acceptscreditcards.should be_checked
+		store_page.atmaccess.should be_checked
+		store_page.automaticdispensingmachines.should be_checked
+		store_page.deliveryservice.should be_checked
+		store_page.handicapaccess.should be_checked
+		store_page.loungearea.should be_checked
+		store_page.petfriendly.should be_checked
+		store_page.securityguard.should be_checked
+		store_page.labtested.should be_checked
+		store_page.eighteenplus.should be_checked
+		store_page.twentyoneplus.should be_checked
+		store_page.hasphotos.should be_checked
+		store_page.onsitetesting.should be_checked
 
   	end
 end

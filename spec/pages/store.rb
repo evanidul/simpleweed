@@ -82,6 +82,26 @@ class StorePage < SitePrism::Page
 	element :twentyoneplus, "#twentyoneplus"
 	element :hasphotos, "#hasphotos"
 	element :onsitetesting, "#onsitetesting"
-	
+
+	element :edit_features_link, "#edit-features-link"
+
+	#features (edit modal)
+	element :acceptscreditcards_input, "#store_acceptscreditcards"
+	element :atmaccess_input, "#store_atmaccess"
+	element :automaticdispensingmachines_input, "#store_automaticdispensingmachines"
+	element :deliveryservice_input, "#store_deliveryservice"
+	element :handicapaccess_input, "#store_handicapaccess"
+	element :loungearea_input, "#store_loungearea"
+	element :petfriendly_input, "#store_petfriendly"
+	element :securityguard_input, "#store_securityguard"
+	element :labtested_input, "#store_labtested"
+	element :eighteenplus_input, "#store_eighteenplus"
+	element :twentyoneplus_input, "#store_twentyoneplus"
+	element :hasphotos_input, "#store_hasphotos"
+	element :onsitetesting_input, "#store_onsitetesting"
+
+	element :save_store_features_button, "#save_store_features_button"
+
+
 
 end
