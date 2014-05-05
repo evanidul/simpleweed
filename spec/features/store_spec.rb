@@ -131,6 +131,42 @@ feature "store page" , :js => true do
 		store_page.save_first_time_patient_deals_button.click
 		expect(store_page.first_time_patient_deals_text.text).to have_text(new_ftpd)    	
 
+		# daily specials
+		specials_default_value = "None."
+		store_page.has_dailyspecials_sunday_text?
+		expect(store_page.dailyspecials_sunday_text.text).to have_text(specials_default_value)    	
+		store_page.has_dailyspecials_monday_text?
+		expect(store_page.dailyspecials_monday_text.text).to have_text(specials_default_value)    	
+		store_page.has_dailyspecials_tuesday_text?
+		expect(store_page.dailyspecials_tuesday_text.text).to have_text(specials_default_value)    	
+		store_page.has_dailyspecials_wednesday_text?
+		expect(store_page.dailyspecials_wednesday_text.text).to have_text(specials_default_value)    	
+		store_page.has_dailyspecials_thursday_text?
+		expect(store_page.dailyspecials_thursday_text.text).to have_text(specials_default_value)    	
+		store_page.has_dailyspecials_friday_text?
+		expect(store_page.dailyspecials_friday_text.text).to have_text(specials_default_value)    	
+		store_page.has_dailyspecials_saturday_text?
+		expect(store_page.dailyspecials_saturday_text.text).to have_text(specials_default_value)    	
+
+		store_page.edit_daily_specials_link.click
+		store_page.dailyspecials_sunday_input.set "Sunday's Special"
+		store_page.dailyspecials_monday_input.set "Monday's Special"
+		store_page.dailyspecials_tuesday_input.set "Tuesday's Special"
+		store_page.dailyspecials_wednesday_input.set "Wednesday's Special"
+		store_page.dailyspecials_thursday_input.set "Thursday's Special"
+		store_page.dailyspecials_friday_input.set "Friday's Special"
+		store_page.dailyspecials_saturday_input.set "Saturday's Special"
+		store_page.save_store_daily_specials_button.click
+	
+		expect(store_page.dailyspecials_sunday_text.text).to have_text("Sunday's Special")    			
+		expect(store_page.dailyspecials_monday_text.text).to have_text("Monday's Special")    			
+		expect(store_page.dailyspecials_tuesday_text.text).to have_text("Tuesday's Special")    			
+		expect(store_page.dailyspecials_wednesday_text.text).to have_text("Wednesday's Special")    			
+		expect(store_page.dailyspecials_thursday_text.text).to have_text("Thursday's Special")    	
+		expect(store_page.dailyspecials_friday_text.text).to have_text("Friday's Special")    			
+		expect(store_page.dailyspecials_saturday_text.text).to have_text("Saturday's Special")    	
+
+
 
   	end
 end

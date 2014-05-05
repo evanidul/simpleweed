@@ -289,35 +289,40 @@
 			</tr>
 		</table>
 
-		<h3>Daily Specials</h3>
+		<br />
+		<h3 class="inline-header">Daily Specials</h3>
+
+		<%= link_to 'Edit', edit_dailyspecials_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_dailyspecials_store_path(@store)} , id: "edit-daily-specials-link" %>
+		<br />
+		<br />
 		<table id="dailyspecials">
 			<tr>
 				<td class="day">Sunday</td>
-				<td><%= @store.dailyspecialssunday %></td>
+				<td id="dailyspecials_sunday"><%= @store.dailyspecialssunday %></td>
 			</tr>		
 			<tr>
 				<td class="day">Monday</td>
-				<td><%= @store.dailyspecialsmonday %></td>
+				<td id="dailyspecials_monday"><%= @store.dailyspecialsmonday %></td>
 			</tr>
 			<tr>
 				<td class="day">Tuesday</td>
-				<td><%= @store.dailyspecialstuesday %></td>
+				<td id="dailyspecials_tuesday"><%= @store.dailyspecialstuesday %></td>
 			</tr>
 			<tr>
 				<td class="day">Wednesday</td>
-				<td><%= @store.dailyspecialswednesday %></td>
+				<td id="dailyspecials_wednesday"><%= @store.dailyspecialswednesday %></td>
 			</tr>
 			<tr>
 				<td class="day">Thursday</td>
-				<td><%= @store.dailyspecialsthursday %></td>
+				<td id="dailyspecials_thursday"><%= @store.dailyspecialsthursday %></td>
 			</tr>
 			<tr>
 				<td class="day">Friday</td>
-				<td><%= @store.dailyspecialsfriday %></td>
+				<td id="dailyspecials_friday"><%= @store.dailyspecialsfriday %></td>
 			</tr>
 			<tr>
 				<td class="day">Saturday</td>
-				<td><%= @store.dailyspecialssaturday %></td>
+				<td id="dailyspecials_saturday"><%= @store.dailyspecialssaturday %></td>
 			</tr>
 		</table>
 		<h3>Dispensary Features</h3>

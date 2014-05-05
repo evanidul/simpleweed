@@ -1,0 +1,47 @@
+ <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">Edit Daily Specials</h4>          
+        </div>
+        <div class="modal-body">
+            <%= form_for :store, url: update_dailyspecials_store_path, method: "put" do |f| %>
+              
+                <p class = "form-group">
+                  <%= f.label :dailyspecialssunday, "Sunday" %><br>
+                  <%= f.text_field :dailyspecialssunday, :class => 'form-control'   %>
+                </p>
+                <p class = "form-group">
+                  <%= f.label :dailyspecialsmonday, "Monday" %><br>
+                  <%= f.text_field :dailyspecialsmonday, :class => 'form-control'   %>
+                </p>
+                <p class = "form-group">
+                  <%= f.label :dailyspecialstuesday, "Tuesday" %><br>
+                  <%= f.text_field :dailyspecialstuesday, :class => 'form-control'   %>
+                </p>
+                <p class = "form-group">
+                  <%= f.label :dailyspecialswednesday, "Wednesday" %><br>
+                  <%= f.text_field :dailyspecialswednesday, :class => 'form-control'  %>
+                </p>
+                <p class = "form-group">
+                  <%= f.label :dailyspecialsthursday, "Thursday" %><br>
+                  <%= f.text_field :dailyspecialsthursday, :class => 'form-control'   %>
+                </p>
+                <p class = "form-group">
+                  <%= f.label :dailyspecialsfriday, "Friday" %><br>
+                  <%= f.text_field :dailyspecialsfriday, :class => 'form-control'   %>
+                </p>
+                <p class = "form-group">
+                  <%= f.label :dailyspecialssaturday, "Saturday" %><br>
+                  <%= f.text_field :dailyspecialssaturday, :class => 'form-control'  %>
+                </p>
+                           
+              <p class = "form-group pull-right">              	
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <%= f.submit :class => 'btn btn-primary' , :id => 'save_store_daily_specials_button'%>
+              </p>
+            <% end %>
+            <div class="modal-footer">
+            </div>
+          </div><!-- modal-footer -->
+      </div> <!-- modal-content -->
+</div>    

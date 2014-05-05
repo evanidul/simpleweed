@@ -76,6 +76,7 @@ class StoresController < ApplicationController
 	## Store Edit Endpoints
 	##
 	def edit_description
+		#authorize! :manage, Store
 		@store = Store.find(params[:id])
 		render layout: false		
 	end
@@ -99,7 +100,22 @@ class StoresController < ApplicationController
 	    if @store.update(params[:store].permit(:firsttimepatientdeals))
 			redirect_to store_path(@store)
 		else
-			redirect_to edit_firsttimepatientdeals(@store)
+			redirect_to edit_firsttimepatientdeals_store_path(@store)
+		end
+	end
+
+	def edit_dailyspecials
+		@store = Store.find(params[:id])
+		render layout: false		
+	end
+
+	def update_dailyspecials
+		@store = Store.find(params[:id])
+	    if @store.update(params[:store].permit(:dailyspecialsmonday, :dailyspecialstuesday,
+			:dailyspecialswednesday, :dailyspecialsthursday, :dailyspecialsfriday, :dailyspecialssaturday, :dailyspecialssunday))
+			redirect_to store_path(@store)
+		else
+			redirect_to edit_dailyspecials_store_path(@store)
 		end
 	end
 
