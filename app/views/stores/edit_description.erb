@@ -7,12 +7,12 @@
             <%= form_for :store, url: update_description_store_path, method: "put" do |f| %>
               <p class = "form-group">
                 <%= f.label :description,  "Description"  %><br>
-                <%= f.text_field :description, :class => 'form-control' , :required => true   %>
+                <%= f.text_field :description, :class => 'form-control' , :id => 'store_description_input' , :required => true   %>
               </p>             
                            
               <p class = "form-group pull-right">              	
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <%= f.submit :class => 'btn btn-primary' , :id => 'save_store'%>
+                <%= f.submit :class => 'btn btn-primary' , :id => 'save_store_description_button'%>
               </p>
             <% end %>
             <div class="modal-footer">

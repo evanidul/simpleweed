@@ -108,7 +108,16 @@ feature "store page" , :js => true do
     	store_page.has_name_header?
 		expect(store_page.name_header.text).to have_text(store_name)    	
 		store_page.has_description?
+		# check has default description
 		expect(store_page.description.text).to have_text("Lorem ipsum dolor sit")    	
+		store_page.has_description_edit_link?
+		store_page.description_edit_link.click
+		# change description
+		new_description = "My New Description"
+		store_page.store_description_input.set new_description
+		store_page.has_save_store_description_button?
+		store_page.save_store_description_button.click
+		expect(store_page.description.text).to have_text(new_description)    	
 
   	end
 end
