@@ -12,8 +12,14 @@ Smellyleaf::Application.routes.draw do
     end
 
   resources :stores do
+    # custom edit modal panel routes.  Needed to add custom controller endpoints and these routes match those.
+    member do
+      get 'edit_description'
+      put 'update_description'
+    end
     resources :store_items
   end    
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

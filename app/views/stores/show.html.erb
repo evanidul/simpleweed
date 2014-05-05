@@ -41,21 +41,24 @@
 			</div>	
 		</div>
 		<% if  @store.description && !@store.description.empty?  %>			
-			<p id="description">
-				<%= raw @store.description %>
-			</p>
+			<p id="description">				
+				<%= raw @store.description %>				
+				<%= link_to 'Edit', edit_description_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_description_store_path(@store)} , id: "edit-description-link" %>
+			</p> 
 		<% end %>
 
 		<% if  @store.firsttimepatientdeals && !@store.firsttimepatientdeals.empty?  %>
-			<h4>First Time Patient Deals </h4>
+			<h4 class = "inline-header">First Time Patient Deals </h4>
+			<%= link_to 'Edit', store_path(@store), class: 'store-edit-link' , id: "edit-first-time-patient-deals-link" %>
 			<p id="first-time-patient-deals">
 				<%= raw @store.firsttimepatientdeals %>
 			</p>
 		<% end %>
 
-		<h3>Menu</h3>
+		<h3 class= "inline-header">Menu</h3>
 		<% if can? :manage, Store %>		  
-	  		<%= link_to 'Edit Menu', store_store_items_path(@store), class: 'btn btn-primary' , id: "edit_store_items" , 'data-no-turbolink' => true %>
+	  		
+	  		<%= link_to 'Edit', store_store_items_path(@store), class: 'store-edit-link' , id: "edit_store_items" , 'data-no-turbolink' => true%>
 	  		</br></br>
 		<% end %>
 
