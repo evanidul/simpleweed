@@ -344,7 +344,10 @@
 				<td id="dailyspecials_saturday"><%= @store.dailyspecialssaturday %></td>
 			</tr>
 		</table>
-		<h3>Dispensary Features</h3>
+		<br />
+		<h3 class="inline-header">Dispensary Features</h3>
+		<%= link_to 'Edit', edit_features_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_features_store_path(@store)} , id: "edit-features-link" %>
+		<br />
 		<table id="dispensaryfeatures">
 			<tr>
 				<td>Accepts Credit/Debit cards</td>

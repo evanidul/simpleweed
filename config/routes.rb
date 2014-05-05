@@ -22,6 +22,8 @@ Smellyleaf::Application.routes.draw do
       put 'update_dailyspecials'
       get 'edit_contact'
       put 'update_contact'
+      get 'edit_features'
+      put 'update_features'
 
     end
     resources :store_items

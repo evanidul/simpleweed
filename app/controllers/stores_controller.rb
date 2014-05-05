@@ -134,6 +134,22 @@ class StoresController < ApplicationController
 		end
 	end
 
+	def edit_features
+		@store = Store.find(params[:id])
+		render layout: false		
+	end
+
+	def update_features
+		@store = Store.find(params[:id])
+	    if @store.update(params[:store].permit(:acceptscreditcards, :atmaccess, :automaticdispensingmachines, :deliveryservice, :handicapaccess,
+			:loungearea, :petfriendly, :securityguard, :labtested, :eighteenplus, :twentyoneplus, :hasphotos, :onsitetesting ))
+			redirect_to store_path(@store)
+		else
+			redirect_to edit_features_store_path(@store)
+		end
+	end
+
+
 	private 
 	def store_params
 		params.require(:store).permit(:name,:addressline1, :addressline2, :city, :state, :zip, :phonenumber, :dailyspecialsmonday, :dailyspecialstuesday,

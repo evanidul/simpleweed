@@ -1,0 +1,73 @@
+ <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">Edit Dispensary Features</h4>          
+        </div>
+        <div class="modal-body">
+            <%= form_for :store, url: update_features_store_path, method: "put" do |f| %>
+               
+                <p class = "form-group">
+                  <%= f.label :acceptscreditcards, "Accepts Credit Cards" %><br>
+                  <%= f.check_box :acceptscreditcards, {}, "true","false" %>
+                </p>
+                <p class = "form-group">
+                  <%= f.label :atmaccess, "ATM Access" %><br>
+                  <%= f.check_box :atmaccess, {}, "true","false" %>
+                </p>
+                <p class = "form-group">
+                  <%= f.label :automaticdispensingmachines, "Atuomatic Dispensing Machines" %><br>
+                  <%= f.check_box :automaticdispensingmachines, {}, "true","false" %>
+                </p>
+                <p class = "form-group">
+                  <%= f.label :deliveryservice, "Delivery Service" %><br>
+                  <%= f.check_box :deliveryservice, {}, "true","false" %>
+                </p>
+               <p class = "form-group">
+                  <%= f.label :handicapaccess, "Handicap Access" %><br>
+                  <%= f.check_box :handicapaccess, {}, "true","false" %>
+                </p>
+                <p class = "form-group">
+                  <%= f.label :loungearea, "Lounge Area" %><br>
+                  <%= f.check_box :loungearea, {}, "true","false" %>
+                </p>
+                <p class = "form-group">
+                  <%= f.label :petfriendly, "Pet Friendly" %><br>
+                  <%= f.check_box :petfriendly, {}, "true","false" %>
+                </p>
+                <p class = "form-group">
+                  <%= f.label :securityguard, "Security Guard" %><br>
+                  <%= f.check_box :securityguard, {}, "true","false" %>
+                </p>
+                <p class = "form-group">
+                  <%= f.label :labtested, "Lab tested" %><br>
+                  <%= f.check_box :labtested, {}, "true","false" %>
+                </p>
+                <p class = "form-group">
+                  <%= f.label :eighteenplus, "18 +" %><br>
+                  <%= f.check_box :eighteenplus, {}, "true","false" %>
+                </p>
+                <p class = "form-group">
+                  <%= f.label :twentyoneplus, "21 +" %><br>
+                  <%= f.check_box :twentyoneplus, {}, "true","false" %>
+                </p>
+                <p class = "form-group">
+                  <%= f.label :hasphotos, "Photos" %><br>
+                  <%= f.check_box :hasphotos, {}, "true","false" %>
+                </p>
+                <p class = "form-group">
+                  <%= f.label :onsitetesting, "On Site Testing" %><br>
+                  <%= f.check_box :onsitetesting, {}, "true","false" %>
+                </p>
+
+
+                           
+              <p class = "form-group pull-right">              	
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <%= f.submit :class => 'btn btn-primary' , :id => 'save_store_features_button'%>
+              </p>
+            <% end %>
+            <div class="modal-footer">
+            </div>
+          </div><!-- modal-footer -->
+      </div> <!-- modal-content -->
+</div>    
