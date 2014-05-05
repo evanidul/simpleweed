@@ -67,5 +67,21 @@ class StorePage < SitePrism::Page
 
 	element :save_store_contact_button, "#save_store_contact_button"
 
+	#features (main page)
+	element :acceptscreditcards, "#acceptscreditcards"
+	element :atmaccess, "#atmaccess"
+	element :automaticdispensingmachines, "#automaticdispensingmachines"
+	element :deliveryservice, "#deliveryservice"
+	element :firsttimepatientdeals, "#firsttimepatientdeals"
+	element :handicapaccess, "#handicapaccess"
+	element :loungearea, "#loungearea"
+	element :petfriendly, "#petfriendly"
+	element :securityguard, "#securityguard"
+	element :labtested, "#labtested"
+	element :eighteenplus, "#eighteenplus"
+	element :twentyoneplus, "#twentyoneplus"
+	element :hasphotos, "#hasphotos"
+	element :onsitetesting, "#onsitetesting"
 	
+
 end

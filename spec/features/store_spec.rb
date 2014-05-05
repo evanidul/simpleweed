@@ -211,7 +211,25 @@ feature "store page" , :js => true do
     	expect(store_page.twitter.text).to have_text(new_twitter)
     	expect(store_page.instagram.text).to have_text(new_instagram)
 	
-    	
+		#features
+		#ftpd is true because we have a default text for it
+		expect(store_page.firsttimepatientdeals).to be_checked
+		
+		store_page.acceptscreditcards.should_not be_checked
+		store_page.atmaccess.should_not be_checked
+		store_page.automaticdispensingmachines.should_not be_checked
+		store_page.deliveryservice.should_not be_checked
+		store_page.handicapaccess.should_not be_checked
+		store_page.loungearea.should_not be_checked
+		store_page.petfriendly.should_not be_checked
+		store_page.securityguard.should_not be_checked
+		store_page.labtested.should_not be_checked
+		store_page.eighteenplus.should_not be_checked
+		store_page.twentyoneplus.should_not be_checked
+		store_page.hasphotos.should_not be_checked
+		store_page.onsitetesting.should_not be_checked
+
+
 
 
   	end
