@@ -3,6 +3,7 @@ require 'capybara/rails'
 require 'pages/loginpage'
 require 'page_components/header'
 require 'pages/admin/stores'
+require 'pages/store'
 
 feature "store page" , :js => true do
 	before :each do
@@ -41,7 +42,7 @@ feature "store page" , :js => true do
 		header.has_edituserlink?
     	expect(header.edituserlink.text).to have_text(@adminemail)
 
-    	stores_page = StoresPage.new
+    	stores_page = AdminStoresPage.new
     	stores_page.load
     	stores_page.has_newstore_button?    	
     	stores_page.newstore_button.click
@@ -70,7 +71,7 @@ feature "store page" , :js => true do
 		header.has_edituserlink?
     	expect(header.edituserlink.text).to have_text(email)
 
-    	stores_page = StoresPage.new
+    	stores_page = AdminStoresPage.new
     	
     	# expect authorization exception and redirect
     	stores_page.load
@@ -79,4 +80,35 @@ feature "store page" , :js => true do
     	stores_page.has_no_newstore_button?    	
   	end
 
+	scenario "sign in as admin, create a new store, edit description" do
+				
+		page.visit("/users/sign_in")
+		login_page = LoginPage.new
+		login_page.has_username_input?
+		login_page.has_username_password_input?
+
+		login_page.username_input.set @adminemail
+    	login_page.username_password_input.set @adminpassword
+    	login_page.sign_in_button.click
+
+    	header = HeaderPageComponent.new
+		header.has_edituserlink?
+    	expect(header.edituserlink.text).to have_text(@adminemail)
+
+    	stores_page = AdminStoresPage.new
+    	stores_page.load
+    	stores_page.has_newstore_button?    	
+    	stores_page.newstore_button.click
+
+    	store_name = "My New Store"
+    	stores_page.modal_store_name_input.set store_name
+    	stores_page.modal_save_button.click
+
+    	store_page = StorePage.new
+    	store_page.has_name_header?
+		expect(store_page.name_header.text).to have_text(store_name)    	
+		store_page.has_description?
+		expect(store_page.description.text).to have_text("Lorem ipsum dolor sit")    	
+
+  	end
 end
