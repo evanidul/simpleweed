@@ -110,7 +110,7 @@ feature "store page" , :js => true do
 		store_page.has_description?
 		
 		# check has default description
-		expect(store_page.description.text).to have_text("Lorem ipsum dolor sit")    	
+		expect(store_page.description.text).to have_text("None.")    	
 		store_page.has_description_edit_link?
 		store_page.description_edit_link.click
 		
@@ -123,7 +123,7 @@ feature "store page" , :js => true do
 
 		# change first time patient deals
 		store_page.has_first_time_patient_deals_text?		
-		expect(store_page.first_time_patient_deals_text.text).to have_text("Lorem ipsum dolor sit")    	
+		expect(store_page.first_time_patient_deals_text.text).to have_text("None.")    	
 		store_page.has_edit_first_time_patient_deals_link?
 		store_page.edit_first_time_patient_deals_link.click
 		new_ftpd = "No new deals today!"

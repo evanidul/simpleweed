@@ -26,8 +26,8 @@ class Store < ActiveRecord::Base
     	self.dailyspecialssaturday ||= "None."
     	self.dailyspecialssunday ||=  "None."
 
-    	self.description ||= "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse bibendum tempus est quis sollicitudin. Nulla eu nulla sit amet odio aliquam imperdiet vel sed metus. Ut consequat, augue ac tincidunt accumsan, nisi lacus egestas nisl, nec rhoncus quam leo ut est. Pellentesque pretium, tortor molestie placerat consectetur, mauris elit hendrerit risus, feugiat rutrum lorem metus vel ipsum. Vivamus interdum pharetra nunc, sed ullamcorper neque facilisis non. Vestibulum vitae pellentesque nibh, ac ornare ante. Aenean consectetur dapibus dui, nec adipiscing nulla blandit eu. Pellentesque sit amet dapibus est, quis cursus nunc. Vivamus justo est, pulvinar ac eleifend vitae, faucibus vitae turpis."
-		self.firsttimepatientdeals ||= "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse bibendum tempus est quis sollicitudin. "
+    	self.description ||= "None."
+		self.firsttimepatientdeals ||= "None."
 
 	    self.storehourssunday ||= "None set"
 	    self.storehoursmonday ||= "None set"
