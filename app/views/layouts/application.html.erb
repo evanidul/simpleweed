@@ -34,18 +34,26 @@
       <!-- 
         Twitters modal has a bug where it won't reload after items that refresh
         it's content.  This is the workaround from : 
-        http://stackoverflow.com/questions/12449890/reload-content-in-modal-twitter-bootstrap -->
+        OLD FIX: http://stackoverflow.com/questions/12449890/reload-content-in-modal-twitter-bootstrap 
+        NEW FIX: http://stackoverflow.com/questions/12286332/twitter-bootstrap-remote-modal-shows-same-content-everytime
+      -->
       <script>
-
-        $("a[data-target=#modal]").click(function(ev) {
-            ev.preventDefault();
-            var target = $(this).attr("href");
-            
-            // load the url and show modal on success
-            $("#modal").load(target, function() { 
-                 $("#modal").modal("show"); 
-            });
+        
+        $('body').on('hidden.bs.modal', '.modal', function () {
+            $(this).empty()
+            $(this).removeData('bs.modal');
         });
+
+        /** old fix still flickers old window on a new window load **/
+        // $("a[data-target=#modal]").click(function(ev) {
+        //     ev.preventDefault();
+        //     var target = $(this).attr("href");
+            
+        //     // load the url and show modal on success
+        //     $("#modal").load(target, function() { 
+        //          $("#modal").modal("show"); 
+        //     });
+        // });
 
       </script>
       
