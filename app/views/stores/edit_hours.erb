@@ -9,7 +9,7 @@
               <table>
 
                 <tr class="hours-row">
-                  <td class="day">Test</td>
+                  <td class="day">Sunday</td>
                   <td class="open-time-input">                                  
                     <%= select_hour(@store.storehourssundayopenhour, field_name: "storehourssundayopenhour", ampm: true )%> : <%= select_minute(@store.storehourssundayopenminute, field_name: "storehourssundayopenminute",minute_step: 15) %>
                   </td>
@@ -20,9 +20,78 @@
                   <td>
                   </td>
                 </tr>
-
-
-
+                <tr class="hours-row">
+                  <td class="day">Monday</td>
+                  <td class="open-time-input">                                  
+                    <%= select_hour(@store.storehoursmondayopenhour, field_name: "storehoursmondayopenhour", ampm: true )%> : <%= select_minute(@store.storehoursmondayopenminute, field_name: "storehoursmondayopenminute",minute_step: 15) %>
+                  </td>
+                  <td class="close-time-input">
+                    <span class="hours-input-to-container">to </span>
+                    <%= select_hour(@store.storehoursmondayclosehour, field_name: "storehoursmondayclosehour", ampm: true) %> : <%= select_minute(@store.storehoursmondaycloseminute, field_name: "storehoursmondaycloseminute",minute_step: 15) %>
+                  </td>
+                  <td>
+                  </td>
+                </tr>
+                <tr class="hours-row">
+                  <td class="day">Tuesday</td>
+                  <td class="open-time-input">                                  
+                    <%= select_hour(@store.storehourstuesdayopenhour, field_name: "storehourstuesdayopenhour", ampm: true )%> : <%= select_minute(@store.storehourstuesdayopenminute, field_name: "storehourstuesdayopenminute",minute_step: 15) %>
+                  </td>
+                  <td class="close-time-input">
+                    <span class="hours-input-to-container">to </span>
+                    <%= select_hour(@store.storehourstuesdayclosehour, field_name: "storehourstuesdayclosehour", ampm: true) %> : <%= select_minute(@store.storehourstuesdaycloseminute, field_name: "storehourstuesdaycloseminute",minute_step: 15) %>
+                  </td>
+                  <td>
+                  </td>
+                </tr>
+                <tr class="hours-row">
+                  <td class="day">Wednesday</td>
+                  <td class="open-time-input">                                  
+                    <%= select_hour(@store.storehourswednesdayopenhour, field_name: "storehourswednesdayopenhour", ampm: true )%> : <%= select_minute(@store.storehourswednesdayopenminute, field_name: "storehourswednesdayopenminute",minute_step: 15) %>
+                  </td>
+                  <td class="close-time-input">
+                    <span class="hours-input-to-container">to </span>
+                    <%= select_hour(@store.storehourswednesdayclosehour, field_name: "storehourswednesdayclosehour", ampm: true) %> : <%= select_minute(@store.storehourswednesdaycloseminute, field_name: "storehourswednesdaycloseminute",minute_step: 15) %>
+                  </td>
+                  <td>
+                  </td>
+                </tr>
+                <tr class="hours-row">
+                  <td class="day">Thursday</td>
+                  <td class="open-time-input">                                  
+                    <%= select_hour(@store.storehoursthursdayopenhour, field_name: "storehoursthursdayopenhour", ampm: true )%> : <%= select_minute(@store.storehoursthursdayopenminute, field_name: "storehoursthursdayopenminute",minute_step: 15) %>
+                  </td>
+                  <td class="close-time-input">
+                    <span class="hours-input-to-container">to </span>
+                    <%= select_hour(@store.storehoursthursdayclosehour, field_name: "storehoursthursdayclosehour", ampm: true) %> : <%= select_minute(@store.storehoursthursdaycloseminute, field_name: "storehoursthursdaycloseminute",minute_step: 15) %>
+                  </td>
+                  <td>
+                  </td>
+                </tr>
+                <tr class="hours-row">
+                  <td class="day">Friday</td>
+                  <td class="open-time-input">                                  
+                    <%= select_hour(@store.storehoursfridayopenhour, field_name: "storehoursfridayopenhour", ampm: true )%> : <%= select_minute(@store.storehoursfridayopenminute, field_name: "storehoursfridayopenminute",minute_step: 15) %>
+                  </td>
+                  <td class="close-time-input">
+                    <span class="hours-input-to-container">to </span>
+                    <%= select_hour(@store.storehoursfridayclosehour, field_name: "storehoursfridayclosehour", ampm: true) %> : <%= select_minute(@store.storehoursfridaycloseminute, field_name: "storehoursfridaycloseminute",minute_step: 15) %>
+                  </td>
+                  <td>
+                  </td>
+                </tr>
+                <tr class="hours-row">
+                  <td class="day">Saturday</td>
+                  <td class="open-time-input">                                  
+                    <%= select_hour(@store.storehourssaturdayopenhour, field_name: "storehourssaturdayopenhour", ampm: true )%> : <%= select_minute(@store.storehourssaturdayopenminute, field_name: "storehourssaturdayopenminute",minute_step: 15) %>
+                  </td>
+                  <td class="close-time-input">
+                    <span class="hours-input-to-container">to </span>
+                    <%= select_hour(@store.storehourssaturdayclosehour, field_name: "storehourssaturdayclosehour", ampm: true) %> : <%= select_minute(@store.storehourssaturdaycloseminute, field_name: "storehourssaturdaycloseminute",minute_step: 15) %>
+                  </td>
+                  <td>
+                  </td>
+                </tr>
               </table>                                  
 
 

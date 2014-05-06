@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140506101154) do
+ActiveRecord::Schema.define(version: 20140506152542) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -131,6 +131,30 @@ ActiveRecord::Schema.define(version: 20140506101154) do
     t.integer  "storehourssundayopenminute"
     t.integer  "storehourssundayclosehour"
     t.integer  "storehourssundaycloseminute"
+    t.integer  "storehoursmondayopenhour"
+    t.integer  "storehoursmondayopenminute"
+    t.integer  "storehoursmondayclosehour"
+    t.integer  "storehoursmondaycloseminute"
+    t.integer  "storehourstuesdayopenhour"
+    t.integer  "storehourstuesdayopenminute"
+    t.integer  "storehourstuesdayclosehour"
+    t.integer  "storehourstuesdaycloseminute"
+    t.integer  "storehourswednesdayopenhour"
+    t.integer  "storehourswednesdayopenminute"
+    t.integer  "storehourswednesdayclosehour"
+    t.integer  "storehourswednesdaycloseminute"
+    t.integer  "storehoursthursdayopenhour"
+    t.integer  "storehoursthursdayopenminute"
+    t.integer  "storehoursthursdayclosehour"
+    t.integer  "storehoursthursdaycloseminute"
+    t.integer  "storehoursfridayopenhour"
+    t.integer  "storehoursfridayopenminute"
+    t.integer  "storehoursfridayclosehour"
+    t.integer  "storehoursfridaycloseminute"
+    t.integer  "storehourssaturdayopenhour"
+    t.integer  "storehourssaturdayopenminute"
+    t.integer  "storehourssaturdayclosehour"
+    t.integer  "storehourssaturdaycloseminute"
   end
 
   create_table "users", force: true do |t|
