@@ -272,5 +272,16 @@ feature "store page" , :js => true do
 		store_page.save_announcement_button.click
 		expect(store_page.announcement.text).to have_text(new_announcement)
 
+		# delivery area
+		expect(store_page.deliveryarea.text).to have_text("None.")
+		store_page.edit_deliveryarea_link.click
+		new_deliveryarea = "Montgomery"
+		store_page.deliveryarea_input.set new_deliveryarea
+		store_page.save_store_deliveryarea_button.click
+		expect(store_page.deliveryarea.text).to have_text(new_deliveryarea)
+	
+
+
+
   	end
 end

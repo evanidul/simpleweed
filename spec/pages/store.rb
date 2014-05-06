@@ -110,6 +110,13 @@ class StorePage < SitePrism::Page
 	element :announcement_input, "#store_announcement_input"
 	element :save_announcement_button, "#save_store_announcement_button"
 
+	#delivery area (main page)
+	element :deliveryarea, "#delivery-area"
+	element :edit_deliveryarea_link, "#edit-deliveryarea-link"
 
+	#delivery area (edit modal)
+	element :deliveryarea_input, "#store_deliveryarea_input"
+	element :save_store_deliveryarea_button, "#save_store_deliveryarea_button"
+	
 
 end

@@ -38,6 +38,7 @@ class Store < ActiveRecord::Base
 	    self.storehourssaturday ||= "None set"
 
 	    self.announcement ||= "None."
+	    self.deliveryarea ||= "None."
 
 
 

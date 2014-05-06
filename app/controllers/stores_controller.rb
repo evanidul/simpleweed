@@ -163,6 +163,19 @@ class StoresController < ApplicationController
 		end
 	end
 
+	def edit_deliveryarea
+		@store = Store.find(params[:id])
+		render layout: false		
+	end
+
+	def update_deliveryarea
+		@store = Store.find(params[:id])
+	    if @store.update(params[:store].permit(:deliveryarea))
+			redirect_to store_path(@store)
+		else
+			redirect_to edit_deliveryarea_store_path(@store)
+		end
+	end
 
 	# create may only take a name in the future.  Anyway, we may be able to get rid of this block..
 	private 
