@@ -15,3 +15,21 @@
 //= require turbolinks
 //= require bootstrap
 //= require_tree .
+
+$(document).ajaxSend(function(event, request, settings) {	
+	$('#loading-indicator').center();
+    $('#loading-indicator').show();        
+});
+
+$(document).ajaxComplete(function(event, request, settings) {
+    $('#loading-indicator').hide();
+});
+
+/** http://stackoverflow.com/questions/4461247/centering-a-div-with-a-loading-spinner-gif-using-jquery-and-ajax-beginform **/
+jQuery.fn.center = function () {
+    this.css("position", "absolute");
+    this.css("top", ($(window).height() - this.height())/ 2 + $(window).scrollTop() + "px");
+    this.css("left", ($(window).width() - this.width()) / 2 + $(window).scrollLeft() + "px");
+    return this;
+}
+            
