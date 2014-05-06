@@ -41,16 +41,20 @@
 			</div>	
 		</div>
 		<% if  @store.description && !@store.description.empty?  %>			
-			<h4 class = "inline-header">Description </h4>			
-			<%= link_to 'Edit', edit_description_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_description_store_path(@store)} , id: "edit-description-link", class: "edit-store-link" %>
+			<div class="header-and-edit-link">
+				<h4 class = "inline-header">Description </h4>			
+				<%= link_to 'Edit', edit_description_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_description_store_path(@store)} , id: "edit-description-link", class: "edit-store-link" %>
+			</div>
 			<p id="description">				
 				<%= raw @store.description %>								
 			</p> 
 		<% end %>
 
 		<% if  @store.firsttimepatientdeals && !@store.firsttimepatientdeals.empty?  %>
-			<h4 class = "inline-header">First Time Patient Deals </h4>			
-			<%= link_to 'Edit', edit_firsttimepatientdeals_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_firsttimepatientdeals_store_path(@store)} , id: "edit-first-time-patient-deals-link" , class: "edit-store-link"%>
+			<div class="header-and-edit-link">
+				<h4 class = "inline-header">First Time Patient Deals </h4>			
+				<%= link_to 'Edit', edit_firsttimepatientdeals_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_firsttimepatientdeals_store_path(@store)} , id: "edit-first-time-patient-deals-link" , class: "edit-store-link"%>
+			</div>
 			<p id="first-time-patient-deals">
 				<%= raw @store.firsttimepatientdeals %>
 			</p>
@@ -192,10 +196,10 @@
 		</div>
 		<!-- end of google maps -->
 		<div id="contact">
-			<h3 class = "inline-header">Contact</h3>
-			<%= link_to 'Edit', edit_contact_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_contact_store_path(@store)} , id: "edit-contact-link", class: "edit-store-link" %>
-			<br />
-			<br />
+			<div class="header-and-edit-link">
+				<h3 class = "inline-header">Contact</h3>
+				<%= link_to 'Edit', edit_contact_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_contact_store_path(@store)} , id: "edit-contact-link", class: "edit-store-link" %>
+			</div>
 			<address>
 				<strong><%= @store.name  %></strong>
 				<span id="addressline1"><%= @store.addressline1  %></span>
@@ -266,22 +270,21 @@
 
 		</script>
 
-		<% if  @store.announcement && !@store.announcement.empty?  %>			
-			<br />
-			<h3 class="inline-header">Announcement</h3>
-			<%= link_to 'Edit', edit_announcement_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_announcement_store_path(@store)} , id: "edit-announcement-link" , class: "edit-store-link"%>
-			<br />
+		<% if  @store.announcement && !@store.announcement.empty?  %>						
+			<div class="header-and-edit-link">
+				<h3 class="inline-header">Announcement</h3>
+				<%= link_to 'Edit', edit_announcement_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_announcement_store_path(@store)} , id: "edit-announcement-link" , class: "edit-store-link"%>			
+			</div>
 			<div id="announcement">
 				<%= raw @store.announcement %>
 			</div>
 		<% end %>	
 
-		<br />
-		<h3 class="inline-header">Hours</h3>
-		<%= link_to 'Edit', edit_hours_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_hours_store_path(@store)} , id: "edit-hours-link", class: "edit-store-link" %>
+		<div class="header-and-edit-link">		
+			<h3 class="inline-header">Hours</h3>
+			<%= link_to 'Edit', edit_hours_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_hours_store_path(@store)} , id: "edit-hours-link", class: "edit-store-link" %>
+		</div>
 
-		<br />
-		<br />
 		<table id="storehours">
 			
 			<tr>
@@ -320,12 +323,10 @@
 			</tr>
 		</table>
 
-		<br />
-		<h3 class="inline-header">Daily Specials</h3>
-
-		<%= link_to 'Edit', edit_dailyspecials_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_dailyspecials_store_path(@store)} , id: "edit-daily-specials-link" , class: "edit-store-link" %>
-		<br />
-		<br />
+		<div class="header-and-edit-link">		
+			<h3 class="inline-header">Daily Specials</h3>
+			<%= link_to 'Edit', edit_dailyspecials_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_dailyspecials_store_path(@store)} , id: "edit-daily-specials-link" , class: "edit-store-link" %>
+		</div>
 		<table id="dailyspecials">
 			<tr>
 				<td class="day">Sunday</td>
@@ -356,10 +357,12 @@
 				<td id="dailyspecials_saturday" class="daily-specials-val"><%= @store.dailyspecialssaturday %></td>
 			</tr>
 		</table>
-		<br />
-		<h3 class="inline-header">Dispensary Features</h3>
-		<%= link_to 'Edit', edit_features_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_features_store_path(@store)} , id: "edit-features-link" , class: "edit-store-link" %>
-		<br />
+		
+		<div class="header-and-edit-link">
+			<h3 class="inline-header">Dispensary Features</h3>
+			<%= link_to 'Edit', edit_features_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_features_store_path(@store)} , id: "edit-features-link" , class: "edit-store-link" %>
+		</div>
+		
 		<table id="dispensaryfeatures">
 			<tr>
 				<td>Accepts Credit/Debit cards</td>
@@ -420,10 +423,11 @@
 		</table>
 
 		<% if  @store.deliveryarea && !@store.deliveryarea.empty?  %>			
-			<br />
-			<h3 class="inline-header">Delivery Areas</h3>
-			<%= link_to 'Edit', edit_deliveryarea_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_deliveryarea_store_path(@store)} , id: "edit-deliveryarea-link" , class: "edit-store-link" %>
-			<br />
+			
+			<div class="header-and-edit-link">
+				<h3 class="inline-header">Delivery Areas</h3>
+				<%= link_to 'Edit', edit_deliveryarea_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_deliveryarea_store_path(@store)} , id: "edit-deliveryarea-link" , class: "edit-store-link" %>
+			</div>	
 			<div id="delivery-area">
 				<%= raw @store.deliveryarea %>
 			</div>
