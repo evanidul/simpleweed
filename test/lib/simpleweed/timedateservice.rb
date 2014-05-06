@@ -353,6 +353,7 @@ class Timedateservice < ActiveSupport::TestCase
 		assert_equal( false, result, 'This store is closed on weekends but is not')
 	end	
 
+	#formatMilitaryTimeAsAMPM
 	test "0:45 is 12:45 AM" do
 		service = Simpleweed::Timedateutil::Timedateservice.new
 		result = service.formatMilitaryTimeAsAMPM(0,45)
@@ -401,6 +402,65 @@ class Timedateservice < ActiveSupport::TestCase
 		result = service.formatMilitaryTimeAsAMPM(23,45)
 		assert_equal( "11:45 PM", result, "wrong result")
 	end
+
+	#getMilitaryTimeFromAMPMString
+	test "12:00am is [0,0]" do
+		service = Simpleweed::Timedateutil::Timedateservice.new
+		result = service.getMilitaryTimeFromAMPMString("12:00am")
+		assert_equal( 0, result[0], "wrong result")
+		assert_equal( 0, result[1], "wrong result")
+	end
+
+	test "12:45am is [0,45]" do
+		service = Simpleweed::Timedateutil::Timedateservice.new
+		result = service.getMilitaryTimeFromAMPMString("12:45am")
+		assert_equal( 0, result[0], "wrong result")
+		assert_equal( 45, result[1], "wrong result")
+	end
+
+	test "12:00pm is [12,0]" do
+		service = Simpleweed::Timedateutil::Timedateservice.new
+		result = service.getMilitaryTimeFromAMPMString("12:00pm")
+		assert_equal( 12, result[0], "wrong result")
+		assert_equal( 0, result[1], "wrong result")
+	end
+
+	test "12:45pm is [12,45]" do
+		service = Simpleweed::Timedateutil::Timedateservice.new
+		result = service.getMilitaryTimeFromAMPMString("12:45pm")
+		assert_equal( 12, result[0], "wrong result")
+		assert_equal( 45, result[1], "wrong result")
+	end
+
+	test "1:00pm is [13,0]" do
+		service = Simpleweed::Timedateutil::Timedateservice.new
+		result = service.getMilitaryTimeFromAMPMString("1:00pm")
+		assert_equal( 13, result[0], "wrong result")
+		assert_equal( 0, result[1], "wrong result")
+	end
+
+	test "1:00am is [1,0]" do
+		service = Simpleweed::Timedateutil::Timedateservice.new
+		result = service.getMilitaryTimeFromAMPMString("1:00am")
+		assert_equal( 1, result[0], "wrong result")
+		assert_equal( 0, result[1], "wrong result")
+	end
+
+	test "8:45am is [8,45]" do
+		service = Simpleweed::Timedateutil::Timedateservice.new
+		result = service.getMilitaryTimeFromAMPMString("8:45am")
+		assert_equal( 8, result[0], "wrong result")
+		assert_equal( 45, result[1], "wrong result")
+	end
+
+	test "8:45pm is [20,45]" do
+		service = Simpleweed::Timedateutil::Timedateservice.new
+		result = service.getMilitaryTimeFromAMPMString("8:45pm")
+		assert_equal( 20, result[0], "wrong result")
+		assert_equal( 45, result[1], "wrong result")
+	end
+
+	# CLOSED?  how do we handle this?
 
 
 end

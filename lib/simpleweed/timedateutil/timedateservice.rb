@@ -31,6 +31,52 @@ module Simpleweed
 
 	  		end
 
+	  		# Needs to take 7:00AM and return 7,00.  Returns Closed as Closed
+	  		def getMilitaryTimeFromAMPMString(datestring)
+	  			if !datestring.is_a? String
+	  				return nil
+	  			end
+	  			if datestring == "Closed"
+	  				return "Closed"
+	  			end
+
+	  			datestring.freeze	  			
+
+				# .dup clones a string but unfreezes the cloned one
+	  			datestringcopy = datestring.dup
+
+
+	  			if datestringcopy.include? "pm"
+	  				isPm = true
+	  			else 
+	  				isPm = false
+	  			end	
+
+	  			hoursAndMinutes = datestringcopy.split(':')
+				
+				hours = hoursAndMinutes[0]	  			
+				minutes = hoursAndMinutes[1]
+
+				if hours == "12" && !isPm
+					result = [0, minutes.to_i] # 12:00 AM is 00:00 in military time					 
+					return result
+				end		
+
+				if hours == "12" && isPm
+					result = [12, minutes.to_i] # 12:00 PM is 12:00 in military time					 
+					return result
+				end		
+
+				hoursAsInt = hours.to_i
+				if isPm
+					result = [ hoursAsInt + 12 , minutes.to_i]
+					return result
+				else
+					result = [ hoursAsInt, minutes.to_i]
+					return result
+				end
+	  		end
+
 	  		# @Tested: rake test test/lib/simpleweed/timedateservice.rb
 	  		# need to handle "Closed" case
 	  		def getSecondsSinceMidnight(timestring)
