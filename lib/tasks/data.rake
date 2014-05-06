@@ -270,36 +270,117 @@ namespace :data do
       		sunday =  attrs[2].split("-")
       		@store.storehourssundayopen = tds.getSecondsSinceMidnight(sunday[0])
       		@store.storehourssundayclosed = tds.getSecondsSinceMidnight(sunday[1])
+          sundayOpen = tds.getMilitaryTimeFromAMPMString(sunday[0])
+          if sundayOpen != "Closed"
+            sundayClosed = tds.getMilitaryTimeFromAMPMString(sunday[1])
+            @store.storehourssundayopenhour = sundayOpen[0]
+            @store.storehourssundayopenminute = sundayOpen[1]
+            @store.storehourssundayclosehour = sundayClosed[0]
+            @store.storehourssundaycloseminute = sundayClosed[1]
+          else
+            @store.sundayclosed = true;
+          end
 
       		@store.storehoursmonday = attrs[3];
     			monday =  attrs[3].split("-")
     			@store.storehoursmondayopen = tds.getSecondsSinceMidnight(monday[0])
     			@store.storehoursmondayclosed = tds.getSecondsSinceMidnight(monday[1])
+          mondayOpen = tds.getMilitaryTimeFromAMPMString(monday[0])
+          if mondayOpen != "Closed"
+            mondayClosed = tds.getMilitaryTimeFromAMPMString(monday[1])
+            @store.storehoursmondayopenhour = mondayOpen[0]
+            @store.storehoursmondayopenminute = mondayOpen[1]
+            @store.storehoursmondayclosehour = mondayClosed[0]
+            @store.storehoursmondaycloseminute = mondayClosed[1]
+          else
+            @store.mondayclosed = true;
+          end
+
 
       		@store.storehourstuesday = attrs[4];
     			tuesday =  attrs[4].split("-")
     			@store.storehourstuesdayopen = tds.getSecondsSinceMidnight(tuesday[0])
     			@store.storehourstuesdayclosed = tds.getSecondsSinceMidnight(tuesday[1])
 
+          tuesdayOpen = tds.getMilitaryTimeFromAMPMString(tuesday[0])
+          if tuesdayOpen != "Closed"
+            tuesdayClosed = tds.getMilitaryTimeFromAMPMString(tuesday[1])
+            @store.storehourstuesdayopenhour = tuesdayOpen[0]
+            @store.storehourstuesdayopenminute = tuesdayOpen[1]
+            @store.storehourstuesdayclosehour = tuesdayClosed[0]
+            @store.storehourstuesdaycloseminute = tuesdayClosed[1]
+          else
+            @store.tuesdayclosed = true;
+          end
+
+
       		@store.storehourswednesday = attrs[5];
     			wednesday =  attrs[5].split("-")
     			@store.storehourswednesdayopen = tds.getSecondsSinceMidnight(wednesday[0])
     			@store.storehourswednesdayclosed = tds.getSecondsSinceMidnight(wednesday[1])
+
+          wednesdayOpen = tds.getMilitaryTimeFromAMPMString(wednesday[0])
+          if wednesdayOpen != "Closed"
+            wednesdayClosed = tds.getMilitaryTimeFromAMPMString(wednesday[1])
+            @store.storehourswednesdayopenhour = wednesdayOpen[0]
+            @store.storehourswednesdayopenminute = wednesdayOpen[1]
+            @store.storehourswednesdayclosehour = wednesdayClosed[0]
+            @store.storehourswednesdaycloseminute = wednesdayClosed[1]
+          else
+            @store.wednesdayclosed = true;
+          end
+
 
       		@store.storehoursthursday = attrs[6];
     			thursday =  attrs[6].split("-")
     			@store.storehoursthursdayopen = tds.getSecondsSinceMidnight(thursday[0])
     			@store.storehoursthursdayclosed = tds.getSecondsSinceMidnight(thursday[1])     		
 
+          thursdayOpen = tds.getMilitaryTimeFromAMPMString(thursday[0])
+          if thursdayOpen != "Closed"
+            thursdayClosed = tds.getMilitaryTimeFromAMPMString(thursday[1])
+            @store.storehoursthursdayopenhour = thursdayOpen[0]
+            @store.storehoursthursdayopenminute = thursdayOpen[1]
+            @store.storehoursthursdayclosehour = thursdayClosed[0]
+            @store.storehoursthursdaycloseminute = thursdayClosed[1]
+          else
+            @store.thursdayclosed = true;
+          end
+
+
       		@store.storehoursfriday = attrs[7];
     			friday =  attrs[7].split("-")
     			@store.storehoursfridayopen = tds.getSecondsSinceMidnight(friday[0])
     			@store.storehoursfridayclosed = tds.getSecondsSinceMidnight(friday[1])     		
 
+          fridayOpen = tds.getMilitaryTimeFromAMPMString(friday[0])
+          if fridayOpen != "Closed"
+            fridayClosed = tds.getMilitaryTimeFromAMPMString(friday[1])
+            @store.storehoursfridayopenhour = fridayOpen[0]
+            @store.storehoursfridayopenminute = fridayOpen[1]
+            @store.storehoursfridayclosehour = fridayClosed[0]
+            @store.storehoursfridaycloseminute = fridayClosed[1]
+          else
+            @store.fridayclosed = true;
+          end
+
+
       		@store.storehourssaturday = attrs[8];
     			saturday =  attrs[8].split("-")
     			@store.storehourssaturdayopen = tds.getSecondsSinceMidnight(saturday[0])
     			@store.storehourssaturdayclosed = tds.getSecondsSinceMidnight(saturday[1])     		
+
+          saturdayOpen = tds.getMilitaryTimeFromAMPMString(saturday[0])
+          if saturdayOpen != "Closed"
+            saturdayClosed = tds.getMilitaryTimeFromAMPMString(saturday[1])
+            @store.storehourssaturdayopenhour = saturdayOpen[0]
+            @store.storehourssaturdayopenminute = saturdayOpen[1]
+            @store.storehourssaturdayclosehour = saturdayClosed[0]
+            @store.storehourssaturdaycloseminute = saturdayClosed[1]
+          else
+            @store.saturdayclosed = true;
+          end
+
 
       		@store.save
       	end	
