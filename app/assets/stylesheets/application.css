@@ -15,4 +15,6 @@
 
 #loading-indicator {
 	z-index:1000;
+	-webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
 }
