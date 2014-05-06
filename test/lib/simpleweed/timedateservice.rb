@@ -460,7 +460,13 @@ class Timedateservice < ActiveSupport::TestCase
 		assert_equal( 45, result[1], "wrong result")
 	end
 
-	# CLOSED?  how do we handle this?
+	test "Closed returns Closed" do
+		service = Simpleweed::Timedateutil::Timedateservice.new
+		result = service.getMilitaryTimeFromAMPMString("Closed")
+		assert_equal( "Closed", result, "wrong result")		
+	end
+
+	
 
 
 end

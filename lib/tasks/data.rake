@@ -272,34 +272,34 @@ namespace :data do
       		@store.storehourssundayclosed = tds.getSecondsSinceMidnight(sunday[1])
 
       		@store.storehoursmonday = attrs[3];
-			monday =  attrs[3].split("-")
-			@store.storehoursmondayopen = tds.getSecondsSinceMidnight(monday[0])
-			@store.storehoursmondayclosed = tds.getSecondsSinceMidnight(monday[1])
+    			monday =  attrs[3].split("-")
+    			@store.storehoursmondayopen = tds.getSecondsSinceMidnight(monday[0])
+    			@store.storehoursmondayclosed = tds.getSecondsSinceMidnight(monday[1])
 
       		@store.storehourstuesday = attrs[4];
-			tuesday =  attrs[4].split("-")
-			@store.storehourstuesdayopen = tds.getSecondsSinceMidnight(tuesday[0])
-			@store.storehourstuesdayclosed = tds.getSecondsSinceMidnight(tuesday[1])
+    			tuesday =  attrs[4].split("-")
+    			@store.storehourstuesdayopen = tds.getSecondsSinceMidnight(tuesday[0])
+    			@store.storehourstuesdayclosed = tds.getSecondsSinceMidnight(tuesday[1])
 
       		@store.storehourswednesday = attrs[5];
-			wednesday =  attrs[5].split("-")
-			@store.storehourswednesdayopen = tds.getSecondsSinceMidnight(wednesday[0])
-			@store.storehourswednesdayclosed = tds.getSecondsSinceMidnight(wednesday[1])
+    			wednesday =  attrs[5].split("-")
+    			@store.storehourswednesdayopen = tds.getSecondsSinceMidnight(wednesday[0])
+    			@store.storehourswednesdayclosed = tds.getSecondsSinceMidnight(wednesday[1])
 
       		@store.storehoursthursday = attrs[6];
-			thursday =  attrs[6].split("-")
-			@store.storehoursthursdayopen = tds.getSecondsSinceMidnight(thursday[0])
-			@store.storehoursthursdayclosed = tds.getSecondsSinceMidnight(thursday[1])     		
+    			thursday =  attrs[6].split("-")
+    			@store.storehoursthursdayopen = tds.getSecondsSinceMidnight(thursday[0])
+    			@store.storehoursthursdayclosed = tds.getSecondsSinceMidnight(thursday[1])     		
 
       		@store.storehoursfriday = attrs[7];
-			friday =  attrs[7].split("-")
-			@store.storehoursfridayopen = tds.getSecondsSinceMidnight(friday[0])
-			@store.storehoursfridayclosed = tds.getSecondsSinceMidnight(friday[1])     		
+    			friday =  attrs[7].split("-")
+    			@store.storehoursfridayopen = tds.getSecondsSinceMidnight(friday[0])
+    			@store.storehoursfridayclosed = tds.getSecondsSinceMidnight(friday[1])     		
 
       		@store.storehourssaturday = attrs[8];
-			saturday =  attrs[8].split("-")
-			@store.storehourssaturdayopen = tds.getSecondsSinceMidnight(saturday[0])
-			@store.storehourssaturdayclosed = tds.getSecondsSinceMidnight(saturday[1])     		
+    			saturday =  attrs[8].split("-")
+    			@store.storehourssaturdayopen = tds.getSecondsSinceMidnight(saturday[0])
+    			@store.storehourssaturdayclosed = tds.getSecondsSinceMidnight(saturday[1])     		
 
       		@store.save
       	end	
