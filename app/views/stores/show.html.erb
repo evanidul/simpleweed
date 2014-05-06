@@ -276,7 +276,12 @@
 			</div>
 		<% end %>	
 
-		<h3>Hours</h3>
+		<br />
+		<h3 class="inline-header">Hours</h3>
+		<%= link_to 'Edit', edit_hours_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_hours_store_path(@store)} , id: "edit-hours-link", class: "edit-store-link" %>
+
+		<br />
+		<br />
 		<table id="storehours">
 			
 			<tr>

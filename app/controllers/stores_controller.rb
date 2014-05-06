@@ -177,6 +177,21 @@ class StoresController < ApplicationController
 		end
 	end
 
+	def edit_hours
+		@store = Store.find(params[:id])
+		render layout: false		
+	end
+
+	def update_hours
+		@store = Store.find(params[:id])
+	    if @store.update(params[:store].permit(:deliveryarea))  #set!TODO!!
+			redirect_to store_path(@store)
+		else
+			redirect_to edit_hours_store_path(@store)
+		end
+	end
+
+
 	# create may only take a name in the future.  Anyway, we may be able to get rid of this block..
 	private 
 	def store_params
