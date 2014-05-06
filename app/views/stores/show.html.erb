@@ -194,9 +194,10 @@
 		<div id="contact">
 			<h3 class = "inline-header">Contact</h3>
 			<%= link_to 'Edit', edit_contact_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_contact_store_path(@store)} , id: "edit-contact-link", class: "edit-store-link" %>
-
+			<br />
+			<br />
 			<address>
-				<strong><%= @store.name  %></strong><br>
+				<strong><%= @store.name  %></strong>
 				<span id="addressline1"><%= @store.addressline1  %></span>
 					<br>
 				<% if  @store.addressline2 && !@store.addressline2.empty?  %>
@@ -280,37 +281,37 @@
 			
 			<tr>
 				<td class="day">Sunday</td>
-				<td><%= @store.storehourssunday %></td>
-				<td id="store-status-0"></td>
+				<td class="store-hours-text"><%= @store.storehourssunday %></td>
+				<td id="store-status-0" class="hours-current-status"></td>
 			</tr>				
 				<td class="day">Monday</td>
-				<td><%= @store.storehoursmonday %></td>
-				<td id="store-status-1"></td>
+				<td class="store-hours-text"><%= @store.storehoursmonday %></td>
+				<td id="store-status-1" class="hours-current-status"></td>
 			</tr>
 			<tr>
 				<td class="day">Tuesday</td>
-				<td><%= @store.storehourstuesday %></td>
-				<td id="store-status-2"></td>
+				<td class="store-hours-text"><%= @store.storehourstuesday %></td>
+				<td id="store-status-2" class="hours-current-status"></td>
 			</tr>
 			<tr>
 				<td class="day">Wednesday</td>
-				<td><%= @store.storehourswednesday %></td>
-				<td id="store-status-3"></td>
+				<td class="store-hours-text"><%= @store.storehourswednesday %></td>
+				<td id="store-status-3" class="hours-current-status"></td>
 			</tr>
 			<tr>
 				<td class="day">Thursday</td>
-				<td><%= @store.storehoursthursday %></td>
-				<td id="store-status-4"></td>
+				<td class="store-hours-text"><%= @store.storehoursthursday %></td>
+				<td id="store-status-4" class="hours-current-status"></td>
 			</tr>
 			<tr>
 				<td class="day">Friday</td>
-				<td><%= @store.storehoursfriday %></td>
-				<td id="store-status-5"></td>
+				<td class="store-hours-text"><%= @store.storehoursfriday %></td>
+				<td id="store-status-5" class="hours-current-status"></td>
 			</tr>
 			<tr>
 				<td class="day">Saturday</td>
-				<td><%= @store.storehourssaturday %></td>
-				<td id="store-status-6"></td>
+				<td class="store-hours-text"><%= @store.storehourssaturday %></td>
+				<td id="store-status-6" class="hours-current-status"></td>
 			</tr>
 		</table>
 
