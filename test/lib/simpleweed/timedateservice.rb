@@ -353,5 +353,54 @@ class Timedateservice < ActiveSupport::TestCase
 		assert_equal( false, result, 'This store is closed on weekends but is not')
 	end	
 
+	test "0:45 is 12:45 AM" do
+		service = Simpleweed::Timedateutil::Timedateservice.new
+		result = service.formatMilitaryTimeAsAMPM(0,45)
+		assert_equal( "12:45 AM", result, "wrong result")
+	end
+
+	test "0,0 is 12:00 AM" do
+		service = Simpleweed::Timedateutil::Timedateservice.new
+		result = service.formatMilitaryTimeAsAMPM(0,0)
+		assert_equal( "12:00 AM", result, "wrong result")
+	end
+
+
+	test "12:00 is 12:00 PM" do
+		service = Simpleweed::Timedateutil::Timedateservice.new
+		result = service.formatMilitaryTimeAsAMPM(12,00)
+		assert_equal( "12:00 PM", result, "wrong result")
+	end
+
+	test "13:15 is 1:15 PM" do
+		service = Simpleweed::Timedateutil::Timedateservice.new
+		result = service.formatMilitaryTimeAsAMPM(13,15)
+		assert_equal( "1:15 PM", result, "wrong result")
+	end
+
+	test "1:15 is 1:15 AM" do
+		service = Simpleweed::Timedateutil::Timedateservice.new
+		result = service.formatMilitaryTimeAsAMPM(1,15)
+		assert_equal( "1:15 AM", result, "wrong result")
+	end
+
+	test "10:00 is 10:00 AM" do
+		service = Simpleweed::Timedateutil::Timedateservice.new
+		result = service.formatMilitaryTimeAsAMPM(10,0)
+		assert_equal( "10:00 AM", result, "wrong result")
+	end
+
+	test "22:00 is 10:00 PM" do
+		service = Simpleweed::Timedateutil::Timedateservice.new
+		result = service.formatMilitaryTimeAsAMPM(22,0)
+		assert_equal( "10:00 PM", result, "wrong result")
+	end
+
+	test "23:45 is 11:45 PM" do
+		service = Simpleweed::Timedateutil::Timedateservice.new
+		result = service.formatMilitaryTimeAsAMPM(23,45)
+		assert_equal( "11:45 PM", result, "wrong result")
+	end
+
 
 end

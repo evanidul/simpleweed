@@ -6,6 +6,31 @@ module Simpleweed
 		      return "timedateservice"		   
 	  		end
 
+	  		#given 0-23 hours as an int, 00-59 minutes as an int, return am/pm string
+	  		def formatMilitaryTimeAsAMPM(hours, minutes)
+	  			if hours.nil? || minutes.nil?
+	  				return
+	  			end
+	  			ampm = "AM"
+	  			h = hours
+
+	  			if h >= 12 
+			        h = hours-12;
+			        ampm = "PM"
+			    end
+			    
+			    if h == 0
+			        h = 12
+			    end
+
+			    if minutes == 0
+			    	minutes = "00"
+			    end
+
+			    return h.to_s + ":" + minutes.to_s + " " + ampm
+
+	  		end
+
 	  		# @Tested: rake test test/lib/simpleweed/timedateservice.rb
 	  		# need to handle "Closed" case
 	  		def getSecondsSinceMidnight(timestring)

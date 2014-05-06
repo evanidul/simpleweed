@@ -10,7 +10,9 @@
 </script>	
 <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <!-- <link rel="stylesheet" href="http://jqueryui.com/resources/demos/style.css"> -->
-<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+
+<!-- cached in store.css.scss -->
+<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css"> -->
  
 <% end %>
 
@@ -234,7 +236,7 @@
 			</address>
 		</div>
 
-		<div id="debug" class="hidden">
+		<div id="debug" >
 		<h3 >Debug</h3>
 		 <%= @timezone %><br>
 		 <%= @currenttime %><br>
@@ -245,7 +247,12 @@
 		 Close: <%= @store.storehourssundayclosed %><br>
 		<%= @store.storehoursfridayopen%>		<%= @store.storehoursfridayclosed %> <br>
 		is open? <%= @is_open %>
-		filepath : <%= @store.filepath %> 
+		filepath : <%= @store.filepath %>  <br/>
+		<%= @store.storehourssundayopenhour %> : <%= @store.storehourssundayopenminute %> <br/>
+		<%= @store.storehourssundayclosehour %> : <%= @store.storehourssundaycloseminute %> <br/>
+		<%= @tds.formatMilitaryTimeAsAMPM(@store.storehourssundayopenhour, @store.storehourssundayopenminute ) %>
+		
+
 		</div>
 
 		<script type="text/javascript">

@@ -37,10 +37,10 @@ class StoresController < ApplicationController
 		@dayint = @currenttime.to_date.wday  
 		@day = Date::DAYNAMES[@dayint]
 
-		tds = Simpleweed::Timedateutil::Timedateservice.new
+		@tds = Simpleweed::Timedateutil::Timedateservice.new
 
 		#is the store open?
-		@is_open = tds.isStoreOpen(@currenttime, @store)
+		@is_open = @tds.isStoreOpen(@currenttime, @store)
 
 		@store_items = @store.store_items.order('name ASC')
 		@grouped_store_items = @store_items.group_by &:category
@@ -184,7 +184,7 @@ class StoresController < ApplicationController
 
 	def update_hours
 		@store = Store.find(params[:id])
-	    if @store.update(params[:store].permit(:deliveryarea))  #set!TODO!!
+	    if @store.update(params[:date].permit(:storehourssundayopenhour, :storehourssundayopenminute, :storehourssundayclosehour, :storehourssundaycloseminute))  #set!TODO!!
 			redirect_to store_path(@store)
 		else
 			redirect_to edit_hours_store_path(@store)
