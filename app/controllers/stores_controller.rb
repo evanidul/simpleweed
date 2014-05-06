@@ -149,7 +149,22 @@ class StoresController < ApplicationController
 		end
 	end
 
+	def edit_announcement
+		@store = Store.find(params[:id])
+		render layout: false		
+	end
 
+	def update_announcement
+		@store = Store.find(params[:id])
+	    if @store.update(params[:store].permit(:announcement))
+			redirect_to store_path(@store)
+		else
+			redirect_to edit_announcement_store_path(@store)
+		end
+	end
+
+
+	# create may only take a name in the future.  Anyway, we may be able to get rid of this block..
 	private 
 	def store_params
 		params.require(:store).permit(:name,:addressline1, :addressline2, :city, :state, :zip, :phonenumber, :dailyspecialsmonday, :dailyspecialstuesday,

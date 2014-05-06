@@ -102,6 +102,14 @@ class StorePage < SitePrism::Page
 
 	element :save_store_features_button, "#save_store_features_button"
 
+	#announcement (main page)
+	element :announcement, "#announcement"
+	element :edit_announcement_link, "#edit-announcement-link"
+
+	#announcement (edit modal)
+	element :announcement_input, "#store_announcement_input"
+	element :save_announcement_button, "#save_store_announcement_button"
+
 
 
 end

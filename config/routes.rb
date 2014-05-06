@@ -24,6 +24,8 @@ Smellyleaf::Application.routes.draw do
       put 'update_contact'
       get 'edit_features'
       put 'update_features'
+      get 'edit_announcement'
+      put 'update_announcement'
 
     end
     resources :store_items

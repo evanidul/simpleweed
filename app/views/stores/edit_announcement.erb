@@ -1,0 +1,23 @@
+ <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">Edit Announcement</h4>          
+        </div>
+        <div class="modal-body">
+            <%= form_for :store, url: update_announcement_store_path, method: "put" do |f| %>
+                
+              <p class = "form-group">
+                <%= f.label :announcement,  "Announcement"  %><br>
+                <%= f.text_area :announcement, :rows => 4,  :class => 'form-control' , :id => 'store_announcement_input' , :required => true   %>
+              </p>             
+                           
+              <p class = "form-group pull-right">              	
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <%= f.submit :class => 'btn btn-primary' , :id => 'save_store_announcement_button'%>
+              </p>
+            <% end %>
+            <div class="simple-weed-modal-footer">
+            </div>
+          </div><!-- modal-footer -->
+      </div> <!-- modal-content -->
+</div>    

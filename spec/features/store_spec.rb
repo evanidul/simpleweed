@@ -264,5 +264,13 @@ feature "store page" , :js => true do
 		store_page.hasphotos.should be_checked
 		store_page.onsitetesting.should be_checked
 
+		# announcement
+		expect(store_page.announcement.text).to have_text("None.")
+		store_page.edit_announcement_link.click
+		new_announcement = "My New announcement"
+		store_page.announcement_input.set new_announcement
+		store_page.save_announcement_button.click
+		expect(store_page.announcement.text).to have_text(new_announcement)
+
   	end
 end

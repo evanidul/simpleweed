@@ -228,7 +228,8 @@
 			</address>
 		</div>
 
-		<h3>Debug</h3>
+		<div id="debug" class="hidden">
+		<h3 >Debug</h3>
 		 <%= @timezone %><br>
 		 <%= @currenttime %><br>
 		 <%= @secondsSinceMidnight %><br>
@@ -239,6 +240,7 @@
 		<%= @store.storehoursfridayopen%>		<%= @store.storehoursfridayclosed %> <br>
 		is open? <%= @is_open %>
 		filepath : <%= @store.filepath %> 
+		</div>
 
 		<script type="text/javascript">
 			
@@ -263,8 +265,11 @@
 		</script>
 
 		<% if  @store.announcement && !@store.announcement.empty?  %>			
-			<h3>Announcement</h3>
-			<div>
+			<br />
+			<h3 class="inline-header">Announcement</h3>
+			<%= link_to 'Edit', edit_announcement_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_announcement_store_path(@store)} , id: "edit-announcement-link" %>
+			<br />
+			<div id="announcement">
 				<%= raw @store.announcement %>
 			</div>
 		<% end %>	
