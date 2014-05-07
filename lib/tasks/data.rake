@@ -266,10 +266,10 @@ namespace :data do
       @store = Store.find_or_initialize_by_id(attrs[0])
       if (@store)
       	if( attrs.last != "ERROR: check fields")      		
-      		@store.storehourssunday = attrs[2]; # attrs[2].split("-") : results[0], 10AM results[1], 12AM (close)      		
+      		# @store.storehourssunday = attrs[2]; # attrs[2].split("-") : results[0], 10AM results[1], 12AM (close)      		
       		sunday =  attrs[2].split("-")
-      		@store.storehourssundayopen = tds.getSecondsSinceMidnight(sunday[0])
-      		@store.storehourssundayclosed = tds.getSecondsSinceMidnight(sunday[1])
+      		# @store.storehourssundayopen = tds.getSecondsSinceMidnight(sunday[0])
+      		# @store.storehourssundayclosed = tds.getSecondsSinceMidnight(sunday[1])
           sundayOpen = tds.getMilitaryTimeFromAMPMString(sunday[0])
           if sundayOpen != "Closed"
             sundayClosed = tds.getMilitaryTimeFromAMPMString(sunday[1])
@@ -281,10 +281,10 @@ namespace :data do
             @store.sundayclosed = true;
           end
 
-      		@store.storehoursmonday = attrs[3];
+      		# @store.storehoursmonday = attrs[3];
     			monday =  attrs[3].split("-")
-    			@store.storehoursmondayopen = tds.getSecondsSinceMidnight(monday[0])
-    			@store.storehoursmondayclosed = tds.getSecondsSinceMidnight(monday[1])
+    			# @store.storehoursmondayopen = tds.getSecondsSinceMidnight(monday[0])
+    			# @store.storehoursmondayclosed = tds.getSecondsSinceMidnight(monday[1])
           mondayOpen = tds.getMilitaryTimeFromAMPMString(monday[0])
           if mondayOpen != "Closed"
             mondayClosed = tds.getMilitaryTimeFromAMPMString(monday[1])
@@ -297,10 +297,10 @@ namespace :data do
           end
 
 
-      		@store.storehourstuesday = attrs[4];
+      		# @store.storehourstuesday = attrs[4];
     			tuesday =  attrs[4].split("-")
-    			@store.storehourstuesdayopen = tds.getSecondsSinceMidnight(tuesday[0])
-    			@store.storehourstuesdayclosed = tds.getSecondsSinceMidnight(tuesday[1])
+    			# @store.storehourstuesdayopen = tds.getSecondsSinceMidnight(tuesday[0])
+    			# @store.storehourstuesdayclosed = tds.getSecondsSinceMidnight(tuesday[1])
 
           tuesdayOpen = tds.getMilitaryTimeFromAMPMString(tuesday[0])
           if tuesdayOpen != "Closed"
@@ -314,10 +314,10 @@ namespace :data do
           end
 
 
-      		@store.storehourswednesday = attrs[5];
+      		# @store.storehourswednesday = attrs[5];
     			wednesday =  attrs[5].split("-")
-    			@store.storehourswednesdayopen = tds.getSecondsSinceMidnight(wednesday[0])
-    			@store.storehourswednesdayclosed = tds.getSecondsSinceMidnight(wednesday[1])
+    			# @store.storehourswednesdayopen = tds.getSecondsSinceMidnight(wednesday[0])
+    			# @store.storehourswednesdayclosed = tds.getSecondsSinceMidnight(wednesday[1])
 
           wednesdayOpen = tds.getMilitaryTimeFromAMPMString(wednesday[0])
           if wednesdayOpen != "Closed"
@@ -331,10 +331,10 @@ namespace :data do
           end
 
 
-      		@store.storehoursthursday = attrs[6];
+      		# @store.storehoursthursday = attrs[6];
     			thursday =  attrs[6].split("-")
-    			@store.storehoursthursdayopen = tds.getSecondsSinceMidnight(thursday[0])
-    			@store.storehoursthursdayclosed = tds.getSecondsSinceMidnight(thursday[1])     		
+    			# @store.storehoursthursdayopen = tds.getSecondsSinceMidnight(thursday[0])
+    			# @store.storehoursthursdayclosed = tds.getSecondsSinceMidnight(thursday[1])     		
 
           thursdayOpen = tds.getMilitaryTimeFromAMPMString(thursday[0])
           if thursdayOpen != "Closed"
@@ -348,10 +348,10 @@ namespace :data do
           end
 
 
-      		@store.storehoursfriday = attrs[7];
+      		# @store.storehoursfriday = attrs[7];
     			friday =  attrs[7].split("-")
-    			@store.storehoursfridayopen = tds.getSecondsSinceMidnight(friday[0])
-    			@store.storehoursfridayclosed = tds.getSecondsSinceMidnight(friday[1])     		
+    			# @store.storehoursfridayopen = tds.getSecondsSinceMidnight(friday[0])
+    			# @store.storehoursfridayclosed = tds.getSecondsSinceMidnight(friday[1])     		
 
           fridayOpen = tds.getMilitaryTimeFromAMPMString(friday[0])
           if fridayOpen != "Closed"
@@ -365,10 +365,10 @@ namespace :data do
           end
 
 
-      		@store.storehourssaturday = attrs[8];
+      		# @store.storehourssaturday = attrs[8];
     			saturday =  attrs[8].split("-")
-    			@store.storehourssaturdayopen = tds.getSecondsSinceMidnight(saturday[0])
-    			@store.storehourssaturdayclosed = tds.getSecondsSinceMidnight(saturday[1])     		
+    			# @store.storehourssaturdayopen = tds.getSecondsSinceMidnight(saturday[0])
+    			# @store.storehourssaturdayclosed = tds.getSecondsSinceMidnight(saturday[1])     		
 
           saturdayOpen = tds.getMilitaryTimeFromAMPMString(saturday[0])
           if saturdayOpen != "Closed"
