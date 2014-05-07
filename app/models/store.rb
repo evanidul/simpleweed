@@ -5,8 +5,9 @@ class Store < ActiveRecord::Base
 	# I'm guessing since it creates new stores, it's generating api requests to 
 	# geocode all the stores...  Just comment it out and turn it back on later...
 	# Comment this back in: rake geocode:all CLASS=Store will not work otherwise
-	geocoded_by :address
-	after_validation :geocode
+	# geocoded_by :address
+	# after_validation :geocode
+
 	after_initialize :init
 
 	resourcify
@@ -28,14 +29,6 @@ class Store < ActiveRecord::Base
 
     	self.description ||= "None."
 		self.firsttimepatientdeals ||= "None."
-
-	    self.storehourssunday ||= "None set"
-	    self.storehoursmonday ||= "None set"
-	    self.storehourstuesday ||= "None set"
-	    self.storehourswednesday ||= "None set"
-	    self.storehoursthursday ||= "None set"
-	    self.storehoursfriday ||= "None set"
-	    self.storehourssaturday ||= "None set"
 
 	    self.announcement ||= "None."
 	    self.deliveryarea ||= "None."

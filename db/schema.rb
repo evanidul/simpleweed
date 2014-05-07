@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140506162613) do
+ActiveRecord::Schema.define(version: 20140507043416) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,27 +92,6 @@ ActiveRecord::Schema.define(version: 20140506162613) do
     t.string   "addressline2"
     t.float    "latitude"
     t.float    "longitude"
-    t.string   "storehourssunday"
-    t.string   "storehoursmonday"
-    t.string   "storehourstuesday"
-    t.string   "storehourswednesday"
-    t.string   "storehoursthursday"
-    t.string   "storehoursfriday"
-    t.string   "storehourssaturday"
-    t.integer  "storehourssundayopen"
-    t.integer  "storehourssundayclosed"
-    t.integer  "storehoursmondayopen"
-    t.integer  "storehoursmondayclosed"
-    t.integer  "storehourstuesdayopen"
-    t.integer  "storehourstuesdayclosed"
-    t.integer  "storehourswednesdayopen"
-    t.integer  "storehourswednesdayclosed"
-    t.integer  "storehoursthursdayopen"
-    t.integer  "storehoursthursdayclosed"
-    t.integer  "storehoursfridayopen"
-    t.integer  "storehoursfridayclosed"
-    t.integer  "storehourssaturdayopen"
-    t.integer  "storehourssaturdayclosed"
     t.string   "email"
     t.text     "description"
     t.string   "website"

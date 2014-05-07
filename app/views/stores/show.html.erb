@@ -243,21 +243,8 @@
 		 <%= @secondsSinceMidnight %><br>
 		 <%= @day %><br>
 		 <%= @debug %><br>
-		 Open: <%= @store.storehourssundayopen %><br>
-		 Close: <%= @store.storehourssundayclosed %><br>
-		<%= @store.storehoursfridayopen%>		<%= @store.storehoursfridayclosed %> <br>
 		is open? <%= @is_open %>
 		filepath : <%= @store.filepath %>  <br/>
-		<%= @store.storehourssundayopenhour %> : <%= @store.storehourssundayopenminute %> <br/>
-		<%= @store.storehourssundayclosehour %> : <%= @store.storehourssundaycloseminute %> <br/>
-		<%= @tds.formatMilitaryTimeAsAMPM(@store.storehourssundayopenhour, @store.storehourssundayopenminute ) %> -
-		<%= @tds.formatMilitaryTimeAsAMPM(@store.storehourssundayclosehour, @store.storehourssundaycloseminute ) %><br/>
-
-		<%= @tds.formatMilitaryTimeAsAMPM(@store.storehoursmondayopenhour, @store.storehoursmondayopenminute ) %> -
-		<%= @tds.formatMilitaryTimeAsAMPM(@store.storehoursmondayclosehour, @store.storehoursmondaycloseminute ) %><br/>
-
-		<%= @tds.formatMilitaryTimeAsAMPM(@store.storehourstuesdayopenhour, @store.storehourstuesdayopenminute ) %> -
-		<%= @tds.formatMilitaryTimeAsAMPM(@store.storehourstuesdayclosehour, @store.storehourstuesdaycloseminute ) %><br/>		
 
 		</div>
 
