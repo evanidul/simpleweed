@@ -279,9 +279,53 @@ feature "store page" , :js => true do
 		store_page.deliveryarea_input.set new_deliveryarea
 		store_page.save_store_deliveryarea_button.click
 		expect(store_page.deliveryarea.text).to have_text(new_deliveryarea)
+  	end
+
+  		scenario "sign in as admin, create a new store, edit store hours" do
+				
+		page.visit("/users/sign_in")
+		login_page = LoginPage.new
+		login_page.has_username_input?
+		login_page.has_username_password_input?
+
+		login_page.username_input.set @adminemail
+    	login_page.username_password_input.set @adminpassword
+    	login_page.sign_in_button.click
+
+    	header = HeaderPageComponent.new
+		header.has_edituserlink?
+    	expect(header.edituserlink.text).to have_text(@adminemail)
+
+    	stores_page = AdminStoresPage.new
+    	stores_page.load
+    	stores_page.has_newstore_button?    	
+    	stores_page.newstore_button.click
+
+    	store_name = "My New Store"
+    	stores_page.modal_store_name_input.set store_name
+    	stores_page.modal_save_button.click
+
+    	store_page = StorePage.new
+    	store_page.has_name_header?
+		expect(store_page.name_header.text).to have_text(store_name)    	
+		store_page.has_description?
+
+		store_page.edit_hours_link.click
+		store_page.save_store_hours_button.click # first save opens the store, 12AM - 12AM, ie always open
+
+		default_hours = "12:00 AM - 12:00 AM"
+
+		expect(store_page.sunday_hours.text).to have_text(default_hours) 
+		expect(store_page.monday_hours.text).to have_text(default_hours) 
+		expect(store_page.tuesday_hours.text).to have_text(default_hours)
+		expect(store_page.wednesday_hours.text).to have_text(default_hours)
+		expect(store_page.thursday_hours.text).to have_text(default_hours)
+		expect(store_page.friday_hours.text).to have_text(default_hours)
+		expect(store_page.saturday_hours.text).to have_text(default_hours) 				
+
+
+	
 	
 
-
-
-  	end
+	end
 end

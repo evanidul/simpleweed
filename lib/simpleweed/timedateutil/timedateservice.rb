@@ -159,6 +159,9 @@ module Simpleweed
 				case dayint
 				when 0
 					if store.sundayclosed
+						if store.saturdayclosed
+							return false
+						end
 						# if store is closed, we still need to call doesTimeOccurDuringBusinessHours with -1,-1 to tell it that
 						# the store is closed today, but might be open from yesterday (for late closes, 3 am...)
 						return doesTimeOccurDuringBusinessHours(
@@ -179,6 +182,9 @@ module Simpleweed
 					end
 				when 1
 					if store.mondayclosed
+						if store.sundayclosed
+							return false
+						end
 						return doesTimeOccurDuringBusinessHours(
 						-1,
 						-1, 						
@@ -197,6 +203,9 @@ module Simpleweed
 					end
 				when 2
 					if store.tuesdayclosed
+						if store.mondayclosed
+							return false
+						end
 						return doesTimeOccurDuringBusinessHours(
 						-1,
 						-1, 						
@@ -215,6 +224,9 @@ module Simpleweed
 					end
 				when 3
 					if store.wednesdayclosed
+						if store.tuesdayclosed
+							return false
+						end
 						return doesTimeOccurDuringBusinessHours(
 						-1,
 						-1, 						
@@ -233,6 +245,9 @@ module Simpleweed
 					end
 				when 4	
 					if store.thursdayclosed
+						if store.wednesdayclosed
+							return false
+						end
 						return doesTimeOccurDuringBusinessHours(
 						-1,
 						-1, 						
@@ -251,6 +266,9 @@ module Simpleweed
 					end
 				when 5	
 					if store.fridayclosed
+						if store.thursdayclosed
+							return false
+						end
 						return doesTimeOccurDuringBusinessHours(
 						-1,
 						-1, 						
@@ -269,6 +287,9 @@ module Simpleweed
 					end
 				when 6	
 					if store.saturdayclosed
+						if store.fridayclosed
+							return false
+						end
 						return doesTimeOccurDuringBusinessHours(
 						-1,
 						-1, 						

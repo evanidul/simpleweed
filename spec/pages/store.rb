@@ -117,6 +117,21 @@ class StorePage < SitePrism::Page
 	#delivery area (edit modal)
 	element :deliveryarea_input, "#store_deliveryarea_input"
 	element :save_store_deliveryarea_button, "#save_store_deliveryarea_button"
+
+	#store hours (main page)
+	element :sunday_hours, "#sunday-hours"
+	element :monday_hours, "#monday-hours"
+	element :tuesday_hours, "#tuesday-hours"
+	element :wednesday_hours, "#wednesday-hours"
+	element :thursday_hours, "#thursday-hours"
+	element :friday_hours, "#friday-hours"
+	element :saturday_hours, "#saturday-hours"
+
+	element :edit_hours_link, "#edit-hours-link"
+
+	#store hours (edit modal)
+
+	element :save_store_hours_button, "#save_store_hours_button"
 	
 
 end

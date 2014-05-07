@@ -288,7 +288,7 @@
 		<table id="storehours">			
 			<tr>
 				<td class="day">Sunday</td>
-				<td class="store-hours-text">
+				<td class="store-hours-text" id="sunday-hours">
 					<% if @store.sundayclosed %>
 						Closed					
 					<% else %>
@@ -300,7 +300,7 @@
 			</tr>				
 			<tr>
 				<td class="day">Monday</td>
-				<td class="store-hours-text">
+				<td class="store-hours-text" id="monday-hours">
 					<% if @store.mondayclosed %>
 						Closed					
 					<% else %>
@@ -312,7 +312,7 @@
 			</tr>
 			<tr>
 				<td class="day">Tuesday</td>
-				<td class="store-hours-text">
+				<td class="store-hours-text" id="tuesday-hours">
 					<% if @store.tuesdayclosed %>
 						Closed					
 					<% else %>					
@@ -324,7 +324,7 @@
 			</tr>
 			<tr>
 				<td class="day">Wednesday</td>
-				<td class="store-hours-text">
+				<td class="store-hours-text" id="wednesday-hours">
 					<% if @store.wednesdayclosed %>
 						Closed					
 					<% else %>					
@@ -336,7 +336,7 @@
 			</tr>
 			<tr>
 				<td class="day">Thursday</td>
-				<td class="store-hours-text">
+				<td class="store-hours-text" id="thursday-hours">
 					<% if @store.thursdayclosed %>
 						Closed					
 					<% else %>					
@@ -348,7 +348,7 @@
 			</tr>
 			<tr>
 				<td class="day">Friday</td>
-				<td class="store-hours-text">
+				<td class="store-hours-text" id="friday-hours">
 					<% if @store.fridayclosed %>
 						Closed					
 					<% else %>										
@@ -360,7 +360,7 @@
 			</tr>
 			<tr>
 				<td class="day">Saturday</td>
-				<td class="store-hours-text">
+				<td class="store-hours-text" id="saturday-hours">
 					<% if @store.saturdayclosed %>
 						Closed					
 					<% else %>										
