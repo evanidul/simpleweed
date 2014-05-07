@@ -54,11 +54,11 @@ module Simpleweed
 
 	  			hoursAndMinutes = datestringcopy.split(':')
 				
-				hours = hoursAndMinutes[0]	  			
-				minutes = hoursAndMinutes[1]
+				hours = hoursAndMinutes[0].strip
+				minutes = hoursAndMinutes[1].strip
 
 				if hours == "12" && !isPm
-					result = [0, minutes.to_i] # 12:00 AM is 00:00 in military time					 
+					result = [0, minutes.to_i] # 12:00 AM is 00:00 in military time, to_i drops the pm string
 					return result
 				end		
 

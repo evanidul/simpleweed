@@ -250,8 +250,14 @@
 		filepath : <%= @store.filepath %>  <br/>
 		<%= @store.storehourssundayopenhour %> : <%= @store.storehourssundayopenminute %> <br/>
 		<%= @store.storehourssundayclosehour %> : <%= @store.storehourssundaycloseminute %> <br/>
-		<%= @tds.formatMilitaryTimeAsAMPM(@store.storehourssundayopenhour, @store.storehourssundayopenminute ) %>
-		
+		<%= @tds.formatMilitaryTimeAsAMPM(@store.storehourssundayopenhour, @store.storehourssundayopenminute ) %> -
+		<%= @tds.formatMilitaryTimeAsAMPM(@store.storehourssundayclosehour, @store.storehourssundaycloseminute ) %><br/>
+
+		<%= @tds.formatMilitaryTimeAsAMPM(@store.storehoursmondayopenhour, @store.storehoursmondayopenminute ) %> -
+		<%= @tds.formatMilitaryTimeAsAMPM(@store.storehoursmondayclosehour, @store.storehoursmondaycloseminute ) %><br/>
+
+		<%= @tds.formatMilitaryTimeAsAMPM(@store.storehourstuesdayopenhour, @store.storehourstuesdayopenminute ) %> -
+		<%= @tds.formatMilitaryTimeAsAMPM(@store.storehourstuesdayclosehour, @store.storehourstuesdaycloseminute ) %><br/>		
 
 		</div>
 
@@ -299,35 +305,99 @@
 				<td class="store-hours-text"><%= @store.storehourssunday %></td>
 				<td id="store-status-0" class="hours-current-status"></td>
 			</tr>				
+			<tr>
+				<td class="day">Sunday</td>
+				<td class="store-hours-text">
+					<%= @tds.formatMilitaryTimeAsAMPM(@store.storehourssundayopenhour, @store.storehourssundayopenminute ) %> -
+					<%= @tds.formatMilitaryTimeAsAMPM(@store.storehourssundayclosehour, @store.storehourssundaycloseminute ) %>
+				</td>
+				<td id="store-status-0" class="hours-current-status"></td>
+			</tr>				
+
+			<tr>
 				<td class="day">Monday</td>
 				<td class="store-hours-text"><%= @store.storehoursmonday %></td>
 				<td id="store-status-1" class="hours-current-status"></td>
 			</tr>
+			<tr>
+				<td class="day">Monday</td>
+				<td class="store-hours-text">
+					<%= @tds.formatMilitaryTimeAsAMPM(@store.storehoursmondayopenhour, @store.storehoursmondayopenminute ) %> -
+					<%= @tds.formatMilitaryTimeAsAMPM(@store.storehoursmondayclosehour, @store.storehoursmondaycloseminute ) %>
+				</td>
+				<td id="store-status-1" class="hours-current-status"></td>
+			</tr>
+
 			<tr>
 				<td class="day">Tuesday</td>
 				<td class="store-hours-text"><%= @store.storehourstuesday %></td>
 				<td id="store-status-2" class="hours-current-status"></td>
 			</tr>
 			<tr>
+				<td class="day">Tuesday</td>
+				<td class="store-hours-text">
+					<%= @tds.formatMilitaryTimeAsAMPM(@store.storehourstuesdayopenhour, @store.storehourstuesdayopenminute ) %> -
+					<%= @tds.formatMilitaryTimeAsAMPM(@store.storehourstuesdayclosehour, @store.storehourstuesdaycloseminute ) %>
+				</td>
+				<td id="store-status-2" class="hours-current-status"></td>
+			</tr>
+
+			<tr>
 				<td class="day">Wednesday</td>
 				<td class="store-hours-text"><%= @store.storehourswednesday %></td>
 				<td id="store-status-3" class="hours-current-status"></td>
 			</tr>
+			<tr>
+				<td class="day">Wednesday</td>
+				<td class="store-hours-text">
+					<%= @tds.formatMilitaryTimeAsAMPM(@store.storehourswednesdayopenhour, @store.storehourswednesdayopenminute ) %> -
+					<%= @tds.formatMilitaryTimeAsAMPM(@store.storehourswednesdayclosehour, @store.storehourswednesdaycloseminute ) %>
+				</td>
+				<td id="store-status-3" class="hours-current-status"></td>
+			</tr>
+
 			<tr>
 				<td class="day">Thursday</td>
 				<td class="store-hours-text"><%= @store.storehoursthursday %></td>
 				<td id="store-status-4" class="hours-current-status"></td>
 			</tr>
 			<tr>
+				<td class="day">Thursday</td>
+				<td class="store-hours-text">
+					<%= @tds.formatMilitaryTimeAsAMPM(@store.storehoursthursdayopenhour, @store.storehoursthursdayopenminute ) %> -
+					<%= @tds.formatMilitaryTimeAsAMPM(@store.storehoursthursdayclosehour, @store.storehoursthursdaycloseminute ) %>
+				</td>
+				<td id="store-status-4" class="hours-current-status"></td>
+			</tr>
+
+			<tr>
 				<td class="day">Friday</td>
 				<td class="store-hours-text"><%= @store.storehoursfriday %></td>
 				<td id="store-status-5" class="hours-current-status"></td>
 			</tr>
 			<tr>
+				<td class="day">Friday</td>
+				<td class="store-hours-text">
+					<%= @tds.formatMilitaryTimeAsAMPM(@store.storehoursfridayopenhour, @store.storehoursfridayopenminute ) %> -
+					<%= @tds.formatMilitaryTimeAsAMPM(@store.storehoursfridayclosehour, @store.storehoursfridaycloseminute ) %>
+				</td>
+				<td id="store-status-5" class="hours-current-status"></td>
+			</tr>
+
+			<tr>
 				<td class="day">Saturday</td>
 				<td class="store-hours-text"><%= @store.storehourssaturday %></td>
 				<td id="store-status-6" class="hours-current-status"></td>
 			</tr>
+			<tr>
+				<td class="day">Saturday</td>
+				<td class="store-hours-text">
+					<%= @tds.formatMilitaryTimeAsAMPM(@store.storehourssaturdayopenhour, @store.storehourssaturdayopenminute ) %> -
+					<%= @tds.formatMilitaryTimeAsAMPM(@store.storehourssaturdayclosehour, @store.storehourssaturdaycloseminute ) %>
+				</td>
+				<td id="store-status-6" class="hours-current-status"></td>
+			</tr>
+
 		</table>
 
 		<div class="header-and-edit-link">		

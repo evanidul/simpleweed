@@ -411,6 +411,14 @@ class Timedateservice < ActiveSupport::TestCase
 		assert_equal( 0, result[1], "wrong result")
 	end
 
+	test "12:00am is [0,0], test with whitespace" do
+		service = Simpleweed::Timedateutil::Timedateservice.new
+		result = service.getMilitaryTimeFromAMPMString(" 12:00am")
+		assert_equal( 0, result[0], "wrong result")
+		assert_equal( 0, result[1], "wrong result")
+	end
+
+
 	test "12:45am is [0,45]" do
 		service = Simpleweed::Timedateutil::Timedateservice.new
 		result = service.getMilitaryTimeFromAMPMString("12:45am")
@@ -421,6 +429,13 @@ class Timedateservice < ActiveSupport::TestCase
 	test "12:00pm is [12,0]" do
 		service = Simpleweed::Timedateutil::Timedateservice.new
 		result = service.getMilitaryTimeFromAMPMString("12:00pm")
+		assert_equal( 12, result[0], "wrong result")
+		assert_equal( 0, result[1], "wrong result")
+	end
+
+	test "12:00pm is [12,0] with whitespace" do
+		service = Simpleweed::Timedateutil::Timedateservice.new
+		result = service.getMilitaryTimeFromAMPMString(" 12:00pm")
 		assert_equal( 12, result[0], "wrong result")
 		assert_equal( 0, result[1], "wrong result")
 	end
