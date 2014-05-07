@@ -481,7 +481,53 @@ class Timedateservice < ActiveSupport::TestCase
 		assert_equal( "Closed", result, "wrong result")		
 	end
 
-	
+	#getSecondsSinceMidnightGivenHourAndMinute
+	test "0,24 (12:24AM) " do
+		service = Simpleweed::Timedateutil::Timedateservice.new
+		result = service.getSecondsSinceMidnightGivenHourAndMinute(0,24)
+		assert_equal( 1440, result, "wrong result")		
+	end
 
+	test "1,24 (1:24AM) " do
+		service = Simpleweed::Timedateutil::Timedateservice.new
+		result = service.getSecondsSinceMidnightGivenHourAndMinute(1,24)
+		assert_equal( 5040, result, "wrong result")		
+	end
+
+	test "10,24 (10:24AM) " do
+		service = Simpleweed::Timedateutil::Timedateservice.new
+		result = service.getSecondsSinceMidnightGivenHourAndMinute(10,24)
+		assert_equal( 37440, result, "wrong result")		
+	end
+
+	test "22,24 (10:24PM) " do
+		service = Simpleweed::Timedateutil::Timedateservice.new
+		result = service.getSecondsSinceMidnightGivenHourAndMinute(22,24)
+		assert_equal( 80640, result, "wrong result")		
+	end
+
+	test "12,24 (12:24PM) " do
+		service = Simpleweed::Timedateutil::Timedateservice.new
+		result = service.getSecondsSinceMidnightGivenHourAndMinute(12,24)
+		assert_equal( 44640, result, "wrong result")		
+	end
+
+	test "pass in strings " do
+		service = Simpleweed::Timedateutil::Timedateservice.new
+		result = service.getSecondsSinceMidnightGivenHourAndMinute("12",24)
+		assert_equal( nil, result, "wrong result")		
+	end
+
+	test "invalid range " do
+		service = Simpleweed::Timedateutil::Timedateservice.new
+		result = service.getSecondsSinceMidnightGivenHourAndMinute(24,0)
+		assert_equal( nil, result, "wrong result")		
+	end
+
+	test "invalid range for minutes" do
+		service = Simpleweed::Timedateutil::Timedateservice.new
+		result = service.getSecondsSinceMidnightGivenHourAndMinute(0,60)
+		assert_equal( nil, result, "wrong result")		
+	end
 
 end

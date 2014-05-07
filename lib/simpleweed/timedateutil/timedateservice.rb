@@ -130,25 +130,89 @@ module Simpleweed
 
 	  		end #getSecondsSinceMidnight
 
+	  		# 0-23 for hours, 0-59 for minutes
+	  		def getSecondsSinceMidnightGivenHourAndMinute(hour, minute)
+	  			if  (!hour.is_a? Integer) || (!minute.is_a? Integer)
+	  				#error
+	  				return nil;
+	  			end
+
+	  			if (hour > 23) || (minute > 59)
+	  				return nil;
+	  			end
+
+	  			if ( hour < 0 ) || (minute < 0)
+	  				return nil
+	  			end
+
+	  			hourAsSeconds = hour * 60 *60
+	  			minuteAsSeconds = minute * 60
+	  			return hourAsSeconds + minuteAsSeconds
+
+
+	  		end
+
 	  		def isStoreOpen(currenttime, store)
 				dayint = currenttime.to_date.wday  
 				secondsSinceMidnight = currenttime.seconds_since_midnight()
 
 				case dayint
 				when 0
-					return doesTimeOccurDuringBusinessHours(store.storehourssundayopen, store.storehourssundayclosed, secondsSinceMidnight, store.storehourssaturdayopen, store.storehourssaturdayclosed )
+					return doesTimeOccurDuringBusinessHours(
+						getSecondsSinceMidnightGivenHourAndMinute(store.storehourssundayopenhour, store.storehourssundayopenminute),
+						getSecondsSinceMidnightGivenHourAndMinute(store.storehourssundayclosehour, store.storehourssundaycloseminute), 						
+						secondsSinceMidnight, 
+						getSecondsSinceMidnightGivenHourAndMinute(store.storehourssaturdayopenhour, store.storehourssaturdayopenminute),
+						getSecondsSinceMidnightGivenHourAndMinute(store.storehourssaturdayclosehour, store.storehourssaturdaycloseminute)
+						)
 				when 1
-					return doesTimeOccurDuringBusinessHours(store.storehoursmondayopen, store.storehoursmondayclosed, secondsSinceMidnight, store.storehourssundayopen, store.storehourssundayclosed)
+					return doesTimeOccurDuringBusinessHours(
+						getSecondsSinceMidnightGivenHourAndMinute(store.storehoursmondayopenhour, store.storehoursmondayopenminute),
+						getSecondsSinceMidnightGivenHourAndMinute(store.storehoursmondayclosehour, store.storehoursmondaycloseminute), 						
+						secondsSinceMidnight, 
+						getSecondsSinceMidnightGivenHourAndMinute(store.storehourssundayopenhour, store.storehourssundayopenminute),
+						getSecondsSinceMidnightGivenHourAndMinute(store.storehourssundayclosehour, store.storehourssundaycloseminute)
+						)
 				when 2	
-					return doesTimeOccurDuringBusinessHours(store.storehourstuesdayopen, store.storehourstuesdayclosed, secondsSinceMidnight, store.storehoursmondayopen, store.storehoursmondayclosed)
+					return doesTimeOccurDuringBusinessHours(
+						getSecondsSinceMidnightGivenHourAndMinute(store.storehourstuesdayopenhour, store.storehourstuesdayopenminute),
+						getSecondsSinceMidnightGivenHourAndMinute(store.storehourstuesdayclosehour, store.storehourstuesdaycloseminute), 						
+						secondsSinceMidnight, 
+						getSecondsSinceMidnightGivenHourAndMinute(store.storehoursmondayopenhour, store.storehoursmondayopenminute),
+						getSecondsSinceMidnightGivenHourAndMinute(store.storehoursmondayclosehour, store.storehoursmondaycloseminute) 						
+						)
 				when 3	
-					return doesTimeOccurDuringBusinessHours(store.storehourswednesdayopen, store.storehourswednesdayclosed, secondsSinceMidnight, store.storehourstuesdayopen, store.storehourstuesdayclosed)
+					return doesTimeOccurDuringBusinessHours(
+						getSecondsSinceMidnightGivenHourAndMinute(store.storehourswednesdayopenhour, store.storehourswednesdayopenminute),
+						getSecondsSinceMidnightGivenHourAndMinute(store.storehourswednesdayclosehour, store.storehourswednesdaycloseminute), 						
+						secondsSinceMidnight, 
+						getSecondsSinceMidnightGivenHourAndMinute(store.storehourstuesdayopenhour, store.storehourstuesdayopenminute),
+						getSecondsSinceMidnightGivenHourAndMinute(store.storehourstuesdayclosehour, store.storehourstuesdaycloseminute)	
+						)
 				when 4	
-					return doesTimeOccurDuringBusinessHours(store.storehoursthursdayopen, store.storehoursthursdayclosed, secondsSinceMidnight, store.storehourswednesdayopen, store.storehourswednesdayclosed)
+					return doesTimeOccurDuringBusinessHours(
+						getSecondsSinceMidnightGivenHourAndMinute(store.storehoursthursdayopenhour, store.storehoursthursdayopenminute),
+						getSecondsSinceMidnightGivenHourAndMinute(store.storehoursthursdayclosehour, store.storehoursthursdaycloseminute), 						
+						secondsSinceMidnight, 
+						getSecondsSinceMidnightGivenHourAndMinute(store.storehourswednesdayopenhour, store.storehourswednesdayopenminute),
+						getSecondsSinceMidnightGivenHourAndMinute(store.storehourswednesdayclosehour, store.storehourswednesdaycloseminute)						
+						)
 				when 5	
-					return doesTimeOccurDuringBusinessHours(store.storehoursfridayopen, store.storehoursfridayclosed, secondsSinceMidnight, store.storehoursthursdayopen, store.storehoursthursdayclosed)
+					return doesTimeOccurDuringBusinessHours(
+						getSecondsSinceMidnightGivenHourAndMinute(store.storehoursfridayopenhour, store.storehoursfridayopenminute),
+						getSecondsSinceMidnightGivenHourAndMinute(store.storehoursfridayclosehour, store.storehoursfridaycloseminute), 						
+						secondsSinceMidnight, 
+						getSecondsSinceMidnightGivenHourAndMinute(store.storehoursthursdayopenhour, store.storehoursthursdayopenminute),
+						getSecondsSinceMidnightGivenHourAndMinute(store.storehoursthursdayclosehour, store.storehoursthursdaycloseminute)						
+						)
 				when 6	
-					return doesTimeOccurDuringBusinessHours(store.storehourssaturdayopen, store.storehourssaturdayclosed, secondsSinceMidnight, store.storehoursfridayopen, store.storehoursfridayclosed)
+					return doesTimeOccurDuringBusinessHours(
+						getSecondsSinceMidnightGivenHourAndMinute(store.storehourssaturdayopenhour, store.storehourssaturdayopenminute),
+						getSecondsSinceMidnightGivenHourAndMinute(store.storehourssaturdayclosehour, store.storehourssaturdaycloseminute), 						
+						secondsSinceMidnight, 
+						getSecondsSinceMidnightGivenHourAndMinute(store.storehoursfridayopenhour, store.storehoursfridayopenminute),
+						getSecondsSinceMidnightGivenHourAndMinute(store.storehoursfridayclosehour, store.storehoursfridaycloseminute)						
+						)
 
 				else
 					return true #by default, just pretend it's open...
