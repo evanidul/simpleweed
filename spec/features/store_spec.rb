@@ -323,9 +323,102 @@ feature "store page" , :js => true do
 		expect(store_page.friday_hours.text).to have_text(default_hours)
 		expect(store_page.saturday_hours.text).to have_text(default_hours) 				
 
+		#update them hours
+		store_page.edit_hours_link.click
 
-	
-	
+		sunday_open_h = "01"
+		sunday_open_m = "15"
+		sunday_close_h = "13"
+		sunday_close_m = "30"
 
+		monday_open_h = "02"
+		monday_open_m = "30"
+		monday_close_h = "14"
+		monday_close_m = "45"
+
+		tuesday_open_h = "03"
+		tuesday_open_m = "45"
+		tuesday_close_h = "15"
+		tuesday_close_m = "00"
+
+		wednesday_open_h = "10"
+		wednesday_open_m = "00"
+		wednesday_close_h = "20"
+		wednesday_close_m = "15"
+
+		thursday_open_h = "11"
+		thursday_open_m = "15"
+		thursday_close_h = "21"
+		thursday_close_m = "15"
+
+		friday_open_h = "13"
+		friday_open_m = "30"
+		friday_close_h = "23"
+		friday_close_m = "30"
+
+		saturday_open_h = "14"
+		saturday_open_m = "45"
+		saturday_close_h = "23"
+		saturday_close_m = "45"
+
+		#store_page.date_storehourssundayopenhour.find("option[value='12']").select_option
+		store_page.date_storehourssundayopenhour.find("option[value='" + sunday_open_h +"']").select_option
+		store_page.date_storehourssundayopenminute.find("option[value='" + sunday_open_m +"']").select_option
+		store_page.date_storehourssundayclosehour.find("option[value='" + sunday_close_h +"']").select_option
+		store_page.date_storehourssundaycloseminute.find("option[value='" + sunday_close_m +"']").select_option
+		
+		store_page.date_storehoursmondayopenhour.find("option[value='" + monday_open_h +"']").select_option
+		store_page.date_storehoursmondayopenminute.find("option[value='" + monday_open_m +"']").select_option
+		store_page.date_storehoursmondayclosehour.find("option[value='" + monday_close_h +"']").select_option
+		store_page.date_storehoursmondaycloseminute.find("option[value='" + monday_close_m +"']").select_option
+
+		store_page.date_storehourstuesdayopenhour.find("option[value='" + tuesday_open_h +"']").select_option
+		store_page.date_storehourstuesdayopenminute.find("option[value='" + tuesday_open_m +"']").select_option
+		store_page.date_storehourstuesdayclosehour.find("option[value='" + tuesday_close_h +"']").select_option
+		store_page.date_storehourstuesdaycloseminute.find("option[value='" + tuesday_close_m +"']").select_option
+
+		store_page.date_storehourswednesdayopenhour.find("option[value='" + wednesday_open_h +"']").select_option
+		store_page.date_storehourswednesdayopenminute.find("option[value='" + wednesday_open_m +"']").select_option
+		store_page.date_storehourswednesdayclosehour.find("option[value='" + wednesday_close_h +"']").select_option
+		store_page.date_storehourswednesdaycloseminute.find("option[value='" + wednesday_close_m +"']").select_option
+
+		store_page.date_storehoursthursdayopenhour.find("option[value='" + thursday_open_h +"']").select_option
+		store_page.date_storehoursthursdayopenminute.find("option[value='" + thursday_open_m +"']").select_option
+		store_page.date_storehoursthursdayclosehour.find("option[value='" + thursday_close_h +"']").select_option
+		store_page.date_storehoursthursdaycloseminute.find("option[value='" + thursday_close_m +"']").select_option
+
+		store_page.date_storehoursfridayopenhour.find("option[value='" + friday_open_h +"']").select_option
+		store_page.date_storehoursfridayopenminute.find("option[value='" + friday_open_m +"']").select_option
+		store_page.date_storehoursfridayclosehour.find("option[value='" + friday_close_h +"']").select_option
+		store_page.date_storehoursfridaycloseminute.find("option[value='" + friday_close_m +"']").select_option
+
+		store_page.date_storehourssaturdayopenhour.find("option[value='" + saturday_open_h +"']").select_option
+		store_page.date_storehourssaturdayopenminute.find("option[value='" + saturday_open_m +"']").select_option
+		store_page.date_storehourssaturdayclosehour.find("option[value='" + saturday_close_h +"']").select_option
+		store_page.date_storehourssaturdaycloseminute.find("option[value='" + saturday_close_m +"']").select_option
+
+		store_page.save_store_hours_button.click 
+
+		# verify 
+		expect(store_page.sunday_hours.text).to have_text("1:15 AM") 
+		expect(store_page.sunday_hours.text).to have_text("1:30 PM") 
+
+		expect(store_page.monday_hours.text).to have_text("2:30 AM") 
+		expect(store_page.monday_hours.text).to have_text("2:45 PM") 
+		
+		expect(store_page.tuesday_hours.text).to have_text("3:45 AM") 
+		expect(store_page.tuesday_hours.text).to have_text("3:00 PM") 
+		
+		expect(store_page.wednesday_hours.text).to have_text("10:00 AM") 
+		expect(store_page.wednesday_hours.text).to have_text("8:15 PM") 
+
+		expect(store_page.thursday_hours.text).to have_text("11:15 AM") 
+		expect(store_page.thursday_hours.text).to have_text("9:15 PM") 
+		
+		expect(store_page.friday_hours.text).to have_text("1:30 PM") 
+		expect(store_page.friday_hours.text).to have_text("11:30 PM") 		
+		
+		expect(store_page.saturday_hours.text).to have_text("2:45 PM") 
+		expect(store_page.saturday_hours.text).to have_text("11:45 PM") 		
 	end
 end

@@ -130,8 +130,50 @@ class StorePage < SitePrism::Page
 	element :edit_hours_link, "#edit-hours-link"
 
 	#store hours (edit modal)
+	# hours take 00-23
+	# minutes take 00,15,30,45
+	element :date_storehourssundayopenhour, "#date_storehourssundayopenhour"
+	element :date_storehourssundayopenminute, "#date_storehourssundayopenminute"
+	element :date_storehourssundayclosehour, "#date_storehourssundayclosehour"
+	element :date_storehourssundaycloseminute, "#date_storehourssundaycloseminute"
+	element :store_sundayclosed, "#store_sundayclosed"
 
+	element :date_storehoursmondayopenhour, "#date_storehoursmondayopenhour"
+	element :date_storehoursmondayopenminute, "#date_storehoursmondayopenminute"
+	element :date_storehoursmondayclosehour, "#date_storehoursmondayclosehour"
+	element :date_storehoursmondaycloseminute, "#date_storehoursmondaycloseminute"
+	element :store_mondayclosed, "#store_mondayclosed"
+
+	element :date_storehourstuesdayopenhour, "#date_storehourstuesdayopenhour"
+	element :date_storehourstuesdayopenminute, "#date_storehourstuesdayopenminute"
+	element :date_storehourstuesdayclosehour, "#date_storehourstuesdayclosehour"
+	element :date_storehourstuesdaycloseminute, "#date_storehourstuesdaycloseminute"
+	element :store_tuesdayclosed, "#store_tuesdayclosed"
 	element :save_store_hours_button, "#save_store_hours_button"
-	
+
+	element :date_storehourswednesdayopenhour, "#date_storehourswednesdayopenhour"
+	element :date_storehourswednesdayopenminute, "#date_storehourswednesdayopenminute"
+	element :date_storehourswednesdayclosehour, "#date_storehourswednesdayclosehour"
+	element :date_storehourswednesdaycloseminute, "#date_storehourswednesdaycloseminute"
+	element :store_wednesdayclosed, "#store_wednesdayclosed"
+
+	element :date_storehoursthursdayopenhour, "#date_storehoursthursdayopenhour"
+	element :date_storehoursthursdayopenminute, "#date_storehoursthursdayopenminute"
+	element :date_storehoursthursdayclosehour, "#date_storehoursthursdayclosehour"
+	element :date_storehoursthursdaycloseminute, "#date_storehoursthursdaycloseminute"
+	element :store_thursdayclosed, "#store_thursdayclosed"
+
+	element :date_storehoursfridayopenhour, "#date_storehoursfridayopenhour"
+	element :date_storehoursfridayopenminute, "#date_storehoursfridayopenminute"
+	element :date_storehoursfridayclosehour, "#date_storehoursfridayclosehour"
+	element :date_storehoursfridaycloseminute, "#date_storehoursfridaycloseminute"
+	element :store_fridayclosed, "#store_fridayclosed"
+
+	element :date_storehourssaturdayopenhour, "#date_storehourssaturdayopenhour"
+	element :date_storehourssaturdayopenminute, "#date_storehourssaturdayopenminute"
+	element :date_storehourssaturdayclosehour, "#date_storehourssaturdayclosehour"
+	element :date_storehourssaturdaycloseminute, "#date_storehourssaturdaycloseminute"
+	element :store_saturdayclosed, "#store_saturdayclosed"
+
 
 end
