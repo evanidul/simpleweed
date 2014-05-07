@@ -7,7 +7,15 @@
             <%= form_for :store, url: update_hours_store_path, method: "put" do |f| %>
                 
               <table>
-
+                <th>
+                </th>
+                <th>
+                </th>
+                <th>
+                </th>
+                <th id="closed-table-header">
+                  Closed
+                </th>
                 <tr class="hours-row">
                   <td class="day">Sunday</td>
                   <td class="open-time-input">                                  
@@ -17,7 +25,9 @@
                     <span class="hours-input-to-container">to </span>
                     <%= select_hour(@store.storehourssundayclosehour, field_name: "storehourssundayclosehour", ampm: true) %> : <%= select_minute(@store.storehourssundaycloseminute, field_name: "storehourssundaycloseminute",minute_step: 15) %>
                   </td>
-                  <td>
+                  <td class="day-closed-checkbox">
+                    <!-- <%= check_box @store.sundayclosed, @store.sundayclosed, {}, "true","false" %> -->
+                    <%= f.check_box :sundayclosed, {}, "true","false" %>
                   </td>
                 </tr>
                 <tr class="hours-row">
@@ -29,7 +39,8 @@
                     <span class="hours-input-to-container">to </span>
                     <%= select_hour(@store.storehoursmondayclosehour, field_name: "storehoursmondayclosehour", ampm: true) %> : <%= select_minute(@store.storehoursmondaycloseminute, field_name: "storehoursmondaycloseminute",minute_step: 15) %>
                   </td>
-                  <td>
+                  <td class="day-closed-checkbox">
+                    <%= f.check_box :mondayclosed, {}, "true","false" %>
                   </td>
                 </tr>
                 <tr class="hours-row">
@@ -41,7 +52,8 @@
                     <span class="hours-input-to-container">to </span>
                     <%= select_hour(@store.storehourstuesdayclosehour, field_name: "storehourstuesdayclosehour", ampm: true) %> : <%= select_minute(@store.storehourstuesdaycloseminute, field_name: "storehourstuesdaycloseminute",minute_step: 15) %>
                   </td>
-                  <td>
+                  <td class="day-closed-checkbox">
+                    <%= f.check_box :tuesdayclosed, {}, "true","false" %>
                   </td>
                 </tr>
                 <tr class="hours-row">
@@ -53,7 +65,8 @@
                     <span class="hours-input-to-container">to </span>
                     <%= select_hour(@store.storehourswednesdayclosehour, field_name: "storehourswednesdayclosehour", ampm: true) %> : <%= select_minute(@store.storehourswednesdaycloseminute, field_name: "storehourswednesdaycloseminute",minute_step: 15) %>
                   </td>
-                  <td>
+                  <td class="day-closed-checkbox">
+                    <%= f.check_box :wednesdayclosed, {}, "true","false" %>
                   </td>
                 </tr>
                 <tr class="hours-row">
@@ -65,7 +78,8 @@
                     <span class="hours-input-to-container">to </span>
                     <%= select_hour(@store.storehoursthursdayclosehour, field_name: "storehoursthursdayclosehour", ampm: true) %> : <%= select_minute(@store.storehoursthursdaycloseminute, field_name: "storehoursthursdaycloseminute",minute_step: 15) %>
                   </td>
-                  <td>
+                  <td class="day-closed-checkbox">
+                    <%= f.check_box :thursdayclosed, {}, "true","false" %>
                   </td>
                 </tr>
                 <tr class="hours-row">
@@ -77,7 +91,8 @@
                     <span class="hours-input-to-container">to </span>
                     <%= select_hour(@store.storehoursfridayclosehour, field_name: "storehoursfridayclosehour", ampm: true) %> : <%= select_minute(@store.storehoursfridaycloseminute, field_name: "storehoursfridaycloseminute",minute_step: 15) %>
                   </td>
-                  <td>
+                  <td class="day-closed-checkbox">
+                    <%= f.check_box :fridayclosed, {}, "true","false" %>
                   </td>
                 </tr>
                 <tr class="hours-row">
@@ -89,7 +104,8 @@
                     <span class="hours-input-to-container">to </span>
                     <%= select_hour(@store.storehourssaturdayclosehour, field_name: "storehourssaturdayclosehour", ampm: true) %> : <%= select_minute(@store.storehourssaturdaycloseminute, field_name: "storehourssaturdaycloseminute",minute_step: 15) %>
                   </td>
-                  <td>
+                  <td class="day-closed-checkbox">
+                    <%= f.check_box :saturdayclosed, {}, "true","false" %>
                   </td>
                 </tr>
               </table>                                  

@@ -236,7 +236,7 @@
 			</address>
 		</div>
 
-		<div id="debug" >
+		<div id="debug" class="hidden">
 		<h3 >Debug</h3>
 		 <%= @timezone %><br>
 		 <%= @currenttime %><br>
@@ -289,56 +289,84 @@
 			<tr>
 				<td class="day">Sunday</td>
 				<td class="store-hours-text">
+					<% if @store.sundayclosed %>
+						Closed					
+					<% else %>
 					<%= @tds.formatMilitaryTimeAsAMPM(@store.storehourssundayopenhour, @store.storehourssundayopenminute ) %> -
-					<%= @tds.formatMilitaryTimeAsAMPM(@store.storehourssundayclosehour, @store.storehourssundaycloseminute ) %>
+					<%= @tds.formatMilitaryTimeAsAMPM(@store.storehourssundayclosehour, @store.storehourssundaycloseminute ) %>		
+					<% end %>
 				</td>
 				<td id="store-status-0" class="hours-current-status"></td>
 			</tr>				
 			<tr>
 				<td class="day">Monday</td>
 				<td class="store-hours-text">
+					<% if @store.mondayclosed %>
+						Closed					
+					<% else %>
 					<%= @tds.formatMilitaryTimeAsAMPM(@store.storehoursmondayopenhour, @store.storehoursmondayopenminute ) %> -
 					<%= @tds.formatMilitaryTimeAsAMPM(@store.storehoursmondayclosehour, @store.storehoursmondaycloseminute ) %>
+					<% end %>
 				</td>
 				<td id="store-status-1" class="hours-current-status"></td>
 			</tr>
 			<tr>
 				<td class="day">Tuesday</td>
 				<td class="store-hours-text">
+					<% if @store.tuesdayclosed %>
+						Closed					
+					<% else %>					
 					<%= @tds.formatMilitaryTimeAsAMPM(@store.storehourstuesdayopenhour, @store.storehourstuesdayopenminute ) %> -
 					<%= @tds.formatMilitaryTimeAsAMPM(@store.storehourstuesdayclosehour, @store.storehourstuesdaycloseminute ) %>
+					<% end %>
 				</td>
 				<td id="store-status-2" class="hours-current-status"></td>
 			</tr>
 			<tr>
 				<td class="day">Wednesday</td>
 				<td class="store-hours-text">
+					<% if @store.wednesdayclosed %>
+						Closed					
+					<% else %>					
 					<%= @tds.formatMilitaryTimeAsAMPM(@store.storehourswednesdayopenhour, @store.storehourswednesdayopenminute ) %> -
 					<%= @tds.formatMilitaryTimeAsAMPM(@store.storehourswednesdayclosehour, @store.storehourswednesdaycloseminute ) %>
+					<% end %>
 				</td>
 				<td id="store-status-3" class="hours-current-status"></td>
 			</tr>
 			<tr>
 				<td class="day">Thursday</td>
 				<td class="store-hours-text">
+					<% if @store.thursdayclosed %>
+						Closed					
+					<% else %>					
 					<%= @tds.formatMilitaryTimeAsAMPM(@store.storehoursthursdayopenhour, @store.storehoursthursdayopenminute ) %> -
 					<%= @tds.formatMilitaryTimeAsAMPM(@store.storehoursthursdayclosehour, @store.storehoursthursdaycloseminute ) %>
+					<% end %>
 				</td>
 				<td id="store-status-4" class="hours-current-status"></td>
 			</tr>
 			<tr>
 				<td class="day">Friday</td>
 				<td class="store-hours-text">
+					<% if @store.fridayclosed %>
+						Closed					
+					<% else %>										
 					<%= @tds.formatMilitaryTimeAsAMPM(@store.storehoursfridayopenhour, @store.storehoursfridayopenminute ) %> -
 					<%= @tds.formatMilitaryTimeAsAMPM(@store.storehoursfridayclosehour, @store.storehoursfridaycloseminute ) %>
+					<% end %>
 				</td>
 				<td id="store-status-5" class="hours-current-status"></td>
 			</tr>
 			<tr>
 				<td class="day">Saturday</td>
 				<td class="store-hours-text">
+					<% if @store.saturdayclosed %>
+						Closed					
+					<% else %>										
 					<%= @tds.formatMilitaryTimeAsAMPM(@store.storehourssaturdayopenhour, @store.storehourssaturdayopenminute ) %> -
 					<%= @tds.formatMilitaryTimeAsAMPM(@store.storehourssaturdayclosehour, @store.storehourssaturdaycloseminute ) %>
+					<% end %>
 				</td>
 				<td id="store-status-6" class="hours-current-status"></td>
 			</tr>
