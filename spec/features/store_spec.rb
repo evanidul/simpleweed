@@ -420,5 +420,35 @@ feature "store page" , :js => true do
 		
 		expect(store_page.saturday_hours.text).to have_text("2:45 PM") 
 		expect(store_page.saturday_hours.text).to have_text("11:45 PM") 		
+
+		# close every other day
+		store_page.edit_hours_link.click
+
+		store_page.store_sundayclosed.set true
+		store_page.store_tuesdayclosed.set true
+		store_page.store_thursdayclosed.set true
+		store_page.store_saturdayclosed.set true
+
+		store_page.save_store_hours_button.click
+
+		# verify 
+		expect(store_page.sunday_hours.text).to have_text("Closed") 		
+
+		expect(store_page.monday_hours.text).to have_text("2:30 AM") 
+		expect(store_page.monday_hours.text).to have_text("2:45 PM") 
+		
+		expect(store_page.tuesday_hours.text).to have_text("Closed") 		
+		
+		expect(store_page.wednesday_hours.text).to have_text("10:00 AM") 
+		expect(store_page.wednesday_hours.text).to have_text("8:15 PM") 
+
+		expect(store_page.thursday_hours.text).to have_text("Closed") 		
+		
+		expect(store_page.friday_hours.text).to have_text("1:30 PM") 
+		expect(store_page.friday_hours.text).to have_text("11:30 PM") 		
+		
+		expect(store_page.saturday_hours.text).to have_text("Closed") 
+		
+
 	end
 end
