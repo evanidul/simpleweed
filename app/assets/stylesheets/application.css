@@ -18,3 +18,25 @@
 	-webkit-border-radius: 10px;
     -moz-border-radius: 10px;
 }
+
+/** override bootstrap rounded navbar corners **/
+.navbar {
+	border-radius : 0px !important;
+}
+
+.navbar-form {
+	line-height: 60px !important;
+}
+
+.navbar-brand,
+.navbar-nav li a {
+    line-height: 80px !important;
+    height: 80px !important;
+    padding-top: 0 !important;
+}
+
+.simple-weed-logo {
+	/*background-image: url(simpleweed_h_rgb.png);*/
+	/*background-size:200px ;*/
+
+}
