@@ -24,14 +24,14 @@
 	border-radius : 0px !important;
 }
 
-/*.navbar-form {
-	line-height: 38px !important;
+.navbar-form {
+	line-height: 60px !important;
 }
-*/
+
 .navbar-brand,
 .navbar-nav li a {
-    line-height: 53px !important;
-    height: 53px !important;
+    line-height: 75px !important;
+    height: 60px !important;
     padding-top: 0 !important;
 }
 
