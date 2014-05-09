@@ -13,11 +13,12 @@
   <%= yield :head %>
   </head>
   <body>
-    <header class="header">
+    <!-- <header class="header"> -->
       <%= render 'layouts/navigation' %>
-    </header>
+    <!-- </header> -->
     
-    <main role="main" class="container">
+    <div id="main-container"class="container">
+      
       <div>
         <%= render 'layouts/messages' %>
       </div>
@@ -59,6 +60,6 @@
       </script>
       
       <%= yield :script %>
-    </main>
+    </div><!-- container -->    
   </body>
 </html>

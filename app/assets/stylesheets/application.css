@@ -35,6 +35,12 @@
     padding-top: 0 !important;
 }
 
+/** needed for navbar-fixed-top to work, otherwise page content is covered by nav **/
+#main-container {	
+	min-height: 100%;
+	margin-top: 70px;
+}
+
 .simple-weed-logo {
 	/*background-image: url(simpleweed_h_rgb.png);*/
 	/*background-size:200px ;*/

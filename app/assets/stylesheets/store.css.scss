@@ -1338,3 +1338,30 @@ tr.hours-row > td {
 	padding-left: 20px;
 	padding-bottom: 7px;
 }
+
+/** search results **/
+#map-container {
+	position: fixed;
+	/**margin-top: 70px;**/
+	margin-top : 8px;  /** i have no idea why this is only 8 **/
+	left:0;
+	width:100%;
+	
+}
+#map {
+	/** float:right; **/	
+	height:250px;
+
+	
+}
+
+#search-results {
+	/** margin-top: 320px;**/  /** 250px for the map, 70px for the nav **/
+	margin-top: 275px;
+	padding: 0;
+	list-style-type: none;
+}
+
+#search-results > li {
+	width: 49%;
+}
