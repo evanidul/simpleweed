@@ -1343,7 +1343,7 @@ tr.hours-row > td {
 #map-container {
 	position: fixed;
 	/**margin-top: 70px;**/
-	margin-top : 8px;  /** i have no idea why this is only 8 **/
+	top: 79px;
 	left:0;
 	width:100%;
 	
@@ -1367,5 +1367,5 @@ tr.hours-row > td {
 **/
 
 #store_results_table {
-	margin-top: 259px;	
+	top : 329px;
 }

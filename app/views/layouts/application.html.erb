@@ -17,7 +17,9 @@
       <%= render 'layouts/navigation' %>
     <!-- </header> -->
     
+    <% if @disableContainerDiv != true %>    
     <div id="main-container"class="container">
+    <% end %>
       
       <div>
         <%= render 'layouts/messages' %>
@@ -60,6 +62,8 @@
       </script>
       
       <%= yield :script %>
-    </div><!-- container -->    
+    <% if @disableContainerDiv != true %>    
+    </div>
+    <% end %>
   </body>
 </html>

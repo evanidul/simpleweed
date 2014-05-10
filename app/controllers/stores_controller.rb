@@ -4,6 +4,7 @@ class StoresController < ApplicationController
 		if params[:search]
       		#@stores = Store.find(:all, :limit => 5).reverse
       		@stores = Store.near(params[:search])
+      		@disableContainerDiv = true;
     	else
 			@stores = Store.all	       
 		end
