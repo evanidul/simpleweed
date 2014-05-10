@@ -1346,13 +1346,13 @@ tr.hours-row > td {
 	top: 79px;
 	left:0;
 	width:500px;
-	box-shadow : 3px 6px 3px 3px #aaaaaa;
+	/**box-shadow : 3px 6px 3px 3px #aaaaaa; **/
 	/** box-shadow :4px 3px 9px 5px #aaaaaa; **/
-	
+	box-shadow : 0px 0px 3px 4px #aaaaaa;
 }
 #map {
 	/** float:right; **/	
-	height:250px;
+	height:350px;
 
 	
 }
@@ -1369,10 +1369,11 @@ tr.hours-row > td {
 **/
 
 #store_results_table {
-	top : 333px;
+	top : 430px;
 	width: 500px; /** not sure if I need this yet **/
-	box-shadow : 3px 6px 3px 3px #aaaaaa;
+	/**box-shadow : 3px 6px 3px 3px #aaaaaa;**/
 	/**box-shadow :4px 3px 9px 5px #aaaaaa; **/
+	box-shadow : 0px 0px 3px 4px #aaaaaa;
 }
 
 #store-details-panel {
