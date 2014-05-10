@@ -3,6 +3,8 @@ Smellyleaf::Application.routes.draw do
   devise_for :admins
   devise_for :users
   root 'welcome#index'
+
+  get "modals/login", :as => 'login'
   # resources :stores
 
   namespace :admin do

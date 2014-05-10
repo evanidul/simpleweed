@@ -42,14 +42,15 @@
           <li>
             <!-- <%= link_to "Sign up", new_user_registration_path  %> -->
             <a href=""  data-toggle="modal" data-target="#register-modal">Sign up</a>
+            
           </li>
           <li> 
             <!-- <%= link_to "Login", new_user_session_path %> -->            
-            <a href=""  data-toggle="modal" data-target="#sign-in-modal">Login</a>
+            <!-- <a href=""  data-toggle="modal" data-target="#sign-in-modal">Login</a> -->
+            <%= link_to 'Login', login_path , data: { toggle: "modal", target: "#modal", remote: login_path} , id: "log-in-link" %>
+
             <!-- dvu: modal login form (layouts/_login.html.erb)-->
-            <%= render 'layouts/login' %>
             <!-- dvu: modal register form (layouts/_register.html.erb)-->
-            <%= render 'layouts/register' %>
 
           </li>
           <% end %>
