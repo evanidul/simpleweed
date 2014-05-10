@@ -1,5 +1,5 @@
 
-<div class="container">
+<div id="store-preview-container">
 	<h3>
 		<%= @store.name %>
 	</h3>
@@ -10,7 +10,9 @@
 		<%= image_tag("yellowstar.jpeg", size:"20", class: "star-image") %>
 		<%= image_tag("yellowstar.jpeg", size:"20", class: "star-image") %>
 	</div>
-	
+	<div id="view-store">
+		<%= link_to 'View Full Page', store_path(@store), class: 'btn btn-primary' , id: "view_store", 'data-no-turbolink' => true %>
+	</div>
 	<h3>
 		Menu
 	</h3>

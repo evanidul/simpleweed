@@ -33,9 +33,14 @@
 				Reviews (100)
 			</div>	
 
-			<div class="write-review-button">
+			
+			<span class="write-review-button">
 				<%= link_to 'Write a Review', store_path(@store), class: 'btn btn-primary' , id: "write-review-button" %>
-			</div>	
+			</span>	
+			<span class="claim-store-button">
+				<%= link_to 'Claim', store_path(@store), class: 'btn btn-warning' , id: "claim-store-button" %>
+			</span>	
+
 		</div>
 		<% if  @store.description && !@store.description.empty?  %>			
 			<div class="header-and-edit-link">
