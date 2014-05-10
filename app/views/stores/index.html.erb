@@ -7,7 +7,7 @@
   <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>  <!-- accordion -->
 <% end %>
 
-       
+
 <div id="map-container">
   <div id="map" ></div>
 </div>
@@ -45,7 +45,7 @@
 
         var table = new google.visualization.Table(document.getElementById("store_results_table"));
           
-        var cssClassNames = {headerRow: "simple-weed-google-table-header", headerCell: "simple-weed-google-table-header-cell"};
+        var cssClassNames = {headerRow: "simple-weed-google-table-header", headerCell: "simple-weed-google-table-header-cell-store-preview"};
         table.draw(data, {showRowNumber: false, allowHtml: true, cssClassNames: cssClassNames, width: '500px'});
           
         google.visualization.events.addListener(table, 'sort', setWidth);
@@ -127,6 +127,7 @@
     }
   })();
 </script>
+
 
 <div id = "store-details-panel" class="hero-unit">
   <h1>< Select a store</h1>

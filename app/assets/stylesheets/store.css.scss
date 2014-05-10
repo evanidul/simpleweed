@@ -1346,6 +1346,8 @@ tr.hours-row > td {
 	top: 79px;
 	left:0;
 	width:500px;
+	box-shadow : 3px 6px 3px 3px #aaaaaa;
+	/** box-shadow :4px 3px 9px 5px #aaaaaa; **/
 	
 }
 #map {
@@ -1367,8 +1369,10 @@ tr.hours-row > td {
 **/
 
 #store_results_table {
-	top : 329px;
+	top : 333px;
 	width: 500px; /** not sure if I need this yet **/
+	box-shadow : 3px 6px 3px 3px #aaaaaa;
+	/**box-shadow :4px 3px 9px 5px #aaaaaa; **/
 }
 
 #store-details-panel {
@@ -1376,8 +1380,14 @@ tr.hours-row > td {
 	top: 70px;
 	left: 500px;
 	position:fixed;
+	
 }
 
 #store-preview-accordion {
 	width: 749px;
+}
+
+.simple-weed-google-table-header-cell-store-preview {
+	background: #A7A7AA !important 	//slightly darker gray than row select gray
+	//background: #9AA9B8  			 	//dark blue gray
 }
