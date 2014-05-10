@@ -28,38 +28,40 @@
 
 
         <script type="text/javascript">
-          var locations = [];
+          (function loadStoresIntoMap() {
+            var locations = [];
 
-          <% @stores.each do |store| %>
-          var currentStoreRecord = ["<%= escape_javascript store.name %>",
-                          <%= store.latitude %>,
-                          <%= store.longitude %> ];
-          locations.push(currentStoreRecord);
-          <% end %>
+            <% @stores.each do |store| %>
+            var currentStoreRecord = ["<%= escape_javascript store.name %>",
+                            <%= store.latitude %>,
+                            <%= store.longitude %> ];
+            locations.push(currentStoreRecord);
+            <% end %>
 
-          var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 10,
-            center: new google.maps.LatLng( locations[0][1], locations[0][2]), //dvu: this centers the map around the first store 
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-          });
-
-          var infowindow = new google.maps.InfoWindow();
-
-          var marker, i;
-
-          for (i = 0; i < locations.length; i++) {  
-            marker = new google.maps.Marker({
-              position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-              map: map
+            var map = new google.maps.Map(document.getElementById('map'), {
+              zoom: 10,
+              center: new google.maps.LatLng( locations[0][1], locations[0][2]), //dvu: this centers the map around the first store 
+              mapTypeId: google.maps.MapTypeId.ROADMAP
             });
 
-            google.maps.event.addListener(marker, 'click', (function(marker, i) {
-              return function() {
-                infowindow.setContent(locations[i][0]);
-                infowindow.open(map, marker);
-              }
-            })(marker, i));
-          }
+            var infowindow = new google.maps.InfoWindow();
+
+            var marker, i;
+
+            for (i = 0; i < locations.length; i++) {  
+              marker = new google.maps.Marker({
+                position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                map: map
+              });
+
+              google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                return function() {
+                  infowindow.setContent(locations[i][0]);
+                  infowindow.open(map, marker);
+                }
+              })(marker, i));
+            }
+          })();
         </script>
 
       </div>
