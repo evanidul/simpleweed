@@ -1,3 +1,4 @@
+
 <div class="container">
 	<h3>
 		<%= @store.name %>
@@ -9,6 +10,82 @@
 		<%= image_tag("yellowstar.jpeg", size:"20", class: "star-image") %>
 		<%= image_tag("yellowstar.jpeg", size:"20", class: "star-image") %>
 	</div>
+	
+	<h3>
+		Menu
+	</h3>
+	<div id="store-preview-accordion">			
+		<% @grouped_store_items.each do |category, store_items| %>
+			<h3><%= category %></h3>
+			<div> <!-- empty div required for jquery accordion -->
+				
+				<div id="table_<%= category %>" ></div>
+
+			<script>
+				(function drawTable() {
+				  var pricePerUnit = "<%=  store_items.first.costperunit %>";
+				  var data = new google.visualization.DataTable();
+
+				  if(pricePerUnit > 0) {
+					  data.addColumn('string', '');	  
+					  data.addColumn('string', 'each');
+				  } else {
+					  data.addColumn('string', '');	  
+					  data.addColumn('string', '1g');
+					  data.addColumn('string', '1/8');
+					  data.addColumn('string', '1/4');
+					  data.addColumn('string', '1/2');
+					  data.addColumn('string', '1 oz');
+				  }
+
+				  
+			      
+			        <% store_items.each do |store_item| %>
+					    if (pricePerUnit > 0) {
+					    	data.addRow(['<%= store_item.name %>','<%= store_item.costperunit %>'])
+					    } else {
+					    	data.addRow(['<%= store_item.name %>','<%= store_item.costonegram %>','<%= store_item.costeighthoz %>',
+					     	'<%= store_item.costquarteroz %>','<%= store_item.costhalfoz %>','<%= store_item.costoneoz %>']);		    	
+					    }
+			  		<% end %>      
+
+
+			      var table = new google.visualization.Table(document.getElementById("table_<%= category %>"));
+			      
+			 	  var cssClassNames = {headerRow: "simple-weed-google-table-header", headerCell: "simple-weed-google-table-header-cell"};
+			      table.draw(data, {showRowNumber: false, allowHtml: true, cssClassNames: cssClassNames, width: '749px'});
+			      
+			      
+			      google.visualization.events.addListener(table, 'sort', setWidth);
+			      setWidth();
+				})();
+
+				function setWidth() {
+				  var title = "Name";
+			      var width = "400px";
+			      $('.google-visualization-table-th:contains(' + title + ')').css('width', width);
+				}
+			</script>
+
+	
+		
+		
+		</div>	
+	
+	<% end %>
+
+	</div> <!-- accordion -->
+	  <script>
+	  $(function() {
+
+	    $( "#store-preview-accordion" ).accordion({
+	      heightStyle: "content", //allows divs to be different height.  Very important
+	      collapsible: true, 	//allows all elements to be collabsible		      
+	    });
+	  });
+	</script>
+
+	
 	
 
 

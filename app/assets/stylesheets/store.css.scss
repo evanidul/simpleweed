@@ -1345,7 +1345,7 @@ tr.hours-row > td {
 	/**margin-top: 70px;**/
 	top: 79px;
 	left:0;
-	width:100%;
+	width:500px;
 	
 }
 #map {
@@ -1372,7 +1372,12 @@ tr.hours-row > td {
 }
 
 #store-details-panel {
-	top :329px;
+	/** top :329px; **/
+	top: 70px;
 	left: 500px;
 	position:fixed;
+}
+
+#store-preview-accordion {
+	width: 749px;
 }

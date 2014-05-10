@@ -54,6 +54,10 @@ class StoresController < ApplicationController
 
 	def store_preview
 		@store = Store.find(params[:id])
+		@tds = Simpleweed::Timedateutil::Timedateservice.new
+		@store_items = @store.store_items.order('name ASC')
+		@grouped_store_items = @store_items.group_by &:category
+
 		render :layout => false
 	end
 
