@@ -30,6 +30,7 @@ Smellyleaf::Application.routes.draw do
       put 'update_deliveryarea'
       get 'edit_hours'
       put 'update_hours'
+      get 'store_preview'
 
     end
     resources :store_items

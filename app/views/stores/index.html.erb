@@ -37,7 +37,7 @@
           
         <% @stores.each do |store| %>
             
-          data.addRow(['<span sw-loc="<%= store_path(store) %>"><%= store.name %></span>','<%= store.addressline1 %>'])
+          data.addRow(['<span sw-loc="<%= store_preview_store_path(store) %>"><%= store.name %></span>','<%= store.addressline1 %>'])
         
         <% end %>      
 

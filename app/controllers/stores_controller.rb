@@ -52,6 +52,11 @@ class StoresController < ApplicationController
 		
 	end
 
+	def store_preview
+		@store = Store.find(params[:id])
+		render :layout => false
+	end
+
 	def update
 	  @store = Store.find(params[:id])
 	 
