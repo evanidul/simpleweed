@@ -1354,9 +1354,8 @@ tr.hours-row > td {
 
 	
 }
-
-#search-results {
-	/** margin-top: 320px;**/  /** 250px for the map, 70px for the nav **/
+/**
+#search-results {	
 	margin-top: 275px;
 	padding: 0;
 	list-style-type: none;
@@ -1364,4 +1363,9 @@ tr.hours-row > td {
 
 #search-results > li {
 	width: 49%;
+}
+**/
+
+#store_results_table {
+	margin-top: 259px;	
 }

@@ -1,5 +1,9 @@
 <% content_for :head do %>
   <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+  <script type='text/javascript' src='https://www.google.com/jsapi'></script> <!-- data table -->
+  <script type='text/javascript'>
+    google.load('visualization', '1', {packages:['table']});
+  </script> 
 <% end %>
 
 <div id="register">
@@ -11,10 +15,10 @@
           <div id="map" ></div>
         </div>
 
-        <ul id="search-results">
+      <!--   <ul id="search-results">
           <% @stores.each do |store| %>
             <li>
-              <!--<%= image_tag("pot.jpg", size:"80", class: "store-image") %> -->
+              
               <h4><%= link_to store.name, store_path(store, modal:true) , data: { toggle: "modal", target: "#modal", remote: store_path(store, modal:true)}  %> </h4>
               <%= store.addressline1 %> </br>
               <%= store.city %>, <%= store.state %> <%= store.zip %> </br>
@@ -22,9 +26,42 @@
               <hr class="divider">
             </li>
           <% end %>      
-        </ul>
+        </ul> -->
+
+        <div id="store_results_table">
+        </div>
+<script>
+  (
+    function drawTable() {    
+      var data = new google.visualization.DataTable();
 
 
+      data.addColumn('string', 'Name');   
+      data.addColumn('string', 'Address');    
+        
+      <% @stores.each do |store| %>
+          
+        data.addRow(['<%= store.name %>','<%= store.addressline1 %>'])
+      
+      <% end %>      
+
+
+      var table = new google.visualization.Table(document.getElementById("store_results_table"));
+        
+      var cssClassNames = {headerRow: "simple-weed-google-table-header", headerCell: "simple-weed-google-table-header-cell"};
+      table.draw(data, {showRowNumber: false, allowHtml: true, cssClassNames: cssClassNames, width: '500px'});
+        
+      google.visualization.events.addListener(table, 'sort', setWidth);
+      setWidth();
+    })();
+
+  function setWidth() {
+    var title = "Name";
+    var width = "200px";
+    $('.google-visualization-table-th:contains(' + title + ')').css('width', width);
+  }
+
+</script>
 
 
         <script type="text/javascript">
