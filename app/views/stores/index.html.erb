@@ -6,96 +6,129 @@
   </script> 
 <% end %>
 
+       
+<div id="map-container">
+  <div id="map" ></div>
+</div>
 
-        
-        <div id="map-container">
-          <div id="map" ></div>
-        </div>
-
-      <!--   <ul id="search-results">
-          <% @stores.each do |store| %>
-            <li>
-              
-              <h4><%= link_to store.name, store_path(store, modal:true) , data: { toggle: "modal", target: "#modal", remote: store_path(store, modal:true)}  %> </h4>
-              <%= store.addressline1 %> </br>
-              <%= store.city %>, <%= store.state %> <%= store.zip %> </br>
-              <%= store.phonenumber %>
-              <hr class="divider">
-            </li>
-          <% end %>      
-        </ul> -->
-
-        <div id="store_results_table">
-        </div>
-<script>
-  (
-    function drawTable() {    
-      var data = new google.visualization.DataTable();
-
-
-      data.addColumn('string', 'Name');   
-      data.addColumn('string', 'Address');    
-        
-      <% @stores.each do |store| %>
-          
-        data.addRow(['<%= store.name %>','<%= store.addressline1 %>'])
+<!--   <ul id="search-results">
+  <% @stores.each do |store| %>
+    <li>
       
-      <% end %>      
+      <h4><%= link_to store.name, store_path(store, modal:true) , data: { toggle: "modal", target: "#modal", remote: store_path(store, modal:true)}  %> </h4>
+      <%= store.addressline1 %> </br>
+      <%= store.city %>, <%= store.state %> <%= store.zip %> </br>
+      <%= store.phonenumber %>
+      <hr class="divider">
+    </li>
+  <% end %>      
+</ul> -->
+
+<div id="store_results_table">
+</div>
+  <script>
+    (
+      function drawTable() {    
+        var data = new google.visualization.DataTable();
 
 
-      var table = new google.visualization.Table(document.getElementById("store_results_table"));
+        data.addColumn('string', 'Name');   
+        data.addColumn('string', 'Address');    
+          
+        <% @stores.each do |store| %>
+            
+          data.addRow(['<span sw-loc="<%= store_path(store) %>"><%= store.name %></span>','<%= store.addressline1 %>'])
         
-      var cssClassNames = {headerRow: "simple-weed-google-table-header", headerCell: "simple-weed-google-table-header-cell"};
-      table.draw(data, {showRowNumber: false, allowHtml: true, cssClassNames: cssClassNames, width: '500px'});
-        
-      google.visualization.events.addListener(table, 'sort', setWidth);
-      setWidth();
-    })();
+        <% end %>      
 
-  function setWidth() {
-    var title = "Name";
-    var width = "200px";
-    $('.google-visualization-table-th:contains(' + title + ')').css('width', width);
-  }
+
+        var table = new google.visualization.Table(document.getElementById("store_results_table"));
+          
+        var cssClassNames = {headerRow: "simple-weed-google-table-header", headerCell: "simple-weed-google-table-header-cell"};
+        table.draw(data, {showRowNumber: false, allowHtml: true, cssClassNames: cssClassNames, width: '500px'});
+          
+        google.visualization.events.addListener(table, 'sort', setWidth);
+        setWidth();
+
+        google.visualization.events.addListener(table, 'select', selectHandler);
+      
+        function selectHandler(e) {
+          var selection = table.getSelection();         /** gets everything that's selected **/
+          var item = selection[0];                      /** we only support selecting one at this time, if more than one is selected, we'll just use the first    item **/
+          var str = data.getFormattedValue(item.row, 0); /** gets the link stored in the first column of the selected row, ie
+            <span sw-loc="/stores/920">1437 N La Brea Collective</span> 
+          **/           
+          html = $.parseHTML( str );                    
+          var store_url = html[0].attributes["sw-loc"].value      /** the link: "/stores/920" **/
+
+         $.ajax({
+
+           type: "GET",
+           url: store_url,           
+           success: function(data) {
+                 // data is ur summary
+                $('#store-details-panel').html(data);
+           }
+
+         });
+          
+        } /** selectHandler **/
+
+      })();
+
+    
+
+
+    function setWidth() {
+      var title = "Name";
+      var width = "200px";
+      $('.google-visualization-table-th:contains(' + title + ')').css('width', width);
+    }
+
+
 
 </script>
 
 
-        <script type="text/javascript">
-          (function loadStoresIntoMap() {
-            var locations = [];
+<script type="text/javascript">
+  (function loadStoresIntoMap() {
+    var locations = [];
 
-            <% @stores.each do |store| %>
-            var currentStoreRecord = ["<%= escape_javascript store.name %>",
-                            <%= store.latitude %>,
-                            <%= store.longitude %> ];
-            locations.push(currentStoreRecord);
-            <% end %>
+    <% @stores.each do |store| %>
+    var currentStoreRecord = ["<%= escape_javascript store.name %>",
+                    <%= store.latitude %>,
+                    <%= store.longitude %> ];
+    locations.push(currentStoreRecord);
+    <% end %>
 
-            var map = new google.maps.Map(document.getElementById('map'), {
-              zoom: 10,
-              center: new google.maps.LatLng( locations[0][1], locations[0][2]), //dvu: this centers the map around the first store 
-              mapTypeId: google.maps.MapTypeId.ROADMAP
-            });
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 10,
+      center: new google.maps.LatLng( locations[0][1], locations[0][2]), //dvu: this centers the map around the first store 
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
 
-            var infowindow = new google.maps.InfoWindow();
+    var infowindow = new google.maps.InfoWindow();
 
-            var marker, i;
+    var marker, i;
 
-            for (i = 0; i < locations.length; i++) {  
-              marker = new google.maps.Marker({
-                position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                map: map
-              });
+    for (i = 0; i < locations.length; i++) {  
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        map: map
+      });
 
-              google.maps.event.addListener(marker, 'click', (function(marker, i) {
-                return function() {
-                  infowindow.setContent(locations[i][0]);
-                  infowindow.open(map, marker);
-                }
-              })(marker, i));
-            }
-          })();
-        </script>
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[i][0]);
+          infowindow.open(map, marker);
+        }
+      })(marker, i));
+    }
+  })();
+</script>
 
+<div id = "store-details-panel" class="hero-unit">
+  <h1>< Select a store</h1>
+
+</div>
       

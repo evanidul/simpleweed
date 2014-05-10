@@ -1368,4 +1368,11 @@ tr.hours-row > td {
 
 #store_results_table {
 	top : 329px;
+	width: 500px; /** not sure if I need this yet **/
+}
+
+#store-details-panel {
+	top :329px;
+	left: 500px;
+	position:fixed;
 }
