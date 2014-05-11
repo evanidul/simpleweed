@@ -39,6 +39,34 @@ feature "store page" , :js => true do
 
   	end
 
+  	scenario "login modal, bad login, good login at login page" do
+		# Run the generator again with the --webrat flag if you want to use webrat methods/matchers
+		
+		page.visit("/")
+		expect(page).to have_text("Hello"), "or else!"          
+
+		header = HeaderPageComponent.new
+		header.has_loginlink?
+		header.loginlink.click
+    	
+    	# login modal
+    	header.username.set @adminemail
+    	# header.password.set @adminpassword
+		header.logininbutton.click
+
+		# on login page
+		expect(page).to have_text("Invalid email or password"), "or else!"          		
+		login_page = LoginPage.new
+		login_page.username_input.set @adminemail
+    	login_page.username_password_input.set @adminpassword
+    	login_page.sign_in_button.click
+
+    	header = HeaderPageComponent.new
+		header.has_edituserlink?
+    	expect(header.edituserlink.text).to have_text(@adminemail)
+
+  	end
+
   	scenario "register modal, good registration" do
   		page.visit("/")
   		header = HeaderPageComponent.new
