@@ -39,5 +39,26 @@ feature "store page" , :js => true do
 
   	end
 
+  	scenario "register modal, good registration" do
+  		page.visit("/")
+  		header = HeaderPageComponent.new
+  		header.register_link.click
+
+  		username = "bob@gmail.com"
+  		password = "password"
+  		# register modal
+  		binding.pry
+  		header.register_username.set username
+  		header.register_password.set password
+  		header.register_password_confirmation.set password
+  		header.create_account_button.click
+
+  		expect(page).to have_text("A message with a confirmation link has been sent to your email address"), "or else!"          
+
+  		
+
+
+  	end 	
+
 
 end

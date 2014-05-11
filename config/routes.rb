@@ -5,6 +5,7 @@ Smellyleaf::Application.routes.draw do
   root 'welcome#index'
 
   get "modals/login", :as => 'login'
+  get "modals/registration", :as => 'registration_modal'
   # resources :stores
 
   namespace :admin do

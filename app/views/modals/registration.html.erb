@@ -1,0 +1,37 @@
+
+<div class="modal-dialog modal-lg">
+	<div class="modal-content">
+	  <div class="modal-header">
+	  <h4 class="modal-title" id="myModalLabel">Create a Free Account</h4>          
+	  </div>
+	  <div class="modal-body">
+
+		<%= form_for(User.new,  url: user_registration_path()) do |f| %>
+		  <%= devise_error_messages! %>
+
+		  <div><%= f.label :email %><br />
+		  <%= f.email_field :email, autofocus: true , :class => 'form-control' %></div>
+
+		  <div><%= f.label :password %><br />
+		    <%= f.password_field :password, autocomplete: "off" , :class => 'form-control' %></div>
+
+		  <div><%= f.label :password_confirmation %><br />
+		    <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'form-control' %></div>
+
+		  <br/>
+		  <div><%= f.submit "Create User Account" , :id => 'create-account-button', :class => 'btn btn-primary pull-right' %></div>
+		  <br/>
+		<% end %>
+		
+	  </div> <!-- modal-body -->
+	  <div class="modal-footer">
+	     <%= link_to "Sign in", new_user_session_path %>
+	  </div><!-- modal-footer -->
+
+	</div><!-- modal-content -->
+</div>
+
+
+
+
+

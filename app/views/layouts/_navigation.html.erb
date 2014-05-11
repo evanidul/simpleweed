@@ -41,7 +41,7 @@
           <% else %>
           <li>
             <!-- <%= link_to "Sign up", new_user_registration_path  %> -->
-            <a href=""  data-toggle="modal" data-target="#register-modal">Sign up</a>
+            <%= link_to 'Sign up', registration_modal_path , data: { toggle: "modal", target: "#modal", remote: registration_modal_path} , id: "register-link" %>
             
           </li>
           <li> 
