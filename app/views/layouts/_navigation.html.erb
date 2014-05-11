@@ -8,8 +8,9 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand simple-weed-logo" href="#">          
-          <%= image_tag("simpleweed_h_w.png", height: '53', width: '150') %>
+      
+      <%= link_to image_tag("simpleweed_h_w.png", height: '53', width: '150'), root_path, 'data-no-turbolink' => true, class: "navbar-brand simple-weed-logo" %>          
+          
       </a>
     </div>
 
