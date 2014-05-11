@@ -4,6 +4,7 @@ require 'pages/loginpage'
 require 'page_components/header'
 require 'pages/admin/stores'
 require 'pages/store'
+require 'pages/homepage'
 
 feature "store page" , :js => true do
 	before :each do
@@ -24,7 +25,8 @@ feature "store page" , :js => true do
 		# Run the generator again with the --webrat flag if you want to use webrat methods/matchers
 		
 		page.visit("/")
-		expect(page).to have_text("Hello"), "or else!"          
+		homepage = HomePageComponent.new
+		homepage.has_searchcontainer?
   	end
 
 	scenario "sign in as admin test" do

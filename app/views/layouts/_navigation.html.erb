@@ -18,6 +18,7 @@
       <ul class="nav navbar-nav">
       </ul>
       <!-- <form class="navbar-form navbar-left" role="search"> -->
+      <% if !@disableSearchInNav %>
       <%= form_tag(stores_path, :method => "get", class: "navbar-form navbar-left", id: "search-form") do %>
         <div class="form-group">
           <!-- <input type="text" class="form-control" placeholder="Search"> -->
@@ -28,6 +29,7 @@
           <% end %>
         
       </form>
+      <% end %>
       <ul class="nav navbar-nav navbar-right">
         
           <% if user_signed_in? %>

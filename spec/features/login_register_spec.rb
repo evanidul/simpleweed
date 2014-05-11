@@ -24,7 +24,8 @@ feature "store page" , :js => true do
 		# Run the generator again with the --webrat flag if you want to use webrat methods/matchers
 		
 		page.visit("/")
-		expect(page).to have_text("Hello"), "or else!"          
+		homepage = HomePageComponent.new
+    homepage.has_searchcontainer?          
 
 		header = HeaderPageComponent.new
 		header.has_loginlink?
@@ -43,7 +44,8 @@ feature "store page" , :js => true do
 		# Run the generator again with the --webrat flag if you want to use webrat methods/matchers
 		
 		page.visit("/")
-		expect(page).to have_text("Hello"), "or else!"          
+		homepage = HomePageComponent.new
+    homepage.has_searchcontainer?   
 
 		header = HeaderPageComponent.new
 		header.has_loginlink?
