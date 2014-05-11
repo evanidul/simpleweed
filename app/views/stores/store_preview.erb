@@ -1,14 +1,15 @@
 
 <div id="store-preview-container">
-	<h3>
-		<%= @store.name %>
-	</h3>
+	<div class="page-header">
+    	<h1><%= @store.name %> <small>Promotional blurb</small></h1>
+  	</div>	
 	<div class="star-rank">
-		<%= image_tag("yellowstar.jpeg", size:"20", class: "star-image") %>
-		<%= image_tag("yellowstar.jpeg", size:"20", class: "star-image") %>
-		<%= image_tag("yellowstar.jpeg", size:"20", class: "star-image") %>
-		<%= image_tag("yellowstar.jpeg", size:"20", class: "star-image") %>
-		<%= image_tag("yellowstar.jpeg", size:"20", class: "star-image") %>
+		<span class="glyphicon glyphicon-star"></span>
+		<span class="glyphicon glyphicon-star"></span>
+		<span class="glyphicon glyphicon-star"></span>
+		<span class="glyphicon glyphicon-star"></span>
+		<span class="glyphicon glyphicon-star"></span>
+		
 	</div>
 	<div id="view-store">
 		<%= link_to 'View Full Page', store_path(@store), class: 'btn btn-primary' , id: "view_store", 'data-no-turbolink' => true %>

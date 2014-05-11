@@ -1379,7 +1379,7 @@ tr.hours-row > td {
 #store-details-panel {
 	/** top :329px; **/
 	top: 70px;
-	left: 500px;
+	left: 510px;
 	position:fixed;
 	
 }
@@ -1404,4 +1404,8 @@ tr.hours-row > td {
 #claim-store-button {
 	float:right;
 	margin-right:5px;
+}
+
+.glyphicon-star {
+	color: #f0ad4e;
 }
