@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'capybara/rails'
 require 'pages/loginpage'
 require 'page_components/header'
-
+require 'pages/registration'
 
 
 feature "store page" , :js => true do
@@ -46,19 +46,38 @@ feature "store page" , :js => true do
 
   		username = "bob@gmail.com"
   		password = "password"
-  		# register modal
-  		binding.pry
+  		# register modal  		
   		header.register_username.set username
   		header.register_password.set password
   		header.register_password_confirmation.set password
   		header.create_account_button.click
 
   		expect(page).to have_text("A message with a confirmation link has been sent to your email address"), "or else!"          
-
-  		
-
-
   	end 	
 
+  	scenario "register modal, enter bad into modal, good registration on main reg page" do
+  		page.visit("/")
+  		header = HeaderPageComponent.new
+  		header.register_link.click
+
+  		username = "bob@gmail.com"
+  		password = "password"
+  		# register modal  		
+  		header.register_username.set username
+  		# header.register_password.set password
+  		header.register_password_confirmation.set password  		
+  		header.create_account_button.click
+  		
+  		expect(page).to have_text("Password can't be blank"), "or else!" 
+		
+  		registrationPage = RegistrationPageComponent.new
+  		registrationPage.user_name.set username
+  		registrationPage.user_password.set password
+  		registrationPage.user_password_confirmation.set password
+  		registrationPage.create_user_account_button.click
+
+  		expect(page).to have_text("A message with a confirmation link has been sent to your email address"), "or else!"          
+
+  	end
 
 end
