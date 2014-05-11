@@ -1,8 +1,5 @@
 <% content_for :head do %>
-	
-		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-		<%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
-
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>		
 <% end %>
 	<span id = "home-page-search-container">		
 		<%= form_tag(stores_path, :method => "get", class: "navbar-form navbar-left", id: "search-form") do %>
