@@ -25,9 +25,8 @@
         data.addColumn('string', 'Name');   
         data.addColumn('string', 'Address');    
           
-        <% @stores.each do |store| %>
-            
-          data.addRow(['<span sw-loc="<%= store_preview_store_path(store) %>"><%= store.name %></span>','<%= store.addressline1 %>'])
+        <% @stores.each do |store| %>          
+          data.addRow(['<span sw-loc="<%= store_preview_store_path(store) %>"><%= store.name[0..25] %></span>','<%= store.addressline1[0..40] %>'])
         
         <% end %>      
 
@@ -100,7 +99,9 @@ var g_table;
     var locations = [];
 
     <% @stores.each do |store| %>
-    var currentStoreRecord = ["<%= escape_javascript store.name %>",
+    var name = "<%= escape_javascript store.name %>".substring(0,25);
+    
+    var currentStoreRecord = [ name,
                     <%= store.latitude %>,
                     <%= store.longitude %> ];
     locations.push(currentStoreRecord);
@@ -133,6 +134,10 @@ var g_table;
           console.log('set selection ' +i);
           g_table.setSelection([{'row': i}]);
           g_map.setCenter(marker.getPosition());
+
+          /** row # * 18px **/
+          scrollpos = i * 20;
+          $("#store_results_table > div > div:first-child").scrollTop(scrollpos);
         }
       })(marker, i));
     }
