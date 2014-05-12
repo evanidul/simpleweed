@@ -1,4 +1,91 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title" id="myModalLabel"><%= @store_item.name %>
+		<div class="star-rank">
+			<span class="glyphicon glyphicon-star"></span>
+			<span class="glyphicon glyphicon-star"></span>
+			<span class="glyphicon glyphicon-star"></span>
+			<span class="glyphicon glyphicon-star"></span>
+			<span class="glyphicon glyphicon-star"></span>		
+		</div>      	
+    	
+      </h4>          
+    </div>
+    <div class="modal-body">
+			
+		<p>A darker OG, with a deep pine aroma that lingers in your nose.  The Galaxy OG is a great end of the day strain that will help unwind the most stressed out minds, and relax the body.  The Galaxy OG relieves body pain, and can aide in insomnia.  Galaxy OG has a true, lasting OG flavor that tastes the way it smells!
+		</p>
+			
+  		
+		
 
-<!-- dvu: not exposed in the UI! -->
+		  <h4>Lab Information</h4>          
+		  <table id="lab-information">
+		  	<tr>
+		  		<td>
+		  			<p>
+		  				<h4>THC %<h4> 
+					    <%= @store_item.thc %>
+				  </p>             
+				</td>
+				<td>
+					<p>
+					    <h4>CBD %</h4>
+					    <%= @store_item.cbd %>					    
+					</p>             
+				</td>
+				<td>
+					<p>
+					    <h4>CBN %</h4>
+					    <%= @store_item.cbn %>
+				  	</p>             
+				</td>  
+		  	</tr>
+		  </table>
+		  <h4>Pricing</h4>
+		  <table id="price-table">
+			 <tr>
+			 	<th>.5 g</th>
+			 	<th>1 g</th>
+			 	<th>1/8 oz</th>
+			 	<th>1/4 oz</th>
+			 	<th>1/2 oz</th>
+			 	<th>1 oz</th>
+			 </tr>
+			 <tr>
+			 	<td>
+				    <%= @store_item.costhalfgram %>
+				</td>
+			 	<td>
+			 		<%= @store_item.costonegram %>
+			 	</td>
+			 	<td>
+			 		<%= @store_item.costeighthoz %>
+			 	</td>
+			 	<td>
+			 		<%= @store_item.costquarteroz %>
+			 	</td>
+			 	<td>
+			 		<%= @store_item.costhalfoz %>
+			 	</td>
+			 	<td>
+			 		<%= @store_item.costoneoz %>
+			 	</td>
+			  </tr>
+			</table>  	
 
-<h1 id="name"><%= @store_item.name %></h1> 
+		  <p class = "form-group" id="dogo">
+		    <h4>DOGO</h4>
+		    
+		    <p class = "form-group pull-right">               
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			
+			</p>
+		  </p>
+		  
+		
+    <div class="modal-footer"></div>    
+    </div><!-- modal-body -->
+  </div> <!-- modal-content -->
+</div>    

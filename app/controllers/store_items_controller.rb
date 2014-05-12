@@ -23,6 +23,7 @@ class StoreItemsController < ApplicationController
 
 	def show
 		@store_item = StoreItem.find(params[:id])
+		render layout: false
 	end
 
 	def edit		
