@@ -1,7 +1,16 @@
 <div class="modal-dialog">
   <div class="modal-content">
-    <div class="modal-header">
-      <h4 class="modal-title" id="myModalLabel"><%= @store_item.name %>
+    <!-- <div class="modal-header"> -->
+    	<ul class="nav nav-tabs">
+  <li class="active"><a href="#info" data-toggle="tab">Info</a></li>
+  <li><a href="#reviews" data-toggle="tab">Reviews</a></li>
+  
+</ul>
+
+      
+    <!-- </div> -->
+    <div class="modal-body">
+	<h4 class="modal-title" id="myModalLabel"><%= @store_item.name %>
 		<div class="star-rank">
 			<span class="glyphicon glyphicon-star"></span>
 			<span class="glyphicon glyphicon-star"></span>
@@ -11,83 +20,103 @@
 		</div>      	
     	
       </h4>          
-    </div>
-    <div class="modal-body">
-			
-		<p>A darker OG, with a deep pine aroma that lingers in your nose.  The Galaxy OG is a great end of the day strain that will help unwind the most stressed out minds, and relax the body.  The Galaxy OG relieves body pain, and can aide in insomnia.  Galaxy OG has a true, lasting OG flavor that tastes the way it smells!
-		</p>
-			
-  		
-		
+    	<!-- Nav tabs -->
 
-		  <h4>Lab Information</h4>          
-		  <table id="lab-information">
-		  	<tr>
-		  		<td>
-		  			<p>
-		  				<h4>THC %<h4> 
-					    <%= @store_item.thc %>
-				  </p>             
-				</td>
-				<td>
-					<p>
-					    <h4>CBD %</h4>
-					    <%= @store_item.cbd %>					    
-					</p>             
-				</td>
-				<td>
-					<p>
-					    <h4>CBN %</h4>
-					    <%= @store_item.cbn %>
-				  	</p>             
-				</td>  
-		  	</tr>
-		  </table>
-		  <h4>Pricing</h4>
-		  <table id="price-table">
-			 <tr>
-			 	<th>.5 g</th>
-			 	<th>1 g</th>
-			 	<th>1/8 oz</th>
-			 	<th>1/4 oz</th>
-			 	<th>1/2 oz</th>
-			 	<th>1 oz</th>
-			 </tr>
-			 <tr>
-			 	<td>
-				    <%= @store_item.costhalfgram %>
-				</td>
-			 	<td>
-			 		<%= @store_item.costonegram %>
-			 	</td>
-			 	<td>
-			 		<%= @store_item.costeighthoz %>
-			 	</td>
-			 	<td>
-			 		<%= @store_item.costquarteroz %>
-			 	</td>
-			 	<td>
-			 		<%= @store_item.costhalfoz %>
-			 	</td>
-			 	<td>
-			 		<%= @store_item.costoneoz %>
-			 	</td>
-			  </tr>
-			</table>  	
-
-		  <p class = "form-group" id="dogo">
-		    <h4>DOGO</h4>
-		    
-		    <p class = "form-group pull-right">               
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			
+	<!-- Tab panes -->
+	<div id="item-preview-tab-content" class="tab-content">
+	  	<div class="tab-pane active" id="info">
+			<br/>
+			<p>A darker OG, with a deep pine aroma that lingers in your nose.  The Galaxy OG is a great end of the day strain that will help unwind the most stressed out minds, and relax the body.  The Galaxy OG relieves body pain, and can aide in insomnia.  Galaxy OG has a true, lasting OG flavor that tastes the way it smells!
 			</p>
-		  </p>
+			<h4>Lab Information</h4>          
+			  <table id="item-preview-lab-information" class="table table-bordered">
+			  	<tr>
+			  		<th>THC %
+			  		</th>
+					<th>CBD %
+			  		</th>			  		
+					<th>CBN %
+			  		</th>			  		
+			  	</tr>
+			  	<tr>			  		
+			  		<td>
+			  			<% if  @store_item.thc && !@store_item.thc?  %>
+					    	<%= @store_item.thc %>
+					    <% else %>
+					    	None.
+					    <% end %>
+					</td>
+					<td>												    					    
+					    <% if  @store_item.cbd && !@store_item.cbd?  %>
+					    	<%= @store_item.cbd %>
+					    <% else %>
+					    	None.
+					    <% end %>					    						
+					</td>
+					<td>
+					    <% if  @store_item.cbn && !@store_item.cbn?  %>
+					    	<%= @store_item.cbn %>
+					    <% else %>
+					    	None.
+					    <% end %>					    						
+					</td>  
+			  	</tr>
+			  </table>
+			  <h4>Pricing</h4>
+			  <table id="price-table" class="table table-bordered">
+				 <tr>
+				 	<th>.5 g</th>
+				 	<th>1 g</th>
+				 	<th>1/8 oz</th>
+				 	<th>1/4 oz</th>
+				 	<th>1/2 oz</th>
+				 	<th>1 oz</th>
+				 </tr>
+				 <tr>
+				 	<td>
+					    <%= @store_item.costhalfgram %>
+					</td>
+				 	<td>
+				 		<%= @store_item.costonegram %>
+				 	</td>
+				 	<td>
+				 		<%= @store_item.costeighthoz %>
+				 	</td>
+				 	<td>
+				 		<%= @store_item.costquarteroz %>
+				 	</td>
+				 	<td>
+				 		<%= @store_item.costhalfoz %>
+				 	</td>
+				 	<td>
+				 		<%= @store_item.costoneoz %>
+				 	</td>
+				  </tr>
+				</table>  	
 
-            <div class="simple-weed-modal-footer">
-            </div>
+			  <p class = "form-group" id="dogo">
+			    <h4>DOGO</h4>
+	  	</div>
+		<div class="tab-pane" id="reviews">
+			<br/>
+			No reviews yet!
+		</div>  
+	</div><!-- item-preview-tab-content -->
 
-		
-    
+
+    <p class = "form-group pull-right">               
+		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	
+	</p>
+    <div class="simple-weed-modal-footer">
+    </div>  
   </div> <!-- modal-content -->
 </div>    
+<script>
+$('#item-preview-tab-content a').click(function (e) {
+  e.preventDefault()
+  $(this).tab('show')
+
+  //$('#myTab a[href="#profile"]').tab('show') // Select tab by name
+})
+</script>
