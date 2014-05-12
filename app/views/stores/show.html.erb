@@ -103,9 +103,9 @@
       
         <% store_items.each do |store_item| %>
 		    if (pricePerUnit > 0) {
-		    	data.addRow(['<%= store_item.name %>','<%= store_item.costperunit %>'])
+		    	data.addRow(['<%= link_to store_item.name, store_store_item_path(@store, store_item),  data: { toggle: "modal", target: "#modal" , remote: store_store_item_path(@store, store_item)} %>','<%= store_item.costperunit %>'])
 		    } else {
-		    	data.addRow(['<%= store_item.name %>','<%= store_item.costonegram %>','<%= store_item.costeighthoz %>',
+		    	data.addRow(['<%= link_to store_item.name, store_store_item_path(@store, store_item),  data: { toggle: "modal", target: "#modal" , remote: store_store_item_path(@store, store_item)} %>','<%= store_item.costonegram %>','<%= store_item.costeighthoz %>',
 		     	'<%= store_item.costquarteroz %>','<%= store_item.costhalfoz %>','<%= store_item.costoneoz %>']);		    	
 		    }
   		<% end %>      
@@ -119,6 +119,17 @@
       
       google.visualization.events.addListener(table, 'sort', setWidth);
       setWidth();
+      google.visualization.events.addListener(table, 'select', selectHandler);
+      function selectHandler(e) {
+        var selection = table.getSelection();         /** gets everything that's selected **/
+        var item = selection[0];                      /** we only support selecting one at this time, if more than one is selected, we'll just use the first    item **/			        
+        var str = data.getFormattedValue(item.row, 0); /** gets the link stored in the first column of the selected row, ie <a data-remote="/students/29" data-                                                   target="#modal" data-toggle="modal" href="/students/29">Davvy</a>  **/			        
+        var target = $(str).attr("href");   /** from that string, only extract the href attr **/
+        
+        $("#modal").load(target, function() {   /** and load that href into the modal.  This is similar to the modal code in application.html.erb **/
+          $("#modal").modal("show"); 
+        });
+      }
 	})();
 
 	function setWidth() {

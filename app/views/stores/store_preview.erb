@@ -56,7 +56,7 @@
 			      
 			        <% store_items.each do |store_item| %>
 					    if (pricePerUnit > 0) {
-					    	data.addRow(['<%= store_item.name %>','<%= store_item.costperunit %>'])
+					    	data.addRow(['<%= link_to store_item.name, store_store_item_path(@store, store_item),  data: { toggle: "modal", target: "#modal" , remote: store_store_item_path(@store, store_item)} %>','<%= store_item.costperunit %>'])
 					    } else {
 					    	data.addRow(['<%= link_to store_item.name, store_store_item_path(@store, store_item),  data: { toggle: "modal", target: "#modal" , remote: store_store_item_path(@store, store_item)} %>' 
 					    		,'<%= store_item.costonegram %>','<%= store_item.costeighthoz %>',
