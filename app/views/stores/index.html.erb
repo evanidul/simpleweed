@@ -26,7 +26,7 @@
         data.addColumn('string', 'Address');    
           
         <% @stores.each do |store| %>          
-          data.addRow(['<span sw-loc="<%= store_preview_store_path(store) %>"><%= store.name[0..25] %></span>','<%= store.addressline1[0..40] %>'])
+          data.addRow(['<span sw-loc="<%= store_preview_store_path(store)%>"  ><%= store.name[0..25] %></span>','<%= store.addressline1[0..40] %>'])
         
         <% end %>      
 
@@ -77,7 +77,7 @@
     
 
 
-    function setWidth() {
+    function setWidth() {      
       var title = "Name";
       var width = "200px";
       $('.google-visualization-table-th:contains(' + title + ')').css('width', width);
@@ -134,6 +134,8 @@ var g_table;
           console.log('set selection ' +i);
           g_table.setSelection([{'row': i}]);
           g_map.setCenter(marker.getPosition());
+
+          google.visualization.events.trigger(g_table, 'select', {});
 
           /** row # * 18px **/
           scrollpos = i * 20;
