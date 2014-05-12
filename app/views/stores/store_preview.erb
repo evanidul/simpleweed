@@ -13,6 +13,18 @@
 	<div id="view-store">
 		<%= link_to 'View Full Page', store_path(@store), class: 'btn btn-primary' , id: "view_store", 'data-no-turbolink' => true %>
 	</div>
+	<div>
+		<% if  @store.addressline1 && !@store.addressline1.empty?  %>
+			<span id="addressline1"><%= @store.addressline1  %>, </span>		
+		<% end %>
+		<% if  @store.addressline2 && !@store.addressline2.empty?  %>
+			<span id="addressline2"><%= @store.addressline2  %>, </span>			
+		<% end %>
+		<span id="city"><%= @store.city  %></span>, 
+		<span id="state"><%= @store.state  %></span>
+		<span id="zip"> <%= @store.zip  %></span>			
+	</div>
+
 	<h3>
 		Menu
 	</h3>
