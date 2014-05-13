@@ -28,6 +28,19 @@
 			<br/>
 			<p>A darker OG, with a deep pine aroma that lingers in your nose.  The Galaxy OG is a great end of the day strain that will help unwind the most stressed out minds, and relax the body.  The Galaxy OG relieves body pain, and can aide in insomnia.  Galaxy OG has a true, lasting OG flavor that tastes the way it smells!
 			</p>
+			<h4 class="modal-title" id="myModalLabel">Top Review
+				<div class="star-rank">
+					<span class="glyphicon glyphicon-star"></span>
+					<span class="glyphicon glyphicon-star"></span>
+					<span class="glyphicon glyphicon-star"></span>
+					<span class="glyphicon glyphicon-star"></span>
+					<span class="glyphicon glyphicon-star"></span>		
+				</div>      			    	
+	      	</h4>          
+	      	<div id="top-review">
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vestibulum metus quam, non dapibus metus molestie non. Proin vel metus eget odio rutrum euismod. Aenean quam justo, tempus et varius vel, pulvinar adipiscing lorem. Pellentesque eget nisi vel neque facilisis laoreet vel vel mi. Cras tempor nibh id augue gravida commodo.
+	      	</div>
+		    
 			<h4>Lab Information</h4>          
 			  <table id="item-preview-lab-information" class="table table-bordered">
 			  	<tr>
@@ -40,21 +53,21 @@
 			  	</tr>
 			  	<tr>			  		
 			  		<td>
-			  			<% if  @store_item.thc && !@store_item.thc?  %>
+			  			<% if  @store_item.thc %>
 					    	<%= @store_item.thc %>
 					    <% else %>
 					    	None.
 					    <% end %>
 					</td>
 					<td>												    					    
-					    <% if  @store_item.cbd && !@store_item.cbd?  %>
+					    <% if  @store_item.cbd %>
 					    	<%= @store_item.cbd %>
 					    <% else %>
 					    	None.
 					    <% end %>					    						
 					</td>
 					<td>
-					    <% if  @store_item.cbn && !@store_item.cbn?  %>
+					    <% if  @store_item.cbn %>
 					    	<%= @store_item.cbn %>
 					    <% else %>
 					    	None.
