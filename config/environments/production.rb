@@ -79,8 +79,8 @@ Smellyleaf::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   # dvu: devise, email upon registration for verification
-  config.action_mailer.default_url_options = { :host => 'dry-ridge-1106.herokuapp.com' }
-  Rails.application.routes.default_url_options[:host] = 'dry-ridge-1106.herokuapp.com'
+  config.action_mailer.default_url_options = { :host => 'www.simpleweed.org' }
+  Rails.application.routes.default_url_options[:host] = 'www.simpleweed.org'
     config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     :address => 'email-smtp.us-west-2.amazonaws.com',
