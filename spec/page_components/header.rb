@@ -15,5 +15,9 @@ class HeaderPageComponent < SitePrism::Page
   element :register_password_confirmation, "#user_password_confirmation"
   element :create_account_button, "#create-account-button"
 
+  #search bar
+  element :search_input, "#search"
+  element :search_button, "#submit-search"
+
 
 end
