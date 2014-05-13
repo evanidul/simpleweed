@@ -94,8 +94,14 @@ feature "store page" , :js => true do
     	# click and view preview
     	search_results_page.firstSearchResult_store_name.click
     	expect(search_results_page.store_name.text).to have_text(store_name)
-    	
-
 	end	
 
+	scenario "go to home page, search, nothing should render but an error mesg" do
+		page.visit("/")
+		home_page = HomePageComponent.new
+		home_page.search_input.set "san diego, ca"
+		home_page.search_button.click
+		
+		expect(home_page.flash_warning.text).to have_text("We're sorry!")    						
+	end
 end	
