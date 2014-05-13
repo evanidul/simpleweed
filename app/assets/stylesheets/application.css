@@ -22,6 +22,7 @@
 /** override bootstrap rounded navbar corners **/
 .navbar {
 	border-radius : 0px !important;
+	height: 77px !important;
 }
 
 .navbar-form {
