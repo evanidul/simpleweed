@@ -29,8 +29,7 @@ class Store < ActiveRecord::Base
     	self.dailyspecialssaturday ||= "None."
     	self.dailyspecialssunday ||=  "None."
 
-    	self.description ||= "None."
-		self.firsttimepatientdeals ||= "None."
+    	self.description ||= "None."		
 
 	    self.announcement ||= "None."
 	    self.deliveryarea ||= "None."

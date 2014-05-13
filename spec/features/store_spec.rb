@@ -126,12 +126,15 @@ feature "store page" , :js => true do
 		# change first time patient deals
 		store_page.has_first_time_patient_deals_text?		
 		expect(store_page.first_time_patient_deals_text.text).to have_text("None.")    	
+		   # None means the db has null or "".  Therefore, there are no deals and it should be unchecked		
+		store_page.firsttimepatientdeals.should_not be_checked
 		store_page.has_edit_first_time_patient_deals_link?
 		store_page.edit_first_time_patient_deals_link.click
 		new_ftpd = "No new deals today!"
 		store_page.first_time_patient_deals_input.set new_ftpd
 		store_page.save_first_time_patient_deals_button.click
 		expect(store_page.first_time_patient_deals_text.text).to have_text(new_ftpd)    	
+		store_page.firsttimepatientdeals.should be_checked
 
 		# daily specials
 		specials_default_value = "None."

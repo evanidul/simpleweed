@@ -62,6 +62,15 @@
 			<p id="first-time-patient-deals">
 				<%= raw @store.firsttimepatientdeals %>
 			</p>
+		<% else %>
+			<div class="header-and-edit-link">
+				<h4 class = "inline-header">First Time Patient Deals </h4>						
+				<%= link_to 'Edit', edit_firsttimepatientdeals_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_firsttimepatientdeals_store_path(@store)} , id: "edit-first-time-patient-deals-link" , class: "edit-store-link"%>
+			</div>
+			<p id="first-time-patient-deals">
+				None.
+			</p>
+
 		<% end %>
 
 		<h3 class= "inline-header">Menu</h3>
@@ -444,7 +453,7 @@
 			</tr>
 			<tr>
 				<td>First Time Patient Deals</td>
-				<td><%= check_box_tag :firsttimepatientdeals , 1 , @store.firsttimepatientdeals ? true : false, disabled: true %></td>
+				<td><%= check_box_tag :firsttimepatientdeals , 1 , @store.firsttimepatientdeals && !@store.firsttimepatientdeals.empty? ? true : false, disabled: true %></td>
 			</tr>
 			<tr>
 				<td>Handicap Access</td>
