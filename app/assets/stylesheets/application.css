@@ -22,6 +22,7 @@
 /** override bootstrap rounded navbar corners **/
 .navbar {
 	border-radius : 0px !important;
+	/** fix the header size.  Make it fixed so that if we remove elements (like search on the homepage) the logo doesn't get cut off **/
 	height: 77px !important;
 }
 
