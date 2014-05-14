@@ -217,6 +217,11 @@ class StoresController < ApplicationController
 		end
 	end
 
+	def show_claim
+		authenticate_user!("You must sign in as the user who's email appears on that store's page inorder to claim this store")
+		@store = Store.find(params[:id])
+	end
+
 
 	# create may only take a name in the future.  Anyway, we may be able to get rid of this block..
 	private 

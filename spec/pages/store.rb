@@ -2,6 +2,7 @@ class StorePage < SitePrism::Page
 	#set_url "/admin/stores"
 
 	element :name_header, "#name"
+	element :claim_store_button, "#claim-store-button"
 
 	#description (main page)
 	element :description, "#description"
