@@ -38,6 +38,7 @@ namespace :data do
 	  @store_item.costhalfoz = attrs[8]
 	  @store_item.costoneoz = attrs[9]
 	  @store_item.costperunit = attrs[10]
+    @store_item.description = attrs[11]
 
 	  @store_item.save
     end
