@@ -5,7 +5,7 @@ require 'page_components/header'
 require 'pages/registration'
 
 
-feature "store page" , :js => true do
+feature "login page" , :js => true do
 	before :each do
 	  	@basicauthname = "ddadmin"
 	  	@basicauthpassword = "idontreallysmoke" 

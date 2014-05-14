@@ -7,7 +7,7 @@ require 'pages/store'
 require 'pages/homepage'
 require 'pages/search_results_stores'
 
-feature "store page" , :js => true do
+feature "search page" , :js => true do
 	before :each do
 	  	@basicauthname = "ddadmin"
 	  	@basicauthpassword = "idontreallysmoke" 
