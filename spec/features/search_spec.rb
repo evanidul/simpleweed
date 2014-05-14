@@ -8,6 +8,16 @@ require 'pages/homepage'
 require 'pages/search_results_stores'
 
 feature "search page" , :js => true do
+
+    before :each do
+        if ENV['TARGETBROWSER'] == "chrome"
+          Capybara.register_driver :selenium do |app|
+          Capybara::Selenium::Driver.new(app, :browser => :chrome)
+        end
+        page.driver.browser.manage.window.resize_to(1366,768)  #http://www.rapidtables.com/web/dev/screen-resolution-statistics.htm
+    end
+    end
+
 	before :each do
 	  	@basicauthname = "ddadmin"
 	  	@basicauthpassword = "idontreallysmoke" 

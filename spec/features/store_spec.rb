@@ -7,6 +7,20 @@ require 'pages/store'
 require 'pages/homepage'
 
 feature "store page" , :js => true do
+
+  	before :each do
+	    if ENV['TARGETBROWSER'] == "chrome"
+	      Capybara.register_driver :selenium do |app|
+	        Capybara::Selenium::Driver.new(app, :browser => :chrome)
+	    end
+
+        page.driver.browser.manage.window.resize_to(1366,768)  #http://www.rapidtables.com/web/dev/screen-resolution-statistics.htm
+
+
+  	end
+  	end
+
+
 	before :each do
 	  	@basicauthname = "ddadmin"
 	  	@basicauthpassword = "idontreallysmoke" 
@@ -32,14 +46,14 @@ feature "store page" , :js => true do
 	scenario "sign in as admin test" do
 				
 		page.visit("/users/sign_in")
-		login_page = LoginPage.new
-		login_page.has_username_input?
+		
+		login_page = LoginPage.new		
+		login_page.has_username_input?		
 		login_page.has_username_password_input?
-
 		login_page.username_input.set @adminemail
-    	login_page.username_password_input.set @adminpassword
-    	login_page.sign_in_button.click
-
+    	login_page.username_password_input.set @adminpassword    
+    	login_page.sign_in_button.click		
+    	
     	header = HeaderPageComponent.new
 		header.has_edituserlink?
     	expect(header.edituserlink.text).to have_text(@adminemail)

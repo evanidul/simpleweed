@@ -3,10 +3,21 @@ require 'capybara/rails'
 require 'pages/loginpage'
 require 'page_components/header'
 require 'pages/registration'
-
+require 'pages/homepage'
 
 feature "login page" , :js => true do
-	before :each do
+	
+  before :each do
+    if ENV['TARGETBROWSER'] == "chrome"
+      Capybara.register_driver :selenium do |app|
+      Capybara::Selenium::Driver.new(app, :browser => :chrome)
+    end
+    page.driver.browser.manage.window.resize_to(1366,768)  #http://www.rapidtables.com/web/dev/screen-resolution-statistics.htm
+  end
+  end
+
+
+  before :each do
 	  	@basicauthname = "ddadmin"
 	  	@basicauthpassword = "idontreallysmoke" 
 	  	page.visit("http://#{@basicauthname}:#{@basicauthpassword}@#{Capybara.current_session.server.host}:#{Capybara.current_session.server.port}/")
