@@ -12,7 +12,8 @@ class HeaderPageComponent < SitePrism::Page
 
   #register modal
   element :register_link, "#register-link"
-  element :register_username, "#user_email"
+  element :register_username, "#user_username"
+  element :register_email, "#user_email"
   element :register_password, "#user_password"
   element :register_password_confirmation, "#user_password_confirmation"
   element :create_account_button, "#create-account-button"

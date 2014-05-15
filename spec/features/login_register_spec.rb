@@ -5,6 +5,7 @@ require 'page_components/header'
 require 'pages/registration'
 require 'pages/homepage'
 require 'pages/devise/forgot_password'
+require 'pages/devise/resend_confirmation'
 
 feature "login page" , :js => true do
 	
@@ -87,10 +88,12 @@ feature "login page" , :js => true do
   		header = HeaderPageComponent.new
   		header.register_link.click
 
-  		username = "bob@gmail.com"
+      username = "bob123"
+  		email = "bob@gmail.com"
   		password = "password"
   		# register modal  		
   		header.register_username.set username
+      header.register_email.set email
   		header.register_password.set password
   		header.register_password_confirmation.set password
   		header.create_account_button.click
@@ -103,10 +106,12 @@ feature "login page" , :js => true do
   		header = HeaderPageComponent.new
   		header.register_link.click
 
-  		username = "bob@gmail.com"
+      username = "bob123"
+  		email = "bob@gmail.com"
   		password = "password"
   		# register modal  		
   		header.register_username.set username
+      header.register_email.set email
   		# header.register_password.set password
   		header.register_password_confirmation.set password  		
   		header.create_account_button.click
@@ -115,6 +120,7 @@ feature "login page" , :js => true do
 		
   		registrationPage = RegistrationPageComponent.new
   		registrationPage.user_name.set username
+      registrationPage.user_email.set email
   		registrationPage.user_password.set password
   		registrationPage.user_password_confirmation.set password
   		registrationPage.create_user_account_button.click
@@ -165,6 +171,65 @@ feature "login page" , :js => true do
       expect(page).to have_text(message), "or else!"          
     end
 
+    scenario "new user registers, then resends confirmation email using login name" do
 
+      page.visit("/")
+      header = HeaderPageComponent.new
+      header.register_link.click
 
+      username = "bob123"
+      email = "bob@gmail.com"
+      password = "password"
+      # register modal      
+      header.register_username.set username
+      header.register_email.set email
+      header.register_password.set password
+      header.register_password_confirmation.set password
+      header.create_account_button.click
+
+      expect(page).to have_text("A message with a confirmation link has been sent to your email address"), "or else!"   
+      header.loginlink.click
+      # login modal
+      header.forgot_password_link.click
+      # password recovery page
+      forgot_password_page = ForgotPasswordPageComponent.new
+      forgot_password_page.resend_confirmation_email_link.click
+
+      # resend email confirmation page
+      resend_email_confirmation_page = ResendConfirmationPageComponent.new
+      resend_email_confirmation_page.user_login.set username
+      resend_email_confirmation_page.resend_confirmation_email_button.click
+      expect(page).to have_text("You will receive an email with instructions about how to confirm your account in a few minutes."), "or else!"   
+    end
+
+    scenario "new user registers, then resends confirmation email using email address" do
+
+      page.visit("/")
+      header = HeaderPageComponent.new
+      header.register_link.click
+
+      username = "bob123"
+      email = "bob@gmail.com"
+      password = "password"
+      # register modal      
+      header.register_username.set username
+      header.register_email.set email
+      header.register_password.set password
+      header.register_password_confirmation.set password
+      header.create_account_button.click
+
+      expect(page).to have_text("A message with a confirmation link has been sent to your email address"), "or else!"   
+      header.loginlink.click
+      # login modal
+      header.forgot_password_link.click
+      # password recovery page
+      forgot_password_page = ForgotPasswordPageComponent.new
+      forgot_password_page.resend_confirmation_email_link.click
+
+      # resend email confirmation page
+      resend_email_confirmation_page = ResendConfirmationPageComponent.new
+      resend_email_confirmation_page.user_login.set email
+      resend_email_confirmation_page.resend_confirmation_email_button.click
+      expect(page).to have_text("You will receive an email with instructions about how to confirm your account in a few minutes."), "or else!"   
+    end
 end
