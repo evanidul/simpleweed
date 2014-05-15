@@ -68,7 +68,7 @@
 			      var table = new google.visualization.Table(document.getElementById("table_<%= category %>"));
 			      
 			 	  var cssClassNames = {headerRow: "simple-weed-google-table-header", headerCell: "simple-weed-google-table-header-cell"};
-			      table.draw(data, {showRowNumber: false, allowHtml: true, cssClassNames: cssClassNames, width: '749px'});
+			      table.draw(data, {showRowNumber: false, allowHtml: true, cssClassNames: cssClassNames, width: '649px'});
 			      
 			      
 			      google.visualization.events.addListener(table, 'sort', setWidth);
@@ -91,7 +91,7 @@
 
 				function setWidth() {
 				  var title = "Name";
-			      var width = "400px";
+			      var width = "250px";
 			      $('.google-visualization-table-th:contains(' + title + ')').css('width', width);
 				}
 			</script>

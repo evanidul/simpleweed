@@ -4,7 +4,7 @@ class StoresController < ApplicationController
 		if params[:search]
       		#@stores = Store.find(:all, :limit => 5).reverse
       		@stores = Store.near(params[:search])
-      		@disableContainerDiv = true;
+      		# @disableContainerDiv = true;
       		if @stores.size == 0
       			flash[:warning] = "We're sorry!  Your search yielded no results.  Please try again!"
       			redirect_to root_path      			

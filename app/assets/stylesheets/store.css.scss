@@ -1345,10 +1345,12 @@ tr.hours-row > td {
 	
 	/** top: 79px;
 	left:0; **/
-	width:500px;
+	width:457px;
 	/** box-shadow : 0px 0px 3px 4px #aaaaaa; **/
-	height: 50%;
-	margin-top: 78px;
+	/** height: 50%; **/
+	height: 300px;
+	margin-top: 15px;
+	
 }
 #map {
 	
@@ -1366,13 +1368,10 @@ tr.hours-row > td {
 }
 
 #store-details-panel {	
-	top: 70px;
-	left: 510px;
-	position:fixed;	
 }
 
 #store-preview-accordion {
-	width: 749px;
+	width: 649px;
 }
 
 .simple-weed-google-table-header-cell-store-preview {
@@ -1398,9 +1397,6 @@ tr.hours-row > td {
 }
 
 #search-left-container {
-	height: 100%;
-	width: 500px;
-	box-shadow : 0px 0px 3px 4px #aaaaaa;
 }
 
 #item-preview-lab-information {

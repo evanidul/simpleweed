@@ -15,6 +15,7 @@ feature "search page" , :js => true do
           Capybara::Selenium::Driver.new(app, :browser => :chrome)
         end
         page.driver.browser.manage.window.resize_to(1366,768)  #http://www.rapidtables.com/web/dev/screen-resolution-statistics.htm
+        # page.driver.browser.manage().window().maximize() 
     end
     end
 
