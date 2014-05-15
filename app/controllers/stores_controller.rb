@@ -228,7 +228,7 @@ class StoresController < ApplicationController
 		# redir to store page with edit tags rendered and tool tips showing them.
 		@store = Store.find(params[:id])
 		flash[:notice] = "You have successfully claimed this store.  We've added new edit links below to allow you to manage this store."
-		redirect_to store_path(@store)
+		redirect_to store_path(@store, :show_edit_popover => 'true')
 	end
 
 	# create may only take a name in the future.  Anyway, we may be able to get rid of this block..

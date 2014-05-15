@@ -3,5 +3,7 @@ class StoreClaimPage < SitePrism::Page
 
 	element :name_header, "#name"
 
+	element :claim_store_button, "#claim-store-button"
+	element :cancel_claim_button, "#cancel-claim-button"
 
 end

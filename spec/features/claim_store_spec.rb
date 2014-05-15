@@ -132,7 +132,19 @@ feature "login page" , :js => true do
 
     	store_claim_page = StoreClaimPage.new
     	expect(store_claim_page.name_header.text).to have_text(store_name)
-    	expect(page).to have_text("Signed in successfully.")    
+    	expect(page).to have_text("Signed in successfully.")   
+
+    	# cancel and come back
+    	store_claim_page.cancel_claim_button.click
+    	store_page.claim_store_button.click    	
+    	expect(page).not_to have_content("Signed in successfully.")
+
+    	# claim
+    	store_claim_page.claim_store_button.click
+		expect(page).to have_text("You have successfully claimed this store.")       	
+		
+		expect(store_page.edit_links_tip.text).to have_text("Edit links are now available for you")
+
   	end
 
 	scenario "login as admin, create a store, DONT log out, go to store page, claim a store, don't see login, see store claim page" do		

@@ -176,5 +176,6 @@ class StorePage < SitePrism::Page
 	element :date_storehourssaturdaycloseminute, "#date_storehourssaturdaycloseminute"
 	element :store_saturdayclosed, "#store_saturdayclosed"
 
-
+	# tooltip
+	element :edit_links_tip, "#edit-links-tip"
 end
