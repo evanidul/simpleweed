@@ -222,6 +222,14 @@ class StoresController < ApplicationController
 		@store = Store.find(params[:id])
 	end
 
+	def update_claim
+		authenticate_user!("You must sign in as the user who's email appears on that store's page inorder to claim this store")
+		# add store - owner role to logged in user
+		# redir to store page with edit tags rendered and tool tips showing them.
+		@store = Store.find(params[:id])
+		flash[:notice] = "You have successfully claimed this store.  We've added new edit links below to allow you to manage this store."
+		redirect_to store_path(@store)
+	end
 
 	# create may only take a name in the future.  Anyway, we may be able to get rid of this block..
 	private 

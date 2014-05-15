@@ -1,7 +1,15 @@
 
 <div class="page-header">
-	<h1 id="name"><%= @store.name %> <small>Promotional blurb</small></h1>
+	<h3 id="name"><%= @store.name %> <small>Promotional blurb</small></h3>
 </div>	
-<p>
+
+<h3>
 	This store is unclaimed.  Claim it now?
-</p>
+</h3>
+<span class="write-review-button">
+	<%= link_to 'Cancel', store_path(@store), 'data-no-turbolink' => true, class: 'btn btn-default' , id: "cancel-claim-button" %>
+</span>	
+<span class="claim-store-button">
+	<%= link_to 'Claim', update_claim_store_path(@store), class: 'btn btn-warning' , :method => :put, id: "claim-store-button" %>
+</span>	
+
