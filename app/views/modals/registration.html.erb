@@ -9,6 +9,12 @@
 		<%= form_for(User.new,  url: user_registration_path()) do |f| %>
 		  <%= devise_error_messages! %>
 
+		  <div>	  	
+			<%= f.label :username %><br />
+	    	<%= f.text_field :username , :class => 'form-control' %>
+		  </div>
+
+
 		  <div><%= f.label :email %><br />
 		  <%= f.email_field :email, autofocus: true , :class => 'form-control' %></div>
 

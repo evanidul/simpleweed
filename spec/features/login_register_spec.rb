@@ -68,7 +68,7 @@ feature "login page" , :js => true do
 		header.logininbutton.click
 
 		# on login page
-		expect(page).to have_text("Invalid email or password"), "or else!"          		
+		expect(page).to have_text("Invalid login or password"), "or else!"          		
 		login_page = LoginPage.new
 		login_page.username_input.set @adminemail
     	login_page.username_password_input.set @adminpassword

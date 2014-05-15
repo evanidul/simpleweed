@@ -69,8 +69,9 @@ feature "store page" , :js => true do
 	scenario "non-admins can't access admin store section" do
 
 		email = "john@gmail.com"
+		username = "john123"
 		password = "password"
-		user = User.new(:email => email, :password => password , :password_confirmation => password)
+		user = User.new(:email => email, :password => password , :password_confirmation => password, :username =>username)
 		user.skip_confirmation!
 		user.save		
 				
@@ -79,12 +80,12 @@ feature "store page" , :js => true do
 		login_page.has_username_input?
 		login_page.has_username_password_input?
 
-		login_page.username_input.set email
+		login_page.username_input.set username
     	login_page.username_password_input.set password
     	login_page.sign_in_button.click
 
     	header = HeaderPageComponent.new
-		header.has_edituserlink?
+		header.has_edituserlink?		
     	expect(header.edituserlink.text).to have_text(email)
 
     	stores_page = AdminStoresPage.new

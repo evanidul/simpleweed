@@ -5,7 +5,7 @@ class HeaderPageComponent < SitePrism::Page
   element :logoutlink, "#logout-link"
 
   #login modal
-  element :username, "#user_email"
+  element :username, "#user_login"
   element :password, "#user_password"
   element :logininbutton, "#log-in-button"
 

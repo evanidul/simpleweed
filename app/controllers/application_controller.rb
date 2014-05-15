@@ -8,6 +8,9 @@ class ApplicationController < ActionController::Base
 	redirect_to root_url, :alert => exception.message
 	end
 
+	# add username to devise
+	before_filter :configure_permitted_parameters, if: :devise_controller?
+
 	after_filter :save_last_page_visit_url
 
 	def save_last_page_visit_url
@@ -26,6 +29,7 @@ class ApplicationController < ActionController::Base
 	end
 
 	protected
+	# redirect a user to login page if they are not authenticated, pass them through if they are.  Pass in an optional message
 	def authenticate_user!(message = nil)
 		if user_signed_in?
 		  return
@@ -39,5 +43,12 @@ class ApplicationController < ActionController::Base
 		  ## render :file => File.join(Rails.root, 'public/404'), :formats => [:html], :status => 404, :layout => false
 		end
 	end
+
+	# add username to devise
+	def configure_permitted_parameters
+	    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:username, :email, :password, :password_confirmation, :remember_me) }
+	    devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:login, :username, :email, :password, :remember_me) }
+	    devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:username, :email, :password, :password_confirmation, :current_password) }
+  	end
 
 end
