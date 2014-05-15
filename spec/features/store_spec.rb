@@ -28,10 +28,12 @@ feature "store page" , :js => true do
 
 	  	@adminemail = "evanidul@gmail.com"
 	  	@adminpassword = "password"
-		user = User.new(:email => @adminemail, :password => @adminpassword, :password_confirmation => @adminpassword)
+		@adminusername = "evanidul"
+        user = User.new(:email => @adminemail, :password => @adminpassword, :password_confirmation => @adminpassword, :username => @adminusername)
 		user.skip_confirmation!
 		user.save
 		user.add_role :admin # sets a global role
+
 
 	end
 
@@ -51,12 +53,12 @@ feature "store page" , :js => true do
 		login_page.has_username_input?		
 		login_page.has_username_password_input?
 		login_page.username_input.set @adminemail
-    	login_page.username_password_input.set @adminpassword    
+    	login_page.username_password_input.set @adminpassword        	
     	login_page.sign_in_button.click		
     	
     	header = HeaderPageComponent.new
 		header.has_edituserlink?
-    	expect(header.edituserlink.text).to have_text(@adminemail)
+    	expect(header.edituserlink.text).to have_text(@adminusername)
 
     	stores_page = AdminStoresPage.new
     	stores_page.load
@@ -86,7 +88,7 @@ feature "store page" , :js => true do
 
     	header = HeaderPageComponent.new
 		header.has_edituserlink?		
-    	expect(header.edituserlink.text).to have_text(email)
+    	expect(header.edituserlink.text).to have_text(username)
 
     	stores_page = AdminStoresPage.new
     	
@@ -104,13 +106,13 @@ feature "store page" , :js => true do
 		login_page.has_username_input?
 		login_page.has_username_password_input?
 
-		login_page.username_input.set @adminemail
+		login_page.username_input.set @adminusername
     	login_page.username_password_input.set @adminpassword
     	login_page.sign_in_button.click
 
     	header = HeaderPageComponent.new
 		header.has_edituserlink?
-    	expect(header.edituserlink.text).to have_text(@adminemail)
+    	expect(header.edituserlink.text).to have_text(@adminusername)
 
     	stores_page = AdminStoresPage.new
     	stores_page.load
@@ -314,7 +316,7 @@ feature "store page" , :js => true do
 
     	header = HeaderPageComponent.new
 		header.has_edituserlink?
-    	expect(header.edituserlink.text).to have_text(@adminemail)
+    	expect(header.edituserlink.text).to have_text(@adminusername)
 
     	stores_page = AdminStoresPage.new
     	stores_page.load

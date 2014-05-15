@@ -24,10 +24,11 @@ feature "login page" , :js => true do
 
 	  	@adminemail = "evanidul@gmail.com"
 	  	@adminpassword = "password"
-		user = User.new(:email => @adminemail, :password => @adminpassword, :password_confirmation => @adminpassword)
-		user.skip_confirmation!
-		user.save
-		user.add_role :admin # sets a global role
+      @adminusername = "evanidul"
+      user = User.new(:email => @adminemail, :password => @adminpassword, :password_confirmation => @adminpassword, :username => @adminusername)
+  		user.skip_confirmation!
+  		user.save
+  		user.add_role :admin # sets a global role
 
 	end
 
@@ -47,7 +48,7 @@ feature "login page" , :js => true do
     	header.password.set @adminpassword
 		header.logininbutton.click
 
-		expect(header.edituserlink.text).to have_text(@adminemail)
+		expect(header.edituserlink.text).to have_text(@adminusername)
 
   	end
 
@@ -76,7 +77,7 @@ feature "login page" , :js => true do
 
     	header = HeaderPageComponent.new
 		header.has_edituserlink?
-    	expect(header.edituserlink.text).to have_text(@adminemail)
+    	expect(header.edituserlink.text).to have_text(@adminusername)
 
   	end
 
