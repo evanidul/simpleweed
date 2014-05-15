@@ -8,6 +8,7 @@ class HeaderPageComponent < SitePrism::Page
   element :username, "#user_login"
   element :password, "#user_password"
   element :logininbutton, "#log-in-button"
+  element :forgot_password_link, "#forgot-password-link"
 
   #register modal
   element :register_link, "#register-link"

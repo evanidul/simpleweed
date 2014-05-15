@@ -4,6 +4,7 @@ require 'pages/loginpage'
 require 'page_components/header'
 require 'pages/registration'
 require 'pages/homepage'
+require 'pages/devise/forgot_password'
 
 feature "login page" , :js => true do
 	
@@ -121,5 +122,49 @@ feature "login page" , :js => true do
   		expect(page).to have_text("A message with a confirmation link has been sent to your email address"), "or else!"          
 
   	end
+
+    scenario "admin tries to recover password" do
+
+      page.visit("/")
+      homepage = HomePageComponent.new
+      homepage.has_searchcontainer?          
+
+      header = HeaderPageComponent.new
+      header.has_loginlink?
+      header.loginlink.click
+        
+      # login modal
+      header.forgot_password_link.click
+
+      # password recovery page
+      forgot_password_page = ForgotPasswordPageComponent.new
+      forgot_password_page.user_login.set @adminusername
+      forgot_password_page.send_reset_password_button.click
+      message = "You will receive an email with instructions on how to reset your password in a few minutes."
+      expect(page).to have_text(message), "or else!"          
+    end
+
+  scenario "admin tries to recover password with email address instead of username" do
+
+      page.visit("/")
+      homepage = HomePageComponent.new
+      homepage.has_searchcontainer?          
+
+      header = HeaderPageComponent.new
+      header.has_loginlink?
+      header.loginlink.click
+        
+      # login modal
+      header.forgot_password_link.click
+
+      # password recovery page
+      forgot_password_page = ForgotPasswordPageComponent.new
+      forgot_password_page.user_login.set @adminemail
+      forgot_password_page.send_reset_password_button.click
+      message = "You will receive an email with instructions on how to reset your password in a few minutes."
+      expect(page).to have_text(message), "or else!"          
+    end
+
+
 
 end
