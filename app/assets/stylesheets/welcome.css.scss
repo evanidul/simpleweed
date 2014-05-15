@@ -27,10 +27,3 @@ body {
 	margin-top: -50px;
 	margin-left: -100px;
 }
-
-/** have to add margin on this page, b/c it doesn't have the normal app layout and the header will cover the message up **/
-/** dvu: bug, this css style gets pulled in elsewhere, b/c apparently even store pages pull in welcome.css **/
-.alert {
-	margin-top:77px;
-	margin-bottom:0px !important;
-}
