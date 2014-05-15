@@ -6,4 +6,7 @@ class StoreClaimPage < SitePrism::Page
 	element :claim_store_button, "#claim-store-button"
 	element :cancel_claim_button, "#cancel-claim-button"
 
+	# email doesn't match
+	element :logout_and_try_again, "#logout-link-on-claim-form"
+
 end

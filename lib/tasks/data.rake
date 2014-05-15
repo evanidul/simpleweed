@@ -249,7 +249,7 @@ namespace :data do
       @store = Store.find_or_initialize_by_id(attrs[0])
       if (@store)
       	if( attrs.last != "ERROR: check fields")      		
-      		@store.email = attrs[2];
+      		@store.email = attrs[2].strip;
 
       		@store.save
       	end	

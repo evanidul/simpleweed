@@ -224,11 +224,16 @@ class StoresController < ApplicationController
 
 	def update_claim
 		authenticate_user!("You must sign in as the user who's email appears on that store's page inorder to claim this store")
+		@store = Store.find(params[:id])
 		# add store - owner role to logged in user
 		# redir to store page with edit tags rendered and tool tips showing them.
-		@store = Store.find(params[:id])
-		flash[:notice] = "You have successfully claimed this store.  We've added new edit links below to allow you to manage this store."
-		redirect_to store_path(@store, :show_edit_popover => 'true')
+		if current_user.email == @store.email					
+			flash[:notice] = "You have successfully claimed this store.  We've added new edit links below to allow you to manage this store."
+			redirect_to store_path(@store, :show_edit_popover => 'true')
+		else 			
+			flash[:notice] = "Your email must match the email of this store, in order to claim it."
+			redirect_to store_path(@store, :show_edit_popover => 'true')
+		end	
 	end
 
 	# create may only take a name in the future.  Anyway, we may be able to get rid of this block..
