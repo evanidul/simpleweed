@@ -11,7 +11,8 @@
       var data = new google.visualization.DataTable();
       data.addColumn('string', 'Name');
       data.addColumn('string', 'DOGO');
-      data.addColumn('string', 'Description');
+      //looks like crawled in descriptions breaking JS
+      //data.addColumn('string', 'Description');
       data.addColumn('string', 'THC');
       data.addColumn('string', 'CBD');
       data.addColumn('string', 'CBN');
@@ -23,7 +24,10 @@
       data.addColumn('string', '1 oz');
 
       <% @store_items.each do |store_item| %>
-        data.addRow(['<%= link_to store_item.name, edit_store_store_item_path(@store, store_item),  data: { toggle: "modal", target: "#modal" , remote: edit_store_store_item_path(@store, store_item)} %>' , '<%= store_item.dogo %>', '<%= store_item.description %>', '<%= store_item.thc %>',
+        data.addRow(['<%= link_to store_item.name, edit_store_store_item_path(@store, store_item),  data: { toggle: "modal", target: "#modal" , remote: edit_store_store_item_path(@store, store_item)} %>' , 
+          '<%= store_item.dogo %>', 
+          
+          '<%= store_item.thc %>',
           '<%= store_item.cbd %>', '<%= store_item.cbn %>', '<%= store_item.costhalfgram %>',
           '<%= store_item.costonegram %>', '<%= store_item.costeighthoz %>','<%= store_item.costquarteroz %>','<%= store_item.costhalfoz %>','<%= store_item.costoneoz %>']);
       <% end %>      
