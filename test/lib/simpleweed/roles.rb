@@ -73,7 +73,7 @@ class Roles < ActiveSupport::TestCase
 		assert_equal( true, result_after_adding_it_back, 'User should have storeowner role assigned but does not')
 	end	
 
-	test "add/remove role via service" do
+	test "add/remove store owner/store manager via service" do
 		service = Simpleweed::Security::Roleservice.new
 
 		user = User.new(:email => 'test@example.com', :password => 'password', :password_confirmation => 'password')
@@ -95,6 +95,8 @@ class Roles < ActiveSupport::TestCase
 		assert_equal( 1, storeOwnersForStore.size, 'There should be 1 store owner for this store')		
 		assert_equal( true, storeOwnersForStore.include?(user), 'There should be 1 store owner for this store')
 		assert_equal( true, service.isStoreOwner(user,store), 'This user should be a store owner')		
+		assert_equal( 1, service.findStoreManagersForStore(store).size, 'There should be 1 store manager for this store')		
+		assert_equal( true, service.isStoreManager(user,store), 'This user should be a store manager')		
 
 		#user.add_role :storeowner, store_other # sets a role for a resource instance
 		service.addStoreOwnerRoleToStore(user, store_other)
@@ -105,6 +107,8 @@ class Roles < ActiveSupport::TestCase
 		assert_equal( 1, storeOwnersForStore2.size, 'There should be 1 store owner for this store')		
 		assert_equal( true, storeOwnersForStore2.include?(user), 'There should be 1 store owner for this store')
 		assert_equal( true, service.isStoreOwner(user,store_other), 'This user should be a store owner')		
+		assert_equal( 1, service.findStoreManagersForStore(store_other).size, 'There should be 1 store manager for this store')		
+		assert_equal( true, service.isStoreManager(user,store_other), 'This user should be a store manager')		
 
 		# delete role from first store
 		#user.remove_role :storeowner, store
@@ -115,6 +119,8 @@ class Roles < ActiveSupport::TestCase
 		assert_equal( 0, storeOwnersForStoreAfterRemoval.size, 'There should be 0 store owner for this store')		
 		assert_equal( false, storeOwnersForStoreAfterRemoval.include?(user), 'There should be 0 store owner for this store')
 		assert_equal( false, service.isStoreOwner(user,store), 'This user should NOT be a store owner')		
+		assert_equal( 0, service.findStoreManagersForStore(store).size, 'There should be 0 store manager for this store')		
+		assert_equal( false, service.isStoreManager(user,store), 'This user should not be a store manager')		
 
 		# other store should be the same		
 		other_result_after_remove = user.has_role? :storeowner, store_other
@@ -123,6 +129,8 @@ class Roles < ActiveSupport::TestCase
 		assert_equal( 1, storeOwnersForStoreOtherAfterRemoval.size, 'There should be 1 store owner for this store')		
 		assert_equal( true, storeOwnersForStoreOtherAfterRemoval.include?(user), 'There should be 1 store owner for this store')
 		assert_equal( true, service.isStoreOwner(user,store_other), 'This user should be a store owner')		
+		assert_equal( 1, service.findStoreManagersForStore(store_other).size, 'There should be 1 store manager for this store')		
+		assert_equal( true, service.isStoreManager(user,store_other), 'This user should be a store manager')		
 
 		# add it back just for yucks
 		#user.add_role :storeowner, store # sets a role for a resource instance
@@ -132,7 +140,9 @@ class Roles < ActiveSupport::TestCase
 		storeOwnersForStoreAfterReadd = service.findStoreOwnerForStore(store)
 		assert_equal( 1, storeOwnersForStoreAfterReadd.size, 'There should be 1 store owner for this store')		
 		assert_equal( true, storeOwnersForStoreAfterReadd.include?(user), 'There should be 1 store owner for this store')
-		assert_equal( true, service.isStoreOwner(user,store), 'This user should be a store owner')		
-
+		assert_equal( true, service.isStoreOwner(user,store), 'This user should be a store owner')	
+		assert_equal( 1, service.findStoreManagersForStore(store).size, 'There should be 1 store manager for this store')			
+		assert_equal( true, service.isStoreManager(user,store), 'This user should be a store manager')		
+		
 	end
 end
