@@ -11,18 +11,18 @@
 
 		  <div>	  	
 			<%= f.label :username %><br />
-	    	<%= f.text_field :username , :class => 'form-control' %>
+	    	<%= f.text_field :username , :class => 'form-control', :required => true %>
 		  </div>
 
 
 		  <div><%= f.label :email %><br />
-		  <%= f.email_field :email, autofocus: true , :class => 'form-control' %></div>
+		  <%= f.email_field :email, autofocus: true , :class => 'form-control' , :required => true%></div>
 
 		  <div><%= f.label :password %><br />
-		    <%= f.password_field :password, autocomplete: "off" , :class => 'form-control' %></div>
+		    <%= f.password_field :password, autocomplete: "off" , :class => 'form-control' , :required => true%></div>
 
 		  <div><%= f.label :password_confirmation %><br />
-		    <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'form-control' %></div>
+		    <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'form-control', :required => true %></div>
 
 		  <br/>
 		  <div><%= f.submit "Create User Account" , :id => 'create-account-button', :class => 'btn btn-primary pull-right' %></div>
