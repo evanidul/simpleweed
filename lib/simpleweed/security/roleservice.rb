@@ -36,13 +36,19 @@ module Simpleweed
 	  		end
 
 	  		def isStoreOwner(user, store)
-	  			store_owners = findStoreOwnerForStore(store)
-	  			return store_owners.include?(user)
+	  			if user.nil? || store.nil?
+	  				return false
+	  			else
+	  				return user.has_role? :storeowner, store
+	  			end
 	  		end 
 
 	  		def isStoreManager(user, store) 
-	  			store_managers = findStoreManagersForStore(store)
-	  			return store_managers.include?(user)
+	  			if user.nil? || store.nil?
+	  				return false
+	  			else 
+	  				return user.has_role? :storemanager, store
+	  			end
 	  		end
 
 		end #class

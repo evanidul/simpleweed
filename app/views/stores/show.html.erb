@@ -49,19 +49,21 @@
 		<% if  @store.description && !@store.description.empty?  %>			
 			<div class="header-and-edit-link">
 				<h4 class = "inline-header">Description </h4>			
-				<%= link_to 'Edit', edit_description_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_description_store_path(@store)} , id: "edit-description-link", class: "edit-store-link",
-					 "data-content"=>"<span id='edit-links-tip'>Edit links are now available for you to manage your store.</span>"
-				 %>				 
-				 <% if params[:show_edit_popover] == "true" %>				 
-					 <script>				 
-					 $(function () {
-						  $('#edit-description-link').popover({ 
-						    html : true,
-						    placement : "left"
-						  }).popover('show');
-						});
-					 </script>
-				 <% end %>
+				<% if @role_service.isStoreManager(current_user, @store) %>
+					<%= link_to 'Edit', edit_description_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_description_store_path(@store)} , id: "edit-description-link", class: "edit-store-link",
+						 "data-content"=>"<span id='edit-links-tip'>Edit links are now available for you to manage your store.</span>"
+					 %>				 
+					 <% if params[:show_edit_popover] == "true" %>				 
+						 <script>				 
+						 $(function () {
+							  $('#edit-description-link').popover({ 
+							    html : true,
+							    placement : "left"
+							  }).popover('show');
+							});
+						 </script>
+					 <% end %> <!-- show pop up? -->
+				<% end %> <!-- if store manager -->
 			</div>
 			<p id="description">				
 				<%= raw @store.description %>								
