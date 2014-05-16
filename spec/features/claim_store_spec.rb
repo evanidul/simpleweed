@@ -145,7 +145,8 @@ feature "login page" , :js => true do
 		expect(page).to have_text("You have successfully claimed this store.")       	
 		
 		expect(store_page.edit_links_tip.text).to have_text("Edit links are now available for you")
-
+        store_has_claim_button = store_page.has_claim_store_button?        
+        assert_equal( false, store_has_claim_button, 'Store should not have a claim button after it is claimed')
   	end
 
 	scenario "login as admin, create a store, DONT log out, go to store page, claim a store, don't see login, see store claim page" do		
