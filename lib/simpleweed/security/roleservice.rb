@@ -21,6 +21,11 @@ module Simpleweed
 	  			return User.with_role(:storeowner, store)
 	  		end
 
+	  		def isStoreOwner(user, store)
+	  			store_owners = findStoreOwnerForStore(store)
+	  			return store_owners.include?(user)
+	  		end 
+
 		end #class
 	end
 end
