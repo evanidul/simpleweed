@@ -69,25 +69,22 @@
 				<%= raw @store.description %>								
 			</p> 
 		<% end %>
-
-		<% if  @store.firsttimepatientdeals && !@store.firsttimepatientdeals.empty?  %>
-			<div class="header-and-edit-link">
-				<h4 class = "inline-header">First Time Patient Deals </h4>			
+	
+		
+		<div class="header-and-edit-link">
+			<h4 class = "inline-header">First Time Patient Deals </h4>
+			<% if @role_service.canManageStore(current_user, @store) %>						
 				<%= link_to 'Edit', edit_firsttimepatientdeals_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_firsttimepatientdeals_store_path(@store)} , id: "edit-first-time-patient-deals-link" , class: "edit-store-link"%>
-			</div>
-			<p id="first-time-patient-deals">
+				<%end %>
+		</div>
+		<p id="first-time-patient-deals">
+			<% if  @store.firsttimepatientdeals && !@store.firsttimepatientdeals.empty?  %>
 				<%= raw @store.firsttimepatientdeals %>
-			</p>
-		<% else %>
-			<div class="header-and-edit-link">
-				<h4 class = "inline-header">First Time Patient Deals </h4>						
-				<%= link_to 'Edit', edit_firsttimepatientdeals_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_firsttimepatientdeals_store_path(@store)} , id: "edit-first-time-patient-deals-link" , class: "edit-store-link"%>
-			</div>
-			<p id="first-time-patient-deals">
+			<% else %>
 				None.
-			</p>
-
-		<% end %>
+			<% end %>
+		</p>
+		
 
 		<h3 class= "inline-header">Menu</h3>
 		<% if can? :manage, Store %>		  
