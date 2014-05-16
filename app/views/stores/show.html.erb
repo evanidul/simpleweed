@@ -75,7 +75,7 @@
 			<h4 class = "inline-header">First Time Patient Deals </h4>
 			<% if @role_service.canManageStore(current_user, @store) %>						
 				<%= link_to 'Edit', edit_firsttimepatientdeals_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_firsttimepatientdeals_store_path(@store)} , id: "edit-first-time-patient-deals-link" , class: "edit-store-link"%>
-				<%end %>
+			<%end %>
 		</div>
 		<p id="first-time-patient-deals">
 			<% if  @store.firsttimepatientdeals && !@store.firsttimepatientdeals.empty?  %>
@@ -235,7 +235,9 @@
 		<div id="contact">
 			<div class="header-and-edit-link">
 				<h3 class = "inline-header">Contact</h3>
-				<%= link_to 'Edit', edit_contact_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_contact_store_path(@store)} , id: "edit-contact-link", class: "edit-store-link" %>
+				<% if @role_service.canManageStore(current_user, @store) %>
+					<%= link_to 'Edit', edit_contact_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_contact_store_path(@store)} , id: "edit-contact-link", class: "edit-store-link" %>
+				<% end %>
 			</div>
 			<address>
 				<strong><%= @store.name  %></strong>
@@ -305,19 +307,27 @@
 
 		</script>
 
-		<% if  @store.announcement && !@store.announcement.empty?  %>						
-			<div class="header-and-edit-link">
-				<h3 class="inline-header">Announcement</h3>
+								
+		<div class="header-and-edit-link">
+			<h3 class="inline-header">Announcement</h3>
+			<% if @role_service.canManageStore(current_user, @store) %>
 				<%= link_to 'Edit', edit_announcement_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_announcement_store_path(@store)} , id: "edit-announcement-link" , class: "edit-store-link"%>			
-			</div>
-			<div id="announcement">
+			<% end %>
+		</div>
+		<div id="announcement">
+			<% if  @store.announcement && !@store.announcement.empty?  %>
 				<%= raw @store.announcement %>
-			</div>
-		<% end %>	
+			<% else %>
+				None.
+			<% end %>
+		</div>
+			
 
 		<div class="header-and-edit-link">		
 			<h3 class="inline-header">Hours</h3>
-			<%= link_to 'Edit', edit_hours_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_hours_store_path(@store)} , id: "edit-hours-link", class: "edit-store-link" %>
+			<% if @role_service.canManageStore(current_user, @store) %>
+				<%= link_to 'Edit', edit_hours_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_hours_store_path(@store)} , id: "edit-hours-link", class: "edit-store-link" %>
+			<% end %>
 		</div>
 
 		<table id="storehours">			
@@ -409,7 +419,9 @@
 
 		<div class="header-and-edit-link">		
 			<h3 class="inline-header">Daily Specials</h3>
-			<%= link_to 'Edit', edit_dailyspecials_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_dailyspecials_store_path(@store)} , id: "edit-daily-specials-link" , class: "edit-store-link" %>
+			<% if @role_service.canManageStore(current_user, @store) %>
+				<%= link_to 'Edit', edit_dailyspecials_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_dailyspecials_store_path(@store)} , id: "edit-daily-specials-link" , class: "edit-store-link" %>
+			<% end %>
 		</div>
 		<table id="dailyspecials">
 			<tr>
@@ -444,7 +456,9 @@
 		
 		<div class="header-and-edit-link">
 			<h3 class="inline-header">Dispensary Features</h3>
-			<%= link_to 'Edit', edit_features_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_features_store_path(@store)} , id: "edit-features-link" , class: "edit-store-link" %>
+			<% if @role_service.canManageStore(current_user, @store) %>
+				<%= link_to 'Edit', edit_features_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_features_store_path(@store)} , id: "edit-features-link" , class: "edit-store-link" %>
+			<% end %>	
 		</div>
 		
 		<table id="dispensaryfeatures">
@@ -506,16 +520,21 @@
 			</tr>			
 		</table>
 
-		<% if  @store.deliveryarea && !@store.deliveryarea.empty?  %>			
-			
-			<div class="header-and-edit-link">
-				<h3 class="inline-header">Delivery Areas</h3>
+								
+		<div class="header-and-edit-link">
+			<h3 class="inline-header">Delivery Areas</h3>
+			<% if @role_service.canManageStore(current_user, @store) %>
 				<%= link_to 'Edit', edit_deliveryarea_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_deliveryarea_store_path(@store)} , id: "edit-deliveryarea-link" , class: "edit-store-link" %>
-			</div>	
-			<div id="delivery-area">
+			<% end %>
+		</div>	
+		<div id="delivery-area">
+			<% if  @store.deliveryarea && !@store.deliveryarea.empty?  %>
 				<%= raw @store.deliveryarea %>
-			</div>
-		<% end %>	
+			<% else %>
+				None.
+			<% end %>
+		</div>
+		
 
     </div><!-- end right, side bar -->
 </div> <!-- end of 'row' -->
