@@ -31,7 +31,8 @@
 		
 	  </div> <!-- modal-body -->
 	  <div class="modal-footer">
-	     <%= link_to "Sign in", new_user_session_path %>
+	     <%= link_to "Sign in", new_user_session_path %> <br/>
+	     <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name), :id => 'resend-confirmation-email-link' %><br 
 	  </div><!-- modal-footer -->
 
 	</div><!-- modal-content -->
