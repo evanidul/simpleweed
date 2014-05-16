@@ -227,7 +227,9 @@ class StoresController < ApplicationController
 		@store = Store.find(params[:id])
 		# add store - owner role to logged in user
 		# redir to store page with edit tags rendered and tool tips showing them.
-		if current_user.email == @store.email					
+		if current_user.email == @store.email
+			role_service = Simpleweed::Security::Roleservice.new					
+			role_service.addStoreOwnerRoleToStore(current_user, @store)
 			flash[:notice] = "You have successfully claimed this store.  We've added new edit links below to allow you to manage this store."
 			redirect_to store_path(@store, :show_edit_popover => 'true')
 		else 			
