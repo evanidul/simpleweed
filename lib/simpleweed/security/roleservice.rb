@@ -51,6 +51,20 @@ module Simpleweed
 	  			end
 	  		end
 
+	  		# this is lame that cancan + rollify force me to do these, but oh well!
+	  		def canManageStore(user, store)
+	  			
+	  			if user.nil? || store.nil?
+	  				return false
+	  			end
+
+	  			if isStoreManager(user,store) || isStoreOwner(user,store) || user.has_role?(:admin)
+	  				return true
+	  			else
+	  				return false
+	  			end
+	  		end
+
 		end #class
 	end
 end

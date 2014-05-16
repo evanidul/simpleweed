@@ -120,7 +120,7 @@ feature "store page" , :js => true do
     	stores_page.newstore_button.click
 
     	store_name = "My New Store"
-    	stores_page.modal_store_name_input.set store_name
+    	stores_page.modal_store_name_input.set store_name    	
     	stores_page.modal_save_button.click
 
     	store_page = StorePage.new
@@ -129,7 +129,7 @@ feature "store page" , :js => true do
 		store_page.has_description?
 		
 		# check has default description
-		expect(store_page.description.text).to have_text("None.")    	
+		expect(store_page.description.text).to have_text("None.")    			
 		store_page.has_description_edit_link?
 		store_page.description_edit_link.click
 		

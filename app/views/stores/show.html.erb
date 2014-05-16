@@ -49,7 +49,7 @@
 		<% if  @store.description && !@store.description.empty?  %>			
 			<div class="header-and-edit-link">
 				<h4 class = "inline-header">Description </h4>			
-				<% if @role_service.isStoreManager(current_user, @store) %>
+				<% if @role_service.canManageStore(current_user, @store) %>
 					<%= link_to 'Edit', edit_description_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_description_store_path(@store)} , id: "edit-description-link", class: "edit-store-link",
 						 "data-content"=>"<span id='edit-links-tip'>Edit links are now available for you to manage your store.</span>"
 					 %>				 

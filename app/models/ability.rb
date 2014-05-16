@@ -8,8 +8,8 @@ class Ability
       user ||= User.new # guest user (not logged in)
       if user.has_role?(:admin)
         can :manage, :all
-        user.add_role :storeowner, Store  # if you're an admin, you're a store owner for all stores.
-        user.add_role :storemanager, Store  # if you're an admin, you're a store manager for all stores. (we're calling rollify
+        #user.add_role :storeowner, Store  # if you're an admin, you're a store owner for all stores.
+        #user.add_role :storemanager, Store  # if you're an admin, you're a store manager for all stores. (we're calling rollify
                                             # directly, so storemanager role doesn't get added when storeowner gets added)
       else
         can :read, :all
