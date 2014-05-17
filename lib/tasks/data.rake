@@ -28,17 +28,19 @@ namespace :data do
       @store.name = attrs[1];
       @store.save
 
-      @store_item = @store.store_items.build
-	  @store_item.name = attrs[2]
-	  @store_item.category = attrs[3]
-	  @store_item.costonegram = attrs[4]
-	  @store_item.costhalfgram = attrs[5]	  
-	  @store_item.costeighthoz = attrs[6]
-	  @store_item.costquarteroz = attrs[7]
-	  @store_item.costhalfoz = attrs[8]
-	  @store_item.costoneoz = attrs[9]
-	  @store_item.costperunit = attrs[10]
-    @store_item.description = attrs[11]
+      #@store_item = @store.store_items.find_or_create_by(id: attrs[2])      
+
+      @store_item = StoreItem.where(:id => attrs[2], :store_id => attrs[0]).first_or_create
+	  @store_item.name = attrs[3]
+	  @store_item.category = attrs[4]
+	  @store_item.costonegram = attrs[5]
+	  @store_item.costhalfgram = attrs[6]	  
+	  @store_item.costeighthoz = attrs[7]
+	  @store_item.costquarteroz = attrs[8]
+	  @store_item.costhalfoz = attrs[9]
+	  @store_item.costoneoz = attrs[10]
+	  @store_item.costperunit = attrs[11]
+    @store_item.description = attrs[12]
 
 	  @store_item.save
     end
