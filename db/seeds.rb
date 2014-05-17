@@ -5,3 +5,21 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+# evanidul = User.create!(
+#     :username => "evanidul",
+#     :email => "evanidul@gmail.com",
+#     :password => "idontreallysmoke",
+#     :password_confirmation => "idontreallysmoke"
+# )
+# evanidul.add_role :admin # sets a global role
+# evanidul.skip_confirmation!
+
+dannerz = User.create!(
+    :username => "dannerz",
+    :email => "dannerz@gmail.com",
+    :password => "idontreallysmoke",
+    :password_confirmation => "idontreallysmoke"
+)
+
+dannerz.add_role :admin # sets a global role
+dannerz.skip_confirmation!
