@@ -226,10 +226,17 @@ class StoresController < ApplicationController
 	def update_claim
 		authenticate_user!("You must sign in as the user who's email appears on that store's page inorder to claim this store")
 		@store = Store.find(params[:id])
+		role_service = Simpleweed::Security::Roleservice.new
+
 		# add store - owner role to logged in user
 		# redir to store page with edit tags rendered and tool tips showing them.
+		if role_service.findStoreOwnerForStore(@store).size >= 1
+			flash[:notice] = "This store has already been claimed.  Please contact support if you feel like this is in error."
+			redirect_to store_path(@store, :show_edit_popover => 'true')
+		end
+
 		if current_user.email == @store.email
-			role_service = Simpleweed::Security::Roleservice.new					
+								
 			role_service.addStoreOwnerRoleToStore(current_user, @store)
 			flash[:notice] = "You have successfully claimed this store.  We've added new edit links below to allow you to manage this store."
 			redirect_to store_path(@store, :show_edit_popover => 'true')
