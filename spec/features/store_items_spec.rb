@@ -131,7 +131,51 @@ feature "store item edit and add" , :js => true do
 		expect(items_page.store_item_costhalfoz.value).to have_text(item_costhalfoz)
 		expect(items_page.store_item_costoneoz.value).to have_text(item_costoz)
 		
+		# change values	
+		item_nameUP = "weedy 2 up"
+		item_descriptionUP = "It's so weedy updated."
+		item_thcUP = "2"
+		item_cbdUP = "5"
+		item_cbnUP = "0.5"
+		item_costhalfgramUP = "12"
+		item_costgramUP = "22"
+		item_costeighthUP = "52"
+		item_costquarterUP = "102"
+		item_costhalfozUP = "202"
+		item_costozUP = "402"
 		
+		items_page.store_item_name.set item_nameUP
+		items_page.store_item_description.set item_descriptionUP
+		items_page.thc.set item_thcUP
+		items_page.cbd.set item_cbdUP		
+		items_page.cbn.set item_cbnUP
+		items_page.store_item_costhalfgram.set item_costhalfgramUP
+		items_page.store_item_costonegram.set item_costgramUP
+		items_page.store_item_costeighthoz.set item_costeighthUP
+		items_page.store_item_costquarteroz.set item_costquarterUP
+		items_page.store_item_costhalfoz.set item_costhalfozUP
+		items_page.store_item_costoneoz.set item_costozUP
+
+		items_page.save_store_item_button.click
+
+		# verify updated values
+		# back to item list
+    	expect(items_page.firstSearchResult_item_name.text).to have_text(item_nameUP)
+    	items_page.firstSearchResult_item_name.click
+
+		# verify values    	
+    	expect(items_page.store_item_name.value).to have_text(item_nameUP)
+    	expect(items_page.store_item_description.value).to have_text(item_descriptionUP)
+		expect(items_page.thc.value).to have_text(item_thcUP)
+		expect(items_page.cbd.value).to have_text(item_cbdUP) 
+		expect(items_page.cbn.value).to have_text(item_cbnUP)
+		expect(items_page.store_item_costhalfgram.value).to have_text(item_costhalfgramUP)
+		expect(items_page.store_item_costonegram.value).to have_text(item_costgramUP)
+		expect(items_page.store_item_costeighthoz.value).to have_text(item_costeighthUP)
+		expect(items_page.store_item_costquarteroz.value).to have_text(item_costquarterUP)
+		expect(items_page.store_item_costhalfoz.value).to have_text(item_costhalfozUP)
+		expect(items_page.store_item_costoneoz.value).to have_text(item_costozUP)
+
 
   	end
   
