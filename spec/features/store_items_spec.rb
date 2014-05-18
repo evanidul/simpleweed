@@ -99,6 +99,7 @@ feature "store item edit and add" , :js => true do
 		item_costquarter = "100"
 		item_costhalfoz = "200"
 		item_costoz = "400"
+		item_perunit = "10"
 
 		items_page.store_item_name.set item_name
 		items_page.store_item_description.set item_description
@@ -111,6 +112,7 @@ feature "store item edit and add" , :js => true do
 		items_page.store_item_costquarteroz.set item_costquarter
 		items_page.store_item_costhalfoz.set item_costhalfoz
 		items_page.store_item_costoneoz.set item_costoz
+		items_page.store_item_costperunit.set item_perunit
 
 		items_page.save_store_item_button.click
 
@@ -130,6 +132,7 @@ feature "store item edit and add" , :js => true do
 		expect(items_page.store_item_costquarteroz.value).to have_text(item_costquarter)
 		expect(items_page.store_item_costhalfoz.value).to have_text(item_costhalfoz)
 		expect(items_page.store_item_costoneoz.value).to have_text(item_costoz)
+		expect(items_page.store_item_costperunit.value).to have_text(item_perunit)		
 		
 		# change values	
 		item_nameUP = "weedy 2 up"
@@ -143,6 +146,7 @@ feature "store item edit and add" , :js => true do
 		item_costquarterUP = "102"
 		item_costhalfozUP = "202"
 		item_costozUP = "402"
+		item_costperunitUP = "20"
 		
 		items_page.store_item_name.set item_nameUP
 		items_page.store_item_description.set item_descriptionUP
@@ -155,6 +159,8 @@ feature "store item edit and add" , :js => true do
 		items_page.store_item_costquarteroz.set item_costquarterUP
 		items_page.store_item_costhalfoz.set item_costhalfozUP
 		items_page.store_item_costoneoz.set item_costozUP
+		items_page.store_item_costperunit.set item_costperunitUP
+		
 
 		items_page.save_store_item_button.click
 
@@ -175,6 +181,8 @@ feature "store item edit and add" , :js => true do
 		expect(items_page.store_item_costquarteroz.value).to have_text(item_costquarterUP)
 		expect(items_page.store_item_costhalfoz.value).to have_text(item_costhalfozUP)
 		expect(items_page.store_item_costoneoz.value).to have_text(item_costozUP)
+		expect(items_page.store_item_costperunit.value).to have_text(item_costperunitUP)
+		
 
 
   	end

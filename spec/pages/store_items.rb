@@ -21,6 +21,7 @@ class StoreItemsPage < SitePrism::Page
 	element :store_item_costquarteroz, '#store_item_costquarteroz'
 	element :store_item_costhalfoz, '#store_item_costhalfoz'
 	element :store_item_costoneoz, '#store_item_costoneoz'
+	element :store_item_costperunit, '#store_item_costperunit'
 
 	element :store_item_dogo, "#store_item_dogo"
 
