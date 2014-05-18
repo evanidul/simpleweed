@@ -42,6 +42,9 @@ gem 'cancancan', '~> 1.7'
 # roles per model (ie, this user is the store manager for Store #5)
 gem "rolify"
 
+# test coverage : https://github.com/colszowka/simplecov
+gem 'simplecov', :require => false, :group => :test
+
 group :development, :test do
   # automated testing
   gem 'rspec-rails', '~> 3.0.0.beta'
