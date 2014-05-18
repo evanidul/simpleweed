@@ -1,0 +1,24 @@
+<p>
+<% @store_reviews.each do |store_review| %>
+	<h4>
+		<%= store_review.user.username %>
+		<small><%= store_review.created_at %></small>
+		<div class="star-rank" style="float:right;">
+			<span class="glyphicon glyphicon-star"></span>
+			<span class="glyphicon glyphicon-star"></span>
+			<span class="glyphicon glyphicon-star"></span>
+			<span class="glyphicon glyphicon-star"></span>
+			<span class="glyphicon glyphicon-star"></span>		
+		</div>
+	</h4>			
+
+	<div class="btn-group-vertical review-vote-controls">
+		<button type="button" class="btn btn-default"><div class="glyphicon glyphicon-chevron-up"></div></button>
+		<div> 
+			<div class="review-votes">0 </div>
+		</div>
+		<button type="button" class="btn btn-default"><div class="glyphicon glyphicon-chevron-down"></div></button>		
+	</div>
+	<%= store_review.review %>
+<% end %>
+</p>

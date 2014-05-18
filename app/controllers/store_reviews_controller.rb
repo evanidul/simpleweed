@@ -14,7 +14,9 @@ class StoreReviewsController < ApplicationController
 
 	def create		
 		@store_review =  @store.store_reviews.create(store_review_params)		
+		@store_review.user = current_user
 		@store_review.save
+		flash[:notice] = "Thank you for submitting your review."
 		redirect_to store_path(@store)
 	end
 
