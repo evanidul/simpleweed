@@ -10,7 +10,7 @@ require 'pages/search_results_stores'
 require 'pages/store_search_preview.rb'
 require 'pages/store_claim.rb'
 
-feature "login page" , :js => true do
+feature "claim store spec" , :js => true do
 	
   before :each do
     if ENV['TARGETBROWSER'] == "chrome"
