@@ -83,7 +83,7 @@ feature "store item edit and add" , :js => true do
 		# edit menu		
 		store_page.edit_store_items.click
 
-		items_page = StoreItemsPage.new
+		items_page = StoreItemsPage.new		
 		expect(items_page.store_name.text).to have_text(@store_name)
 		items_page.add_store_item_button.click
 

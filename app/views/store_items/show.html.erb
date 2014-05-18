@@ -1,11 +1,10 @@
 <div class="modal-dialog">
   <div class="modal-content">
     <!-- <div class="modal-header"> -->
-    	<ul class="nav nav-tabs">
-  <li class="active"><a href="#info" data-toggle="tab">Info</a></li>
-  <li><a href="#reviews" data-toggle="tab">Reviews</a></li>
-  
-</ul>
+	<ul class="nav nav-tabs">
+  		<li class="active"><a href="#info" data-toggle="tab">Info</a></li>
+  		<li><a href="#reviews" data-toggle="tab">Reviews</a></li>  
+	</ul>
 
       
     <!-- </div> -->
@@ -126,10 +125,9 @@
   </div> <!-- modal-content -->
 </div>    
 <script>
-$('#item-preview-tab-content a').click(function (e) {
+//be careful with css selector.  If you remove .nav-tabs, it'll disable all the links in the tab panels.
+$('#item-preview-tab-content .nav-tabs a').click(function (e) {
   e.preventDefault()
-  $(this).tab('show')
-
-  //$('#myTab a[href="#profile"]').tab('show') // Select tab by name
+  $(this).tab('show')  
 })
 </script>

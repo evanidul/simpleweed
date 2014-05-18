@@ -1,0 +1,121 @@
+<% if  @store.description && !@store.description.empty?  %>			
+	<div class="header-and-edit-link">
+		<h4 class = "inline-header">Description </h4>			
+		<% if @role_service.canManageStore(current_user, @store) %>
+			<%= link_to 'Edit', edit_description_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_description_store_path(@store)} , id: "edit-description-link", class: "edit-store-link",
+				 "data-content"=>"<span id='edit-links-tip'>Edit links are now available for you to manage your store.</span>"
+			 %>				 
+			 <% if params[:show_edit_popover] == "true" %>				 
+				 <script>				 
+				 $(function () {
+					  $('#edit-description-link').popover({ 
+					    html : true,
+					    placement : "left"
+					  }).popover('show');
+					});
+				 </script>
+			 <% end %> <!-- show pop up? -->
+		<% end %> <!-- if store manager -->
+	</div>
+	<p id="description">				
+		<%= raw @store.description %>								
+	</p> 
+<% end %>
+	
+		
+<div class="header-and-edit-link">
+	<h4 class = "inline-header">First Time Patient Deals </h4>
+	<% if @role_service.canManageStore(current_user, @store) %>						
+		<%= link_to 'Edit', edit_firsttimepatientdeals_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_firsttimepatientdeals_store_path(@store)} , id: "edit-first-time-patient-deals-link" , class: "edit-store-link"%>
+	<%end %>
+</div>
+<p id="first-time-patient-deals">
+	<% if  @store.firsttimepatientdeals && !@store.firsttimepatientdeals.empty?  %>
+		<%= raw @store.firsttimepatientdeals %>
+	<% else %>
+		None.
+	<% end %>
+</p>
+		
+
+<h3 class= "inline-header">Menu</h3>
+<% if @role_service.canManageStore(current_user, @store) %>		  	  		
+	<%= link_to 'Edit', store_store_items_path(@store), class: 'store-edit-link' , id: "edit_store_items" , class: "edit-store-link", 'data-no-turbolink' => true%>	
+	</br></br>
+<% end %>
+		
+<div id="accordion">			
+	<% @grouped_store_items.each do |category, store_items| %>
+		<h3><%= category %></h3>
+		<div> <!-- empty div required for jquery accordion -->			
+			<div id="table_<%= category %>" ></div>
+
+<script>
+	(function drawTable() {
+	  var pricePerUnit = "<%=  store_items.first.costperunit %>";
+	  var data = new google.visualization.DataTable();
+
+	  if(pricePerUnit > 0) {
+		  data.addColumn('string', '');	  
+		  data.addColumn('string', 'each');
+	  } else {
+		  data.addColumn('string', '');	  
+		  data.addColumn('string', '1g');
+		  data.addColumn('string', '1/8');
+		  data.addColumn('string', '1/4');
+		  data.addColumn('string', '1/2');
+		  data.addColumn('string', '1 oz');
+	  }
+
+	  
+      
+        <% store_items.each do |store_item| %>
+		    if (pricePerUnit > 0) {
+		    	data.addRow(['<%= link_to store_item.name, store_store_item_path(@store, store_item),  data: { toggle: "modal", target: "#modal" , remote: store_store_item_path(@store, store_item)} %>','<%= store_item.costperunit %>'])
+		    } else {
+		    	data.addRow(['<%= link_to store_item.name, store_store_item_path(@store, store_item),  data: { toggle: "modal", target: "#modal" , remote: store_store_item_path(@store, store_item)} %>','<%= store_item.costonegram %>','<%= store_item.costeighthoz %>',
+		     	'<%= store_item.costquarteroz %>','<%= store_item.costhalfoz %>','<%= store_item.costoneoz %>']);		    	
+		    }
+  		<% end %>      
+
+
+      var table = new google.visualization.Table(document.getElementById("table_<%= category %>"));
+      
+ 	  var cssClassNames = {headerRow: "simple-weed-google-table-header", headerCell: "simple-weed-google-table-header-cell"};
+      table.draw(data, {showRowNumber: false, allowHtml: true, cssClassNames: cssClassNames, width: '749px'});
+      
+      
+      google.visualization.events.addListener(table, 'sort', setWidth);
+      setWidth();
+      google.visualization.events.addListener(table, 'select', selectHandler);
+      function selectHandler(e) {
+        var selection = table.getSelection();         /** gets everything that's selected **/
+        var item = selection[0];                      /** we only support selecting one at this time, if more than one is selected, we'll just use the first    item **/			        
+        var str = data.getFormattedValue(item.row, 0); /** gets the link stored in the first column of the selected row, ie <a data-remote="/students/29" data-                                                   target="#modal" data-toggle="modal" href="/students/29">Davvy</a>  **/			        
+        var target = $(str).attr("href");   /** from that string, only extract the href attr **/
+        
+        $("#modal").load(target, function() {   /** and load that href into the modal.  This is similar to the modal code in application.html.erb **/
+          $("#modal").modal("show"); 
+        });
+      }
+	})();
+
+	function setWidth() {
+	  var title = "Name";
+      var width = "400px";
+      $('.google-visualization-table-th:contains(' + title + ')').css('width', width);
+	}
+</script>
+		</div>	 <!-- empty div required for jquery accordion -->
+		
+	<% end %> <!-- end of grouped_store_items -->
+
+</div> <!-- #accordion -->
+<script>
+$(function() {
+	$( "#accordion" ).accordion({
+	  heightStyle: "content", //allows divs to be different height.  Very important
+	  collapsible: true, 	//allows all elements to be collabsible		      
+	});
+});
+</script>
