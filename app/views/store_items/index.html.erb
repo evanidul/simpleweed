@@ -1,4 +1,5 @@
-<h2><%= link_to @store.name, store_path(@store) , 'data-no-turbolink' => true %> Item Menu</h2>
+<h2 id="store_name"><%= link_to @store.name, store_path(@store) , 'data-no-turbolink' => true %> </h2>
+<h3>Item Menu</h3>
 
 <% content_for :head do %>
   <script type='text/javascript' src='https://www.google.com/jsapi'></script>
