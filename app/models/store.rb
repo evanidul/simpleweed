@@ -1,5 +1,7 @@
 class Store < ActiveRecord::Base
 	has_many :store_items
+	has_many :store_reviews
+	
 	validates :name, presence: true
 	# these next two lines cause data:importMenuItems to be really slow.
 	# I'm guessing since it creates new stores, it's generating api requests to 

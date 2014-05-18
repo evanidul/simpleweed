@@ -36,8 +36,8 @@
 			</div>	
 
 			
-			<span class="write-review-button">
-				<%= link_to 'Write a Review', store_path(@store), class: 'btn btn-primary' , id: "write-review-button" %>
+			<span class="write-review-button">				
+				<%= link_to 'Write a Review', new_store_store_review_path(@store) , data: { toggle: "modal", target: "#modal", remote: new_store_store_review_path(@store)} , id: "write-review-button" , class: "btn btn-primary" %>
 			</span>	
 			<% if @role_service.findStoreOwnerForStore(@store).size < 1 %>
 				<span class="claim-store-button">
