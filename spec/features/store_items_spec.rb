@@ -92,7 +92,7 @@ feature "store item edit and add" , :js => true do
 		item_description = "It's so weedy."
 		item_thc = "5.2"
 		item_cbd = "5.20"
-		item_cbn = "5.200"
+		item_cbn = "5.15"
 		item_costhalfgram = "10"
 		item_costgram = "20"
 		item_costeighth = "50"
@@ -114,7 +114,24 @@ feature "store item edit and add" , :js => true do
 
 		items_page.save_store_item_button.click
 
+		# back to item list
+    	expect(items_page.firstSearchResult_item_name.text).to have_text(item_name)
+    	items_page.firstSearchResult_item_name.click
 
+		# verify values    	
+    	expect(items_page.store_item_name.value).to have_text(item_name)
+    	expect(items_page.store_item_description.value).to have_text(item_description)
+		expect(items_page.thc.value).to have_text(item_thc)
+		expect(items_page.cbd.value).to have_text("5.2") # trailing 0 gets dropped
+		expect(items_page.cbn.value).to have_text(item_cbn)
+		expect(items_page.store_item_costhalfgram.value).to have_text(item_costhalfgram)
+		expect(items_page.store_item_costonegram.value).to have_text(item_costgram)
+		expect(items_page.store_item_costeighthoz.value).to have_text(item_costeighth)
+		expect(items_page.store_item_costquarteroz.value).to have_text(item_costquarter)
+		expect(items_page.store_item_costhalfoz.value).to have_text(item_costhalfoz)
+		expect(items_page.store_item_costoneoz.value).to have_text(item_costoz)
+		
+		
 
   	end
   

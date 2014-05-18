@@ -4,6 +4,10 @@ class StoreItemsPage < SitePrism::Page
 	element :store_name, "#store_name"
 	element :add_store_item_button, "#new_store_item"
 
+	element :firstSearchResult_row, "#table_div > div > div > table > tbody > tr:nth-child(2)"
+	element :firstSearchResult_item_name, "#table_div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(1)"
+
+
 	# add item panel
 	element :store_item_name, '#store_item_name'
 	element :store_item_description, '#store_item_description'
