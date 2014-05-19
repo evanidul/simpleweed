@@ -8,8 +8,56 @@
     <%= f.text_field :description, :class => 'form-control' , :required => true   %>
   </p>   
   <%= f.select :strain ,[['indica','indica'],['sativa','sativa'],['hybrid','hybrid']], {include_blank: 'select strain'} %>
+  
   <%= f.select :maincategory ,[['flower','flower'], ['concentrate','concentrate'], ['edible','edible'], ['pre-roll','pre-roll'], 
   								['other','other'], ['accessory','accessory']], {include_blank: 'select category' }, :required => true  %>
+  
+  <%= f.select :subcategory, [
+  				['bud','bud',{:class => 'flower'}],  
+  				['shake','shake',{:class => 'flower'}],
+  				['trim','trim',{:class => 'flower'}],
+
+  				['wax','wax',{:class => 'concentrate'}],
+  				['hash','hash',{:class => 'concentrate'}],
+  				['budder/earwar/honeycomb/supermelt','budder/earwar/honeycomb/supermelt',{:class => 'concentrate'}],
+  				['bubble hash/full melt/ice wax','bubble hash/full melt/ice wax',{:class => 'concentrate'}],
+  				['ISO hash','ISO hash',{:class => 'concentrate'}],
+  				['kief/dry sieve','kief/dry sieve',{:class => 'concentrate'}],
+  				['shatter/amberglass','shatter/amberglass',{:class => 'concentrate'}],
+  				['scissor/finger hash','scissor/finger hash',{:class => 'concentrate'}],
+  				['oil/cartridge','oil/cartridge',{:class => 'concentrate'}],
+
+  				['baked','baked',{:class => 'edible'}],
+  				['candy/chocolate','candy/chocolate',{:class => 'edible'}],
+  				['cooking','cooking',{:class => 'edible'}],
+  				['drink','drink',{:class => 'edible'}],
+  				['frozen','frozen',{:class => 'edible'}],
+  				['other','other',{:class => 'edible'}],
+
+  				['blunt','blunt',{:class => 'pre-roll'}],
+  				['joint','joint',{:class => 'pre-roll'}],
+
+  				['clones','clones',{:class => 'other'}],
+  				['seeds','seeds',{:class => 'other'}],
+  				['oral','oral',{:class => 'other'}],
+  				['topical','topical',{:class => 'other'}],
+
+  				['bong/pipe','bong/pipe',{:class => 'accessory'}],
+  				['bong/pipe accessories','bong/pipe accessories',{:class => 'accessory'}],
+  				['book/magazine','book/magazine',{:class => 'accessory'}],
+  				['butane/lighter','butane/lighter',{:class => 'accessory'}],
+  				['cleaning','cleaning',{:class => 'accessory'}],
+  				['clothes','clothes',{:class => 'accessory'}],
+  				['grinder','grinder',{:class => 'accessory'}],
+  				['other','other',{:class => 'accessory'}],
+  				['paper/wrap','paper/wrap',{:class => 'accessory'}],
+  				['storage','storage',{:class => 'accessory'}],
+  				['vape','vape',{:class => 'accessory'}],
+  				['vape accessories','vape accessories',{:class => 'accessory'}]
+
+  			]  , {include_blank: 'select subcategory' }, :required => true  %>
+
+
   <h4>Lab Information</h4>          
   <table id="lab-information">
   	<tr>
@@ -77,7 +125,10 @@
     <%= f.check_box :dogo, {}, "true","false" %>
   </p>
 
-  
+  <script>
+  	/** chain the two category drop downs together **/
+	$("#store_item_subcategory").chained("#store_item_maincategory");
+  </script>
 
   <p class = "form-group pull-right">               
     <button id="close-button" type="button" class="btn btn-default" data-dismiss="modal">Close</button>

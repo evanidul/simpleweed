@@ -3,6 +3,8 @@
 
 <% content_for :head do %>
   <script type='text/javascript' src='https://www.google.com/jsapi'></script>
+  <!-- allows dropdowns to be linked to selects on other dropdowns, ie cat and sub categories -->
+  <% javascript_include_tag "jquery.chained.min.js" %>
   <script type='text/javascript'>
     google.load('visualization', '1', {packages:['table']});
     // google.setOnLoadCallback(drawTable);
