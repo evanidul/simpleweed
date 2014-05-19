@@ -268,13 +268,24 @@ feature "store item edit and add" , :js => true do
 
 			items_page.save_store_item_button.click
 
-			# back to item list
-	    	expect(items_page.firstSearchResult_item_name.text).to have_text(item_name)
+			# back to item list			
+	    	#expect(items_page.firstSearchResult_item_name.text).to have_text(item_name)
 	    	row_links = items_page.row_links
 
 	    	#items_page.searchresults[index].click
-	    	items_page.searchresults.first.click # most recently added will be on top?
+	    	#items_page.searchresults.first.click # most recently added will be on top?
+	    	 
+	    	items_page.searchresults.each {|item_link| 
+	    		
+	    		if item_link.text.include? item_name
+	    			item_link.click
+	    			break
+	    		end
 
+	    	}
+
+	    		
+	    	
 	    	# items_page.firstSearchResult_item_name.click
 
 			# verify values    	
