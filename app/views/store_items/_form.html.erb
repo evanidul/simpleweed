@@ -7,6 +7,7 @@
     <%= f.label :description,  "Description"  %><br>
     <%= f.text_field :description, :class => 'form-control' , :required => true   %>
   </p>   
+  <%= f.select :strain ,[['Indica','indica'],['Sativa','sativa'],['Hybrid','hybrid']], {include_blank: 'Select Strain'} %>
   <h4>Lab Information</h4>          
   <table id="lab-information">
   	<tr>

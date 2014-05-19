@@ -2,6 +2,7 @@ class StoreReviewsController < ApplicationController
 
 	before_filter :load_store
 
+	# dvu: do we need this?  Reviews being shown on the store page...not here really.
 	def index
 		@store_reviews = @store.store_reviews;		
 	end

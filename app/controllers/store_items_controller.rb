@@ -13,10 +13,8 @@ class StoreItemsController < ApplicationController
 		render layout: false		
 	end
 
-	def create
-		# @store = Store.find(store_item_params[:store_id])
-		@store_item =  @store.store_items.create(store_item_params)
-		# @store_item = StoreItem.new(store_item_params)
+	def create		
+		@store_item =  @store.store_items.create(store_item_params)		
 		@store_item.save
 		redirect_to :action => 'index'  			
 	end
@@ -49,7 +47,7 @@ private
 private 
 	def store_item_params
 		params.require(:store_item).permit(:name, :store_id, :description, :thc, :cbd, :cbn, :costhalfgram, :costonegram, :costeighthoz, :costquarteroz,
-			:costhalfoz, :costoneoz, :costperunit, :dogo)		
+			:costhalfoz, :costoneoz, :costperunit, :dogo, :strain)		
 	end		
 
 end
