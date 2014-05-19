@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140519060013) do
+ActiveRecord::Schema.define(version: 20140519121138) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,12 @@ ActiveRecord::Schema.define(version: 20140519060013) do
     t.string   "maincategory"
     t.string   "strain"
     t.string   "subcategory"
+    t.string   "cultivation"
+    t.boolean  "privatereserve"
+    t.boolean  "topshelf"
+    t.boolean  "supersize"
+    t.boolean  "glutenfree"
+    t.boolean  "sugarfree"
   end
 
   add_index "store_items", ["store_id"], name: "index_store_items_on_store_id", using: :btree

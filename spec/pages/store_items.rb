@@ -33,8 +33,15 @@ class StoreItemsPage < SitePrism::Page
 	element :store_item_maincategory, '#store_item_maincategory'
 	element :store_item_subcategory, '#store_item_subcategory'
 
+	# Misc Attributes
+	element :store_item_privatereserve, '#store_item_privatereserve' 
+	element :store_item_topshelf, '#store_item_topshelf'
 	element :store_item_dogo, "#store_item_dogo"
+	element :store_item_supersize, '#store_item_supersize'
+	element :store_item_glutenfree, '#store_item_glutenfree'
+	element :store_item_sugarfree, '#store_item_sugarfree'
 
+	# save & close
 	element :save_store_item_button, "#save_store_item"
 	element :close_button, "#close-button"
 
