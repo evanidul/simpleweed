@@ -204,31 +204,87 @@ feature "store item edit and add" , :js => true do
     	page.visit(store_path(@store))
     	store_page = StorePage.new
 
-		# edit menu		
-		store_page.edit_store_items.click
+    	categoryset =[
+  				['bud','flower'],  
+  				['shake','flower'],
+  				['trim','flower'],
 
-		items_page = StoreItemsPage.new		
-		expect(items_page.store_name.text).to have_text(@store_name)
-		items_page.add_store_item_button.click
+  				['wax','concentrate'],
+  				['hash','concentrate'],
+  				['budder/earwar/honeycomb/supermelt', 'concentrate'],
+  				['bubble hash/full melt/ice wax','concentrate'],
+  				['ISO hash','concentrate'],
+  				['kief/dry sieve','concentrate'],
+  				['shatter/amberglass','concentrate'],
+  				['scissor/finger hash','concentrate'],
+  				['oil/cartridge','concentrate'],
 
-		# add new item
-		item_name = "Weedy"
-		items_page.store_item_name.set item_name
-		items_page.store_item_strain.select 'sativa'
-		items_page.store_item_maincategory.select 'flower'
-		items_page.store_item_subcategory.select 'shake'
+  				['baked','edible'],
+  				['candy/chocolate', 'edible'],
+  				['cooking', 'edible'],
+  				['drink','edible'],
+  				['frozen','edible'],
+  				['other','edible'],
 
-		items_page.save_store_item_button.click
+  				['blunt','pre-roll'],
+  				['joint','pre-roll'],
 
-		# back to item list
-    	expect(items_page.firstSearchResult_item_name.text).to have_text(item_name)
-    	items_page.firstSearchResult_item_name.click
+  				['clones','other'],
+  				['seeds','other'],
+  				['oral','other'],
+  				['topical','other'],
 
-		# verify values    	
-    	expect(items_page.store_item_name.value).to have_text(item_name)
-		expect(items_page.store_item_strain.value).to have_text('sativa')	
-		expect(items_page.store_item_maincategory.value).to have_text('flower')
-		expect(items_page.store_item_subcategory.value).to have_text('shake')	
+  				['bong/pipe','accessory'],
+  				['bong/pipe accessories','accessory'],
+  				['book/magazine','accessory'],
+  				['butane/lighter','accessory'],
+  				['cleaning','accessory'],
+  				['clothes','accessory'],
+  				['grinder','accessory'],
+  				['other','accessory'],
+  				['paper/wrap','accessory'],
+  				['storage','accessory'],
+  				['vape','accessory'],
+  				['vape accessories','accessory']
+  			]
+
+  		#categoryset.each do |categorypair|
+  		categoryset.each_with_index {|val, index| 
+  			#puts "#{val} => #{index}" 
+			# edit menu		
+			#store_page.edit_store_items.click
+			page.visit(store_store_items_path(@store))
+
+			items_page = StoreItemsPage.new		
+			expect(items_page.store_name.text).to have_text(@store_name)
+			items_page.add_store_item_button.click
+
+			# add new item
+			item_name = val[1] + ":" + val[0]
+			items_page.store_item_name.set item_name
+			items_page.store_item_strain.select 'sativa'
+			items_page.store_item_maincategory.select val[1]
+			items_page.store_item_subcategory.select val[0]
+
+			items_page.save_store_item_button.click
+
+			# back to item list
+	    	expect(items_page.firstSearchResult_item_name.text).to have_text(item_name)
+	    	row_links = items_page.row_links
+
+	    	#items_page.searchresults[index].click
+	    	items_page.searchresults.first.click # most recently added will be on top?
+
+	    	# items_page.firstSearchResult_item_name.click
+
+			# verify values    	
+	    	expect(items_page.store_item_name.value).to have_text(item_name)
+			expect(items_page.store_item_strain.value).to have_text('sativa')	
+			expect(items_page.store_item_maincategory.value).to have_text(val[1])
+			expect(items_page.store_item_subcategory.value).to have_text(val[0])	
+
+		}
+		#end # categoryset.each
 
 	end
 

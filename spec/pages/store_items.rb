@@ -7,6 +7,11 @@ class StoreItemsPage < SitePrism::Page
 	element :firstSearchResult_row, "#table_div > div > div > table > tbody > tr:nth-child(2)"
 	element :firstSearchResult_item_name, "#table_div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(1)"
 
+	elements :searchresults, "#table_div > div > div > table > tbody > tr > td:nth-child(1) > a"
+
+	def row_links
+	    searchresults.map {|row| row['data-remote']}
+	end
 
 	# add item panel
 	element :store_item_name, '#store_item_name'
