@@ -23,6 +23,11 @@ class StoreItemsPage < SitePrism::Page
 	element :store_item_costoneoz, '#store_item_costoneoz'
 	element :store_item_costperunit, '#store_item_costperunit'
 
+	# categories & strain
+	element :store_item_strain, '#store_item_strain'
+	element :store_item_maincategory, '#store_item_maincategory'
+	element :store_item_subcategory, '#store_item_subcategory'
+
 	element :store_item_dogo, "#store_item_dogo"
 
 	element :save_store_item_button, "#save_store_item"

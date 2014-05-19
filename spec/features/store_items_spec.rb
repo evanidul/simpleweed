@@ -41,7 +41,7 @@ feature "store item edit and add" , :js => true do
 		@store_ca = "CA"
 		@store_zip = "92122"
 		@store = Store.new(:name => @store_name , :addressline1 => @store_addressline1, :city => @store_city, :state => @store_ca, :zip => @store_zip)
-		@store.save
+		@store.save		
 	end
 
 	# saving a store and loading that store in store item menu page can lead to a race condition.  since store.save returns before
@@ -114,6 +114,10 @@ feature "store item edit and add" , :js => true do
 		items_page.store_item_costoneoz.set item_costoz
 		items_page.store_item_costperunit.set item_perunit
 
+		items_page.store_item_strain.select 'indica'
+		items_page.store_item_maincategory.select 'flower'
+		items_page.store_item_subcategory.select 'bud'
+
 		items_page.save_store_item_button.click
 
 		# back to item list
@@ -132,7 +136,12 @@ feature "store item edit and add" , :js => true do
 		expect(items_page.store_item_costquarteroz.value).to have_text(item_costquarter)
 		expect(items_page.store_item_costhalfoz.value).to have_text(item_costhalfoz)
 		expect(items_page.store_item_costoneoz.value).to have_text(item_costoz)
-		expect(items_page.store_item_costperunit.value).to have_text(item_perunit)		
+		expect(items_page.store_item_costperunit.value).to have_text(item_perunit)	
+
+		expect(items_page.store_item_strain.value).to have_text('indica')	
+		expect(items_page.store_item_maincategory.value).to have_text('flower')
+		expect(items_page.store_item_subcategory.value).to have_text('bud')		
+			
 		
 		# change values	
 		item_nameUP = "weedy 2 up"
@@ -182,11 +191,45 @@ feature "store item edit and add" , :js => true do
 		expect(items_page.store_item_costhalfoz.value).to have_text(item_costhalfozUP)
 		expect(items_page.store_item_costoneoz.value).to have_text(item_costozUP)
 		expect(items_page.store_item_costperunit.value).to have_text(item_costperunitUP)
-		
-
 
   	end
-  
 
+	scenario "create a store, add some items: categories" do
+		page.visit("/users/sign_in")
+		login_page = LoginPage.new
+		login_page.username_input.set @adminemail
+    	login_page.username_password_input.set @adminpassword
+    	login_page.sign_in_button.click
+
+    	page.visit(store_path(@store))
+    	store_page = StorePage.new
+
+		# edit menu		
+		store_page.edit_store_items.click
+
+		items_page = StoreItemsPage.new		
+		expect(items_page.store_name.text).to have_text(@store_name)
+		items_page.add_store_item_button.click
+
+		# add new item
+		item_name = "Weedy"
+		items_page.store_item_name.set item_name
+		items_page.store_item_strain.select 'sativa'
+		items_page.store_item_maincategory.select 'flower'
+		items_page.store_item_subcategory.select 'shake'
+
+		items_page.save_store_item_button.click
+
+		# back to item list
+    	expect(items_page.firstSearchResult_item_name.text).to have_text(item_name)
+    	items_page.firstSearchResult_item_name.click
+
+		# verify values    	
+    	expect(items_page.store_item_name.value).to have_text(item_name)
+		expect(items_page.store_item_strain.value).to have_text('sativa')	
+		expect(items_page.store_item_maincategory.value).to have_text('flower')
+		expect(items_page.store_item_subcategory.value).to have_text('shake')	
+
+	end
 
 end

@@ -5,7 +5,7 @@
   </p>             
   <p class = "form-group">
     <%= f.label :description,  "Description"  %><br>
-    <%= f.text_field :description, :class => 'form-control' , :required => true   %>
+    <%= f.text_field :description, :class => 'form-control'    %>
   </p>   
   <%= f.select :strain ,[['indica','indica'],['sativa','sativa'],['hybrid','hybrid']], {include_blank: 'select strain'} %>
   
@@ -55,7 +55,7 @@
   				['vape','vape',{:class => 'accessory'}],
   				['vape accessories','vape accessories',{:class => 'accessory'}]
 
-  			]  , {include_blank: 'select subcategory' }, :required => true  %>
+  			]  , {include_blank: 'select subcategory' }  %>
 
 
   <h4>Lab Information</h4>          
