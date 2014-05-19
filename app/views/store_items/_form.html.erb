@@ -120,29 +120,63 @@
 	  </tr>
 	</table>  	
 
-  <p class = "form-group" id="dogo">
-    <%= f.check_box :privatereserve, {}, "true","false" %>
-    <%= f.label :privatereserve, "private reserve" %><br/>
-    
-    <%= f.check_box :topshelf, {}, "true","false" %>
-	<%= f.label :topshelf, "top shelf" %><br>
-    
-	<%= f.check_box :dogo, {}, "true","false" %>
-    <%= f.label :dogo, "b.o.g.o" %><br>
-    
-	<%= f.check_box :supersize, {}, "true","false" %>
-    <%= f.label :supersize, "super-size" %><br>
-    
-	<%= f.check_box :glutenfree, {}, "true","false" %>
-	<%= f.label :glutenfree, "gluten-free" %><br>
-    
-	<%= f.check_box :sugarfree, {}, "true","false" %>
-    <%= f.label :sugarfree, "sugar-free" %><br>
-    
+	<table>
+		<tr>
+			<th>cultivation</th>
+			<th>misc.</th>
+		</tr>
+		<tr>
+			<td>
+				<p class = "form-group vertical" id="cultivation">
+					<div>
+						<%= f.radio_button(:cultivation, "") %>
+				    	<%= label_tag("none", "none") %>
+				    </div>
+					<div>
+				        <%= f.radio_button(:cultivation, "indoor") %>
+				        <%= label_tag("indoor", "indoor") %>
+					</div>
+					<div>
+						<%= f.radio_button(:cultivation, "outdoor") %>
+				    	<%= label_tag("outdoor", "outdoor") %>
+				    </div>
+				    <div>
+				    	<%= f.radio_button(:cultivation, "hydroponic") %>
+				    	<%= label_tag("hydroponic", "hydroponic") %>
+				    </div>
+					<div>        	
+				    	<%= f.radio_button(:cultivation, "greenhouse") %>
+				    	<%= label_tag("greenhouse", "greenhouse") %>
+				    </div>
+				    <div>
+						<%= f.radio_button(:cultivation, "organic") %>
+				    	<%= label_tag("organic", "organic") %>        
+				    </div>
+				</p>
+			</td>
+			<td>
+				<p class = "form-group" id="dogo">
+					<%= f.check_box :privatereserve, {}, "true","false" %>
+					<%= f.label :privatereserve, "private reserve" %><br/>
 
+					<%= f.check_box :topshelf, {}, "true","false" %>
+					<%= f.label :topshelf, "top shelf" %><br>
 
-     
-  </p>
+					<%= f.check_box :dogo, {}, "true","false" %>
+					<%= f.label :dogo, "b.o.g.o" %><br>
+
+					<%= f.check_box :supersize, {}, "true","false" %>
+					<%= f.label :supersize, "super-size" %><br>
+
+					<%= f.check_box :glutenfree, {}, "true","false" %>
+					<%= f.label :glutenfree, "gluten-free" %><br>
+
+					<%= f.check_box :sugarfree, {}, "true","false" %>
+					<%= f.label :sugarfree, "sugar-free" %><br>
+				</p>
+			</td>
+		</tr>
+	</table>
 
   <script>
   	/** chain the two category drop downs together **/

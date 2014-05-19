@@ -347,8 +347,136 @@ feature "store item edit and add" , :js => true do
 		items_page.store_item_supersize.should be_checked
 		items_page.store_item_glutenfree.should be_checked
 		items_page.store_item_sugarfree.should be_checked
-
-
     end
 
+	scenario "create a store, add some items: cultivation" do
+		page.visit("/users/sign_in")
+		login_page = LoginPage.new
+		login_page.username_input.set @adminemail
+    	login_page.username_password_input.set @adminpassword
+    	login_page.sign_in_button.click
+
+    	page.visit(store_path(@store))
+    	store_page = StorePage.new
+
+		page.visit(store_store_items_path(@store))
+
+		items_page = StoreItemsPage.new		
+		expect(items_page.store_name.text).to have_text(@store_name)
+		items_page.add_store_item_button.click
+
+		# add new item
+		item_name = "weedy"
+		items_page.store_item_name.set item_name
+		items_page.store_item_strain.select 'sativa'
+		items_page.store_item_maincategory.select "flower"
+		items_page.store_item_subcategory.select "bud"
+		items_page.store_item_cultivation_none.set true
+
+		items_page.save_store_item_button.click
+
+		# back to item list
+    	expect(items_page.firstSearchResult_item_name.text).to have_text(item_name)	    	    	
+    	items_page.searchresults.first.click # most recently added will be on top?
+
+		# verify values    	
+    	expect(items_page.store_item_name.value).to have_text(item_name)
+		expect(items_page.store_item_strain.value).to have_text('sativa')	
+		items_page.store_item_cultivation_none.should be_checked
+		items_page.store_item_cultivation_indoor.should_not be_checked
+		items_page.store_item_cultivation_outdoor.should_not be_checked
+		items_page.store_item_cultivation_hydroponic.should_not be_checked
+		items_page.store_item_cultivation_greenhouse.should_not be_checked
+		items_page.store_item_cultivation_organic.should_not be_checked		
+
+    	# update
+		items_page.store_item_cultivation_indoor.set true
+		items_page.save_store_item_button.click
+
+		# back to item list
+    	expect(items_page.firstSearchResult_item_name.text).to have_text(item_name)	    	    	
+    	items_page.searchresults.first.click # most recently added will be on top?
+	
+		# verify values    	
+    	expect(items_page.store_item_name.value).to have_text(item_name)
+		expect(items_page.store_item_strain.value).to have_text('sativa')	
+		items_page.store_item_cultivation_none.should_not be_checked
+		items_page.store_item_cultivation_indoor.should be_checked
+		items_page.store_item_cultivation_outdoor.should_not be_checked
+		items_page.store_item_cultivation_hydroponic.should_not be_checked
+		items_page.store_item_cultivation_greenhouse.should_not be_checked
+		items_page.store_item_cultivation_organic.should_not be_checked		
+
+		# update
+		items_page.store_item_cultivation_outdoor.set true
+		items_page.save_store_item_button.click
+
+		# back to item list
+    	expect(items_page.firstSearchResult_item_name.text).to have_text(item_name)	    	    	
+    	items_page.searchresults.first.click # most recently added will be on top?
+	
+		# verify values    	
+    	expect(items_page.store_item_name.value).to have_text(item_name)
+		expect(items_page.store_item_strain.value).to have_text('sativa')	
+		items_page.store_item_cultivation_none.should_not be_checked
+		items_page.store_item_cultivation_indoor.should_not be_checked
+		items_page.store_item_cultivation_outdoor.should be_checked
+		items_page.store_item_cultivation_hydroponic.should_not be_checked
+		items_page.store_item_cultivation_greenhouse.should_not be_checked
+		items_page.store_item_cultivation_organic.should_not be_checked	
+
+		# update
+		items_page.store_item_cultivation_hydroponic.set true
+		items_page.save_store_item_button.click
+
+		# back to item list
+    	expect(items_page.firstSearchResult_item_name.text).to have_text(item_name)	    	    	
+    	items_page.searchresults.first.click # most recently added will be on top?
+	
+		# verify values    	
+    	expect(items_page.store_item_name.value).to have_text(item_name)
+		expect(items_page.store_item_strain.value).to have_text('sativa')	
+		items_page.store_item_cultivation_none.should_not be_checked
+		items_page.store_item_cultivation_indoor.should_not be_checked
+		items_page.store_item_cultivation_outdoor.should_not be_checked
+		items_page.store_item_cultivation_hydroponic.should be_checked
+		items_page.store_item_cultivation_greenhouse.should_not be_checked
+		items_page.store_item_cultivation_organic.should_not be_checked	
+	
+		# update
+		items_page.store_item_cultivation_greenhouse.set true
+		items_page.save_store_item_button.click
+
+		# back to item list
+    	expect(items_page.firstSearchResult_item_name.text).to have_text(item_name)	    	    	
+    	items_page.searchresults.first.click # most recently added will be on top?
+	
+		# verify values    	
+    	expect(items_page.store_item_name.value).to have_text(item_name)
+		expect(items_page.store_item_strain.value).to have_text('sativa')	
+		items_page.store_item_cultivation_none.should_not be_checked
+		items_page.store_item_cultivation_indoor.should_not be_checked
+		items_page.store_item_cultivation_outdoor.should_not be_checked
+		items_page.store_item_cultivation_hydroponic.should_not be_checked
+		items_page.store_item_cultivation_greenhouse.should be_checked
+		items_page.store_item_cultivation_organic.should_not be_checked	
+
+		# update
+		items_page.store_item_cultivation_organic.set true
+		items_page.save_store_item_button.click
+
+		# back to item list
+    	expect(items_page.firstSearchResult_item_name.text).to have_text(item_name)	    	    	
+    	items_page.searchresults.first.click # most recently added will be on top?
+	
+		# verify values    	
+    	expect(items_page.store_item_name.value).to have_text(item_name)
+		expect(items_page.store_item_strain.value).to have_text('sativa')	
+		items_page.store_item_cultivation_none.should_not be_checked
+		items_page.store_item_cultivation_indoor.should_not be_checked
+		items_page.store_item_cultivation_outdoor.should_not be_checked
+		items_page.store_item_cultivation_hydroponic.should_not be_checked
+		items_page.store_item_cultivation_greenhouse.should_not be_checked
+		items_page.store_item_cultivation_organic.should be_checked	
+    end
 end

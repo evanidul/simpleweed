@@ -41,6 +41,14 @@ class StoreItemsPage < SitePrism::Page
 	element :store_item_glutenfree, '#store_item_glutenfree'
 	element :store_item_sugarfree, '#store_item_sugarfree'
 
+	# Cultivation
+	element :store_item_cultivation_none, '#store_item_cultivation_'  # none selected
+	element :store_item_cultivation_indoor, '#store_item_cultivation_indoor'
+	element :store_item_cultivation_outdoor, '#store_item_cultivation_outdoor'
+	element :store_item_cultivation_hydroponic, '#store_item_cultivation_hydroponic'
+	element :store_item_cultivation_greenhouse, '#store_item_cultivation_greenhouse'
+	element :store_item_cultivation_organic, '#store_item_cultivation_organic'
+
 	# save & close
 	element :save_store_item_button, "#save_store_item"
 	element :close_button, "#close-button"

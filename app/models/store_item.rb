@@ -22,4 +22,9 @@ class StoreItem < ActiveRecord::Base
 	validates_inclusion_of :subcategory, :in => SUBCATEGORIES,
 	      :message => "{{value}} must be in #{SUBCATEGORIES.join ','}"
 
+	CULTIVATION = ['','indoor', 'outdoor', 'hydroponic', 'greenhouse', 'organic']
+	validates_inclusion_of :cultivation, :in => CULTIVATION,
+	      :message => "{{value}} must be in #{STRAINS.join ','}"
+
+
 end
