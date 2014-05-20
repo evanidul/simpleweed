@@ -30,6 +30,10 @@
 	line-height: 60px !important;
 }
 
+.navbar-inverse {
+	border-style: none !important;
+}
+
 .navbar-brand,
 .navbar-nav li a {
     line-height: 75px !important;
@@ -56,4 +60,14 @@
 #show-search-filters {
 	color:white;
 	background-color: transparent;
+}
+
+#search-filter-options
+{
+	background-color:#222222;
+	height: 150px;
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
+	border-style: none;
+	display:none;
 }

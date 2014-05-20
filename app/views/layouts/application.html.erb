@@ -16,10 +16,21 @@
     <!-- <header class="header"> -->
       <%= render 'layouts/navigation' %>
     <!-- </header> -->
-    
+
     <% if @disableContainerDiv != true %>    
     <div id="main-container"class="container">
     <% end %>
+
+    <div id="search-filter-options">Hello world!</div>
+
+    <script>
+      $(document).ready(function(){
+        $("#show-search-filters").click(function(e){
+          e.preventDefault();
+          $("#search-filter-options").slideToggle("fast");
+        });
+      });
+    </script>
       
       <div>
         <%= render 'layouts/messages' %>
