@@ -8,6 +8,9 @@ Smellyleaf::Application.routes.draw do
   get "modals/registration", :as => 'registration_modal'
   # resources :stores
 
+  #get "solr", :as => 'store/solr'
+  get 'search' => 'search#search'
+
   namespace :admin do
       # Directs /admin/products/* to Admin::ProductsController
       # (app/controllers/admin/products_controller.rb)

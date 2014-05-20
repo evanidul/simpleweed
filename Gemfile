@@ -45,6 +45,13 @@ gem "rolify"
 # test coverage : https://github.com/colszowka/simplecov
 gem 'simplecov', :require => false, :group => :test
 
+# rails client for solr
+gem 'sunspot_rails'
+# solr service (instead of deploying java war)
+gem 'sunspot_solr' # optional pre-packaged Solr distribution for use in development
+
+gem 'sunspot_test' , :group => :test
+
 group :development, :test do
   # automated testing
   gem 'rspec-rails', '~> 3.0.0.beta'

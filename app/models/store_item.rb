@@ -26,5 +26,33 @@ class StoreItem < ActiveRecord::Base
 	validates_inclusion_of :cultivation, :in => CULTIVATION,
 	      :message => "{{value}} must be in #{STRAINS.join ','}"
 
+  	searchable do
+    	string   :name
+	    string   :description
+	    float    :thc
+	    float    :cbd
+	    float    :cbn
+	    integer  :costhalfgram
+	    integer  :costonegram
+	    integer  :costeighthoz
+	    integer  :costquarteroz
+	    integer  :costhalfoz
+	    integer  :costoneoz
+	    boolean  :dogo
+	    #datetime :created_at
+	    #datetime :updated_at
+	    string   :category
+	    integer  :costperunit
+	    string   :maincategory
+	    string   :strain
+	    string   :subcategory
+	    string   :cultivation
+	    boolean  :privatereserve
+	    boolean  :topshelf
+	    boolean  :supersize
+	    boolean  :glutenfree
+	    boolean  :sugarfree
+    end
+
 
 end

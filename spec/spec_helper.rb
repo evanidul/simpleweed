@@ -7,6 +7,8 @@ if ENV['COVERAGE'] == "true"
   SimpleCov.start
 end
 
+require 'sunspot_test/rspec'
+
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'

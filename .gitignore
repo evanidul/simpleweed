@@ -12,6 +12,10 @@
 /db/*.sqlite3-journal
 
 # Ignore all logfiles and tempfiles.
-/log/*.log
+/log/*
 /tmp
 /coverage*
+/solr/development/data/*
+/solr/test/data/*
+/solr/default/data/*
+/solr/pids/*
