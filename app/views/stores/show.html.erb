@@ -32,7 +32,7 @@
 			</div>
 			
 			<span class="write-review-button">				
-				<%= link_to 'write a review', new_store_store_review_path(@store) , data: { toggle: "modal", target: "#modal", remote: new_store_store_review_path(@store)} , id: "write-review-button" , class: "btn btn-primary", "data-content"=>"<span id='edit-links-tip'>Be the first!</span>" %>
+				<%= link_to 'write a review', new_store_store_review_path(@store) , data: { toggle: "modal", target: "#modal", remote: new_store_store_review_path(@store)} , id: "write-review-button" , class: "btn btn-primary", "data-content"=>"<span id='write-review-first-tip'>Be the first!</span>" %>
 			</span>				
 			<% if @role_service.findStoreOwnerForStore(@store).size < 1 %>
 				<span class="claim-store-button">
@@ -114,8 +114,10 @@ $('#item-preview-tab-content .nav-tabs a').click(function (e) {
 		<div id="contact">
 			<div class="header-and-edit-link">
 				<h3 class = "inline-header">contact</h3>
-				<% if @role_service.canManageStore(current_user, @store) %>
-					<%= link_to 'edit', edit_contact_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_contact_store_path(@store)} , id: "edit-contact-link", class: "edit-store-link" %>
+				<% if @role_service.canManageStore(current_user, @store) %>					
+					<%= link_to edit_contact_store_path(@store), data: { toggle: "modal", target: "#modal", remote: edit_contact_store_path(@store)} , id: "edit-contact-link",  class: "btn edit-store-link" do %>
+    					<span class="glyphicon glyphicon-edit"></span>
+					<% end %>
 				<% end %>
 			</div>
 			<address>
@@ -170,9 +172,9 @@ $('#item-preview-tab-content .nav-tabs a').click(function (e) {
 				var isStoreOpen = <%= @is_open %>;				
 				var dayInt = "<%= @dayint %>";
 				if ( isStoreOpen ) {
-					setStoreStatus(dayInt , "Open now", "green");
+					setStoreStatus(dayInt , "open now", "green");
 				} else {
-					setStoreStatus(dayInt, "Closed now", "red");
+					setStoreStatus(dayInt, "closed now", "red");
 				}  
 			});
 
@@ -189,8 +191,10 @@ $('#item-preview-tab-content .nav-tabs a').click(function (e) {
 								
 		<div class="header-and-edit-link">
 			<h3 class="inline-header">announcement</h3>
-			<% if @role_service.canManageStore(current_user, @store) %>
-				<%= link_to 'edit', edit_announcement_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_announcement_store_path(@store)} , id: "edit-announcement-link" , class: "edit-store-link"%>			
+			<% if @role_service.canManageStore(current_user, @store) %>				
+				<%= link_to edit_announcement_store_path(@store), data: { toggle: "modal", target: "#modal", remote: edit_announcement_store_path(@store)} , id: "edit-announcement-link",  class: "btn edit-store-link" do %>
+    					<span class="glyphicon glyphicon-edit"></span>
+					<% end %>
 			<% end %>
 		</div>
 		<div id="announcement">
@@ -204,8 +208,10 @@ $('#item-preview-tab-content .nav-tabs a').click(function (e) {
 
 		<div class="header-and-edit-link">		
 			<h3 class="inline-header">hours</h3>
-			<% if @role_service.canManageStore(current_user, @store) %>
-				<%= link_to 'edit', edit_hours_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_hours_store_path(@store)} , id: "edit-hours-link", class: "edit-store-link" %>
+			<% if @role_service.canManageStore(current_user, @store) %>				
+				<%= link_to edit_hours_store_path(@store), data: { toggle: "modal", target: "#modal", remote: edit_hours_store_path(@store)} , id: "edit-hours-link",  class: "btn edit-store-link" do %>
+    					<span class="glyphicon glyphicon-edit"></span>
+					<% end %>
 			<% end %>
 		</div>
 
@@ -298,8 +304,10 @@ $('#item-preview-tab-content .nav-tabs a').click(function (e) {
 
 		<div class="header-and-edit-link">		
 			<h3 class="inline-header">daily specials</h3>
-			<% if @role_service.canManageStore(current_user, @store) %>
-				<%= link_to 'edit', edit_dailyspecials_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_dailyspecials_store_path(@store)} , id: "edit-daily-specials-link" , class: "edit-store-link" %>
+			<% if @role_service.canManageStore(current_user, @store) %>				
+				<%= link_to edit_dailyspecials_store_path(@store), data: { toggle: "modal", target: "#modal", remote: edit_dailyspecials_store_path(@store)} , id: "edit-daily-specials-link",  class: "btn edit-store-link" do %>
+    					<span class="glyphicon glyphicon-edit"></span>
+				<% end %>
 			<% end %>
 		</div>
 		<table id="dailyspecials">
@@ -335,8 +343,11 @@ $('#item-preview-tab-content .nav-tabs a').click(function (e) {
 		
 		<div class="header-and-edit-link">
 			<h3 class="inline-header">dispensary features</h3>
-			<% if @role_service.canManageStore(current_user, @store) %>
-				<%= link_to 'edit', edit_features_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_features_store_path(@store)} , id: "edit-features-link" , class: "edit-store-link" %>
+			<% if @role_service.canManageStore(current_user, @store) %>				
+				<%= link_to edit_features_store_path(@store), data: { toggle: "modal", target: "#modal", remote: edit_features_store_path(@store)} , id: "edit-features-link",  class: "btn edit-store-link" do %>
+    					<span class="glyphicon glyphicon-edit"></span>
+				<% end %>
+
 			<% end %>	
 		</div>
 		
@@ -402,8 +413,11 @@ $('#item-preview-tab-content .nav-tabs a').click(function (e) {
 								
 		<div class="header-and-edit-link">
 			<h3 class="inline-header">delivery areas</h3>
-			<% if @role_service.canManageStore(current_user, @store) %>
-				<%= link_to 'edit', edit_deliveryarea_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_deliveryarea_store_path(@store)} , id: "edit-deliveryarea-link" , class: "edit-store-link" %>
+			<% if @role_service.canManageStore(current_user, @store) %>				
+				<%= link_to edit_deliveryarea_store_path(@store), data: { toggle: "modal", target: "#modal", remote: edit_deliveryarea_store_path(@store)} , id: "edit-deliveryarea-link",  class: "btn edit-store-link" do %>
+    					<span class="glyphicon glyphicon-edit"></span>
+				<% end %>
+
 			<% end %>
 		</div>	
 		<div id="delivery-area">

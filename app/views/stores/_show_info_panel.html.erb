@@ -2,9 +2,9 @@
 	<div class="header-and-edit-link">
 		<h4 class = "inline-header">description </h4>			
 		<% if @role_service.canManageStore(current_user, @store) %>
-			<%= link_to 'edit', edit_description_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_description_store_path(@store)} , id: "edit-description-link", class: "edit-store-link",
-				 "data-content"=>"<span id='edit-links-tip'>edit links are now available for you to manage your store.</span>"
-			 %>				 
+			 <%= link_to edit_description_store_path(@store), data: { toggle: "modal", target: "#modal", remote: edit_description_store_path(@store)} , id: "edit-description-link",  class: "btn edit-store-link" , "data-content"=>"<span id='edit-links-tip'>edit links are now available for you to manage your store.</span>" do %>
+    					<span class="glyphicon glyphicon-edit"></span>
+			<% end %>	
 			 <% if params[:show_edit_popover] == "true" %>				 
 				 <script>				 
 				 $(function () {
@@ -25,8 +25,11 @@
 		
 <div class="header-and-edit-link">
 	<h4 class = "inline-header">first time patient deals </h4>
-	<% if @role_service.canManageStore(current_user, @store) %>						
-		<%= link_to 'edit', edit_firsttimepatientdeals_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_firsttimepatientdeals_store_path(@store)} , id: "edit-first-time-patient-deals-link" , class: "edit-store-link"%>
+	<% if @role_service.canManageStore(current_user, @store) %>								
+		<%= link_to edit_firsttimepatientdeals_store_path(@store), data: { toggle: "modal", target: "#modal", remote: edit_firsttimepatientdeals_store_path(@store)} , id: "edit-first-time-patient-deals-link",  class: "btn edit-store-link" do %>
+				<span class="glyphicon glyphicon-edit"></span>
+		<% end %>
+
 	<%end %>
 </div>
 <p id="first-time-patient-deals">
@@ -40,7 +43,10 @@
 
 <h3 class= "inline-header">menu</h3>
 <% if @role_service.canManageStore(current_user, @store) %>		  	  		
-	<%= link_to 'edit', store_store_items_path(@store), class: 'store-edit-link' , id: "edit_store_items" , class: "edit-store-link", 'data-no-turbolink' => true%>	
+	<%= link_to store_store_items_path(@store), class: 'btn store-edit-link edit-store-link' , id: "edit_store_items" , 'data-no-turbolink' => true do %>
+		<span class="glyphicon glyphicon-edit"></span>
+	<% end %>
+	
 	</br></br>
 <% end %>
 		
