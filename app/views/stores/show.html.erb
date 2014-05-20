@@ -32,7 +32,7 @@
 			</div>
 			
 			<span class="write-review-button">				
-				<%= link_to 'write a review', new_store_store_review_path(@store) , data: { toggle: "modal", target: "#modal", remote: new_store_store_review_path(@store)} , id: "write-review-button" , class: "btn btn-primary" %>
+				<%= link_to 'write a review', new_store_store_review_path(@store) , data: { toggle: "modal", target: "#modal", remote: new_store_store_review_path(@store)} , id: "write-review-button" , class: "btn btn-primary", "data-content"=>"<span id='edit-links-tip'>Be the first!</span>" %>
 			</span>				
 			<% if @role_service.findStoreOwnerForStore(@store).size < 1 %>
 				<span class="claim-store-button">

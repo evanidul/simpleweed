@@ -1,4 +1,23 @@
 <p>
+
+<% if @store_reviews.empty? %>
+	<div class="store-review">
+		
+		<div class="alert alert-warning fade in">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+      <strong>no reviews yet.</strong> be the first to review this store!
+       <script>				 
+			 $(function () {
+				  $('#write-review-button').popover({ 
+				    html : true,
+				    placement : "right"
+				  }).popover('show');
+				});
+			 </script>
+    </div>
+	</div>
+<% end %>
+
 <% @store_reviews.each do |store_review| %>
 	<div class="store-review">
 		<h4>
