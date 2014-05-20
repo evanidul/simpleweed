@@ -27,8 +27,8 @@ class StoreItem < ActiveRecord::Base
 	      :message => "{{value}} must be in #{STRAINS.join ','}"
 
   	searchable do
-    	string   :name
-	    string   :description
+    	text     :name
+	   	text     :description
 	    float    :thc
 	    float    :cbd
 	    float    :cbn
