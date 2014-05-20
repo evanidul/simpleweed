@@ -39,7 +39,7 @@
               <%= link_to current_user.username, edit_user_registration_path, :id => 'edit-user-link',:class => 'navbar-link' %>
             </li>
             <li>
-              <%= link_to "Log out", destroy_user_session_path, :id => 'logout-link', method: :delete, :class => 'navbar-link'  %>
+              <%= link_to "log out", destroy_user_session_path, :id => 'logout-link', method: :delete, :class => 'navbar-link'  %>
             </li>
           <% else %>
           <li>

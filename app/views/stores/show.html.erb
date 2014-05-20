@@ -20,7 +20,7 @@
 	<!-- left, main section -->
     <div class="col-md-8">		
 		
-		<h1 id="name"><%= @store.name %> <small>Promotional blurb</small></h1>  		
+		<h1 id="name"><%= @store.name %> <small>promotional blurb</small></h1>  		
   		<div id="review-controls">
 			<!-- pro coding right here -->
 			<div class="star-rank">
@@ -32,18 +32,18 @@
 			</div>
 			
 			<span class="write-review-button">				
-				<%= link_to 'Write a Review', new_store_store_review_path(@store) , data: { toggle: "modal", target: "#modal", remote: new_store_store_review_path(@store)} , id: "write-review-button" , class: "btn btn-primary" %>
+				<%= link_to 'write a review', new_store_store_review_path(@store) , data: { toggle: "modal", target: "#modal", remote: new_store_store_review_path(@store)} , id: "write-review-button" , class: "btn btn-primary" %>
 			</span>				
 			<% if @role_service.findStoreOwnerForStore(@store).size < 1 %>
 				<span class="claim-store-button">
-					<%= link_to 'Claim', show_claim_store_path(@store), class: 'btn btn-warning' , id: "claim-store-button" %>
+					<%= link_to 'claim', show_claim_store_path(@store), class: 'btn btn-warning' , id: "claim-store-button" %>
 				</span>	
 			<% end %>
 
 		</div> <!-- review-controls -->	
   		<ul class="nav nav-tabs">
-	  		<li class="active"><a href="#store-info" data-toggle="tab">Info</a></li>
-	  		<li><a href="#store-reviews" data-toggle="tab">Reviews</a></li>  
+	  		<li class="active"><a href="#store-info" data-toggle="tab">info</a></li>
+	  		<li><a href="#store-reviews" data-toggle="tab">reviews</a></li>  
 		</ul>
 
 		<div id="item-preview-tab-content" class="tab-content">
@@ -113,9 +113,9 @@ $('#item-preview-tab-content .nav-tabs a').click(function (e) {
 		<!-- end of google maps -->
 		<div id="contact">
 			<div class="header-and-edit-link">
-				<h3 class = "inline-header">Contact</h3>
+				<h3 class = "inline-header">contact</h3>
 				<% if @role_service.canManageStore(current_user, @store) %>
-					<%= link_to 'Edit', edit_contact_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_contact_store_path(@store)} , id: "edit-contact-link", class: "edit-store-link" %>
+					<%= link_to 'edit', edit_contact_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_contact_store_path(@store)} , id: "edit-contact-link", class: "edit-store-link" %>
 				<% end %>
 			</div>
 			<address>
@@ -188,30 +188,30 @@ $('#item-preview-tab-content .nav-tabs a').click(function (e) {
 
 								
 		<div class="header-and-edit-link">
-			<h3 class="inline-header">Announcement</h3>
+			<h3 class="inline-header">announcement</h3>
 			<% if @role_service.canManageStore(current_user, @store) %>
-				<%= link_to 'Edit', edit_announcement_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_announcement_store_path(@store)} , id: "edit-announcement-link" , class: "edit-store-link"%>			
+				<%= link_to 'edit', edit_announcement_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_announcement_store_path(@store)} , id: "edit-announcement-link" , class: "edit-store-link"%>			
 			<% end %>
 		</div>
 		<div id="announcement">
 			<% if  @store.announcement && !@store.announcement.empty?  %>
 				<%= raw @store.announcement %>
 			<% else %>
-				None.
+				none.
 			<% end %>
 		</div>
 			
 
 		<div class="header-and-edit-link">		
-			<h3 class="inline-header">Hours</h3>
+			<h3 class="inline-header">hours</h3>
 			<% if @role_service.canManageStore(current_user, @store) %>
-				<%= link_to 'Edit', edit_hours_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_hours_store_path(@store)} , id: "edit-hours-link", class: "edit-store-link" %>
+				<%= link_to 'edit', edit_hours_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_hours_store_path(@store)} , id: "edit-hours-link", class: "edit-store-link" %>
 			<% end %>
 		</div>
 
 		<table id="storehours">			
 			<tr>
-				<td class="day">Sunday</td>
+				<td class="day">sunday</td>
 				<td class="store-hours-text" id="sunday-hours">
 					<% if @store.sundayclosed %>
 						Closed					
@@ -223,7 +223,7 @@ $('#item-preview-tab-content .nav-tabs a').click(function (e) {
 				<td id="store-status-0" class="hours-current-status"></td>
 			</tr>				
 			<tr>
-				<td class="day">Monday</td>
+				<td class="day">monday</td>
 				<td class="store-hours-text" id="monday-hours">
 					<% if @store.mondayclosed %>
 						Closed					
@@ -235,7 +235,7 @@ $('#item-preview-tab-content .nav-tabs a').click(function (e) {
 				<td id="store-status-1" class="hours-current-status"></td>
 			</tr>
 			<tr>
-				<td class="day">Tuesday</td>
+				<td class="day">tuesday</td>
 				<td class="store-hours-text" id="tuesday-hours">
 					<% if @store.tuesdayclosed %>
 						Closed					
@@ -247,7 +247,7 @@ $('#item-preview-tab-content .nav-tabs a').click(function (e) {
 				<td id="store-status-2" class="hours-current-status"></td>
 			</tr>
 			<tr>
-				<td class="day">Wednesday</td>
+				<td class="day">wednesday</td>
 				<td class="store-hours-text" id="wednesday-hours">
 					<% if @store.wednesdayclosed %>
 						Closed					
@@ -259,7 +259,7 @@ $('#item-preview-tab-content .nav-tabs a').click(function (e) {
 				<td id="store-status-3" class="hours-current-status"></td>
 			</tr>
 			<tr>
-				<td class="day">Thursday</td>
+				<td class="day">thursday</td>
 				<td class="store-hours-text" id="thursday-hours">
 					<% if @store.thursdayclosed %>
 						Closed					
@@ -271,7 +271,7 @@ $('#item-preview-tab-content .nav-tabs a').click(function (e) {
 				<td id="store-status-4" class="hours-current-status"></td>
 			</tr>
 			<tr>
-				<td class="day">Friday</td>
+				<td class="day">friday</td>
 				<td class="store-hours-text" id="friday-hours">
 					<% if @store.fridayclosed %>
 						Closed					
@@ -283,7 +283,7 @@ $('#item-preview-tab-content .nav-tabs a').click(function (e) {
 				<td id="store-status-5" class="hours-current-status"></td>
 			</tr>
 			<tr>
-				<td class="day">Saturday</td>
+				<td class="day">saturday</td>
 				<td class="store-hours-text" id="saturday-hours">
 					<% if @store.saturdayclosed %>
 						Closed					
@@ -297,88 +297,88 @@ $('#item-preview-tab-content .nav-tabs a').click(function (e) {
 		</table>
 
 		<div class="header-and-edit-link">		
-			<h3 class="inline-header">Daily Specials</h3>
+			<h3 class="inline-header">daily specials</h3>
 			<% if @role_service.canManageStore(current_user, @store) %>
-				<%= link_to 'Edit', edit_dailyspecials_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_dailyspecials_store_path(@store)} , id: "edit-daily-specials-link" , class: "edit-store-link" %>
+				<%= link_to 'edit', edit_dailyspecials_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_dailyspecials_store_path(@store)} , id: "edit-daily-specials-link" , class: "edit-store-link" %>
 			<% end %>
 		</div>
 		<table id="dailyspecials">
 			<tr>
-				<td class="day">Sunday</td>
+				<td class="day">sunday</td>
 				<td id="dailyspecials_sunday" class="daily-specials-val"><%= @store.dailyspecialssunday %></td>
 			</tr>		
 			<tr>
-				<td class="day">Monday</td>
+				<td class="day">monday</td>
 				<td id="dailyspecials_monday" class="daily-specials-val"><%= @store.dailyspecialsmonday %></td>
 			</tr>
 			<tr>
-				<td class="day">Tuesday</td>
+				<td class="day">tuesday</td>
 				<td id="dailyspecials_tuesday" class="daily-specials-val"><%= @store.dailyspecialstuesday %></td>
 			</tr>
 			<tr>
-				<td class="day">Wednesday</td>
+				<td class="day">wednesday</td>
 				<td id="dailyspecials_wednesday" class="daily-specials-val"><%= @store.dailyspecialswednesday %></td>
 			</tr>
 			<tr>
-				<td class="day">Thursday</td>
+				<td class="day">thursday</td>
 				<td id="dailyspecials_thursday" class="daily-specials-val"><%= @store.dailyspecialsthursday %></td>
 			</tr>
 			<tr>
-				<td class="day">Friday</td>
+				<td class="day">friday</td>
 				<td id="dailyspecials_friday" class="daily-specials-val"><%= @store.dailyspecialsfriday %></td>
 			</tr>
 			<tr>
-				<td class="day">Saturday</td>
+				<td class="day">saturday</td>
 				<td id="dailyspecials_saturday" class="daily-specials-val"><%= @store.dailyspecialssaturday %></td>
 			</tr>
 		</table>
 		
 		<div class="header-and-edit-link">
-			<h3 class="inline-header">Dispensary Features</h3>
+			<h3 class="inline-header">dispensary features</h3>
 			<% if @role_service.canManageStore(current_user, @store) %>
-				<%= link_to 'Edit', edit_features_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_features_store_path(@store)} , id: "edit-features-link" , class: "edit-store-link" %>
+				<%= link_to 'edit', edit_features_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_features_store_path(@store)} , id: "edit-features-link" , class: "edit-store-link" %>
 			<% end %>	
 		</div>
 		
 		<table id="dispensaryfeatures">
 			<tr>
-				<td>Accepts Credit/Debit cards</td>
+				<td>accepts credit/debit cards</td>
 				<td><%= check_box_tag :acceptscreditcards , 1 , @store.acceptscreditcards ? true : false, disabled: true %></td>
 			</tr>
 			<tr>
-				<td>ATM Access</td>
+				<td>atm access</td>
 				<td><%= check_box_tag :atmaccess , 1 , @store.atmaccess ? true : false, disabled: true %></td>
 			</tr>
 			<tr>
-				<td>Automatic Dispensing Machines</td>
+				<td>automatic dispensing machines</td>
 				<td><%= check_box_tag :automaticdispensingmachines , 1 , @store.automaticdispensingmachines ? true : false, disabled: true %></td>
 			</tr>
 			<tr>
-				<td>Delivery Service</td>
+				<td>delivery service</td>
 				<td><%= check_box_tag :deliveryservice , 1 , @store.deliveryservice ? true : false, disabled: true %></td>
 			</tr>
 			<tr>
-				<td>First Time Patient Deals</td>
+				<td>first time patient deals</td>
 				<td><%= check_box_tag :firsttimepatientdeals , 1 , @store.firsttimepatientdeals && !@store.firsttimepatientdeals.empty? ? true : false, disabled: true %></td>
 			</tr>
 			<tr>
-				<td>Handicap Access</td>
+				<td>handicap access</td>
 				<td><%= check_box_tag :handicapaccess , 1 , @store.handicapaccess ? true : false, disabled: true %></td>
 			</tr>
 			<tr>
-				<td>Lounge Area</td>
+				<td>lounge area</td>
 				<td><%= check_box_tag :loungearea , 1 , @store.loungearea ? true : false, disabled: true %></td>
 			</tr>
 			<tr>
-				<td>Pet Friendly</td>
+				<td>pet friendly</td>
 				<td><%= check_box_tag :petfriendly , 1 , @store.petfriendly ? true : false, disabled: true %></td>
 			</tr>
 			<tr>
-				<td>Security Guard</td>
+				<td>security guard</td>
 				<td><%= check_box_tag :securityguard , 1 , @store.securityguard ? true : false, disabled: true %></td>
 			</tr>			
 			<tr>
-				<td>Lab Tested</td>
+				<td>lab tested</td>
 				<td><%= check_box_tag :labtested , 1 , @store.labtested ? true : false, disabled: true %></td>
 			</tr>			
 			<tr>
@@ -390,27 +390,27 @@ $('#item-preview-tab-content .nav-tabs a').click(function (e) {
 				<td><%= check_box_tag :twentyoneplus , 1 , @store.twentyoneplus ? true : false, disabled: true %></td>
 			</tr>			
 			<tr>
-				<td>Photos</td>
+				<td>photos</td>
 				<td><%= check_box_tag :hasphotos , 1 , @store.hasphotos ? true : false, disabled: true %></td>
 			</tr>			
 			<tr>
-				<td>On Site Testing</td>
+				<td>on site testing</td>
 				<td><%= check_box_tag :onsitetesting , 1 , @store.onsitetesting ? true : false, disabled: true %></td>
 			</tr>			
 		</table>
 
 								
 		<div class="header-and-edit-link">
-			<h3 class="inline-header">Delivery Areas</h3>
+			<h3 class="inline-header">delivery areas</h3>
 			<% if @role_service.canManageStore(current_user, @store) %>
-				<%= link_to 'Edit', edit_deliveryarea_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_deliveryarea_store_path(@store)} , id: "edit-deliveryarea-link" , class: "edit-store-link" %>
+				<%= link_to 'edit', edit_deliveryarea_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_deliveryarea_store_path(@store)} , id: "edit-deliveryarea-link" , class: "edit-store-link" %>
 			<% end %>
 		</div>	
 		<div id="delivery-area">
 			<% if  @store.deliveryarea && !@store.deliveryarea.empty?  %>
 				<%= raw @store.deliveryarea %>
 			<% else %>
-				None.
+				none.
 			<% end %>
 		</div>
 		

@@ -1,9 +1,9 @@
 <% if  @store.description && !@store.description.empty?  %>			
 	<div class="header-and-edit-link">
-		<h4 class = "inline-header">Description </h4>			
+		<h4 class = "inline-header">description </h4>			
 		<% if @role_service.canManageStore(current_user, @store) %>
-			<%= link_to 'Edit', edit_description_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_description_store_path(@store)} , id: "edit-description-link", class: "edit-store-link",
-				 "data-content"=>"<span id='edit-links-tip'>Edit links are now available for you to manage your store.</span>"
+			<%= link_to 'edit', edit_description_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_description_store_path(@store)} , id: "edit-description-link", class: "edit-store-link",
+				 "data-content"=>"<span id='edit-links-tip'>edit links are now available for you to manage your store.</span>"
 			 %>				 
 			 <% if params[:show_edit_popover] == "true" %>				 
 				 <script>				 
@@ -24,23 +24,23 @@
 	
 		
 <div class="header-and-edit-link">
-	<h4 class = "inline-header">First Time Patient Deals </h4>
+	<h4 class = "inline-header">first time patient deals </h4>
 	<% if @role_service.canManageStore(current_user, @store) %>						
-		<%= link_to 'Edit', edit_firsttimepatientdeals_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_firsttimepatientdeals_store_path(@store)} , id: "edit-first-time-patient-deals-link" , class: "edit-store-link"%>
+		<%= link_to 'edit', edit_firsttimepatientdeals_store_path(@store) , data: { toggle: "modal", target: "#modal", remote: edit_firsttimepatientdeals_store_path(@store)} , id: "edit-first-time-patient-deals-link" , class: "edit-store-link"%>
 	<%end %>
 </div>
 <p id="first-time-patient-deals">
 	<% if  @store.firsttimepatientdeals && !@store.firsttimepatientdeals.empty?  %>
 		<%= raw @store.firsttimepatientdeals %>
 	<% else %>
-		None.
+		none.
 	<% end %>
 </p>
 		
 
-<h3 class= "inline-header">Menu</h3>
+<h3 class= "inline-header">menu</h3>
 <% if @role_service.canManageStore(current_user, @store) %>		  	  		
-	<%= link_to 'Edit', store_store_items_path(@store), class: 'store-edit-link' , id: "edit_store_items" , class: "edit-store-link", 'data-no-turbolink' => true%>	
+	<%= link_to 'edit', store_store_items_path(@store), class: 'store-edit-link' , id: "edit_store_items" , class: "edit-store-link", 'data-no-turbolink' => true%>	
 	</br></br>
 <% end %>
 		

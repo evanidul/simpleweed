@@ -23,18 +23,18 @@ class Store < ActiveRecord::Base
     	self.zip ||= "94705"
     	self.phonenumber ||= "1 (415) GHOSTBUSTERS"
 
-		self.dailyspecialsmonday ||= "None."
-		self.dailyspecialstuesday ||= "None."
-    	self.dailyspecialswednesday ||= "None."
-    	self.dailyspecialsthursday ||= "None."
-    	self.dailyspecialsfriday ||= "None."
-    	self.dailyspecialssaturday ||= "None."
-    	self.dailyspecialssunday ||=  "None."
+		self.dailyspecialsmonday ||= "none."
+		self.dailyspecialstuesday ||= "none."
+    	self.dailyspecialswednesday ||= "none."
+    	self.dailyspecialsthursday ||= "none."
+    	self.dailyspecialsfriday ||= "none."
+    	self.dailyspecialssaturday ||= "none."
+    	self.dailyspecialssunday ||=  "none."
 
-    	self.description ||= "None."		
+    	self.description ||= "none."		
 
-	    self.announcement ||= "None."
-	    self.deliveryarea ||= "None."
+	    self.announcement ||= "none."
+	    self.deliveryarea ||= "none."
 
 
 

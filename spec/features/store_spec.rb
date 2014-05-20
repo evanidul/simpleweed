@@ -129,7 +129,7 @@ feature "store page" , :js => true do
 		store_page.has_description?
 		
 		# check has default description
-		expect(store_page.description.text).to have_text("None.")    			
+		expect(store_page.description.text).to have_text("none.")    			
 		store_page.has_description_edit_link?
 		store_page.description_edit_link.click
 		
@@ -142,8 +142,8 @@ feature "store page" , :js => true do
 
 		# change first time patient deals
 		store_page.has_first_time_patient_deals_text?		
-		expect(store_page.first_time_patient_deals_text.text).to have_text("None.")    	
-		   # None means the db has null or "".  Therefore, there are no deals and it should be unchecked		
+		expect(store_page.first_time_patient_deals_text.text).to have_text("none.")    	
+		   # none means the db has null or "".  Therefore, there are no deals and it should be unchecked		
 		store_page.firsttimepatientdeals.should_not be_checked
 		store_page.has_edit_first_time_patient_deals_link?
 		store_page.edit_first_time_patient_deals_link.click
@@ -154,7 +154,7 @@ feature "store page" , :js => true do
 		store_page.firsttimepatientdeals.should be_checked
 
 		# daily specials
-		specials_default_value = "None."
+		specials_default_value = "none."
 		store_page.has_dailyspecials_sunday_text?
 		expect(store_page.dailyspecials_sunday_text.text).to have_text(specials_default_value)    	
 		store_page.has_dailyspecials_monday_text?
@@ -287,7 +287,7 @@ feature "store page" , :js => true do
 		store_page.onsitetesting.should be_checked
 
 		# announcement
-		expect(store_page.announcement.text).to have_text("None.")
+		expect(store_page.announcement.text).to have_text("none.")
 		store_page.edit_announcement_link.click
 		new_announcement = "My New announcement"
 		store_page.announcement_input.set new_announcement
@@ -295,7 +295,7 @@ feature "store page" , :js => true do
 		expect(store_page.announcement.text).to have_text(new_announcement)
 
 		# delivery area
-		expect(store_page.deliveryarea.text).to have_text("None.")
+		expect(store_page.deliveryarea.text).to have_text("none.")
 		store_page.edit_deliveryarea_link.click
 		new_deliveryarea = "Montgomery"
 		store_page.deliveryarea_input.set new_deliveryarea
