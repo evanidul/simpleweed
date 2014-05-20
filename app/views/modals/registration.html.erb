@@ -2,7 +2,7 @@
 <div class="modal-dialog modal-lg">
 	<div class="modal-content">
 	  <div class="modal-header">
-	  <h4 class="modal-title" id="myModalLabel">Create a Free Account</h4>          
+	  <h4 class="modal-title" id="myModalLabel">create a free account</h4>          
 	  </div>
 	  <div class="modal-body">
 
@@ -10,29 +10,29 @@
 		  <%= devise_error_messages! %>
 
 		  <div>	  	
-			<%= f.label :username %><br />
+			<%= f.label :username , "username" %><br />
 	    	<%= f.text_field :username , :class => 'form-control', :required => true %>
 		  </div>
 
 
-		  <div><%= f.label :email %><br />
+		  <div><%= f.label :email , "email" %><br />
 		  <%= f.email_field :email, autofocus: true , :class => 'form-control' , :required => true%></div>
 
-		  <div><%= f.label :password %><br />
+		  <div><%= f.label :password , "password" %><br />
 		    <%= f.password_field :password, autocomplete: "off" , :class => 'form-control' , :required => true%></div>
 
-		  <div><%= f.label :password_confirmation %><br />
+		  <div><%= f.label :password_confirmation , "password confirmation" %><br />
 		    <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'form-control', :required => true %></div>
 
 		  <br/>
-		  <div><%= f.submit "Create User Account" , :id => 'create-account-button', :class => 'btn btn-primary pull-right' %></div>
+		  <div><%= f.submit "create user account" , :id => 'create-account-button', :class => 'btn btn-primary pull-right' %></div>
 		  <br/>
 		<% end %>
 		
 	  </div> <!-- modal-body -->
 	  <div class="modal-footer">
-	     <%= link_to "Sign in", new_user_session_path %> <br/>
-	     <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name), :id => 'resend-confirmation-email-link' %><br 
+	     <%= link_to "sign in", new_user_session_path %> <br/>
+	     <%= link_to "didn't receive confirmation instructions?", new_confirmation_path(resource_name), :id => 'resend-confirmation-email-link' %><br 
 	  </div><!-- modal-footer -->
 
 	</div><!-- modal-content -->

@@ -1,16 +1,16 @@
-<h2>Resend confirmation instructions</h2>
+<h2>resend confirmation instructions</h2>
 
 <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
   <%= devise_error_messages! %>
 
   <div>
   	<p>
-		<%= f.label :login %><br />
+		<%= f.label :login , "login" %><br />
 		<%= f.text_field :login , :class => 'form-control' %>
 	</p>
   </div>
 
-  <div><%= f.submit "Resend confirmation instructions", :id => 'resend-confirmation-email-button', :class => 'btn btn-default' %></div>
+  <div><%= f.submit "resend confirmation instructions", :id => 'resend-confirmation-email-button', :class => 'btn btn-default' %></div>
 <% end %>
 
 <%= render "devise/shared/links" %>

@@ -1,16 +1,16 @@
-<h2>Forgot your password?</h2>
+<h2>forgot your password?</h2>
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
   <%= devise_error_messages! %>
 
   <div>
   	<p>
-  		<%= f.label :login %><br />
+  		<%= f.label :login, "login" %><br />
    		<%= f.text_field :login , :class => 'form-control' %>
    	</p>
   </div>
 
-  <div><%= f.submit "Send me reset password instructions" , :id => 'send_reset_password_button',:class => 'btn btn-default'%></div>
+  <div><%= f.submit "send me reset password instructions" , :id => 'send_reset_password_button',:class => 'btn btn-default'%></div>
 <% end %>
 
 <%= render "devise/shared/links" %>
