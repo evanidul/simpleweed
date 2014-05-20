@@ -1,18 +1,18 @@
  <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title" id="myModalLabel">Edit Description</h4>          
+          <h4 class="modal-title" id="myModalLabel">edit description</h4>          
         </div>
         <div class="modal-body">
             <%= form_for :store, url: update_description_store_path, method: "put" do |f| %>
               <p class = "form-group">
-                <%= f.label :description,  "Description"  %><br>
+                <%= f.label :description,  "description"  %><br>
                 <%= f.text_area :description, :rows => 4,  :class => 'form-control store-description-input' , :id => 'store_description_input' , :required => true   %>
               </p>             
                            
               <p class = "form-group pull-right">              	
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <%= f.submit :class => 'btn btn-primary' , :id => 'save_store_description_button'%>
+                <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+                <%= f.submit :class => 'btn btn-primary lowercase' , :id => 'save_store_description_button'%>
               </p>
             <% end %>
             <div class="simple-weed-modal-footer">

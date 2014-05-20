@@ -1,7 +1,7 @@
  <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title" id="myModalLabel">Edit Dispensary Features</h4>          
+          <h4 class="modal-title" id="myModalLabel">edit dispensary features</h4>          
         </div>
         <div class="modal-body">
             <%= form_for :store, url: update_features_store_path, method: "put" do |f| %>
@@ -9,7 +9,7 @@
                 <table id="edit-store-features">
                   <tr>
                     <td>
-                      <%= f.label :acceptscreditcards, "Accepts Credit Cards" %><br>
+                      <%= f.label :acceptscreditcards, "accepts credit cards" %><br>
                     </td>
                     <td>
                       <%= f.check_box :acceptscreditcards, {}, "true","false" %>
@@ -17,7 +17,7 @@
                   </tr>
                   <tr>
                     <td>
-                      <%= f.label :atmaccess, "ATM Access" %><br>
+                      <%= f.label :atmaccess, "atm access" %><br>
                     </td>
                     <td>
                       <%= f.check_box :atmaccess, {}, "true","false" %>
@@ -25,7 +25,7 @@
                   </tr>
                   <tr>
                     <td>
-                      <%= f.label :automaticdispensingmachines, "Atuomatic Dispensing Machines" %><br>
+                      <%= f.label :automaticdispensingmachines, "atuomatic dispensing machines" %><br>
                     </td>
                     <td>
                       <%= f.check_box :automaticdispensingmachines, {}, "true","false" %>
@@ -33,7 +33,7 @@
                   </tr>
                   <tr>
                     <td>
-                      <%= f.label :deliveryservice, "Delivery Service" %><br>
+                      <%= f.label :deliveryservice, "delivery service" %><br>
                     </td>
                     <td>
                       <%= f.check_box :deliveryservice, {}, "true","false" %>
@@ -41,7 +41,7 @@
                   </tr>
                   <tr>
                     <td>
-                      <%= f.label :handicapaccess, "Handicap Access" %><br>
+                      <%= f.label :handicapaccess, "handicap access" %><br>
                     </td>
                     <td>
                       <%= f.check_box :handicapaccess, {}, "true","false" %>
@@ -49,7 +49,7 @@
                   </tr>
                   <tr>
                     <td>
-                      <%= f.label :loungearea, "Lounge Area" %><br>
+                      <%= f.label :loungearea, "lounge area" %><br>
                     </td>
                     <td>
                       <%= f.check_box :loungearea, {}, "true","false" %>
@@ -57,7 +57,7 @@
                   </tr>
                   <tr>
                     <td>
-                      <%= f.label :petfriendly, "Pet Friendly" %><br>
+                      <%= f.label :petfriendly, "pet friendly" %><br>
                     </td>
                     <td>
                       <%= f.check_box :petfriendly, {}, "true","false" %>
@@ -65,7 +65,7 @@
                   </tr>
                   <tr>
                     <td>
-                      <%= f.label :securityguard, "Security Guard" %><br>
+                      <%= f.label :securityguard, "security guard" %><br>
                     </td>
                     <td>
                       <%= f.check_box :securityguard, {}, "true","false" %>
@@ -73,7 +73,7 @@
                   </tr>
                   <tr>
                     <td>
-                      <%= f.label :labtested, "Lab tested" %><br>
+                      <%= f.label :labtested, "lab tested" %><br>
                     </td>
                     <td>
                       <%= f.check_box :labtested, {}, "true","false" %>
@@ -97,7 +97,7 @@
                   </tr>
                   <tr>
                     <td>
-                      <%= f.label :hasphotos, "Photos" %><br>
+                      <%= f.label :hasphotos, "photos" %><br>
                     </td>
                     <td>
                       <%= f.check_box :hasphotos, {}, "true","false" %>
@@ -105,7 +105,7 @@
                   </tr>                  
                   <tr>
                     <td>
-                      <%= f.label :onsitetesting, "On Site Testing" %><br>
+                      <%= f.label :onsitetesting, "on site testing" %><br>
                     </td>
                     <td>
                       <%= f.check_box :onsitetesting, {}, "true","false" %>
@@ -117,8 +117,8 @@
                 
                     
               <p class = "form-group pull-right">               
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <%= f.submit :class => 'btn btn-primary' , :id => 'save_store_features_button'%>
+                <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+                <%= f.submit :class => 'btn btn-primary lowercase' , :id => 'save_store_features_button'%>
               </p>
             <% end %>
             <div class="simple-weed-modal-footer">

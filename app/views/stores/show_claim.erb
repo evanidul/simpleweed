@@ -9,19 +9,19 @@
 		Would you like to claim it now?
 	</h3>
 	<span class="write-review-button">
-		<%= link_to 'Cancel', store_path(@store), 'data-no-turbolink' => true, class: 'btn btn-default' , id: "cancel-claim-button" %>
+		<%= link_to 'cancel', store_path(@store), 'data-no-turbolink' => true, class: 'btn btn-default' , id: "cancel-claim-button" %>
 	</span>	
 	<span class="claim-store-button">
-		<%= link_to 'Claim', update_claim_store_path(@store), class: 'btn btn-warning' , :method => :put, id: "claim-store-button" %>
+		<%= link_to 'claim', update_claim_store_path(@store), class: 'btn btn-warning' , :method => :put, id: "claim-store-button" %>
 	</span>	
 <% else %>
 	<h3>
 		Your current email (<%= current_user.email %>) does not match the email listed for the store (<%= @store.email %>).  In order to claim the store, you must
 		log in with the email address that matches the one listed for this store.
 	</h3>
-	<%= link_to "Log out and try again", destroy_user_session_path, :id => 'logout-link-on-claim-form', method: :delete, :class => 'btn btn-warning'  %>
+	<%= link_to "log out and try again", destroy_user_session_path, :id => 'logout-link-on-claim-form', method: :delete, :class => 'btn btn-warning'  %>
 	<span class="write-review-button">
-		<%= link_to 'Cancel', store_path(@store), 'data-no-turbolink' => true, class: 'btn btn-default' , id: "cancel-claim-button" %>
+		<%= link_to 'cancel', store_path(@store), 'data-no-turbolink' => true, class: 'btn btn-default' , id: "cancel-claim-button" %>
 	</span>		
 <% end %>
 

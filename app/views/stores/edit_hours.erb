@@ -1,7 +1,7 @@
  <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title" id="myModalLabel">Edit Store Hours</h4>          
+          <h4 class="modal-title" id="myModalLabel">edit store hours</h4>          
         </div>
         <div class="modal-body">
             <%= form_for :store, url: update_hours_store_path, method: "put" do |f| %>
@@ -14,10 +14,10 @@
                 <th>
                 </th>
                 <th id="closed-table-header">
-                  Closed
+                  closed
                 </th>
                 <tr class="hours-row">
-                  <td class="day">Sunday</td>
+                  <td class="day">sunday</td>
                   <td class="open-time-input">                                  
                     <%= select_hour(@store.storehourssundayopenhour, field_name: "storehourssundayopenhour", ampm: true )%> : <%= select_minute(@store.storehourssundayopenminute, field_name: "storehourssundayopenminute",minute_step: 15) %>
                   </td>
@@ -31,7 +31,7 @@
                   </td>
                 </tr>
                 <tr class="hours-row">
-                  <td class="day">Monday</td>
+                  <td class="day">monday</td>
                   <td class="open-time-input">                                  
                     <%= select_hour(@store.storehoursmondayopenhour, field_name: "storehoursmondayopenhour", ampm: true )%> : <%= select_minute(@store.storehoursmondayopenminute, field_name: "storehoursmondayopenminute",minute_step: 15) %>
                   </td>
@@ -44,7 +44,7 @@
                   </td>
                 </tr>
                 <tr class="hours-row">
-                  <td class="day">Tuesday</td>
+                  <td class="day">tuesday</td>
                   <td class="open-time-input">                                  
                     <%= select_hour(@store.storehourstuesdayopenhour, field_name: "storehourstuesdayopenhour", ampm: true )%> : <%= select_minute(@store.storehourstuesdayopenminute, field_name: "storehourstuesdayopenminute",minute_step: 15) %>
                   </td>
@@ -57,7 +57,7 @@
                   </td>
                 </tr>
                 <tr class="hours-row">
-                  <td class="day">Wednesday</td>
+                  <td class="day">wednesday</td>
                   <td class="open-time-input">                                  
                     <%= select_hour(@store.storehourswednesdayopenhour, field_name: "storehourswednesdayopenhour", ampm: true )%> : <%= select_minute(@store.storehourswednesdayopenminute, field_name: "storehourswednesdayopenminute",minute_step: 15) %>
                   </td>
@@ -70,7 +70,7 @@
                   </td>
                 </tr>
                 <tr class="hours-row">
-                  <td class="day">Thursday</td>
+                  <td class="day">thursday</td>
                   <td class="open-time-input">                                  
                     <%= select_hour(@store.storehoursthursdayopenhour, field_name: "storehoursthursdayopenhour", ampm: true )%> : <%= select_minute(@store.storehoursthursdayopenminute, field_name: "storehoursthursdayopenminute",minute_step: 15) %>
                   </td>
@@ -83,7 +83,7 @@
                   </td>
                 </tr>
                 <tr class="hours-row">
-                  <td class="day">Friday</td>
+                  <td class="day">friday</td>
                   <td class="open-time-input">                                  
                     <%= select_hour(@store.storehoursfridayopenhour, field_name: "storehoursfridayopenhour", ampm: true )%> : <%= select_minute(@store.storehoursfridayopenminute, field_name: "storehoursfridayopenminute",minute_step: 15) %>
                   </td>
@@ -96,7 +96,7 @@
                   </td>
                 </tr>
                 <tr class="hours-row">
-                  <td class="day">Saturday</td>
+                  <td class="day">saturday</td>
                   <td class="open-time-input">                                  
                     <%= select_hour(@store.storehourssaturdayopenhour, field_name: "storehourssaturdayopenhour", ampm: true )%> : <%= select_minute(@store.storehourssaturdayopenminute, field_name: "storehourssaturdayopenminute",minute_step: 15) %>
                   </td>
@@ -115,8 +115,8 @@
 
 
               <p class = "form-group pull-right">              	
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <%= f.submit :class => 'btn btn-primary' , :id => 'save_store_hours_button'%>
+                <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+                <%= f.submit :class => 'btn btn-primary lowercase' , :id => 'save_store_hours_button'%>
               </p>
             <% end %>
             <div class="simple-weed-modal-footer">

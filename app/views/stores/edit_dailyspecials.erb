@@ -1,43 +1,43 @@
  <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title" id="myModalLabel">Edit Daily Specials</h4>          
+          <h4 class="modal-title" id="myModalLabel">edit daily specials</h4>          
         </div>
         <div class="modal-body">
             <%= form_for :store, url: update_dailyspecials_store_path, method: "put" do |f| %>
               
                 <p class = "form-group">
-                  <%= f.label :dailyspecialssunday, "Sunday" %><br>
+                  <%= f.label :dailyspecialssunday, "sunday" %><br>
                   <%= f.text_field :dailyspecialssunday, :class => 'form-control'   %>
                 </p>
                 <p class = "form-group">
-                  <%= f.label :dailyspecialsmonday, "Monday" %><br>
+                  <%= f.label :dailyspecialsmonday, "monday" %><br>
                   <%= f.text_field :dailyspecialsmonday, :class => 'form-control'   %>
                 </p>
                 <p class = "form-group">
-                  <%= f.label :dailyspecialstuesday, "Tuesday" %><br>
+                  <%= f.label :dailyspecialstuesday, "tuesday" %><br>
                   <%= f.text_field :dailyspecialstuesday, :class => 'form-control'   %>
                 </p>
                 <p class = "form-group">
-                  <%= f.label :dailyspecialswednesday, "Wednesday" %><br>
+                  <%= f.label :dailyspecialswednesday, "wednesday" %><br>
                   <%= f.text_field :dailyspecialswednesday, :class => 'form-control'  %>
                 </p>
                 <p class = "form-group">
-                  <%= f.label :dailyspecialsthursday, "Thursday" %><br>
+                  <%= f.label :dailyspecialsthursday, "thursday" %><br>
                   <%= f.text_field :dailyspecialsthursday, :class => 'form-control'   %>
                 </p>
                 <p class = "form-group">
-                  <%= f.label :dailyspecialsfriday, "Friday" %><br>
+                  <%= f.label :dailyspecialsfriday, "friday" %><br>
                   <%= f.text_field :dailyspecialsfriday, :class => 'form-control'   %>
                 </p>
                 <p class = "form-group">
-                  <%= f.label :dailyspecialssaturday, "Saturday" %><br>
+                  <%= f.label :dailyspecialssaturday, "saturday" %><br>
                   <%= f.text_field :dailyspecialssaturday, :class => 'form-control'  %>
                 </p>
                            
               <p class = "form-group pull-right">              	
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <%= f.submit :class => 'btn btn-primary' , :id => 'save_store_daily_specials_button'%>
+                <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+                <%= f.submit :class => 'btn btn-primary lowercase' , :id => 'save_store_daily_specials_button'%>
               </p>
             <% end %>
             <div class="simple-weed-modal-footer">
