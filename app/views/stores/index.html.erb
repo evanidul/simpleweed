@@ -24,8 +24,8 @@
         var data = new google.visualization.DataTable();
 
 
-        data.addColumn('string', 'Name');   
-        data.addColumn('string', 'Address');    
+        data.addColumn('string', 'name');   
+        data.addColumn('string', 'address');    
           
         <% @stores.each do |store| %>          
           data.addRow(['<span sw-loc="<%= store_preview_store_path(store)%>"  ><%= store.name[0..25] %></span>','<%= store.addressline1[0..40] %>'])
@@ -153,7 +153,7 @@ var g_table;
   <div id = "store-details-panel" class="hero-unit">
     
     <div class="page-header">
-      <h1>Select a store on the left <small>Click on a store to see more details</small></h1>
+      <h1>select a store on the left <small>click on a store to see more details</small></h1>
     </div>
     
   </div>

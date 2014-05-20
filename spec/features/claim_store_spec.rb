@@ -144,7 +144,7 @@ feature "claim store spec" , :js => true do
     	store_claim_page.claim_store_button.click
 		expect(page).to have_text("You have successfully claimed this store.")       	
 		
-		expect(store_page.edit_links_tip.text).to have_text("Edit links are now available for you")
+		expect(store_page.edit_links_tip.text).to have_text("edit links are now available for you")
         store_has_claim_button = store_page.has_claim_store_button?        
         assert_equal( false, store_has_claim_button, 'Store should not have a claim button after it is claimed')
   	end

@@ -1,13 +1,10 @@
 <div class="modal-dialog">
-  <div class="modal-content">
-    <!-- <div class="modal-header"> -->
+  <div class="modal-content">    
 	<ul class="nav nav-tabs">
-  		<li class="active"><a href="#info" data-toggle="tab">Info</a></li>
-  		<li><a href="#reviews" data-toggle="tab">Reviews</a></li>  
+  		<li class="active"><a href="#info" data-toggle="tab">info</a></li>
+  		<li><a href="#reviews" data-toggle="tab">reviews</a></li>  
 	</ul>
 
-      
-    <!-- </div> -->
     <div class="modal-body">
 	<h4 class="modal-title" id="myModalLabel"><%= @store_item.name %>
 		<div class="star-rank">
@@ -27,7 +24,7 @@
 			<br/>
 			<p><%= raw @store_item.description %>
 			</p>
-			<h4 class="modal-title" id="myModalLabel">Top Review
+			<h4 class="modal-title" id="myModalLabel">top review
 				<div class="star-rank">
 					<span class="glyphicon glyphicon-star"></span>
 					<span class="glyphicon glyphicon-star"></span>
@@ -40,14 +37,14 @@
 				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vestibulum metus quam, non dapibus metus molestie non. Proin vel metus eget odio rutrum euismod. Aenean quam justo, tempus et varius vel, pulvinar adipiscing lorem. Pellentesque eget nisi vel neque facilisis laoreet vel vel mi. Cras tempor nibh id augue gravida commodo.
 	      	</div>
 		    
-			<h4>Lab Information</h4>          
+			<h4>lab information</h4>          
 			  <table id="item-preview-lab-information" class="table table-bordered">
 			  	<tr>
-			  		<th>THC %
+			  		<th>thc %
 			  		</th>
-					<th>CBD %
+					<th>cbd %
 			  		</th>			  		
-					<th>CBN %
+					<th>cbn %
 			  		</th>			  		
 			  	</tr>
 			  	<tr>			  		
@@ -55,26 +52,26 @@
 			  			<% if  @store_item.thc %>
 					    	<%= @store_item.thc %>
 					    <% else %>
-					    	None.
+					    	none.
 					    <% end %>
 					</td>
 					<td>												    					    
 					    <% if  @store_item.cbd %>
 					    	<%= @store_item.cbd %>
 					    <% else %>
-					    	None.
+					    	none.
 					    <% end %>					    						
 					</td>
 					<td>
 					    <% if  @store_item.cbn %>
 					    	<%= @store_item.cbn %>
 					    <% else %>
-					    	None.
+					    	none.
 					    <% end %>					    						
 					</td>  
 			  	</tr>
 			  </table>
-			  <h4>Pricing</h4>
+			  <h4>pricing</h4>
 			  <table id="price-table" class="table table-bordered">
 				 <tr>
 				 	<th>.5 g</th>
@@ -106,18 +103,18 @@
 				  </tr>
 				</table>  	
 
-			  <p class = "form-group" id="dogo">
-			    <h4>DOGO</h4>
+
+
 	  	</div>
 		<div class="tab-pane" id="reviews">
 			<br/>
-			No reviews yet!
+			no reviews yet!
 		</div>  
 	</div><!-- item-preview-tab-content -->
 
 
     <p class = "form-group pull-right">               
-		<button id="cancel-button" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		<button id="cancel-button" type="button" class="btn btn-default" data-dismiss="modal">close</button>
 	
 	</p>
     <div class="simple-weed-modal-footer">

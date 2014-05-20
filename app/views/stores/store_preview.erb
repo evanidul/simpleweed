@@ -1,7 +1,7 @@
 
 <div id="store-preview-container">
 	<div class="page-header">
-    	<h1 id="store-name"><%= @store.name %> <small>Promotional blurb</small></h1>
+    	<h1 id="store-name"><%= @store.name %> <small>promotional blurb</small></h1>
   	</div>	
 	<div class="star-rank">
 		<span class="glyphicon glyphicon-star"></span>
@@ -11,7 +11,7 @@
 		<span class="glyphicon glyphicon-star"></span>		
 	</div>
 	<div id="view-store">
-		<%= link_to 'View Full Page', store_path(@store), class: 'btn btn-primary' , id: "view_store", 'data-no-turbolink' => true %>
+		<%= link_to 'view full page', store_path(@store), class: 'btn btn-primary' , id: "view_store", 'data-no-turbolink' => true %>
 	</div>
 	<div>
 		<% if  @store.addressline1 && !@store.addressline1.empty?  %>
@@ -26,7 +26,7 @@
 	</div>
 
 	<h3>
-		Menu
+		menu
 	</h3>
 	<div id="store-preview-accordion">			
 		<% @grouped_store_items.each do |category, store_items| %>
