@@ -25,7 +25,10 @@
           <!-- <input type="text" class="form-control" placeholder="Search"> -->
           <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search Stores" %>
         </div>
-        <button type="submit" id="submit-search" class="btn btn-default">search</button>
+        <button type="submit" id="submit-search" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+        
+        <button id="show-search-filters" class="btn "><span class="glyphicon glyphicon-filter"></span></button>
+        
         
           <% end %>
         
