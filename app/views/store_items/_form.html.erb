@@ -1,10 +1,10 @@
 <%= form_for ([@store, @store_item]) do |f| %>
   <p class = "form-group">
-    <%= f.label :name,  "Name"  %><br>
+    <%= f.label :name,  "name"  %><br>
     <%= f.text_field :name, :class => 'form-control' , :required => true   %>
   </p>             
   <p class = "form-group">
-    <%= f.label :description,  "Description"  %><br>
+    <%= f.label :description,  "description"  %><br>
     <%= f.text_field :description, :class => 'form-control'    %>
   </p>   
   <%= f.select :strain ,[['indica','indica'],['sativa','sativa'],['hybrid','hybrid']], {include_blank: 'select strain'} %>
@@ -58,33 +58,33 @@
   			]  , {include_blank: 'select subcategory' }  %>
 
 
-  <h4>Lab Information</h4>          
+  <h4>lab information</h4>          
   <table id="lab-information">
   	<tr>
   		<td>
   			<p class = "form-group">
-			    <%= f.label :thc,  "THC %"  %><br>
+			    <%= f.label :thc,  "thc %"  %><br>
 			    <!-- validates %, 0-99 -->
 			    <%= f.text_field :thc, :class => 'form-control' , :pattern => '(?!^0*$)(?!^0*\.0*$)^\d{1,2}(\.\d{1,2})?$' , :id => 'thc-percent' %>
 		  </p>             
 		</td>
 		<td>
 			<p class = "form-group">
-			    <%= f.label :cbd,  "CBD %"  %><br>
+			    <%= f.label :cbd,  "cbd %"  %><br>
 			    <!-- validates %, 0-99 -->
 			    <%= f.text_field :cbd, :class => 'form-control' , :pattern => '(?!^0*$)(?!^0*\.0*$)^\d{1,2}(\.\d{1,2})?$' , :id => 'cbd-percent' %>
 			</p>             
 		</td>
 		<td>
 			<p class = "form-group">
-			    <%= f.label :cbn,  "CBN %"  %><br>
+			    <%= f.label :cbn,  "cbn %"  %><br>
 			    <!-- validates %, 0-99 -->
 			    <%= f.text_field :cbn, :class => 'form-control' , :pattern => '(?!^0*$)(?!^0*\.0*$)^\d{1,2}(\.\d{1,2})?$' , :id => 'cbn-percent' %>
 		  	</p>             
 		</td>  
   	</tr>
   </table>
-  <h4>Pricing</h4>
+  <h4>pricing</h4>
   <table id="price-table">
 	 <tr>
 	 	<th>.5 g</th>
@@ -93,7 +93,7 @@
 	 	<th>1/4 oz</th>
 	 	<th>1/2 oz</th>
 	 	<th>1 oz</th>
-	 	<th>Per Unit</th>
+	 	<th>per unit</th>
 	 </tr>
 	 <tr>
 	 	<td>
@@ -120,6 +120,7 @@
 	  </tr>
 	</table>  	
 
+	<br/>
 	<table>
 		<tr>
 			<th>cultivation</th>
@@ -184,7 +185,7 @@
   </script>
 
   <p class = "form-group pull-right">               
-    <button id="close-button" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-    <%= f.submit :class => 'btn btn-primary' , :id => 'save_store_item'%>
+    <button id="close-button" type="button" class="btn btn-default" data-dismiss="modal">close</button>
+    <%= f.submit :class => 'btn btn-primary lowercase' , :id => 'save_store_item'  %>
   </p>
 <% end %>
