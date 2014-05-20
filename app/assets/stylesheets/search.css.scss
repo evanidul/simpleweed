@@ -1,3 +1,28 @@
 // Place all the styles related to the search controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.item-search-result-container {
+	width: 700px;
+	padding: 10px;
+	border-bottom: 1px;
+	border-bottom-style: solid;
+	border-color: rgb(231, 231, 231);
+}
+
+
+.item-search-result-image {
+	width: 90px;
+	height : 90px;
+	float:left;
+	margin-right: 10px;
+}
+
+.item-search-user-logo {
+	 font-size: 2.2em;
+}
+
+.image-and-meta-container {
+	min-height: 100px;
+}

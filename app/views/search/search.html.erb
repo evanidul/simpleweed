@@ -1,6 +1,35 @@
 
 
 <% @store_items.each do |item| %>
-	<h3>Name: <%= item.name %><small><%= item.description %></small></h3>
+	<div class = "item-search-result-container">
+		<div class = "image-and-meta-container">
+			<% imagename = 'weed'+ rand(1..3).to_s + '.jpg' %>
+			<%= image_tag imagename, :class => "item-search-result-image" %>
+			<h4><%= item.name %>
+				<div class="star-rank" style="float:right;">
+					<span class="glyphicon glyphicon-star"></span>
+					<span class="glyphicon glyphicon-star"></span>
+					<span class="glyphicon glyphicon-star"></span>
+					<span class="glyphicon glyphicon-star"></span>
+					<span class="glyphicon glyphicon-star"></span>		
+				</div>
+			</h4>
+			<p>
+				Available at <%= item.store.name %>
+			</p>
+			<p>
+				<%= item.category %>
+			</p>
+			<p>
+				<%= item.description %>
+			</p>
+
+			
+		</div>
+		<div class="glyphicon glyphicon-user item-search-user-logo"></div>
+		<span>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ornare ante id sapien ullamcorper, vel pharetra nulla pulvinar. Nullam orci est, dapibus sit amet risus in, ultricies mattis turpis. Aliquam laoreet cursus libero, sed porta est auctor quis. Integer leo nibh, ultricies 
+		</span>
+	</div>
 	
 <% end %>
