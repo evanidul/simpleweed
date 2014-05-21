@@ -11,8 +11,15 @@ class SearchController < ApplicationController
 
 			  	
 			  end
+
+			  searchLocation = params[:itemsearch_location]
+			  geocoordiantes = Geocoder.coordinates(searchLocation);
 			  # within 5 kilometers of 34, 118 (LA, CA)
-	  		  with(:location).in_radius(34, -118, 100)
+	  		  with(:location).in_radius(geocoordiantes[0], geocoordiantes[1], 100)
+
+	  		  # sort by distance
+	  		  order_by_geodist(:location, geocoordiantes[0], geocoordiantes[1])
+	  		  
 			  # fulltext 'Sky'
 			  # any_of do
 			  # 	with(:name).equal_to(params[:itemsearch])

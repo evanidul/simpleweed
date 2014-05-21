@@ -20,24 +20,12 @@
       </ul>
       <!-- <form class="navbar-form navbar-left" role="search"> -->
       <% if !@disableSearchInNav %>
-      <%= form_tag(stores_path, :method => "get", class: "navbar-form navbar-left", id: "search-form") do %>
-        <div class="form-group">
-          <!-- <input type="text" class="form-control" placeholder="Search"> -->
-          <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search Stores" %>
-        </div>
-        <button type="submit" id="submit-search" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-        
-        
-        
-        
-          <% end %>
-        
-      </form>
-
+      
       <!-- item search -->
       <%= form_tag(search_path, :method => "get", class: "navbar-form navbar-left", id: "item_search-form") do %>
         <div class="form-group">          
-          <%= text_field_tag :itemsearch, params[:itemsearch], class: "form-control", placeholder: "Search Items" %>
+          <%= text_field_tag :itemsearch, params[:itemsearch], class: "form-control search-inputs", placeholder: "search items, dispensaries" %>
+          <%= text_field_tag :itemsearch_location, params[:itemsearch_location], class: "form-control search-inputs", placeholder: "location" %>          
         </div>
         <button type="submit" id="submit-item-search" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
         
