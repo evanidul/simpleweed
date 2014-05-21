@@ -29,7 +29,18 @@
 							</div>
 						</h4>
 						<div>
-							available at put store name here</br>							
+							available at 							
+							<% if item.highlights(:store_name).size == 0 %>
+								<!-- have to do because just loading directly renders brackets and newlines -->
+								<% item.stored(:store_name).each do |word| %>
+									<%= word %>
+								<% end %>
+							<% end %>
+							<% item.highlights(:store_name).each do |highlight| %>								    
+							    <%= raw highlight.format  { |word| "<span class='highlight'> #{word} </span>"  } %>
+						    <% end %>
+						    <br/>
+
 							<%= item.stored(:category) %></br>							
 							thc : 5.2% | cbd : 46.3% | cbn : 23.7%
 							</br>

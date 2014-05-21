@@ -52,6 +52,11 @@ class StoreItem < ActiveRecord::Base
 	    boolean  :supersize
 	    boolean  :glutenfree
 	    boolean  :sugarfree
+
+	    # store info
+	    text :store_name , :stored => true do
+		   store.name 
+	  	end
     end
 
 

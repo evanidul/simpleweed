@@ -7,6 +7,7 @@ class SearchController < ApplicationController
 			  fulltext params[:itemsearch] do
 			  	highlight :name
 			  	highlight :description
+			  	highlight :store_name
 			  end
 			  
 			  # fulltext 'Sky'
