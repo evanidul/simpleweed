@@ -57,6 +57,30 @@ class StoreItem < ActiveRecord::Base
 	    text :store_name , :stored => true do
 		   store.name 
 	  	end
+
+	    text :store_addressline1 , :stored => true do
+		   store.addressline1
+	  	end
+
+	    text :store_addressline2 , :stored => true do
+		   store.addressline2
+	  	end
+
+	    text :store_city , :stored => true do
+		   store.city
+	  	end
+	  	
+		text :store_state , :stored => true do
+		   store.state
+	  	end	  	
+	  	text :store_zip , :stored => true do
+		   store.zip;
+	  	end
+
+	  	text :store_phonenumber , :stored => true do
+		   store.phonenumber;
+	  	end
+	  	
     end
 
 

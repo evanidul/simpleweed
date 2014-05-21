@@ -17,6 +17,8 @@
 									<%= word %>
 								<% end %>
 							<% end %>
+
+
 							<% item.highlights(:name).each do |highlight| %>								    
 							    <%= raw highlight.format  { |word| "<span class='highlight'> #{word} </span>"  } %>
 						    <% end %>
@@ -41,6 +43,42 @@
 						    <% end %>
 						    <br/>
 
+						    <!-- store address -->
+							<% if  item.stored(:store_addressline1) && !item.stored(:store_addressline1).empty?  %>
+								<% item.stored(:store_addressline1).each do |word| %>
+									<%= word %>
+								<% end %>								
+							<% end %>
+							<% if  item.stored(:store_addressline2) && !item.stored(:store_addressline2).empty?  %>
+								<% item.stored(:store_addressline2).each do |word| %>
+									<%= word %>
+								<% end %>								
+							<% end %>
+							<% if  item.stored(:store_city) && !item.stored(:store_city).empty?  %>
+								<% item.stored(:store_city).each do |word| %>
+									<%= word %>
+								<% end %>
+							<% end %>
+							<% if  item.stored(:store_state) && !item.stored(:store_state).empty?  %>
+								<% item.stored(:store_state).each do |word| %>
+									<%= word %>
+								<% end %>
+							<% end %>
+							<% if  item.stored(:store_zip) && !item.stored(:store_zip).empty?  %>
+								<% item.stored(:store_zip).each do |word| %>
+									<%= word %>
+								<% end %>
+							<% end %>
+							</br>
+							<% if  item.stored(:store_phonenumber) && !item.stored(:store_phonenumber).empty?  %>
+								<% item.stored(:store_phonenumber).each do |word| %>
+									<%= word %>
+								<% end %>
+							<% end %>
+
+
+
+							</br>
 							<%= item.stored(:category) %></br>							
 							thc : 5.2% | cbd : 46.3% | cbn : 23.7%
 							</br>
