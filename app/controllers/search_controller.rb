@@ -3,8 +3,12 @@ class SearchController < ApplicationController
 	def search
 		
 		if params[:itemsearch]
-			search = StoreItem.search do
-			  fulltext params[:itemsearch]
+			@itemsearch = StoreItem.search do
+			  fulltext params[:itemsearch] do
+			  	highlight :name
+			  	highlight :description
+			  end
+			  
 			  # fulltext 'Sky'
 			  # any_of do
 			  # 	with(:name).equal_to(params[:itemsearch])
@@ -12,10 +16,15 @@ class SearchController < ApplicationController
 			  	
 			  # end
 
-			end
-		end
+			end # search
 
-		@store_items = search.results
+			
+
+		end # if
+
+		# loads all the objects from the db?
+		#@store_items = @itemsearch.results 
+		 @store_items = @itemsearch.hits
 	end
 
 end

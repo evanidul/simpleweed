@@ -27,21 +27,21 @@ class StoreItem < ActiveRecord::Base
 	      :message => "{{value}} must be in #{STRAINS.join ','}"
 
   	searchable do
-    	text     :name
-	   	text     :description
+    	text     :name, :stored => true
+	   	text     :description, :stored => true
 	    float    :thc
 	    float    :cbd
 	    float    :cbn
-	    integer  :costhalfgram
-	    integer  :costonegram
-	    integer  :costeighthoz
-	    integer  :costquarteroz
-	    integer  :costhalfoz
-	    integer  :costoneoz
+	    integer  :costhalfgram, :stored => true
+	    integer  :costonegram, :stored => true
+	    integer  :costeighthoz, :stored => true
+	    integer  :costquarteroz, :stored => true
+	    integer  :costhalfoz, :stored => true
+	    integer  :costoneoz, :stored => true
 	    boolean  :dogo
 	    #datetime :created_at
 	    #datetime :updated_at
-	    string   :category
+	    string   :category, :stored => true
 	    integer  :costperunit
 	    string   :maincategory
 	    string   :strain

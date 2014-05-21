@@ -1,5 +1,4 @@
 
-
 <% @store_items.each do |item| %>
 	<div class = "item-search-result-container">
 		<div class = "image-and-meta-container">
@@ -10,7 +9,14 @@
 						<%= image_tag imagename, :class => "item-search-result-image" %>
 					</td>
 					<td class="item-search-result-meta">
-						<h4 class="item-search-item-name"><%= item.name %>
+						<h4 class="item-search-item-name">
+							<!-- if there are no highlight matches, nothing is rendered without this -->
+							<% if item.highlights(:name).size == 0 %>
+								<%= item.stored(:name) %>
+							<% end %>
+							<% item.highlights(:name).each do |highlight| %>								    
+							    <%= raw highlight.format  { |word| "<span class='highlight'> #{word} </span>"  } %>
+						    <% end %>
 							<div class="star-rank" style="float:right;">
 								<span class="glyphicon glyphicon-star"></span>
 								<span class="glyphicon glyphicon-star"></span>
@@ -20,15 +26,24 @@
 							</div>
 						</h4>
 						<div>
-							available at <%= item.store.name %></br>							
-							<%= item.category %></br>							
+							available at put store name here</br>							
+							<%= item.stored(:category) %></br>							
 							thc : 5.2% | cbd : 46.3% | cbn : 23.7%
 							</br>
-							halfgram: <%= item.costhalfgram %> | gram: <%= item.costonegram %> | eighth:<%= item.costeighthoz %> | quarterounce:<%= item.costquarteroz %> | halfounce:<%= item.costhalfoz %> | ounce:<%= item.costoneoz %>
+							halfgram: <%= item.stored(:costhalfgram) %> | gram: <%= item.stored(:costonegram) %> | eighth:<%= item.stored(:costeighthoz) %> | quarterounce:<%= item.stored(:costquarteroz) %> | halfounce:<%= item.stored(:costhalfoz) %> | ounce:<%= item.stored(:costoneoz) %>
 
-							<% if  item.description && !item.description.empty?  %>
-								<div class="item-search-item-description"><%= item.description %></div>
+							<% if  item.stored(:description) && !item.stored(:description).empty?  %>
+								<div class="item-search-item-description">
+									<!-- if there are no highlight matches, nothing is rendered without this -->
+									<% if item.highlights(:description).size == 0 %>
+										<%= item.stored(:description) %>
+									<% end %>
+									<% item.highlights(:description).each do |highlight| %>								    
+									    <%= raw highlight.format  { |word| "<span class='highlight'> #{word} </span>"  } %>
+								    <% end %>
+								</div>								
 							<% end %>
+							
 							
 
 						</div>
@@ -42,4 +57,15 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ornare ante id
 		</span>
 	</div>
 
-<% end %>
+<% end %> 
+
+
+<%
+@store_items.each do |hit|
+  puts "StoreItem ##{hit.primary_key}"
+
+  hit.highlights(:description).each do |highlight|
+    puts "  " + highlight.format { |word| "*#{word}*" }
+  end
+end
+%>
