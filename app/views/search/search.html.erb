@@ -115,12 +115,3 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ornare ante id
 <% end %> 
 
 
-<%
-@store_items.each do |hit|
-  puts "StoreItem ##{hit.primary_key}"
-
-  hit.highlights(:description).each do |highlight|
-    puts "  " + highlight.format { |word| "*#{word}*" }
-  end
-end
-%>
