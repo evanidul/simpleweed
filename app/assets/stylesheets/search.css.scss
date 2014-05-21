@@ -52,3 +52,11 @@
 .search-inputs {
 	width : 160px !important;
 }
+
+#item-search-results-map {
+	width: 400px;
+	height: 400px;
+	position: fixed !important;
+	top: 70px;
+	left: 960px;
+}
