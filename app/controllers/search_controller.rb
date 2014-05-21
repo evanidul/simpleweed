@@ -8,8 +8,11 @@ class SearchController < ApplicationController
 			  	highlight :name
 			  	highlight :description
 			  	highlight :store_name
+
+			  	
 			  end
-			  
+			  # within 5 kilometers of 34, 118 (LA, CA)
+	  		  with(:location).in_radius(34, -118, 100)
 			  # fulltext 'Sky'
 			  # any_of do
 			  # 	with(:name).equal_to(params[:itemsearch])

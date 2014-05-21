@@ -26,6 +26,10 @@ class StoreItem < ActiveRecord::Base
 	validates_inclusion_of :cultivation, :in => CULTIVATION,
 	      :message => "{{value}} must be in #{STRAINS.join ','}"
 
+	def location 
+		return Sunspot::Util::Coordinates.new(store.latitude, store.longitude)
+	end
+
   	searchable do
     	text     :name, :stored => true
 	   	text     :description, :stored => true
@@ -81,6 +85,8 @@ class StoreItem < ActiveRecord::Base
 		   store.phonenumber;
 	  	end
 	  	
+	  	latlon :location, :stored => true
+
     end
 
 
