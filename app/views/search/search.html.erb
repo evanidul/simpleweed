@@ -33,16 +33,19 @@
 							</div>
 						</h4>
 						<div>
-							available at 							
-							<% if item.highlights(:store_name).size == 0 %>
-								<!-- have to do because just loading directly renders brackets and newlines -->
-								<% item.stored(:store_name).each do |word| %>
-									<%= word %>
+							available at 
+							<a href="<%= store_path(item.stored(:store_id))%>" data-no-turbolink='true' >
+								<% if item.highlights(:store_name).size == 0 %>
+									<!-- have to do because just loading directly renders brackets and newlines -->
+									<% item.stored(:store_name).each do |word| %>
+										<%= word %>
+									<% end %>
 								<% end %>
-							<% end %>
-							<% item.highlights(:store_name).each do |highlight| %>								    
-							    <%= raw highlight.format  { |word| "<span class='highlight'> #{word} </span>"  } %>
-						    <% end %>
+								<% item.highlights(:store_name).each do |highlight| %>								    
+								    <%= raw highlight.format  { |word| "<span class='highlight'> #{word} </span>"  } %>
+							    <% end %>							
+							</a>							
+							
 						    <br/>
 
 						    <!-- store address -->

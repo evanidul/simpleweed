@@ -1,7 +1,13 @@
 class SearchController < ApplicationController
 
 	def search
-		
+		searchLocation = params[:itemsearch]		
+
+		if !searchLocation || searchLocation.empty?
+			redirect_to stores_path(:search => params[:itemsearch_location] )
+
+		end
+
 		if params[:itemsearch]
 			@itemsearch = StoreItem.search do
 			  fulltext params[:itemsearch] do
@@ -19,7 +25,7 @@ class SearchController < ApplicationController
 
 	  		  # sort by distance
 	  		  order_by_geodist(:location, geocoordiantes[0], geocoordiantes[1])
-	  		  
+
 			  # fulltext 'Sky'
 			  # any_of do
 			  # 	with(:name).equal_to(params[:itemsearch])
