@@ -31,6 +31,7 @@ class StoreItem < ActiveRecord::Base
 	end
 
   	searchable do
+  		integer  :id, :stored => true
     	text     :name, :stored => true
 	   	text     :description, :stored => true
 	    float    :thc
@@ -57,7 +58,11 @@ class StoreItem < ActiveRecord::Base
 	    boolean  :glutenfree
 	    boolean  :sugarfree
 
-	    # store info
+	    integer :store_id, :stored => true
+	    
+	    # store info	   
+	    # NOTE, store id is fetched above
+
 	    text :store_name , :stored => true do
 		   store.name 
 	  	end

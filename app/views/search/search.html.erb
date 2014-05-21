@@ -10,18 +10,20 @@
 					</td>
 					<td class="item-search-result-meta">
 						<h4 class="item-search-item-name">
-							<!-- if there are no highlight matches, nothing is rendered without this -->
-							<% if item.highlights(:name).size == 0 %>								
-								<!-- have to do because just loading directly renders brackets and newlines -->
-								<% item.stored(:name).each do |word| %>
-									<%= word %>
+							<!-- dvu: we don't use link_to because the link name is too complicated to embed -->
+						  	<a data-remote="<%= store_store_item_path(item.stored(:store_id), item.stored(:id)) %>" data-target="#modal" data-toggle="modal" 
+						  		href="<%= store_store_item_path(item.stored(:store_id), item.stored(:id)) %>" >
+								<% if item.highlights(:name).size == 0 %>								
+									<!-- have to do because just loading directly renders brackets and newlines -->
+									<% item.stored(:name).each do |word| %>
+										<%= word %>
+									<% end %>
 								<% end %>
-							<% end %>
+								<% item.highlights(:name).each do |highlight| %>								    
+								    <%= raw highlight.format  { |word| "<span class='highlight'> #{word} </span>"  } %>
+							    <% end %>
+							</a>
 
-
-							<% item.highlights(:name).each do |highlight| %>								    
-							    <%= raw highlight.format  { |word| "<span class='highlight'> #{word} </span>"  } %>
-						    <% end %>
 							<div class="star-rank" style="float:right;">
 								<span class="glyphicon glyphicon-star"></span>
 								<span class="glyphicon glyphicon-star"></span>
