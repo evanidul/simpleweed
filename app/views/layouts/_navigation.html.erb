@@ -31,7 +31,16 @@
         
         <button id="show-search-filters" class="btn "><span class="glyphicon glyphicon-filter"></span></button>
         
-        
+        <button type="submit" id="group-search-results" class="btn "><span class="glyphicon glyphicon-list"></span></button>
+        <script>
+          $("#group-search-results").click(function(){
+            var input = $("<input>")
+               .attr("type", "hidden")
+               .attr("name", "groupbystore").val("true");
+              $('#item_search-form').append($(input));
+              })
+
+        </script>
           <% end %>
         
       </form>
