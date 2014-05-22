@@ -3,11 +3,11 @@ class StoreItem < ActiveRecord::Base
 	validates :name, presence: true
 
 	STRAINS = ['','indica', 'sativa', 'hybrid']
-	validates_inclusion_of :strain, :in => STRAINS,
+	validates_inclusion_of :strain, :in => STRAINS,:allow_nil => true,
 	      :message => "{{value}} must be in #{STRAINS.join ','}"
 
 	CATEGORIES = ['flower', 'concentrate', 'edible', 'pre-roll', 'other', 'accessory']
-	validates_inclusion_of :maincategory, :in => CATEGORIES,
+	validates_inclusion_of :maincategory, :in => CATEGORIES,:allow_nil => true,
 	      :message => "{{value}} must be in #{CATEGORIES.join ','}"
 
     #weakness: doesn't verify subcategory belongs to parent, we rely on UI to do this logic with linked selects. /shrug
@@ -19,11 +19,11 @@ class StoreItem < ActiveRecord::Base
 			 		 'bong/pipe', 'bong/pipe accessories', 'book/magazine', 'butane/lighter', 'cleaning', 'clothes', 'grinder', 'other', 'paper/wrap', 'storage', 'vape', 'vape accessories'		
 
 					]
-	validates_inclusion_of :subcategory, :in => SUBCATEGORIES,
+	validates_inclusion_of :subcategory, :in => SUBCATEGORIES,:allow_nil => true,
 	      :message => "{{value}} must be in #{SUBCATEGORIES.join ','}"
 
 	CULTIVATION = ['','indoor', 'outdoor', 'hydroponic', 'greenhouse', 'organic']
-	validates_inclusion_of :cultivation, :in => CULTIVATION,
+	validates_inclusion_of :cultivation, :in => CULTIVATION,:allow_nil => true,
 	      :message => "{{value}} must be in #{STRAINS.join ','}"
 
 	def location 
