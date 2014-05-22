@@ -55,15 +55,17 @@
 		<%= image_tag imagename, :class => "item-search-result-store-logo-grouped" %>
 	  	<h4>
 	  		<!-- name -->
-			<% if group.hits[0].highlights(:store_name).size == 0 %>								
-				<!-- have to do because just loading directly renders brackets and newlines -->
-				<% group.hits[0].stored(:store_name).each do |word| %>
-					<%= word %>
+	  		<a href="<%= store_path(group.hits[0].stored(:store_id))%>" data-no-turbolink='true' >
+				<% if group.hits[0].highlights(:store_name).size == 0 %>								
+					<!-- have to do because just loading directly renders brackets and newlines -->
+					<% group.hits[0].stored(:store_name).each do |word| %>
+						<%= word %>
+					<% end %>
 				<% end %>
-			<% end %>
-			<% group.hits[0].highlights(:store_name).each do |highlight| %>								    
-			    <%= raw highlight.format  { |word| "<span class='highlight'> #{word} </span>"  } %>
-			<% end %>
+				<% group.hits[0].highlights(:store_name).each do |highlight| %>								    
+				    <%= raw highlight.format  { |word| "<span class='highlight'> #{word} </span>"  } %>
+				<% end %>
+			</a>
 		</h4>
 	    <!-- store address -->
 		<% if  group.hits[0].stored(:store_addressline1) && !group.hits[0].stored(:store_addressline1).empty?  %>
