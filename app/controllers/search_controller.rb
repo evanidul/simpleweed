@@ -10,14 +10,16 @@ class SearchController < ApplicationController
 
 		if params[:itemsearch]
 			@itemsearch = StoreItem.search do
-			  fulltext params[:itemsearch] do
-			  	highlight :name
-			  	highlight :description
-			  	highlight :store_name
-
-			  	
-			  end
-
+				group :store_id_str do
+					limit 100
+				end
+				paginate :page => 1, :per_page => 100
+			  	fulltext params[:itemsearch] do
+					  	highlight :name
+					  	highlight :description
+					  	highlight :store_name
+				end # fulltext
+			  
 			  searchLocation = params[:itemsearch_location]
 			  geocoordiantes = Geocoder.coordinates(searchLocation);
 			  # within 5 kilometers of 34, 118 (LA, CA)

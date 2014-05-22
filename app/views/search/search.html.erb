@@ -39,6 +39,29 @@
 	
 </script>
 
+<%
+
+
+@itemsearch.group(:store_id_str).groups.each do |group|
+   puts group.value
+
+  # By default, there is only one document per group (the highest
+  # scoring one); if `limit` is specified (see below), multiple
+  # documents can be returned per group
+  binding.pry
+  %>
+  
+  	<h3><%= group.value %><%= group.results[0].store.name %><h3>
+  <%
+  
+  group.results.each do |result| %>
+    
+    <%= result.name %> by <%= result.store.name %><br/>
+    
+    <%
+  end
+end
+%>
 
 <% @store_items.each do |item| %>
 	<div class = "item-search-result-container">
@@ -49,6 +72,8 @@
 						<% imagename = 'weed'+ rand(1..3).to_s + '.jpg' %>
 						<%= image_tag imagename, :class => "item-search-result-image" %>
 					</td>
+
+
 					<td class="item-search-result-meta">
 						<h4 class="item-search-item-name">
 							<!-- dvu: we don't use link_to because the link name is too complicated to embed -->

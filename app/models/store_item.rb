@@ -59,6 +59,7 @@ class StoreItem < ActiveRecord::Base
 	    boolean  :sugarfree
 
 	    integer :store_id, :stored => true
+	    string(:store_id_str) { |p| p.store.id.to_s }
 	    
 	    # store info	   
 	    # NOTE, store id is fetched above
