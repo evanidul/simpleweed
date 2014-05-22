@@ -11,7 +11,7 @@ class SearchController < ApplicationController
 		if params[:itemsearch]
 			@itemsearch = StoreItem.search do
 				group :store_id_str do
-					limit 100
+					limit 3
 				end
 				paginate :page => 1, :per_page => 100
 			  	fulltext params[:itemsearch] do
