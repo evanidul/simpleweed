@@ -43,7 +43,7 @@
 
 
 @itemsearch.group(:store_id_str).groups.each do |group|
-   puts group.value
+
 
   # By default, there is only one document per group (the highest
   # scoring one); if `limit` is specified (see below), multiple
@@ -51,18 +51,29 @@
   
   %>
 
-  	<h3><%= group.hits[0].stored(:store_name) %></h3>
+  	<h3>
+		<% if group.hits[0].highlights(:store_name).size == 0 %>								
+			<!-- have to do because just loading directly renders brackets and newlines -->
+			<% group.hits[0].stored(:store_name).each do |word| %>
+				<%= word %>
+			<% end %>
+		<% end %>
+		<% group.hits[0].highlights(:store_name).each do |highlight| %>								    
+		    <%= raw highlight.format  { |word| "<span class='highlight'> #{word} </span>"  } %>
+		<% end %>
+
+  	</h3>
   <%
   group.hits.each do |item| %>
   	
 
-	<div class = "item-search-result-container">
+	<div class = "item-search-result-container-grouped">
 		<div class = "image-and-meta-container">
 			<table>
 				<tr>
 					<td class="image-td" valign="top">
 						<% imagename = 'weed'+ rand(1..3).to_s + '.jpg' %>
-						<%= image_tag imagename, :class => "item-search-result-image" %>
+						<%= image_tag imagename, :class => "item-search-result-image-grouped" %>
 					</td>
 
 
