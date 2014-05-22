@@ -76,8 +76,21 @@
 .item-search-result-container-grouped {
 	width: 700px;
 	padding: 10px;
-	border-bottom: 1px;
-	border-bottom-style: solid;
-	border-color: rgb(231, 231, 231);
-	margin-left: 40px;
+	
+	margin-left: 30px;
+	
+}
+
+.item-search-result-store-logo-grouped {
+	width: 90px;
+	height : 90px;
+	float:left;
+	margin-right: 10px;
+	margin-top:10px;
+}
+
+.grouped-search-store-container {
+	
+	margin-bottom:25px;
+	width:740px;
 }
