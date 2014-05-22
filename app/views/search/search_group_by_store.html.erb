@@ -39,8 +39,23 @@
 	
 </script>
 
+<%
 
-<% @store_items.each do |item| %>
+
+@itemsearch.group(:store_id_str).groups.each do |group|
+   puts group.value
+
+  # By default, there is only one document per group (the highest
+  # scoring one); if `limit` is specified (see below), multiple
+  # documents can be returned per group
+  
+  %>
+
+  	<h3><%= group.hits[0].stored(:store_name) %></h3>
+  <%
+  group.hits.each do |item| %>
+  	
+
 	<div class = "item-search-result-container">
 		<div class = "image-and-meta-container">
 			<table>
@@ -76,10 +91,9 @@
 							</div>
 						</h4>
 						<div>
-							available at 
+<!-- 							available at 
 							<a href="<%= store_path(item.stored(:store_id))%>" data-no-turbolink='true' >
-								<% if item.highlights(:store_name).size == 0 %>
-									<!-- have to do because just loading directly renders brackets and newlines -->
+								<% if item.highlights(:store_name).size == 0 %>									
 									<% item.stored(:store_name).each do |word| %>
 										<%= word %>
 									<% end %>
@@ -88,7 +102,7 @@
 								    <%= raw highlight.format  { |word| "<span class='highlight'> #{word} </span>"  } %>
 							    <% end %>							
 							</a>							
-							
+ -->							
 						    <br/>
 
 						    <!-- store address -->
@@ -160,6 +174,9 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ornare ante id
 		</span>
 	</div>
 
-<% end %> 
+    
+  <% end%>
+<% end %>
+
 
 

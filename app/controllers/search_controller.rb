@@ -1,7 +1,13 @@
 class SearchController < ApplicationController
 
 	def search
-		searchLocation = params[:itemsearch]		
+		searchLocation = params[:itemsearch]
+
+		if params[:groupbystore] == 'true'
+			groupbystore = true
+		else
+			groupbystore = false
+		end	
 
 		if !searchLocation || searchLocation.empty?
 			redirect_to stores_path(:search => params[:itemsearch_location] )
@@ -9,10 +15,12 @@ class SearchController < ApplicationController
 		end
 
 		if params[:itemsearch]
-			@itemsearch = StoreItem.search do
-				group :store_id_str do
-					limit 3
-				end
+			@itemsearch = StoreItem.search do				
+				if groupbystore
+					group :store_id_str do
+						limit 3
+					end
+				end # if
 				paginate :page => 1, :per_page => 100
 			  	fulltext params[:itemsearch] do
 					  	highlight :name
@@ -44,6 +52,12 @@ class SearchController < ApplicationController
 		# loads all the objects from the db?
 		#@store_items = @itemsearch.results 
 		 @store_items = @itemsearch.hits
-	end
+
+
+		 if groupbystore
+		 	render 'search_group_by_store'
+		 end
+
+	end # end search endpoint
 
 end
