@@ -52,6 +52,7 @@
   %>
 
   	<h3>
+  		<!-- name -->
 		<% if group.hits[0].highlights(:store_name).size == 0 %>								
 			<!-- have to do because just loading directly renders brackets and newlines -->
 			<% group.hits[0].stored(:store_name).each do |word| %>
@@ -61,8 +62,40 @@
 		<% group.hits[0].highlights(:store_name).each do |highlight| %>								    
 		    <%= raw highlight.format  { |word| "<span class='highlight'> #{word} </span>"  } %>
 		<% end %>
-
-  	</h3>
+	</h3>
+    <!-- store address -->
+	<% if  group.hits[0].stored(:store_addressline1) && !group.hits[0].stored(:store_addressline1).empty?  %>
+		<% group.hits[0].stored(:store_addressline1).each do |word| %>
+			<%= word %>
+		<% end %>								
+	<% end %>
+	<% if  group.hits[0].stored(:store_addressline2) && !group.hits[0].stored(:store_addressline2).empty?  %>
+		<% group.hits[0].stored(:store_addressline2).each do |word| %>
+			<%= word %>
+		<% end %>								
+	<% end %>
+	<% if  group.hits[0].stored(:store_city) && !group.hits[0].stored(:store_city).empty?  %>
+		<% group.hits[0].stored(:store_city).each do |word| %>
+			<%= word %>
+		<% end %>
+	<% end %>
+	<% if  group.hits[0].stored(:store_state) && !group.hits[0].stored(:store_state).empty?  %>
+		<% group.hits[0].stored(:store_state).each do |word| %>
+			<%= word %>
+		<% end %>
+	<% end %>
+	<% if  group.hits[0].stored(:store_zip) && !group.hits[0].stored(:store_zip).empty?  %>
+		<% group.hits[0].stored(:store_zip).each do |word| %>
+			<%= word %>
+		<% end %>
+	<% end %>
+	</br>
+	<% if  group.hits[0].stored(:store_phonenumber) && !group.hits[0].stored(:store_phonenumber).empty?  %>
+		<% group.hits[0].stored(:store_phonenumber).each do |word| %>
+			<%= word %>
+		<% end %>
+	<% end %>
+  	
   <%
   group.hits.each do |item| %>
   	
@@ -102,56 +135,7 @@
 							</div>
 						</h4>
 						<div>
-<!-- 							available at 
-							<a href="<%= store_path(item.stored(:store_id))%>" data-no-turbolink='true' >
-								<% if item.highlights(:store_name).size == 0 %>									
-									<% item.stored(:store_name).each do |word| %>
-										<%= word %>
-									<% end %>
-								<% end %>
-								<% item.highlights(:store_name).each do |highlight| %>								    
-								    <%= raw highlight.format  { |word| "<span class='highlight'> #{word} </span>"  } %>
-							    <% end %>							
-							</a>							
- -->							
-						    <br/>
-
-						    <!-- store address -->
-							<% if  item.stored(:store_addressline1) && !item.stored(:store_addressline1).empty?  %>
-								<% item.stored(:store_addressline1).each do |word| %>
-									<%= word %>
-								<% end %>								
-							<% end %>
-							<% if  item.stored(:store_addressline2) && !item.stored(:store_addressline2).empty?  %>
-								<% item.stored(:store_addressline2).each do |word| %>
-									<%= word %>
-								<% end %>								
-							<% end %>
-							<% if  item.stored(:store_city) && !item.stored(:store_city).empty?  %>
-								<% item.stored(:store_city).each do |word| %>
-									<%= word %>
-								<% end %>
-							<% end %>
-							<% if  item.stored(:store_state) && !item.stored(:store_state).empty?  %>
-								<% item.stored(:store_state).each do |word| %>
-									<%= word %>
-								<% end %>
-							<% end %>
-							<% if  item.stored(:store_zip) && !item.stored(:store_zip).empty?  %>
-								<% item.stored(:store_zip).each do |word| %>
-									<%= word %>
-								<% end %>
-							<% end %>
-							</br>
-							<% if  item.stored(:store_phonenumber) && !item.stored(:store_phonenumber).empty?  %>
-								<% item.stored(:store_phonenumber).each do |word| %>
-									<%= word %>
-								<% end %>
-							<% end %>
-
-
-
-							</br>
+						    
 							<%= item.stored(:category) %></br>							
 							thc : 5.2% | cbd : 46.3% | cbn : 23.7%
 							</br>
@@ -179,10 +163,10 @@
 				</tr>
 			</table>
 		</div>
-		<div class="glyphicon glyphicon-user item-search-user-logo"></div>
+		<!-- <div class="glyphicon glyphicon-user item-search-user-logo"></div>
 		<span>
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ornare ante id sapien ullamcorper, vel pharetra nulla pulvinar. Nullam orci est, dapibus sit amet risus in, ultricies mattis turpis. Aliquam laoreet cursus libero, sed porta est auctor quis. Integer leo nibh, ultricies 
-		</span>
+		</span> -->
 	</div>
 
     
