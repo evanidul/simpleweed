@@ -53,7 +53,7 @@
   	<div class="grouped-search-store-container">
 		<% imagename = 'weed'+ rand(1..3).to_s + '.jpg' %>
 		<%= image_tag imagename, :class => "item-search-result-store-logo-grouped" %>
-	  	<h3>
+	  	<h4>
 	  		<!-- name -->
 			<% if group.hits[0].highlights(:store_name).size == 0 %>								
 				<!-- have to do because just loading directly renders brackets and newlines -->
@@ -64,7 +64,7 @@
 			<% group.hits[0].highlights(:store_name).each do |highlight| %>								    
 			    <%= raw highlight.format  { |word| "<span class='highlight'> #{word} </span>"  } %>
 			<% end %>
-		</h3>
+		</h4>
 	    <!-- store address -->
 		<% if  group.hits[0].stored(:store_addressline1) && !group.hits[0].stored(:store_addressline1).empty?  %>
 			<% group.hits[0].stored(:store_addressline1).each do |word| %>
@@ -98,7 +98,7 @@
 			<% end %>
 		<% end %>
   	</div>
-  	
+
   <%
   group.hits.each do |item| %>
   	
@@ -114,7 +114,7 @@
 
 
 					<td class="item-search-result-meta">
-						<h4 class="item-search-item-name">
+						<h5 class="item-search-item-name">
 							<!-- dvu: we don't use link_to because the link name is too complicated to embed -->
 						  	<a data-remote="<%= store_store_item_path(item.stored(:store_id), item.stored(:id)) %>" data-target="#modal" data-toggle="modal" 
 						  		href="<%= store_store_item_path(item.stored(:store_id), item.stored(:id)) %>" >
@@ -136,7 +136,7 @@
 								<span class="glyphicon glyphicon-star"></span>
 								<span class="glyphicon glyphicon-star"></span>		
 							</div>
-						</h4>
+						</h5>
 						<div>
 						    
 							<%= item.stored(:category) %></br>							
