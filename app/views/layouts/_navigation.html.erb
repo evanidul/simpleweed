@@ -23,7 +23,11 @@
       
       <!-- item search -->
       
-      <% @search = Search.new %>
+      <%
+        if !@search
+          @search = Search.new 
+        end
+      %>
       <%= form_for @search, :html => {:class => "navbar-form navbar-left"} do |f| %>
         
         <div class="form-group"> 
@@ -41,8 +45,8 @@
           $("#group-search-results").click(function(){
             var input = $("<input>")
                .attr("type", "hidden")
-               .attr("name", "groupbystore").val("true");
-              $('#item_search-form').append($(input));
+               .attr("name", "search[groupbystore]").val("true");
+              $('#new_search').append($(input));
               })
 
         </script>

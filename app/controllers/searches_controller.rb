@@ -6,16 +6,17 @@ class SearchesController < ApplicationController
 
 		itemquery = @search.itemsearch
 		searchLocation = @search.itemsearch_location
+		groupbystore = @search.groupbystore
 
 		if searchLocation.nil? || searchLocation.empty?
 			searchLocation = "la,ca"
 		end
 
-		if params[:groupbystore] == 'true'
-			groupbystore = true
-		else
-			groupbystore = false
-		end	
+		# if params[:groupbystore] == 'true'
+		# 	groupbystore = true
+		# else
+		# 	groupbystore = false
+		# end	
 
 		if !itemquery || itemquery.empty?
 			redirect_to stores_path(:search => searchLocation )
@@ -70,7 +71,7 @@ class SearchesController < ApplicationController
 
 private 
 	def search_params
-		params.require(:search).permit(:itemsearch,:itemsearch_location)		
+		params.require(:search).permit(:itemsearch,:itemsearch_location,:groupbystore)		
 	end	
 
 end

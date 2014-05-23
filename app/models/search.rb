@@ -12,7 +12,7 @@ class Search
   #   end
   # end
 
-  attr_accessor :itemsearch, :itemsearch_location
+  attr_accessor :itemsearch, :itemsearch_location, :groupbystore
   
   def persisted?
     false
