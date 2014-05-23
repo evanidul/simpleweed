@@ -70,6 +70,7 @@
 	border-bottom-right-radius: 3px;
 	border-style: none;
 	display:none;
+  width:820px;
 }
 
 
@@ -192,7 +193,8 @@
 }
 
 #search-filter-options .tab-content .tab-pane {
-	height: 158px;
+	/**height: 158px; **/
+  height: 258px;
 	background-color:#222222;
 	color:white;
 	padding: 10px;
