@@ -1,7 +1,13 @@
 class SearchController < ApplicationController
 
 	def search
-		searchLocation = params[:itemsearch]
+
+
+		itemquery = params[:itemsearch]
+		searchLocation = params[:itemsearch_location]
+		if searchLocation.nil? || searchLocation.empty?
+			searchLocation = "la,ca"
+		end
 
 		if params[:groupbystore] == 'true'
 			groupbystore = true
@@ -9,9 +15,9 @@ class SearchController < ApplicationController
 			groupbystore = false
 		end	
 
-		if !searchLocation || searchLocation.empty?
-			redirect_to stores_path(:search => params[:itemsearch_location] )
-
+		if !itemquery || itemquery.empty?
+			redirect_to stores_path(:search => searchLocation )
+			return
 		end
 
 		if params[:itemsearch]
@@ -28,7 +34,7 @@ class SearchController < ApplicationController
 					  	highlight :store_name
 				end # fulltext
 			  
-			  searchLocation = params[:itemsearch_location]
+			  
 			  geocoordiantes = Geocoder.coordinates(searchLocation);
 			  # within 5 kilometers of 34, 118 (LA, CA)
 	  		  with(:location).in_radius(geocoordiantes[0], geocoordiantes[1], 100)

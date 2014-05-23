@@ -39,7 +39,11 @@
 	
 </script>
 
-
+<% if @store_items.empty? %>
+	<div class="alert alert-warning">
+	    <strong>Sorry!</strong> Your search returned 0 results.
+	</div>
+<% end %>
 <% @store_items.each do |item| %>
 	<div class = "item-search-result-container">
 		<div class = "image-and-meta-container">
