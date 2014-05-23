@@ -40,6 +40,11 @@
 				none.
 			</div>
 			<div class="search-option-radio">
+				<%= f.radio_button(:pricerangeselect, "custom") %>
+				<%= f.text_field :minprice, :class => 'item-search-custom-price', placeholder: "min" %> to
+				<%= f.text_field :maxprice, :class => 'item-search-custom-price', placeholder: "max" %>
+			</div>
+			<div class="search-option-radio">
 			    <%= f.radio_button(:pricerangeselect, "lessthan25") %>
 			    less than $25
 			</div>

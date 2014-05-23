@@ -9,6 +9,8 @@ class SearchesController < ApplicationController
 		groupbystore = @search.groupbystore
 		filterpriceby = @search.filterpriceby
 		pricerangeselect = @search.pricerangeselect
+		customminprice = @search.minprice
+		custommaxprice = @search.maxprice
 
 		if searchLocation.nil? || searchLocation.empty?
 			searchLocation = "la,ca"
@@ -50,6 +52,9 @@ class SearchesController < ApplicationController
 
 	  		  case pricerangeselect
 	  		  	when ""
+	  		  	when "custom"
+	  		  		minprice = customminprice
+	  		  		maxprice = custommaxprice
 	  		  	when "lessthan25"
 	  		  		maxprice = 25
 	  		  	when "between25and50"
@@ -120,7 +125,7 @@ class SearchesController < ApplicationController
 
 private 
 	def search_params
-		params.require(:search).permit(:itemsearch,:itemsearch_location,:groupbystore, :filterpriceby, :pricerangeselect)		
+		params.require(:search).permit(:itemsearch,:itemsearch_location,:groupbystore, :filterpriceby, :pricerangeselect, :minprice, :maxprice)		
 	end	
 
 	
