@@ -8,7 +8,7 @@ class SearchesController < ApplicationController
 		searchLocation = @search.itemsearch_location
 		groupbystore = @search.groupbystore
 		filterpriceby = @search.filterpriceby
-		
+		pricerangeselect = @search.pricerangeselect
 
 		if searchLocation.nil? || searchLocation.empty?
 			searchLocation = "la,ca"
@@ -44,21 +44,49 @@ class SearchesController < ApplicationController
 			  # within 5 kilometers of 34, 118 (LA, CA)
 	  		  with(:location).in_radius(geocoordiantes[0], geocoordiantes[1], 100)
 
+
+	  		  minprice = 0
+	  		  maxprice = 1000000
+
+	  		  case pricerangeselect
+	  		  	when ""
+	  		  	when "lessthan25"
+	  		  		maxprice = 25
+	  		  	when "between25and50"
+	  		  		minprice = 25
+	  		  		maxprice = 50
+	  		  	when "between50and100"
+	  		  		minprice = 50
+	  		  		maxprice =100
+	  		  	when "between100and200"
+	  		  		minprice = 100
+	  		  		maxprice = 200
+	  		  	when "morethan200"
+	  		  		minprice = 200
+	  		  end
+
+
 	  		  case filterpriceby # a_variable is the variable we want to compare
 				when ""   
-				  puts "noneselected" 
+				  	puts "noneselected" 				  
 				when "halfgram"    
-				  puts "halfgram"
+				  	puts "halfgram"
+				  	with(:costhalfgram, minprice..maxprice)
 				when "gram"
-				  puts "gram"
+				  	puts "gram"
+				  	with(:costonegram, minprice..maxprice)
 				when "eighth"
 					puts "eighth"
+					with(:costeighthoz, minprice..maxprice)
 				when "quarteroz"
 					puts "quarteroz"
+					with(:costquarteroz, minprice..maxprice)
 				when "halfoz"	
 					puts "halfoz"
+					with(:costhalfoz, minprice..maxprice)
 				when "oz"					
 					puts "oz"
+					with(:costoneoz, minprice..maxprice)
 				else
 				  puts "gram"
 			  end
@@ -92,7 +120,7 @@ class SearchesController < ApplicationController
 
 private 
 	def search_params
-		params.require(:search).permit(:itemsearch,:itemsearch_location,:groupbystore, :filterpriceby)		
+		params.require(:search).permit(:itemsearch,:itemsearch_location,:groupbystore, :filterpriceby, :pricerangeselect)		
 	end	
 
 	

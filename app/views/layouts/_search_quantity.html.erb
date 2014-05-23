@@ -1,30 +1,65 @@
-<h5>Quantity </h5>
+<table>
+	<tr>
+		<th>Quantity</th>
+		<th>Price</th>
+	</tr>
+	<tr>
+		<td valign="top">
+			<div class="search-option-radio">
+				<%= f.radio_button(:filterpriceby, "") %>
+				none.
+			</div>
+			<div class="search-option-radio">
+			    <%= f.radio_button(:filterpriceby, "halfgram") %>
+			    1/2g
+			</div>
+			<div class="search-option-radio">
+				<%= f.radio_button(:filterpriceby, "gram") %>
+				1g
+			</div>
+			<div class="search-option-radio">
+				<%= f.radio_button(:filterpriceby, "eighth") %>
+				1/8oz (3.5g)
+			</div>
+			<div class="search-option-radio">        	
+				<%= f.radio_button(:filterpriceby, "quarteroz") %>
+				1/4oz (7g)
+			</div>
+			<div class="search-option-radio">
+				<%= f.radio_button(:filterpriceby, "halfoz") %>
+				1/2oz (14g)
+			</div>
+			<div class="search-option-radio">
+				<%= f.radio_button(:filterpriceby, "oz") %>
+				1oz (28g)
+			</div>
+		</td>
+		<td valign="top">			
+			<div class="search-option-radio">
+				<%= f.radio_button(:pricerangeselect, "") %>
+				none.
+			</div>
+			<div class="search-option-radio">
+			    <%= f.radio_button(:pricerangeselect, "lessthan25") %>
+			    less than $25
+			</div>
+			<div class="search-option-radio">
+				<%= f.radio_button(:pricerangeselect, "between25and50") %>
+				$25 to $50
+			</div>
+			<div class="search-option-radio">
+				<%= f.radio_button(:pricerangeselect, "between50and100") %>
+				$50 to $100
+			</div>
+			<div class="search-option-radio">        	
+				<%= f.radio_button(:pricerangeselect, "between100and200") %>
+				$100 to $200
+			</div>
+			<div class="search-option-radio">
+				<%= f.radio_button(:pricerangeselect, "morethan200") %>
+				more than $200
+			</div>
+		</td>
+	</tr>
+</table>
 
-<div class="search-option-radio">
-	<%= f.radio_button(:filterpriceby, "") %>
-	none.
-</div>
-<div class="search-option-radio">
-    <%= f.radio_button(:filterpriceby, "halfgram") %>
-    1/2g
-</div>
-<div class="search-option-radio">
-	<%= f.radio_button(:filterpriceby, "gram") %>
-	1g
-</div>
-<div class="search-option-radio">
-	<%= f.radio_button(:filterpriceby, "eighth") %>
-	1/8oz (3.5g)
-</div>
-<div class="search-option-radio">        	
-	<%= f.radio_button(:filterpriceby, "quarteroz") %>
-	1/4oz (7g)
-</div>
-<div class="search-option-radio">
-	<%= f.radio_button(:filterpriceby, "halfoz") %>
-	1/2oz (14g)
-</div>
-<div class="search-option-radio">
-	<%= f.radio_button(:filterpriceby, "oz") %>
-	1oz (28g)
-</div>
