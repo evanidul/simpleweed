@@ -19,7 +19,7 @@ class HeaderPageComponent < SitePrism::Page
   element :create_account_button, "#create-account-button"
 
   #search bar
-  element :search_input, "#itemsearch_location"
+  element :search_input, "#search_itemsearch_location"
   element :search_button, "#submit-item-search"
 
 

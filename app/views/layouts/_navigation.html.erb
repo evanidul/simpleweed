@@ -18,14 +18,19 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
       </ul>
-      <!-- <form class="navbar-form navbar-left" role="search"> -->
+      
       <% if !@disableSearchInNav %>
       
       <!-- item search -->
-      <%= form_tag(search_path, :method => "get", class: "navbar-form navbar-left", id: "item_search-form") do %>
-        <div class="form-group">          
-          <%= text_field_tag :itemsearch, params[:itemsearch], class: "form-control search-inputs", placeholder: "search items, dispensaries" %>
-          <%= text_field_tag :itemsearch_location, params[:itemsearch_location], class: "form-control search-inputs", placeholder: "location" %>          
+      
+      <% @search = Search.new %>
+      <%= form_for @search, :html => {:class => "navbar-form navbar-left"} do |f| %>
+        
+        <div class="form-group"> 
+          <%= f.text_field :itemsearch, :class => 'form-control search-inputs', placeholder: "search items, dispensaries"  %>
+          <%= f.text_field :itemsearch_location, :class => 'form-control search-inputs', placeholder: "location"  %>                    
+                    
+
         </div>
         <button type="submit" id="submit-item-search" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
         
@@ -41,63 +46,63 @@
               })
 
         </script>
-<div id="search-filter-options">
-      <!-- tabs bottom -->
-      <div class="tabbable tabs-below">
-        <div class="tab-content">
-         <div class="tab-pane active" id="search-opt-strain-and-attr">Lorem ipsum dolor sit amet, charetra varius quam sit amet vulputate. 
-         Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero.
+        <div id="search-filter-options">
+              <!-- tabs bottom -->
+              <div class="tabbable tabs-below">
+                <div class="tab-content">
+                 <div class="tab-pane active" id="search-opt-strain-and-attr">Lorem ipsum dolor sit amet, charetra varius quam sit amet vulputate. 
+                 Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero.
 
-         Lorem ipsum dolor sit amet, charetra varius quam sit amet vulputate. 
-         Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero.
-         Lorem ipsum dolor sit amet, charetra varius quam sit amet vulputate. 
-         Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero.
-         Lorem ipsum dolor sit amet, charetra varius quam sit amet vulputate. 
-         Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero.
-         Lorem ipsum dolor sit amet, charetra varius quam sit amet vulputate. 
-         Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero.
+                 Lorem ipsum dolor sit amet, charetra varius quam sit amet vulputate. 
+                 Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero.
+                 Lorem ipsum dolor sit amet, charetra varius quam sit amet vulputate. 
+                 Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero.
+                 Lorem ipsum dolor sit amet, charetra varius quam sit amet vulputate. 
+                 Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero.
+                 Lorem ipsum dolor sit amet, charetra varius quam sit amet vulputate. 
+                 Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero.
 
-         Lorem ipsum dolor sit amet, charetra varius quam sit amet vulputate. 
-         Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero.
-         Lorem ipsum dolor sit amet, charetra varius quam sit amet vulputate. 
-         Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero.
-         Lorem ipsum dolor sit amet, charetra varius quam sit amet vulputate. 
-         Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero.
-         Lorem ipsum dolor sit amet, charetra varius quam sit amet vulputate. 
-         Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero.
+                 Lorem ipsum dolor sit amet, charetra varius quam sit amet vulputate. 
+                 Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero.
+                 Lorem ipsum dolor sit amet, charetra varius quam sit amet vulputate. 
+                 Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero.
+                 Lorem ipsum dolor sit amet, charetra varius quam sit amet vulputate. 
+                 Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero.
+                 Lorem ipsum dolor sit amet, charetra varius quam sit amet vulputate. 
+                 Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero.
 
-       </div>
-         <div class="tab-pane" id="search-opt-quantity-price">Secondo sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. 
-         Aliquam in felis sit amet augue.</div>
-         <div class="tab-pane" id="search-opt-item-category">Thirdamuno, ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. 
-         Quisque mauris augue, molestie tincidunt condimentum vitae. </div>
-        </div>
-        <ul class="nav nav-tabs">
-          <li class="active"><a href="#search-opt-strain-and-attr" data-toggle="tab">Strains &amp; Attributes</a></li>
-          <li><a href="#search-opt-quantity-price" data-toggle="tab">Quantity &amp; Price</a></li>
-          <li><a href="#search-opt-item-category" data-toggle="tab">Item Category</a></li>
-          <li><a href="#search-opt-item-category" data-toggle="tab">Distance</a></li>
-          <li><a href="#search-opt-item-category" data-toggle="tab">Store Features</a></li>
-          <li><a href="#search-opt-item-category" data-toggle="tab">Lab</a></li>
-          <li><a href="#search-opt-item-category" data-toggle="tab">Reviews</a></li>
-        </ul>
-      </div>
-      <!-- /tabs -->
+               </div>
+                 <div class="tab-pane" id="search-opt-quantity-price">Secondo sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. 
+                 Aliquam in felis sit amet augue.</div>
+                 <div class="tab-pane" id="search-opt-item-category">Thirdamuno, ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. 
+                 Quisque mauris augue, molestie tincidunt condimentum vitae. </div>
+                </div>
+                <ul class="nav nav-tabs">
+                  <li class="active"><a href="#search-opt-strain-and-attr" data-toggle="tab">Strains &amp; Attributes</a></li>
+                  <li><a href="#search-opt-quantity-price" data-toggle="tab">Quantity &amp; Price</a></li>
+                  <li><a href="#search-opt-item-category" data-toggle="tab">Item Category</a></li>
+                  <li><a href="#search-opt-item-category" data-toggle="tab">Distance</a></li>
+                  <li><a href="#search-opt-item-category" data-toggle="tab">Store Features</a></li>
+                  <li><a href="#search-opt-item-category" data-toggle="tab">Lab</a></li>
+                  <li><a href="#search-opt-item-category" data-toggle="tab">Reviews</a></li>
+                </ul>
+              </div>
+              <!-- /tabs -->
 
 
-    </div><!--#search-filter-options -->
+            </div><!--#search-filter-options -->
 
-    <script>
-      $(document).ready(function(){
-        $("#show-search-filters").click(function(e){
-          e.preventDefault();
-          $("#search-filter-options").slideToggle("fast");
-        });
-      });
-    </script>        
-          <% end %>
-        
-      </form>
+            <script>
+              $(document).ready(function(){
+                $("#show-search-filters").click(function(e){
+                  e.preventDefault();
+                  $("#search-filter-options").slideToggle("fast");
+                });
+              });
+            </script>        
+      
+      <% end %> <!-- end of search form -->
+      
 
 
       <% end %>
