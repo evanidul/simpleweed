@@ -54,30 +54,8 @@
               <!-- tabs bottom -->
               <div class="tabbable tabs-below">
                 <div class="tab-content">
-                 <div class="tab-pane active" id="search-opt-strain-and-attr">Lorem ipsum dolor sit amet, charetra varius quam sit amet vulputate. 
-                 Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero.
-
-                 Lorem ipsum dolor sit amet, charetra varius quam sit amet vulputate. 
-                 Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero.
-                 Lorem ipsum dolor sit amet, charetra varius quam sit amet vulputate. 
-                 Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero.
-                 Lorem ipsum dolor sit amet, charetra varius quam sit amet vulputate. 
-                 Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero.
-                 Lorem ipsum dolor sit amet, charetra varius quam sit amet vulputate. 
-                 Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero.
-
-                 Lorem ipsum dolor sit amet, charetra varius quam sit amet vulputate. 
-                 Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero.
-                 Lorem ipsum dolor sit amet, charetra varius quam sit amet vulputate. 
-                 Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero.
-                 Lorem ipsum dolor sit amet, charetra varius quam sit amet vulputate. 
-                 Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero.
-                 Lorem ipsum dolor sit amet, charetra varius quam sit amet vulputate. 
-                 Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero.
-
-               </div>
-                 <div class="tab-pane" id="search-opt-quantity-price">Secondo sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. 
-                 Aliquam in felis sit amet augue.</div>
+                 <div class="tab-pane active" id="search-opt-strain-and-attr"><%= render :partial =>'layouts/search_strain', :locals=>{:f=>f} %></div>
+                 <div class="tab-pane" id="search-opt-quantity-price"><%= render :partial =>'layouts/search_quantity', :locals=>{:f=>f} %></div>
                  <div class="tab-pane" id="search-opt-item-category">Thirdamuno, ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. 
                  Quisque mauris augue, molestie tincidunt condimentum vitae. </div>
                 </div>

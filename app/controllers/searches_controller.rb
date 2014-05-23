@@ -7,6 +7,8 @@ class SearchesController < ApplicationController
 		itemquery = @search.itemsearch
 		searchLocation = @search.itemsearch_location
 		groupbystore = @search.groupbystore
+		filterpriceby = @search.filterpriceby
+		
 
 		if searchLocation.nil? || searchLocation.empty?
 			searchLocation = "la,ca"
@@ -42,6 +44,24 @@ class SearchesController < ApplicationController
 			  # within 5 kilometers of 34, 118 (LA, CA)
 	  		  with(:location).in_radius(geocoordiantes[0], geocoordiantes[1], 100)
 
+	  		  case filterpriceby # a_variable is the variable we want to compare
+				when ""   
+				  puts "noneselected" 
+				when "halfgram"    
+				  puts "halfgram"
+				when "gram"
+				  puts "gram"
+				when "eighth"
+					puts "eighth"
+				when "quarteroz"
+					puts "quarteroz"
+				when "halfoz"	
+					puts "halfoz"
+				when "oz"					
+					puts "oz"
+				else
+				  puts "gram"
+			  end
 	  		  #with(:costeighthoz).less_than(35)
 	  		  # with(:costeighthoz, 25..35)
 
@@ -67,11 +87,14 @@ class SearchesController < ApplicationController
 		 	render 'search'
 		 end
 
-	end # end search endpoint
+	end # end search endpoint	
+	
 
 private 
 	def search_params
-		params.require(:search).permit(:itemsearch,:itemsearch_location,:groupbystore)		
+		params.require(:search).permit(:itemsearch,:itemsearch_location,:groupbystore, :filterpriceby)		
 	end	
+
+	
 
 end
