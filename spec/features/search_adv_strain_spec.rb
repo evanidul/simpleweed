@@ -140,4 +140,67 @@ feature "store item edit and add" , :js => true, :search =>true  do
 
 	end
 
+	scenario "search by price" do		
+		@item5 =  @store.store_items.create(:name => "alfalfa" , :strain =>"indica", :cultivation => "indoor", :privatereserve => true)		
+		@item5.costhalfgram = 5
+		@item5.save
+		
+		@item6 =  @store.store_items.create(:name => "alfalfa 2" , :strain =>"indica", :cultivation => "indoor", :privatereserve => true)		
+		@item6.costonegram = 20
+		@item6.save
+
+		@item7 =  @store.store_items.create(:name => "alfalfa 3" , :strain =>"indica", :cultivation => "indoor", :privatereserve => true)		
+		@item7.costeighthoz = 50
+		@item7.save
+
+		@item8 =  @store.store_items.create(:name => "alfalfa 4" , :strain =>"indica", :cultivation => "indoor", :privatereserve => true)		
+		@item8.costquarteroz = 100
+		@item8.save
+
+		@item9 =  @store.store_items.create(:name => "alfalfa 5" , :strain =>"indica", :cultivation => "indoor", :privatereserve => true)		
+		@item9.costhalfoz = 200
+		@item9.save
+
+		@item10 =  @store.store_items.create(:name => "alfalfa 6" , :strain =>"indica", :cultivation => "indoor", :privatereserve => true)		
+		@item10.costhalfoz = 200
+		@item10.save
+		
+		Sunspot.commit
+
+		# search for it
+		page.visit("/users/sign_in")
+		header = HeaderPageComponent.new		
+		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+		header.item_query_input.set "alfalfa"		
+		header.search_button.click
+
+		searchresults_page = SearchResultsItemPageComponent.new
+		searchresults_page.searchresults_store_names.size.should == 6		
+
+		header.show_adv_search_button.click
+		header.search_opt_quantity_price_tab_link.click
+
+		header.search_filterpriceby_halfgram.set true
+		header.search_pricerangeselect_custom.set true
+		header.search_minprice.set 4
+		header.search_maxprice.set 6
+		header.search_button.click
+
+		searchresults_page.searchresults_store_names.size.should == 1
+		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item5.name]
+		
+		#   element :search_filterpriceby_, '#search_filterpriceby_'  #none
+  # element :search_filterpriceby_halfgram, '#search_filterpriceby_halfgram'
+  # element :search_filterpriceby_gram, '#search_filterpriceby_gram'
+  # element :search_filterpriceby_eighth, '#search_filterpriceby_eighth'
+  # element :search_filterpriceby_quarteroz, '#search_filterpriceby_quarteroz'
+  # element :search_filterpriceby_halfoz, '#search_filterpriceby_halfoz'
+  # element :search_filterpriceby_oz, '#search_filterpriceby_oz'
+
+		# element :search_pricerangeselect_custom, '#search_pricerangeselect_custom'
+  # element :search_minprice, '#search_minprice'
+  # element :search_maxprice, '#search_maxprice'
+  
+
+	end
 end

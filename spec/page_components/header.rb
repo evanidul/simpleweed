@@ -46,5 +46,20 @@ class HeaderPageComponent < SitePrism::Page
   element :greenhouse, '#search_greenhouse'
   element :organic, '#search_organic'
 
+  # PRICE #################
+  element :search_filterpriceby_, '#search_filterpriceby_'  #none
+  element :search_filterpriceby_halfgram, '#search_filterpriceby_halfgram'
+  element :search_filterpriceby_gram, '#search_filterpriceby_gram'
+  element :search_filterpriceby_eighth, '#search_filterpriceby_eighth'
+  element :search_filterpriceby_quarteroz, '#search_filterpriceby_quarteroz'
+  element :search_filterpriceby_halfoz, '#search_filterpriceby_halfoz'
+  element :search_filterpriceby_oz, '#search_filterpriceby_oz'
+
+  element :search_pricerangeselect_custom, '#search_pricerangeselect_custom'
+  element :search_minprice, '#search_minprice'
+  element :search_maxprice, '#search_maxprice'
+  
+
+
 
 end
