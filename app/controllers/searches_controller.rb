@@ -4,6 +4,7 @@ class SearchesController < ApplicationController
 
 		@search = Search.new(search_params)
 
+		search = @search
 		itemquery = @search.itemsearch
 		searchLocation = @search.itemsearch_location
 		groupbystore = @search.groupbystore
@@ -22,7 +23,7 @@ class SearchesController < ApplicationController
 		end
 
 		if itemquery
-			@itemsearch = StoreItem.search do				
+			@itemsearch = StoreItem.search do								
 				if groupbystore
 					group :store_id_str do
 						limit 3
@@ -40,7 +41,26 @@ class SearchesController < ApplicationController
 			  # within 5 kilometers of 34, 118 (LA, CA)
 	  		  with(:location).in_radius(geocoordiantes[0], geocoordiantes[1], 100)
 
+	  		  # process strain filters
+	  		  #:indica, :sativa, :hybrid, :og, :kush, :haze, :indoor, :outdoor, :hydroponic, :greenhouse, :organic, :privatereserve, :topshelf, :glutenfree, :sugarfree,
+	  		  
+	  		  acceptable_strains = []
+	  		  if search.indica == "true"
+	  		  	 acceptable_strains.push("indica")
+	  		  end	
+	  		  
+	  		  if search.sativa == "true"	  		  	
+	  		  	acceptable_strains.push("sativa")
+	  		  end
 
+			  if search.hybrid == "true"	  		  	
+	  		  	acceptable_strains.push("hybrid")
+	  		  end
+	  		  with(:strain, acceptable_strains)
+
+	  		  
+
+	  		  # process price filters
 	  		  minprice = 0
 	  		  maxprice = 1000000
 
@@ -108,7 +128,27 @@ class SearchesController < ApplicationController
 
 private 
 	def search_params
-		params.require(:search).permit(:itemsearch,:itemsearch_location,:groupbystore, :filterpriceby, :pricerangeselect, :minprice, :maxprice)		
+		params.require(:search).permit(
+  :itemsearch, :itemsearch_location, :groupbystore, :filterpriceby, :pricerangeselect, :minprice, :maxprice,
+  # strain & attributes
+  :indica, :sativa, :hybrid, :og, :kush, :haze, :indoor, :outdoor, :hydroponic, :greenhouse, :organic, :privatereserve, :topshelf, :glutenfree, :sugarfree,
+  # item type
+  :bud, :shake, :trim, :wax, :hash, :budder_earwax_honeycomb,:bubblehash_fullmelt_icewax, :ISOhash, :kief_drysieve, :shatter_amberglass, :scissor_fingerhash, :oil_cartridge, :baked, 
+  :candy_chocolate, :cooking, :drink, :frozen, :other_edibles, :blunt, :joint, :clones, :seeds, :oral, :topical,
+  :bong_pipe, :bong_pipe_accessories, :book_magazine, :butane_lighter, :cleaning, :clothes, :grinder, :other_accessories, :paper_wrap, 
+  :storage, :vape, :vape_accessories,
+  # distance
+  :distance,
+  # store features
+  :delivery_service , :accepts_atm_credit, :atm_access, :dispensing_machines, :first_time_patient_deals, :handicap_access, :lounge_area,
+  :pet_friendly, :security_guard, :eighteenplus, :twentyplus, :has_photos, :lab_tested, :onsite_testing,
+  # lab
+  :filterthc_range, :thc_min, :thc_max,
+  :filtercbd_range, :cbd_min, :cbd_max,
+  :filtercbn_range, :cbn_min, :cbn_max
+
+
+			)		
 	end	
 
 	
