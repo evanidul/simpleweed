@@ -55,7 +55,7 @@ feature "store item edit and add" , :js => true do
 		@item3.save
 	end
 
-	scenario "use strain filters: 1" do		
+	scenario "check nav tabs" do		
 		# search for it
 		page.visit("/users/sign_in")
 		header = HeaderPageComponent.new
@@ -65,6 +65,19 @@ feature "store item edit and add" , :js => true do
     	search_results_page = SearchResultsStoresPageComponent.new    	
     	expect(search_results_page.firstSearchResult_store_name.text).to have_text(@store_name)
 
+    	# basic nav test
+    	header.show_adv_search_button.click
+		header.search_opt_strain_and_attr_tab_link.click
+		header.search_opt_quantity_price_tab_link.click
+		header.search_opt_item_category_tab_link.click
+		header.search_opt_distance_tab_link.click
+		header.search_opt_store_features_tab_link.click
+		header.search_opt_lab_tab_link.click
+		header.search_opt_reviews_tab_link.click
+
+		# and back to strain filters
+		header.search_opt_strain_and_attr_tab_link.click
+		
 
 	end
 
