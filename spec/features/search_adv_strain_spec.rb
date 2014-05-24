@@ -162,7 +162,7 @@ feature "store item edit and add" , :js => true, :search =>true  do
 		@item9.save
 
 		@item10 =  @store.store_items.create(:name => "alfalfa 6" , :strain =>"indica", :cultivation => "indoor", :privatereserve => true)		
-		@item10.costhalfoz = 200
+		@item10.costoneoz = 400
 		@item10.save
 		
 		Sunspot.commit
@@ -177,6 +177,7 @@ feature "store item edit and add" , :js => true, :search =>true  do
 		searchresults_page = SearchResultsItemPageComponent.new
 		searchresults_page.searchresults_store_names.size.should == 6		
 
+		# filter by price
 		header.show_adv_search_button.click
 		header.search_opt_quantity_price_tab_link.click
 
@@ -188,19 +189,71 @@ feature "store item edit and add" , :js => true, :search =>true  do
 
 		searchresults_page.searchresults_store_names.size.should == 1
 		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item5.name]
-		
-		#   element :search_filterpriceby_, '#search_filterpriceby_'  #none
-  # element :search_filterpriceby_halfgram, '#search_filterpriceby_halfgram'
-  # element :search_filterpriceby_gram, '#search_filterpriceby_gram'
-  # element :search_filterpriceby_eighth, '#search_filterpriceby_eighth'
-  # element :search_filterpriceby_quarteroz, '#search_filterpriceby_quarteroz'
-  # element :search_filterpriceby_halfoz, '#search_filterpriceby_halfoz'
-  # element :search_filterpriceby_oz, '#search_filterpriceby_oz'
 
-		# element :search_pricerangeselect_custom, '#search_pricerangeselect_custom'
-  # element :search_minprice, '#search_minprice'
-  # element :search_maxprice, '#search_maxprice'
-  
+		# filter by price
+		header.show_adv_search_button.click
+		header.search_opt_quantity_price_tab_link.click
+
+		header.search_filterpriceby_gram.set true
+		header.search_pricerangeselect_custom.set true
+		header.search_minprice.set 19
+		header.search_maxprice.set 21
+		header.search_button.click
+
+		searchresults_page.searchresults_store_names.size.should == 1
+		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item6.name]
+
+		# filter by price
+		header.show_adv_search_button.click
+		header.search_opt_quantity_price_tab_link.click
+
+		header.search_filterpriceby_eighth.set true
+		header.search_pricerangeselect_custom.set true
+		header.search_minprice.set 49
+		header.search_maxprice.set 51
+		header.search_button.click
+
+		searchresults_page.searchresults_store_names.size.should == 1
+		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item7.name]
+
+		# filter by price
+		header.show_adv_search_button.click
+		header.search_opt_quantity_price_tab_link.click
+
+		header.search_filterpriceby_quarteroz.set true
+		header.search_pricerangeselect_custom.set true
+		header.search_minprice.set 99
+		header.search_maxprice.set 101
+		header.search_button.click
+
+		searchresults_page.searchresults_store_names.size.should == 1
+		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item8.name]
+
+		# filter by price
+		header.show_adv_search_button.click
+		header.search_opt_quantity_price_tab_link.click
+
+		header.search_filterpriceby_halfoz.set true
+		header.search_pricerangeselect_custom.set true
+		header.search_minprice.set 199
+		header.search_maxprice.set 201
+		header.search_button.click
+
+		searchresults_page.searchresults_store_names.size.should == 1
+		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item9.name]
+
+		# filter by price
+		header.show_adv_search_button.click
+		header.search_opt_quantity_price_tab_link.click
+
+		header.search_filterpriceby_oz.set true
+		header.search_pricerangeselect_custom.set true
+		header.search_minprice.set 399
+		header.search_maxprice.set 401
+		header.search_button.click
+
+		searchresults_page.searchresults_store_names.size.should == 1
+		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item10.name]
 
 	end
 end
