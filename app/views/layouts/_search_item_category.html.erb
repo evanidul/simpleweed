@@ -1,0 +1,174 @@
+<table>
+        <tr>
+                <th>flower</th>
+                <th>concentrate</th>
+                <th>edible</th>
+                <th>pre-roll</th>
+                <th>other</th>
+                <th>accessory</th>
+        </tr>
+        <tr>
+                <td valign="top">
+                        <div class="search-option-radio">                                
+                                <%= f.check_box :bud, {}, "true","false" %>
+                                <%= f.label :bud, "bud" %><br/>
+                        </div>
+                        <div class="search-option-radio">
+                                <%= f.check_box :shake, {}, "true","false" %>
+                                <%= f.label :shake, "shake" %><br/>
+                        </div>
+                        <div class="search-option-radio">
+                                <%= f.check_box :trim, {}, "true","false" %>
+                                <%= f.label :trim, "trim" %><br/>
+                        </div>                        
+                </td>
+                <td valign="top">                       
+                        <div class="search-option-radio">
+                                <%= f.check_box :wax, {}, "true","false" %>
+                                <%= f.label :wax, "wax" %><br/>
+                        </div>
+                        <div class="search-option-radio">
+                                <%= f.check_box :hash, {}, "true","false" %>
+                                <%= f.label :hash, "hash" %><br/>
+                        </div>
+                        <div class="search-option-radio">
+                                <%= f.check_box :budder_earwax_honeycomb, {}, "true","false" %>
+                                <%= f.label :budder_earwax_honeycomb, "budder / earwax" %> <br/> 
+                                <%= f.label :budder_earwax_honeycomb, "honeycomb" , :class=> "search-opts-extra-label" %> <br/> 
+                        </div>
+                        <div class="search-top-spacer"></div>
+                        <div class="search-option-radio">
+                                <%= f.check_box :bubblehash_fullmelt_icewax, {}, "true","false" %>
+                                <%= f.label :bubblehash_fullmelt_icewax, "bubble hash / full melt" %> <br/>   
+                                <%= f.label :bubblehash_fullmelt_icewax, "ice wax", :class=> "search-opts-extra-label" %> <br/>   
+                        </div>
+                        <div class="search-top-spacer"></div>
+                        <div class="search-option-radio">
+                                <%= f.check_box :ISOhash, {}, "true","false" %>
+                                <%= f.label :ISOhash, "iso hash" %><br/>
+                        </div>
+                        <div class="search-option-radio">
+                                <%= f.check_box :kief_drysieve, {}, "true","false" %>
+                                <%= f.label :kief_drysieve, "kief / drysieve" %><br/>
+                        </div>
+                        <div class="search-option-radio">
+                                <%= f.check_box :shatter_amberglass, {}, "true","false" %>
+                                <%= f.label :shatter_amberglass, "shatter / amberglass" %><br/>
+                        </div>
+                        <div class="search-option-radio">
+                                <%= f.check_box :scissor_fingerhash, {}, "true","false" %>
+                                <%= f.label :scissor_fingerhash, "scissor / fingerhash" %><br/>
+                        </div>                
+                        <div class="search-option-radio">
+                                <%= f.check_box :oil_cartridge, {}, "true","false" %>
+                                <%= f.label :oil_cartridge, "oil / cartridge" %><br/>
+                        </div>                        
+                </td>
+                <td valign="top">                       
+                        <div class="search-option-radio">
+                                <%= f.check_box :baked, {}, "true","false" %>
+                                <%= f.label :baked, "baked" %><br/>
+                        </div>
+                        <div class="search-option-radio">
+                                <%= f.check_box :candy_chocolate, {}, "true","false" %>
+                                <%= f.label :candy_chocolate, "candy / chocolate" %><br/>
+                        </div>
+                        <div class="search-option-radio">
+                                <%= f.check_box :cooking, {}, "true","false" %>
+                                <%= f.label :cooking, "cooking" %><br/>
+                        </div>
+                        <div class="search-option-radio">
+                                <%= f.check_box :drink, {}, "true","false" %>
+                                <%= f.label :drink, "drink" %><br/>
+                        </div>
+                        <div class="search-option-radio">
+                                <%= f.check_box :frozen, {}, "true","false" %>
+                                <%= f.label :frozen, "frozen" %><br/>
+                        </div>
+                        <div class="search-option-radio">
+                                <%= f.check_box :other_edibles, {}, "true","false" %>
+                                <%= f.label :other_edibles, "other edibles" %><br/>
+                        </div>
+                </td>
+                <td valign="top">                       
+                        <div class="search-option-radio">
+                                <%= f.check_box :blunt, {}, "true","false" %>
+                                <%= f.label :blunt, "blunt" %><br/>
+                        </div>
+                        <div class="search-option-radio">
+                                <%= f.check_box :joint, {}, "true","false" %>
+                                <%= f.label :joint, "joint" %><br/>
+                        </div>
+                </td>
+                <td valign="top">                       
+                        <div class="search-option-radio">
+                                <%= f.check_box :clones, {}, "true","false" %>
+                                <%= f.label :clones, "clones" %><br/>
+                        </div>
+                        <div class="search-option-radio">
+                                <%= f.check_box :seeds, {}, "true","false" %>
+                                <%= f.label :seeds, "seeds" %><br/>
+                        </div>
+                        <div class="search-option-radio">
+                                <%= f.check_box :oral, {}, "true","false" %>
+                                <%= f.label :oral, "oral" %><br/>
+                        </div>
+                        <div class="search-option-radio">
+                                <%= f.check_box :topical, {}, "true","false" %>
+                                <%= f.label :topical, "topical" %><br/>
+                        </div>                        
+                </td>
+
+                <td valign="top">                       
+                        <div class="search-option-radio">
+                                <%= f.check_box :bong_pipe, {}, "true","false" %>
+                                <%= f.label :bong_pipe, "bong pipe" %><br/>
+                        </div>
+                        <div class="search-option-radio">
+                                <%= f.check_box :bong_pipe_accessories, {}, "true","false" %>
+                                <%= f.label :bong_pipe_accessories, "bong pipe accessories" %><br/>
+                        </div>
+                        <div class="search-option-radio">
+                                <%= f.check_box :book_magazine, {}, "true","false" %>
+                                <%= f.label :book_magazine, "book / magazine" %><br/>
+                        </div>
+                        <div class="search-option-radio">
+                                <%= f.check_box :butane_lighter, {}, "true","false" %>
+                                <%= f.label :butane_lighter, "butane lighter" %><br/>
+                        </div>
+                        <div class="search-option-radio">
+                                <%= f.check_box :cleaning, {}, "true","false" %>
+                                <%= f.label :cleaning, "cleaning" %><br/>
+                        </div>
+                        <div class="search-option-radio">
+                                <%= f.check_box :clothes, {}, "true","false" %>
+                                <%= f.label :clothes, "clothes" %><br/>
+                        </div>
+                        <div class="search-option-radio">
+                                <%= f.check_box :grinder, {}, "true","false" %>
+                                <%= f.label :grinder, "grinder" %><br/>
+                        </div>
+                       <div class="search-option-radio">
+                                <%= f.check_box :other_accessories, {}, "true","false" %>
+                                <%= f.label :other_accessories, "other accessories" %><br/>
+                        </div>
+                        <div class="search-option-radio">
+                                <%= f.check_box :paper_wrap, {}, "true","false" %>
+                                <%= f.label :paper_wrap, "paper wrap" %><br/>
+                        </div>
+                        <div class="search-option-radio">
+                                <%= f.check_box :storage, {}, "true","false" %>
+                                <%= f.label :storage, "storage" %><br/>
+                        </div>
+                        <div class="search-option-radio">
+                                <%= f.check_box :vape, {}, "true","false" %>
+                                <%= f.label :vape, "vape" %><br/>
+                        </div>
+                        <div class="search-option-radio">
+                                <%= f.check_box :vape_accessories, {}, "true","false" %>
+                                <%= f.label :vape_accessories, "vape accessories" %><br/>
+                        </div> 
+                </td>
+        </tr>
+</table>
+

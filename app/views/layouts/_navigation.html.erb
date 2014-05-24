@@ -56,17 +56,20 @@
                 <div class="tab-content">
                  <div class="tab-pane active" id="search-opt-strain-and-attr"><%= render :partial =>'layouts/search_strain', :locals=>{:f=>f} %></div>
                  <div class="tab-pane" id="search-opt-quantity-price"><%= render :partial =>'layouts/search_quantity', :locals=>{:f=>f} %></div>
-                 <div class="tab-pane" id="search-opt-item-category">Thirdamuno, ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. 
-                 Quisque mauris augue, molestie tincidunt condimentum vitae. </div>
+                 <div class="tab-pane" id="search-opt-item-category"><%= render :partial =>'layouts/search_item_category', :locals=>{:f=>f} %></div>
+                 <div class="tab-pane" id="search-opt-distance">distance</div>
+                 <div class="tab-pane" id="search-opt-store-features">store features</div>
+                 <div class="tab-pane" id="search-opt-lab">lab</div>
+                 <div class="tab-pane" id="search-opt-reviews">reviews</div>
                 </div>
                 <ul class="nav nav-tabs">
                   <li class="active"><a href="#search-opt-strain-and-attr" data-toggle="tab">strains &amp; attributes</a></li>
                   <li><a href="#search-opt-quantity-price" data-toggle="tab">quantity &amp; price</a></li>
                   <li><a href="#search-opt-item-category" data-toggle="tab">item category</a></li>
-                  <li><a href="#search-opt-item-category" data-toggle="tab">distance</a></li>
-                  <li><a href="#search-opt-item-category" data-toggle="tab">store features</a></li>
-                  <li><a href="#search-opt-item-category" data-toggle="tab">lab</a></li>
-                  <li><a href="#search-opt-item-category" data-toggle="tab">reviews</a></li>
+                  <li><a href="#search-opt-distance" data-toggle="tab">distance</a></li>
+                  <li><a href="#search-opt-store-features" data-toggle="tab">store features</a></li>
+                  <li><a href="#search-opt-lab" data-toggle="tab">lab</a></li>
+                  <li><a href="#search-opt-reviews" data-toggle="tab">reviews</a></li>
                 </ul>
               </div>
               <!-- /tabs -->

@@ -194,7 +194,7 @@
 
 #search-filter-options .tab-content .tab-pane {
 	/**height: 158px; **/
-  height: 258px;
+  height: 390px;
 	background-color:#222222;
 	color:white;
 	padding: 10px;
@@ -202,4 +202,12 @@
 
 .item-search-custom-price {
   width: 50px;
+}
+
+.search-top-spacer {  
+  margin-bottom: 27px;
+}
+
+.search-opts-extra-label {
+  margin-left:17px;
 }
