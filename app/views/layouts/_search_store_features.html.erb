@@ -1,0 +1,71 @@
+<table>
+	<tr>
+		<th>store features</th>
+	</tr>
+	<tr>
+		<td>
+	       <div class="search-option-radio">
+	                <%= f.check_box :delivery_service, {}, "true","false" %>
+	                <%= f.label :delivery_service, "delivery service" %><br/>
+	        </div>
+	       <div class="search-option-radio">
+	                <%= f.check_box :accepts_atm_credit, {}, "true","false" %>
+	                <%= f.label :accepts_atm_credit, "accepts atm / credit" %><br/>
+	        </div>
+	       <div class="search-option-radio">
+	                <%= f.check_box :atm_access, {}, "true","false" %>
+	                <%= f.label :atm_access, "atm access" %><br/>
+	        </div>
+	       <div class="search-option-radio">
+	                <%= f.check_box :dispensing_machines, {}, "true","false" %>
+	                <%= f.label :dispensing_machines, "dispensing machines" %><br/>
+	        </div>
+	    </td>
+		<td>
+	       <div class="search-option-radio">
+	                <%= f.check_box :first_time_patient_deals, {}, "true","false" %>
+	                <%= f.label :first_time_patient_deals, "first time patient deals" %><br/>
+	        </div>
+	       <div class="search-option-radio">
+	                <%= f.check_box :handicap_access, {}, "true","false" %>
+	                <%= f.label :handicap_access, "handicap access" %><br/>
+	        </div>
+	       <div class="search-option-radio">
+	                <%= f.check_box :lounge_area, {}, "true","false" %>
+	                <%= f.label :lounge_area, "lounge area" %><br/>
+	        </div>
+	       <div class="search-option-radio">
+	                <%= f.check_box :pet_friendly, {}, "true","false" %>
+	                <%= f.label :pet_friendly, "pet friendly" %><br/>
+	        </div>
+	    </td>
+	    <td>
+	       <div class="search-option-radio">
+	                <%= f.check_box :security_guard, {}, "true","false" %>
+	                <%= f.label :security_guard, "security guard" %><br/>
+	        </div>		
+	       <div class="search-option-radio">
+	                <%= f.check_box :eighteenplus, {}, "true","false" %>
+	                <%= f.label :eighteenplus, "eighteen+" %><br/>
+	        </div>
+	       <div class="search-option-radio">
+	                <%= f.check_box :twentyplus, {}, "true","false" %>
+	                <%= f.label :twentyplus, "twenty+" %><br/>
+	        </div>
+	       <div class="search-option-radio">
+	                <%= f.check_box :has_photos, {}, "true","false" %>
+	                <%= f.label :has_photos, "has photos" %><br/>
+	        </div>
+	    </td>
+	    <td valign="top">
+	       <div class="search-option-radio">
+	                <%= f.check_box :lab_tested, {}, "true","false" %>
+	                <%= f.label :lab_tested, "lab tested" %><br/>
+	        </div>
+	       <div class="search-option-radio">
+	                <%= f.check_box :onsite_testing, {}, "true","false" %>
+	                <%= f.label :onsite_testing, "onsite testing" %><br/>
+	        </div>
+	    </td>
+	</tr>
+</table>	    
