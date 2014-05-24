@@ -8,7 +8,7 @@ require 'pages/homepage'
 require 'pages/store_items'
 require 'pages/search_results_stores'
 require 'pages/store_search_preview.rb'
-
+require 'pages/search_results_items'
 
 
 feature "store item edit and add" , :js => true, :search =>true  do
@@ -38,12 +38,7 @@ feature "store item edit and add" , :js => true, :search =>true  do
 		user.add_role :admin # sets a global role
 
 		
-
-		
-	end
-
-	scenario "check nav tabs" do		
-		@store_name = "My new store"
+@store_name = "My new store"
 		@store_addressline1 = "7110 Rock Valley Court"
 		@store_city = "San Diego"
 		@store_ca = "CA"
@@ -51,28 +46,22 @@ feature "store item edit and add" , :js => true, :search =>true  do
 		@store = Store.new(:name => @store_name , :addressline1 => @store_addressline1, :city => @store_city, :state => @store_ca, :zip => @store_zip)
 		@store.save	
 		@item1 =  @store.store_items.create(:name => "og" , :strain =>"indica", :cultivation => "indoor", :privatereserve => true)		
-		#@item1 = StoreItem.create(:name => "og" , :strain =>"indica", :cultivation => "indoor", :privatereserve => true)	
-		#@item1.store = @store
 		@item1.save
-		#@item2 = StoreItem.new(:name => "fuck me molly" , :strain =>"sativa", :cultivation => "outdoor", :privatereserve => false)	
-		# @item2.store = @store
-		# @item2.save
-		# @item3 = StoreItem.new(:name => "haze wizard" , :strain =>"hybrid", :cultivation => "hydroponic", :topshelf => true)	
-		# @item3.store = @store
-		# @item3.save
 		
-		# @item1 = create(:StoreItem, :name => 'og')
-		# @item1.name = 'og'
-		# @item1.strain = "indica"
-		# @item1.cultivation = "indoor"
-		# @item1.privatereserve = true
-		# @item1.store = @store
-		# # @item1.save
+		@item2 =  @store.store_items.create(:name => "fuck me molly" , :strain =>"sativa", :cultivation => "outdoor", :privatereserve => false)	
+		@item2.save
+		
+		@item3 =  @store.store_items.create(:name => "haze wizard" , :strain =>"hybrid", :cultivation => "hydroponic", :topshelf => true)	
+		@item3.save
+
+		@item4 =  @store.store_items.create(:name => "SUPER haze wizard" , :strain =>"hybrid", :cultivation => "hydroponic", :topshelf => true)	
+		@item4.save
+
 		Sunspot.commit
 		
-		# StoreItem.search { keywords "og"}.results.should == [@item1]
-		
+	end
 
+	scenario "check nav tabs" do		
 		# search for it
 		page.visit("/users/sign_in")
 		header = HeaderPageComponent.new
@@ -96,12 +85,22 @@ feature "store item edit and add" , :js => true, :search =>true  do
 		header.search_opt_strain_and_attr_tab_link.click
 		header.indica.set true
 		header.indoor.set true
-
 		
 		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
-		header.item_query_input.set "og"
+		header.item_query_input.set "og"		
 		header.search_button.click
 
+		searchresults_page = SearchResultsItemPageComponent.new
+		searchresults_page.searchresults_store_names.size.should == 1
+		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item1.name]
+
+		# new search
+		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+		header.item_query_input.set "haze"		
+		header.search_button.click
+
+		searchresults_page.searchresults_store_names.size.should == 2
+		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item3.name, @item4.name]
 
 	end
 
