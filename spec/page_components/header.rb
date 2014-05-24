@@ -58,7 +58,12 @@ class HeaderPageComponent < SitePrism::Page
   element :search_pricerangeselect_custom, '#search_pricerangeselect_custom'
   element :search_minprice, '#search_minprice'
   element :search_maxprice, '#search_maxprice'
-  
+
+  element :search_pricerangeselect_lessthan25, '#search_pricerangeselect_lessthan25'
+  element :search_pricerangeselect_between25and50, '#search_pricerangeselect_between25and50'
+  element :search_pricerangeselect_between50and100, '#search_pricerangeselect_between50and100'
+  element :search_pricerangeselect_between100and200, '#search_pricerangeselect_between100and200'
+  element :search_pricerangeselect_morethan200, '#search_pricerangeselect_morethan200'
 
 
 
