@@ -1,0 +1,102 @@
+<table>
+	<tr>
+		<th>thc %</th>
+		<th>cbd %</th>
+		<th>cbn %</th>
+	</tr>
+	<tr>
+		<td valign="top">						
+			<div class="search-option-radio">
+				<%= f.radio_button(:filterthc_range, "") %>
+				none.
+			</div>
+			<div class="search-option-radio">
+				<%= f.radio_button(:filterthc_range, "custom") %>
+				<%= f.text_field :thc_min, :class => 'item-search-custom-price', placeholder: "min" %> to
+				<%= f.text_field :thc_max, :class => 'item-search-custom-price', placeholder: "max" %>
+			</div>
+			<div class="search-option-radio">
+			    <%= f.radio_button(:filterthc_range, "lessthan5") %>
+			    less than 5%
+			</div>
+			<div class="search-option-radio">
+				<%= f.radio_button(:filterthc_range, "between5and10") %>
+				5-10%
+			</div>
+			<div class="search-option-radio">
+				<%= f.radio_button(:filterthc_range, "between10-25") %>
+				10-25%
+			</div>
+			<div class="search-option-radio">        	
+				<%= f.radio_button(:filterthc_range, "between25and50") %>
+				25-50%
+			</div>
+			<div class="search-option-radio">
+				<%= f.radio_button(:filterthc_range, "morethan50") %>
+				more than 50%
+			</div>
+		</td>
+		<td valign="top">						
+			<div class="search-option-radio">
+				<%= f.radio_button(:filtercbd_range, "") %>
+				none.
+			</div>
+			<div class="search-option-radio">
+				<%= f.radio_button(:filtercbd_range, "custom") %>
+				<%= f.text_field :cbd_min, :class => 'item-search-custom-price', placeholder: "min" %> to
+				<%= f.text_field :cbd_max, :class => 'item-search-custom-price', placeholder: "max" %>
+			</div>
+			<div class="search-option-radio">
+			    <%= f.radio_button(:filtercbd_range, "lessthan5") %>
+			    less than 5%
+			</div>
+			<div class="search-option-radio">
+				<%= f.radio_button(:filtercbd_range, "between5and10") %>
+				5-10%
+			</div>
+			<div class="search-option-radio">
+				<%= f.radio_button(:filtercbd_range, "between10-25") %>
+				10-25%
+			</div>
+			<div class="search-option-radio">        	
+				<%= f.radio_button(:filtercbd_range, "between25and50") %>
+				25-50%
+			</div>
+			<div class="search-option-radio">
+				<%= f.radio_button(:filtercbd_range, "morethan50") %>
+				more than 50%
+			</div>
+		</td>		
+		<td valign="top">						
+			<div class="search-option-radio">
+				<%= f.radio_button(:filtercbn_range, "") %>
+				none.
+			</div>
+			<div class="search-option-radio">
+				<%= f.radio_button(:filtercbn_range, "custom") %>
+				<%= f.text_field :cbn_min, :class => 'item-search-custom-price', placeholder: "min" %> to
+				<%= f.text_field :cbn_max, :class => 'item-search-custom-price', placeholder: "max" %>
+			</div>
+			<div class="search-option-radio">
+			    <%= f.radio_button(:filtercbn_range, "lessthan5") %>
+			    less than 5%
+			</div>
+			<div class="search-option-radio">
+				<%= f.radio_button(:filtercbn_range, "between5and10") %>
+				5-10%
+			</div>
+			<div class="search-option-radio">
+				<%= f.radio_button(:filtercbn_range, "between10-25") %>
+				10-25%
+			</div>
+			<div class="search-option-radio">        	
+				<%= f.radio_button(:filtercbn_range, "between25and50") %>
+				25-50%
+			</div>
+			<div class="search-option-radio">
+				<%= f.radio_button(:filtercbn_range, "morethan50") %>
+				more than 50%
+			</div>
+		</td>
+	</tr>
+</table>		
