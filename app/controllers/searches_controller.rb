@@ -16,12 +16,6 @@ class SearchesController < ApplicationController
 			searchLocation = "la,ca"
 		end
 
-		# if params[:groupbystore] == 'true'
-		# 	groupbystore = true
-		# else
-		# 	groupbystore = false
-		# end	
-
 		if !itemquery || itemquery.empty?
 			redirect_to stores_path(:search => searchLocation )
 			return
@@ -72,32 +66,21 @@ class SearchesController < ApplicationController
 
 
 	  		  case filterpriceby # a_variable is the variable we want to compare
-				when ""   
-				  	puts "noneselected" 				  
-				when "halfgram"    
-				  	puts "halfgram"
+				when ""   				  	 				  
+				when "halfgram"    				  	
 				  	with(:costhalfgram, minprice..maxprice)
-				when "gram"
-				  	puts "gram"
+				when "gram"				  	
 				  	with(:costonegram, minprice..maxprice)
-				when "eighth"
-					puts "eighth"
+				when "eighth"					
 					with(:costeighthoz, minprice..maxprice)
-				when "quarteroz"
-					puts "quarteroz"
+				when "quarteroz"					
 					with(:costquarteroz, minprice..maxprice)
-				when "halfoz"	
-					puts "halfoz"
+				when "halfoz"						
 					with(:costhalfoz, minprice..maxprice)
-				when "oz"					
-					puts "oz"
-					with(:costoneoz, minprice..maxprice)
-				else
-				  puts "gram"
+				when "oz"										
+					with(:costoneoz, minprice..maxprice)				
 			  end
-	  		  #with(:costeighthoz).less_than(35)
-	  		  # with(:costeighthoz, 25..35)
-
+	  		  
 	  		  # sort by distance
 	  		  order_by_geodist(:location, geocoordiantes[0], geocoordiantes[1])
 
