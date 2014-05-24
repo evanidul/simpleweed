@@ -1,3 +1,4 @@
+SunspotTest.solr_startup_timeout = 15
 Smellyleaf::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 

@@ -33,4 +33,18 @@ class HeaderPageComponent < SitePrism::Page
   element :search_opt_lab_tab_link, '#search-opt-lab-tab-link'
   element :search_opt_reviews_tab_link, '#search-opt-reviews-tab-link'
 
+  # STRAIN ################
+
+  # strain
+  element :indica, '#search_indica'
+  element :sativa, '#search_sativa'
+  element :hybrid, '#search_hybrid'
+  # cultivation
+  element :indoor, '#search_indoor'
+  element :outdoor, '#search_outdoor'
+  element :hydroponic, '#search_hydroponic'
+  element :greenhouse, '#search_greenhouse'
+  element :organic, '#search_organic'
+
+
 end
