@@ -97,7 +97,12 @@ class SearchesController < ApplicationController
 	  		  if search.privatereserve == "true"
   		  		with(:privatereserve, true)
 	  		  end
-
+	  		  if search.topshelf == "true"
+	  		  	with(:topshelf, true)
+	  		  end
+	  		  if search.glutenfree == "true"
+				with(:glutenfree, true)
+	  		  end
 
 	  		  # process price filters
 	  		  minprice = 0
