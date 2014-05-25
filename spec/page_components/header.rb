@@ -49,6 +49,7 @@ class HeaderPageComponent < SitePrism::Page
   element :privatereserve, '#search_privatereserve'
   element :topshelf, '#search_topshelf'
   element :glutenfree, '#search_glutenfree'
+  element :sugarfree, '#search_sugarfree'
 
   # PRICE #################
   element :search_filterpriceby_, '#search_filterpriceby_'  #none

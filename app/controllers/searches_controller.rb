@@ -103,6 +103,9 @@ class SearchesController < ApplicationController
 	  		  if search.glutenfree == "true"
 				with(:glutenfree, true)
 	  		  end
+	  		  if search.sugarfree == "true"
+	  		  	with(:sugarfree, true)
+	  		  end
 
 	  		  # process price filters
 	  		  minprice = 0

@@ -353,4 +353,43 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		searchresults_page.searchresults_store_names.size.should == 3
 		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item5.name, @item6.name,@item7.name]
 	end
+	scenario "search : sugarfree" do		
+		@item5 =  @store.store_items.create(:name => "alfafla 1" , :strain =>"indica")		
+		@item5.sugarfree = true
+		@item5.save
+		
+		@item6 =  @store.store_items.create(:name => "alfafla 2" , :strain =>"indica")		
+		@item6.sugarfree = true
+		@item6.save
+
+		@item7 =  @store.store_items.create(:name => "alfafla 3" , :strain =>"indica")		
+		@item7.sugarfree = false
+		@item7.save		
+
+		Sunspot.commit
+
+		# new search
+		page.visit("/users/sign_in")
+		header = HeaderPageComponent.new		
+		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+		header.item_query_input.set "alfafla"		
+		header.show_adv_search_button.click		
+		header.sugarfree.set true
+		
+
+		header.search_button.click
+
+		searchresults_page = SearchResultsItemPageComponent.new
+		searchresults_page.searchresults_store_names.size.should == 2
+		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item5.name, @item6.name]
+
+		# new search for hybrid
+		header.show_adv_search_button.click		
+		header.sugarfree.set false
+		
+		header.search_button.click
+		# setting false in the UI doesn't mean filter for false, it means all values (T or F) are acceptable values
+		searchresults_page.searchresults_store_names.size.should == 3
+		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item5.name, @item6.name,@item7.name]
+	end	
 end
