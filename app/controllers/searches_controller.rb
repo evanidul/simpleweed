@@ -39,7 +39,23 @@ class SearchesController < ApplicationController
 			  
 			  geocoordiantes = Geocoder.coordinates(searchLocation);
 			  # within 5 kilometers of 34, 118 (LA, CA)
-	  		  with(:location).in_radius(geocoordiantes[0], geocoordiantes[1], 100)
+			  case search.distance	  		  	
+	  		  	when "city"
+	  		  		with(:location).in_radius(geocoordiantes[0], geocoordiantes[1], 100)
+	  		  	when "driving"
+	  		  		with(:location).in_radius(geocoordiantes[0], geocoordiantes[1], 8)
+	  		  	when "biking"
+	  		  		with(:location).in_radius(geocoordiantes[0], geocoordiantes[1], 4)
+	  		  	when "walking"
+	  		  		with(:location).in_radius(geocoordiantes[0], geocoordiantes[1], 2)
+	  		  	when "fourblocks"
+	  		  		with(:location).in_radius(geocoordiantes[0], geocoordiantes[1], 1)
+	  		  	else
+	  		  		with(:location).in_radius(geocoordiantes[0], geocoordiantes[1], 100)
+	  		  end
+
+
+	  		  
 
 	  		  # process strain filters
 	  		  #:indica, :sativa, :hybrid, :og, :kush, :haze, :indoor, :outdoor, :hydroponic, :greenhouse, :organic, :privatereserve, :topshelf, :glutenfree, :sugarfree,
