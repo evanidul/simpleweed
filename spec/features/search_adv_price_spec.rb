@@ -274,4 +274,52 @@ feature "search adv by price" , :js => true, :search =>true  do
 
 
 	end
+
+	scenario "search by price:none selected" do		
+		@item5 =  @store.store_items.create(:name => "alfalfa" , :strain =>"indica", :cultivation => "indoor", :privatereserve => true)		
+		@item5.costhalfgram = 5
+		@item5.save
+		
+		@item6 =  @store.store_items.create(:name => "alfalfa 2" , :strain =>"indica", :cultivation => "indoor", :privatereserve => true)		
+		@item6.costonegram = 20
+		@item6.save
+
+		@item7 =  @store.store_items.create(:name => "alfalfa 3" , :strain =>"indica", :cultivation => "indoor", :privatereserve => true)		
+		@item7.costeighthoz = 50
+		@item7.save
+
+		@item8 =  @store.store_items.create(:name => "alfalfa 4" , :strain =>"indica", :cultivation => "indoor", :privatereserve => true)		
+		@item8.costquarteroz = 100
+		@item8.save
+
+		@item9 =  @store.store_items.create(:name => "alfalfa 5" , :strain =>"indica", :cultivation => "indoor", :privatereserve => true)		
+		@item9.costhalfoz = 200
+		@item9.save
+
+		@item10 =  @store.store_items.create(:name => "alfalfa 6" , :strain =>"indica", :cultivation => "indoor", :privatereserve => true)		
+		@item10.costoneoz = 400
+		@item10.save
+		
+		Sunspot.commit
+
+		# search for it
+		page.visit("/users/sign_in")
+		header = HeaderPageComponent.new		
+		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+		header.item_query_input.set "alfalfa"		
+		header.search_button.click
+
+		searchresults_page = SearchResultsItemPageComponent.new
+		searchresults_page.searchresults_store_names.size.should == 6		
+
+		# filter by price
+		header.show_adv_search_button.click
+		header.search_opt_quantity_price_tab_link.click
+
+		header.search_filterpriceby_.set true # no quantity selected
+		header.search_pricerangeselect_.set true #no price range selected
+
+		searchresults_page.searchresults_store_names.size.should == 6		
+
+	end
 end
