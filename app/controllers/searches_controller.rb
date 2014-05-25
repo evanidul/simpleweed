@@ -56,9 +56,46 @@ class SearchesController < ApplicationController
 			  if search.hybrid == "true"	  		  	
 	  		  	acceptable_strains.push("hybrid")
 	  		  end
-	  		  with(:strain, acceptable_strains)
-
 	  		  
+			  if !acceptable_strains.empty?
+  		  		any_of do 
+  		  			with(:strain, acceptable_strains)
+  		  			with(:strain, nil)
+  		  		end
+  		  	  end
+	  		  	
+	  		  
+
+	  		  #process cultivation
+	  		  #:indoor, :outdoor, :hydroponic, :greenhouse, :organic
+	  		  #['','indoor', 'outdoor', 'hydroponic', 'greenhouse', 'organic']
+	  		  acceptable_cultivation = []
+	  		  if search.indoor == "true"
+	  		  	acceptable_cultivation.push("indoor")
+	  		  end
+	  		  if search.outdoor == "true"
+	  		  	acceptable_cultivation.push("outdoor")
+	  		  end
+	  		  if search.hydroponic == "true"
+	  		  	acceptable_cultivation.push("hydroponic")
+	  		  end
+	  		  if search.greenhouse == "true"
+	  		  	acceptable_cultivation.push("greenhouse")
+	  		  end
+	  		  if search.organic == "true"
+	  		  	acceptable_cultivation.push("organic")	  		  
+	  		  end	  		   		 
+	  		  
+	  		  if !acceptable_cultivation.empty?
+	  		  	any_of do
+	  		  		with(:cultivation, acceptable_cultivation)
+	  		  		with(:cultivation, nil)
+	  		  	end	
+	  		  end
+	  		  	
+	  		  
+
+
 
 	  		  # process price filters
 	  		  minprice = 0

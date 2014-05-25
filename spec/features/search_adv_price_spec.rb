@@ -45,19 +45,20 @@ feature "search adv by price" , :js => true, :search =>true  do
 		@store_zip = "92122"
 		@store = Store.new(:name => @store_name , :addressline1 => @store_addressline1, :city => @store_city, :state => @store_ca, :zip => @store_zip)
 		@store.save	
-		@item1 =  @store.store_items.create(:name => "og" , :strain =>"indica", :cultivation => "indoor", :privatereserve => true)		
-		@item1.save
+		StoreItem.remove_all_from_index! 
+		# @item1 =  @store.store_items.create(:name => "og" , :strain =>"indica", :cultivation => "indoor", :privatereserve => true)		
+		# @item1.save
 		
-		@item2 =  @store.store_items.create(:name => "fuck me molly" , :strain =>"sativa", :cultivation => "outdoor", :privatereserve => false)	
-		@item2.save
+		# @item2 =  @store.store_items.create(:name => "fuck me molly" , :strain =>"sativa", :cultivation => "outdoor", :privatereserve => false)	
+		# @item2.save
 		
-		@item3 =  @store.store_items.create(:name => "haze wizard" , :strain =>"hybrid", :cultivation => "hydroponic", :topshelf => true)	
-		@item3.save
+		# @item3 =  @store.store_items.create(:name => "haze wizard" , :strain =>"hybrid", :cultivation => "hydroponic", :topshelf => true)	
+		# @item3.save
 
-		@item4 =  @store.store_items.create(:name => "SUPER haze wizard" , :strain =>"hybrid", :cultivation => "hydroponic", :topshelf => true)	
-		@item4.save
+		# @item4 =  @store.store_items.create(:name => "SUPER haze wizard" , :strain =>"hybrid", :cultivation => "hydroponic", :topshelf => true)	
+		# @item4.save
 
-		Sunspot.commit
+		# Sunspot.commit
 		
 	end
 

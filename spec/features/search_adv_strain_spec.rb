@@ -37,7 +37,7 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		user.save
 		user.add_role :admin # sets a global role
 
-		
+		StoreItem.remove_all_from_index! 
 		@store_name = "My new store"
 		@store_addressline1 = "7110 Rock Valley Court"
 		@store_city = "San Diego"
@@ -45,23 +45,26 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		@store_zip = "92122"
 		@store = Store.new(:name => @store_name , :addressline1 => @store_addressline1, :city => @store_city, :state => @store_ca, :zip => @store_zip)
 		@store.save	
-		@item1 =  @store.store_items.create(:name => "og" , :strain =>"indica", :cultivation => "indoor", :privatereserve => true)		
-		@item1.save
-		
-		@item2 =  @store.store_items.create(:name => "fuck me molly" , :strain =>"sativa", :cultivation => "outdoor", :privatereserve => false)	
-		@item2.save
-		
-		@item3 =  @store.store_items.create(:name => "haze wizard" , :strain =>"hybrid", :cultivation => "hydroponic", :topshelf => true)	
-		@item3.save
-
-		@item4 =  @store.store_items.create(:name => "SUPER haze wizard" , :strain =>"hybrid", :cultivation => "hydroponic", :topshelf => true)	
-		@item4.save
-
-		Sunspot.commit
 		
 	end
 
 	scenario "check nav tabs, search by name" do		
+
+		@item1 =  @store.store_items.create(:name => "og" , :strain =>"indica")
+		@item1.cultivation = "indoor"		
+		@item1.save
+		
+		@item2 =  @store.store_items.create(:name => "fuck me molly" , :strain =>"sativa")	
+		@item2.save
+		
+		@item3 =  @store.store_items.create(:name => "haze wizard" , :strain =>"hybrid")	
+		@item3.save
+
+		@item4 =  @store.store_items.create(:name => "SUPER haze wizard" , :strain =>"hybrid")	
+		@item4.save
+
+		Sunspot.commit
+
 		# search for it
 		page.visit("/users/sign_in")
 		header = HeaderPageComponent.new
@@ -84,7 +87,7 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		# and back to strain filters
 		header.search_opt_strain_and_attr_tab_link.click
 		header.indica.set true
-		header.indoor.set true
+		
 		
 		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
 		header.item_query_input.set "og"		
@@ -96,6 +99,9 @@ feature "search adv by strain" , :js => true, :search =>true  do
 
 		# new search
 		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+		header.show_adv_search_button.click
+		header.search_opt_strain_and_attr_tab_link.click
+		header.indica.set false
 		header.item_query_input.set "haze"		
 		header.search_button.click
 
@@ -141,15 +147,15 @@ feature "search adv by strain" , :js => true, :search =>true  do
 	end
 
 	scenario "search : indica or sativa" do		
-		@item5 =  @store.store_items.create(:name => "alfafla" , :strain =>"indica", :cultivation => "indoor", :privatereserve => true)		
+		@item5 =  @store.store_items.create(:name => "alfafla" , :cultivation => "indoor", :privatereserve => true)		
 		@item5.strain = "indica"
 		@item5.save
 		
-		@item6 =  @store.store_items.create(:name => "alfafla 2" , :strain =>"indica", :cultivation => "indoor", :privatereserve => true)		
+		@item6 =  @store.store_items.create(:name => "alfafla 2" , :cultivation => "indoor", :privatereserve => true)		
 		@item6.strain = "sativa"
 		@item6.save
 
-		@item7 =  @store.store_items.create(:name => "alfafla 3" , :strain =>"indica", :cultivation => "indoor", :privatereserve => true)		
+		@item7 =  @store.store_items.create(:name => "alfafla 3" , :cultivation => "indoor", :privatereserve => true)		
 		@item7.strain = "hybrid"
 		@item7.save
 		
@@ -166,7 +172,7 @@ feature "search adv by strain" , :js => true, :search =>true  do
 
 		header.search_button.click
 
-		searchresults_page = SearchResultsItemPageComponent.new
+		searchresults_page = SearchResultsItemPageComponent.new		
 		searchresults_page.searchresults_store_names.size.should == 2
 		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item5.name, @item6.name]
 
@@ -180,4 +186,54 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item7.name]
 	end
 	
+	scenario "search : cultivation" do		
+		@item5 =  @store.store_items.create(:name => "alfafla 1" , :strain =>"indica",  :privatereserve => true)		
+		@item5.cultivation = "indoor"
+		@item5.save
+		
+		@item6 =  @store.store_items.create(:name => "alfafla 2" , :strain =>"indica",  :privatereserve => true)		
+		@item6.cultivation = "outdoor"
+		@item6.save
+
+		@item7 =  @store.store_items.create(:name => "alfafla 3" , :strain =>"indica",  :privatereserve => true)		
+		@item7.cultivation = "hydroponic"
+		@item7.save
+		
+		@item8 =  @store.store_items.create(:name => "alfafla 4" , :strain =>"indica", :privatereserve => true)		
+		@item8.cultivation = "greenhouse"
+		@item8.save
+
+		@item9 =  @store.store_items.create(:name => "alfafla 5" , :strain =>"indica", :privatereserve => true)		
+		@item9.cultivation = "organic"
+		@item9.save
+
+		Sunspot.commit
+
+		# new search
+		page.visit("/users/sign_in")
+		header = HeaderPageComponent.new		
+		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+		header.item_query_input.set "alfafla"		
+		header.show_adv_search_button.click		
+		header.indoor.set true
+		header.outdoor.set true
+
+		header.search_button.click
+
+		searchresults_page = SearchResultsItemPageComponent.new
+		searchresults_page.searchresults_store_names.size.should == 2
+		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item5.name, @item6.name]
+
+		# new search for hybrid
+		header.show_adv_search_button.click		
+		header.indoor.set false
+		header.outdoor.set false
+		header.hydroponic.set true
+		header.greenhouse.set true
+		header.organic.set true
+		
+		header.search_button.click
+		searchresults_page.searchresults_store_names.size.should == 3
+		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item7.name, @item8.name, @item9.name]
+	end
 end
