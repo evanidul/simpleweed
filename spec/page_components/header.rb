@@ -45,6 +45,8 @@ class HeaderPageComponent < SitePrism::Page
   element :hydroponic, '#search_hydroponic'
   element :greenhouse, '#search_greenhouse'
   element :organic, '#search_organic'
+  # misc
+  element :privatereserve, '#search_privatereserve'
 
   # PRICE #################
   element :search_filterpriceby_, '#search_filterpriceby_'  #none

@@ -93,8 +93,10 @@ class SearchesController < ApplicationController
 	  		  	end	
 	  		  end
 	  		  	
-	  		  
-
+	  		  # process misc (strain & attribute)
+	  		  if search.privatereserve == "true"
+  		  		with(:privatereserve, true)
+	  		  end
 
 
 	  		  # process price filters
