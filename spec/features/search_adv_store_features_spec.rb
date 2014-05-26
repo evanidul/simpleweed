@@ -103,4 +103,65 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		searchresults_page.searchresults_store_names.size.should == 1
 		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item2.name]
 	end
+	scenario "search : store filters atm access dispensingmachines" do	
+		@store1_name = "My new store"
+		@store1_addressline1 = "7110 Rock Valley Court"
+		@store1_city = "San Diego"
+		@store1_ca = "CA"
+		@store1_zip = "92122"
+		@store1 = Store.new(:name => @store1_name , :addressline1 => @store1_addressline1, :city => @store1_city, :state => @store1_ca, :zip => @store1_zip)
+		
+		@store1.atmaccess = true
+
+		@store1.save	
+		@item1 =  @store1.store_items.create(:name => "alfafla 1" , :strain =>"indica")		
+		@item1.maincategory = "flower"
+		@item1.subcategory = "bud"
+		@item1.save
+
+		@store2_name = "My new store"
+		@store2_addressline1 = "7110 Rock Valley Court"
+		@store2_city = "San Diego"
+		@store2_ca = "CA"
+		@store2_zip = "92122"
+		@store2 = Store.new(:name => @store2_name , :addressline1 => @store2_addressline1, :city => @store2_city, :state => @store2_ca, :zip => @store2_zip)
+		
+		@store2.automaticdispensingmachines = true
+
+		@store2.save	
+		@item2 =  @store2.store_items.create(:name => "alfafla 2" , :strain =>"indica")		
+		@item2.maincategory = "flower"
+		@item2.subcategory = "bud"
+		@item2.save
+
+
+		Sunspot.commit
+
+		# new search
+		page.visit("/users/sign_in")
+		header = HeaderPageComponent.new		
+		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+		header.item_query_input.set "alfafla"		
+		header.show_adv_search_button.click	
+		header.search_opt_store_features_tab_link.click	
+		header.atmaccess.set true
+		
+
+		header.search_button.click
+
+		searchresults_page = SearchResultsItemPageComponent.new
+		searchresults_page.searchresults_store_names.size.should == 1
+		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item1.name]
+
+		# new search for hybrid
+		header.show_adv_search_button.click		
+		header.search_opt_store_features_tab_link.click
+		header.atmaccess.set false
+		header.dispensingmachines.set true
+		
+		header.search_button.click
+		# setting false in the UI doesn't mean filter for false, it means all values (T or F) are acceptable values
+		searchresults_page.searchresults_store_names.size.should == 1
+		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item2.name]
+	end
 end

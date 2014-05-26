@@ -118,5 +118,7 @@ class HeaderPageComponent < SitePrism::Page
   # STORE FEATURES ###########
   element :deliveryservice , '#search_delivery_service'
   element :acceptsatmcredit ,'#search_accepts_atm_credit'
+  element :atmaccess , '#search_atm_access'
+  element :dispensingmachines, '#search_dispensing_machines'
 
 end

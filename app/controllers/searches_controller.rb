@@ -289,6 +289,12 @@ class SearchesController < ApplicationController
 			  if search.accepts_atm_credit == "true"
 			  	with(:store_acceptscreditcards, true)
 			  end
+			  if search.atm_access == "true"
+			  	with(:store_atmaccess, true)
+			  end
+			  if search.dispensing_machines == "true"
+			  	with(:store_automaticdispensingmachines, true)
+			  end
 
 	  		  # sort by distance
 	  		  order_by_geodist(:location, geocoordiantes[0], geocoordiantes[1])
