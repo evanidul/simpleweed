@@ -253,6 +253,15 @@ class SearchesController < ApplicationController
 			  if search.cleaning == "true"
 			  	acceptable_item_subcategories.push("cleaning")			  	
 			  end
+			  if search.clothes == "true"
+			  	acceptable_item_subcategories.push("clothes")			  	
+			  end
+			  if search.grinder == "true"
+			  	acceptable_item_subcategories.push("grinder")			  	
+			  end
+			  if search.other_accessories == "true"
+			  	acceptable_item_subcategories.push("other")			  	
+			  end
 
 	  		  if !acceptable_item_subcategories.empty?
 	  		  	any_of do
