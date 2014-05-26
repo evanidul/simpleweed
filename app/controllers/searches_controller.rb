@@ -262,6 +262,19 @@ class SearchesController < ApplicationController
 			  if search.other_accessories == "true"
 			  	acceptable_item_subcategories.push("other")			  	
 			  end
+			  if search.paper_wrap == "true"
+			  	acceptable_item_subcategories.push("paper/wrap")			  	
+			  end
+			  if search.storage == "true"
+			  	acceptable_item_subcategories.push("storage")			  	
+			  end
+			  if search.vape == "true"
+			  	acceptable_item_subcategories.push("vape")			  	
+			  end
+			  if search.vape_accessories == "true"
+			  	acceptable_item_subcategories.push("vape accessories")			  	
+			  end
+
 
 	  		  if !acceptable_item_subcategories.empty?
 	  		  	any_of do
