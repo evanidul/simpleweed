@@ -217,7 +217,15 @@ class SearchesController < ApplicationController
 			  if search.frozen == "true"
 			  	acceptable_item_subcategories.push("frozen")
 			  end
-
+			  if search.other_edibles == "true"
+			  	acceptable_item_subcategories.push("other")  # minor bug, name collision with "other" since maincategory is not filtered
+			  end
+			  if search.blunt == "true"
+			  	acceptable_item_subcategories.push("blunt")
+			  end
+			  if search.joint == "true"
+			  	acceptable_item_subcategories.push("joint")
+			  end
 
 	  		  if !acceptable_item_subcategories.empty?
 	  		  	any_of do

@@ -368,4 +368,50 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		searchresults_page.searchresults_store_names.size.should == 2
 		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item2.name, @item3.name]
 	end	
+	scenario "search : edible , prerolls" do		
+		@item1 =  @store.store_items.create(:name => "alfafla 1" , :strain =>"indica")		
+		@item1.maincategory = "edible"
+		@item1.subcategory = 'other'
+		@item1.save
+		
+		@item2 =  @store.store_items.create(:name => "alfafla 2" , :strain =>"indica")		
+		@item2.maincategory = "pre-roll"
+		@item2.subcategory = 'blunt'
+		@item2.save
+
+		@item3 =  @store.store_items.create(:name => "alfafla 3" , :strain =>"indica")		
+		@item3.maincategory = "pre-roll"
+		@item3.subcategory = 'joint'
+		@item3.save		
+
+		Sunspot.commit
+
+		# new search
+		page.visit("/users/sign_in")
+		header = HeaderPageComponent.new		
+		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+		header.item_query_input.set "alfafla"		
+		header.show_adv_search_button.click	
+		header.search_opt_item_category_tab_link.click	
+		header.other_edibles.set true
+		
+
+		header.search_button.click
+
+		searchresults_page = SearchResultsItemPageComponent.new
+		searchresults_page.searchresults_store_names.size.should == 1
+		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item1.name]
+
+		# new search for hybrid
+		header.show_adv_search_button.click		
+		header.search_opt_item_category_tab_link.click
+		header.other_edibles.set false
+		header.blunt.set true
+		header.joint.set true
+		
+		header.search_button.click
+		# setting false in the UI doesn't mean filter for false, it means all values (T or F) are acceptable values
+		searchresults_page.searchresults_store_names.size.should == 2
+		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item2.name, @item3.name]
+	end		
 end	
