@@ -121,4 +121,9 @@ class HeaderPageComponent < SitePrism::Page
   element :atmaccess , '#search_atm_access'
   element :dispensingmachines, '#search_dispensing_machines'
 
+  element :firsttimepatientdeals, '#search_first_time_patient_deals'
+  element :handicapaccess, '#search_handicap_access'
+  element :loungearea, '#search_lounge_area'
+  element :pet_friendly, '#search_pet_friendly'
+
 end

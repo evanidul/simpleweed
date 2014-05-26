@@ -107,6 +107,20 @@ class StoreItem < ActiveRecord::Base
 	  		store.automaticdispensingmachines
 	  	end
 
+	  	boolean :store_firsttimepatientdeals, :stored => true do
+	  		store.firsttimepatientdeals
+	  	end
+	  	boolean :store_handicapaccess, :stored => true do
+	  		store.handicapaccess
+	  	end
+	  	boolean :store_loungearea, :stored => true do
+	  		store.loungearea
+	  	end
+	  	boolean :petfriendly, :stored => true do
+	  		store.petfriendly
+	  	end
+
+
     end
 
 

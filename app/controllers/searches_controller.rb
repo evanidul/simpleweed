@@ -295,6 +295,12 @@ class SearchesController < ApplicationController
 			  if search.dispensing_machines == "true"
 			  	with(:store_automaticdispensingmachines, true)
 			  end
+			  if search.first_time_patient_deals == "true"
+			  	with(:store_firsttimepatientdeals, true)
+			  end
+			  if search.handicap_access == "true"
+			  	with(:store_handicapaccess, true)
+			  end
 
 	  		  # sort by distance
 	  		  order_by_geodist(:location, geocoordiantes[0], geocoordiantes[1])
