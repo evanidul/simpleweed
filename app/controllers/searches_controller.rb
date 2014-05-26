@@ -244,7 +244,15 @@ class SearchesController < ApplicationController
 			  if search.bong_pipe_accessories == "true"
 			  	acceptable_item_subcategories.push("bong/pipe accessories")			  	
 			  end
-
+			  if search.book_magazine == "true"
+			  	acceptable_item_subcategories.push("book/magazine")			  	
+			  end
+			  if search.butane_lighter == "true"
+			  	acceptable_item_subcategories.push("butane/lighter")			  	
+			  end
+			  if search.cleaning == "true"
+			  	acceptable_item_subcategories.push("cleaning")			  	
+			  end
 
 	  		  if !acceptable_item_subcategories.empty?
 	  		  	any_of do
