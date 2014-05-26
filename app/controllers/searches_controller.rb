@@ -172,6 +172,13 @@ class SearchesController < ApplicationController
 			  if search.shake == "true"
 			  	acceptable_item_subcategories.push("shake")
 			  end
+			  if search.trim == "true"
+				acceptable_item_subcategories.push("trim")
+			  end
+			  if search.wax == "true"
+			  	acceptable_item_subcategories.push("wax")
+			  end
+
 	  		  if !acceptable_item_subcategories.empty?
 	  		  	any_of do
 	  		  		with(:subcategory, acceptable_item_subcategories)
