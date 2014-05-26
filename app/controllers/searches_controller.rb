@@ -163,7 +163,22 @@ class SearchesController < ApplicationController
 				when "oz"										
 					with(:costoneoz, minprice..maxprice)				
 			  end
-	  		  
+
+			  # filter by item category
+			  acceptable_item_subcategories = []
+			  if search.bud == "true"
+			  	acceptable_item_subcategories.push("bud")
+			  end
+			  if search.shake == "true"
+			  	acceptable_item_subcategories.push("shake")
+			  end
+	  		  if !acceptable_item_subcategories.empty?
+	  		  	any_of do
+	  		  		with(:subcategory, acceptable_item_subcategories)
+	  		  		with(:subcategory, nil)
+	  		  	end	
+	  		  end
+
 	  		  # sort by distance
 	  		  order_by_geodist(:location, geocoordiantes[0], geocoordiantes[1])
 

@@ -71,6 +71,48 @@ class HeaderPageComponent < SitePrism::Page
   element :search_pricerangeselect_between100and200, '#search_pricerangeselect_between100and200'
   element :search_pricerangeselect_morethan200, '#search_pricerangeselect_morethan200'
 
-
+  # ITEM CATEGORY ###########
+  # flower
+  element :bud, '#search_bud'
+  element :shake, '#search_shake'
+  element :trim, '#search_trim'
+  # concentrate
+  element :wax, '#search_wax'
+  element :hash, '#search_hash'
+  element :budder_earwax_honeycomb,'#search_budder_earwax_honeycomb'
+  element :bubblehash_fullmelt_icewax, '#search_bubblehash_fullmelt_icewax'
+  element :ISOhash, '#search_ISOhash'
+  element :kief_drysieve, '#search_kief_drysieve'
+  element :shatter_amberglass, '#search_shatter_amberglass'
+  element :scissor_fingerhash, '#search_scissor_fingerhash'
+  element :oil_cartridge, '#search_oil_cartridge'
+  # edible
+  element :baked, '#search_baked'
+  element :candy_chocolate, '#search_candy_chocolate'
+  element :cooking, '#search_cooking'
+  element :drink, '#search_drink'
+  element :frozen, '#search_frozen'
+  element :other_edibles, '#search_other_edibles'
+  # pre-rolls
+  element :blunt, '#search_blunt'
+  element :joint, '#search_joint'
+  # other
+  element :clones, '#search_clones'
+  element :seeds, '#search_seeds'
+  element :oral, '#search_oral'
+  element :topical,'#search_topical'
+  # accessory
+  element :bong_pipe, '#search_bong_pipe'
+  element :bong_pipe_accessories, '#search_bong_pipe_accessories'
+  element :book_magazine, '#search_book_magazine'
+  element :butane_lighter, '#search_butane_lighter'
+  element :cleaning, '#search_cleaning'
+  element :clothes, '#search_clothes'
+  element :grinder, '#search_grinder'
+  element :other_accessories, '#search_other_accessories'
+  element :paper_wrap, '#search_paper_wrap'
+  element :storage, '#search_storage'
+  element :vape, '#search_vape'
+  element :vape_accessories,'#search_vape_accessories'
 
 end
