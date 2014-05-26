@@ -305,9 +305,14 @@ class SearchesController < ApplicationController
 			  	with(:store_loungearea, true)
 			  end
 			  if search.pet_friendly == "true"
-			  	with(:petfriendly, true)
+			  	with(:store_petfriendly, true)
 			  end
-
+			  if search.security_guard == "true"
+			  	with(:store_securityguard, true)
+			  end
+			  if search.eighteenplus == "true"
+			  	with(:store_eighteenplus, true)
+			  end
 
 	  		  # sort by distance
 	  		  order_by_geodist(:location, geocoordiantes[0], geocoordiantes[1])

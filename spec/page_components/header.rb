@@ -126,4 +126,13 @@ class HeaderPageComponent < SitePrism::Page
   element :loungearea, '#search_lounge_area'
   element :pet_friendly, '#search_pet_friendly'
 
+  element :security_guard, '#search_security_guard'
+  element :eighteenplus ,'#search_eighteenplus'
+  element :twentyplus ,'#search_twentyplus'
+  element :hasphotos, '#search_has_photos'
+
+  element :labtested ,'#search_lab_tested'
+  element :onsitetesting, '#search_onsite_testing'
+  
+
 end

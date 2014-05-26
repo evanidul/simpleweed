@@ -116,10 +116,22 @@ class StoreItem < ActiveRecord::Base
 	  	boolean :store_loungearea, :stored => true do
 	  		store.loungearea
 	  	end
-	  	boolean :petfriendly, :stored => true do
+	  	boolean :store_petfriendly, :stored => true do
 	  		store.petfriendly
 	  	end
 
+	  	boolean :store_securityguard, :stored => true do
+	  		store.securityguard
+	  	end
+	  	boolean :store_eighteenplus, :stored => true do
+	  		store.eighteenplus
+	  	end
+	  	boolean :store_twentyoneplus, :stored => true do
+	  		store.twentyoneplus
+	  	end
+	  	boolean :store_hasphotos, :stored => true do
+	  		store.hasphotos
+	  	end
 
     end
 
