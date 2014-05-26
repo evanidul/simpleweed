@@ -199,6 +199,16 @@ class SearchesController < ApplicationController
 			  if search.scissor_fingerhash == "true"
 			  	acceptable_item_subcategories.push("scissor/finger hash")
 			  end
+			  if search.oil_cartridge == "true"
+			  	acceptable_item_subcategories.push("oil/cartridge")
+			  end
+			  if search.baked == "true"
+			  	acceptable_item_subcategories.push("baked")
+			  end
+			  if search.candy_chocolate == "true"
+			  	acceptable_item_subcategories.push("candy/chocolate")
+			  end
+
 
 	  		  if !acceptable_item_subcategories.empty?
 	  		  	any_of do
