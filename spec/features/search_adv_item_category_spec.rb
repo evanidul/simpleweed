@@ -94,7 +94,7 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item1.name, @item2.name]
 	end	
 
-	scenario "search : flower" do		
+	scenario "search : flower & concentrate" do		
 		@item1 =  @store.store_items.create(:name => "alfafla 1" , :strain =>"indica")		
 		@item1.maincategory = "flower"
 		@item1.subcategory = "trim"
@@ -140,4 +140,94 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item1.name, @item2.name]
 	end	
 
+	scenario "search : concentrate" do		
+		@item1 =  @store.store_items.create(:name => "alfafla 1" , :strain =>"indica")		
+		@item1.maincategory = "concentrate"
+		@item1.subcategory = "hash"
+		@item1.save
+		
+		@item2 =  @store.store_items.create(:name => "alfafla 2" , :strain =>"indica")		
+		@item2.maincategory = "concentrate"
+		@item2.subcategory = 'budder/earwar/honeycomb/supermelt'
+		@item2.save
+
+		@item3 =  @store.store_items.create(:name => "alfafla 3" , :strain =>"indica")		
+		@item3.maincategory = "concentrate"
+		@item3.subcategory = 'bubble hash/full melt/ice wax'
+		@item3.save		
+
+		Sunspot.commit
+
+		# new search
+		page.visit("/users/sign_in")
+		header = HeaderPageComponent.new		
+		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+		header.item_query_input.set "alfafla"		
+		header.show_adv_search_button.click	
+		header.search_opt_item_category_tab_link.click	
+		header.hash.set true
+		
+
+		header.search_button.click
+
+		searchresults_page = SearchResultsItemPageComponent.new
+		searchresults_page.searchresults_store_names.size.should == 1
+		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item1.name]
+
+		# new search for hybrid
+		header.show_adv_search_button.click		
+		header.search_opt_item_category_tab_link.click
+		header.hash.set true
+		header.budder_earwax_honeycomb.set true
+		
+		header.search_button.click
+		# setting false in the UI doesn't mean filter for false, it means all values (T or F) are acceptable values
+		searchresults_page.searchresults_store_names.size.should == 2
+		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item1.name, @item2.name]
+	end	
+	scenario "search : concentrate 2" do		
+		@item1 =  @store.store_items.create(:name => "alfafla 1" , :strain =>"indica")		
+		@item1.maincategory = "concentrate"
+		@item1.subcategory = 'bubble hash/full melt/ice wax'
+		@item1.save
+		
+		@item2 =  @store.store_items.create(:name => "alfafla 2" , :strain =>"indica")		
+		@item2.maincategory = "concentrate"
+		@item2.subcategory = 'ISO hash'
+		@item2.save
+
+		@item3 =  @store.store_items.create(:name => "alfafla 3" , :strain =>"indica")		
+		@item3.maincategory = "concentrate"
+		@item3.subcategory = 'kief/dry sieve'
+		@item3.save		
+
+		Sunspot.commit
+
+		# new search
+		page.visit("/users/sign_in")
+		header = HeaderPageComponent.new		
+		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+		header.item_query_input.set "alfafla"		
+		header.show_adv_search_button.click	
+		header.search_opt_item_category_tab_link.click	
+		header.bubblehash_fullmelt_icewax.set true
+		
+
+		header.search_button.click
+
+		searchresults_page = SearchResultsItemPageComponent.new
+		searchresults_page.searchresults_store_names.size.should == 1
+		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item1.name]
+
+		# new search for hybrid
+		header.show_adv_search_button.click		
+		header.search_opt_item_category_tab_link.click
+		header.bubblehash_fullmelt_icewax.set true
+		header.ISOhash.set true
+		
+		header.search_button.click
+		# setting false in the UI doesn't mean filter for false, it means all values (T or F) are acceptable values
+		searchresults_page.searchresults_store_names.size.should == 2
+		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item1.name, @item2.name]
+	end	
 end	

@@ -178,6 +178,18 @@ class SearchesController < ApplicationController
 			  if search.wax == "true"
 			  	acceptable_item_subcategories.push("wax")
 			  end
+			  if search.hash == "true"
+				acceptable_item_subcategories.push("hash")
+			  end
+			  if search.budder_earwax_honeycomb == "true"
+			  	acceptable_item_subcategories.push("budder/earwar/honeycomb/supermelt")
+			  end
+			  if search.bubblehash_fullmelt_icewax == "true"
+			  	acceptable_item_subcategories.push("bubble hash/full melt/ice wax")
+			  end
+			  if search.ISOhash == "true"
+			  	acceptable_item_subcategories.push("ISO hash")
+			  end
 
 	  		  if !acceptable_item_subcategories.empty?
 	  		  	any_of do
