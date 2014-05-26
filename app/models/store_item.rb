@@ -84,14 +84,28 @@ class StoreItem < ActiveRecord::Base
 		   store.state
 	  	end	  	
 	  	text :store_zip , :stored => true do
-		   store.zip;
+		   store.zip
 	  	end
 
 	  	text :store_phonenumber , :stored => true do
-		   store.phonenumber;
+		   store.phonenumber
 	  	end
 	  	
 	  	latlon :location, :stored => true
+
+	  	# store features
+	  	boolean :store_deliveryservice, :stored => true do
+	  		store.deliveryservice
+	  	end
+	  	boolean :store_acceptscreditcards, :stored => true do
+	  		store.acceptscreditcards
+	  	end
+	  	boolean :store_atmaccess, :stored => true do
+	  		store.atmaccess
+	  	end
+	  	boolean :store_automaticdispensingmachines, :stored => true do
+	  		store.automaticdispensingmachines
+	  	end
 
     end
 

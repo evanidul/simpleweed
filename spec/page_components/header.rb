@@ -115,4 +115,8 @@ class HeaderPageComponent < SitePrism::Page
   element :vape, '#search_vape'
   element :vape_accessories,'#search_vape_accessories'
 
+  # STORE FEATURES ###########
+  element :deliveryservice , '#search_delivery_service'
+  element :acceptsatmcredit ,'#search_accepts_atm_credit'
+
 end

@@ -275,13 +275,20 @@ class SearchesController < ApplicationController
 			  	acceptable_item_subcategories.push("vape accessories")			  	
 			  end
 
-
 	  		  if !acceptable_item_subcategories.empty?
 	  		  	any_of do
 	  		  		with(:subcategory, acceptable_item_subcategories)
 	  		  		with(:subcategory, nil)
 	  		  	end	
 	  		  end
+
+  			  # filter by store features
+			  if search.delivery_service == "true"
+			  	with(:store_deliveryservice, true)
+			  end
+			  if search.accepts_atm_credit == "true"
+			  	with(:store_acceptscreditcards, true)
+			  end
 
 	  		  # sort by distance
 	  		  order_by_geodist(:location, geocoordiantes[0], geocoordiantes[1])
