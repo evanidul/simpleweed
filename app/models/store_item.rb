@@ -132,6 +132,12 @@ class StoreItem < ActiveRecord::Base
 	  	boolean :store_hasphotos, :stored => true do
 	  		store.hasphotos
 	  	end
+	  	boolean :store_labtested, :stored => true do
+	  		store.labtested
+	  	end
+	  	boolean :store_onsitetesting, :stored => true do
+	  		store.onsitetesting
+	  	end
 
     end
 

@@ -313,6 +313,18 @@ class SearchesController < ApplicationController
 			  if search.eighteenplus == "true"
 			  	with(:store_eighteenplus, true)
 			  end
+			  if search.twentyplus == "true"
+			  	with(:store_twentyoneplus, true)
+			  end
+			  if search.has_photos == "true"
+			  	with(:store_hasphotos, true)
+			  end
+			  if search.lab_tested == "true"
+			  	with(:store_labtested, true)
+			  end
+			  if search.onsite_testing == "true"
+			  	with(:store_onsitetesting, true)
+			  end
 
 	  		  # sort by distance
 	  		  order_by_geodist(:location, geocoordiantes[0], geocoordiantes[1])
