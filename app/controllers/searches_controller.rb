@@ -208,6 +208,15 @@ class SearchesController < ApplicationController
 			  if search.candy_chocolate == "true"
 			  	acceptable_item_subcategories.push("candy/chocolate")
 			  end
+			  if search.cooking == "true"
+			  	acceptable_item_subcategories.push("cooking")
+			  end
+			  if search.drink == "true"
+			  	acceptable_item_subcategories.push("drink")
+			  end
+			  if search.frozen == "true"
+			  	acceptable_item_subcategories.push("frozen")
+			  end
 
 
 	  		  if !acceptable_item_subcategories.empty?
