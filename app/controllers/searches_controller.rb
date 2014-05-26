@@ -190,6 +190,15 @@ class SearchesController < ApplicationController
 			  if search.ISOhash == "true"
 			  	acceptable_item_subcategories.push("ISO hash")
 			  end
+			  if search.kief_drysieve == "true"
+			  	acceptable_item_subcategories.push("kief/dry sieve")
+			  end
+			  if search.shatter_amberglass == "true"
+			  	acceptable_item_subcategories.push("shatter/amberglass")
+			  end
+			  if search.scissor_fingerhash == "true"
+			  	acceptable_item_subcategories.push("scissor/finger hash")
+			  end
 
 	  		  if !acceptable_item_subcategories.empty?
 	  		  	any_of do
