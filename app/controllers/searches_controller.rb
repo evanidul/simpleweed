@@ -224,7 +224,16 @@ class SearchesController < ApplicationController
 			  	acceptable_item_subcategories.push("blunt")
 			  end
 			  if search.joint == "true"
-			  	acceptable_item_subcategories.push("joint")
+			  	acceptable_item_subcategories.push("joint")			  	
+			  end
+			  if search.clones == "true"
+			  	acceptable_item_subcategories.push("clones")			  	
+			  end
+			  if search.seeds == "true"
+			  	acceptable_item_subcategories.push("seeds")			  	
+			  end
+			  if search.oral == "true"
+			  	acceptable_item_subcategories.push("oral")			  	
 			  end
 
 	  		  if !acceptable_item_subcategories.empty?
