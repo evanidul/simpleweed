@@ -301,6 +301,13 @@ class SearchesController < ApplicationController
 			  if search.handicap_access == "true"
 			  	with(:store_handicapaccess, true)
 			  end
+			  if search.lounge_area == "true"
+			  	with(:store_loungearea, true)
+			  end
+			  if search.pet_friendly == "true"
+			  	with(:petfriendly, true)
+			  end
+
 
 	  		  # sort by distance
 	  		  order_by_geodist(:location, geocoordiantes[0], geocoordiantes[1])
