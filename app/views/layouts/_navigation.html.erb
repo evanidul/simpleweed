@@ -28,7 +28,7 @@
           @search = Search.new 
         end
       %>
-      <%= form_for @search, :html => {:class => "navbar-form navbar-left"} do |f| %>
+      <%= form_for @search, :method=>'get', :html => {:class => "navbar-form navbar-left"} do |f| %>
         
         <div class="form-group"> 
           <%= f.text_field :itemsearch, :class => 'form-control search-inputs', placeholder: "search items, dispensaries"  %>

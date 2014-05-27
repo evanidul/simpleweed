@@ -1,6 +1,6 @@
 class SearchesController < ApplicationController
 
-	def create
+	def index
 
 		@search = Search.new(search_params)
 

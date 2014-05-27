@@ -50,7 +50,15 @@ gem 'sunspot_rails'
 # solr service (instead of deploying java war)
 gem 'sunspot_solr' # optional pre-packaged Solr distribution for use in development
 
+# needed to run selenium tests with solr index access
 gem 'sunspot_test' , :group => :test
+
+# multithreaded rails server.  Replaces webbrick.
+# see /config/unicorn.rb & /ProcFile for configuration
+gem 'unicorn'
+
+# allows you to run 'rails generate active_record:session_migration', which allows you to store sessions in the db
+gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
 
 group :development, :test do
   # automated testing
