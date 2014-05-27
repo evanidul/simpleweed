@@ -330,9 +330,29 @@ class SearchesController < ApplicationController
 			  case search.filterthc_range
 	  		  	when ""
 			    when "lessthan5"
-			    	with(:thc, 0..5.0)
+			    	any_of do 
+			    		with(:thc, 0..5.0)
+			    		with(:thc, nil)
+			    	end
 			  end
 
+			  case search.filtercbd_range
+			  	when ""
+			    when "lessthan5"
+			    	any_of do 
+			    		with(:cbd, 0..5.0)
+			    		with(:cbd, nil)
+			    	end
+		      end
+
+			  case search.filtercbn_range
+			  	when ""
+			    when "lessthan5"
+			    	any_of do 
+			    		with(:cbn, 0..5.0)
+			    		with(:cbn, nil)
+			    	end
+		      end
 	  		  # sort by distance
 	  		  order_by_geodist(:location, geocoordiantes[0], geocoordiantes[1])
 
