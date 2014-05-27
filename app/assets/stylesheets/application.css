@@ -211,3 +211,7 @@
 .search-opts-extra-label {
   margin-left:17px;
 }
+
+#search-filter-options label {
+  font-weight: normal !important;
+}
