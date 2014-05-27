@@ -6,62 +6,62 @@
 	<tr>
 		<td valign="top">
 			<div class="search-option-radio">
-				<%= f.radio_button(:filterpriceby, "") %>
+				<%= f.radio_button(:fpb, "") %>
 				none.
 			</div>
 			<div class="search-option-radio">
-			    <%= f.radio_button(:filterpriceby, "halfgram") %>
+			    <%= f.radio_button(:fpb, "halfgram") %>
 			    1/2g
 			</div>
 			<div class="search-option-radio">
-				<%= f.radio_button(:filterpriceby, "gram") %>
+				<%= f.radio_button(:fpb, "gram") %>
 				1g
 			</div>
 			<div class="search-option-radio">
-				<%= f.radio_button(:filterpriceby, "eighth") %>
+				<%= f.radio_button(:fpb, "eighth") %>
 				1/8oz (3.5g)
 			</div>
 			<div class="search-option-radio">        	
-				<%= f.radio_button(:filterpriceby, "quarteroz") %>
+				<%= f.radio_button(:fpb, "quarteroz") %>
 				1/4oz (7g)
 			</div>
 			<div class="search-option-radio">
-				<%= f.radio_button(:filterpriceby, "halfoz") %>
+				<%= f.radio_button(:fpb, "halfoz") %>
 				1/2oz (14g)
 			</div>
 			<div class="search-option-radio">
-				<%= f.radio_button(:filterpriceby, "oz") %>
+				<%= f.radio_button(:fpb, "oz") %>
 				1oz (28g)
 			</div>
 		</td>
 		<td valign="top">			
 			<div class="search-option-radio">
-				<%= f.radio_button(:pricerangeselect, "") %>
+				<%= f.radio_button(:prs, "") %>
 				none.
 			</div>
 			<div class="search-option-radio">
-				<%= f.radio_button(:pricerangeselect, "custom") %>
-				<%= f.text_field :minprice, :class => 'item-search-custom-price', placeholder: "min" %> to
-				<%= f.text_field :maxprice, :class => 'item-search-custom-price', placeholder: "max" %>
+				<%= f.radio_button(:prs, "custom") %>
+				<%= f.text_field :mp, :class => 'item-search-custom-price', placeholder: "min" %> to
+				<%= f.text_field :xp, :class => 'item-search-custom-price', placeholder: "max" %>
 			</div>
 			<div class="search-option-radio">
-			    <%= f.radio_button(:pricerangeselect, "lessthan25") %>
+			    <%= f.radio_button(:prs, "lessthan25") %>
 			    less than $25
 			</div>
 			<div class="search-option-radio">
-				<%= f.radio_button(:pricerangeselect, "between25and50") %>
+				<%= f.radio_button(:prs, "between25and50") %>
 				$25 to $50
 			</div>
 			<div class="search-option-radio">
-				<%= f.radio_button(:pricerangeselect, "between50and100") %>
+				<%= f.radio_button(:prs, "between50and100") %>
 				$50 to $100
 			</div>
 			<div class="search-option-radio">        	
-				<%= f.radio_button(:pricerangeselect, "between100and200") %>
+				<%= f.radio_button(:prs, "between100and200") %>
 				$100 to $200
 			</div>
 			<div class="search-option-radio">
-				<%= f.radio_button(:pricerangeselect, "morethan200") %>
+				<%= f.radio_button(:prs, "morethan200") %>
 				more than $200
 			</div>
 		</td>

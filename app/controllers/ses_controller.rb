@@ -1,17 +1,17 @@
-class SearchesController < ApplicationController
+class SesController < ApplicationController
 
 	def index
 
-		@search = Search.new(search_params)
+		@search = Se.new(search_params)
 
 		search = @search
 		itemquery = @search.itemsearch
-		searchLocation = @search.itemsearch_location
-		groupbystore = @search.groupbystore
-		filterpriceby = @search.filterpriceby
-		pricerangeselect = @search.pricerangeselect
-		customminprice = @search.minprice
-		custommaxprice = @search.maxprice
+		searchLocation = @search.isl
+		groupbystore = @search.gbs
+		filterpriceby = @search.fpb
+		pricerangeselect = @search.prs
+		customminprice = @search.mp
+		custommaxprice = @search.xp
 
 		if searchLocation.nil? || searchLocation.empty?
 			searchLocation = "la,ca"
@@ -61,15 +61,15 @@ class SearchesController < ApplicationController
 	  		  #:indica, :sativa, :hybrid, :og, :kush, :haze, :indoor, :outdoor, :hydroponic, :greenhouse, :organic, :privatereserve, :topshelf, :glutenfree, :sugarfree,
 	  		  
 	  		  acceptable_strains = []
-	  		  if search.indica == "true"
+	  		  if search.o == "true"
 	  		  	 acceptable_strains.push("indica")
 	  		  end	
 	  		  
-	  		  if search.sativa == "true"	  		  	
+	  		  if search.p == "true"	  		  	
 	  		  	acceptable_strains.push("sativa")
 	  		  end
 
-			  if search.hybrid == "true"	  		  	
+			  if search.q == "true"	  		  	
 	  		  	acceptable_strains.push("hybrid")
 	  		  end
 	  		  
@@ -86,19 +86,19 @@ class SearchesController < ApplicationController
 	  		  #:indoor, :outdoor, :hydroponic, :greenhouse, :organic
 	  		  #['','indoor', 'outdoor', 'hydroponic', 'greenhouse', 'organic']
 	  		  acceptable_cultivation = []
-	  		  if search.indoor == "true"
+	  		  if search.u == "true"
 	  		  	acceptable_cultivation.push("indoor")
 	  		  end
-	  		  if search.outdoor == "true"
+	  		  if search.v == "true"
 	  		  	acceptable_cultivation.push("outdoor")
 	  		  end
-	  		  if search.hydroponic == "true"
+	  		  if search.w == "true"
 	  		  	acceptable_cultivation.push("hydroponic")
 	  		  end
-	  		  if search.greenhouse == "true"
+	  		  if search.x == "true"
 	  		  	acceptable_cultivation.push("greenhouse")
 	  		  end
-	  		  if search.organic == "true"
+	  		  if search.y == "true"
 	  		  	acceptable_cultivation.push("organic")	  		  
 	  		  end	  		   		 
 	  		  
@@ -110,16 +110,16 @@ class SearchesController < ApplicationController
 	  		  end
 	  		  	
 	  		  # process misc (strain & attribute)
-	  		  if search.privatereserve == "true"
+	  		  if search.z == "true"
   		  		with(:privatereserve, true)
 	  		  end
-	  		  if search.topshelf == "true"
+	  		  if search.aa == "true"
 	  		  	with(:topshelf, true)
 	  		  end
-	  		  if search.glutenfree == "true"
+	  		  if search.bb == "true"
 				with(:glutenfree, true)
 	  		  end
-	  		  if search.sugarfree == "true"
+	  		  if search.cc == "true"
 	  		  	with(:sugarfree, true)
 	  		  end
 
@@ -166,112 +166,112 @@ class SearchesController < ApplicationController
 
 			  # filter by item category
 			  acceptable_item_subcategories = []
-			  if search.bud == "true"
+			  if search.i1 == "true"
 			  	acceptable_item_subcategories.push("bud")
 			  end
-			  if search.shake == "true"
+			  if search.i2 == "true"
 			  	acceptable_item_subcategories.push("shake")
 			  end
-			  if search.trim == "true"
+			  if search.i3 == "true"
 				acceptable_item_subcategories.push("trim")
 			  end
-			  if search.wax == "true"
+			  if search.i4 == "true"
 			  	acceptable_item_subcategories.push("wax")
 			  end
-			  if search.hash == "true"
+			  if search.i5 == "true"
 				acceptable_item_subcategories.push("hash")
 			  end
-			  if search.budder_earwax_honeycomb == "true"
+			  if search.i6 == "true"
 			  	acceptable_item_subcategories.push("budder/earwar/honeycomb/supermelt")
 			  end
-			  if search.bubblehash_fullmelt_icewax == "true"
+			  if search.i7 == "true"
 			  	acceptable_item_subcategories.push("bubble hash/full melt/ice wax")
 			  end
-			  if search.ISOhash == "true"
+			  if search.i8 == "true"
 			  	acceptable_item_subcategories.push("ISO hash")
 			  end
-			  if search.kief_drysieve == "true"
+			  if search.i9 == "true"
 			  	acceptable_item_subcategories.push("kief/dry sieve")
 			  end
-			  if search.shatter_amberglass == "true"
+			  if search.i10 == "true"
 			  	acceptable_item_subcategories.push("shatter/amberglass")
 			  end
-			  if search.scissor_fingerhash == "true"
+			  if search.i11 == "true"
 			  	acceptable_item_subcategories.push("scissor/finger hash")
 			  end
-			  if search.oil_cartridge == "true"
+			  if search.i12 == "true"
 			  	acceptable_item_subcategories.push("oil/cartridge")
 			  end
-			  if search.baked == "true"
+			  if search.i13 == "true"
 			  	acceptable_item_subcategories.push("baked")
 			  end
-			  if search.candy_chocolate == "true"
+			  if search.i14 == "true"
 			  	acceptable_item_subcategories.push("candy/chocolate")
 			  end
-			  if search.cooking == "true"
+			  if search.i15 == "true"
 			  	acceptable_item_subcategories.push("cooking")
 			  end
-			  if search.drink == "true"
+			  if search.i16 == "true"
 			  	acceptable_item_subcategories.push("drink")
 			  end
-			  if search.frozen == "true"
+			  if search.i17 == "true"
 			  	acceptable_item_subcategories.push("frozen")
 			  end
-			  if search.other_edibles == "true"
+			  if search.i18 == "true"
 			  	acceptable_item_subcategories.push("other")  # minor bug, name collision with "other" since maincategory is not filtered
 			  end
-			  if search.blunt == "true"
+			  if search.i19 == "true"
 			  	acceptable_item_subcategories.push("blunt")
 			  end
-			  if search.joint == "true"
+			  if search.i20 == "true"
 			  	acceptable_item_subcategories.push("joint")			  	
 			  end
-			  if search.clones == "true"
+			  if search.i21 == "true"
 			  	acceptable_item_subcategories.push("clones")			  	
 			  end
-			  if search.seeds == "true"
+			  if search.i22 == "true"
 			  	acceptable_item_subcategories.push("seeds")			  	
 			  end
-			  if search.oral == "true"
+			  if search.i23 == "true"
 			  	acceptable_item_subcategories.push("oral")			  	
 			  end
-			  if search.topical == "true"
+			  if search.i24 == "true"
 			  	acceptable_item_subcategories.push("topical")			  	
 			  end
-			  if search.bong_pipe == "true"
+			  if search.i25 == "true"
 			  	acceptable_item_subcategories.push("bong/pipe")			  	
 			  end
-			  if search.bong_pipe_accessories == "true"
+			  if search.i26 == "true"
 			  	acceptable_item_subcategories.push("bong/pipe accessories")			  	
 			  end
-			  if search.book_magazine == "true"
+			  if search.i27 == "true"
 			  	acceptable_item_subcategories.push("book/magazine")			  	
 			  end
-			  if search.butane_lighter == "true"
+			  if search.i28 == "true"
 			  	acceptable_item_subcategories.push("butane/lighter")			  	
 			  end
-			  if search.cleaning == "true"
+			  if search.i29 == "true"
 			  	acceptable_item_subcategories.push("cleaning")			  	
 			  end
-			  if search.clothes == "true"
+			  if search.i30 == "true"
 			  	acceptable_item_subcategories.push("clothes")			  	
 			  end
-			  if search.grinder == "true"
+			  if search.i31 == "true"
 			  	acceptable_item_subcategories.push("grinder")			  	
 			  end
-			  if search.other_accessories == "true"
+			  if search.i32 == "true"
 			  	acceptable_item_subcategories.push("other")			  	
 			  end
-			  if search.paper_wrap == "true"
+			  if search.i33 == "true"
 			  	acceptable_item_subcategories.push("paper/wrap")			  	
 			  end
-			  if search.storage == "true"
+			  if search.i34 == "true"
 			  	acceptable_item_subcategories.push("storage")			  	
 			  end
-			  if search.vape == "true"
+			  if search.i35 == "true"
 			  	acceptable_item_subcategories.push("vape")			  	
 			  end
-			  if search.vape_accessories == "true"
+			  if search.i36 == "true"
 			  	acceptable_item_subcategories.push("vape accessories")			  	
 			  end
 
@@ -283,46 +283,46 @@ class SearchesController < ApplicationController
 	  		  end
 
   			  # filter by store features
-			  if search.delivery_service == "true"
+			  if search.a == "true"
 			  	with(:store_deliveryservice, true)
 			  end
-			  if search.accepts_atm_credit == "true"
+			  if search.b == "true"
 			  	with(:store_acceptscreditcards, true)
 			  end
-			  if search.atm_access == "true"
+			  if search.c == "true"
 			  	with(:store_atmaccess, true)
 			  end
-			  if search.dispensing_machines == "true"
+			  if search.d == "true"
 			  	with(:store_automaticdispensingmachines, true)
 			  end
-			  if search.first_time_patient_deals == "true"
+			  if search.e == "true"
 			  	with(:store_firsttimepatientdeals, true)
 			  end
-			  if search.handicap_access == "true"
+			  if search.f == "true"
 			  	with(:store_handicapaccess, true)
 			  end
-			  if search.lounge_area == "true"
+			  if search.g == "true"
 			  	with(:store_loungearea, true)
 			  end
-			  if search.pet_friendly == "true"
+			  if search.h == "true"
 			  	with(:store_petfriendly, true)
 			  end
-			  if search.security_guard == "true"
+			  if search.i == "true"
 			  	with(:store_securityguard, true)
 			  end
-			  if search.eighteenplus == "true"
+			  if search.j == "true"
 			  	with(:store_eighteenplus, true)
 			  end
-			  if search.twentyplus == "true"
+			  if search.k == "true"
 			  	with(:store_twentyoneplus, true)
 			  end
-			  if search.has_photos == "true"
+			  if search.l == "true"
 			  	with(:store_hasphotos, true)
 			  end
-			  if search.lab_tested == "true"
+			  if search.m == "true"
 			  	with(:store_labtested, true)
 			  end
-			  if search.onsite_testing == "true"
+			  if search.n == "true"
 			  	with(:store_onsitetesting, true)
 			  end
 
@@ -381,9 +381,7 @@ class SearchesController < ApplicationController
 			    else		
 		      end
 	  		  # sort by distance
-	  		  order_by_geodist(:location, geocoordiantes[0], geocoordiantes[1])
-
-			  
+	  		  order_by_geodist(:location, geocoordiantes[0], geocoordiantes[1])						 
 
 			end # search
 
@@ -407,20 +405,91 @@ class SearchesController < ApplicationController
 
 private 
 	def search_params
-		params.require(:search).permit(
-  :itemsearch, :itemsearch_location, :groupbystore, :filterpriceby, :pricerangeselect, :minprice, :maxprice,
+		params.require(:se).permit(
+  :itemsearch, #:itemsearch, 
+  :isl, #:itemsearch_location, 
+  :gbs, #:groupbystore, 
+
+  :fpb,  #:filterpriceby, 
+  :prs, #:pricerangeselect, 
+  :mp, #:minprice, 
+  :xp, #:maxprice,
+  
+  
   # strain & attributes
-  :indica, :sativa, :hybrid, :og, :kush, :haze, :indoor, :outdoor, :hydroponic, :greenhouse, :organic, :privatereserve, :topshelf, :glutenfree, :sugarfree,
+  :o, #:indica
+  :p, #:sativa
+  :q, #:hybrid
+  :r, #:og
+  :s, #:kush
+  :t, #:haze
+  :u, #:indoor
+  :v, #:outdoor
+  :w, #:hydroponic
+  :x, #:greenhouse
+  :y, #:organic, 
+  :z, #:privatereserve
+  :aa, #:topshelf, 
+  :bb, #:glutenfree, 
+  :cc, #:sugarfree,
+
   # item type
-  :bud, :shake, :trim, :wax, :hash, :budder_earwax_honeycomb,:bubblehash_fullmelt_icewax, :ISOhash, :kief_drysieve, :shatter_amberglass, :scissor_fingerhash, :oil_cartridge, :baked, 
-  :candy_chocolate, :cooking, :drink, :frozen, :other_edibles, :blunt, :joint, :clones, :seeds, :oral, :topical,
-  :bong_pipe, :bong_pipe_accessories, :book_magazine, :butane_lighter, :cleaning, :clothes, :grinder, :other_accessories, :paper_wrap, 
-  :storage, :vape, :vape_accessories,
+  :i1, #:bud 
+  :i2, #:shake 
+  :i3, #:trim
+  :i4, #:wax 
+  :i5, #:hash
+  :i6, #:budder_earwax_honeycomb
+  :i7, #:bubblehash_fullmelt_icewax, 
+  :i8, #:ISOhash
+  :i9, #:kief_drysieve, 
+  :i10, #:shatter_amberglass, 
+  :i11, #:scissor_fingerhash, 
+  :i12, #:oil_cartridge, 
+  :i13, #:baked, 
+  :i14, #:candy_chocolate
+  :i15, #:cooking
+  :i16, #:drink
+  :i17, #:frozen
+  :i18, #:other_edibles, 
+  :i19, #:blunt, 
+  :i20, #:joint
+  :i21, #:clones
+  :i22, #:seeds
+  :i23, #:oral
+  :i24,  #:topical,
+  :i25, #:bong_pipe
+  :i26, #:bong_pipe_accessories
+  :i27, #:book_magazine
+  :i28, #:butane_lighter
+  :i29, #:cleaning
+  :i30, #:clothes
+  :i31, #:grinder
+  :i32, #:other_accessories
+  :i33, #:paper_wrap 
+  :i34, #:storage
+  :i35, #:vape
+  :i36, #:vape_accessories,
   # distance
   :distance,
+  
+
   # store features
-  :delivery_service , :accepts_atm_credit, :atm_access, :dispensing_machines, :first_time_patient_deals, :handicap_access, :lounge_area,
-  :pet_friendly, :security_guard, :eighteenplus, :twentyplus, :has_photos, :lab_tested, :onsite_testing,
+  :a, #:delivery_service , 
+  :b, #:accepts_atm_credit,
+  :c, # :atm_access, 
+  :d, #:dispensing_machines, 
+  :e, #:first_time_patient_deals, 
+  :f, #:handicap_access, 
+  :g, #:lounge_area,
+  :h, #:pet_friendly, 
+  :i, #:security_guard, 
+  :j, #:eighteenplus, 
+  :k, #:twentyplus, 
+  :l, #:has_photos, 
+  :m, #:lab_tested, 
+  :n, #:onsite_testing,
+
   # lab
   :filterthc_range, :thc_min, :thc_max,
   :filtercbd_range, :cbd_min, :cbd_max,

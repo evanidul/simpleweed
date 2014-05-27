@@ -5,6 +5,7 @@
 <div id="item-search-results-map"></div>
 			
 <script type="text/javascript">
+var g_map;
 
 		function codeAddress() {
 		    //In this case it gets the address from an element on the page, but obviously you  could just pass it to the method instead
@@ -22,10 +23,10 @@
 					center: new google.maps.LatLng(results[0].geometry.location),
 					mapTypeId: google.maps.MapTypeId.ROADMAP
 				}
-		        map = new google.maps.Map(document.getElementById("item-search-results-map"), myOptions);
-		        map.setCenter(results[0].geometry.location);
+		        g_map = new google.maps.Map(document.getElementById("item-search-results-map"), myOptions);
+		        g_map.setCenter(results[0].geometry.location);
 		        var marker = new google.maps.Marker({
-		            map: map, 
+		            map: g_map, 
 		            position: results[0].geometry.location,				            
 		        });
 		        						
@@ -36,7 +37,15 @@
 		    });
 		  }
 	google.maps.event.addDomListener(window, "load", codeAddress);
-	
+	// function onItemClick( lat, long) {
+		
+	// 	marker = new google.maps.Marker({
+	//     	position: new google.maps.LatLng(lat,long),
+	//         map: g_map
+	// 	});
+
+	// 	g_map.setCenter(marker.getPosition());
+	// }
 </script>
 
 <% if @store_items.empty? %>
@@ -94,8 +103,12 @@
 							</a>							
 							
 						    <br/>
+<a href="#" onclick="onItemClick(<%= item.stored(:store_latitude) %>, <%= item.stored(:store_longitude) %>)" data-no-turbolink='true'>map</a>
+
 
 						    <!-- store address -->
+						    </br>
+						    
 							<% if  item.stored(:store_addressline1) && !item.stored(:store_addressline1).empty?  %>
 								<% item.stored(:store_addressline1).each do |word| %>
 									<%= word %>

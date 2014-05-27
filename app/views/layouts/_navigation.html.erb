@@ -25,14 +25,14 @@
       
       <%
         if !@search
-          @search = Search.new 
+          @search = Se.new 
         end
       %>
       <%= form_for @search, :method=>'get', :html => {:class => "navbar-form navbar-left"} do |f| %>
         
         <div class="form-group"> 
           <%= f.text_field :itemsearch, :class => 'form-control search-inputs', placeholder: "search items, dispensaries"  %>
-          <%= f.text_field :itemsearch_location, :class => 'form-control search-inputs', placeholder: "location"  %>                    
+          <%= f.text_field :isl, :class => 'form-control search-inputs', placeholder: "location"  %>                    
                     
 
         </div>

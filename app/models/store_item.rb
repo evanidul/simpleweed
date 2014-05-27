@@ -92,6 +92,12 @@ class StoreItem < ActiveRecord::Base
 	  	end
 	  	
 	  	latlon :location, :stored => true
+	  	float :store_latitude, :stored => true do
+	  		store.latitude
+	  	end
+	  	float :store_longitude, :stored => true do
+	  		store.longitude
+	  	end
 
 	  	# store features
 	  	boolean :store_deliveryservice, :stored => true do

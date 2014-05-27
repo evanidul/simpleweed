@@ -19,9 +19,9 @@ class HeaderPageComponent < SitePrism::Page
   element :create_account_button, "#create-account-button"
 
   #search bar
-  element :search_input, "#search_itemsearch_location"
+  element :search_input, "#se_isl"
   element :search_button, "#submit-item-search"
-  element :item_query_input, '#search_itemsearch'
+  element :item_query_input, '#se_itemsearch'
   element :show_adv_search_button, '#show-search-filters'
 
   #search tabs
@@ -36,103 +36,103 @@ class HeaderPageComponent < SitePrism::Page
   # STRAIN ################
 
   # strain
-  element :indica, '#search_indica'
-  element :sativa, '#search_sativa'
-  element :hybrid, '#search_hybrid'
+  element :indica, '#se_o'
+  element :sativa, '#se_p'
+  element :hybrid, '#se_q'
   # cultivation
-  element :indoor, '#search_indoor'
-  element :outdoor, '#search_outdoor'
-  element :hydroponic, '#search_hydroponic'
-  element :greenhouse, '#search_greenhouse'
-  element :organic, '#search_organic'
+  element :indoor, '#se_u'
+  element :outdoor, '#se_v'
+  element :hydroponic, '#se_w'
+  element :greenhouse, '#se_x'
+  element :organic, '#se_y'
   # misc
-  element :privatereserve, '#search_privatereserve'
-  element :topshelf, '#search_topshelf'
-  element :glutenfree, '#search_glutenfree'
-  element :sugarfree, '#search_sugarfree'
+  element :privatereserve, '#se_z'
+  element :topshelf, '#se_aa'
+  element :glutenfree, '#se_bb'
+  element :sugarfree, '#se_cc'
 
   # PRICE #################
-  element :search_filterpriceby_, '#search_filterpriceby_'  #none
-  element :search_filterpriceby_halfgram, '#search_filterpriceby_halfgram'
-  element :search_filterpriceby_gram, '#search_filterpriceby_gram'
-  element :search_filterpriceby_eighth, '#search_filterpriceby_eighth'
-  element :search_filterpriceby_quarteroz, '#search_filterpriceby_quarteroz'
-  element :search_filterpriceby_halfoz, '#search_filterpriceby_halfoz'
-  element :search_filterpriceby_oz, '#search_filterpriceby_oz'
+  element :search_filterpriceby_, '#se_fpb_'  #none
+  element :search_filterpriceby_halfgram, '#se_fpb_halfgram'
+  element :search_filterpriceby_gram, '#se_fpb_gram'
+  element :search_filterpriceby_eighth, '#se_fpb_eighth'
+  element :search_filterpriceby_quarteroz, '#se_fpb_quarteroz'
+  element :search_filterpriceby_halfoz, '#se_fpb_halfoz'
+  element :search_filterpriceby_oz, '#se_fpb_oz'
 
-  element :search_pricerangeselect_custom, '#search_pricerangeselect_custom'
-  element :search_minprice, '#search_minprice'
-  element :search_maxprice, '#search_maxprice'
+  element :search_pricerangeselect_custom, '#se_prs_custom'
+  element :search_minprice, '#se_mp'
+  element :search_maxprice, '#se_xp'
 
-  element :search_pricerangeselect_, '#search_pricerangeselect_' #none
-  element :search_pricerangeselect_lessthan25, '#search_pricerangeselect_lessthan25'
-  element :search_pricerangeselect_between25and50, '#search_pricerangeselect_between25and50'
-  element :search_pricerangeselect_between50and100, '#search_pricerangeselect_between50and100'
-  element :search_pricerangeselect_between100and200, '#search_pricerangeselect_between100and200'
-  element :search_pricerangeselect_morethan200, '#search_pricerangeselect_morethan200'
+  element :search_pricerangeselect_, '#se_prs_' #none
+  element :search_pricerangeselect_lessthan25, '#se_prs_lessthan25'
+  element :search_pricerangeselect_between25and50, '#se_prs_between25and50'
+  element :search_pricerangeselect_between50and100, '#se_prs_between50and100'
+  element :search_pricerangeselect_between100and200, '#se_prs_between100and200'
+  element :search_pricerangeselect_morethan200, '#se_prs_morethan200'
 
   # ITEM CATEGORY ###########
   # flower
-  element :bud, '#search_bud'
-  element :shake, '#search_shake'
-  element :trim, '#search_trim'
+  element :bud, '#se_i1'
+  element :shake, '#se_i2'
+  element :trim, '#se_i3'
   # concentrate
-  element :wax, '#search_wax'
-  element :hash, '#search_hash'
-  element :budder_earwax_honeycomb,'#search_budder_earwax_honeycomb'
-  element :bubblehash_fullmelt_icewax, '#search_bubblehash_fullmelt_icewax'
-  element :ISOhash, '#search_ISOhash'
-  element :kief_drysieve, '#search_kief_drysieve'
-  element :shatter_amberglass, '#search_shatter_amberglass'
-  element :scissor_fingerhash, '#search_scissor_fingerhash'
-  element :oil_cartridge, '#search_oil_cartridge'
+  element :wax, '#se_i4'
+  element :hash, '#se_i5'
+  element :budder_earwax_honeycomb,'#se_i6'
+  element :bubblehash_fullmelt_icewax, '#se_i7'
+  element :ISOhash, '#se_i8'
+  element :kief_drysieve, '#se_i9'
+  element :shatter_amberglass, '#se_i10'
+  element :scissor_fingerhash, '#se_i11'
+  element :oil_cartridge, '#se_i12'
   # edible
-  element :baked, '#search_baked'
-  element :candy_chocolate, '#search_candy_chocolate'
-  element :cooking, '#search_cooking'
-  element :drink, '#search_drink'
-  element :frozen, '#search_frozen'
-  element :other_edibles, '#search_other_edibles'
+  element :baked, '#se_i13'
+  element :candy_chocolate, '#se_i14'
+  element :cooking, '#se_i15'
+  element :drink, '#se_i16'
+  element :frozen, '#se_i17'
+  element :other_edibles, '#se_i18'
   # pre-rolls
-  element :blunt, '#search_blunt'
-  element :joint, '#search_joint'
+  element :blunt, '#se_i19'
+  element :joint, '#se_i20'
   # other
-  element :clones, '#search_clones'
-  element :seeds, '#search_seeds'
-  element :oral, '#search_oral'
-  element :topical,'#search_topical'
+  element :clones, '#se_i21'
+  element :seeds, '#se_i22'
+  element :oral, '#se_i23'
+  element :topical, '#se_i24'
   # accessory
-  element :bong_pipe, '#search_bong_pipe'
-  element :bong_pipe_accessories, '#search_bong_pipe_accessories'
-  element :book_magazine, '#search_book_magazine'
-  element :butane_lighter, '#search_butane_lighter'
-  element :cleaning, '#search_cleaning'
-  element :clothes, '#search_clothes'
-  element :grinder, '#search_grinder'
-  element :other_accessories, '#search_other_accessories'
-  element :paper_wrap, '#search_paper_wrap'
-  element :storage, '#search_storage'
-  element :vape, '#search_vape'
-  element :vape_accessories,'#search_vape_accessories'
+  element :bong_pipe, '#se_i25'
+  element :bong_pipe_accessories, '#se_i26'
+  element :book_magazine, '#se_i27'
+  element :butane_lighter, '#se_i28'
+  element :cleaning, '#se_i29'
+  element :clothes, '#se_i30'
+  element :grinder, '#se_i31'
+  element :other_accessories, '#se_i32'
+  element :paper_wrap, '#se_i33'
+  element :storage, '#se_i34'
+  element :vape, '#se_i35'
+  element :vape_accessories,'#se_i36'
 
   # STORE FEATURES ###########
-  element :deliveryservice , '#search_delivery_service'
-  element :acceptsatmcredit ,'#search_accepts_atm_credit'
-  element :atmaccess , '#search_atm_access'
-  element :dispensingmachines, '#search_dispensing_machines'
+  element :deliveryservice , '#se_a'
+  element :acceptsatmcredit ,'#se_b'
+  element :atmaccess , '#se_c'
+  element :dispensingmachines, '#se_d'
 
-  element :firsttimepatientdeals, '#search_first_time_patient_deals'
-  element :handicapaccess, '#search_handicap_access'
-  element :loungearea, '#search_lounge_area'
-  element :pet_friendly, '#search_pet_friendly'
+  element :firsttimepatientdeals, '#se_e'
+  element :handicapaccess, '#se_f'
+  element :loungearea, '#se_g'
+  element :pet_friendly, '#se_h'
 
-  element :security_guard, '#search_security_guard'
-  element :eighteenplus ,'#search_eighteenplus'
-  element :twentyoneplus ,'#search_twentyplus'
-  element :hasphotos, '#search_has_photos'
+  element :security_guard, '#se_i'
+  element :eighteenplus ,'#se_j'
+  element :twentyoneplus ,'#se_k'
+  element :hasphotos, '#se_l'
 
-  element :labtested ,'#search_lab_tested'
-  element :onsitetesting, '#search_onsite_testing'
+  element :labtested ,'#se_m'
+  element :onsitetesting, '#se_n'
 
   # LAB #####################
   element :thc_none, '#search_filterthc_range_'

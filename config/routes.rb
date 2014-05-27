@@ -9,9 +9,9 @@ Smellyleaf::Application.routes.draw do
   # resources :stores
 
   #get "solr", :as => 'store/solr'
-  get 'search' => 'search#search'
+  #get 'search' => 's#search'
 
-  resources :searches
+  resources :ses
 
   namespace :admin do
       # Directs /admin/products/* to Admin::ProductsController
