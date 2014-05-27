@@ -61,15 +61,15 @@ class SesController < ApplicationController
 	  		  #:indica, :sativa, :hybrid, :og, :kush, :haze, :indoor, :outdoor, :hydroponic, :greenhouse, :organic, :privatereserve, :topshelf, :glutenfree, :sugarfree,
 	  		  
 	  		  acceptable_strains = []
-	  		  if search.o == "true"
+	  		  if search.o == "1"
 	  		  	 acceptable_strains.push("indica")
 	  		  end	
 	  		  
-	  		  if search.p == "true"	  		  	
+	  		  if search.p == "1"	  		  	
 	  		  	acceptable_strains.push("sativa")
 	  		  end
 
-			  if search.q == "true"	  		  	
+			  if search.q == "1"	  		  	
 	  		  	acceptable_strains.push("hybrid")
 	  		  end
 	  		  
@@ -86,19 +86,19 @@ class SesController < ApplicationController
 	  		  #:indoor, :outdoor, :hydroponic, :greenhouse, :organic
 	  		  #['','indoor', 'outdoor', 'hydroponic', 'greenhouse', 'organic']
 	  		  acceptable_cultivation = []
-	  		  if search.u == "true"
+	  		  if search.u == "1"
 	  		  	acceptable_cultivation.push("indoor")
 	  		  end
-	  		  if search.v == "true"
+	  		  if search.v == "1"
 	  		  	acceptable_cultivation.push("outdoor")
 	  		  end
-	  		  if search.w == "true"
+	  		  if search.w == "1"
 	  		  	acceptable_cultivation.push("hydroponic")
 	  		  end
-	  		  if search.x == "true"
+	  		  if search.x == "1"
 	  		  	acceptable_cultivation.push("greenhouse")
 	  		  end
-	  		  if search.y == "true"
+	  		  if search.y == "1"
 	  		  	acceptable_cultivation.push("organic")	  		  
 	  		  end	  		   		 
 	  		  
@@ -110,16 +110,16 @@ class SesController < ApplicationController
 	  		  end
 	  		  	
 	  		  # process misc (strain & attribute)
-	  		  if search.z == "true"
+	  		  if search.z == "1"
   		  		with(:privatereserve, true)
 	  		  end
-	  		  if search.aa == "true"
+	  		  if search.aa == "1"
 	  		  	with(:topshelf, true)
 	  		  end
-	  		  if search.bb == "true"
+	  		  if search.bb == "1"
 				with(:glutenfree, true)
 	  		  end
-	  		  if search.cc == "true"
+	  		  if search.cc == "1"
 	  		  	with(:sugarfree, true)
 	  		  end
 
@@ -166,112 +166,112 @@ class SesController < ApplicationController
 
 			  # filter by item category
 			  acceptable_item_subcategories = []
-			  if search.i1 == "true"
+			  if search.i1 == "1"
 			  	acceptable_item_subcategories.push("bud")
 			  end
-			  if search.i2 == "true"
+			  if search.i2 == "1"
 			  	acceptable_item_subcategories.push("shake")
 			  end
-			  if search.i3 == "true"
+			  if search.i3 == "1"
 				acceptable_item_subcategories.push("trim")
 			  end
-			  if search.i4 == "true"
+			  if search.i4 == "1"
 			  	acceptable_item_subcategories.push("wax")
 			  end
-			  if search.i5 == "true"
+			  if search.i5 == "1"
 				acceptable_item_subcategories.push("hash")
 			  end
-			  if search.i6 == "true"
+			  if search.i6 == "1"
 			  	acceptable_item_subcategories.push("budder/earwar/honeycomb/supermelt")
 			  end
-			  if search.i7 == "true"
+			  if search.i7 == "1"
 			  	acceptable_item_subcategories.push("bubble hash/full melt/ice wax")
 			  end
-			  if search.i8 == "true"
+			  if search.i8 == "1"
 			  	acceptable_item_subcategories.push("ISO hash")
 			  end
-			  if search.i9 == "true"
+			  if search.i9 == "1"
 			  	acceptable_item_subcategories.push("kief/dry sieve")
 			  end
-			  if search.i10 == "true"
+			  if search.i10 == "1"
 			  	acceptable_item_subcategories.push("shatter/amberglass")
 			  end
-			  if search.i11 == "true"
+			  if search.i11 == "1"
 			  	acceptable_item_subcategories.push("scissor/finger hash")
 			  end
-			  if search.i12 == "true"
+			  if search.i12 == "1"
 			  	acceptable_item_subcategories.push("oil/cartridge")
 			  end
-			  if search.i13 == "true"
+			  if search.i13 == "1"
 			  	acceptable_item_subcategories.push("baked")
 			  end
-			  if search.i14 == "true"
+			  if search.i14 == "1"
 			  	acceptable_item_subcategories.push("candy/chocolate")
 			  end
-			  if search.i15 == "true"
+			  if search.i15 == "1"
 			  	acceptable_item_subcategories.push("cooking")
 			  end
-			  if search.i16 == "true"
+			  if search.i16 == "1"
 			  	acceptable_item_subcategories.push("drink")
 			  end
-			  if search.i17 == "true"
+			  if search.i17 == "1"
 			  	acceptable_item_subcategories.push("frozen")
 			  end
-			  if search.i18 == "true"
+			  if search.i18 == "1"
 			  	acceptable_item_subcategories.push("other")  # minor bug, name collision with "other" since maincategory is not filtered
 			  end
-			  if search.i19 == "true"
+			  if search.i19 == "1"
 			  	acceptable_item_subcategories.push("blunt")
 			  end
-			  if search.i20 == "true"
+			  if search.i20 == "1"
 			  	acceptable_item_subcategories.push("joint")			  	
 			  end
-			  if search.i21 == "true"
+			  if search.i21 == "1"
 			  	acceptable_item_subcategories.push("clones")			  	
 			  end
-			  if search.i22 == "true"
+			  if search.i22 == "1"
 			  	acceptable_item_subcategories.push("seeds")			  	
 			  end
-			  if search.i23 == "true"
+			  if search.i23 == "1"
 			  	acceptable_item_subcategories.push("oral")			  	
 			  end
-			  if search.i24 == "true"
+			  if search.i24 == "1"
 			  	acceptable_item_subcategories.push("topical")			  	
 			  end
-			  if search.i25 == "true"
+			  if search.i25 == "1"
 			  	acceptable_item_subcategories.push("bong/pipe")			  	
 			  end
-			  if search.i26 == "true"
+			  if search.i26 == "1"
 			  	acceptable_item_subcategories.push("bong/pipe accessories")			  	
 			  end
-			  if search.i27 == "true"
+			  if search.i27 == "1"
 			  	acceptable_item_subcategories.push("book/magazine")			  	
 			  end
-			  if search.i28 == "true"
+			  if search.i28 == "1"
 			  	acceptable_item_subcategories.push("butane/lighter")			  	
 			  end
-			  if search.i29 == "true"
+			  if search.i29 == "1"
 			  	acceptable_item_subcategories.push("cleaning")			  	
 			  end
-			  if search.i30 == "true"
+			  if search.i30 == "1"
 			  	acceptable_item_subcategories.push("clothes")			  	
 			  end
-			  if search.i31 == "true"
+			  if search.i31 == "1"
 			  	acceptable_item_subcategories.push("grinder")			  	
 			  end
-			  if search.i32 == "true"
+			  if search.i32 == "1"
 			  	acceptable_item_subcategories.push("other")			  	
 			  end
-			  if search.i33 == "true"
+			  if search.i33 == "1"
 			  	acceptable_item_subcategories.push("paper/wrap")			  	
 			  end
-			  if search.i34 == "true"
+			  if search.i34 == "1"
 			  	acceptable_item_subcategories.push("storage")			  	
 			  end
-			  if search.i35 == "true"
+			  if search.i35 == "1"
 			  	acceptable_item_subcategories.push("vape")			  	
 			  end
-			  if search.i36 == "true"
+			  if search.i36 == "1"
 			  	acceptable_item_subcategories.push("vape accessories")			  	
 			  end
 
@@ -283,46 +283,46 @@ class SesController < ApplicationController
 	  		  end
 
   			  # filter by store features
-			  if search.a == "true"
+			  if search.a == "1"
 			  	with(:store_deliveryservice, true)
 			  end
-			  if search.b == "true"
+			  if search.b == "1"
 			  	with(:store_acceptscreditcards, true)
 			  end
-			  if search.c == "true"
+			  if search.c == "1"
 			  	with(:store_atmaccess, true)
 			  end
-			  if search.d == "true"
+			  if search.d == "1"
 			  	with(:store_automaticdispensingmachines, true)
 			  end
-			  if search.e == "true"
+			  if search.e == "1"
 			  	with(:store_firsttimepatientdeals, true)
 			  end
-			  if search.f == "true"
+			  if search.f == "1"
 			  	with(:store_handicapaccess, true)
 			  end
-			  if search.g == "true"
+			  if search.g == "1"
 			  	with(:store_loungearea, true)
 			  end
-			  if search.h == "true"
+			  if search.h == "1"
 			  	with(:store_petfriendly, true)
 			  end
-			  if search.i == "true"
+			  if search.i == "1"
 			  	with(:store_securityguard, true)
 			  end
-			  if search.j == "true"
+			  if search.j == "1"
 			  	with(:store_eighteenplus, true)
 			  end
-			  if search.k == "true"
+			  if search.k == "1"
 			  	with(:store_twentyoneplus, true)
 			  end
-			  if search.l == "true"
+			  if search.l == "1"
 			  	with(:store_hasphotos, true)
 			  end
-			  if search.m == "true"
+			  if search.m == "1"
 			  	with(:store_labtested, true)
 			  end
-			  if search.n == "true"
+			  if search.n == "1"
 			  	with(:store_onsitetesting, true)
 			  end
 
