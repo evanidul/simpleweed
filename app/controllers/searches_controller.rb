@@ -342,6 +342,7 @@ class SearchesController < ApplicationController
 			    	with(:thc, 25.0..50.0)	
 			    when "morethan50"
 			    	with(:thc).greater_than(50.0)
+			    else
 			  end
 
 			  case search.filtercbd_range
@@ -359,6 +360,7 @@ class SearchesController < ApplicationController
 			    	with(:cbd, 25.0..50.0)	
 			    when "morethan50"
 			    	with(:cbd).greater_than(50.0)	
+			    else
 		      end
 
 			  case search.filtercbn_range
@@ -375,7 +377,8 @@ class SearchesController < ApplicationController
     			when "between25and50"	
 			    	with(:cbn, 25.0..50.0)	
 			    when "morethan50"
-			    	with(:cbn).greater_than(50.0)		
+			    	with(:cbn).greater_than(50.0)
+			    else		
 		      end
 	  		  # sort by distance
 	  		  order_by_geodist(:location, geocoordiantes[0], geocoordiantes[1])
