@@ -163,4 +163,118 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		searchresults_page.searchresults_store_names.size.should == 1
 		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item2.name]
 	end
+	scenario "search by lab% : 10-25" do		
+		@item1 =  @store.store_items.create(:name => "alfalfa" , :strain =>"indica", :cultivation => "indoor", :privatereserve => true)		
+		@item1.thc = 11
+		@item1.cbd = 11
+		@item1.save
+		
+		@item2 =  @store.store_items.create(:name => "alfalfa 2" , :strain =>"indica", :cultivation => "indoor", :privatereserve => true)		
+		@item2.thc = 11.5
+		@item2.cbn = 11.5
+		@item2.save
+
+		@item3 =  @store.store_items.create(:name => "alfalfa 3" , :strain =>"indica", :cultivation => "indoor", :privatereserve => true)		
+		@item3.thc = 25.1
+		@item3.cbn = 26
+		@item3.save
+
+		Sunspot.commit
+	
+		# new search
+		page.visit("/users/sign_in")
+		header = HeaderPageComponent.new		
+		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+		header.item_query_input.set "alfalfa"		
+		header.show_adv_search_button.click	
+		header.search_opt_lab_tab_link.click	
+		header.thc_tentotwentyfive.set true
+	
+
+		header.search_button.click
+
+		searchresults_page = SearchResultsItemPageComponent.new
+		searchresults_page.searchresults_store_names.size.should == 2
+		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item1.name, @item2.name]
+
+		# new search for hybrid
+		header.show_adv_search_button.click		
+		header.search_opt_lab_tab_link.click
+		header.thc_none.set true
+		header.cbd_tentotwentyfive.set true
+	
+		header.search_button.click
+		# setting false in the UI doesn't mean filter for false, it means all values (T or F) are acceptable values
+		searchresults_page.searchresults_store_names.size.should == 1
+		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item1.name]
+
+		# new search for hybrid
+		header.show_adv_search_button.click		
+		header.search_opt_lab_tab_link.click
+		header.thc_none.set true
+		header.cbd_none.set true
+		header.cbn_tentotwentyfive.set true
+	
+		header.search_button.click
+		# setting false in the UI doesn't mean filter for false, it means all values (T or F) are acceptable values
+		searchresults_page.searchresults_store_names.size.should == 1
+		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item2.name]
+	end	
+	scenario "search by lab% : 25-50" do		
+		@item1 =  @store.store_items.create(:name => "alfalfa" , :strain =>"indica", :cultivation => "indoor", :privatereserve => true)		
+		@item1.thc = 26
+		@item1.cbd = 26
+		@item1.save
+		
+		@item2 =  @store.store_items.create(:name => "alfalfa 2" , :strain =>"indica", :cultivation => "indoor", :privatereserve => true)		
+		@item2.thc = 26.5
+		@item2.cbn = 26.5
+		@item2.save
+
+		@item3 =  @store.store_items.create(:name => "alfalfa 3" , :strain =>"indica", :cultivation => "indoor", :privatereserve => true)		
+		@item3.thc = 50.1
+		@item3.cbn = 50.1
+		@item3.save
+
+		Sunspot.commit
+	
+		# new search
+		page.visit("/users/sign_in")
+		header = HeaderPageComponent.new		
+		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+		header.item_query_input.set "alfalfa"		
+		header.show_adv_search_button.click	
+		header.search_opt_lab_tab_link.click	
+		header.thc_twentyfivetofifty.set true
+	
+
+		header.search_button.click
+
+		searchresults_page = SearchResultsItemPageComponent.new
+		searchresults_page.searchresults_store_names.size.should == 2
+		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item1.name, @item2.name]
+
+		# new search for hybrid
+		header.show_adv_search_button.click		
+		header.search_opt_lab_tab_link.click
+		header.thc_none.set true
+		header.cbd_twentyfivetofifty.set true
+	
+		header.search_button.click
+		# setting false in the UI doesn't mean filter for false, it means all values (T or F) are acceptable values
+		searchresults_page.searchresults_store_names.size.should == 1
+		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item1.name]
+
+		# new search for hybrid
+		header.show_adv_search_button.click		
+		header.search_opt_lab_tab_link.click
+		header.thc_none.set true
+		header.cbd_none.set true
+		header.cbn_twentyfivetofifty.set true
+	
+		header.search_button.click
+		# setting false in the UI doesn't mean filter for false, it means all values (T or F) are acceptable values
+		searchresults_page.searchresults_store_names.size.should == 1
+		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item2.name]
+	end		
 end	
