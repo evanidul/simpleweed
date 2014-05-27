@@ -134,5 +134,36 @@ class HeaderPageComponent < SitePrism::Page
   element :labtested ,'#search_lab_tested'
   element :onsitetesting, '#search_onsite_testing'
 
+  # LAB #####################
+  element :thc_none, '#search_filterthc_range_'
+  element :thc_custom, '#search_filterthc_range_custom'
+  element :thc_min, '#search_thc_min'
+  element :thc_max, '#search_thc_max'
+  element :thc_lessthanfive, '#search_filterthc_range_lessthan5'
+  element :thc_fivetoten, '#search_filterthc_range_between5and10'
+  element :thc_tentotwentyfive, '#search_filterthc_range_between10-25'
+  element :thc_twentyfivetofifty, '#search_filterthc_range_between25and50'
+  element :thc_morethanfifty, '#search_filterthc_range_morethan50'
+
+  element :cbd_none, '#search_filtercbd_range_'
+  element :cbd_custom, '#search_filtercbd_range_custom'
+  element :cbd_min, '#search_cbd_min'
+  element :cbd_max, '#search_cbd_max'
+  element :cbd_lessthanfive, '#search_filtercbd_range_lessthan5'
+  element :cbd_fivetoten, '#search_filtercbd_range_between5and10'
+  element :cbd_tentotwentyfive, '#search_filtercbd_range_between10-25'
+  element :cbd_twentyfivetofifty, '#search_filtercbd_range_between25and50'
+  element :cbd_morethanfifty, '#search_filtercbd_range_morethan50'
+
+  element :cbn_none, '#search_filtercbn_range_'
+  element :cbn_custom, '#search_filtercbn_range_custom'
+  element :cbn_min, '#search_cbn_min'
+  element :cbn_max, '#search_cbn_max'
+  element :cbn_lessthanfive, '#search_filtercbn_range_lessthan5'
+  element :cbn_fivetoten, '#search_filtercbn_range_between5and10'
+  element :cbn_tentotwentyfive, '#search_filtercbn_range_between10-25'
+  element :cbn_twentyfivetofifty, '#search_filtercbn_range_between25and50'
+  element :cbn_morethanfifty, '#search_filtercbn_range_morethan50'
+
 
 end

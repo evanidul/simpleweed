@@ -326,6 +326,13 @@ class SearchesController < ApplicationController
 			  	with(:store_onsitetesting, true)
 			  end
 
+			  # filter lab
+			  case search.filterthc_range
+	  		  	when ""
+			    when "lessthan5"
+			    	with(:thc, 0..5.0)
+			  end
+
 	  		  # sort by distance
 	  		  order_by_geodist(:location, geocoordiantes[0], geocoordiantes[1])
 
