@@ -1,47 +1,54 @@
 <% content_for :head do %>
 	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>			
+	<!-- info box -->
+	<script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/src/infobox.js"></script>
+
 <% end %>
 
 <div id="item-search-results-map"></div>
 			
 <script type="text/javascript">
 var g_map;
-var g_infowindow = new google.maps.InfoWindow();
+// var g_infowindow = new google.maps.InfoWindow();
 
-		function codeAddress() {
-		    //In this case it gets the address from an element on the page, but obviously you  could just pass it to the method instead
+function codeAddress() {
+    //In this case it gets the address from an element on the page, but obviously you  could just pass it to the method instead
 
-		    geocoder = new google.maps.Geocoder();
-		    //var address = "7110 Rock Valley Court, San Diego, CA 92122";
-		    var address = "la, ca";
+    geocoder = new google.maps.Geocoder();
+    //var address = "7110 Rock Valley Court, San Diego, CA 92122";
+    var address = "la, ca";
 
-		    geocoder.geocode( { 'address': address}, function(results, status) {
-		      if (status == google.maps.GeocoderStatus.OK) {
-		        //In this case it creates a marker, but you can get the lat and lng from the location.LatLng
-		        console.log(results[0].geometry.location);
-				var myOptions = {
-					zoom:15,
-					center: new google.maps.LatLng(results[0].geometry.location),
-					mapTypeId: google.maps.MapTypeId.ROADMAP
-				}
-		        g_map = new google.maps.Map(document.getElementById("item-search-results-map"), myOptions);
-		        g_map.setCenter(results[0].geometry.location);
-		        var marker = new google.maps.Marker({
-		            map: g_map, 
-		            position: results[0].geometry.location,				            
-		        });
-		        						
-		      } else {
-		      	//breaking selenium?
-		        //alert("Geocode was not successful for the following reason: " + status);
-		      }
-		    });
-		  }
-	google.maps.event.addDomListener(window, "load", codeAddress);
+    geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        //In this case it creates a marker, but you can get the lat and lng from the location.LatLng
+        console.log(results[0].geometry.location);
+		var myOptions = {
+			zoom:15,
+			center: new google.maps.LatLng(results[0].geometry.location),
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		}
+        g_map = new google.maps.Map(document.getElementById("item-search-results-map"), myOptions);
+        g_map.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+            map: g_map, 
+            position: results[0].geometry.location,				            
+        });
+        						
+      } else {
+      	//breaking selenium?
+        //alert("Geocode was not successful for the following reason: " + status);
+      }
+    });
+	}
+google.maps.event.addDomListener(window, "load", codeAddress);
 
 
 </script>
-
+<div class="infobox-wrapper">
+    <div id="infobox">
+        The contents of your info box. It's very easy to create and customize.
+    </div>
+</div>
 <% if @store_items.empty? %>
 	<div class="alert alert-warning">
 	    <strong>Sorry!</strong> Your search returned 0 results.
@@ -175,6 +182,23 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ornare ante id
 
 
 <script>
+//http://stackoverflow.com/questions/7616666/google-maps-api-v3-custom-styles-for-infowindow
+var g_infobox = new InfoBox({
+         content: document.getElementById("infobox"),
+         disableAutoPan: false,
+         maxWidth: 150,
+         pixelOffset: new google.maps.Size(-140, 0),
+         zIndex: 3000,
+         boxStyle: {
+            background: "url('http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/examples/tipbox.gif') no-repeat",
+            opacity: 0.75,
+            width: "240px"
+        },
+        closeBoxMargin: "12px 4px 2px 2px",
+        closeBoxURL: "http://www.google.com/intl/en_us/mapfiles/close.gif",
+        infoBoxClearance: new google.maps.Size(1, 1)
+    });
+
 $( ".item-map-toggle" ).click(function(e) {
 	
 	e.preventDefault();
@@ -184,16 +208,25 @@ $( ".item-map-toggle" ).click(function(e) {
 	
 	storename = storename_unscrubbed.replace(/\[\"/g , "");
 	storename = storename.replace(/\"\]/g , "");
-
+	var image = './assets/leaf.png';
+	var loc = new google.maps.LatLng(lat,long)
 	marker = new google.maps.Marker({
-	    	position: new google.maps.LatLng(lat,long),
-	        map: g_map
+	    	position: loc,
+	        map: g_map,
+	        icon: image
 		});
 
 	g_map.setCenter(marker.getPosition());
-	g_infowindow.setContent(storename);
-    g_infowindow.open(g_map, marker);
+	g_infobox.open(g_map, marker);
+
+    // g_infowindow.open(g_map, marker);
+    // google.maps.event.addListener(marker, 'load', function() {
+    //     g_infobox.open(g_map, this);        
+    // });
+    
 
 });
+
+
 
 </script>
