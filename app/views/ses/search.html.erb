@@ -6,6 +6,7 @@
 			
 <script type="text/javascript">
 var g_map;
+var g_infowindow = new google.maps.InfoWindow();
 
 		function codeAddress() {
 		    //In this case it gets the address from an element on the page, but obviously you  could just pass it to the method instead
@@ -37,15 +38,8 @@ var g_map;
 		    });
 		  }
 	google.maps.event.addDomListener(window, "load", codeAddress);
-	// function onItemClick( lat, long) {
-		
-	// 	marker = new google.maps.Marker({
-	//     	position: new google.maps.LatLng(lat,long),
-	//         map: g_map
-	// 	});
 
-	// 	g_map.setCenter(marker.getPosition());
-	// }
+
 </script>
 
 <% if @store_items.empty? %>
@@ -103,7 +97,7 @@ var g_map;
 							</a>							
 							
 						    <br/>
-<a href="#" onclick="onItemClick(<%= item.stored(:store_latitude) %>, <%= item.stored(:store_longitude) %>)" data-no-turbolink='true'>map</a>
+							<a href="#" class = "item-map-toggle"  data-no-turbolink='true' latitude="<%= item.stored(:store_latitude) %>" longitude="<%= item.stored(:store_longitude) %>" store-name="<%= item.stored(:store_name) %>" >map</a>
 
 
 						    <!-- store address -->
@@ -180,3 +174,26 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ornare ante id
 <% end %> 
 
 
+<script>
+$( ".item-map-toggle" ).click(function(e) {
+	
+	e.preventDefault();
+	lat = $( this ).attr('latitude')
+	long = $( this ).attr('longitude')
+	storename_unscrubbed = $( this ).attr('store-name')
+	
+	storename = storename_unscrubbed.replace(/\[\"/g , "");
+	storename = storename.replace(/\"\]/g , "");
+
+	marker = new google.maps.Marker({
+	    	position: new google.maps.LatLng(lat,long),
+	        map: g_map
+		});
+
+	g_map.setCenter(marker.getPosition());
+	g_infowindow.setContent(storename);
+    g_infowindow.open(g_map, marker);
+
+});
+
+</script>
