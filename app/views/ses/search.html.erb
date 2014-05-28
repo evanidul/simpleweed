@@ -216,7 +216,8 @@ $( ".item-search-result-container" ).hover(function(e) {
 	itemname = itemname_unscrubbed.replace(/\[\"/g , "");
 	itemname = itemname.replace(/\"\]/g , "");	
 
-	var image = './assets/leaf.png';
+	// var image = './assets/leaf.png';
+	var image = '<%= asset_path 'leaf.png' %>';
 	var loc = new google.maps.LatLng(lat,long)
 	marker = new google.maps.Marker({
 	    	position: loc,
