@@ -104,7 +104,9 @@ google.maps.event.addDomListener(window, "load", codeAddress);
 							</a>							
 							
 						    <br/>
-							<a href="#" class = "item-map-toggle"  data-no-turbolink='true' latitude="<%= item.stored(:store_latitude) %>" longitude="<%= item.stored(:store_longitude) %>" store-name="<%= item.stored(:store_name) %>" >map</a>
+							<a href="#" class = "item-map-toggle"  data-no-turbolink='true' latitude="<%= item.stored(:store_latitude) %>" longitude="<%= item.stored(:store_longitude) %>" store-name="<%= item.stored(:store_name) %>" 
+								item-name="<%= item.stored(:name) %>"
+								>map</a>
 
 
 						    <!-- store address -->
@@ -192,7 +194,7 @@ var g_infobox = new InfoBox({
          boxStyle: {
             background: "url('http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/examples/tipbox.gif') no-repeat",
             opacity: 0.75,
-            width: "240px"
+            width: "280px"
         },
         closeBoxMargin: "12px 4px 2px 2px",
         closeBoxURL: "http://www.google.com/intl/en_us/mapfiles/close.gif",
@@ -205,9 +207,13 @@ $( ".item-map-toggle" ).click(function(e) {
 	lat = $( this ).attr('latitude')
 	long = $( this ).attr('longitude')
 	storename_unscrubbed = $( this ).attr('store-name')
+	itemname_unscrubbed = $( this ).attr('item-name')
 	
 	storename = storename_unscrubbed.replace(/\[\"/g , "");
 	storename = storename.replace(/\"\]/g , "");
+	itemname = itemname_unscrubbed.replace(/\[\"/g , "");
+	itemname = itemname.replace(/\"\]/g , "");	
+
 	var image = './assets/leaf.png';
 	var loc = new google.maps.LatLng(lat,long)
 	marker = new google.maps.Marker({
@@ -217,6 +223,7 @@ $( ".item-map-toggle" ).click(function(e) {
 		});
 
 	g_map.setCenter(marker.getPosition());
+	$("#infobox").html(itemname + ' @ ' + storename);
 	g_infobox.open(g_map, marker);
 
     // g_infowindow.open(g_map, marker);
