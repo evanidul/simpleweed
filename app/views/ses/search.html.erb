@@ -224,7 +224,8 @@ $( ".item-search-result-container" ).hover(function(e) {
 	        icon: image
 		});
 
-	g_map.setCenter(marker.getPosition());
+	//g_map.setCenter(marker.getPosition());
+	g_map.panTo(marker.getPosition())
 	$("#infobox").html(itemname + ' @ ' + storename);
 	g_infobox.open(g_map, marker);
 
