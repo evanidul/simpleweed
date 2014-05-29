@@ -7,7 +7,7 @@
     <%= f.label :description,  "description"  %><br>
     <%= f.text_field :description, :class => 'form-control'    %>
   </p>   
-  <%= f.select :strain ,[['indica','indica'],['sativa','sativa'],['hybrid','hybrid']], {include_blank: 'select strain'} %>
+  <%= f.select :strain ,[['indica','indica'],['sativa','sativa'],['hybrid','hybrid']], {include_blank: 'select strain'}, :required => true  %>
   
   <%= f.select :maincategory ,[['flower','flower'], ['concentrate','concentrate'], ['edible','edible'], ['pre-roll','pre-roll'], 
   								['other','other'], ['accessory','accessory']], {include_blank: 'select category' }, :required => true  %>
@@ -55,7 +55,7 @@
   				['vape','vape',{:class => 'accessory'}],
   				['vape accessories','vape accessories',{:class => 'accessory'}]
 
-  			]  , {include_blank: 'select subcategory' }  %>
+  			]  , {include_blank: 'select subcategory' } ,:required => true  %>
 
 
   <h4>lab information</h4>          
