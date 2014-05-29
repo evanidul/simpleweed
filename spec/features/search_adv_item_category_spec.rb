@@ -371,7 +371,7 @@ feature "search adv by strain" , :js => true, :search =>true  do
 	scenario "search : edible , prerolls" do		
 		@item1 =  @store.store_items.create(:name => "alfafla 1" , :strain =>"indica")		
 		@item1.maincategory = "edible"
-		@item1.subcategory = 'other'
+		@item1.subcategory = 'other_edible'
 		@item1.save
 		
 		@item2 =  @store.store_items.create(:name => "alfafla 2" , :strain =>"indica")		
@@ -565,7 +565,7 @@ feature "search adv by strain" , :js => true, :search =>true  do
 
 		@item3 =  @store.store_items.create(:name => "alfafla 3" , :strain =>"indica")		
 		@item3.maincategory = "accessory"
-		@item3.subcategory = 'other'
+		@item3.subcategory = 'other_accessory'
 		@item3.save		
 
 		Sunspot.commit

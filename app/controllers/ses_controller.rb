@@ -233,7 +233,7 @@ class SesController < ApplicationController
 		  	acceptable_item_subcategories.push("frozen")
 		  end
 		  if search.i18 == "1"
-		  	acceptable_item_subcategories.push("other")  # minor bug, name collision with "other" since maincategory is not filtered
+		  	acceptable_item_subcategories.push("other_edible")  # minor bug, name collision with "other" since maincategory is not filtered
 		  end
 		  if search.i19 == "1"
 		  	acceptable_item_subcategories.push("blunt")
@@ -275,7 +275,7 @@ class SesController < ApplicationController
 		  	acceptable_item_subcategories.push("grinder")			  	
 		  end
 		  if search.i32 == "1"
-		  	acceptable_item_subcategories.push("other")			  	
+		  	acceptable_item_subcategories.push("other_accessory")			  	
 		  end
 		  if search.i33 == "1"
 		  	acceptable_item_subcategories.push("paper/wrap")			  	

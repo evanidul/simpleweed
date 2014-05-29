@@ -13,10 +13,10 @@ class StoreItem < ActiveRecord::Base
     #weakness: doesn't verify subcategory belongs to parent, we rely on UI to do this logic with linked selects. /shrug
 	SUBCATEGORIES = ['bud', 'shake', 'trim',
 					 'wax','hash', 'budder/earwar/honeycomb/supermelt', 'bubble hash/full melt/ice wax', 'ISO hash', 'kief/dry sieve', 'shatter/amberglass', 'scissor/finger hash', 'oil/cartridge',
-			 		 'baked', 'candy/chocolate', 'cooking', 'drink' , 'frozen', 'other',		
+			 		 'baked', 'candy/chocolate', 'cooking', 'drink' , 'frozen', 'other_edible',		
 			 		 'blunt', 'joint',
 			 		 'clones', 'seeds', 'oral', 'topical',
-			 		 'bong/pipe', 'bong/pipe accessories', 'book/magazine', 'butane/lighter', 'cleaning', 'clothes', 'grinder', 'other', 'paper/wrap', 'storage', 'vape', 'vape accessories'		
+			 		 'bong/pipe', 'bong/pipe accessories', 'book/magazine', 'butane/lighter', 'cleaning', 'clothes', 'grinder', 'other_accessory', 'paper/wrap', 'storage', 'vape', 'vape accessories'		
 
 					]
 	validates_inclusion_of :subcategory, :in => SUBCATEGORIES,:allow_nil => true,
