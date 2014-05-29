@@ -23,6 +23,7 @@ feature "store item edit and add" , :js => true, :search =>true do
 
 
 	before :each do
+		StoreItem.remove_all_from_index!
 	  	@basicauthname = "ddadmin"
 	  	@basicauthpassword = "idontreallysmoke" 
 	  	page.visit("http://#{@basicauthname}:#{@basicauthpassword}@#{Capybara.current_session.server.host}:#{Capybara.current_session.server.port}/")
@@ -68,9 +69,9 @@ feature "store item edit and add" , :js => true, :search =>true do
     	expect(header.edituserlink.text).to have_text(@adminusername)
 
 		# search for it		
-		home_page = HomePageComponent.new
-		home_page.search_input.set "7110 Rock Valley Court, San Diego, CA"
-		home_page.search_button.click
+        header = HeaderPageComponent.new	
+		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+        header.search_button.click
 
     	# search_results_page = SearchResultsStoresPageComponent.new    	
     	# expect(search_results_page.firstSearchResult_store_name.text).to have_text(@store_name)
@@ -79,16 +80,10 @@ feature "store item edit and add" , :js => true, :search =>true do
         search_results_page.search_results_store_names.size.should == 1
         search_results_page.search_results_store_names.map {|name| name.text}.should == [@store_name]
 
-
     	# click and view preview
-    	search_results_page.firstSearchResult_store_name.click
-    	expect(search_results_page.store_name.text).to have_text(@store_name)
-
-    	store_search_preview_page = StoreSearchPreviewPage.new
-    	store_search_preview_page.view_store.click
+    	search_results_page.search_results_store_names.first.click
     	store_page = StorePage.new
     	store_page.has_name_header?
-
 
 		# edit menu		
 		store_page.edit_store_items.click
@@ -131,8 +126,19 @@ feature "store item edit and add" , :js => true, :search =>true do
 		items_page.save_store_item_button.click
 
 		# back to item list
-    	expect(items_page.firstSearchResult_item_name.text).to have_text(item_name)
-    	items_page.firstSearchResult_item_name.click
+    	row_links = items_page.row_links
+
+	    	#items_page.searchresults[index].click
+	    	#items_page.searchresults.first.click # most recently added will be on top?
+	    	 
+	    	items_page.searchresults.each {|item_link| 
+	    		
+	    		if item_link.text.include? item_name
+	    			item_link.click
+	    			break
+	    		end
+
+	    	}
 
 		# verify values    	
     	expect(items_page.store_item_name.value).to have_text(item_name)
@@ -185,8 +191,19 @@ feature "store item edit and add" , :js => true, :search =>true do
 
 		# verify updated values
 		# back to item list
-    	expect(items_page.firstSearchResult_item_name.text).to have_text(item_nameUP)
-    	items_page.firstSearchResult_item_name.click
+    	row_links = items_page.row_links
+
+	    	#items_page.searchresults[index].click
+	    	#items_page.searchresults.first.click # most recently added will be on top?
+	    	 
+	    	items_page.searchresults.each {|item_link| 
+	    		
+	    		if item_link.text.include? item_nameUP
+	    			item_link.click
+	    			break
+	    		end
+
+	    	}
 
 		# verify values    	
     	expect(items_page.store_item_name.value).to have_text(item_nameUP)
@@ -333,8 +350,20 @@ feature "store item edit and add" , :js => true, :search =>true do
 		items_page.save_store_item_button.click
 
 		# back to items index
-		expect(items_page.firstSearchResult_item_name.text).to have_text(item_name)
-		items_page.searchresults.first.click # most recently added will be on top
+		row_links = items_page.row_links
+
+	    	#items_page.searchresults[index].click
+	    	#items_page.searchresults.first.click # most recently added will be on top?
+	    	 
+	    	items_page.searchresults.each {|item_link| 
+	    		
+	    		if item_link.text.include? item_name
+	    			item_link.click
+	    			break
+	    		end
+
+	    	}
+
 		# verify values    	
     	expect(items_page.store_item_name.value).to have_text(item_name)
 		expect(items_page.store_item_strain.value).to have_text('sativa')	
@@ -355,8 +384,15 @@ feature "store item edit and add" , :js => true, :search =>true do
 		items_page.save_store_item_button.click
 
 		# back to items index
-		expect(items_page.firstSearchResult_item_name.text).to have_text(item_name)
-		items_page.searchresults.first.click # most recently added will be on top
+		row_links = items_page.row_links
+	    	items_page.searchresults.each {|item_link| 
+	    		
+	    		if item_link.text.include? item_name
+	    			item_link.click
+	    			break
+	    		end
+
+	    	}
 
 		# verify values    	
     	expect(items_page.store_item_name.value).to have_text(item_name)
@@ -397,9 +433,15 @@ feature "store item edit and add" , :js => true, :search =>true do
 		items_page.save_store_item_button.click
 
 		# back to item list
-    	expect(items_page.firstSearchResult_item_name.text).to have_text(item_name)	    	    	
-    	items_page.searchresults.first.click # most recently added will be on top?
+		row_links = items_page.row_links	    	
+	    	items_page.searchresults.each {|item_link| 
+	    		
+	    		if item_link.text.include? item_name
+	    			item_link.click
+	    			break
+	    		end
 
+	    	}
 		# verify values    	
     	expect(items_page.store_item_name.value).to have_text(item_name)
 		expect(items_page.store_item_strain.value).to have_text('sativa')	
@@ -415,9 +457,15 @@ feature "store item edit and add" , :js => true, :search =>true do
 		items_page.save_store_item_button.click
 
 		# back to item list
-    	expect(items_page.firstSearchResult_item_name.text).to have_text(item_name)	    	    	
-    	items_page.searchresults.first.click # most recently added will be on top?
-	
+		row_links = items_page.row_links	    	
+	    	items_page.searchresults.each {|item_link| 
+	    		
+	    		if item_link.text.include? item_name
+	    			item_link.click
+	    			break
+	    		end
+
+	    	}
 		# verify values    	
     	expect(items_page.store_item_name.value).to have_text(item_name)
 		expect(items_page.store_item_strain.value).to have_text('sativa')	
@@ -433,9 +481,16 @@ feature "store item edit and add" , :js => true, :search =>true do
 		items_page.save_store_item_button.click
 
 		# back to item list
-    	expect(items_page.firstSearchResult_item_name.text).to have_text(item_name)	    	    	
-    	items_page.searchresults.first.click # most recently added will be on top?
-	
+		row_links = items_page.row_links	    	
+	    	items_page.searchresults.each {|item_link| 
+	    		
+	    		if item_link.text.include? item_name
+	    			item_link.click
+	    			break
+	    		end
+
+	    	}
+
 		# verify values    	
     	expect(items_page.store_item_name.value).to have_text(item_name)
 		expect(items_page.store_item_strain.value).to have_text('sativa')	
@@ -451,9 +506,15 @@ feature "store item edit and add" , :js => true, :search =>true do
 		items_page.save_store_item_button.click
 
 		# back to item list
-    	expect(items_page.firstSearchResult_item_name.text).to have_text(item_name)	    	    	
-    	items_page.searchresults.first.click # most recently added will be on top?
-	
+		row_links = items_page.row_links	    	
+	    	items_page.searchresults.each {|item_link| 
+	    		
+	    		if item_link.text.include? item_name
+	    			item_link.click
+	    			break
+	    		end
+
+	    	}	
 		# verify values    	
     	expect(items_page.store_item_name.value).to have_text(item_name)
 		expect(items_page.store_item_strain.value).to have_text('sativa')	
@@ -469,9 +530,15 @@ feature "store item edit and add" , :js => true, :search =>true do
 		items_page.save_store_item_button.click
 
 		# back to item list
-    	expect(items_page.firstSearchResult_item_name.text).to have_text(item_name)	    	    	
-    	items_page.searchresults.first.click # most recently added will be on top?
-	
+		row_links = items_page.row_links	    	
+	    	items_page.searchresults.each {|item_link| 
+	    		
+	    		if item_link.text.include? item_name
+	    			item_link.click
+	    			break
+	    		end
+
+	    	}	
 		# verify values    	
     	expect(items_page.store_item_name.value).to have_text(item_name)
 		expect(items_page.store_item_strain.value).to have_text('sativa')	
@@ -487,9 +554,15 @@ feature "store item edit and add" , :js => true, :search =>true do
 		items_page.save_store_item_button.click
 
 		# back to item list
-    	expect(items_page.firstSearchResult_item_name.text).to have_text(item_name)	    	    	
-    	items_page.searchresults.first.click # most recently added will be on top?
-	
+		row_links = items_page.row_links	    	
+	    	items_page.searchresults.each {|item_link| 
+	    		
+	    		if item_link.text.include? item_name
+	    			item_link.click
+	    			break
+	    		end
+
+	    	}	
 		# verify values    	
     	expect(items_page.store_item_name.value).to have_text(item_name)
 		expect(items_page.store_item_strain.value).to have_text('sativa')	

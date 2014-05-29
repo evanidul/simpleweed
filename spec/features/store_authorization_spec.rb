@@ -230,8 +230,7 @@ feature "authorization tests" , :js => true, :search =>true do
 		# logout, edit links should be gone
 		header.logoutlink.click
 		
-		# search for it		
-		# search for it		
+		# search for it				
 		header = HeaderPageComponent.new  
         header.search_input.set "7110 Rock Valley Court, San Diego, CA"
         header.search_button.click
