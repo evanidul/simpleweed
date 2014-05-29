@@ -1,11 +1,13 @@
 <% content_for :head do %>
-	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>			
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>		
+		<!-- info box -->
+	<script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/src/infobox.js"></script>
 <% end %>
 
 <div id="item-search-results-map"></div>
 			
 <script type="text/javascript">
-
+var g_map;
 		function codeAddress() {
 		    //In this case it gets the address from an element on the page, but obviously you  could just pass it to the method instead
 
@@ -22,10 +24,10 @@
 					center: new google.maps.LatLng(results[0].geometry.location),
 					mapTypeId: google.maps.MapTypeId.ROADMAP
 				}
-		        map = new google.maps.Map(document.getElementById("item-search-results-map"), myOptions);
-		        map.setCenter(results[0].geometry.location);
+		        g_map = new google.maps.Map(document.getElementById("item-search-results-map"), myOptions);
+		        g_map.setCenter(results[0].geometry.location);
 		        var marker = new google.maps.Marker({
-		            map: map, 
+		            map: g_map, 
 		            position: results[0].geometry.location,				            
 		        });
 		        						
@@ -50,7 +52,8 @@
   # documents can be returned per group
   
   %>
-  	<div class="item-search-result-container">
+  	<div class="item-search-result-container" latitude="<%= group.hits[0].stored(:store_latitude) %>" longitude="<%= group.hits[0].stored(:store_longitude) %>" store-name="<%= group.hits[0].stored(:store_name)%>" 
+								item-name="" >
   		<div class = "image-and-meta-container">
 			<% imagename = 'weed'+ rand(1..3).to_s + '.jpg' %>
 			<%= image_tag imagename, :class => "item-search-result-store-logo-grouped" %>
@@ -182,4 +185,65 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ornare ante id
 <% end %>
 
 
+<div class="infobox-wrapper">
+    <div id="infobox">
+        The contents of your info box. It's very easy to create and customize.
+    </div>
+</div>
+<script>
+//http://stackoverflow.com/questions/7616666/google-maps-api-v3-custom-styles-for-infowindow
+var g_infobox = new InfoBox({
+         content: document.getElementById("infobox"),
+         disableAutoPan: false,
+         maxWidth: 150,
+         pixelOffset: new google.maps.Size(-140, 0),
+         zIndex: 3000,
+         boxStyle: {
+            background: "url('http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/examples/tipbox.gif') no-repeat",
+            opacity: 0.75,
+            width: "280px"
+        },
+        closeBoxMargin: "12px 4px 2px 2px",
+        closeBoxURL: "http://www.google.com/intl/en_us/mapfiles/close.gif",
+        infoBoxClearance: new google.maps.Size(1, 1)
+    });
+
+$( ".item-search-result-container" ).hover(function(e) {
+	$(this).addClass('search-item-hover-focus');
+
+	e.preventDefault();
+	lat = $( this ).attr('latitude')
+	long = $( this ).attr('longitude')
+	storename_unscrubbed = $( this ).attr('store-name')
+	itemname_unscrubbed = $( this ).attr('item-name')
+	
+	storename = storename_unscrubbed.replace(/\[\"/g , "");
+	storename = storename.replace(/\"\]/g , "");
+	itemname = itemname_unscrubbed.replace(/\[\"/g , "");
+	itemname = itemname.replace(/\"\]/g , "");	
+
+	// var image = './assets/leaf.png';
+	var image = '<%= asset_path 'leaf.png' %>';
+	var loc = new google.maps.LatLng(lat,long)
+	marker = new google.maps.Marker({
+	    	position: loc,
+	        map: g_map,
+	        icon: image
+		});
+
+	//g_map.setCenter(marker.getPosition());
+	g_map.panTo(marker.getPosition())
+	$("#infobox").html(storename);
+	g_infobox.open(g_map, marker);
+
+	}
+	, 
+	function() {
+	$(this).removeClass('search-item-hover-focus');
+	}
+);
+
+
+
+</script>
 
