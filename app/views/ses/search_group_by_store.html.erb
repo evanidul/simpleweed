@@ -20,7 +20,8 @@ var g_map;
 		        //In this case it creates a marker, but you can get the lat and lng from the location.LatLng
 		        console.log(results[0].geometry.location);
 				var myOptions = {
-					zoom:15,
+					//zoom:15,
+					zoom: 13,
 					center: new google.maps.LatLng(results[0].geometry.location),
 					mapTypeId: google.maps.MapTypeId.ROADMAP
 				}
@@ -70,7 +71,15 @@ var g_map;
 					    <%= raw highlight.format  { |word| "<span class='highlight'> #{word} </span>"  } %>
 					<% end %>
 				</a>
+				<div class="star-rank" style="float:right;">
+					<span class="glyphicon glyphicon-star"></span>
+					<span class="glyphicon glyphicon-star"></span>
+					<span class="glyphicon glyphicon-star"></span>
+					<span class="glyphicon glyphicon-star"></span>
+					<span class="glyphicon glyphicon-star"></span>		
+				</div>
 			</h4>
+
 		    <!-- store address -->
 			<% if  group.hits[0].stored(:store_addressline1) && !group.hits[0].stored(:store_addressline1).empty?  %>
 				<% group.hits[0].stored(:store_addressline1).each do |word| %>
@@ -103,7 +112,9 @@ var g_map;
 					<%= word %>
 				<% end %>
 			<% end %>
+
 		</div>
+
   	</div>
 
   <%
