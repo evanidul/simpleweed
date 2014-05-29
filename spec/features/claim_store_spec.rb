@@ -6,11 +6,12 @@ require 'pages/registration'
 require 'pages/homepage'
 require 'pages/admin/stores'
 require 'pages/store'
+require 'pages/store_items'
 require 'pages/search_results_stores'
 require 'pages/store_search_preview.rb'
 require 'pages/store_claim.rb'
 
-feature "claim store spec" , :js => true do
+feature "claim store spec" , :js => true, :search =>true do
 	
   before :each do
     if ENV['TARGETBROWSER'] == "chrome"
@@ -23,7 +24,8 @@ feature "claim store spec" , :js => true do
 
 
   before :each do
-	  	@basicauthname = "ddadmin"
+	  	StoreItem.remove_all_from_index! 
+        @basicauthname = "ddadmin"
 	  	@basicauthpassword = "idontreallysmoke" 
 	  	page.visit("http://#{@basicauthname}:#{@basicauthpassword}@#{Capybara.current_session.server.host}:#{Capybara.current_session.server.port}/")
 
@@ -34,6 +36,7 @@ feature "claim store spec" , :js => true do
 		user.skip_confirmation!
 		user.save
 		user.add_role :admin # sets a global role
+
 
 	end
 
@@ -99,23 +102,71 @@ feature "claim store spec" , :js => true do
 		expect(store_page.state.text).to have_text(new_state)    						
 		expect(store_page.zip.text).to have_text(new_zip)    						
 
+        # search is indexed by item, so stores won't be added to search until an item is added.
+        store_page.edit_store_items.click
+        items_page = StoreItemsPage.new
+        items_page.add_store_item_button.click
+
+        # add an item in menu edit page
+        # add new item
+        item_name = "Weedy"
+        item_description = "It's so weedy."
+        item_thc = "5.2"
+        item_cbd = "5.20"
+        item_cbn = "5.15"
+        item_costhalfgram = "10"
+        item_costgram = "20"
+        item_costeighth = "50"
+        item_costquarter = "100"
+        item_costhalfoz = "200"
+        item_costoz = "400"
+        item_perunit = "10"
+
+        items_page.store_item_name.set item_name
+        items_page.store_item_description.set item_description
+        items_page.thc.set item_thc
+        items_page.cbd.set item_cbd     
+        items_page.cbn.set item_cbn
+        items_page.store_item_costhalfgram.set item_costhalfgram
+        items_page.store_item_costonegram.set item_costgram
+        items_page.store_item_costeighthoz.set item_costeighth
+        items_page.store_item_costquarteroz.set item_costquarter
+        items_page.store_item_costhalfoz.set item_costhalfoz
+        items_page.store_item_costoneoz.set item_costoz
+        items_page.store_item_costperunit.set item_perunit
+
+        items_page.store_item_strain.select 'indica'
+        items_page.store_item_maincategory.select 'flower'
+        items_page.store_item_subcategory.select 'bud'
+
+        items_page.save_store_item_button.click
+
+        # back to item list
+        expect(items_page.firstSearchResult_item_name.text).to have_text(item_name)
+
+        # item is added, store should be in search index
+        Sunspot.commit
+
+
 		# log out
 		header.logoutlink.click
 
 		# search for it		
-		home_page = HomePageComponent.new
-		home_page.search_input.set "7110 Rock Valley Court, San Diego, CA"
-		home_page.search_button.click
+		header = HeaderPageComponent.new  
+        header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+        header.search_button.click
 
-    	search_results_page = SearchResultsStoresPageComponent.new    	
-    	expect(search_results_page.firstSearchResult_store_name.text).to have_text(store_name)
+    	# search_results_page = SearchResultsStoresPageComponent.new    	
+    	# expect(search_results_page.firstSearchResult_store_name.text).to have_text(store_name)
+        search_results_page = SearchResultsStoresPageComponent.new      
+                
+        search_results_page.search_results_store_names.size.should == 1
+        search_results_page.search_results_store_names.map {|name| name.text}.should == [store_name]
+
 
     	# click and view preview
-    	search_results_page.firstSearchResult_store_name.click
-    	expect(search_results_page.store_name.text).to have_text(store_name)
-
-    	store_search_preview_page = StoreSearchPreviewPage.new
-    	store_search_preview_page.view_store.click
+    	search_results_page.search_results_store_names.first.click
+    	
     	store_page = StorePage.new
     	store_page.has_name_header?
 		expect(store_page.name_header.text).to have_text(store_name)    

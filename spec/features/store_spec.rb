@@ -37,14 +37,6 @@ feature "store page" , :js => true do
 
 	end
 
-	scenario "check root" do
-		# Run the generator again with the --webrat flag if you want to use webrat methods/matchers
-		
-		page.visit("/")
-		homepage = HomePageComponent.new
-		homepage.has_searchcontainer?
-  	end
-
 	scenario "sign in as admin test" do
 				
 		page.visit("/users/sign_in")

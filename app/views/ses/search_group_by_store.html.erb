@@ -42,9 +42,13 @@ var g_map;
 	
 </script>
 
+<% if @itemsearch.group(:store_id_str).groups.empty? %>
+	<div class="alert alert-warning">
+	    <strong>Sorry!</strong> Your search returned 0 results.
+	</div>
+<% end %>
+
 <%
-
-
 @itemsearch.group(:store_id_str).groups.each do |group|
 
 

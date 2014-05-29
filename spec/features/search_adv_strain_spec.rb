@@ -72,7 +72,9 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		header.search_button.click
 
     	search_results_page = SearchResultsStoresPageComponent.new    	
-    	expect(search_results_page.firstSearchResult_store_name.text).to have_text(@store_name)
+    	        
+        search_results_page.search_results_store_names.size.should == 1
+        search_results_page.search_results_store_names.map {|name| name.text}.should == [@store_name]
 
     	# basic nav test
     	header.show_adv_search_button.click

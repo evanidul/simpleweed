@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
 	def index
-		@disableSearchInNav = true;
+		# @disableSearchInNav = true;
 		@disableContainerDiv = true;
 	end
 end

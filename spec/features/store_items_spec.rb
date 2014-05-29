@@ -9,7 +9,7 @@ require 'pages/store_items'
 require 'pages/search_results_stores'
 require 'pages/store_search_preview.rb'
 
-feature "store item edit and add" , :js => true do
+feature "store item edit and add" , :js => true, :search =>true do
 
   	before :each do
 	    if ENV['TARGETBROWSER'] == "chrome"
@@ -41,7 +41,12 @@ feature "store item edit and add" , :js => true do
 		@store_ca = "CA"
 		@store_zip = "92122"
 		@store = Store.new(:name => @store_name , :addressline1 => @store_addressline1, :city => @store_city, :state => @store_ca, :zip => @store_zip)
-		@store.save		
+		@store.save	
+
+		@item1 =  @store.store_items.create(:name => "og" , :strain =>"indica")
+		@item1.cultivation = "indoor"		
+		@item1.save
+		Sunspot.commit
 	end
 
 	# saving a store and loading that store in store item menu page can lead to a race condition.  since store.save returns before
@@ -67,8 +72,13 @@ feature "store item edit and add" , :js => true do
 		home_page.search_input.set "7110 Rock Valley Court, San Diego, CA"
 		home_page.search_button.click
 
+    	# search_results_page = SearchResultsStoresPageComponent.new    	
+    	# expect(search_results_page.firstSearchResult_store_name.text).to have_text(@store_name)
     	search_results_page = SearchResultsStoresPageComponent.new    	
-    	expect(search_results_page.firstSearchResult_store_name.text).to have_text(@store_name)
+    	        
+        search_results_page.search_results_store_names.size.should == 1
+        search_results_page.search_results_store_names.map {|name| name.text}.should == [@store_name]
+
 
     	# click and view preview
     	search_results_page.firstSearchResult_store_name.click

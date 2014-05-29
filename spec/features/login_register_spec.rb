@@ -3,7 +3,6 @@ require 'capybara/rails'
 require 'pages/loginpage'
 require 'page_components/header'
 require 'pages/registration'
-require 'pages/homepage'
 require 'pages/devise/forgot_password'
 require 'pages/devise/resend_confirmation'
 
@@ -38,9 +37,7 @@ feature "login page" , :js => true do
 		# Run the generator again with the --webrat flag if you want to use webrat methods/matchers
 		
 		page.visit("/")
-		homepage = HomePageComponent.new
-    homepage.has_searchcontainer?          
-
+		
 		header = HeaderPageComponent.new
 		header.has_loginlink?
 		header.loginlink.click
@@ -58,9 +55,6 @@ feature "login page" , :js => true do
 		# Run the generator again with the --webrat flag if you want to use webrat methods/matchers
 		
 		page.visit("/")
-		homepage = HomePageComponent.new
-    homepage.has_searchcontainer?   
-
 		header = HeaderPageComponent.new
 		header.has_loginlink?
 		header.loginlink.click
@@ -133,8 +127,6 @@ feature "login page" , :js => true do
     scenario "admin tries to recover password" do
 
       page.visit("/")
-      homepage = HomePageComponent.new
-      homepage.has_searchcontainer?          
 
       header = HeaderPageComponent.new
       header.has_loginlink?
@@ -154,9 +146,7 @@ feature "login page" , :js => true do
   scenario "admin tries to recover password with email address instead of username" do
 
       page.visit("/")
-      homepage = HomePageComponent.new
-      homepage.has_searchcontainer?          
-
+      
       header = HeaderPageComponent.new
       header.has_loginlink?
       header.loginlink.click
