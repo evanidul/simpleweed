@@ -49,7 +49,10 @@ google.maps.event.addDomListener(window, "load", codeAddress);
         The contents of your info box. It's very easy to create and customize.
     </div>
 </div>
-<% if @store_items.empty? %>
+
+<% 
+
+if !@store_items || @store_items.empty? %>
 	<div class="alert alert-warning">
 	    <strong>Sorry!</strong> Your search returned 0 results.
 	</div>

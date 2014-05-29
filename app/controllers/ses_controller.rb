@@ -21,7 +21,14 @@ class SesController < ApplicationController
 		# 	redirect_to stores_path(:search => searchLocation )
 		# 	return
 		# end
-
+		geocoordiantes = Geocoder.coordinates(searchLocation);
+		  if !geocoordiantes
+		  	# they typed in gibberish for search coordinates
+		  	
+		  	@store_items = []		  			  	
+		  	render 'search'
+		  	return
+		  end 
 		
 		@itemsearch = StoreItem.search do								
 			paginate :page => 1, :per_page => 100
@@ -45,8 +52,7 @@ class SesController < ApplicationController
 				  	highlight :store_name
 				end # fulltext
 		    end # if
-		  
-		  geocoordiantes = Geocoder.coordinates(searchLocation);
+
 		  # within 5 kilometers of 34, 118 (LA, CA)
 		  case search.distance	  		  	
   		  	when "city"

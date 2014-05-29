@@ -168,4 +168,25 @@ feature "search page" , :js => true , :search =>true do
         searchresultspage = SearchResultsStoresPageComponent.new
 		expect(searchresultspage.flash_warning.text).to have_text("Your search returned 0 results.")    						
 	end
+
+    scenario "go to home page, search with gibberish location, should not error and render message" do
+        page.visit("/")
+       
+        header = HeaderPageComponent.new    
+        header.search_input.set "asdfaslkdfjalkjwekfljwlkf"
+        header.search_button.click
+        
+        searchresultspage = SearchResultsStoresPageComponent.new
+        expect(searchresultspage.flash_warning.text).to have_text("Your search returned 0 results.")                            
+    end
+    scenario "go to home page, search with gibberish item query and no loc, should not error and render message" do
+        page.visit("/")
+       
+        header = HeaderPageComponent.new    
+        header.item_query_input.set "alsdkfjasdlkfj2l3kjflk23jf,ds.f,ms."
+        header.search_button.click
+        
+        searchresultspage = SearchResultsStoresPageComponent.new
+        expect(searchresultspage.flash_warning.text).to have_text("Your search returned 0 results.")                            
+    end
 end	
