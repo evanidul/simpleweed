@@ -23,6 +23,7 @@ class HeaderPageComponent < SitePrism::Page
   element :search_button, "#submit-item-search"
   element :item_query_input, '#se_itemsearch'
   element :show_adv_search_button, '#show-search-filters'
+  element :group_search_button, '#group-search-results'
 
   #search tabs
   element :search_opt_strain_and_attr_tab_link, '#search-opt-strain-and-attr-tab-link'

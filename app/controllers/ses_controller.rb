@@ -13,6 +13,15 @@ class SesController < ApplicationController
 		customminprice = @search.mp
 		custommaxprice = @search.xp
 
+		@itemcollapsed = false
+		if !itemquery || itemquery.empty?			
+			@itemcollapsed = true;
+		end
+		if groupbystore
+			@itemcollapsed = false
+		end
+
+
 		if searchLocation.nil? || searchLocation.empty?
 			searchLocation = "la,ca"
 		end
@@ -32,16 +41,16 @@ class SesController < ApplicationController
 		
 		@itemsearch = StoreItem.search do								
 			paginate :page => 1, :per_page => 100
-			if !itemquery || itemquery.empty?			
+			if !itemquery || itemquery.empty? || groupbystore
 				group :store_id_str do
-					limit 3
+					limit 7
 				end # group
 				# fulltext "og" do
 				#   	highlight :name
 				#   	highlight :description
 				#   	highlight :store_name
 				# end # fulltext				
-				@itemcollapsed = true; # tell the view not to show the items			
+				#@itemcollapsed = true; # tell the view not to show the items			
 
 			end # if
 			
@@ -409,7 +418,7 @@ class SesController < ApplicationController
 		 @store_items = @itemsearch.hits
 
 
-		 if !itemquery || itemquery.empty?			
+		 if !itemquery || itemquery.empty?  || groupbystore
 		 	render 'search_group_by_store'
 		 else 
 		 	render 'search'

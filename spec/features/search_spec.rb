@@ -6,6 +6,7 @@ require 'pages/admin/stores'
 require 'pages/store'
 require 'pages/homepage'
 require 'pages/search_results_stores'
+require 'pages/search_results_items'
 require 'pages/store_items'
 
 feature "search page" , :js => true , :search =>true do
@@ -189,4 +190,57 @@ feature "search page" , :js => true , :search =>true do
         searchresultspage = SearchResultsStoresPageComponent.new
         expect(searchresultspage.flash_warning.text).to have_text("Your search returned 0 results.")                            
     end
+
+    scenario "group search: entering no item query should yield group search page, collapsed view" do
+        @store_name = "My new store"
+        @store_addressline1 = "7110 Rock Valley Court"
+        @store_city = "San Diego"
+        @store_ca = "CA"
+        @store_zip = "92122"
+        @store = Store.new(:name => @store_name , :addressline1 => @store_addressline1, :city => @store_city, :state => @store_ca, :zip => @store_zip)
+        @store.save 
+
+        @item1 =  @store.store_items.create(:name => "cookies" , :strain =>"indica")
+        @item1.cultivation = "indoor"       
+        @item1.save
+
+        @item2 =  @store.store_items.create(:name => "cookies v2" , :strain =>"indica")
+        @item2.cultivation = "indoor"       
+        @item2.save
+        Sunspot.commit
+
+        # search by location
+        page.visit("/")       
+        header = HeaderPageComponent.new    
+        header.search_input.set "San Diego, CA"
+        header.search_button.click
+
+        search_results_page = SearchResultsStoresPageComponent.new
+        search_results_page.search_results_store_names.size.should == 1
+        search_results_page.search_results_store_names.map {|name| name.text}.should == [@store_name]
+        # items should be collapsed if item query is empty
+        search_results_page.search_results_item_names.size.should == 0
+
+        # items should show if group button is clicked
+        header.group_search_button.click
+        search_results_page.search_results_store_names.size.should == 1
+        search_results_page.search_results_store_names.map {|name| name.text}.should == [@store_name]
+    
+        search_results_page.search_results_item_names.size.should == 2
+        search_results_page.search_results_item_names.map {|name| name.text}.should == [@item1.name, @item2.name]
+
+        header = HeaderPageComponent.new    
+        header.search_input.set "San Diego, CA"
+        header.item_query_input.set "cookies"
+        header.search_button.click
+
+        searchresults_page = SearchResultsItemPageComponent.new
+        searchresults_page.searchresults_store_names.size.should == 2
+        searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item1.name, @item2.name]
+        # stores shouldn't be on item results page
+        search_results_page.search_results_store_names.size.should == 0
+
+
+
+   end
 end	
