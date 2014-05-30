@@ -191,6 +191,18 @@ feature "search page" , :js => true , :search =>true do
         expect(searchresultspage.flash_warning.text).to have_text("Your search returned 0 results.")                            
     end
 
+    scenario "no inputs for item query and location should render 0 results" do
+        page.visit("/")
+        header = HeaderPageComponent.new    
+        header.search_button.click
+        searchresults_page = SearchResultsItemPageComponent.new
+        searchresults_page.searchresults_store_names.size.should == 0
+
+        header.group_search_button.click
+        search_results_page = SearchResultsStoresPageComponent.new
+        search_results_page.search_results_store_names.size.should == 0
+    end
+
     scenario "group search: entering no item query should yield group search page, collapsed view" do
         @store_name = "My new store"
         @store_addressline1 = "7110 Rock Valley Court"

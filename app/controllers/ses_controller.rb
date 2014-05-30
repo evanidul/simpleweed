@@ -21,11 +21,6 @@ class SesController < ApplicationController
 			@itemcollapsed = false
 		end
 
-
-		if searchLocation.nil? || searchLocation.empty?
-			searchLocation = "la,ca"
-		end
-
 		# if !itemquery || itemquery.empty?			
 		# 	redirect_to stores_path(:search => searchLocation )
 		# 	return
