@@ -98,6 +98,7 @@ GEM
     mini_portile (0.5.2)
     minitest (4.7.5)
     multi_json (1.9.3)
+    newrelic_rpm (3.8.1.221)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
     orm_adapter (0.5.0)
@@ -240,6 +241,7 @@ DEPENDENCIES
   geocoder
   jbuilder (~> 1.2)
   jquery-rails
+  newrelic_rpm
   pg
   pry
   rails (= 4.0.4)

@@ -57,6 +57,9 @@ gem 'sunspot_test' , :group => :test
 # see /config/unicorn.rb & /ProcFile for configuration
 gem 'unicorn'
 
+# new relic, app monitoring heroku add on
+gem 'newrelic_rpm'
+
 # allows you to run 'rails generate active_record:session_migration', which allows you to store sessions in the db
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
 
