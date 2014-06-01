@@ -317,7 +317,69 @@ feature "search page" , :js => true , :search =>true do
         search_results_page = SearchResultsStoresPageComponent.new
         search_results_page.search_results_store_names.size.should == 1
         search_results_page.search_results_store_names.map {|name| name.text}.should == [@store_name]
+    end
 
+    scenario "back button search tests" do
+        @store_name = "My new store"
+        @store_addressline1 = "7110 Rock Valley Court"
+        @store_city = "San Diego"
+        @store_ca = "CA"
+        @store_zip = "92122"
+        @store = Store.new(:name => @store_name , :addressline1 => @store_addressline1, :city => @store_city, :state => @store_ca, :zip => @store_zip)
+        @store.save 
+
+        @store2_name = "My new store2"
+        @store2_addressline1 = "governor drive"
+        @store2_city = "San Diego"
+        @store2_ca = "CA"
+        @store2_zip = "92122"
+        @store2 = Store.new(:name => @store2_name , :addressline1 => @store2_addressline1, :city => @store2_city, :state => @store2_ca, :zip => @store2_zip)
+        @store2.save 
+
+        @item1 =  @store.store_items.create(:name => "cookies" , :strain =>"indica")
+        @item1.cultivation = "indoor"       
+        @item1.save
+
+        @item2 =  @store2.store_items.create(:name => "cookies v2" , :strain =>"indica")
+        @item2.cultivation = "indoor"       
+        @item2.save
+        Sunspot.commit
+
+        # search by location
+        page.visit("/")       
+        header = HeaderPageComponent.new    
+        header.search_input.set "7110 Rock Valley Court, San Diego, CA"        
+        header.search_button.click
+
+        search_results_page = SearchResultsStoresPageComponent.new
+        search_results_page.search_results_store_names.size.should == 2
+        search_results_page.search_results_store_names.map {|name| name.text}.should == [@store_name, @store2_name]
+     
+        # click first store
+        search_results_page.search_results_store_names.each {|store_link|             
+            if store_link.text.include? @store_name
+                store_link.click
+                break
+            end
+        }
+
+        store_page = StorePage.new
+        
+        expect(store_page.name_header.text).to have_text(@store_name)
+        
+        # go back 
+        page.evaluate_script('window.history.back()')
+        
+        # click second store
+        search_results_page.search_results_store_names.each {|store_link|             
+            if store_link.text.include? @store2_name
+                store_link.click
+                break
+            end
+        }
+
+        expect(store_page.name_header.text).to have_text(@store2_name)
 
     end
+
 end	
