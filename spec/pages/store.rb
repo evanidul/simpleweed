@@ -4,6 +4,8 @@ class StorePage < SitePrism::Page
 	element :name_header, "#name"
 	element :claim_store_button, "#claim-store-button"
 
+	element :first_write_review_tooltip, '#write-review-first-tip'
+	
 	# menu (main page)
 	element :edit_store_items, "#edit_store_items"
 
