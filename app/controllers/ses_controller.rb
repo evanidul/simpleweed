@@ -4,7 +4,7 @@ class SesController < ApplicationController
 
 		@search = Se.new(search_params)
 
-		search = @search
+		search = @search		
 		itemquery = @search.itemsearch
 		searchLocation = @search.isl
 		groupbystore = @search.gbs
@@ -58,16 +58,16 @@ class SesController < ApplicationController
 		    end # if
 
 		  # within 5 kilometers of 34, 118 (LA, CA)
-		  case search.distance	  		  	
-  		  	when "city"
+		  case search.di
+  		  	when "c"
   		  		with(:location).in_radius(geocoordiantes[0], geocoordiantes[1], 100)
-  		  	when "driving"
+  		  	when "d"
   		  		with(:location).in_radius(geocoordiantes[0], geocoordiantes[1], 8)
-  		  	when "biking"
+  		  	when "b"
   		  		with(:location).in_radius(geocoordiantes[0], geocoordiantes[1], 4)
-  		  	when "walking"
+  		  	when "w"
   		  		with(:location).in_radius(geocoordiantes[0], geocoordiantes[1], 2)
-  		  	when "fourblocks"
+  		  	when "f"
   		  		with(:location).in_radius(geocoordiantes[0], geocoordiantes[1], 1)
   		  	else
   		  		with(:location).in_radius(geocoordiantes[0], geocoordiantes[1], 100)
@@ -490,7 +490,7 @@ private
   :i35, #:vape
   :i36, #:vape_accessories,
   # distance
-  :distance,
+  :di,
   
 
   # store features

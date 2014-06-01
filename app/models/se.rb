@@ -72,7 +72,7 @@ class Se
   :i36, #:vape_accessories,
 
   # distance
-  :distance,
+  :di,
 
   # store features
   :a, #:delivery_service , 

@@ -116,6 +116,13 @@ class HeaderPageComponent < SitePrism::Page
   element :vape, '#se_i35'
   element :vape_accessories,'#se_i36'
 
+  # DISTANCE #################
+  element :distance_city, '#se_di_c'
+  element :distance_driving, '#se_di_d'
+  element :distance_biking, '#se_di_b'
+  element :distance_walking, '#se_di_w'
+  element :distance_fourblocks, '#se_di_f'
+
   # STORE FEATURES ###########
   element :deliveryservice , '#se_a'
   element :acceptsatmcredit ,'#se_b'
