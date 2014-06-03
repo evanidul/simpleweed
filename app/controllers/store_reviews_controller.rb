@@ -29,7 +29,7 @@ private
 
 private 
 	def store_review_params
-		params.require(:store_review).permit(:store_id, :user_id, :review)		
+		params.require(:store_review).permit(:store_id, :user_id, :review, :stars)		
 	end		
 
 end

@@ -17,3 +17,21 @@
  .store-review {
  	padding: 10px;
  }
+
+ .rating_star {
+ 	display: inline;
+ }
+
+/** ul containing 5 stars **/
+ .store-star-rank {
+ 	list-style: none;
+ 	padding-left : 0;
+ }
+
+ .off .glyphicon-star {
+ 	color : black;
+ }
+
+ .on .glyphicon-star {
+ 	color : #f0ad4e;
+ }
