@@ -93,9 +93,11 @@ class Se
   # lab
   :filterthc_range, :thc_min, :thc_max,
   :filtercbd_range, :cbd_min, :cbd_max,
-  :filtercbn_range, :cbn_min, :cbn_max
+  :filtercbn_range, :cbn_min, :cbn_max,
 
-  
+  # paginate
+  :pg
+
   def persisted?
     false
   end

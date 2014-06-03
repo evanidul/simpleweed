@@ -34,8 +34,13 @@ class SesController < ApplicationController
 		  	return
 		  end 
 		
-		@itemsearch = StoreItem.search do								
-			paginate :page => 1, :per_page => 100
+		@itemsearch = StoreItem.search do											
+			if search.pg
+				paginate :page => search.pg, :per_page => 100
+			else
+				paginate :page => 1, :per_page => 100
+			end
+
 			if !itemquery || itemquery.empty? || groupbystore
 				group :store_id_str do
 					limit 7
@@ -512,7 +517,10 @@ private
   # lab
   :filterthc_range, :thc_min, :thc_max,
   :filtercbd_range, :cbd_min, :cbd_max,
-  :filtercbn_range, :cbn_min, :cbn_max
+  :filtercbn_range, :cbn_min, :cbn_max,
+
+  #paginate
+  :pg
 
 
 			)		
