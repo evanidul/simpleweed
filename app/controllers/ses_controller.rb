@@ -36,9 +36,15 @@ class SesController < ApplicationController
 		
 		@itemsearch = StoreItem.search do											
 			if search.pg
-				paginate :page => search.pg, :per_page => 100
-			else
-				paginate :page => 1, :per_page => 100
+				if search.pg.empty?
+					search.pg = 1
+				end
+				paginate :page => search.pg, :per_page => 100				
+				search.pg = search.pg.to_i + 1				
+			# else
+			# 	binding.pry
+			# 	paginate :page => 1, :per_page => 100
+			# 	search.pg = search.pg + 1
 			end
 
 			if !itemquery || itemquery.empty? || groupbystore
@@ -415,7 +421,17 @@ class SesController < ApplicationController
 
 		# loads all the objects from the db?
 		#@store_items = @itemsearch.results 
-		 @store_items = @itemsearch.hits
+		@store_items = @itemsearch.hits
+
+		 #generate next link for pagination
+		orig = request.original_url 		# has the whole search se.rb form serialized, parameters and all
+		uri = URI.parse(orig)
+		uri_params = CGI.parse(uri.query)
+		currentpagestr = uri_params['se[pg]'].first #not sure why it gets returned as an array.  The pagination control param.
+
+		nextpagenum = currentpagestr.to_i + 1;
+		nextpagestr = nextpagenum.to_s
+		@nextlink = orig.sub('se%5Bpg%5D=' + currentpagestr,'se%5Bpg%5D=' +nextpagestr)  # increment the pagination param by 1
 
 
 		 if !itemquery || itemquery.empty?  || groupbystore

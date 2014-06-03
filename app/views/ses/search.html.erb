@@ -2,7 +2,8 @@
 	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>			
 	<!-- info box -->
 	<script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/src/infobox.js"></script>
-
+	<!-- infinite scroll -->
+	<% javascript_include_tag "jquery.infinitescroll.js" %>
 <% end %>
 
 
@@ -57,6 +58,7 @@ if !@store_items || @store_items.empty? %>
 	    <strong>Sorry!</strong> Your search returned 0 results.
 	</div>
 <% end %>
+<div id="search-results">
 <% @store_items.each do |item| %>
 	<div class = "item-search-result-container" latitude="<%= item.stored(:store_latitude) %>" longitude="<%= item.stored(:store_longitude) %>" store-name="<%= item.stored(:store_name) %>" 
 								item-name="<%= item.stored(:name) %>">
@@ -185,8 +187,11 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ornare ante id
 	</div>
 
 <% end %> 
+</div> <!-- search-results -->
 
 <div id="item-search-results-map" class = "search-items-map"></div>
+
+<a href = <%= @nextlink %> id="search-next">Next </a>
 
 
 <script>
@@ -207,40 +212,42 @@ var g_infobox = new InfoBox({
         infoBoxClearance: new google.maps.Size(1, 1)
     });
 
-$( ".item-search-result-container" ).hover(function(e) {
-	$(this).addClass('search-item-hover-focus');
+(window.initHoverForSearchResults = function() {
+	$( ".item-search-result-container" ).hover(function(e) {
+		$(this).addClass('search-item-hover-focus');
 
-	e.preventDefault();
-	lat = $( this ).attr('latitude')
-	long = $( this ).attr('longitude')
-	storename_unscrubbed = $( this ).attr('store-name')
-	itemname_unscrubbed = $( this ).attr('item-name')
-	
-	storename = storename_unscrubbed.replace(/\[\"/g , "");
-	storename = storename.replace(/\"\]/g , "");
-	itemname = itemname_unscrubbed.replace(/\[\"/g , "");
-	itemname = itemname.replace(/\"\]/g , "");	
+		e.preventDefault();
+		lat = $( this ).attr('latitude')
+		long = $( this ).attr('longitude')
+		storename_unscrubbed = $( this ).attr('store-name')
+		itemname_unscrubbed = $( this ).attr('item-name')
+		
+		storename = storename_unscrubbed.replace(/\[\"/g , "");
+		storename = storename.replace(/\"\]/g , "");
+		itemname = itemname_unscrubbed.replace(/\[\"/g , "");
+		itemname = itemname.replace(/\"\]/g , "");	
 
-	// var image = './assets/leaf.png';
-	var image = '<%= asset_path 'leaf.png' %>';
-	var loc = new google.maps.LatLng(lat,long)
-	marker = new google.maps.Marker({
-	    	position: loc,
-	        map: g_map,
-	        icon: image
-		});
+		// var image = './assets/leaf.png';
+		var image = '<%= asset_path 'leaf.png' %>';
+		var loc = new google.maps.LatLng(lat,long)
+		marker = new google.maps.Marker({
+		    	position: loc,
+		        map: g_map,
+		        icon: image
+			});
 
-	//g_map.setCenter(marker.getPosition());
-	g_map.panTo(marker.getPosition())
-	$("#infobox").html(itemname + ' @ ' + storename);
-	g_infobox.open(g_map, marker);
+		//g_map.setCenter(marker.getPosition());
+		g_map.panTo(marker.getPosition())
+		$("#infobox").html(itemname + ' @ ' + storename);
+		g_infobox.open(g_map, marker);
 
-	}
-	, 
-	function() {
-	$(this).removeClass('search-item-hover-focus');
-	}
-);
+		}
+		, 
+		function() {
+		$(this).removeClass('search-item-hover-focus');
+		}
+	);
+})(); //initHoverForSearchResults
 
 (function($) {
     var $window = $(window),
@@ -259,6 +266,23 @@ $( ".item-search-result-container" ).hover(function(e) {
         $item_search_results_map.addClass('search-items-map')
     }).trigger('resize');
 })(jQuery);
+
+// infinitescroll() is called on the element that surrounds 
+// the items you will be loading more of
+  $('#search-results').infinitescroll({
+ 
+    navSelector  : "#search-next",               
+                   // selector for the paged navigation (it will be hidden)
+    nextSelector : "#search-next",    
+    
+                   // selector for the NEXT link (to page 2)
+    itemSelector : ".item-search-result-container",         
+                   // selector for all items you'll retrieve
+    donetext     : "No more results.",
+	loading: {
+    	msgText		 : "Loading more search results.."
+    }
+  }, window.initHoverForSearchResults );
 
 
 </script>

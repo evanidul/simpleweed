@@ -33,7 +33,7 @@
         <div class="form-group"> 
           <%= f.text_field :itemsearch, :class => 'form-control search-inputs', placeholder: "search items, dispensaries"  %>
           <%= f.text_field :isl, :class => 'form-control search-inputs', placeholder: "location"  %>                    
-                    
+          <%= f.hidden_field :pg, :value => "1" %>                    
 
         </div>
         <button type="submit" id="submit-item-search" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
