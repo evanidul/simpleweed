@@ -215,3 +215,7 @@
 #search-filter-options label {
   font-weight: normal !important;
 }
+
+.forgot-your-password {
+  float:right;
+}

@@ -16,10 +16,16 @@
         </br>
         <%= f.submit "sign in" , :id => 'log-in-button', :class => 'btn btn-primary pull-right' %>
         <br/>
+        <br/><%= link_to "forgot your password?", new_password_path(:user), :id => 'forgot-password-link' , :class =>"forgot-your-password" %> 
         <% end %>
       </div> <!-- modal-body -->
       <div class="modal-footer">
-        <%= link_to "forgot your password?", new_password_path(:user), :id => 'forgot-password-link' %>
+        
+        <h4 style="float:left;">Don't have an account?</h4>
+        <%= link_to "sign up", new_user_registration_path(), :id => 'sign-up-link' , :class => 'btn btn-warning pull-right'%>
+
+        </br>
+        
       </div><!-- modal-footer -->
 
     </div><!-- modal-content -->

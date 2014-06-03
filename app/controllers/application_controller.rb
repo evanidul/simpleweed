@@ -28,18 +28,25 @@ class ApplicationController < ActionController::Base
 
 	protected
 	# redirect a user to login page if they are not authenticated, pass them through if they are.  Pass in an optional message
-	def authenticate_user!(message = nil)
+	def authenticate_user!(message = nil, modal = false)
 		if user_signed_in?
-		  return
-		else
-			if message.nil?
-		  		redirect_to new_user_session_path
-		  	else
-		  		redirect_to new_user_session_path, :notice => message
-		  	end
+		  return true
+		end
+
+		if modal
+			render "modals/login", layout: false
+			return false
+		end
+		 
+		if message.nil?
+	  		redirect_to new_user_session_path and return false
+	  	else
+	  		redirect_to new_user_session_path, :notice => message and return false
+	  	end
+	
 		  ## if you want render 404 page
 		  ## render :file => File.join(Rails.root, 'public/404'), :formats => [:html], :status => 404, :layout => false
-		end
+		
 	end
 
 	# add username to devise

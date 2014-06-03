@@ -25,14 +25,17 @@
 		    <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'form-control', :required => true %></div>
 
 		  <br/>
-		  <div><%= f.submit "create user account" , :id => 'create-account-button', :class => 'btn btn-primary pull-right' %></div>
+		  <div><%= f.submit "create user account" , :id => 'create-account-button', :class => 'btn btn-warning pull-right' %></div>
 		  <br/>
+		  <br/>
+		  <%= link_to "didn't receive confirmation instructions?", new_confirmation_path(resource_name), :id => 'resend-confirmation-email-link', :class=>"pull-right" %><br 
 		<% end %>
 		
 	  </div> <!-- modal-body -->
 	  <div class="modal-footer">
-	     <%= link_to "sign in", new_user_session_path %> <br/>
-	     <%= link_to "didn't receive confirmation instructions?", new_confirmation_path(resource_name), :id => 'resend-confirmation-email-link' %><br 
+	  	<h4 style="float:left;">Already registered?  </h4>
+	     <%= link_to "sign in", new_user_session_path , :class => 'btn btn-primary pull-right'%> <br/></br>
+	     
 	  </div><!-- modal-footer -->
 
 	</div><!-- modal-content -->

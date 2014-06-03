@@ -8,12 +8,18 @@ class StoreReviewsController < ApplicationController
 	end
 
 	def new
+		if !authenticate_user!("You must be logged in to write a review.  Login now or sign up!", true) 
+			return 
+		end
 		@store_review = @store.store_reviews.build
 		render layout: false		
 	end
 
 
 	def create		
+		if !authenticate_user!("You must be logged in to write a review.  Login now or sign up!", true) 
+			return 
+		end
 		@store_review =  @store.store_reviews.create(store_review_params)		
 		@store_review.user = current_user
 		@store_review.save

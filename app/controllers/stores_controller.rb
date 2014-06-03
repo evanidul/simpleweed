@@ -58,6 +58,7 @@ class StoresController < ApplicationController
 		
 	end
 
+	#dvu: dead code?  Think we've killed the store browser view...
 	def store_preview
 		@store = Store.find(params[:id])
 		@tds = Simpleweed::Timedateutil::Timedateservice.new

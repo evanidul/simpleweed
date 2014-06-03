@@ -335,4 +335,103 @@ feature "store item edit and add" , :js => true, :search =>true do
 
 		expect(store_page.star_ranking.first['star-value']).to have_text("5")    	
 	end
+
+	scenario "logged out, try to review, fill out login modal, write review" do
+		
+		# search for it		
+        header = HeaderPageComponent.new	
+		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+        header.search_button.click
+
+    	search_results_page = SearchResultsStoresPageComponent.new    	
+    	        
+        search_results_page.search_results_store_names.size.should == 1
+        search_results_page.search_results_store_names.map {|name| name.text}.should == [@store_name]
+
+    	# click and view preview
+    	search_results_page.search_results_store_names.first.click
+    	store_page = StorePage.new
+    	expect(store_page.name_header.text).to have_text(@store_name)
+
+    	store_page.write_review_button.click
+
+    	# EXPECT LOGIN PROMPT
+    	# login as admin
+		header = HeaderPageComponent.new
+    	# login modal
+    	header.username.set @adminemail
+    	header.password.set @adminpassword
+		header.logininbutton.click
+
+		expect(header.edituserlink.text).to have_text(@adminusername)		
+		expect(store_page.flash_notice.text).to have_text("Signed in successfully")
+
+		# write a review
+		store_page.write_review_button.click
+		review_text = "I hated this place!"
+    	store_page.review_text.set review_text
+    	store_page.fivestar_button.click
+    	store_page.save_review_button.click
+
+    	#expect success message
+    	expect(store_page.flash_notice.text).to have_text("Thank you")
+    	store_page.tabs_reviews.click
+    	    	    
+    	expect(store_page.review_content.first.text).to have_text(review_text)
+
+		expect(store_page.star_ranking.first['star-value']).to have_text("5")    	
+	end
+
+		scenario "logged out, try to review, fill out login modal BADLY, see login page, login correctly, write review" do
+		
+		# search for it		
+        header = HeaderPageComponent.new	
+		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+        header.search_button.click
+
+    	search_results_page = SearchResultsStoresPageComponent.new    	
+    	        
+        search_results_page.search_results_store_names.size.should == 1
+        search_results_page.search_results_store_names.map {|name| name.text}.should == [@store_name]
+
+    	# click and view preview
+    	search_results_page.search_results_store_names.first.click
+    	store_page = StorePage.new
+    	expect(store_page.name_header.text).to have_text(@store_name)
+
+    	store_page.write_review_button.click
+
+    	# EXPECT LOGIN PROMPT
+    	# login as admin
+		header = HeaderPageComponent.new
+    	# login modal
+    	header.username.set @adminemail
+    	header.password.set "some bullshit"
+		header.logininbutton.click
+
+		# see full login page and login
+		login_page = LoginPage.new
+		login_page.username_input.set @adminemail
+    	login_page.username_password_input.set @adminpassword
+    	login_page.sign_in_button.click
+
+    	# on store page...
+		expect(header.edituserlink.text).to have_text(@adminusername)		
+		expect(store_page.flash_notice.text).to have_text("Signed in successfully")
+
+		# write a review
+		store_page.write_review_button.click
+		review_text = "I hated this place!"
+    	store_page.review_text.set review_text
+    	store_page.fivestar_button.click
+    	store_page.save_review_button.click
+
+    	#expect success message
+    	expect(store_page.flash_notice.text).to have_text("Thank you")
+    	store_page.tabs_reviews.click
+    	    	    
+    	expect(store_page.review_content.first.text).to have_text(review_text)
+
+		expect(store_page.star_ranking.first['star-value']).to have_text("5")    	
+	end
 end
