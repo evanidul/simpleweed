@@ -4,7 +4,7 @@
 
 
 .item-search-result-container {
-	width: 700px;
+	width: 66%;
 	padding: 10px;
 	border-bottom: 1px;
 	border-bottom-style: solid;
@@ -55,13 +55,18 @@
 
 #item-search-results-map {
 	width: 350px;
-	height: 350px;
-	position: fixed !important;
-	top: 100px;
-	left: 923px;
+	height: 350px;	
 }
 
+.search-items-map {
+	position: fixed !important;
+	top: 100px;
+	left: 66%;
+}
 
+.search-items-map-mobile {
+	display:none;
+}
 
 
 /** grouped page **/
@@ -74,7 +79,7 @@
 }
 
 .item-search-result-container-grouped {
-	width: 682px;
+	width: 66%;
 	padding: 10px;
 	
 	margin-left: 30px;

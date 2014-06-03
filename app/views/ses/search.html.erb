@@ -5,7 +5,7 @@
 
 <% end %>
 
-<div id="item-search-results-map"></div>
+
 			
 <script type="text/javascript">
 var g_map;
@@ -186,6 +186,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ornare ante id
 
 <% end %> 
 
+<div id="item-search-results-map" class = "search-items-map"></div>
+
 
 <script>
 //http://stackoverflow.com/questions/7616666/google-maps-api-v3-custom-styles-for-infowindow
@@ -240,6 +242,23 @@ $( ".item-search-result-container" ).hover(function(e) {
 	}
 );
 
+(function($) {
+    var $window = $(window),
+        $item_search_results_map = $('#item-search-results-map');
+
+    $window.resize(function resize(){
+    	console.log('resizing');
+        if ($window.width() < 700) {
+        	console.log('width less than 700')
+         	$item_search_results_map.addClass('search-items-map-mobile');
+         	$item_search_results_map.removeClass('search-items-map')
+            return
+        }
+
+        $item_search_results_map.removeClass('search-items-map-mobile');
+        $item_search_results_map.addClass('search-items-map')
+    }).trigger('resize');
+})(jQuery);
 
 
 </script>
