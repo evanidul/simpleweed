@@ -7,7 +7,8 @@ require 'pages/store'
 require 'pages/homepage'
 require 'pages/store_items'
 require 'pages/search_results_stores'
-require 'pages/store_search_preview.rb'
+require 'pages/store_search_preview'
+require 'pages/registration'
 
 feature "store item edit and add" , :js => true, :search =>true do
 
@@ -382,7 +383,7 @@ feature "store item edit and add" , :js => true, :search =>true do
 		expect(store_page.star_ranking.first['star-value']).to have_text("5")    	
 	end
 
-		scenario "logged out, try to review, fill out login modal BADLY, see login page, login correctly, write review" do
+	scenario "logged out, try to review, fill out login modal BADLY, see login page, login correctly, write review" do
 		
 		# search for it		
         header = HeaderPageComponent.new	
@@ -433,5 +434,62 @@ feature "store item edit and add" , :js => true, :search =>true do
     	expect(store_page.review_content.first.text).to have_text(review_text)
 
 		expect(store_page.star_ranking.first['star-value']).to have_text("5")    	
+	end
+	
+	scenario "logged out, try to review, see login modal, hit register link, see reg page" do
+		
+		# search for it		
+        header = HeaderPageComponent.new	
+		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+        header.search_button.click
+
+    	search_results_page = SearchResultsStoresPageComponent.new    	
+    	        
+        search_results_page.search_results_store_names.size.should == 1
+        search_results_page.search_results_store_names.map {|name| name.text}.should == [@store_name]
+
+    	# click and view preview
+    	search_results_page.search_results_store_names.first.click
+    	store_page = StorePage.new
+    	expect(store_page.name_header.text).to have_text(@store_name)
+
+    	store_page.write_review_button.click
+
+    	# EXPECT LOGIN PROMPT
+    	# login as admin
+		header = HeaderPageComponent.new
+    	# login modal
+    	header.register_link_onlogin_modal.click
+
+		# see registration page
+		username = "bob123"
+  		email = "bob@gmail.com"
+  		password = "password"
+  		
+  		# register page
+  		registrationPage = RegistrationPageComponent.new
+  		registrationPage.user_name.set username
+      	registrationPage.user_email.set email
+  		registrationPage.user_password.set password
+  		registrationPage.user_password_confirmation.set password
+  		registrationPage.create_user_account_button.click
+
+  		expect(page).to have_text("A message with a confirmation link has been sent to your email address"), "or else!"  
+
+		# plugin some email verification gem and verify account creation
+		# http://stackoverflow.com/questions/8886748/testing-account-confirmation-with-rails-rspec-capybara-devise	
+		emailproxy = open_email(email)
+		emailproxy.should deliver_to(email)
+		
+		# click_link "Confirm my account"
+		click_first_link_in_email		
+		sleep 2
+
+		# see full login page and login
+		login_page = LoginPage.new
+		login_page.username_input.set username
+    	login_page.username_password_input.set password
+    	login_page.sign_in_button.click
+    	
 	end
 end

@@ -30,6 +30,9 @@ Smellyleaf::Application.configure do
   # Tell Action Mailer not to deliver emails to the real world.
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
+  #dvu:orig  
+  # per directions at https://github.com/p0deje/action_mailer_cache_delivery, to allow email testing with selenium, don't use :cache!  
+  # it will cause devise tokens to be invalid upon confirmation
   config.action_mailer.delivery_method = :test
 
   # Print deprecation notices to the stderr.

@@ -81,6 +81,12 @@ group :development, :test do
 
   # break points in tests
   gem 'pry'
+
+  # allows you test test devise registration emails
+  gem 'email_spec'
+  # https://github.com/p0deje/action_mailer_cache_delivery  
+  gem 'action_mailer_cache_delivery'
+
 end
 
 group :doc do
