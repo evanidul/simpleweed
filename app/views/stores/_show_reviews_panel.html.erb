@@ -24,7 +24,7 @@
 			<%= store_review.user.username %>
 			<small><%= store_review.created_at %></small>
 			<small><%= store_review.stars %></small>
-			<ul class = "store-star-rank" style="float:right;">
+			<ul class = "store-star-rank" style="float:right;" star-value="<%= store_review.stars %>">
 			<% (1..store_review.stars).each do |i| %>
 				<li class="rating_star">
 					<span class="glyphicon glyphicon-star"></span>
@@ -37,14 +37,7 @@
 				</li>
 			<% end %>
 
-			</ul>
-			<!-- <div class="star-rank" style="float:right;">
-				<span class="glyphicon glyphicon-star"></span>
-				<span class="glyphicon glyphicon-star"></span>
-				<span class="glyphicon glyphicon-star"></span>
-				<span class="glyphicon glyphicon-star"></span>
-				<span class="glyphicon glyphicon-star"></span>		
-			 </div>-->
+			</ul>			
 		</h4>			
 
 		<table>

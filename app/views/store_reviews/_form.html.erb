@@ -4,7 +4,7 @@
 
 	<ul class = "store-star-rank">
 	<% (1..5).each do |i| %>
-		<li id="<%= form_id %>_<%= i %>" data-stars="<%= i %>" data-form-id="<%= form_id %>" class="rating_star off">
+		<li id="rank_store_stars_<%= i %>" data-stars="<%= i %>" class="rating_star off">
 			<span class="glyphicon glyphicon-star"></span>
 		</li>
 	<% end %>
@@ -24,34 +24,32 @@
 <script>
 
 	$(".rating_star").click(function() {
-		var star = $(this);
-		var form_id = star.attr("data-form-id");
+		var star = $(this);		
 		var stars = star.attr("data-stars");
-		set_stars(form_id, stars);
+		set_stars(stars);
 	});
 
 	$( ".rating_star" ).hover(function(e) {
-		var star = $(this);
-		var form_id = star.attr("data-form-id");
+		var star = $(this);		
 		var stars = star.attr("data-stars");
-		set_stars(form_id, stars);		
+		set_stars(stars);		
 	})
 	
-	set_stars = function(form_id, stars) {
+	set_stars = function(stars) {
 		//the actual hidden input val that gets sent via the form
 		$("#store_review_stars").val(stars);
 		
 		for(i=1; i<=5; i++) {
 			if (i <= stars) {
-				$("#" + form_id + "_" +i).addClass('on');
+				$("#" + "rank_store_stars_" + i ).addClass('on');
 			} else {
-				$("#" + form_id + "_" +i).removeClass('on');
+				$("#" + "rank_store_stars_" + i ).removeClass('on');
 			}
 		}
 	}
 
 	/** min of 1 star **/
-	set_stars('<%= form_id %>', 1);
+	set_stars(1);
 
 </script>
 

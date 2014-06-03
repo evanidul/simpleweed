@@ -11,12 +11,18 @@ class StorePage < SitePrism::Page
 	element :review_text, '#store_review_review'
 	element :save_review_button, '#save_store_item'
 	element :cancel_write_review_button, '#close-button'
+	element :onestar_button, '#rank_store_stars_1'
+	element :twostar_button, '#rank_store_stars_2'
+	element :threestar_button, '#rank_store_stars_3'
+	element :fourstar_button, '#rank_store_stars_4'
+	element :fivestar_button, '#rank_store_stars_5'
 
 	# main tabs
 	element :tabs_reviews, '#tabs-reviews'
 
 	# reviews
 	elements :review_content, '.review-content'
+	elements :star_ranking, '.store-star-rank'
 
 	# menu (main page)
 	element :edit_store_items, "#edit_store_items"
