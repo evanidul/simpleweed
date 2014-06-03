@@ -3,9 +3,21 @@ class StorePage < SitePrism::Page
 
 	element :name_header, "#name"
 	element :claim_store_button, "#claim-store-button"
-
+	element :write_review_button, '#write-review-button'
 	element :first_write_review_tooltip, '#write-review-first-tip'
-	
+	element :flash_notice, '#flash_notice'
+
+	# review modal
+	element :review_text, '#store_review_review'
+	element :save_review_button, '#save_store_item'
+	element :cancel_write_review_button, '#close-button'
+
+	# main tabs
+	element :tabs_reviews, '#tabs-reviews'
+
+	# reviews
+	elements :review_content, '.review-content'
+
 	# menu (main page)
 	element :edit_store_items, "#edit_store_items"
 

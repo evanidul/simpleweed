@@ -9,7 +9,7 @@
 		</li>
 	<% end %>
 	</ul>
-	<%= f.hidden_field :stars %> <!-- #store_review_stars -->
+	<%= f.hidden_field :stars, :value => "1" %> <!-- #store_review_stars -->
 
   <p class = "form-group">
     
@@ -23,25 +23,18 @@
 
 <script>
 
-	// $(".rating_star").click(function() {
-	// 	var star = $(this);
-	// 	var form_id = star.attr("data-form-id");
-	// 	var stars = star.attr("data-stars");
-	// 	$("#store_review_stars").val(stars);		
-	// });
+	$(".rating_star").click(function() {
+		var star = $(this);
+		var form_id = star.attr("data-form-id");
+		var stars = star.attr("data-stars");
+		set_stars(form_id, stars);
+	});
 
 	$( ".rating_star" ).hover(function(e) {
 		var star = $(this);
 		var form_id = star.attr("data-form-id");
 		var stars = star.attr("data-stars");
-		set_stars(form_id, stars);
-		// $(this).addClass('on');
-		// }		
-		// , 
-		// function() {
-		// $(this).removeClass('on');
-		// }
-		// )
+		set_stars(form_id, stars);		
 	})
 	
 	set_stars = function(form_id, stars) {
@@ -57,7 +50,8 @@
 		}
 	}
 
-
+	/** min of 1 star **/
+	set_stars('<%= form_id %>', 1);
 
 </script>
 

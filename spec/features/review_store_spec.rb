@@ -71,4 +71,48 @@ feature "store item edit and add" , :js => true, :search =>true do
     	expect(store_page.first_write_review_tooltip.text).to have_text("Be the first")
 	end
 
+	scenario "review a star with default 1 star" do
+		# login as admin
+		page.visit("/")
+		
+		header = HeaderPageComponent.new
+		header.has_loginlink?
+		header.loginlink.click
+    	
+    	# login modal
+    	header.username.set @adminemail
+    	header.password.set @adminpassword
+		header.logininbutton.click
+
+		expect(header.edituserlink.text).to have_text(@adminusername)
+		# search for it		
+        header = HeaderPageComponent.new	
+		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+        header.search_button.click
+
+    	search_results_page = SearchResultsStoresPageComponent.new    	
+    	        
+        search_results_page.search_results_store_names.size.should == 1
+        search_results_page.search_results_store_names.map {|name| name.text}.should == [@store_name]
+
+    	# click and view preview
+    	search_results_page.search_results_store_names.first.click
+    	store_page = StorePage.new
+    	expect(store_page.name_header.text).to have_text(@store_name)
+
+    	store_page.write_review_button.click
+    	store_page.cancel_write_review_button.click
+    	store_page.write_review_button.click
+		review_text = "I hated this place!"
+    	store_page.review_text.set review_text
+    	store_page.save_review_button.click
+
+    	#expect success message
+    	expect(store_page.flash_notice.text).to have_text("Thank you")
+    	store_page.tabs_reviews.click
+    	    	    
+    	expect(store_page.review_content.first.text).to have_text(review_text)
+
+	end
+
 end
