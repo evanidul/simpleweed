@@ -31,9 +31,30 @@
 				<span class="glyphicon glyphicon-star"></span>		
 			</div>
 			
-			<span class="write-review-button">				
-				<%= link_to 'write a review', new_store_store_review_path(@store) , data: { toggle: "modal", target: "#modal", remote: new_store_store_review_path(@store)} , id: "write-review-button" , class: "btn btn-primary", "data-content"=>"<span id='write-review-first-tip'>Be the first!</span>" %>
-			</span>				
+			<% 
+			canReviewResult = @role_service.canViewWriteReviewButton(current_user, @store) 
+			if canReviewResult == true
+
+				%>
+				<span class="write-review-button">				
+					<%= link_to 'write a review', new_store_store_review_path(@store) , data: { toggle: "modal", target: "#modal", remote: new_store_store_review_path(@store)} , id: "write-review-button" , class: "btn btn-primary", "data-content"=>"<span id='write-review-first-tip'>Be the first!</span>" %>
+				</span>			
+			<% else %>
+				<span class="write-review-button-blocked">
+					<!-- <a class="btn btn-default" >Write a Review</a> -->
+					<%= link_to 'write a review', new_store_store_review_path(@store) , id: "write-review-button-blocked" , class: "btn btn-default", "data-content"=>"<span id='write-review-blocked-tip'>"+canReviewResult+"</span>" %>
+					<script>
+						$('#write-review-button-blocked').click(function(e){
+						  	e.preventDefault();
+						  	$('#write-review-button-blocked').popover({ 
+							    html : true,
+							    placement : "right"
+							}).popover('show');
+					
+						});
+					</script>
+				</span>
+			<% end %>
 			<% if @role_service.findStoreOwnerForStore(@store).size < 1 %>
 				<span class="claim-store-button">
 					<%= link_to 'claim', show_claim_store_path(@store), class: 'btn btn-warning' , id: "claim-store-button" %>

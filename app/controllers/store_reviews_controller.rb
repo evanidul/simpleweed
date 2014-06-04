@@ -7,11 +7,14 @@ class StoreReviewsController < ApplicationController
 		@store_reviews = @store.store_reviews;		
 	end
 
+	# Require: Must be logged in
+	# Require: Can only write one store review per user
+	# Require: Storeowner/manager cannot review their own stores?
 	def new
 		if !authenticate_user!("You must be logged in to write a review.  Login now or sign up!", true) 
 			return 
-		end
-		@store_review = @store.store_reviews.build
+		end		
+		@store_review = @store.store_reviews.build		
 		render layout: false		
 	end
 
@@ -22,9 +25,13 @@ class StoreReviewsController < ApplicationController
 		end
 		@store_review =  @store.store_reviews.create(store_review_params)		
 		@store_review.user = current_user
-		@store_review.save
-		flash[:notice] = "Thank you for submitting your review."
-		redirect_to store_path(@store)
+		if @store_review.save
+			flash[:notice] = "Thank you for submitting your review."
+			redirect_to store_path(@store)
+		else 
+			flash[:warning] = "We could not save your review.  Have you written one for this store already?"
+			redirect_to store_path(@store)
+		end
 	end
 
 

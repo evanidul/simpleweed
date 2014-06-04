@@ -65,6 +65,32 @@ module Simpleweed
 	  			end
 	  		end
 
+	  		# dvu: don't much like this.  If a user is not logged in, they can still view the write review button, so that
+	  		# when they click on it, they will get a login/registration prompt.  But the logic seems odd to me.  
+
+	  		# Users can only write 1 review per store
+	  		# Store manager & store owner cannot review their own store
+	  		# return true or a string reason as to why they cannot, the string will be rendered in a tooltip.
+	  		def canViewWriteReviewButton(user, store)
+	  			if store.nil?
+	  				return false
+	  			end
+
+	  			if user.nil?
+	  				return true
+	  			end
+	  			if isStoreManager(user,store) || isStoreOwner(user,store)
+	  				return "store managers cannot review their own stores"
+	  			end
+
+	  			previousreview = store.store_reviews.find_by user_id: user.id
+	  			if previousreview.nil?
+	  				return true
+	  			else
+	  				return "you've already reviewed this store"
+	  			end
+
+	  		end
 		end #class
 	end
 end

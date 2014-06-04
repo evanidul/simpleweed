@@ -4,6 +4,8 @@ class StorePage < SitePrism::Page
 	element :name_header, "#name"
 	element :claim_store_button, "#claim-store-button"
 	element :write_review_button, '#write-review-button'
+	element :write_review_button_blocked, '#write-review-button-blocked'
+	element :write_review_button_blocked_tooltip, '#write-review-blocked-tip'
 	element :first_write_review_tooltip, '#write-review-first-tip'
 	element :flash_notice, '#flash_notice'
 
