@@ -1,0 +1,14 @@
+
+(function(response) {
+	//27_vote_sum
+	id = response.review_id
+	$("#" + id + "_vote_sum").html(response.currentcount)
+	console.log('done');
+})(
+	{
+		message:'ok',	
+		review_id: <%= @storereview.id %>,
+		vote: <%= @vote %>,
+		currentcount: <%= @currentcount %>
+	}
+)
