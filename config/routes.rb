@@ -44,7 +44,9 @@ Smellyleaf::Application.routes.draw do
 
     end
     resources :store_items
-    resources :store_reviews
+    resources :store_reviews do
+      resources :store_review_votes
+    end
   end    
 
 

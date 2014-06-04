@@ -1,0 +1,2 @@
+class StoreReviewVotesController < ApplicationController
+end
