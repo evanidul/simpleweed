@@ -8,11 +8,17 @@ before_filter :load_store_review
 		end
 	end
 
+	def votecannotbecast
+		respond_to do |format|
+			format.js {}
+		end
+	end
+
 	def create		
 		
 		if current_user.nil?
 			#format.js { file 'login' }
-			render 'login'
+			return render 'login'
 		end
 
 		respond_to do |format|
@@ -27,16 +33,14 @@ before_filter :load_store_review
 
       		@vote = store_review_votes_params[:vote];
       		
-
-
 			if @store_review_vote.save
 
 				#@currentcount = @storereview.store_review_votes.sum(:vote)
 				@currentcount = @storereview.sum_votes
 
-				format.js {}
+				return format.js {}
 			else 
-				return
+				return render 'votecannotbecast'
 			end
 		end # respond_to
 	end
