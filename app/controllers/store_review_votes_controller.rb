@@ -31,7 +31,9 @@ before_filter :load_store_review
 
 			if @store_review_vote.save
 
-				@currentcount = @storereview.store_review_votes.sum(:vote)
+				#@currentcount = @storereview.store_review_votes.sum(:vote)
+				@currentcount = @storereview.sum_votes
+
 				format.js {}
 			else 
 				return

@@ -52,7 +52,7 @@
 
 						<% end %>
 						<div> 
-							<div class="review-votes" id="<%=store_review.id%>_vote_sum"><%= store_review.store_review_votes.sum(:vote) %> </div>
+							<div class="review-votes" id="<%=store_review.id%>_vote_sum"><%= store_review.sum_votes %> </div>
 						</div>
 						
 						<%= form_for ([@store, store_review, store_review.store_review_votes.build]), :remote => true, :html => { :id => "new_downvote_on_#{store_review.id}" } do |f| %>

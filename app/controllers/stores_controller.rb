@@ -50,7 +50,7 @@ class StoresController < ApplicationController
 
 		@store_items = @store.store_items.order('name ASC')
 		@grouped_store_items = @store_items.group_by &:category
-		@store_reviews = @store.store_reviews
+		@store_reviews = @store.store_reviews.all.sort_by {|review| review.sum_votes}.reverse
 
 		if params[:modal]
 			render "peak", :layout => false

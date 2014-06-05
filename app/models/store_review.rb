@@ -13,6 +13,8 @@ class StoreReview < ActiveRecord::Base
   validates :user_id, :uniqueness => { :scope => :store_id,
     :message => "Users may only write one review per store." }
 
-  	
+  def sum_votes
+    store_review_votes.sum(:vote)
+  end  	
 
 end

@@ -186,6 +186,8 @@ feature "store item edit and add" , :js => true, :search =>true do
         expect(store_page.review_content.first.text).to have_text(review_text)
         expect(store_page.star_ranking.first['star-value']).to have_text("1") 
         expect(store_page.review_vote_sum.first).to have_text("1")
+        
+        expect(store_page.review_content.last.text).to have_text(review_text_user2)
         expect(store_page.star_ranking.last['star-value']).to have_text("5") 
         expect(store_page.review_vote_sum.last).to have_text("0")
 
@@ -198,6 +200,45 @@ feature "store item edit and add" , :js => true, :search =>true do
         store_page.upvotebutton.last.click
         wait_for_ajax        
         expect(store_page.review_vote_sum.last).to have_text("1")
+
+        # logout
+        header.logoutlink.click
+        header.loginlink.click
+        
+        # login modal
+        header.username.set @adminemail
+        header.password.set @adminpassword
+        header.logininbutton.click
+
+        expect(header.edituserlink.text).to have_text(@adminusername)
+        # search for it     
+        header = HeaderPageComponent.new    
+        header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+        header.search_button.click
+
+        search_results_page = SearchResultsStoresPageComponent.new      
+                
+        search_results_page.search_results_store_names.size.should == 1
+        search_results_page.search_results_store_names.map {|name| name.text}.should == [@store_name]
+
+        # click and view preview
+        search_results_page.search_results_store_names.first.click
+        store_page = StorePage.new
+        expect(store_page.name_header.text).to have_text(@store_name)
+
+        # reviews tab
+        store_page.tabs_reviews.click
+        
+        # user2's review should have moved up to first position since it has more votes.
+        expect(store_page.review_content.first.text).to have_text(review_text_user2)
+        expect(store_page.star_ranking.first['star-value']).to have_text("5") 
+        expect(store_page.review_vote_sum.first).to have_text("1")
+        
+        expect(store_page.review_content.last.text).to have_text(review_text)
+        expect(store_page.star_ranking.last['star-value']).to have_text("1") 
+        expect(store_page.review_vote_sum.last).to have_text("0")
+
+        
 
     end
 
