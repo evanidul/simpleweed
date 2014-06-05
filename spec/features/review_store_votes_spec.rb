@@ -67,7 +67,7 @@ feature "store item edit and add" , :js => true, :search =>true do
 	end
 
 	
-	scenario "review a star with default 1 star, login as user 2 and upvote it" do
+	scenario "review a star with default 1 star, login as user 2 and upvote it, user2 creates a review, login as user 3 and downvote the first, upvotes the 2nd." do
         # login as admin
         page.visit("/")        
         header = HeaderPageComponent.new        
@@ -143,6 +143,18 @@ feature "store item edit and add" , :js => true, :search =>true do
         wait_for_ajax        
         expect(store_page.review_vote_sum.first).to have_text("1")
 
+        # user 2 writes his own review
+        store_page.write_review_button.click         
+        review_text_user2 = "I loved this place!"
+        store_page.review_text.set review_text_user2
+        store_page.fivestar_button.click
+        store_page.save_review_button.click
+
+        #expect success message
+        expect(store_page.flash_notice.text).to have_text("Thank you")
+        store_page.tabs_reviews.click                    
+        expect(store_page.review_content.last.text).to have_text(review_text_user2)
+        expect(store_page.star_ranking.last['star-value']).to have_text("5") 
 
         # logout
         header.logoutlink.click
@@ -174,11 +186,18 @@ feature "store item edit and add" , :js => true, :search =>true do
         expect(store_page.review_content.first.text).to have_text(review_text)
         expect(store_page.star_ranking.first['star-value']).to have_text("1") 
         expect(store_page.review_vote_sum.first).to have_text("1")
+        expect(store_page.star_ranking.last['star-value']).to have_text("5") 
+        expect(store_page.review_vote_sum.last).to have_text("0")
 
-        # upvote it
+        # downvote the first review
         store_page.downvotebutton.first.click
         wait_for_ajax        
         expect(store_page.review_vote_sum.first).to have_text("0")
+
+        # upvote user2's review
+        store_page.upvotebutton.last.click
+        wait_for_ajax        
+        expect(store_page.review_vote_sum.last).to have_text("1")
 
     end
 
