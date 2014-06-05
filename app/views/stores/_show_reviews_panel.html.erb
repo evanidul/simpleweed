@@ -46,7 +46,7 @@
 					<div class="btn-group-vertical review-vote-controls">		
 						<%= form_for ([@store, store_review, store_review.store_review_votes.build]), :remote => true, :html => { :id => "new_upvote_on_#{store_review.id}" } do |f| %>
 							<%= f.hidden_field :vote, :value => "1" %> 
-							<%= button_tag(type: 'submit', class: "btn btn-default") do %>
+							<%= button_tag(type: 'submit', class: "btn btn-default upvotebutton") do %>
  								<div class="glyphicon glyphicon-chevron-up"></div>
 							<% end %>
 
@@ -57,7 +57,7 @@
 						
 						<%= form_for ([@store, store_review, store_review.store_review_votes.build]), :remote => true, :html => { :id => "new_downvote_on_#{store_review.id}" } do |f| %>
 							<%= f.hidden_field :vote, :value => "-1" %> 
-							<%= button_tag(type: 'submit', class: "btn btn-default") do %>
+							<%= button_tag(type: 'submit', class: "btn btn-default downvotebutton") do %>
  								<div class="glyphicon glyphicon-chevron-down"></div>
 							<% end %>
 						<% end %>

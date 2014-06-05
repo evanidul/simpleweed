@@ -40,6 +40,9 @@ if ENV['UNICORN'] == "true"
   end
 end
 
+# require all files in spec/support automatically
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |file| require file }
+
 RSpec.configure do |config|
   # ## Mock Framework
   #
@@ -53,6 +56,10 @@ RSpec.configure do |config|
   #config.deprecation_stream = 'log/deprecations.log'
   # or  ...doesnt' WORK!
   #config.deprecation_stream = File.open("#{::Rails.root}/log/testdeprecations", "w")
+
+  # from http://robots.thoughtbot.com/automatically-wait-for-ajax-with-capybara
+  # gives us a function to wait for ajax to complete in tests
+  config.include WaitForAjax, type: :feature
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"

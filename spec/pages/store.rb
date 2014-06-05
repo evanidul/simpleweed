@@ -9,8 +9,8 @@ class StorePage < SitePrism::Page
 	element :first_write_review_tooltip, '#write-review-first-tip'
 	element :flash_notice, '#flash_notice'
 
-	# review modal
-	element :review_text, '#store_review_review'
+	# review modal (write new review)
+	element :review_text, '#store_review_review'  #review input
 	element :save_review_button, '#save_store_item'
 	element :cancel_write_review_button, '#close-button'
 	element :onestar_button, '#rank_store_stars_1'
@@ -22,9 +22,12 @@ class StorePage < SitePrism::Page
 	# main tabs
 	element :tabs_reviews, '#tabs-reviews'
 
-	# reviews
+	# reviews (on review tab)
 	elements :review_content, '.review-content'
 	elements :star_ranking, '.store-star-rank'
+	elements :review_vote_sum, '.review-votes'
+	elements :upvotebutton, '.upvotebutton'
+	elements :downvotebutton, '.downvotebutton'
 
 	# menu (main page)
 	element :edit_store_items, "#edit_store_items"
