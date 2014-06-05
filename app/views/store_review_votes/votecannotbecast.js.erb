@@ -1,2 +1,6 @@
 
-bootstrap_alert.warning('You cannot cast more than 1 vote per review');
+<% if @message.nil? %>
+	bootstrap_alert.warning("Your vote could not be saved.");
+<% else %>
+	bootstrap_alert.warning(' <%= @message %>');
+<% end %>

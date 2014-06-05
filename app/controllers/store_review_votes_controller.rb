@@ -2,13 +2,15 @@ class StoreReviewVotesController < ApplicationController
 
 before_filter :load_store_review
 
+	# not actually used when render 'login' is called.  Render just accesses that view.
 	def login
 		respond_to do |format|
 			format.js {}
 		end
 	end
 
-	def votecannotbecast
+	# not actually used when render 'votecannotbecast' is called.
+	def votecannotbecast		
 		respond_to do |format|
 			format.js {}
 		end
@@ -40,7 +42,20 @@ before_filter :load_store_review
 
 				return format.js {}
 			else 
-				return render 'votecannotbecast'
+				messagearray = @store_review_vote.errors.full_messages
+
+				if messagearray.include? "A user can't vote on their own reviews"
+					@message = "A user can't vote on their own reviews"
+					return render 'votecannotbecast' 
+				end
+
+				if messagearray.include? "Store review has already been taken"
+					@message = 'You cannot cast more than 1 vote per review'
+					return render 'votecannotbecast' 
+				end
+				
+				@message = "Your vote could not be saved."
+				return render 'votecannotbecast' 
 			end
 		end # respond_to
 	end
