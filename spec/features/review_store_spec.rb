@@ -617,7 +617,38 @@ feature "store item edit and add" , :js => true, :search =>true do
 
         # try and review the store as the owner, see tooltip saying you can't
         store_page.write_review_button_blocked.click        
-		expect(store_page.write_review_button_blocked_tooltip).to have_text("store managers cannot review their own stores") 
+		expect(store_page.write_review_button_blocked_tooltip).to have_text("store managers cannot review stores") 
+
+        # make a new store
+        @store2_name = "My 2nd store"
+        @store2_addressline1 = "500 Montgomery St."
+        @store2_city = "San Francisco"
+        @store2_ca = "CA"
+        @store2_zip = "92122"
+        @store2 = Store.new(:name => @store2_name , :addressline1 => @store2_addressline1, :city => @store2_city, :state => @store2_ca, :zip => @store2_zip)
+        @store2.save 
+
+        @item2 =  @store2.store_items.create(:name => "og" , :strain =>"indica")
+        @item2.cultivation = "indoor"       
+        @item2.save
+        Sunspot.commit
+
+        # search for it     
+        header.search_input.set "Montgomery, San Francisco, CA"
+        header.search_button.click
+
+        search_results_page = SearchResultsStoresPageComponent.new                      
+        search_results_page.search_results_store_names.size.should == 1
+        search_results_page.search_results_store_names.map {|name| name.text}.should == [@store2_name]
+
+        # click and view preview
+        search_results_page.search_results_store_names.first.click                
+        expect(store_page.name_header.text).to have_text(@store2_name)  
+
+        # try and review the store as the owner, see tooltip saying you can't
+        store_page.write_review_button_blocked.click        
+        expect(store_page.write_review_button_blocked_tooltip).to have_text("store managers cannot review stores")   
+
   	end
 
   	scenario "reviewing one store blocks you from reviewing that store, but should not prevent you from reviewing a second store" do

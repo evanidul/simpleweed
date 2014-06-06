@@ -244,7 +244,7 @@ class StoresController < ApplicationController
 			redirect_to store_path(@store, :show_edit_popover => 'true')
 		else 			
 			flash[:notice] = "Your email must match the email of this store, in order to claim it."
-			redirect_to store_path(@store, :show_edit_popover => 'true')
+			redirect_to store_path(@store, :show_edit_popover => 'true')  # dvu: why do we show the popover if they failed to claim?
 		end	
 	end
 

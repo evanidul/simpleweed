@@ -29,7 +29,8 @@ class StoreReviewsController < ApplicationController
 			flash[:notice] = "Thank you for submitting your review."
 			redirect_to store_path(@store)
 		else 
-			flash[:warning] = "We could not save your review.  Have you written one for this store already?"
+			messagearray = @store_review.errors.full_messages
+			flash[:warning] = messagearray
 			redirect_to store_path(@store)
 		end
 	end

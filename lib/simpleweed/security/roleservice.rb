@@ -35,7 +35,9 @@ module Simpleweed
 	  			return User.with_role(:storemanager, store)
 	  		end
 
-	  		def isStoreOwner(user, store)
+	  		# dvu: returns true if the user is the store owner for the GIVEN store, but false if given another store. 
+	  		# Use isStoreOwner(user) if you just want to check if the user owns ANY stores.
+	  		def isUserStoreOwnerOf(user, store)
 	  			if user.nil? || store.nil?
 	  				return false
 	  			else
@@ -43,11 +45,43 @@ module Simpleweed
 	  			end
 	  		end 
 
-	  		def isStoreManager(user, store) 
+	  		# dvu: is this user a store owner for ANY stores?
+	  		def isStoreOwner(user)
+	  			if user.nil?
+	  				return false
+	  			else
+	  				# returns all stores that this user is a storeowner of
+	  				stores = Store.with_role(:storeowner, user)
+	  				if stores.empty? #returns empty array, not nil
+	  					return false
+	  				else 
+	  					return true
+	  				end
+	  			end
+	  		end
+
+	  		# duv: returns true if the user is the store manager for the GIVEN store, but false if given any other store.
+	  		# use isStoreManager(user) if you just want to check if the user managers ANY stores.
+	  		def isUserStoreManagerOf(user, store) 
 	  			if user.nil? || store.nil?
 	  				return false
 	  			else 
 	  				return user.has_role? :storemanager, store
+	  			end
+	  		end
+
+	  		# dvu: is this user a store manager for ANY stores?
+	  		def isStoreManager(user) 	  			
+	  			if user.nil?
+	  				return false
+	  			else
+	  				# returns all stores that this user is a storemanager of
+	  				stores = Store.with_role(:storemanager, user)
+	  				if stores.empty? #returns empty array, not nil
+	  					return false
+	  				else 
+	  					return true
+	  				end
 	  			end
 	  		end
 
@@ -58,7 +92,7 @@ module Simpleweed
 	  				return false
 	  			end
 
-	  			if isStoreManager(user,store) || isStoreOwner(user,store) || user.has_role?(:admin)
+	  			if isUserStoreManagerOf(user,store) || isUserStoreOwnerOf(user,store) || user.has_role?(:admin)
 	  				return true
 	  			else
 	  				return false
@@ -79,8 +113,8 @@ module Simpleweed
 	  			if user.nil?
 	  				return true
 	  			end
-	  			if isStoreManager(user,store) || isStoreOwner(user,store)
-	  				return "store managers cannot review their own stores"
+	  			if isStoreManager(user) || isStoreOwner(user)
+	  				return "store managers cannot review stores"
 	  			end
 
 	  			previousreview = store.store_reviews.find_by user_id: user.id
