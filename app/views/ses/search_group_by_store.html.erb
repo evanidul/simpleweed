@@ -204,8 +204,9 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ornare ante id
 <% end %>
 
 </div> <!-- search-results -->
-
-<a href = <%= @nextlink %> id="search-next">Next </a>
+<% if !@isLastPage %>
+	<a href = <%= @nextlink %> id="search-next">Next </a>
+<% end %>
 
 <div class="infobox-wrapper">
     <div id="infobox">

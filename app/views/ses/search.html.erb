@@ -191,7 +191,9 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ornare ante id
 
 <div id="item-search-results-map" class = "search-items-map"></div>
 
-<a href = <%= @nextlink %> id="search-next">Next </a>
+<% if !@isLastPage %>
+	<a href = <%= @nextlink %> id="search-next">Next </a>
+<% end %>
 
 
 <script>

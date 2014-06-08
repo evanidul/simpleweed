@@ -29,7 +29,8 @@ class SesController < ApplicationController
 		  if !geocoordiantes
 		  	# they typed in gibberish for search coordinates
 		  	
-		  	@store_items = []		  			  	
+		  	@store_items = []	
+		  	@isLastPage = true	  			  	
 		  	render 'search'
 		  	return
 		  end 
@@ -433,6 +434,7 @@ class SesController < ApplicationController
 		nextpagestr = nextpagenum.to_s
 		@nextlink = orig.sub('se%5Bpg%5D=' + currentpagestr,'se%5Bpg%5D=' +nextpagestr)  # increment the pagination param by 1
 
+		@isLastPage = @itemsearch.hits.last_page?		
 
 		 if !itemquery || itemquery.empty?  || groupbystore
 		 	render 'search_group_by_store'
