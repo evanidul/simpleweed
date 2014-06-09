@@ -1,13 +1,18 @@
 
 (function(response) {
 	
-	id = response.review_id;
-	$("#" + "comments_for_review_" + id ).html(response.comment);
-	console.log('done');
+	var element = '<div id="comment_' + response.comment_id + '" class="store-review-comment" ><a href="#">' + response.username + '</a>&nbsp<span class="store-review-comment-ago">' + response.created_at +' ago</span><br/>' + response.comment + '</div>';
+
+
+	$("#" + "comments_for_review_" + response.review_id ).append(element);				
+
 })(
 	{
 		message:'ok',	
 		review_id: "<%= @storereview.id %>",
-		comment: "<%= @store_review_comment.comment %>"
+		comment: "<%= @store_review_comment.comment %>",
+		comment_id: "<%= @store_review_comment.id %>",
+		username: "<%= @store_review_comment.user.username %>",
+		created_at: "<%= time_ago_in_words(@store_review_comment.created_at) %>"
 	}
 )

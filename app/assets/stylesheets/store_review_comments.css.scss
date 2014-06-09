@@ -8,5 +8,23 @@
 
 .store-review-comment {
 	background-color: rgb(247, 249, 250);
-	margin: 2px;
+	margin: 1px;
+	padding-left: 10px;
+	padding-top: 2px;
+}
+
+.new-store-review-comment-form {
+	margin-left: 40px;
+	margin-top: 4px;
+	margin-bottom: 15px;
+}
+
+/** button **/
+.save-new-store-review-comment {
+	margin-top:2px;	
+}
+
+.store-review-comment-ago {
+	color: #999999;
+	font-size: 75%;
 }
