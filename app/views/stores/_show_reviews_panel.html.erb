@@ -22,8 +22,7 @@
 	<div class="store-review">
 		<h4>
 			<%= store_review.user.username %>
-			<small><%= store_review.created_at %></small>
-			<small><%= store_review.stars %></small>
+			<small><%= time_ago_in_words(store_review.created_at) %></small>			
 			<ul class = "store-star-rank" style="float:right;" star-value="<%= store_review.stars %>">			
 			<% (1..store_review.stars).each do |i| %>
 				<li class="rating_star">
@@ -78,8 +77,8 @@
 			<% end %>			
 		</div>
 		<%= form_for ([@store, store_review, store_review.store_review_comments.build]), :remote => true, :html => { :id => "new_comment_on_#{store_review.id}" , :class=> "new-store-review-comment-form"} do |f| %>
-			<%= f.text_area :comment, :class => 'form-control', :required => true, :rows => 1 %>
-			<%= f.submit 'post comment', :class => 'btn btn-primary lowercase pull-right save-new-store-review-comment' , :id => 'save_comment_on_#{store_review.id' %>
+			<%= f.text_area :comment, :class => 'form-control new-comment-input', :required => true, :rows => 1 %>
+			<%= f.submit 'post comment', :class => 'btn btn-primary lowercase pull-right save-new-store-review-comment btn-sm' , :id => 'save_comment_on_#{store_review.id' %>
 		<% end %>		
 		
 		
