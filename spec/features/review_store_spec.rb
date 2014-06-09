@@ -479,6 +479,7 @@ feature "store item edit and add" , :js => true, :search =>true do
 
 		# plugin some email verification gem and verify account creation
 		# http://stackoverflow.com/questions/8886748/testing-account-confirmation-with-rails-rspec-capybara-devise	
+        sleep 2
 		emailproxy = open_email(email)
 		emailproxy.should deliver_to(email)
 		
