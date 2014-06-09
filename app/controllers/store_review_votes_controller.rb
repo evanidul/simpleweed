@@ -1,6 +1,6 @@
 class StoreReviewVotesController < ApplicationController
 
-before_filter :load_store_review
+	before_filter :load_store_review
 
 	# not actually used when render 'login' is called.  Render just accesses that view.
 	def login
@@ -25,8 +25,8 @@ before_filter :load_store_review
 
 		respond_to do |format|
 		
-		@store_review_vote =  @storereview.store_review_votes.create(store_review_votes_params)		
-		@store_review_vote.user = current_user
+			@store_review_vote =  @storereview.store_review_votes.create(store_review_votes_params)		
+			@store_review_vote.user = current_user
 
 		
       		#format.html # new.html.erb

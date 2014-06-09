@@ -1,0 +1,13 @@
+
+(function(response) {
+	
+	id = response.review_id;
+	$("#" + "comments_for_review_" + id ).html(response.comment);
+	console.log('done');
+})(
+	{
+		message:'ok',	
+		review_id: "<%= @storereview.id %>",
+		comment: "<%= @store_review_comment.comment %>"
+	}
+)

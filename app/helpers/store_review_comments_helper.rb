@@ -1,0 +1,2 @@
+module StoreReviewCommentsHelper
+end

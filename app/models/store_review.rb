@@ -3,6 +3,7 @@ class StoreReview < ActiveRecord::Base
   belongs_to :user
 
   has_many :store_review_votes
+  has_many :store_review_comments
 
   validates :review, :stars, :user, :store, presence: true
   validates_inclusion_of :stars, :in => 1..5

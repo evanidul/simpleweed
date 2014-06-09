@@ -68,7 +68,22 @@
 				</td>	
 			</tr>
 		</table>
+
+		<div id="comments_for_review_<%= store_review.id %>" class="store-review-comments">			
+			<% store_review.store_review_comments.each do |store_review_comment| %>
+				<div id="comment_<%= store_review_comment.id %>" class="store-review-comment" >
+					<%= store_review_comment.user.username %><br/>
+					<%= store_review_comment.comment %>
+				</div>
+			<% end %>			
+		</div>
+		<%= form_for ([@store, store_review, store_review.store_review_comments.build]), :remote => true, :html => { :id => "new_comment_on_#{store_review.id}" } do |f| %>
+			<%= f.text_area :comment, :class => 'form-control', :required => true, :rows => 1 %>
+			<%= f.submit 'post comment', :class => 'btn btn-primary lowercase' , :id => 'save_comment_on_#{store_review.id' %>
+		<% end %>		
 		
+		
+
 	</div> 
 <% end %>
 </p>
