@@ -11,7 +11,7 @@ require 'pages/store_search_preview'
 require 'pages/registration'
 require 'pages/store_claim'
 
-feature "store item edit and add" , :js => true, :search =>true do
+feature "store review votes" , :js => true, :search =>true do
 
   	before :each do
 	    if ENV['TARGETBROWSER'] == "chrome"
