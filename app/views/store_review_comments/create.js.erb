@@ -1,7 +1,14 @@
 
 (function(response) {
 	
-	var element = '<div id="comment_' + response.comment_id + '" class="store-review-comment" ><a href="#">' + response.username + '</a>&nbsp<span class="store-review-comment-ago">' + response.created_at +' ago</span><br/>' + response.comment + '</div>';
+	var element;
+	if (response.storeowner==true) {
+		/** adds orange highlight class and store owner badge **/
+		element = '<div id="comment_' + response.comment_id + '" class="store-review-comment owner-store-review-comment" ><a href="#">' + response.username + '</a>&nbsp<span class="badge owner-badge">store owner</span>&nbsp;<span class="store-review-comment-ago">' + response.created_at +' ago</span><br/>' + response.comment + '</div>';
+	} else {
+		element = '<div id="comment_' + response.comment_id + '" class="store-review-comment" ><a href="#">' + response.username + '</a>&nbsp<span class="store-review-comment-ago">' + response.created_at +' ago</span><br/>' + response.comment + '</div>';
+	}
+	
 
 
 	$("#" + "comments_for_review_" + response.review_id ).append(element);				
@@ -13,6 +20,7 @@
 		comment: "<%= @store_review_comment.comment %>",
 		comment_id: "<%= @store_review_comment.id %>",
 		username: "<%= @store_review_comment.user.username %>",
-		created_at: "<%= time_ago_in_words(@store_review_comment.created_at) %>"
+		created_at: "<%= time_ago_in_words(@store_review_comment.created_at) %>",
+		storeowner: <%= @storeowner %>
 	}
 )

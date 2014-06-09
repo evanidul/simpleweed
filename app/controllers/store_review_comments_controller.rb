@@ -24,6 +24,12 @@ class StoreReviewCommentsController < ApplicationController
 			@store_review_comment =  @storereview.store_review_comments.create(store_review_comments_params)		
 			@store_review_comment.user = current_user
 
+			if @storereview.store.email == @store_review_comment.user.email
+				@storeowner = true
+			else
+				@storeowner = false
+			end
+
 			if @store_review_comment.save
 				return format.js {}
 			else

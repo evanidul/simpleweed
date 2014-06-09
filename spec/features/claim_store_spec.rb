@@ -37,6 +37,12 @@ feature "claim store spec" , :js => true, :search =>true do
 		user.save
 		user.add_role :admin # sets a global role
 
+        @user2email = "user2@gmail.com"
+        @user2password = "password"
+        @user2username = "user2"
+        user2 = User.new(:email => @user2email, :password => @user2password, :password_confirmation => @user2password, :username => @user2username)
+        user2.skip_confirmation!        
+        user2.save
 
 	end
 
@@ -198,6 +204,104 @@ feature "claim store spec" , :js => true, :search =>true do
 		expect(store_page.edit_links_tip.text).to have_text("edit links are now available for you")
         store_has_claim_button = store_page.has_claim_store_button?        
         assert_equal( false, store_has_claim_button, 'Store should not have a claim button after it is claimed')
+
+        # logout
+        header.logoutlink.click
+
+        # write a review as user 2                
+        header.loginlink.click
+
+        # login as user 2        
+        header.username.set @user2email
+        header.password.set @user2password
+        header.logininbutton.click        
+        expect(header.edituserlink.text).to have_text(@user2username)
+
+                # search for it     
+        header = HeaderPageComponent.new  
+        header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+        header.search_button.click
+
+        # search_results_page = SearchResultsStoresPageComponent.new        
+        # expect(search_results_page.firstSearchResult_store_name.text).to have_text(store_name)
+        search_results_page = SearchResultsStoresPageComponent.new      
+                
+        search_results_page.search_results_store_names.size.should == 1
+        search_results_page.search_results_store_names.map {|name| name.text}.should == [store_name]
+
+
+        # click and view preview
+        search_results_page.search_results_store_names.first.click
+        
+        store_page = StorePage.new
+        store_page.has_name_header?
+        expect(store_page.name_header.text).to have_text(store_name)    
+
+        # user 2 writes his own review
+        store_page.write_review_button.click         
+        review_text_user2 = "I loved this place!"
+        store_page.review_text.set review_text_user2
+        store_page.fivestar_button.click
+        store_page.save_review_button.click
+
+        #expect success message
+        expect(store_page.flash_notice.text).to have_text("Thank you")
+        store_page.tabs_reviews.click   
+
+        # ordering is most recent on top, since vote total is 0 for both reviews
+        expect(store_page.review_content.first.text).to have_text(review_text_user2)
+        expect(store_page.star_ranking.first['star-value']).to have_text("5") 
+
+        # logout
+        header.logoutlink.click
+
+        # login as store owner (admin)
+        header.loginlink.click
+        
+        # login modal
+        header.username.set @adminemail
+        header.password.set @adminpassword
+        header.logininbutton.click
+
+        expect(header.edituserlink.text).to have_text(@adminusername)
+        # search for it     
+        header = HeaderPageComponent.new    
+        header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+        header.search_button.click
+
+        search_results_page = SearchResultsStoresPageComponent.new      
+                
+        search_results_page.search_results_store_names.size.should == 1
+        search_results_page.search_results_store_names.map {|name| name.text}.should == [store_name]
+
+        # click and view preview
+        search_results_page.search_results_store_names.first.click
+        store_page = StorePage.new
+        expect(store_page.name_header.text).to have_text(@store_name)
+
+        # store owners can comment on reviews
+        store_page.tabs_reviews.click
+        storeownercomment = "sorry about that!"
+        store_page.new_comment_inputs.first.set storeownercomment
+        store_page.save_new_comment_button.first.click
+        wait_for_ajax
+            
+        expect(store_page.store_review_comments.first).to have_text(storeownercomment) 
+
+        # is it badged?  highlighted?        
+        expect(store_page.owner_badges.size).to eq(1)
+        expect(store_page.owner_comments.first.text).to have_text(storeownercomment) 
+
+        # the above tests ajax response.  Now refresh the page and make sure that the badges + css highlights are still there
+        page.visit(current_path)
+        expect(store_page.name_header.text).to have_text(@store_name)
+        store_page.tabs_reviews.click
+        expect(store_page.store_review_comments.first).to have_text(storeownercomment) 
+
+        # is it badged?  highlighted?        
+        expect(store_page.owner_badges.size).to eq(1)
+        expect(store_page.owner_comments.first.text).to have_text(storeownercomment) 
+
   	end
 
 	scenario "login as admin, create a store, DONT log out, go to store page, claim a store, don't see login, see store claim page" do		
