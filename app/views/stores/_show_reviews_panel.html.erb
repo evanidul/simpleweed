@@ -22,7 +22,7 @@
 	<div class="store-review">
 		<h4>
 			<%= store_review.user.username %>
-			<small><%= time_ago_in_words(store_review.created_at) %></small>			
+			<small><%= time_ago_in_words(store_review.created_at) %> ago</small>			
 			<ul class = "store-star-rank" style="float:right;" star-value="<%= store_review.stars %>">			
 			<% (1..store_review.stars).each do |i| %>
 				<li class="rating_star">
