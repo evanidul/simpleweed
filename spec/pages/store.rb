@@ -31,6 +31,7 @@ class StorePage < SitePrism::Page
 	elements :new_comment_inputs, '.new-comment-input'
 	elements :save_new_comment_button, '.save-new-store-review-comment'
 	elements :store_review_comments, '.store-review-comment'
+	elements :log_in_to_comment_links, '.log-in-to-comment'
 
 	# menu (main page)
 	element :edit_store_items, "#edit_store_items"

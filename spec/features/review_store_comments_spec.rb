@@ -218,13 +218,107 @@ feature "store review comments" , :js => true, :search =>true do
         expect(store_page.store_review_comments.first).to have_text(user3comment) 
 
         expect(store_page.store_review_comments[1]).to have_text(user1comment) 
-        expect(store_page.store_review_comments.last).to have_text(user2comment) 
-        
-        
-
-
-        
+        expect(store_page.store_review_comments.last).to have_text(user2comment)         
     end
 
-	
+	scenario "must be logged on to comment" do
+        # login as admin
+        page.visit("/")        
+        header = HeaderPageComponent.new        
+        header.loginlink.click
+        
+        # login modal
+        header.username.set @adminemail
+        header.password.set @adminpassword
+        header.logininbutton.click
+
+        expect(header.edituserlink.text).to have_text(@adminusername)
+        # search for it     
+        header = HeaderPageComponent.new    
+        header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+        header.search_button.click
+
+        search_results_page = SearchResultsStoresPageComponent.new      
+                
+        search_results_page.search_results_store_names.size.should == 1
+        search_results_page.search_results_store_names.map {|name| name.text}.should == [@store_name]
+
+        # click and view preview
+        search_results_page.search_results_store_names.first.click
+        store_page = StorePage.new
+        expect(store_page.name_header.text).to have_text(@store_name)
+
+        store_page.write_review_button.click
+        store_page.cancel_write_review_button.click
+        store_page.write_review_button.click
+        review_text = "I hated this place!"
+        store_page.review_text.set review_text
+        store_page.save_review_button.click
+
+        #expect success message
+        expect(store_page.flash_notice.text).to have_text("Thank you")
+        store_page.tabs_reviews.click                    
+        expect(store_page.review_content.first.text).to have_text(review_text)
+        expect(store_page.star_ranking.first['star-value']).to have_text("1") 
+
+        # users can comment on their own reviews
+        store_page.tabs_reviews.click
+        user1comment = "selfless promotion"
+        store_page.new_comment_inputs.first.set user1comment
+        store_page.save_new_comment_button.first.click
+        wait_for_ajax
+        expect(store_page.store_review_comments.first).to have_text(user1comment) 
+        
+
+        # logout
+        header.logoutlink.click
+
+        # search for it     
+        header = HeaderPageComponent.new    
+        header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+        header.search_button.click
+
+        search_results_page = SearchResultsStoresPageComponent.new      
+                
+        search_results_page.search_results_store_names.size.should == 1
+        search_results_page.search_results_store_names.map {|name| name.text}.should == [@store_name]
+
+        # click and view preview
+        search_results_page.search_results_store_names.first.click
+        store_page = StorePage.new
+        expect(store_page.name_header.text).to have_text(@store_name)
+        store_page.tabs_reviews.click     
+
+        # no comment inputs should be on the page
+        num_comment_inputs = store_page.new_comment_inputs.size
+        expect(num_comment_inputs).to eq(0)
+
+        num_comment_save_buttons = store_page.save_new_comment_button.size
+        expect(num_comment_save_buttons).to eq(0)
+
+        # should have login links in comment section, click and login
+        num_log_in_to_comment_links = store_page.log_in_to_comment_links.size
+        expect(num_log_in_to_comment_links).to eq(1)
+        store_page.log_in_to_comment_links.first.click
+
+        # login as user 2        
+        header.username.set @user2email
+        header.password.set @user2password
+        header.logininbutton.click                
+        expect(header.edituserlink.text).to have_text(@user2username)
+
+        # devise should drop you back to the store page, so no need to search for it again
+        expect(store_page.name_header.text).to have_text(@store_name)
+        store_page.tabs_reviews.click     
+
+        # user2 comments on user1's review
+        store_page.tabs_reviews.click
+        user2comment = "what a stupid comment!"
+        store_page.new_comment_inputs.first.set user2comment
+        store_page.save_new_comment_button.first.click
+        wait_for_ajax        
+        expect(store_page.store_review_comments.first).to have_text(user1comment) 
+        expect(store_page.store_review_comments[1]).to have_text(user2comment) 
+             
+    end
 end
