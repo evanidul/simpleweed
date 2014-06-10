@@ -57,6 +57,7 @@ class StoreItem < ActiveRecord::Base
 	    boolean  :supersize
 	    boolean  :glutenfree
 	    boolean  :sugarfree
+	    boolean  :organic
 
 	    integer :store_id, :stored => true
 	    string(:store_id_str) { |p| p.store.id.to_s }

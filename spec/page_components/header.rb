@@ -46,12 +46,13 @@ class HeaderPageComponent < SitePrism::Page
   element :outdoor, '#se_v'
   element :hydroponic, '#se_w'
   element :greenhouse, '#se_x'
-  element :organic, '#se_y'
+  
   # misc
   element :privatereserve, '#se_z'
   element :topshelf, '#se_aa'
   element :glutenfree, '#se_bb'
   element :sugarfree, '#se_cc'
+  element :organic, '#se_y'
 
   # PRICE #################
   element :search_filterpriceby_, '#se_fpb_'  #none

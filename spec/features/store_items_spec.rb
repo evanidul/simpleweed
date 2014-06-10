@@ -373,6 +373,7 @@ feature "store item edit and add" , :js => true, :search =>true do
 		items_page.store_item_supersize.should_not be_checked
 		items_page.store_item_glutenfree.should_not be_checked
 		items_page.store_item_sugarfree.should_not be_checked
+		items_page.store_item_organic.should_not be_checked
 
 		# update values
 		items_page.store_item_privatereserve.set true
@@ -381,6 +382,7 @@ feature "store item edit and add" , :js => true, :search =>true do
 		items_page.store_item_supersize.set true
 		items_page.store_item_glutenfree.set true
 		items_page.store_item_sugarfree.set true
+		items_page.store_item_organic.set true
 		items_page.save_store_item_button.click
 
 		# back to items index
@@ -404,6 +406,39 @@ feature "store item edit and add" , :js => true, :search =>true do
 		items_page.store_item_supersize.should be_checked
 		items_page.store_item_glutenfree.should be_checked
 		items_page.store_item_sugarfree.should be_checked
+		items_page.store_item_organic.should be_checked
+
+		# update values, set all to false
+		items_page.store_item_privatereserve.set false
+		items_page.store_item_topshelf.set false
+		items_page.store_item_dogo.set false
+		items_page.store_item_supersize.set false
+		items_page.store_item_glutenfree.set false
+		items_page.store_item_sugarfree.set false
+		items_page.store_item_organic.set false
+		items_page.save_store_item_button.click
+
+		# back to items index
+		row_links = items_page.row_links
+	    	items_page.searchresults.each {|item_link| 
+	    		
+	    		if item_link.text.include? item_name
+	    			item_link.click
+	    			break
+	    		end
+
+	    	}
+		# verify values    	
+    	expect(items_page.store_item_name.value).to have_text(item_name)
+		expect(items_page.store_item_strain.value).to have_text('sativa')	
+		items_page.store_item_privatereserve.should_not be_checked
+		items_page.store_item_topshelf.should_not be_checked
+		items_page.store_item_dogo.should_not be_checked
+		items_page.store_item_supersize.should_not be_checked
+		items_page.store_item_glutenfree.should_not be_checked
+		items_page.store_item_sugarfree.should_not be_checked
+		items_page.store_item_organic.should_not be_checked
+	    	
     end
 
 	scenario "create a store, add some items: cultivation" do

@@ -128,10 +128,7 @@ class SesController < ApplicationController
   		  end
   		  if search.x == "1"
   		  	acceptable_cultivation.push("greenhouse")
-  		  end
-  		  # if search.y == "1"
-  		  # 	acceptable_cultivation.push("organic")	  		  
-  		  # end	  		   		 
+  		  end  		  
   		  
   		  if !acceptable_cultivation.empty?
   		  	any_of do
@@ -153,6 +150,9 @@ class SesController < ApplicationController
   		  if search.cc == "1"
   		  	with(:sugarfree, true)
   		  end
+		  if search.y == "1"
+  		  	with(:organic, true)	  		  
+  		  end	  		   		 
 
   		  # process price filters
   		  minprice = 0

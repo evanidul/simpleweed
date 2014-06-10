@@ -42,6 +42,7 @@ class StoreItemsPage < SitePrism::Page
 	element :store_item_supersize, '#store_item_supersize'
 	element :store_item_glutenfree, '#store_item_glutenfree'
 	element :store_item_sugarfree, '#store_item_sugarfree'
+	element :store_item_organic, '#store_item_organic'
 
 	# Cultivation
 	element :store_item_cultivation_none, '#store_item_cultivation_'  # none selected

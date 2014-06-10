@@ -48,7 +48,7 @@ private
 	def store_item_params
 		params.require(:store_item).permit(:name, :store_id, :description, :thc, :cbd, :cbn, :costhalfgram, :costonegram, :costeighthoz, :costquarteroz,
 			:costhalfoz, :costoneoz, :costperunit, :dogo, :strain, :maincategory, :subcategory, :cultivation,
-			:privatereserve, :topshelf, :supersize, :glutenfree, :sugarfree)		
+			:privatereserve, :topshelf, :supersize, :glutenfree, :sugarfree, :organic)		
 	end		
 
 end
