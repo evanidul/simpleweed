@@ -35,6 +35,11 @@ class StoreItemsPage < SitePrism::Page
 	element :store_item_maincategory, '#store_item_maincategory'
 	element :store_item_subcategory, '#store_item_subcategory'
 
+	# popular strain
+	element :og, '#store_item_og'
+	element :kush, '#store_item_kush'
+	element :haze, '#store_item_haze'
+
 	# Misc Attributes
 	element :store_item_privatereserve, '#store_item_privatereserve' 
 	element :store_item_topshelf, '#store_item_topshelf'

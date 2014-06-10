@@ -57,6 +57,15 @@
 
   			]  , {include_blank: 'select subcategory' } ,:required => true  %>
 
+  <h4>popular strains </h4>
+  <%= f.check_box :og, {}, "true","false" %>
+  <%= f.label :og, "og" %><br>
+
+  <%= f.check_box :kush, {}, "true","false" %>
+  <%= f.label :kush, "kush" %><br>
+
+  <%= f.check_box :haze, {}, "true","false" %>
+  <%= f.label :haze, "haze" %><br>
 
   <h4>lab information</h4>          
   <table id="lab-information">

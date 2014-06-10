@@ -325,7 +325,7 @@ feature "store item edit and add" , :js => true, :search =>true do
 		#end # categoryset.each
 	end
 
-	scenario "create a store, add some items: misc attributes" do
+	scenario "create a store, add some items: misc attributes, popular strains" do
 		page.visit("/users/sign_in")
 		login_page = LoginPage.new
 		login_page.username_input.set @adminemail
@@ -375,6 +375,10 @@ feature "store item edit and add" , :js => true, :search =>true do
 		items_page.store_item_sugarfree.should_not be_checked
 		items_page.store_item_organic.should_not be_checked
 
+		items_page.og.should_not be_checked
+		items_page.kush.should_not be_checked
+		items_page.haze.should_not be_checked
+
 		# update values
 		items_page.store_item_privatereserve.set true
 		items_page.store_item_topshelf.set true
@@ -383,6 +387,11 @@ feature "store item edit and add" , :js => true, :search =>true do
 		items_page.store_item_glutenfree.set true
 		items_page.store_item_sugarfree.set true
 		items_page.store_item_organic.set true
+
+		items_page.og.set true
+		items_page.kush.set true
+		items_page.haze.set true
+		
 		items_page.save_store_item_button.click
 
 		# back to items index
@@ -408,6 +417,10 @@ feature "store item edit and add" , :js => true, :search =>true do
 		items_page.store_item_sugarfree.should be_checked
 		items_page.store_item_organic.should be_checked
 
+		items_page.og.should be_checked
+		items_page.kush.should be_checked
+		items_page.haze.should be_checked
+
 		# update values, set all to false
 		items_page.store_item_privatereserve.set false
 		items_page.store_item_topshelf.set false
@@ -416,6 +429,11 @@ feature "store item edit and add" , :js => true, :search =>true do
 		items_page.store_item_glutenfree.set false
 		items_page.store_item_sugarfree.set false
 		items_page.store_item_organic.set false
+
+		items_page.og.set false
+		items_page.kush.set false
+		items_page.haze.set false
+
 		items_page.save_store_item_button.click
 
 		# back to items index
@@ -438,7 +456,11 @@ feature "store item edit and add" , :js => true, :search =>true do
 		items_page.store_item_glutenfree.should_not be_checked
 		items_page.store_item_sugarfree.should_not be_checked
 		items_page.store_item_organic.should_not be_checked
-	    	
+
+		items_page.og.should_not be_checked
+		items_page.kush.should_not be_checked
+		items_page.haze.should_not be_checked
+
     end
 
 	scenario "create a store, add some items: cultivation" do
