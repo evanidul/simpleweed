@@ -187,6 +187,10 @@
   *border-left-color: #ffffff;
 }
 
+#search-filter-options {
+  position:absolute;
+}
+
 #search-filter-options > .tab-content {
 	background-color: #222222;
 	color: white;
