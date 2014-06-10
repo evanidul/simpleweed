@@ -59,6 +59,10 @@ class StoreItem < ActiveRecord::Base
 	    boolean  :sugarfree
 	    boolean  :organic
 
+	    boolean  :og
+	    boolean  :kush
+	    boolean  :haze
+
 	    integer :store_id, :stored => true
 	    string(:store_id_str) { |p| p.store.id.to_s }
 	    

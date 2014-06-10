@@ -147,6 +147,11 @@ feature "store review comments" , :js => true, :search =>true do
         expect(store_page.star_ranking.first['star-value']).to have_text("1") 
         expect(store_page.review_vote_sum.first).to have_text("0")
 
+        # downvote user1's review so that sort order will be predictable        
+        store_page.downvotebutton.first.click
+        wait_for_ajax        
+        expect(store_page.review_vote_sum.first).to have_text("-1")
+
         # user2 comments on user1's review
         store_page.tabs_reviews.click
         user2comment = "what a stupid comment!"

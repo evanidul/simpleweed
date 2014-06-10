@@ -110,8 +110,20 @@ class SesController < ApplicationController
 		  			with(:strain, nil)
 		  		end
 		  	  end
-  		  	
   		  
+  		  # process popular	
+  		  #:r, :og
+  		  if search.r == "1"
+	  		with(:og, true)
+  		  end
+  		  #:s, :kush
+		  if search.s == "1"
+	  		with(:kush, true)
+  		  end
+  		  #:t, :haze
+		  if search.t == "1"
+	  		with(:haze, true)
+  		  end
 
   		  #process cultivation
   		  #:indoor, :outdoor, :hydroponic, :greenhouse, :organic
@@ -139,7 +151,7 @@ class SesController < ApplicationController
   		  	
   		  # process misc (strain & attribute)
   		  if search.z == "1"
-		  		with(:privatereserve, true)
+	  		with(:privatereserve, true)
   		  end
   		  if search.aa == "1"
   		  	with(:topshelf, true)

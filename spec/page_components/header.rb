@@ -41,6 +41,12 @@ class HeaderPageComponent < SitePrism::Page
   element :indica, '#se_o'
   element :sativa, '#se_p'
   element :hybrid, '#se_q'
+  
+  # popular strains
+  element :og, '#se_r'
+  element :kush, '#se_s'
+  element :haze, '#se_t'
+
   # cultivation
   element :indoor, '#se_u'
   element :outdoor, '#se_v'
