@@ -450,7 +450,7 @@ feature "store item edit and add" , :js => true, :search =>true do
 		items_page.store_item_cultivation_outdoor.should_not be_checked
 		items_page.store_item_cultivation_hydroponic.should_not be_checked
 		items_page.store_item_cultivation_greenhouse.should_not be_checked
-		items_page.store_item_cultivation_organic.should_not be_checked		
+		
 
     	# update
 		items_page.store_item_cultivation_indoor.set true
@@ -474,7 +474,7 @@ feature "store item edit and add" , :js => true, :search =>true do
 		items_page.store_item_cultivation_outdoor.should_not be_checked
 		items_page.store_item_cultivation_hydroponic.should_not be_checked
 		items_page.store_item_cultivation_greenhouse.should_not be_checked
-		items_page.store_item_cultivation_organic.should_not be_checked		
+		
 
 		# update
 		items_page.store_item_cultivation_outdoor.set true
@@ -499,7 +499,7 @@ feature "store item edit and add" , :js => true, :search =>true do
 		items_page.store_item_cultivation_outdoor.should be_checked
 		items_page.store_item_cultivation_hydroponic.should_not be_checked
 		items_page.store_item_cultivation_greenhouse.should_not be_checked
-		items_page.store_item_cultivation_organic.should_not be_checked	
+		
 
 		# update
 		items_page.store_item_cultivation_hydroponic.set true
@@ -523,7 +523,7 @@ feature "store item edit and add" , :js => true, :search =>true do
 		items_page.store_item_cultivation_outdoor.should_not be_checked
 		items_page.store_item_cultivation_hydroponic.should be_checked
 		items_page.store_item_cultivation_greenhouse.should_not be_checked
-		items_page.store_item_cultivation_organic.should_not be_checked	
+		
 	
 		# update
 		items_page.store_item_cultivation_greenhouse.set true
@@ -547,30 +547,7 @@ feature "store item edit and add" , :js => true, :search =>true do
 		items_page.store_item_cultivation_outdoor.should_not be_checked
 		items_page.store_item_cultivation_hydroponic.should_not be_checked
 		items_page.store_item_cultivation_greenhouse.should be_checked
-		items_page.store_item_cultivation_organic.should_not be_checked	
-
-		# update
-		items_page.store_item_cultivation_organic.set true
-		items_page.save_store_item_button.click
-
-		# back to item list
-		row_links = items_page.row_links	    	
-	    	items_page.searchresults.each {|item_link| 
-	    		
-	    		if item_link.text.include? item_name
-	    			item_link.click
-	    			break
-	    		end
-
-	    	}	
-		# verify values    	
-    	expect(items_page.store_item_name.value).to have_text(item_name)
-		expect(items_page.store_item_strain.value).to have_text('sativa')	
-		items_page.store_item_cultivation_none.should_not be_checked
-		items_page.store_item_cultivation_indoor.should_not be_checked
-		items_page.store_item_cultivation_outdoor.should_not be_checked
-		items_page.store_item_cultivation_hydroponic.should_not be_checked
-		items_page.store_item_cultivation_greenhouse.should_not be_checked
-		items_page.store_item_cultivation_organic.should be_checked	
+		
+		
     end
 end

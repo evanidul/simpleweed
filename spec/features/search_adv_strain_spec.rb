@@ -205,8 +205,7 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		@item8.cultivation = "greenhouse"
 		@item8.save
 
-		@item9 =  @store.store_items.create(:name => "alfafla 5" , :strain =>"indica", :privatereserve => true)		
-		@item9.cultivation = "organic"
+		@item9 =  @store.store_items.create(:name => "alfafla 5" , :strain =>"indica", :privatereserve => true)				
 		@item9.save
 
 		Sunspot.commit
@@ -222,17 +221,17 @@ feature "search adv by strain" , :js => true, :search =>true  do
 
 		header.search_button.click
 
-		searchresults_page = SearchResultsItemPageComponent.new
-		searchresults_page.searchresults_store_names.size.should == 2
-		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item5.name, @item6.name]
+		searchresults_page = SearchResultsItemPageComponent.new		
+		searchresults_page.searchresults_store_names.size.should == 3
+		# item9 doesn't have cultivation set, and nil values return in the search results...for now.
+		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item5.name, @item6.name, @item9.name]
 
 		# new search for hybrid
 		header.show_adv_search_button.click		
 		header.indoor.set false
 		header.outdoor.set false
 		header.hydroponic.set true
-		header.greenhouse.set true
-		header.organic.set true
+		header.greenhouse.set true		
 		
 		header.search_button.click
 		searchresults_page.searchresults_store_names.size.should == 3

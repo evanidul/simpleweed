@@ -49,7 +49,7 @@ class StoreItemsPage < SitePrism::Page
 	element :store_item_cultivation_outdoor, '#store_item_cultivation_outdoor'
 	element :store_item_cultivation_hydroponic, '#store_item_cultivation_hydroponic'
 	element :store_item_cultivation_greenhouse, '#store_item_cultivation_greenhouse'
-	element :store_item_cultivation_organic, '#store_item_cultivation_organic'
+	#element :store_item_cultivation_organic, '#store_item_cultivation_organic'
 
 	# save & close
 	element :save_store_item_button, "#save_store_item"

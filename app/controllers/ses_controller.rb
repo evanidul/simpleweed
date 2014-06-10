@@ -129,9 +129,9 @@ class SesController < ApplicationController
   		  if search.x == "1"
   		  	acceptable_cultivation.push("greenhouse")
   		  end
-  		  if search.y == "1"
-  		  	acceptable_cultivation.push("organic")	  		  
-  		  end	  		   		 
+  		  # if search.y == "1"
+  		  # 	acceptable_cultivation.push("organic")	  		  
+  		  # end	  		   		 
   		  
   		  if !acceptable_cultivation.empty?
   		  	any_of do
