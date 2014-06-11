@@ -238,7 +238,7 @@ feature "store item edit and add" , :js => true, :search =>true do
 
   				['wax','concentrate'],
   				['hash','concentrate'],
-  				['budder/earwar/honeycomb/supermelt', 'concentrate'],
+  				['budder/earwax/honeycomb/supermelt', 'concentrate'],
   				['bubble hash/full melt/ice wax','concentrate'],
   				['ISO hash','concentrate'],
   				['kief/dry sieve','concentrate'],

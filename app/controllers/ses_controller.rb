@@ -225,7 +225,7 @@ class SesController < ApplicationController
 			acceptable_item_subcategories.push("hash")
 		  end
 		  if search.i6 == "1"
-		  	acceptable_item_subcategories.push("budder/earwar/honeycomb/supermelt")
+		  	acceptable_item_subcategories.push("budder/earwax/honeycomb/supermelt")
 		  end
 		  if search.i7 == "1"
 		  	acceptable_item_subcategories.push("bubble hash/full melt/ice wax")

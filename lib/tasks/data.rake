@@ -19,31 +19,66 @@ namespace :data do
 
   # this task will create dispensaries if they don't exist.  Run this first
   task :importMenuItems => :environment do
-    file = File.open("./lib/tasks/samplemenuitems.txt")
+    #file = File.open("./lib/tasks/menuitems_daniel.txt")
+    file = File.open("./lib/tasks/FULLmenuitems.txt")
+    totalitemsread = 0
+    totalitemssaved = 0
+    totalitemsskipped = 0
     file.each do |line|
       attrs = line.split("<")            
+      totalitemsread = totalitemsread + 1
+      #WM Store ID[0]<Store Name[1]<WM Item ID[2]<Item Name[3]<Category[4]<1g[5]<1/2g[6]<1/8oz[7]<1/4oz[8]<1/2oz[9]<1oz[10]<each[11]
+      #<Weird Import[12]<item id[13]<Parent Category[14]<Sub-Category[15]<Strain Type[16]<Strain/Item Name[17]<Promo Field[18]
+      #<Cultivation[19]<Private Reserve[20]<Top Shelf[21]<DOGO[22]<Organic[23]<Specials (Supersize)[24]<Lab Tested[25]<Gluten-Free[26]
+      #<Sugar-Free[27]<High CBD[28]<Dose (mg)[29]<OG[30]<Kush[31]<Haze[32]
 
-      #@store = Store.find_or_create_by(name: attrs[0].strip)
-      @store = Store.find_or_create_by(id: attrs[0])      
-      @store.name = attrs[1];
+      @store = Store.find_or_create_by(syncid: attrs[0])      
+      @store.name = attrs[1]
       @store.save
 
-      #@store_item = @store.store_items.find_or_create_by(id: attrs[2])      
+      @store_item = StoreItem.where(:syncid => attrs[2], :store_id => @store.id).first_or_create
+      #@store_item = StoreItem.find_or_create_by(:syncid => attrs[2], :store_id => @store.id)
+      
+      # use daniel's scrubbed name
+      @store_item.name = attrs[17]  
+      # no longer using WM category, but I guess we'll just sync it.
+      @store_item.category = attrs[4]           
+      @store_item.costonegram = attrs[5]
+      @store_item.costhalfgram = attrs[6]         
+      @store_item.costeighthoz = attrs[7]
+      @store_item.costquarteroz = attrs[8]
+      @store_item.costhalfoz = attrs[9]
+      @store_item.costoneoz = attrs[10]
+      @store_item.costperunit = attrs[11]
+      
 
-      @store_item = StoreItem.where(:id => attrs[2], :store_id => attrs[0]).first_or_create
-	  @store_item.name = attrs[3]
-	  @store_item.category = attrs[4]
-	  @store_item.costonegram = attrs[5]
-	  @store_item.costhalfgram = attrs[6]	  
-	  @store_item.costeighthoz = attrs[7]
-	  @store_item.costquarteroz = attrs[8]
-	  @store_item.costhalfoz = attrs[9]
-	  @store_item.costoneoz = attrs[10]
-	  @store_item.costperunit = attrs[11]
-    @store_item.description = attrs[12]
-
-	  @store_item.save
+      @store_item.maincategory = attrs[14].downcase!
+      @store_item.subcategory = attrs[15].downcase!
+      @store_item.strain = attrs[16].downcase!
+      
+      @store_item.promo = attrs[18]
+      @store_item.cultivation = attrs[19].downcase!
+      @store_item.privatereserve = attrs[20]
+      @store_item.topshelf = attrs[21]
+      @store_item.dogo = attrs[22]
+      @store_item.organic = attrs[23]
+      @store_item.supersize = attrs[24]
+      @store_item.glutenfree = attrs[26]
+      @store_item.sugarfree = attrs[27]
+      @store_item.dose = attrs[29]
+      @store_item.og = attrs[30]
+      @store_item.kush = attrs[31]
+      @store_item.haze = attrs[32]
+      
+      if @store_item.save
+        totalitemssaved = totalitemssaved + 1
+      else         
+        totalitemsskipped = totalitemsskipped + 1
+      end
     end
+
+    binding.pry
+
   end
 
   #assumes dispensaries are created already

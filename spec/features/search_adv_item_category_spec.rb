@@ -148,7 +148,7 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		
 		@item2 =  @store.store_items.create(:name => "alfafla 2" , :strain =>"indica")		
 		@item2.maincategory = "concentrate"
-		@item2.subcategory = 'budder/earwar/honeycomb/supermelt'
+		@item2.subcategory = 'budder/earwax/honeycomb/supermelt'
 		@item2.save
 
 		@item3 =  @store.store_items.create(:name => "alfafla 3" , :strain =>"indica")		
