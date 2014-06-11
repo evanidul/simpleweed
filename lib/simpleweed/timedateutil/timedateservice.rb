@@ -36,7 +36,7 @@ module Simpleweed
 	  			if !datestring.is_a? String
 	  				return nil
 	  			end
-	  			if datestring == "Closed"
+	  			if datestring == "Closed"	  				
 	  				return "Closed"
 	  			end
 

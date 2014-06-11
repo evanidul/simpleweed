@@ -511,98 +511,115 @@ namespace :data do
       totalitemsread = totalitemsread + 1
 
       tds = Simpleweed::Timedateutil::Timedateservice.new
-      @store = Store.find_or_initialize_by_id(attrs[0])
-      if (@store)
-      	if( attrs.last != "ERROR: check fields")      		      		
-      		sunday =  attrs[2].split("-")
-          sundayOpen = tds.getMilitaryTimeFromAMPMString(sunday[0])
-          if sundayOpen != "Closed"
-            sundayClosed = tds.getMilitaryTimeFromAMPMString(sunday[1])
-            @store.storehourssundayopenhour = sundayOpen[0]
-            @store.storehourssundayopenminute = sundayOpen[1]
-            @store.storehourssundayclosehour = sundayClosed[0]
-            @store.storehourssundaycloseminute = sundayClosed[1]
-          else
-            @store.sundayclosed = true;
-          end
-      		
-    			monday =  attrs[3].split("-")
-          mondayOpen = tds.getMilitaryTimeFromAMPMString(monday[0])
-          if mondayOpen != "Closed"
-            mondayClosed = tds.getMilitaryTimeFromAMPMString(monday[1])
-            @store.storehoursmondayopenhour = mondayOpen[0]
-            @store.storehoursmondayopenminute = mondayOpen[1]
-            @store.storehoursmondayclosehour = mondayClosed[0]
-            @store.storehoursmondaycloseminute = mondayClosed[1]
-          else
-            @store.mondayclosed = true;
-          end
+      syncid = attrs[0].to_i
+      if syncid != 0  #if attrs[0] is an error string "Error", don't import
+        @store = Store.find_by(syncid: syncid)
+        if (@store)
+        	if( attrs.last != "ERROR: check fields")      		      		
+        		sunday =  attrs[2].split("-")
+            sundayOpen = tds.getMilitaryTimeFromAMPMString(sunday[0])
+            if sundayOpen != "Closed"
+              sundayClosed = tds.getMilitaryTimeFromAMPMString(sunday[1])
+              @store.storehourssundayopenhour = sundayOpen[0]
+              @store.storehourssundayopenminute = sundayOpen[1]
+              @store.storehourssundayclosehour = sundayClosed[0]
+              @store.storehourssundaycloseminute = sundayClosed[1]
+            else
+              @store.sundayclosed = true;
+            end
+        		
+      			monday =  attrs[3].split("-")
+            mondayOpen = tds.getMilitaryTimeFromAMPMString(monday[0])
+            if mondayOpen != "Closed"
+              mondayClosed = tds.getMilitaryTimeFromAMPMString(monday[1])
+              @store.storehoursmondayopenhour = mondayOpen[0]
+              @store.storehoursmondayopenminute = mondayOpen[1]
+              @store.storehoursmondayclosehour = mondayClosed[0]
+              @store.storehoursmondaycloseminute = mondayClosed[1]
+            else
+              @store.mondayclosed = true;
+            end
 
-    			tuesday =  attrs[4].split("-")
-          tuesdayOpen = tds.getMilitaryTimeFromAMPMString(tuesday[0])
-          if tuesdayOpen != "Closed"
-            tuesdayClosed = tds.getMilitaryTimeFromAMPMString(tuesday[1])
-            @store.storehourstuesdayopenhour = tuesdayOpen[0]
-            @store.storehourstuesdayopenminute = tuesdayOpen[1]
-            @store.storehourstuesdayclosehour = tuesdayClosed[0]
-            @store.storehourstuesdaycloseminute = tuesdayClosed[1]
-          else
-            @store.tuesdayclosed = true;
-          end
+      			tuesday =  attrs[4].split("-")
+            tuesdayOpen = tds.getMilitaryTimeFromAMPMString(tuesday[0])
+            if tuesdayOpen != "Closed"
+              tuesdayClosed = tds.getMilitaryTimeFromAMPMString(tuesday[1])
+              @store.storehourstuesdayopenhour = tuesdayOpen[0]
+              @store.storehourstuesdayopenminute = tuesdayOpen[1]
+              @store.storehourstuesdayclosehour = tuesdayClosed[0]
+              @store.storehourstuesdaycloseminute = tuesdayClosed[1]
+            else
+              @store.tuesdayclosed = true;
+            end
 
-    			wednesday =  attrs[5].split("-")
-          wednesdayOpen = tds.getMilitaryTimeFromAMPMString(wednesday[0])
-          if wednesdayOpen != "Closed"
-            wednesdayClosed = tds.getMilitaryTimeFromAMPMString(wednesday[1])
-            @store.storehourswednesdayopenhour = wednesdayOpen[0]
-            @store.storehourswednesdayopenminute = wednesdayOpen[1]
-            @store.storehourswednesdayclosehour = wednesdayClosed[0]
-            @store.storehourswednesdaycloseminute = wednesdayClosed[1]
-          else
-            @store.wednesdayclosed = true;
-          end
+      			wednesday =  attrs[5].split("-")
+            wednesdayOpen = tds.getMilitaryTimeFromAMPMString(wednesday[0])
+            if wednesdayOpen != "Closed"
+              wednesdayClosed = tds.getMilitaryTimeFromAMPMString(wednesday[1])
+              @store.storehourswednesdayopenhour = wednesdayOpen[0]
+              @store.storehourswednesdayopenminute = wednesdayOpen[1]
+              @store.storehourswednesdayclosehour = wednesdayClosed[0]
+              @store.storehourswednesdaycloseminute = wednesdayClosed[1]
+            else
+              @store.wednesdayclosed = true;
+            end
 
-    			thursday =  attrs[6].split("-")
-          thursdayOpen = tds.getMilitaryTimeFromAMPMString(thursday[0])
-          if thursdayOpen != "Closed"
-            thursdayClosed = tds.getMilitaryTimeFromAMPMString(thursday[1])
-            @store.storehoursthursdayopenhour = thursdayOpen[0]
-            @store.storehoursthursdayopenminute = thursdayOpen[1]
-            @store.storehoursthursdayclosehour = thursdayClosed[0]
-            @store.storehoursthursdaycloseminute = thursdayClosed[1]
-          else
-            @store.thursdayclosed = true;
-          end
+      			thursday =  attrs[6].split("-")
+            thursdayOpen = tds.getMilitaryTimeFromAMPMString(thursday[0])
+            if thursdayOpen != "Closed"
+              thursdayClosed = tds.getMilitaryTimeFromAMPMString(thursday[1])
+              @store.storehoursthursdayopenhour = thursdayOpen[0]
+              @store.storehoursthursdayopenminute = thursdayOpen[1]
+              @store.storehoursthursdayclosehour = thursdayClosed[0]
+              @store.storehoursthursdaycloseminute = thursdayClosed[1]
+            else
+              @store.thursdayclosed = true;
+            end
 
-    			friday =  attrs[7].split("-")
-          fridayOpen = tds.getMilitaryTimeFromAMPMString(friday[0])
-          if fridayOpen != "Closed"
-            fridayClosed = tds.getMilitaryTimeFromAMPMString(friday[1])
-            @store.storehoursfridayopenhour = fridayOpen[0]
-            @store.storehoursfridayopenminute = fridayOpen[1]
-            @store.storehoursfridayclosehour = fridayClosed[0]
-            @store.storehoursfridaycloseminute = fridayClosed[1]
-          else
-            @store.fridayclosed = true;
-          end
+      			friday =  attrs[7].split("-")
+            fridayOpen = tds.getMilitaryTimeFromAMPMString(friday[0])
+            if fridayOpen != "Closed"
+              fridayClosed = tds.getMilitaryTimeFromAMPMString(friday[1])
+              @store.storehoursfridayopenhour = fridayOpen[0]
+              @store.storehoursfridayopenminute = fridayOpen[1]
+              @store.storehoursfridayclosehour = fridayClosed[0]
+              @store.storehoursfridaycloseminute = fridayClosed[1]
+            else
+              @store.fridayclosed = true;
+            end
 
-    			saturday =  attrs[8].split("-")
-          saturdayOpen = tds.getMilitaryTimeFromAMPMString(saturday[0])
-          if saturdayOpen != "Closed"
-            saturdayClosed = tds.getMilitaryTimeFromAMPMString(saturday[1])
-            @store.storehourssaturdayopenhour = saturdayOpen[0]
-            @store.storehourssaturdayopenminute = saturdayOpen[1]
-            @store.storehourssaturdayclosehour = saturdayClosed[0]
-            @store.storehourssaturdaycloseminute = saturdayClosed[1]
-          else
-            @store.saturdayclosed = true;
-          end
+      			saturday =  attrs[8].split("-")
+            puts saturday[0]
+            puts 'currentid = ' + @store.syncid.to_s
 
-      		@store.save
-      	end	
-	  end #if
+            # if (@store.syncid.to_s == "25563")
+            #   binding.pry
+            # end
 
-    end # file.each do
+            saturdayOpen = tds.getMilitaryTimeFromAMPMString(saturday[0].strip)
+            if saturdayOpen != "Closed"
+              saturdayClosed = tds.getMilitaryTimeFromAMPMString(saturday[1])
+              @store.storehourssaturdayopenhour = saturdayOpen[0]
+              @store.storehourssaturdayopenminute = saturdayOpen[1]
+              @store.storehourssaturdayclosehour = saturdayClosed[0]
+              @store.storehourssaturdaycloseminute = saturdayClosed[1]
+            else
+              @store.saturdayclosed = true;
+            end
+
+      		if @store.save
+              totalitemssaved = totalitemssaved + 1
+              puts 'lastsaved = ' + @store.syncid.to_s
+            else         
+              totalitemsskipped = totalitemsskipped + 1
+              puts @store.errors.full_messages  
+            end #if save
+      	end	#if attrs.last != "ERROR: check fields"
+	    end #if (@store)
+    else
+        totalitemsskipped = totalitemsskipped + 1
+    end #if
+  end # file.each do
     puts 'totalread = ' + totalitemsread.to_s
     puts 'totalsaved = ' + totalitemssaved.to_s
     puts 'totalskipped = ' + totalitemsskipped.to_s
