@@ -115,7 +115,7 @@ namespace :data do
               totalitemssaved = totalitemssaved + 1
             else         
               totalitemsskipped = totalitemsskipped + 1
-              put @store.errors.full_messages  
+              puts @store.errors.full_messages  
             end
         	end
         else
@@ -155,7 +155,7 @@ namespace :data do
               totalitemssaved = totalitemssaved + 1
             else         
               totalitemsskipped = totalitemsskipped + 1
-              put @store.errors.full_messages  
+              puts @store.errors.full_messages  
             end #if save
         	end	 #if
   	    end #if
@@ -190,7 +190,7 @@ namespace :data do
               totalitemssaved = totalitemssaved + 1
             else         
               totalitemsskipped = totalitemsskipped + 1
-              put @store.errors.full_messages  
+              puts @store.errors.full_messages  
             end #if save
         	end	
   	    end #if
@@ -225,7 +225,7 @@ namespace :data do
               totalitemssaved = totalitemssaved + 1
             else         
               totalitemsskipped = totalitemsskipped + 1
-              put @store.errors.full_messages  
+              puts @store.errors.full_messages  
             end #if save
         	end	
     	  end #if
@@ -260,7 +260,7 @@ namespace :data do
               totalitemssaved = totalitemssaved + 1
             else         
               totalitemsskipped = totalitemsskipped + 1
-              put @store.errors.full_messages  
+              puts @store.errors.full_messages  
             end #if save
         	end	
   	    end #if
@@ -305,7 +305,7 @@ namespace :data do
               totalitemssaved = totalitemssaved + 1
             else         
               totalitemsskipped = totalitemsskipped + 1
-              put @store.errors.full_messages  
+              puts @store.errors.full_messages  
             end #if save
         	end	
   	    end #if
@@ -340,7 +340,7 @@ namespace :data do
               totalitemssaved = totalitemssaved + 1
             else         
               totalitemsskipped = totalitemsskipped + 1
-              put @store.errors.full_messages  
+              puts @store.errors.full_messages  
             end #if save
         	end	
   	    end #if
@@ -379,7 +379,7 @@ namespace :data do
               totalitemssaved = totalitemssaved + 1
             else         
               totalitemsskipped = totalitemsskipped + 1
-              put @store.errors.full_messages  
+              puts @store.errors.full_messages  
             end #if save
         	end	
     	  end #if
@@ -414,7 +414,7 @@ namespace :data do
               totalitemssaved = totalitemssaved + 1
             else         
               totalitemsskipped = totalitemsskipped + 1
-              put @store.errors.full_messages  
+              puts @store.errors.full_messages  
             end #if save
         	end	
   	    end #if
@@ -450,7 +450,7 @@ namespace :data do
               totalitemssaved = totalitemssaved + 1
             else         
               totalitemsskipped = totalitemsskipped + 1
-              put @store.errors.full_messages  
+              puts @store.errors.full_messages  
             end #if save
         	end	
     	  end #if
@@ -485,7 +485,7 @@ namespace :data do
               totalitemssaved = totalitemssaved + 1
             else         
               totalitemsskipped = totalitemsskipped + 1
-              put @store.errors.full_messages  
+              puts @store.errors.full_messages  
             end #if save
         	end	
   	    end #if
