@@ -356,7 +356,7 @@ namespace :data do
 
 #assumes dispensaries are created already
   task :importSocial => :environment do
-    file = File.open("./lib/tasks/social.txt")
+    file = File.open("./lib/tasks/FULLsocial.txt")
     totalitemsread = 0
     totalitemssaved = 0
     totalitemsskipped = 0
@@ -364,16 +364,28 @@ namespace :data do
       attrs = line.split("<")            
       totalitemsread = totalitemsread + 1
 
-      @store = Store.find_or_initialize_by_id(attrs[0])
-      if (@store)
-      	if( attrs.last != "ERROR: check fields")      		
-      		@store.facebook = attrs[2];
-      		@store.twitter = attrs[3];
-      		@store.instagram = attrs[4];      		
+      syncid = attrs[0].to_i
+      if syncid != 0  #if attrs[0] is an error string "Error", don't import
+        @store = Store.find_by(syncid: syncid)
 
-      		@store.save
-      	end	
-	  end #if
+      
+        if (@store)
+        	if( attrs.last != "ERROR: check fields")      		
+        		@store.facebook = attrs[2];
+        		@store.twitter = attrs[3];
+        		@store.instagram = attrs[4];      		
+
+        		if @store.save
+              totalitemssaved = totalitemssaved + 1
+            else         
+              totalitemsskipped = totalitemsskipped + 1
+              put @store.errors.full_messages  
+            end #if save
+        	end	
+    	  end #if
+      else
+        totalitemsskipped = totalitemsskipped + 1
+      end #if
 
     end # file.each do
     puts 'totalread = ' + totalitemsread.to_s
