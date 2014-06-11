@@ -171,27 +171,48 @@ namespace :data do
 
 #assumes dispensaries are created already
   task :importWebsites => :environment do
-    file = File.open("./lib/tasks/websites.txt")
+    file = File.open("./lib/tasks/FULLwebsites.txt")
+    totalitemsread = 0
+    totalitemssaved = 0
+    totalitemsskipped = 0
     file.each do |line|
       attrs = line.split("<")            
+      totalitemsread = totalitemsread + 1
 
-      @store = Store.find_or_initialize_by_id(attrs[0])
-      if (@store)
-      	if( attrs.last != "ERROR: check fields")      		
-      		@store.website = attrs[2];
+      syncid = attrs[0].to_i
+      if syncid != 0  #if attrs[0] is an error string "Error", don't import
+        @store = Store.find_by(syncid: syncid)
+        if (@store)
+        	if( attrs.last != "ERROR: check fields")      		
+        		@store.website = attrs[2];
 
-      		@store.save
-      	end	
-	  end #if
+        		if @store.save
+              totalitemssaved = totalitemssaved + 1
+            else         
+              totalitemsskipped = totalitemsskipped + 1
+              put @store.errors.full_messages  
+            end #if save
+        	end	
+  	    end #if
+      else
+        totalitemsskipped = totalitemsskipped + 1
+      end #if
 
     end # file.each do
+    puts 'totalread = ' + totalitemsread.to_s
+    puts 'totalsaved = ' + totalitemssaved.to_s
+    puts 'totalskipped = ' + totalitemsskipped.to_s
   end # task
 
 #assumes dispensaries are created already
   task :importDeliveryareas => :environment do
     file = File.open("./lib/tasks/deliveryareas.txt")
+    totalitemsread = 0
+    totalitemssaved = 0
+    totalitemsskipped = 0
     file.each do |line|
       attrs = line.split("<")            
+      totalitemsread = totalitemsread + 1
 
       @store = Store.find_or_initialize_by_id(attrs[0])
       if (@store)
@@ -203,13 +224,20 @@ namespace :data do
 	  end #if
 
     end # file.each do
+    puts 'totalread = ' + totalitemsread.to_s
+    puts 'totalsaved = ' + totalitemssaved.to_s
+    puts 'totalskipped = ' + totalitemsskipped.to_s
   end # task
 
 #assumes dispensaries are created already
   task :importFilepath => :environment do
     file = File.open("./lib/tasks/filepath.txt")
+    totalitemsread = 0
+    totalitemssaved = 0
+    totalitemsskipped = 0
     file.each do |line|
       attrs = line.split("<")            
+      totalitemsread = totalitemsread + 1
 
       @store = Store.find_or_initialize_by_id(attrs[0])
       if (@store)
@@ -221,14 +249,21 @@ namespace :data do
 	  end #if
 
     end # file.each do
+    puts 'totalread = ' + totalitemsread.to_s
+    puts 'totalsaved = ' + totalitemssaved.to_s
+    puts 'totalskipped = ' + totalitemsskipped.to_s
   end # task
 
 
 #assumes dispensaries are created already
   task :importStoreFeatures => :environment do
     file = File.open("./lib/tasks/storefeatures.txt")
+    totalitemsread = 0
+    totalitemssaved = 0
+    totalitemsskipped = 0
     file.each do |line|
       attrs = line.split("<")            
+      totalitemsread = totalitemsread + 1
 
       @store = Store.find_or_initialize_by_id(attrs[0])
       if (@store)
@@ -248,13 +283,20 @@ namespace :data do
 	  end #if
 
     end # file.each do
+    puts 'totalread = ' + totalitemsread.to_s
+    puts 'totalsaved = ' + totalitemssaved.to_s
+    puts 'totalskipped = ' + totalitemsskipped.to_s
   end # task
 
 #assumes dispensaries are created already
   task :importAnnouncements => :environment do
     file = File.open("./lib/tasks/announcements.txt")
+    totalitemsread = 0
+    totalitemssaved = 0
+    totalitemsskipped = 0
     file.each do |line|
       attrs = line.split(":::")            
+      totalitemsread = totalitemsread + 1
 
       @store = Store.find_or_initialize_by_id(attrs[0])
       if (@store)
@@ -266,13 +308,20 @@ namespace :data do
 	  end #if
 
     end # file.each do
+    puts 'totalread = ' + totalitemsread.to_s
+    puts 'totalsaved = ' + totalitemssaved.to_s
+    puts 'totalskipped = ' + totalitemsskipped.to_s
   end # task  
 
 #assumes dispensaries are created already
   task :importSocial => :environment do
     file = File.open("./lib/tasks/social.txt")
+    totalitemsread = 0
+    totalitemssaved = 0
+    totalitemsskipped = 0
     file.each do |line|
       attrs = line.split("<")            
+      totalitemsread = totalitemsread + 1
 
       @store = Store.find_or_initialize_by_id(attrs[0])
       if (@store)
@@ -286,13 +335,20 @@ namespace :data do
 	  end #if
 
     end # file.each do
+    puts 'totalread = ' + totalitemsread.to_s
+    puts 'totalsaved = ' + totalitemssaved.to_s
+    puts 'totalskipped = ' + totalitemsskipped.to_s
   end # task
 
 #assumes dispensaries are created already
   task :importFirsttimepatientdeals => :environment do
     file = File.open("./lib/tasks/firsttimepatientdeals.txt")
+    totalitemsread = 0
+    totalitemssaved = 0
+    totalitemsskipped = 0
     file.each do |line|
       attrs = line.split(":::")         #can't use "<" since this contains html
+      totalitemsread = totalitemsread + 1
 
       @store = Store.find_or_initialize_by_id(attrs[0])
       if (@store)
@@ -304,13 +360,20 @@ namespace :data do
 	  end #if
 
     end # file.each do
+    puts 'totalread = ' + totalitemsread.to_s
+    puts 'totalsaved = ' + totalitemssaved.to_s
+    puts 'totalskipped = ' + totalitemsskipped.to_s
   end # task
 
 #assumes dispensaries are created already
   task :importDescriptions => :environment do
     file = File.open("./lib/tasks/descriptions.txt")
+    totalitemsread = 0
+    totalitemssaved = 0
+    totalitemsskipped = 0
     file.each do |line|
       attrs = line.split(":::")         #can't use "<" since this contains html
+      totalitemsread = totalitemsread + 1
 
       @store = Store.find_or_initialize_by_id(attrs[0])
       if (@store)
@@ -322,13 +385,20 @@ namespace :data do
 	  end #if
 
     end # file.each do
+    puts 'totalread = ' + totalitemsread.to_s
+    puts 'totalsaved = ' + totalitemssaved.to_s
+    puts 'totalskipped = ' + totalitemsskipped.to_s
   end # task
 
 #assumes dispensaries are created already
   task :importEmails => :environment do
     file = File.open("./lib/tasks/emails.txt")
+    totalitemsread = 0
+    totalitemssaved = 0
+    totalitemsskipped = 0
     file.each do |line|
       attrs = line.split("<")         #can't use "<" since this contains html
+      totalitemsread = totalitemsread + 1
 
       @store = Store.find_or_initialize_by_id(attrs[0])
       if (@store)
@@ -340,13 +410,22 @@ namespace :data do
 	  end #if
 
     end # file.each do
+    puts 'totalread = ' + totalitemsread.to_s
+    puts 'totalsaved = ' + totalitemssaved.to_s
+    puts 'totalskipped = ' + totalitemsskipped.to_s
   end # task
 
 #assumes dispensaries are created already
   task :importStorehours => :environment do
-    file = File.open("./lib/tasks/storehours.txt")
+    #file = File.open("./lib/tasks/storehours.txt")
+    file = File.open("./lib/tasks/FULLstorehours.txt")
+    totalitemsread = 0
+    totalitemssaved = 0
+    totalitemsskipped = 0
     file.each do |line|
-      attrs = line.split("<")            
+      attrs = line.split("<")     
+      totalitemsread = totalitemsread + 1
+
       tds = Simpleweed::Timedateutil::Timedateservice.new
       @store = Store.find_or_initialize_by_id(attrs[0])
       if (@store)
@@ -440,6 +519,9 @@ namespace :data do
 	  end #if
 
     end # file.each do
+    puts 'totalread = ' + totalitemsread.to_s
+    puts 'totalsaved = ' + totalitemssaved.to_s
+    puts 'totalskipped = ' + totalitemsskipped.to_s
   end # task
 
 
