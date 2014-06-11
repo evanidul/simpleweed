@@ -77,49 +77,96 @@ namespace :data do
       end
     end
 
-    binding.pry
+    puts 'totalread = ' + totalitemsread.to_s
+    puts 'totalsaved = ' + totalitemssaved.to_s
+    puts 'totalskipped = ' + totalitemsskipped.to_s
+    
 
   end
 
   #assumes dispensaries are created already
   #can be run to refresh addresses
   task :importAddresses => :environment do
-    file = File.open("./lib/tasks/addresses.txt")
+    #file = File.open("./lib/tasks/addresses.txt")
+    file = File.open("./lib/tasks/FULLaddresses.txt")
+    totalitemsread = 0
+    totalitemssaved = 0
+    totalitemsskipped = 0
     file.each do |line|
       attrs = line.split("<")            
+      totalitemsread = totalitemsread + 1
+      #@store = Store.find_or_initialize_by_id(attrs[0])
+      #@store = Store.find_or_initialize_by(syncid: attrs[0])      
 
-      @store = Store.find_or_initialize_by_id(attrs[0])
-      if (@store)
-      	if( attrs.last != "ERROR: check fields")      		
-      		@store.addressline1 = attrs[2];
-      		@store.addressline2 = attrs[3];
-      		@store.city = attrs[4];
-      		@store.state = attrs[5];
-      		@store.zip = attrs[6];
+      syncid = attrs[0].to_i      
 
-      		@store.save
-      	end	
-	  end #if
+      if syncid != 0  #if attrs[0] is an error string "Error", don't import
+        @store = Store.find_by(syncid: syncid)
+
+        if (@store)
+        	if( attrs.last != "ERROR: check fields")      		
+        		@store.addressline1 = attrs[2];
+        		@store.addressline2 = attrs[3];
+        		@store.city = attrs[4];
+        		@store.state = attrs[5];
+        		@store.zip = attrs[6];
+        		
+            if @store.save
+              totalitemssaved = totalitemssaved + 1
+            else         
+              totalitemsskipped = totalitemsskipped + 1
+              put @store.errors.full_messages  
+            end
+        	end
+        else
+        	totalitemsskipped = totalitemsskipped + 1
+  	  end #if
+    else
+      totalitemsskipped = totalitemsskipped + 1
+    end #if
 
     end # file.each do
+    puts 'totalread = ' + totalitemsread.to_s
+    puts 'totalsaved = ' + totalitemssaved.to_s
+    puts 'totalskipped = ' + totalitemsskipped.to_s
+    
   end # task
 
 #assumes dispensaries are created already
   task :importPhonenumbers => :environment do
-    file = File.open("./lib/tasks/phonenumbers.txt")
+    #file = File.open("./lib/tasks/phonenumbers.txt")
+    file = File.open("./lib/tasks/FULLphonenumbers.txt")
+    totalitemsread = 0
+    totalitemssaved = 0
+    totalitemsskipped = 0
     file.each do |line|
       attrs = line.split("<")            
+      totalitemsread = totalitemsread + 1
 
-      @store = Store.find_or_initialize_by_id(attrs[0])
-      if (@store)
-      	if( attrs.last != "ERROR: check fields")      		
-      		@store.phonenumber = attrs[2];
+      syncid = attrs[0].to_i      
 
-      		@store.save
-      	end	
-	  end #if
+      if syncid != 0  #if attrs[0] is an error string "Error", don't import
+        @store = Store.find_by(syncid: syncid)
+        if (@store)
+        	if( attrs.last != "ERROR: check fields")      		
+        		@store.phonenumber = attrs[2];
+
+        		if @store.save
+              totalitemssaved = totalitemssaved + 1
+            else         
+              totalitemsskipped = totalitemsskipped + 1
+              put @store.errors.full_messages  
+            end #if save
+        	end	 #if
+  	    end #if
+      else
+        totalitemsskipped = totalitemsskipped + 1
+      end #if
 
     end # file.each do
+    puts 'totalread = ' + totalitemsread.to_s
+    puts 'totalsaved = ' + totalitemssaved.to_s
+    puts 'totalskipped = ' + totalitemsskipped.to_s
   end # task
 
 #assumes dispensaries are created already
