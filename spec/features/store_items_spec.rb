@@ -240,7 +240,7 @@ feature "store item edit and add" , :js => true, :search =>true do
   				['hash','concentrate'],
   				['budder/earwax/honeycomb/supermelt', 'concentrate'],
   				['bubble hash/full melt/ice wax','concentrate'],
-  				['ISO hash','concentrate'],
+  				['iso hash','concentrate'],
   				['kief/dry sieve','concentrate'],
   				['shatter/amberglass','concentrate'],
   				['scissor/finger hash','concentrate'],

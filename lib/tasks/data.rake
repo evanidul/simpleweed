@@ -21,6 +21,9 @@ namespace :data do
   task :importMenuItems => :environment do
     #file = File.open("./lib/tasks/menuitems_daniel.txt")
     file = File.open("./lib/tasks/FULLmenuitems.txt")
+    logger = Logger.new('logfile.log')
+    logger.info "Start importing items"
+
     totalitemsread = 0
     totalitemssaved = 0
     totalitemsskipped = 0
@@ -52,12 +55,12 @@ namespace :data do
       @store_item.costperunit = attrs[11]
       
 
-      @store_item.maincategory = attrs[14].downcase!
-      @store_item.subcategory = attrs[15].downcase!
-      @store_item.strain = attrs[16].downcase!
+      @store_item.maincategory = attrs[14].downcase
+      @store_item.subcategory = attrs[15].downcase
+      @store_item.strain = attrs[16].downcase
       
       @store_item.promo = attrs[18]
-      @store_item.cultivation = attrs[19].downcase!
+      @store_item.cultivation = attrs[19].downcase
       @store_item.privatereserve = attrs[20]
       @store_item.topshelf = attrs[21]
       @store_item.dogo = attrs[22]
@@ -73,6 +76,11 @@ namespace :data do
       if @store_item.save
         totalitemssaved = totalitemssaved + 1
       else         
+        logger.info "item skipped : syncid : " + @store_item.syncid.to_s
+        logger.info @store_item.errors.full_messages
+        logger.info "item subcategory and cultivation values"
+        logger.info attrs[15].downcase
+        logger.info attrs[19].downcase
         totalitemsskipped = totalitemsskipped + 1
       end
     end

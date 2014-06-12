@@ -193,7 +193,7 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		
 		@item2 =  @store.store_items.create(:name => "alfafla 2" , :strain =>"indica")		
 		@item2.maincategory = "concentrate"
-		@item2.subcategory = 'ISO hash'
+		@item2.subcategory = 'iso hash'
 		@item2.save
 
 		@item3 =  @store.store_items.create(:name => "alfafla 3" , :strain =>"indica")		

@@ -222,9 +222,9 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		header.search_button.click
 
 		searchresults_page = SearchResultsItemPageComponent.new		
-		searchresults_page.searchresults_store_names.size.should == 3
+		searchresults_page.searchresults_store_names.size.should == 2
 		# item9 doesn't have cultivation set, and nil values return in the search results...for now.
-		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item5.name, @item6.name, @item9.name]
+		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item5.name, @item6.name]
 
 		# new search for hybrid
 		header.show_adv_search_button.click		
@@ -234,8 +234,8 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		header.greenhouse.set true		
 		
 		header.search_button.click
-		searchresults_page.searchresults_store_names.size.should == 3
-		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item7.name, @item8.name, @item9.name]
+		searchresults_page.searchresults_store_names.size.should == 2
+		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item7.name, @item8.name]
 	end
 	scenario "search : privatereserve" do		
 		@item5 =  @store.store_items.create(:name => "alfafla 1" , :strain =>"indica")		

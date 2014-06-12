@@ -107,7 +107,7 @@ class SesController < ApplicationController
 		  if !acceptable_strains.empty?
 		  		any_of do 
 		  			with(:strain, acceptable_strains)
-		  			with(:strain, nil)
+		  			#with(:strain, nil)
 		  		end
 		  	  end
   		  
@@ -145,7 +145,7 @@ class SesController < ApplicationController
   		  if !acceptable_cultivation.empty?
   		  	any_of do
   		  		with(:cultivation, acceptable_cultivation)
-  		  		with(:cultivation, nil)
+  		  		#with(:cultivation, nil)
   		  	end	
   		  end
   		  	
@@ -231,7 +231,7 @@ class SesController < ApplicationController
 		  	acceptable_item_subcategories.push("bubble hash/full melt/ice wax")
 		  end
 		  if search.i8 == "1"
-		  	acceptable_item_subcategories.push("ISO hash")
+		  	acceptable_item_subcategories.push("iso hash")
 		  end
 		  if search.i9 == "1"
 		  	acceptable_item_subcategories.push("kief/dry sieve")
@@ -321,7 +321,7 @@ class SesController < ApplicationController
   		  if !acceptable_item_subcategories.empty?
   		  	any_of do
   		  		with(:subcategory, acceptable_item_subcategories)
-  		  		with(:subcategory, nil)
+  		  		#with(:subcategory, nil)
   		  	end	
   		  end
 

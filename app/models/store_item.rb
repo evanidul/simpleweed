@@ -11,8 +11,9 @@ class StoreItem < ActiveRecord::Base
 	      :message => "{{value}} must be in #{CATEGORIES.join ','}"
 
     #weakness: doesn't verify subcategory belongs to parent, we rely on UI to do this logic with linked selects. /shrug
-	SUBCATEGORIES = ['bud', 'shake', 'trim',
-					 'wax','hash', 'budder/earwax/honeycomb/supermelt', 'bubble hash/full melt/ice wax', 'ISO hash', 'kief/dry sieve', 'shatter/amberglass', 'scissor/finger hash', 'oil/cartridge',
+    #added '' for imports, since not all imported items have subcategory set.
+	SUBCATEGORIES = ['','bud', 'shake', 'trim',
+					 'wax','hash', 'budder/earwax/honeycomb/supermelt', 'bubble hash/full melt/ice wax', 'iso hash', 'kief/dry sieve', 'shatter/amberglass', 'scissor/finger hash', 'oil/cartridge',
 			 		 'baked', 'candy/chocolate', 'cooking', 'drink' , 'frozen', 'other_edible',		
 			 		 'blunt', 'joint',
 			 		 'clones', 'seeds', 'oral', 'topical',
@@ -24,7 +25,7 @@ class StoreItem < ActiveRecord::Base
 
 	CULTIVATION = ['','indoor', 'outdoor', 'hydroponic', 'greenhouse']
 	validates_inclusion_of :cultivation, :in => CULTIVATION,:allow_nil => true,
-	      :message => "{{value}} must be in #{STRAINS.join ','}"
+	      :message => "{{value}} must be in #{CULTIVATION.join ','}"
 
 	def location 
 		return Sunspot::Util::Coordinates.new(store.latitude, store.longitude)
