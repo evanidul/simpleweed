@@ -219,8 +219,8 @@ task :importGeo1 => :environment do
         if (@store)
           if( attrs.last != "ERROR: check fields")          
 
-            @store.latitude = attrs[6]
-            @store.longitude = attrs[7]
+            @store.latitude = attrs[1]
+            @store.longitude = attrs[2]
 
             if @store.save
               totalitemssaved = totalitemssaved + 1
@@ -272,8 +272,8 @@ task :importGeo2 => :environment do
         if (@store)
           if( attrs.last != "ERROR: check fields")          
             
-            @store.latitude = attrs[6]
-            @store.longitude = attrs[7]
+            @store.latitude = attrs[1]
+            @store.longitude = attrs[2]
             
             if @store.save
               totalitemssaved = totalitemssaved + 1
