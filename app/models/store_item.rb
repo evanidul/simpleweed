@@ -37,34 +37,34 @@ class StoreItem < ActiveRecord::Base
   		integer  :id, :stored => true
     	text     :name, :stored => true
 	   	text     :description, :stored => true
-	    float    :thc
-	    float    :cbd
-	    float    :cbn
+	    float    :thc, :stored => true
+	    float    :cbd, :stored => true
+	    float    :cbn, :stored => true
 	    integer  :costhalfgram, :stored => true
 	    integer  :costonegram, :stored => true
 	    integer  :costeighthoz, :stored => true
 	    integer  :costquarteroz, :stored => true
 	    integer  :costhalfoz, :stored => true
 	    integer  :costoneoz, :stored => true
-	    boolean  :dogo
+	    boolean  :dogo, :stored => true
 	    #datetime :created_at
 	    #datetime :updated_at
 	    string   :category, :stored => true
-	    integer  :costperunit
-	    string   :maincategory
-	    string   :strain
-	    string   :subcategory
-	    string   :cultivation
-	    boolean  :privatereserve
-	    boolean  :topshelf
-	    boolean  :supersize
-	    boolean  :glutenfree
-	    boolean  :sugarfree
-	    boolean  :organic
+	    integer  :costperunit, :stored => true
+	    string   :maincategory, :stored => true
+	    string   :strain, :stored => true
+	    string   :subcategory, :stored => true
+	    string   :cultivation, :stored => true
+	    boolean  :privatereserve, :stored => true
+	    boolean  :topshelf, :stored => true
+	    boolean  :supersize, :stored => true
+	    boolean  :glutenfree, :stored => true
+	    boolean  :sugarfree, :stored => true
+	    boolean  :organic, :stored => true
 
-	    boolean  :og
-	    boolean  :kush
-	    boolean  :haze
+	    boolean  :og, :stored => true
+	    boolean  :kush, :stored => true
+	    boolean  :haze, :stored => true
 
 	    integer :store_id, :stored => true
 	    string(:store_id_str) { |p| p.store.id.to_s }
