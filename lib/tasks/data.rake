@@ -218,13 +218,15 @@ task :importGeo1 => :environment do
 
         if (@store)
           if( attrs.last != "ERROR: check fields")          
-            @store.addressline1 = attrs[10];
-            @store.addressline2 = attrs[11];
-            @store.city = attrs[12];
-            @store.state = attrs[13];
-            @store.zip = attrs[14];
-            @store.promo = attrs[9];
-            
+            @store.addressline1 = attrs[10]
+            @store.addressline2 = attrs[11]
+            @store.city = attrs[12]
+            @store.state = attrs[13]
+            @store.zip = attrs[14]
+            @store.promo = attrs[9]
+            @store.latitude = attrs[6]
+            @store.longitude = attrs[7]
+
             if @store.save
               totalitemssaved = totalitemssaved + 1
             else         
@@ -274,12 +276,14 @@ task :importGeo2 => :environment do
 
         if (@store)
           if( attrs.last != "ERROR: check fields")          
-            @store.addressline1 = attrs[10];
-            @store.addressline2 = attrs[11];
-            @store.city = attrs[12];
-            @store.state = attrs[13];
-            @store.zip = attrs[14];
-            @store.promo = attrs[9];
+            @store.addressline1 = attrs[10]
+            @store.addressline2 = attrs[11]
+            @store.city = attrs[12]
+            @store.state = attrs[13]
+            @store.zip = attrs[14]
+            @store.promo = attrs[9]
+            @store.latitude = attrs[6]
+            @store.longitude = attrs[7]
             
             if @store.save
               totalitemssaved = totalitemssaved + 1
