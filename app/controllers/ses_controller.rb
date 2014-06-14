@@ -66,6 +66,7 @@ class SesController < ApplicationController
 				  	highlight :name
 				  	highlight :description
 				  	highlight :store_name
+				  	highlight :promo
 				end # fulltext
 		    end # if
 

@@ -256,29 +256,16 @@ if !@store_items || @store_items.empty? %>
 							<!-- thc : <%= item.stored(:thc) %> | cbd : <%= item.stored(:cbd) %> | cbn : <%= item.stored(:cbn) %> 
 							</br> -->
 							<div class="search-result-item-promo">
-								<%= item.stored(:promo) %> 
+								<% if item.highlights(:promo).size == 0 %>
+										<!-- have to do because just loading directly renders brackets and newlines -->
+										<% item.stored(:promo).each do |word| %>
+											<%= word %>
+										<% end %>
+									<% end %>
+									<% item.highlights(:promo).each do |highlight| %>								    
+									    <%= raw highlight.format  { |word| "<span class='highlight'> #{word} </span>"  } %>
+								    <% end %>							
 							</div>
-
-							<!-- 1/2g: <%= item.stored(:costhalfgram) %> | 1g: <%= item.stored(:costonegram) %> | 1/8oz:<%= item.stored(:costeighthoz) %> | 1/4oz:<%= item.stored(:costquarteroz) %> | 1/2oz:<%= item.stored(:costhalfoz) %> | 1oz:<%= item.stored(:costoneoz) %>
- -->
-							<!-- <table class= "table table-bordered small pull-right">
-								<tr>
-									<th>1/2g</th>
-									<th>1g</th>
-									<th>1/8oz</th>
-									<th>1/4oz</th>
-									<th>1/2oz</th>
-									<th>1oz</th>
-								</tr>
-								<tr>
-									<td><%= item.stored(:costhalfgram) %></td>
-									<td><%= item.stored(:costonegram) %></td>
-									<td><%= item.stored(:costeighthoz) %></td>
-									<td><%= item.stored(:costquarteroz) %></td>
-									<td><%= item.stored(:costhalfoz) %></td>
-									<td><%= item.stored(:costoneoz) %></td>
-								</tr>
-							</table> -->
 
 
 							<% if  item.stored(:description) && !item.stored(:description).empty?  %>
