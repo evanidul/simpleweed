@@ -78,14 +78,15 @@ var g_map;
 					    <%= raw highlight.format  { |word| "<span class='highlight'> #{word} </span>"  } %>
 					<% end %>
 				</a>
-				<div class="star-rank" style="float:right;">
-					<span class="glyphicon glyphicon-star"></span>
-					<span class="glyphicon glyphicon-star"></span>
-					<span class="glyphicon glyphicon-star"></span>
-					<span class="glyphicon glyphicon-star"></span>
-					<span class="glyphicon glyphicon-star"></span>		
-				</div>
+				
 			</h4>
+			<div class="star-rank" >
+				<span class="glyphicon glyphicon-star"></span>
+				<span class="glyphicon glyphicon-star"></span>
+				<span class="glyphicon glyphicon-star"></span>
+				<span class="glyphicon glyphicon-star"></span>
+				<span class="glyphicon glyphicon-star"></span>		
+			</div>
 			<div class ="search-results-store-badges">
 				<%
 	  	
@@ -205,21 +206,130 @@ var g_map;
 								    <%= raw highlight.format  { |word| "<span class='highlight'> #{word} </span>"  } %>
 							    <% end %>
 							</a>
-
-							<div class="star-rank" style="float:right;">
-								<span class="glyphicon glyphicon-star"></span>
-								<span class="glyphicon glyphicon-star"></span>
-								<span class="glyphicon glyphicon-star"></span>
-								<span class="glyphicon glyphicon-star"></span>
-								<span class="glyphicon glyphicon-star"></span>		
-							</div>
+							<table class= "small pull-right search-results-item-price-table">
+								<tr>
+									<th>1/2g</th>
+									<th>1g</th>
+									<th>1/8oz</th>
+									<th>1/4oz</th>
+									<th>1/2oz</th>
+									<th>1oz</th>
+								</tr>
+								<tr>
+									<td><%= item.stored(:costhalfgram) %></td>
+									<td><%= item.stored(:costonegram) %></td>
+									<td><%= item.stored(:costeighthoz) %></td>
+									<td><%= item.stored(:costquarteroz) %></td>
+									<td><%= item.stored(:costhalfoz) %></td>
+									<td><%= item.stored(:costoneoz) %></td>
+								</tr>
+							</table>
+							
 						</h5>
+						<div class="star-rank">
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>		
+						</div>
+						<div class ="search-results-item-badges">
+							<%
+							badges = [ ]
+								if item.stored(:og)
+									badges.push("og")
+								end
+								if item.stored(:kush)
+									badges.push("kush")
+								end
+								if item.stored(:haze)
+									badges.push("haze")
+								end
+								if !(item.stored(:cultivation).nil? || item.stored(:cultivation).empty?)
+									badges.push(item.stored(:cultivation))																
+								end
+								if item.stored(:dogo)
+									badges.push("dogo")
+								end
+								if item.stored(:topshelf)
+									badges.push("topshelf")
+								end
+								if item.stored(:privatereserve)
+									badges.push("privatereserve")
+								end
+								if item.stored(:organic)
+									badges.push("organic")
+								end
+								if item.stored(:sugarfree)
+									badges.push("sugarfree")
+								end
+								if item.stored(:glutenfree)
+									badges.push("glutenfree")
+								end
+								if item.stored(:supersize)
+									badges.push("supersize")
+								end
+
+
+							%>
+							<% badges.each do |badge| %>								    
+								<span class="badge search-item-badge-<%= badge %>"><%= badge %></span>
+							<% end %>
+							
+						</div>
 						<div>
 						    
-							<%= item.stored(:category) %></br>							
-							thc : 5.2% | cbd : 46.3% | cbn : 23.7%
-							</br>
-							halfgram: <%= item.stored(:costhalfgram) %> | gram: <%= item.stored(:costonegram) %> | eighth:<%= item.stored(:costeighthoz) %> | quarterounce:<%= item.stored(:costquarteroz) %> | halfounce:<%= item.stored(:costhalfoz) %> | ounce:<%= item.stored(:costoneoz) %>
+							<%
+								straincat = [ ]
+								
+								if !(item.stored(:strain).nil? || item.stored(:strain).empty?)
+									strainstr = "strain: #{item.stored(:strain)}"
+									straincat.push(strainstr)
+								end	
+								if !(item.stored(:maincategory).nil? || item.stored(:maincategory).empty?)
+									categorystr = "category: #{item.stored(:maincategory)}"
+									straincat.push(categorystr)
+								end
+								if !(item.stored(:subcategory).nil? || item.stored(:subcategory).empty?)	
+									subcatstr = "subcategory: #{item.stored(:subcategory)}"
+									straincat.push(subcatstr)
+								end	
+							%>
+							<div class="search-result-item-category-strain-meta">
+								<%= straincat.join ' | '  %> 
+							</div>
+
+							<%
+								lab = []
+								if !(item.stored(:thc).nil? || item.stored(:thc).empty?)
+									thcstr = "thc: #{item.stored(:thc)}"
+									lab.push(thcstr)
+								end
+								if !(item.stored(:cbd).nil? || item.stored(:cbd).empty?)
+									cbdstr = "cbd: #{item.stored(:cbd)}"
+									lab.push(cbdstr)
+								end
+								if !(item.stored(:cbn).nil? || item.stored(:cbn).empty?)
+									cbnstr = "cbn: #{item.stored(:cbn)}"
+									lab.push(cbnstr)
+								end
+							%>
+
+							<div class="search-result-item-lab-meta">
+								<%= lab.join ' | '	 %>
+							</div>						
+							
+							<div class="search-result-item-promo">
+								<% if item.highlights(:promo).size == 0 %>
+										<!-- have to do because just loading directly renders brackets and newlines -->
+										<% item.stored(:promo).each do |word| %>
+											<%= word %>
+										<% end %>
+									<% end %>
+									<% item.highlights(:promo).each do |highlight| %>								    
+									    <%= raw highlight.format  { |word| "<span class='highlight'> #{word} </span>"  } %>
+								    <% end %>							
+							</div>
 
 							<% if  item.stored(:description) && !item.stored(:description).empty?  %>
 								<div class="item-search-item-description">
