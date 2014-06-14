@@ -301,15 +301,15 @@ var g_map;
 
 							<%
 								lab = []
-								if !(item.stored(:thc).nil? || item.stored(:thc).empty?)
+								if !(item.stored(:thc).nil? )
 									thcstr = "thc: #{item.stored(:thc)}"
 									lab.push(thcstr)
 								end
-								if !(item.stored(:cbd).nil? || item.stored(:cbd).empty?)
+								if !(item.stored(:cbd).nil? )
 									cbdstr = "cbd: #{item.stored(:cbd)}"
 									lab.push(cbdstr)
 								end
-								if !(item.stored(:cbn).nil? || item.stored(:cbn).empty?)
+								if !(item.stored(:cbn).nil? )
 									cbnstr = "cbn: #{item.stored(:cbn)}"
 									lab.push(cbnstr)
 								end
@@ -319,16 +319,18 @@ var g_map;
 								<%= lab.join ' | '	 %>
 							</div>						
 							
-							<div class="search-result-item-promo">
-								<% if item.highlights(:promo).size == 0 %>
-										<!-- have to do because just loading directly renders brackets and newlines -->
-										<% item.stored(:promo).each do |word| %>
-											<%= word %>
+							<div class="search-result-item-promo">								
+								<% if !item.highlights(:promo).nil? && !item.stored(:promo).nil? %>
+									<% if item.highlights(:promo).size == 0 %>
+											<!-- have to do because just loading directly renders brackets and newlines -->
+											<% item.stored(:promo).each do |word| %>
+												<%= word %>
+											<% end %>
 										<% end %>
-									<% end %>
-									<% item.highlights(:promo).each do |highlight| %>								    
-									    <%= raw highlight.format  { |word| "<span class='highlight'> #{word} </span>"  } %>
-								    <% end %>							
+										<% item.highlights(:promo).each do |highlight| %>								    
+										    <%= raw highlight.format  { |word| "<span class='highlight'> #{word} </span>"  } %>
+									    <% end %>							
+								<% end %>
 							</div>
 
 							<% if  item.stored(:description) && !item.stored(:description).empty?  %>
