@@ -87,14 +87,39 @@ if !@store_items || @store_items.empty? %>
 							    <% end %>
 							</a>
 
-							<div class="star-rank" style="float:right;">
+							<table class= "small pull-right search-results-item-price-table">
+								<tr>
+									<th>1/2g</th>
+									<th>1g</th>
+									<th>1/8oz</th>
+									<th>1/4oz</th>
+									<th>1/2oz</th>
+									<th>1oz</th>
+								</tr>
+								<tr>
+									<td><%= item.stored(:costhalfgram) %></td>
+									<td><%= item.stored(:costonegram) %></td>
+									<td><%= item.stored(:costeighthoz) %></td>
+									<td><%= item.stored(:costquarteroz) %></td>
+									<td><%= item.stored(:costhalfoz) %></td>
+									<td><%= item.stored(:costoneoz) %></td>
+								</tr>
+							</table>
+							<!-- <div class="star-rank" style="float:right;">
+								<span class="glyphicon glyphicon-star"></span>
+								<span class="glyphicon glyphicon-star"></span>
+								<span class="glyphicon glyphicon-star"></span>
+								<span class="glyphicon glyphicon-star"></span>
+								<span class="glyphicon glyphicon-star"></span>		
+							</div> -->
+						</h4>
+						<div class="star-rank" >
 								<span class="glyphicon glyphicon-star"></span>
 								<span class="glyphicon glyphicon-star"></span>
 								<span class="glyphicon glyphicon-star"></span>
 								<span class="glyphicon glyphicon-star"></span>
 								<span class="glyphicon glyphicon-star"></span>		
 							</div>
-						</h4>
 						<div>
 							<div class="search-result-item-available-at">
 								available at 
@@ -202,7 +227,27 @@ if !@store_items || @store_items.empty? %>
 								<%= item.stored(:promo) %> 
 							</div>
 
-							halfgram: <%= item.stored(:costhalfgram) %> | gram: <%= item.stored(:costonegram) %> | eighth:<%= item.stored(:costeighthoz) %> | quarterounce:<%= item.stored(:costquarteroz) %> | halfounce:<%= item.stored(:costhalfoz) %> | ounce:<%= item.stored(:costoneoz) %>
+							<!-- 1/2g: <%= item.stored(:costhalfgram) %> | 1g: <%= item.stored(:costonegram) %> | 1/8oz:<%= item.stored(:costeighthoz) %> | 1/4oz:<%= item.stored(:costquarteroz) %> | 1/2oz:<%= item.stored(:costhalfoz) %> | 1oz:<%= item.stored(:costoneoz) %>
+ -->
+							<!-- <table class= "table table-bordered small pull-right">
+								<tr>
+									<th>1/2g</th>
+									<th>1g</th>
+									<th>1/8oz</th>
+									<th>1/4oz</th>
+									<th>1/2oz</th>
+									<th>1oz</th>
+								</tr>
+								<tr>
+									<td><%= item.stored(:costhalfgram) %></td>
+									<td><%= item.stored(:costonegram) %></td>
+									<td><%= item.stored(:costeighthoz) %></td>
+									<td><%= item.stored(:costquarteroz) %></td>
+									<td><%= item.stored(:costhalfoz) %></td>
+									<td><%= item.stored(:costoneoz) %></td>
+								</tr>
+							</table> -->
+
 
 							<% if  item.stored(:description) && !item.stored(:description).empty?  %>
 								<div class="item-search-item-description">
