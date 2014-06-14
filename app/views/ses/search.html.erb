@@ -104,22 +104,59 @@ if !@store_items || @store_items.empty? %>
 									<td><%= item.stored(:costhalfoz) %></td>
 									<td><%= item.stored(:costoneoz) %></td>
 								</tr>
-							</table>
-							<!-- <div class="star-rank" style="float:right;">
-								<span class="glyphicon glyphicon-star"></span>
-								<span class="glyphicon glyphicon-star"></span>
-								<span class="glyphicon glyphicon-star"></span>
-								<span class="glyphicon glyphicon-star"></span>
-								<span class="glyphicon glyphicon-star"></span>		
-							</div> -->
+							</table>							
 						</h4>
 						<div class="star-rank" >
-								<span class="glyphicon glyphicon-star"></span>
-								<span class="glyphicon glyphicon-star"></span>
-								<span class="glyphicon glyphicon-star"></span>
-								<span class="glyphicon glyphicon-star"></span>
-								<span class="glyphicon glyphicon-star"></span>		
-							</div>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>		
+						</div>
+						<div class ="search-results-item-badges">
+							<%
+							badges = [ ]
+								if item.stored(:og)
+									badges.push("og")
+								end
+								if item.stored(:kush)
+									badges.push("kush")
+								end
+								if item.stored(:haze)
+									badges.push("haze")
+								end
+								if !(item.stored(:cultivation).nil? || item.stored(:cultivation).empty?)
+									badges.push(item.stored(:cultivation))																
+								end
+								if item.stored(:dogo)
+									badges.push("dogo")
+								end
+								if item.stored(:topshelf)
+									badges.push("topshelf")
+								end
+								if item.stored(:privatereserve)
+									badges.push("privatereserve")
+								end
+								if item.stored(:organic)
+									badges.push("organic")
+								end
+								if item.stored(:sugarfree)
+									badges.push("sugarfree")
+								end
+								if item.stored(:glutenfree)
+									badges.push("glutenfree")
+								end
+								if item.stored(:supersize)
+									badges.push("supersize")
+								end
+
+
+							%>
+							<% badges.each do |badge| %>								    
+								<span class="badge search-item-badge-<%= badge %>"><%= badge %></span>
+							<% end %>
+							
+						</div>
 						<div>
 							<div class="search-result-item-available-at">
 								available at 
@@ -136,11 +173,6 @@ if !@store_items || @store_items.empty? %>
 								</a>							
 							</div>
 						    
-<!-- 							<a href="#" class = "item-map-toggle"  data-no-turbolink='true' latitude="<%= item.stored(:store_latitude) %>" longitude="<%= item.stored(:store_longitude) %>" store-name="<%= item.stored(:store_name) %>" 
-								item-name="<%= item.stored(:name) %>"
-								>map</a>
- -->
-
 						    <!-- store address -->
 						    
 						    
