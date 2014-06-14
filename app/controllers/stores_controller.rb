@@ -49,7 +49,7 @@ class StoresController < ApplicationController
 		@is_open = @tds.isStoreOpen(@currenttime, @store)
 
 		@store_items = @store.store_items.order('name ASC')
-		@grouped_store_items = @store_items.group_by &:category
+		@grouped_store_items = @store_items.group_by &:maincategory
 		@store_reviews = @store.store_reviews.sort_by {|review| review.sum_votes}.reverse
 
 		if params[:modal]
