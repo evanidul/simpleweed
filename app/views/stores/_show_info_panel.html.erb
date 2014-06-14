@@ -51,10 +51,10 @@
 <% end %>
 		
 <div id="accordion">			
-	<% @grouped_store_items.each do |category, store_items| %>
-		<h3><%= category %></h3>
+	<% @grouped_store_items.each do |maincategory, store_items| %>
+		<h3><%= maincategory %></h3>
 		<div> <!-- empty div required for jquery accordion -->			
-			<div id="table_<%= category %>" ></div>
+			<div id="table_<%= maincategory %>" ></div>
 
 <script>
 	(function drawTable() {
@@ -85,7 +85,7 @@
   		<% end %>      
 
 
-      var table = new google.visualization.Table(document.getElementById("table_<%= category %>"));
+      var table = new google.visualization.Table(document.getElementById("table_<%= maincategory %>"));
       
  	  var cssClassNames = {headerRow: "simple-weed-google-table-header", headerCell: "simple-weed-google-table-header-cell"};
       table.draw(data, {showRowNumber: false, allowHtml: true, cssClassNames: cssClassNames, width: '749px'});

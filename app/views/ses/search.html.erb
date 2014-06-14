@@ -96,27 +96,28 @@ if !@store_items || @store_items.empty? %>
 							</div>
 						</h4>
 						<div>
-							available at 
-							<a href="<%= store_path(item.stored(:store_id))%>" data-no-turbolink='true' >
-								<% if item.highlights(:store_name).size == 0 %>
-									<!-- have to do because just loading directly renders brackets and newlines -->
-									<% item.stored(:store_name).each do |word| %>
-										<%= word %>
+							<div class="search-result-item-available-at">
+								available at 
+								<a href="<%= store_path(item.stored(:store_id))%>" data-no-turbolink='true' >
+									<% if item.highlights(:store_name).size == 0 %>
+										<!-- have to do because just loading directly renders brackets and newlines -->
+										<% item.stored(:store_name).each do |word| %>
+											<%= word %>
+										<% end %>
 									<% end %>
-								<% end %>
-								<% item.highlights(:store_name).each do |highlight| %>								    
-								    <%= raw highlight.format  { |word| "<span class='highlight'> #{word} </span>"  } %>
-							    <% end %>							
-							</a>							
-							
-						    <br/>
+									<% item.highlights(:store_name).each do |highlight| %>								    
+									    <%= raw highlight.format  { |word| "<span class='highlight'> #{word} </span>"  } %>
+								    <% end %>							
+								</a>							
+							</div>
+						    
 <!-- 							<a href="#" class = "item-map-toggle"  data-no-turbolink='true' latitude="<%= item.stored(:store_latitude) %>" longitude="<%= item.stored(:store_longitude) %>" store-name="<%= item.stored(:store_name) %>" 
 								item-name="<%= item.stored(:name) %>"
 								>map</a>
  -->
 
 						    <!-- store address -->
-						    </br>
+						    
 						    
 							<% if  item.stored(:store_addressline1) && !item.stored(:store_addressline1).empty?  %>
 								<% item.stored(:store_addressline1).each do |word| %>
@@ -153,9 +154,54 @@ if !@store_items || @store_items.empty? %>
 
 
 							</br>
-							<%= item.stored(:category) %></br>							
-							thc : 5.2% | cbd : 46.3% | cbn : 23.7%
-							</br>
+							<%
+								straincat = [ ]
+								
+								if !(item.stored(:strain).nil? || item.stored(:strain).empty?)
+									strainstr = "strain: #{item.stored(:strain)}"
+									straincat.push(strainstr)
+								end	
+								if !(item.stored(:maincategory).nil? || item.stored(:maincategory).empty?)
+									categorystr = "category: #{item.stored(:maincategory)}"
+									straincat.push(categorystr)
+								end
+								if !(item.stored(:subcategory).nil? || item.stored(:subcategory).empty?)	
+									subcatstr = "subcategory: #{item.stored(:subcategory)}"
+									straincat.push(subcatstr)
+								end	
+							%>
+
+							<div class="search-result-item-category-strain-meta">
+								<%= straincat.join ' | '  %> 
+							</div>
+
+							
+							<%
+								lab = []
+								if !(item.stored(:thc).nil? || item.stored(:thc).empty?)
+									thcstr = "thc: #{item.stored(:thc)}"
+									lab.push(thcstr)
+								end
+								if !(item.stored(:cbd).nil? || item.stored(:cbd).empty?)
+									cbdstr = "cbd: #{item.stored(:cbd)}"
+									lab.push(cbdstr)
+								end
+								if !(item.stored(:cbn).nil? || item.stored(:cbn).empty?)
+									cbnstr = "cbn: #{item.stored(:cbn)}"
+									lab.push(cbnstr)
+								end
+							%>
+
+							<div class="search-result-item-lab-meta">
+								<%= lab.join ' | '	 %>
+							</div>
+
+							<!-- thc : <%= item.stored(:thc) %> | cbd : <%= item.stored(:cbd) %> | cbn : <%= item.stored(:cbn) %> 
+							</br> -->
+							<div class="search-result-item-promo">
+								<%= item.stored(:promo) %> 
+							</div>
+
 							halfgram: <%= item.stored(:costhalfgram) %> | gram: <%= item.stored(:costonegram) %> | eighth:<%= item.stored(:costeighthoz) %> | quarterounce:<%= item.stored(:costquarteroz) %> | halfounce:<%= item.stored(:costhalfoz) %> | ounce:<%= item.stored(:costoneoz) %>
 
 							<% if  item.stored(:description) && !item.stored(:description).empty?  %>

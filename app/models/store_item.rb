@@ -40,6 +40,7 @@ class StoreItem < ActiveRecord::Base
 	    float    :thc, :stored => true
 	    float    :cbd, :stored => true
 	    float    :cbn, :stored => true
+	    float    :dose, :stored => true
 	    integer  :costhalfgram, :stored => true
 	    integer  :costonegram, :stored => true
 	    integer  :costeighthoz, :stored => true
@@ -65,6 +66,8 @@ class StoreItem < ActiveRecord::Base
 	    boolean  :og, :stored => true
 	    boolean  :kush, :stored => true
 	    boolean  :haze, :stored => true
+
+	    text   :promo, :stored => true
 
 	    integer :store_id, :stored => true
 	    string(:store_id_str) { |p| p.store.id.to_s }
