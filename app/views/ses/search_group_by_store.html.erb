@@ -216,12 +216,42 @@ var g_map;
 									<th>1oz</th>
 								</tr>
 								<tr>
-									<td><%= item.stored(:costhalfgram) %></td>
-									<td><%= item.stored(:costonegram) %></td>
-									<td><%= item.stored(:costeighthoz) %></td>
-									<td><%= item.stored(:costquarteroz) %></td>
-									<td><%= item.stored(:costhalfoz) %></td>
-									<td><%= item.stored(:costoneoz) %></td>
+									<td <% if @filterpriceby == "halfgram" %>
+											class = "highlight"
+										<% end %>
+									>
+										<%= item.stored(:costhalfgram) %>
+									</td>
+									<td <% if @filterpriceby == "gram" %>
+											class = "highlight"
+										<% end %>
+									>
+										<%= item.stored(:costonegram) %>
+									</td>
+									<td <% if @filterpriceby == "eighth" %>
+											class = "highlight"
+										<% end %>
+									>
+										<%= item.stored(:costeighthoz) %>
+									</td>
+									<td <% if @filterpriceby == "quarteroz" %>
+											class = "highlight"
+										<% end %>
+									>
+										<%= item.stored(:costquarteroz) %>
+									</td>
+									<td <% if @filterpriceby == "halfoz" %>
+											class = "highlight"
+										<% end %>
+									>
+										<%= item.stored(:costhalfoz) %>
+									</td>
+									<td <% if @filterpriceby == "oz" %>
+											class = "highlight"
+										<% end %>
+									>
+										<%= item.stored(:costoneoz) %>
+									</td>
 								</tr>
 							</table>
 							

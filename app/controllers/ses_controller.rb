@@ -442,7 +442,7 @@ class SesController < ApplicationController
 		# loads all the objects from the db?
 		#@store_items = @itemsearch.results 
 		@store_items = @itemsearch.hits
-
+		@filterpriceby = filterpriceby;
 		 #generate next link for pagination
 		orig = request.original_url 		# has the whole search se.rb form serialized, parameters and all
 		uri = URI.parse(orig)
