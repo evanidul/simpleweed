@@ -80,6 +80,9 @@ class HeaderPageComponent < SitePrism::Page
   element :search_pricerangeselect_between100and200, '#se_prs_between100and200'
   element :search_pricerangeselect_morethan200, '#se_prs_morethan200'
 
+  element :search_dogo, '#se_ee'
+  element :search_supersize, '#se_dd'
+
   # ITEM CATEGORY ###########
   # flower
   element :bud, '#se_i1'

@@ -191,6 +191,12 @@ class SesController < ApplicationController
   		  		minprice = 200
   		  end
 
+  		  if search.dd == "1"
+  		  	with(:supersize, true)	  		  
+  		  end	  		   		 
+  		  if search.ee == "1"
+  		  	with(:dogo, true)	  		  
+  		  end	  		   		 
 
   		  case filterpriceby # a_variable is the variable we want to compare
 			when ""   				  	 				  
@@ -469,7 +475,8 @@ private
   :prs, #:pricerangeselect, 
   :mp, #:minprice, 
   :xp, #:maxprice,
-  
+  :dd, #supersize
+  :ee, #dogo
   
   # strain & attributes
   :o, #:indica

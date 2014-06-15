@@ -2,6 +2,7 @@
 	<tr>
 		<th>quantity</th>
 		<th>price</th>
+		<th>specials</th>
 	</tr>
 	<tr>
 		<td valign="top">
@@ -63,6 +64,16 @@
 			<div class="search-option-radio">
 				<%= f.radio_button(:prs, "morethan200") %>
 				more than $200
+			</div>
+		</td>
+		<td valign="top">
+			<div class="search-option-radio">
+				<%= f.check_box :ee, {}, "1","0" %>
+                <%= f.label :ee, "b.o.g.o" %><br/>				
+			</div>
+			<div class="search-option-radio">
+				<%= f.check_box :dd, {}, "1","0" %>
+                <%= f.label :dd, "supersize" %><br/>				
 			</div>
 		</td>
 	</tr>

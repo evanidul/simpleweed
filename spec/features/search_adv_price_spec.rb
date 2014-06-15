@@ -322,4 +322,76 @@ feature "search adv by price" , :js => true, :search =>true  do
 		searchresults_page.searchresults_store_names.size.should == 6		
 
 	end
+
+	scenario "search : supersize" do		
+		@item5 =  @store.store_items.create(:name => "alfalfa" , :strain =>"indica", :cultivation => "indoor", :privatereserve => true)		
+		@item5.supersize = true
+		@item5.save
+		
+		@item6 =  @store.store_items.create(:name => "alfalfa 2" , :strain =>"indica", :cultivation => "indoor", :privatereserve => true)		
+		@item6.supersize = true
+		@item6.save
+
+		@item7 =  @store.store_items.create(:name => "alfalfa 3" , :strain =>"indica", :cultivation => "indoor", :privatereserve => true)				
+		@item7.save
+		
+		Sunspot.commit
+
+		# search for it
+		page.visit("/users/sign_in")
+		header = HeaderPageComponent.new		
+		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+		header.item_query_input.set "alfalfa"		
+		header.search_button.click
+
+		searchresults_page = SearchResultsItemPageComponent.new
+		searchresults_page.searchresults_store_names.size.should == 3		
+
+		# filter by price
+		header.show_adv_search_button.click
+		header.search_opt_quantity_price_tab_link.click
+
+		header.search_supersize.set true 
+		header.search_button.click		
+
+		searchresults_page.searchresults_store_names.size.should == 2		
+		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item5.name, @item6.name]
+
+	end
+
+	scenario "search : dogo" do		
+		@item5 =  @store.store_items.create(:name => "alfalfa" , :strain =>"indica", :cultivation => "indoor", :privatereserve => true)		
+		@item5.dogo = true
+		@item5.save
+		
+		@item6 =  @store.store_items.create(:name => "alfalfa 2" , :strain =>"indica", :cultivation => "indoor", :privatereserve => true)		
+		@item6.dogo = true
+		@item6.save
+
+		@item7 =  @store.store_items.create(:name => "alfalfa 3" , :strain =>"indica", :cultivation => "indoor", :privatereserve => true)				
+		@item7.save
+		
+		Sunspot.commit
+
+		# search for it
+		page.visit("/users/sign_in")
+		header = HeaderPageComponent.new		
+		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+		header.item_query_input.set "alfalfa"		
+		header.search_button.click
+
+		searchresults_page = SearchResultsItemPageComponent.new
+		searchresults_page.searchresults_store_names.size.should == 3		
+
+		# filter by price
+		header.show_adv_search_button.click
+		header.search_opt_quantity_price_tab_link.click
+
+		header.search_dogo.set true 
+		header.search_button.click		
+
+		searchresults_page.searchresults_store_names.size.should == 2		
+		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item5.name, @item6.name]
+
+	end
 end

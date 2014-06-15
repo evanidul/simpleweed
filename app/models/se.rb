@@ -14,6 +14,8 @@ class Se
   :prs, #:pricerangeselect, 
   :mp, #:minprice, 
   :xp, #:maxprice,
+  :dd, #supersize
+  :ee, #dogo
   
   # strain & attributes
   :o, #:indica
