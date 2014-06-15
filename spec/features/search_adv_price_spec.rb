@@ -357,6 +357,10 @@ feature "search adv by price" , :js => true, :search =>true  do
 		searchresults_page.searchresults_store_names.size.should == 2		
 		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item5.name, @item6.name]
 
+		# badge there?
+		searchresults_page.badge_supersize.size.should == 2
+		searchresults_page.badge_indoor.size.should == 2
+
 	end
 
 	scenario "search : dogo" do		
@@ -393,5 +397,8 @@ feature "search adv by price" , :js => true, :search =>true  do
 		searchresults_page.searchresults_store_names.size.should == 2		
 		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item5.name, @item6.name]
 
+		# badge there?
+		searchresults_page.badge_bogo.size.should == 2
+		searchresults_page.badge_indoor.size.should == 2
 	end
 end
