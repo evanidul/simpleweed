@@ -345,14 +345,14 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		header.glutenfree.set true
 
 		# badges?
-		searchresults_page.badge_glutenfree.size.should == 2		
+		
 
 		header.search_button.click
 
 		searchresults_page = SearchResultsItemPageComponent.new
 		searchresults_page.searchresults_store_names.size.should == 2
 		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item5.name, @item6.name]
-
+		searchresults_page.badge_glutenfree.size.should == 2		
 		# new search for hybrid
 		header.show_adv_search_button.click		
 		header.glutenfree.set false
