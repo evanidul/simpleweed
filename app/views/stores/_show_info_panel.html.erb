@@ -62,10 +62,12 @@
 	  var data = new google.visualization.DataTable();
 
 	  if(pricePerUnit > 0) {
-		  data.addColumn('string', '');	  
+		  data.addColumn('string', '');
+		  data.addColumn('string', 'subcategory');	  
 		  data.addColumn('string', 'each');
 	  } else {
 		  data.addColumn('string', '');	  
+		  data.addColumn('string', 'subcategory');	  
 		  data.addColumn('string', '1g');
 		  data.addColumn('string', '1/8');
 		  data.addColumn('string', '1/4');
@@ -77,9 +79,13 @@
       
         <% store_items.each do |store_item| %>
 		    if (pricePerUnit > 0) {
-		    	data.addRow(['<%= link_to store_item.name, store_store_item_path(@store, store_item),  data: { toggle: "modal", target: "#modal" , remote: store_store_item_path(@store, store_item)} %>','<%= store_item.costperunit %>'])
+		    	data.addRow(['<%= link_to store_item.name, store_store_item_path(@store, store_item),  data: { toggle: "modal", target: "#modal" , remote: store_store_item_path(@store, store_item)} %>',
+		    		'<%= store_item.subcategory %>',
+		    		'<%= store_item.costperunit %>'])
 		    } else {
-		    	data.addRow(['<%= link_to store_item.name, store_store_item_path(@store, store_item),  data: { toggle: "modal", target: "#modal" , remote: store_store_item_path(@store, store_item)} %>','<%= store_item.costonegram %>','<%= store_item.costeighthoz %>',
+		    	data.addRow(['<%= link_to store_item.name, store_store_item_path(@store, store_item),  data: { toggle: "modal", target: "#modal" , remote: store_store_item_path(@store, store_item)} %>',
+					'<%= store_item.subcategory %>',
+		    		'<%= store_item.costonegram %>','<%= store_item.costeighthoz %>',
 		     	'<%= store_item.costquarteroz %>','<%= store_item.costhalfoz %>','<%= store_item.costoneoz %>']);		    	
 		    }
   		<% end %>      
