@@ -63,10 +63,12 @@
 
 	  if(pricePerUnit > 0) {
 		  data.addColumn('string', '');
+		  data.addColumn('string', 'strain');	  
 		  data.addColumn('string', 'subcategory');	  
 		  data.addColumn('string', 'each');
 	  } else {
-		  data.addColumn('string', '');	  
+		  data.addColumn('string', '');
+		  data.addColumn('string', 'strain');	  
 		  data.addColumn('string', 'subcategory');	  
 		  data.addColumn('string', '1g');
 		  data.addColumn('string', '1/8');
@@ -105,10 +107,12 @@
          %>
 		    if (pricePerUnit > 0) {
 		    	data.addRow(['<%= link_to store_item.name, store_store_item_path(@store, store_item),  data: { toggle: "modal", target: "#modal" , remote: store_store_item_path(@store, store_item)} %><% badges.each do |badge| %><span class="badge search-item-badge-<%= badge %>"><%= badge %></span>&nbsp;<% end %>',
+		    		'<%= store_item.strain %>',
 		    		'<%= store_item.subcategory %>',
 		    		'<%= store_item.costperunit %>'])
 		    } else {
 		    	data.addRow(['<%= link_to store_item.name, store_store_item_path(@store, store_item),  data: { toggle: "modal", target: "#modal" , remote: store_store_item_path(@store, store_item)} %><% badges.each do |badge| %><span class="badge search-item-badge-<%= badge %>"><%= badge %></span>&nbsp;<% end %>',
+					'<%= store_item.strain %>',
 					'<%= store_item.subcategory %>',
 		    		'<%= store_item.costonegram %>','<%= store_item.costeighthoz %>',
 		     	'<%= store_item.costquarteroz %>','<%= store_item.costhalfoz %>','<%= store_item.costoneoz %>']);		    	
