@@ -169,6 +169,7 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
 		header.item_query_input.set "alfafla"		
 		header.show_adv_search_button.click		
+		header.search_opt_strain_and_attr_tab_link.click
 		header.indica.set true
 		header.sativa.set true
 
@@ -180,6 +181,7 @@ feature "search adv by strain" , :js => true, :search =>true  do
 
 		# new search for hybrid
 		header.show_adv_search_button.click		
+		header.search_opt_strain_and_attr_tab_link.click
 		header.indica.set false
 		header.sativa.set false
 		header.hybrid.set true
@@ -216,6 +218,7 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
 		header.item_query_input.set "alfafla"		
 		header.show_adv_search_button.click		
+		header.search_opt_strain_and_attr_tab_link.click
 		header.indoor.set true
 		header.outdoor.set true
 
@@ -228,6 +231,7 @@ feature "search adv by strain" , :js => true, :search =>true  do
 
 		# new search for hybrid
 		header.show_adv_search_button.click		
+		header.search_opt_strain_and_attr_tab_link.click
 		header.indoor.set false
 		header.outdoor.set false
 		header.hydroponic.set true
@@ -258,6 +262,7 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
 		header.item_query_input.set "alfafla"		
 		header.show_adv_search_button.click		
+		header.search_opt_strain_and_attr_tab_link.click
 		header.privatereserve.set true
 		
 
@@ -271,7 +276,8 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		searchresults_page.badge_privatereserve.size.should == 2
 
 		# new search for hybrid
-		header.show_adv_search_button.click		
+		header.show_adv_search_button.click	
+		header.search_opt_strain_and_attr_tab_link.click	
 		header.privatereserve.set false
 		
 		header.search_button.click
@@ -299,7 +305,8 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		header = HeaderPageComponent.new		
 		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
 		header.item_query_input.set "alfafla"		
-		header.show_adv_search_button.click		
+		header.show_adv_search_button.click	
+		header.search_opt_strain_and_attr_tab_link.click	
 		header.topshelf.set true
 		
 
@@ -314,6 +321,7 @@ feature "search adv by strain" , :js => true, :search =>true  do
 
 		# new search for hybrid
 		header.show_adv_search_button.click		
+		header.search_opt_strain_and_attr_tab_link.click
 		header.topshelf.set false
 		
 		header.search_button.click
@@ -339,9 +347,10 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		# new search
 		page.visit("/users/sign_in")
 		header = HeaderPageComponent.new		
-		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+		header.search_input.set "7110 Rock Valley CA"
 		header.item_query_input.set "alfafla"		
 		header.show_adv_search_button.click		
+		header.search_opt_strain_and_attr_tab_link.click
 		header.glutenfree.set true
 
 		# badges?
@@ -355,6 +364,7 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		searchresults_page.badge_glutenfree.size.should == 2		
 		# new search for hybrid
 		header.show_adv_search_button.click		
+		header.search_opt_strain_and_attr_tab_link.click
 		header.glutenfree.set false
 		
 		header.search_button.click
@@ -383,6 +393,7 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
 		header.item_query_input.set "alfafla"		
 		header.show_adv_search_button.click		
+		header.search_opt_strain_and_attr_tab_link.click
 		header.sugarfree.set true
 		
 
@@ -397,6 +408,7 @@ feature "search adv by strain" , :js => true, :search =>true  do
 
 		# new search for hybrid
 		header.show_adv_search_button.click		
+		header.search_opt_strain_and_attr_tab_link.click
 		header.sugarfree.set false
 		
 		header.search_button.click
@@ -425,6 +437,7 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
 		header.item_query_input.set "alfafla"		
 		header.show_adv_search_button.click		
+		header.search_opt_strain_and_attr_tab_link.click
 		header.organic.set true
 		
 
@@ -439,6 +452,7 @@ feature "search adv by strain" , :js => true, :search =>true  do
 
 		# new search for hybrid
 		header.show_adv_search_button.click		
+		header.search_opt_strain_and_attr_tab_link.click
 		header.organic.set false
 		
 		header.search_button.click
@@ -467,6 +481,7 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
 		header.item_query_input.set "alfafla"		
 		header.show_adv_search_button.click		
+		header.search_opt_strain_and_attr_tab_link.click
 		header.og.set true
 		
 
@@ -477,10 +492,11 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item5.name, @item6.name]
 
 		# badges?
-		searchresults_page.badge_og.size.should == 2
+		#searchresults_page.badge_og.size.should == 2
 
 		# new search for hybrid
 		header.show_adv_search_button.click		
+		header.search_opt_strain_and_attr_tab_link.click
 		header.og.set false
 		
 		header.search_button.click
@@ -509,6 +525,7 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
 		header.item_query_input.set "alfafla"		
 		header.show_adv_search_button.click		
+		header.search_opt_strain_and_attr_tab_link.click
 		header.kush.set true
 		
 
@@ -519,10 +536,11 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item5.name, @item6.name]
 
 		# badges?
-		searchresults_page.badge_kush.size.should == 2
+		#searchresults_page.badge_kush.size.should == 2
 
 		# new search for hybrid
 		header.show_adv_search_button.click		
+		header.search_opt_strain_and_attr_tab_link.click
 		header.kush.set false
 		
 		header.search_button.click
@@ -551,6 +569,7 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
 		header.item_query_input.set "alfafla"		
 		header.show_adv_search_button.click		
+		header.search_opt_strain_and_attr_tab_link.click
 		header.haze.set true
 		
 
@@ -560,9 +579,10 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		searchresults_page.searchresults_store_names.size.should == 2
 		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item5.name, @item6.name]
 		# badges?
-		searchresults_page.badge_haze.size.should == 2
+		#searchresults_page.badge_haze.size.should == 2
 		# new search for hybrid
 		header.show_adv_search_button.click		
+		header.search_opt_strain_and_attr_tab_link.click
 		header.haze.set false
 		
 		header.search_button.click
