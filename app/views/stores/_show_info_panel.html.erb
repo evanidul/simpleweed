@@ -77,15 +77,7 @@
 
         <% store_items.each do |store_item|
 			badges = [ ]
-			if store_item.og
-				badges.push("og")
-			end
-			if store_item.kush
-				badges.push("kush")
-			end
-			if store_item.kush
-				badges.push("haze")
-			end
+			
 			if !(store_item.cultivation.nil? || store_item.cultivation.empty?)
 				badges.push(store_item.cultivation)																
 			end

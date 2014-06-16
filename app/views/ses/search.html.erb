@@ -145,15 +145,15 @@ if !@store_items || @store_items.empty? %>
 						<div class ="search-results-item-badges">
 							<%
 							badges = [ ]
-								if item.stored(:og)
-									badges.push("og")
-								end
-								if item.stored(:kush)
-									badges.push("kush")
-								end
-								if item.stored(:haze)
-									badges.push("haze")
-								end
+								# if item.stored(:og)
+								# 	badges.push("og")
+								# end
+								# if item.stored(:kush)
+								# 	badges.push("kush")
+								# end
+								# if item.stored(:haze)
+								# 	badges.push("haze")
+								# end
 								if !(item.stored(:cultivation).nil? || item.stored(:cultivation).empty?)
 									badges.push(item.stored(:cultivation))																
 								end

@@ -46,6 +46,7 @@ class StoresController < ApplicationController
 
 		@role_service = Simpleweed::Security::Roleservice.new
 		#is the store open?
+		
 		@is_open = @tds.isStoreOpen(@currenttime, @store)
 
 		@store_items = @store.store_items.order('name ASC')

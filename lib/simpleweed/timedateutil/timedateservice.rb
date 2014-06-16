@@ -328,6 +328,10 @@ module Simpleweed
 	  			end
 
 	  			if ((open == -1) && (closed == -1))   #the store is closed today..but we need to check if it's open from yesterday
+	  				# if store was closed yesterday, these values will be nil
+	  				if previousDayClose.nil? || previousDayOpen.nil?
+	  					return false
+	  				end
 	  				if previousDayClose < previousDayOpen  # .. check and see if the previous day's close is 3AM
 	  																  #..and that 3 AM is before the open at 5 AM
 	  					return current.between?(0, previousDayClose)  # if so, the store is still open if the current time is
@@ -339,6 +343,10 @@ module Simpleweed
 	  			end # if
 
 	  			if current.between?(0, open)   #if the current time is between midnight and the previous day's opening hours..
+	  				# if store was closed yesterday, these values will be nil
+	  				if previousDayClose.nil? || previousDayOpen.nil?
+	  					return false
+	  				end
 	  				if previousDayClose < previousDayOpen  # .. check and see if the previous day's close is 3AM
 	  																  #..and that 3 AM is before the open at 5 AM
 	  					return current.between?(0, previousDayClose)  # if so, the store is still open if the current time is
