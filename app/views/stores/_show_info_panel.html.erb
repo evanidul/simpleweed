@@ -58,23 +58,54 @@
 
 <script>
 	(function drawTable() {
+	  var category = "<%=  store_items.first.maincategory %>";
+	  //['flower', 'concentrate', 'edible', 'pre-roll', 'other', 'accessory']
 	  var pricePerUnit = "<%=  store_items.first.costperunit %>";
 	  var data = new google.visualization.DataTable();
 
-	  if(pricePerUnit > 0) {
-		  data.addColumn('string', '');
-		  data.addColumn('string', 'strain');	  
-		  data.addColumn('string', 'subcategory');	  
-		  data.addColumn('string', 'each');
-	  } else {
-		  data.addColumn('string', '');
-		  data.addColumn('string', 'strain');	  
-		  data.addColumn('string', 'subcategory');	  
-		  data.addColumn('string', '1g');
-		  data.addColumn('string', '1/8');
-		  data.addColumn('string', '1/4');
-		  data.addColumn('string', '1/2');
-		  data.addColumn('string', '1 oz');
+	  switch (category) {
+	  		case "flower":
+		  		data.addColumn('string', '');
+			  	data.addColumn('string', 'strain');	  
+			  	data.addColumn('string', 'subcategory');	  
+			  	data.addColumn('string', '1g');
+			  	data.addColumn('string', '1/8');
+			  	data.addColumn('string', '1/4');
+			  	data.addColumn('string', '1/2');
+			  	data.addColumn('string', '1 oz');
+	  		break;
+	  		case "concentrate":
+	  			data.addColumn('string', '');
+			  	data.addColumn('string', 'strain');	  
+			  	data.addColumn('string', 'subcategory');	  
+		  		data.addColumn('string', '1/2g');
+			  	data.addColumn('string', '1g');
+			  	data.addColumn('string', '1/8');
+	  		break;
+	  		case "edible":
+	  			data.addColumn('string', '');
+			  	data.addColumn('string', 'strain');	  
+			  	data.addColumn('string', 'subcategory');	  
+			  	data.addColumn('string', 'each');
+	  		break;
+	  		case "pre-roll":
+	  			data.addColumn('string', '');
+			  	data.addColumn('string', 'strain');	  
+			  	data.addColumn('string', 'subcategory');	  
+			  	data.addColumn('string', 'each');
+	  		break;
+	  		case "other":
+	  			data.addColumn('string', '');
+			  	data.addColumn('string', 'strain');	  
+			  	data.addColumn('string', 'subcategory');	  
+			  	data.addColumn('string', 'each');
+	  		break;
+	  		case "accessory":
+	  			data.addColumn('string', '');
+			  	data.addColumn('string', 'strain');	  
+			  	data.addColumn('string', 'subcategory');	  
+			  	data.addColumn('string', 'each');
+	  		break;
 	  }
 
         <% store_items.each do |store_item|
@@ -105,18 +136,48 @@
 				badges.push("supersize")
 			end
          %>
-		    if (pricePerUnit > 0) {
-		    	data.addRow(['<%= link_to store_item.name, store_store_item_path(@store, store_item),  data: { toggle: "modal", target: "#modal" , remote: store_store_item_path(@store, store_item)} %><% badges.each do |badge| %><span class="badge search-item-badge-<%= badge %>"><%= badge %></span>&nbsp;<% end %>',
-		    		'<%= store_item.strain %>',
-		    		'<%= store_item.subcategory %>',
-		    		'<%= store_item.costperunit %>'])
-		    } else {
-		    	data.addRow(['<%= link_to store_item.name, store_store_item_path(@store, store_item),  data: { toggle: "modal", target: "#modal" , remote: store_store_item_path(@store, store_item)} %><% badges.each do |badge| %><span class="badge search-item-badge-<%= badge %>"><%= badge %></span>&nbsp;<% end %>',
+
+			switch (category) {	
+		  		case "flower":
+			  		data.addRow(['<%= link_to store_item.name, store_store_item_path(@store, store_item),  data: { toggle: "modal", target: "#modal" , remote: store_store_item_path(@store, store_item)} %><% badges.each do |badge| %><span class="badge search-item-badge-<%= badge %>"><%= badge %></span>&nbsp;<% end %>',
 					'<%= store_item.strain %>',
 					'<%= store_item.subcategory %>',
 		    		'<%= store_item.costonegram %>','<%= store_item.costeighthoz %>',
-		     	'<%= store_item.costquarteroz %>','<%= store_item.costhalfoz %>','<%= store_item.costoneoz %>']);		    	
-		    }
+		     		'<%= store_item.costquarteroz %>','<%= store_item.costhalfoz %>','<%= store_item.costoneoz %>']);	
+		  		break;
+		  		case "concentrate":
+		  			data.addRow(['<%= link_to store_item.name, store_store_item_path(@store, store_item),  data: { toggle: "modal", target: "#modal" , remote: store_store_item_path(@store, store_item)} %><% badges.each do |badge| %><span class="badge search-item-badge-<%= badge %>"><%= badge %></span>&nbsp;<% end %>',
+					'<%= store_item.strain %>',
+					'<%= store_item.subcategory %>',
+		    		'<%= store_item.costhalfgram %>','<%= store_item.costonegram %>','<%= store_item.costeighthoz %>']);	
+		  		break;
+		  		case "edible":
+		  			data.addRow(['<%= link_to store_item.name, store_store_item_path(@store, store_item),  data: { toggle: "modal", target: "#modal" , remote: store_store_item_path(@store, store_item)} %><% badges.each do |badge| %><span class="badge search-item-badge-<%= badge %>"><%= badge %></span>&nbsp;<% end %>',
+		    		'<%= store_item.strain %>',
+		    		'<%= store_item.subcategory %>',
+		    		'<%= store_item.costperunit %>']);
+		  		break;
+		  		case "pre-roll":
+		  			data.addRow(['<%= link_to store_item.name, store_store_item_path(@store, store_item),  data: { toggle: "modal", target: "#modal" , remote: store_store_item_path(@store, store_item)} %><% badges.each do |badge| %><span class="badge search-item-badge-<%= badge %>"><%= badge %></span>&nbsp;<% end %>',
+		    		'<%= store_item.strain %>',
+		    		'<%= store_item.subcategory %>',
+		    		'<%= store_item.costperunit %>']);
+		  		break;
+		  		case "other":
+		  			data.addRow(['<%= link_to store_item.name, store_store_item_path(@store, store_item),  data: { toggle: "modal", target: "#modal" , remote: store_store_item_path(@store, store_item)} %><% badges.each do |badge| %><span class="badge search-item-badge-<%= badge %>"><%= badge %></span>&nbsp;<% end %>',
+		    		'<%= store_item.strain %>',
+		    		'<%= store_item.subcategory %>',
+		    		'<%= store_item.costperunit %>']);
+		  		break;
+		  		case "accessory":
+		  			data.addRow(['<%= link_to store_item.name, store_store_item_path(@store, store_item),  data: { toggle: "modal", target: "#modal" , remote: store_store_item_path(@store, store_item)} %><% badges.each do |badge| %><span class="badge search-item-badge-<%= badge %>"><%= badge %></span>&nbsp;<% end %>',
+		    		'<%= store_item.strain %>',
+		    		'<%= store_item.subcategory %>',
+		    		'<%= store_item.costperunit %>']);
+		  		break;
+		  		}	
+
+
   		<% end %>      
 
 
