@@ -8,8 +8,8 @@ class SearchResultsStoresPageComponent < SitePrism::Page
 
   #element :firstSearchResult_store_name, "#main-container > .item-search-result-container:first > div > h4 > a"
 
-  elements :search_results_store_names, "#main-container > .item-search-result-container > div > h4 > a"
-  elements :search_results_store_names, "#search-results > div > div > h4 > a"
+  #elements :search_results_store_names, "#main-container > .item-search-result-container > div > h4 > a"
+  elements :search_results_store_names, "#search-results > div > div > table > tbody > tr > td > h4 > a"
 
   elements :search_results_item_names, '.item-search-item-name > a'
 
