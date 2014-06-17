@@ -85,55 +85,122 @@ if !@store_items || @store_items.empty? %>
 								<% item.highlights(:name).each do |highlight| %>								    
 								    <%= raw highlight.format  { |word| "<span class='highlight'> #{word} </span>"  } %>
 							    <% end %>
-							</a>							
-							<table class= "small pull-right search-results-item-price-table">
-								<tr>
-									<th>1/2g</th>
-									<th>1g</th>
-									<th>1/8oz</th>
-									<th>1/4oz</th>
-									<th>1/2oz</th>
-									<th>1oz</th>
-								</tr>
-								<tr>
-									<td <% if @filterpriceby == "halfgram" %>
-											class = "highlight"
-										<% end %>
-									>
-										<%= item.stored(:costhalfgram) %>
-									</td>
-									<td <% if @filterpriceby == "gram" %>
-											class = "highlight"
-										<% end %>
-									>
-										<%= item.stored(:costonegram) %>
-									</td>
-									<td <% if @filterpriceby == "eighth" %>
-											class = "highlight"
-										<% end %>
-									>
-										<%= item.stored(:costeighthoz) %>
-									</td>
-									<td <% if @filterpriceby == "quarteroz" %>
-											class = "highlight"
-										<% end %>
-									>
-										<%= item.stored(:costquarteroz) %>
-									</td>
-									<td <% if @filterpriceby == "halfoz" %>
-											class = "highlight"
-										<% end %>
-									>
-										<%= item.stored(:costhalfoz) %>
-									</td>
-									<td <% if @filterpriceby == "oz" %>
-											class = "highlight"
-										<% end %>
-									>
-										<%= item.stored(:costoneoz) %>
-									</td>
-								</tr>
-							</table>							
+							</a>						
+							<%
+							if !(item.stored(:maincategory).nil? || item.stored(:maincategory).empty?)
+								itemcategory = item.stored(:maincategory)
+								case itemcategory
+									# ['flower', 'concentrate', 'edible', 'pre-roll', 'other', 'accessory']
+									when "flower"
+										%>
+										<table class= "small pull-right search-results-item-price-table">
+											<tr>												
+												<th>1g</th>
+												<th>1/8oz</th>
+												<th>1/4oz</th>
+												<th>1/2oz</th>
+												<th>1oz</th>
+											</tr>
+											<tr>												
+												<td <% if @filterpriceby == "gram" %>
+														class = "highlight"
+													<% end %>
+												>
+													<%= item.stored(:costonegram) %>
+												</td>
+												<td <% if @filterpriceby == "eighth" %>
+														class = "highlight"
+													<% end %>
+												>
+													<%= item.stored(:costeighthoz) %>
+												</td>
+												<td <% if @filterpriceby == "quarteroz" %>
+														class = "highlight"
+													<% end %>
+												>
+													<%= item.stored(:costquarteroz) %>
+												</td>
+												<td <% if @filterpriceby == "halfoz" %>
+														class = "highlight"
+													<% end %>
+												>
+													<%= item.stored(:costhalfoz) %>
+												</td>
+												<td <% if @filterpriceby == "oz" %>
+														class = "highlight"
+													<% end %>
+												>
+													<%= item.stored(:costoneoz) %>
+												</td>
+											</tr>
+										</table>
+										<%	
+									when "concentrate"
+										%>
+										<table class= "small pull-right search-results-item-price-table">
+											<tr>
+												<th></th>
+												<th></th>
+												<th>1/2g</th>
+												<th>1g</th>
+												<th>1/8oz</th>												
+											</tr>
+											<tr>
+												<td></td>
+												<td></td>
+												<td <% if @filterpriceby == "halfgram" %>
+														class = "highlight"
+													<% end %>
+												>
+													<%= item.stored(:costhalfgram) %>
+												</td>
+												<td <% if @filterpriceby == "gram" %>
+														class = "highlight"
+													<% end %>
+												>
+													<%= item.stored(:costonegram) %>
+												</td>
+												<td <% if @filterpriceby == "eighth" %>
+														class = "highlight"
+													<% end %>
+												>
+													<%= item.stored(:costeighthoz) %>
+												</td>
+																							
+											</tr>
+										</table>
+										<%	
+									else
+										%>
+										<table class= "small pull-right search-results-item-price-table">
+											<tr>
+												<th></th>
+												<th></th>
+												<th></th>
+												<th></th>												
+												<th>each</th>												
+											</tr>
+											<tr>
+												<td></td>
+												<td></td>
+												<td></td>
+												<td></td>				
+												<td <% if @filterpriceby == "gram" %>
+														class = "highlight"
+													<% end %>
+												>
+													<%= item.stored(:costperunit) %>
+												</td>
+												
+											</tr>
+										</table>
+										<%		
+									#switch
+									end %>
+								<% end #if %>
+
+
+														
 						</h4>
 						<div class="star-rank" >
 							<span class="glyphicon glyphicon-star"></span>
