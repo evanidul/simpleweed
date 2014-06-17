@@ -1,1 +1,33 @@
+<h4 class="item-search-item-name">
+		<!-- dvu: we don't use link_to because the link name is too complicated to embed -->
+  	<%= @store_item.name %>
+</h4>
+<div class="star-rank" >
+	<span class="glyphicon glyphicon-star"></span>
+	<span class="glyphicon glyphicon-star"></span>
+	<span class="glyphicon glyphicon-star"></span>
+	<span class="glyphicon glyphicon-star"></span>
+	<span class="glyphicon glyphicon-star"></span>		
+</div>  
+<%
+	straincat = [ ]
+	
+	if !(@store_item.strain.nil? || @store_item.strain.empty?)
+		strainstr = "strain: #{@store_item.strain}"
+		straincat.push(strainstr)
+	end	
+	if !(@store_item.maincategory.nil? || @store_item.maincategory.empty?)
+		categorystr = "category: #{@store_item.maincategory}"
+		straincat.push(categorystr)
+	end
+	if !(@store_item.subcategory.nil? || @store_item.subcategory.empty?)	
+		subcatstr = "subcategory: #{@store_item.subcategory}"
+		straincat.push(subcatstr)
+	end	
+%>
+
+<div class="search-result-item-category-strain-meta">
+	<%= straincat.join ' | '  %> 
+</div>
+</br>
 no reviews yet!
