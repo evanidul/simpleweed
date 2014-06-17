@@ -6,7 +6,13 @@
 	</ul>
 
     <div class="modal-body">
-	<h4 class="item-search-item-name">
+	
+    	<!-- Nav tabs -->
+
+	<!-- Tab panes -->
+	<div id="item-preview-tab-content" class="tab-content">
+	  	<div class="tab-pane active" id="info">
+	  		<h4 class="item-search-item-name">
 		<!-- dvu: we don't use link_to because the link name is too complicated to embed -->
 	  	<%= @store_item.name %>
 		<%
@@ -120,17 +126,51 @@
 							
 				
 				<% end #switch%>
-			<% end #if %>
-
-
-									
-	</h4>
-    	<!-- Nav tabs -->
-
-	<!-- Tab panes -->
-	<div id="item-preview-tab-content" class="tab-content">
-	  	<div class="tab-pane active" id="info">
+			<% end #if %>						
+			</h4>
 			<br/>
+			<%
+				straincat = [ ]
+				
+				if !(@store_item.strain.nil? || @store_item.strain.empty?)
+					strainstr = "strain: #{@store_item.strain}"
+					straincat.push(strainstr)
+				end	
+				if !(@store_item.maincategory.nil? || @store_item.maincategory.empty?)
+					categorystr = "category: #{@store_item.maincategory}"
+					straincat.push(categorystr)
+				end
+				if !(@store_item.subcategory.nil? || @store_item.subcategory.empty?)	
+					subcatstr = "subcategory: #{@store_item.subcategory}"
+					straincat.push(subcatstr)
+				end	
+			%>
+
+			<div class="search-result-item-category-strain-meta">
+				<%= straincat.join ' | '  %> 
+			</div>
+
+			
+			<%
+				lab = []
+				if !(@store_item.thc.nil? )
+					thcstr = "thc: #{@store_item.thc}"
+					lab.push(thcstr)
+				end
+				if !(@store_item.cbd.nil? )
+					cbdstr = "cbd: #{@store_item.cbd}"
+					lab.push(cbdstr)
+				end
+				if !(@store_item.cbn.nil? )
+					cbnstr = "cbn: #{@store_item.cbn}"
+					lab.push(cbnstr)
+				end
+			%>
+
+			<div class="search-result-item-lab-meta">
+				<%= lab.join ' | '	 %>
+			</div>
+
 			<p><%= raw @store_item.description %>
 			</p>
 			<h4 class="modal-title" id="myModalLabel">top review
