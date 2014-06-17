@@ -127,8 +127,49 @@
 				
 				<% end #switch%>
 			<% end #if %>						
-			</h4>
-			<br/>
+			</h4>			
+			<div class="star-rank" >
+				<span class="glyphicon glyphicon-star"></span>
+				<span class="glyphicon glyphicon-star"></span>
+				<span class="glyphicon glyphicon-star"></span>
+				<span class="glyphicon glyphicon-star"></span>
+				<span class="glyphicon glyphicon-star"></span>		
+			</div>
+			<div class ="search-results-item-badges">
+				<%
+				badges = [ ]					
+					if !(@store_item.cultivation.nil? || @store_item.cultivation.empty?)
+						badges.push(item.stored(:cultivation))																
+					end
+					if @store_item.dogo
+						badges.push("bogo")
+					end
+					if @store_item.topshelf
+						badges.push("topshelf")
+					end
+					if @store_item.privatereserve
+						badges.push("privatereserve")
+					end
+					if @store_item.organic
+						badges.push("organic")
+					end
+					if @store_item.sugarfree
+						badges.push("sugarfree")
+					end
+					if @store_item.glutenfree
+						badges.push("glutenfree")
+					end
+					if @store_item.supersize
+						badges.push("supersize")
+					end
+
+
+				%>
+				<% badges.each do |badge| %>								    
+					<span class="badge search-item-badge-<%= badge %>"><%= badge %></span>
+				<% end %>
+				
+			</div>
 			<%
 				straincat = [ ]
 				
@@ -170,9 +211,16 @@
 			<div class="search-result-item-lab-meta">
 				<%= lab.join ' | '	 %>
 			</div>
+			<div class="search-result-item-promo">								
+				<%= @store_item.promo %>
+			</div>
+			<div id="item-description">
+				<h4>description</h4>
+				<p><%= raw @store_item.description %>
+				</p>
+			</div>
 
-			<p><%= raw @store_item.description %>
-			</p>
+
 			<h4 class="modal-title" id="myModalLabel">top review
 				<div class="star-rank">
 					<span class="glyphicon glyphicon-star"></span>
@@ -186,40 +234,7 @@
 				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vestibulum metus quam, non dapibus metus molestie non. Proin vel metus eget odio rutrum euismod. Aenean quam justo, tempus et varius vel, pulvinar adipiscing lorem. Pellentesque eget nisi vel neque facilisis laoreet vel vel mi. Cras tempor nibh id augue gravida commodo.
 	      	</div>
 		    
-			<h4>lab information</h4>          
-			  <table id="item-preview-lab-information" class="table table-bordered">
-			  	<tr>
-			  		<th>thc %
-			  		</th>
-					<th>cbd %
-			  		</th>			  		
-					<th>cbn %
-			  		</th>			  		
-			  	</tr>
-			  	<tr>			  		
-			  		<td>
-			  			<% if  @store_item.thc %>
-					    	<%= @store_item.thc %>
-					    <% else %>
-					    	none.
-					    <% end %>
-					</td>
-					<td>												    					    
-					    <% if  @store_item.cbd %>
-					    	<%= @store_item.cbd %>
-					    <% else %>
-					    	none.
-					    <% end %>					    						
-					</td>
-					<td>
-					    <% if  @store_item.cbn %>
-					    	<%= @store_item.cbn %>
-					    <% else %>
-					    	none.
-					    <% end %>					    						
-					</td>  
-			  	</tr>
-			  </table>
+
 			  
 
 
