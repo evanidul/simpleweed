@@ -105,19 +105,21 @@ feature "store item edit and add" , :js => true, :search =>true do
 		item_costhalfoz = "200"
 		item_costoz = "400"
 		item_perunit = "10"
+		item_dose = "100"
 
 		items_page.store_item_name.set item_name
 		items_page.store_item_description.set item_description
 		items_page.thc.set item_thc
 		items_page.cbd.set item_cbd		
 		items_page.cbn.set item_cbn
+		items_page.dose.set item_dose
 		items_page.store_item_costhalfgram.set item_costhalfgram
 		items_page.store_item_costonegram.set item_costgram
 		items_page.store_item_costeighthoz.set item_costeighth
 		items_page.store_item_costquarteroz.set item_costquarter
 		items_page.store_item_costhalfoz.set item_costhalfoz
 		items_page.store_item_costoneoz.set item_costoz
-		items_page.store_item_costperunit.set item_perunit
+		items_page.store_item_costperunit.set item_perunit		
 
 		items_page.store_item_strain.select 'indica'
 		items_page.store_item_maincategory.select 'flower'
@@ -146,13 +148,14 @@ feature "store item edit and add" , :js => true, :search =>true do
 		expect(items_page.thc.value).to have_text(item_thc)
 		expect(items_page.cbd.value).to have_text("5.2") # trailing 0 gets dropped
 		expect(items_page.cbn.value).to have_text(item_cbn)
+		expect(items_page.dose.value).to have_text(item_dose)
 		expect(items_page.store_item_costhalfgram.value).to have_text(item_costhalfgram)
 		expect(items_page.store_item_costonegram.value).to have_text(item_costgram)
 		expect(items_page.store_item_costeighthoz.value).to have_text(item_costeighth)
 		expect(items_page.store_item_costquarteroz.value).to have_text(item_costquarter)
 		expect(items_page.store_item_costhalfoz.value).to have_text(item_costhalfoz)
 		expect(items_page.store_item_costoneoz.value).to have_text(item_costoz)
-		expect(items_page.store_item_costperunit.value).to have_text(item_perunit)	
+		expect(items_page.store_item_costperunit.value).to have_text(item_perunit)			
 
 		expect(items_page.store_item_strain.value).to have_text('indica')	
 		expect(items_page.store_item_maincategory.value).to have_text('flower')
@@ -165,6 +168,7 @@ feature "store item edit and add" , :js => true, :search =>true do
 		item_thcUP = "2"
 		item_cbdUP = "5"
 		item_cbnUP = "0.5"
+		item_doseUP = "150"
 		item_costhalfgramUP = "12"
 		item_costgramUP = "22"
 		item_costeighthUP = "52"
@@ -178,6 +182,7 @@ feature "store item edit and add" , :js => true, :search =>true do
 		items_page.thc.set item_thcUP
 		items_page.cbd.set item_cbdUP		
 		items_page.cbn.set item_cbnUP
+		items_page.dose.set item_doseUP
 		items_page.store_item_costhalfgram.set item_costhalfgramUP
 		items_page.store_item_costonegram.set item_costgramUP
 		items_page.store_item_costeighthoz.set item_costeighthUP
@@ -211,6 +216,7 @@ feature "store item edit and add" , :js => true, :search =>true do
 		expect(items_page.thc.value).to have_text(item_thcUP)
 		expect(items_page.cbd.value).to have_text(item_cbdUP) 
 		expect(items_page.cbn.value).to have_text(item_cbnUP)
+		expect(items_page.dose.value).to have_text(item_doseUP)
 		expect(items_page.store_item_costhalfgram.value).to have_text(item_costhalfgramUP)
 		expect(items_page.store_item_costonegram.value).to have_text(item_costgramUP)
 		expect(items_page.store_item_costeighthoz.value).to have_text(item_costeighthUP)

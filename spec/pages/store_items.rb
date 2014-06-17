@@ -21,6 +21,7 @@ class StoreItemsPage < SitePrism::Page
 	element :thc, '#thc-percent'
 	element :cbd,'#cbd-percent'
 	element :cbn, '#cbn-percent'
+	element :dose, '#dose'
 
 	element :store_item_costhalfgram, '#store_item_costhalfgram'
 	element :store_item_costonegram, '#store_item_costonegram'

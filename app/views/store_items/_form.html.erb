@@ -91,6 +91,13 @@
 			    <%= f.text_field :cbn, :class => 'form-control' , :pattern => '(?!^0*$)(?!^0*\.0*$)^\d{1,2}(\.\d{1,2})?$' , :id => 'cbn-percent' %>
 		  	</p>             
 		</td>  
+		<td>
+			<p class = "form-group">
+			    <%= f.label :dose,  "dose(mg)"  %><br>
+			    <!-- validates %, 0-99 -->
+			    <%= f.text_field :dose, :class => 'form-control' , :id => 'dose' %>
+		  	</p>             
+		</td>  
   	</tr>
   </table>
   <h4>pricing</h4>
