@@ -3,20 +3,21 @@
 	<ul class="nav nav-tabs">
   		<li class="active"><a href="#info" data-toggle="tab">info</a></li>
   		<li><a href="#reviews" data-toggle="tab">reviews</a></li>  
+  		<li><a href="#store-info" data-toggle="tab">store</a></li>  
 	</ul>
 
     <div class="modal-body">
-	
-    	<!-- Nav tabs -->
-
-	<!-- Tab panes -->
-	<div id="item-preview-tab-content" class="tab-content">
-	  	<%= render :partial =>'store_items/info_tab' %>
-	</div>  	
-	<div class="tab-pane" id="reviews">
-		<%= render :partial =>'store_items/review_tab' %>			
-	</div>  
-	</div><!-- item-preview-tab-content -->
+		<!-- Tab panes -->
+		<div id="item-preview-tab-content" class="tab-content">
+		  	<%= render :partial =>'store_items/info_tab' %>
+		</div>  	
+		<div class="tab-pane" id="reviews">
+			<%= render :partial =>'store_items/review_tab' %>			
+		</div>  
+		<div class="tab-pane" id="store-info">
+			<%= render :partial =>'store_items/store_tab' %>			
+		</div>  
+	</div>
 
 
     <p class = "form-group pull-right">               

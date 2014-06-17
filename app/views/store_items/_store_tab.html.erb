@@ -1,0 +1,65 @@
+<h4 class="item-pop-up-store-name">
+		<!-- dvu: we don't use link_to because the link name is too complicated to embed -->
+  	<%= @store_item.store.name %>
+</h4>
+<div class="item-pop-up-store-promo">
+<%= @store_item.store.promo %>
+</div>
+<div class="star-rank" >
+	<span class="glyphicon glyphicon-star"></span>
+	<span class="glyphicon glyphicon-star"></span>
+	<span class="glyphicon glyphicon-star"></span>
+	<span class="glyphicon glyphicon-star"></span>
+	<span class="glyphicon glyphicon-star"></span>		
+</div>  
+<div class ="search-results-store-badges">
+<%
+
+badges = [ ]
+if @store_item.store.deliveryservice
+	badges.push("deliveryservice")
+end
+if @store_item.store.acceptscreditcards
+	badges.push("acceptscreditcards")
+end
+if @store_item.store.atmaccess
+	badges.push("atmaccess")
+end
+if @store_item.store.automaticdispensingmachines
+	badges.push("automaticdispensingmachines")
+end
+if @store_item.store.firsttimepatientdeals
+	badges.push("firsttimepatientdeals")
+end
+if @store_item.store.handicapaccess
+	badges.push("handicapaccess")
+end
+if @store_item.store.loungearea
+	badges.push("loungearea")
+end
+if @store_item.store.petfriendly
+	badges.push("petfriendly")
+end
+if @store_item.store.securityguard
+	badges.push("securityguard")
+end
+if @store_item.store.eighteenplus
+	badges.push("eighteenplus")
+end
+if @store_item.store.twentyoneplus
+	badges.push("twentyoneplus")
+end
+if @store_item.store.hasphotos
+	badges.push("hasphotos")
+end
+if @store_item.store.labtested
+	badges.push("labtested")
+end
+if @store_item.store.onsitetesting
+	badges.push("onsitetesting")
+end
+%>
+<% badges.each do |badge| %>								    
+	<span class="badge search-store-badge-<%= badge %>"><%= badge %></span>
+<% end %>
+</div>	
