@@ -30,6 +30,7 @@ class StoreItemsController < ApplicationController
 		@tds = Simpleweed::Timedateutil::Timedateservice.new		
 		#is the store open?		
 		@is_open = @tds.isStoreOpen(@currenttime, @store)
+		@role_service = Simpleweed::Security::Roleservice.new
 
 		@item_reviews = @store_item.store_item_reviews
 		

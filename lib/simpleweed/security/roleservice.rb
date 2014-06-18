@@ -123,8 +123,33 @@ module Simpleweed
 	  			else
 	  				return "you've already reviewed this store"
 	  			end
-
 	  		end
+
+	  		# Users can only write 1 review per item
+	  		# store manager & store owner cannot review their own items
+	  		# return true or a string reason as to why they cannot, the stringw ill be rendered in a tooltip
+	  		def canViewWriteReviewButtonForItem(user, item)
+	  			if item.nil?
+	  				return false
+	  			end
+
+	  			if user.nil?
+	  				# different than above, b/c we handle login differently
+	  				return false
+	  			end
+	  			if isStoreManager(user) || isStoreOwner(user)
+	  				return "store managers cannot review items"
+	  			end
+
+	  			previousreview = item.store_item_reviews.find_by user_id: user.id
+	  			if previousreview.nil?
+	  				return true
+	  			else
+	  				return "you've already reviewed this item"
+	  			end
+	  		end
+
+
 		end #class
 	end
 end

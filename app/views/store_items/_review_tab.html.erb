@@ -1,11 +1,46 @@
 <h4 class="item-search-item-name">
 		<!-- dvu: we don't use link_to because the link name is too complicated to embed -->
   	<%= @store_item.name %>
-  	<a id="review-item-slide-toggle-button" class = "btn btn-primary pull-right">write a review</a>
+  	<% if current_user.nil? %>
+		<a id="review-item-slide-toggle-button" class = "btn btn-primary pull-right">write a review</a>
+  		<script>
+  			$("#review-item-slide-toggle-button").click(function() {
+  				/** close bootstrap modal first **/
+				$('#modal').modal('hide');
+				$("#log-in-link").click();	
+  			})
+			
+  		</script>
+  	<% else 
+  		 canReviewResult = @role_service.canViewWriteReviewButtonForItem(current_user, @store_item) 
+			if canReviewResult == true
+  			%>
+  			<a id="review-item-slide-toggle-button" class = "btn btn-primary pull-right">write a review</a>
+  			<% else %>
+  				<span class="write-review-button-blocked">
+					<!-- <a class="btn btn-default" >Write a Review</a> -->
+					<%= link_to 'write a review', new_store_store_review_path(@store) , id: "write-review-button-blocked" , class: "btn btn-default", "data-content"=>"<span id='write-review-blocked-tip'>"+canReviewResult+"</span>" %>
+					<script>
+						$('#write-review-button-blocked').click(function(e){
+						  	e.preventDefault();
+						  	$('#write-review-button-blocked').popover({ 
+							    html : true,
+							    placement : "right"
+							}).popover('show');
+					
+						});
+					</script>
+				</span>
+			<% end #if canReviewResult %>
+  			
+
+  	<% end #if current_user.nil? %>
   	
 </h4>
 
-<%= render 'store_item_reviews/form' %>
+<% if !current_user.nil? %>
+	<%= render 'store_item_reviews/form' %>
+<% end %>
 
 <div class="star-rank" >
 	<span class="glyphicon glyphicon-star"></span>

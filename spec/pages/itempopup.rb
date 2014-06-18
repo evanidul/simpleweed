@@ -23,7 +23,14 @@ class ItemPopupComponent < SitePrism::Page
   element :review_text_input, '#store_item_review_review'
   element :save_review_button, '#save_store_item'
 
+  # only shows when no reviews have been written
   element :be_the_first, ".alert-warning"
+
+  # shows if you click on review button, after already writing a review  
+  element :write_review_button_blocked_tooltip , '#write-review-blocked-tip'
+
+  # alternate review button that shows up if you're a store owner or can't write a review b/c you already wrote one
+  element :write_review_button_blocked, '#write-review-button-blocked'
 
   # i cut and pasted the UI from stores, so the classes should be the same, even tho semantically incorrect
   elements :review_content, '.review-content'

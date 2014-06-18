@@ -457,5 +457,142 @@ feature "store item edit and add" , :js => true, :search =>true do
         expect(itempopup.star_ranking.first['star-value']).to have_text("5")       
 
     end
+
+    scenario "logged out, try to review, fill out login modal, write review" do
+        # search for it     
+        header = HeaderPageComponent.new    
+        header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+        header.item_query_input.set @item1_name
+        header.search_button.click
+
+        search_results_page = SearchResultsItemPageComponent.new        
+                
+        search_results_page.searchresults_item_names.size.should == 1
+        search_results_page.searchresults_item_names.map {|name| name.text}.should == [@item1_name]
+
+        # click and view preview        
+        search_results_page.searchresults_item_names.first.click
+        
+        itempopup = ItemPopupComponent.new
+        wait_for_ajax
+        assert_modal_visible
+        itempopup.tab_reviews.click
+
+        itempopup.write_review_button.click
+
+        # expect login modal, since you can't write a review unless you're logged in
+        # login modal
+        wait_for_ajax
+        assert_modal_visible
+        header.username.set @adminemail
+        header.password.set @adminpassword
+        header.logininbutton.click
+
+        expect(header.edituserlink.text).to have_text(@adminusername)
+
+        # should still be on the same search page, since login redirects us back
+        search_results_page.searchresults_item_names.size.should == 1
+        search_results_page.searchresults_item_names.map {|name| name.text}.should == [@item1_name]
+
+        # click and view preview        
+        search_results_page.searchresults_item_names.first.click     
+        wait_for_ajax
+        assert_modal_visible
+        itempopup.tab_reviews.click
+        itempopup.write_review_button.click
+        review_text = "i loved this thing"    
+        itempopup.fivestar_button.click
+        itempopup.review_text_input.set review_text
+        itempopup.save_review_button.click
+
+        # search for it     
+        header = HeaderPageComponent.new    
+        header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+        header.item_query_input.set @item1_name
+        header.search_button.click
+
+        search_results_page = SearchResultsItemPageComponent.new        
+                
+        search_results_page.searchresults_item_names.size.should == 1
+        search_results_page.searchresults_item_names.map {|name| name.text}.should == [@item1_name]
+
+        # click and view preview        
+        search_results_page.searchresults_item_names.first.click
+        wait_for_ajax
+        assert_modal_visible        
+        itempopup.tab_reviews.click
+
+        # review should be there
+        expect(itempopup.review_content.first.text).to have_text(review_text)
+        expect(itempopup.star_ranking.first['star-value']).to have_text("5")  
+
+    end
+
+    scenario "write a review, go back to store page, hit review button, should see tooltip" do
+        # login as admin
+        page.visit("/")
+        
+        header = HeaderPageComponent.new
+        header.has_loginlink?
+        header.loginlink.click
+        
+        # login modal
+        header.username.set @adminemail
+        header.password.set @adminpassword
+        header.logininbutton.click
+
+        expect(header.edituserlink.text).to have_text(@adminusername)
+        
+        # search for it     
+        header = HeaderPageComponent.new    
+        header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+        header.item_query_input.set @item1_name
+        header.search_button.click
+
+        search_results_page = SearchResultsItemPageComponent.new        
+                
+        search_results_page.searchresults_item_names.size.should == 1
+        search_results_page.searchresults_item_names.map {|name| name.text}.should == [@item1_name]
+
+        # click and view preview        
+        search_results_page.searchresults_item_names.first.click
+        
+        itempopup = ItemPopupComponent.new
+        wait_for_ajax
+        assert_modal_visible
+        itempopup.tab_reviews.click
+
+        itempopup.write_review_button.click
+        review_text = "i loved this thing"
+        itempopup.fourstar_button.click
+        itempopup.review_text_input.set review_text
+        itempopup.save_review_button.click
+
+        # search for it     
+        header = HeaderPageComponent.new    
+        header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+        header.item_query_input.set @item1_name
+        header.search_button.click
+
+        search_results_page = SearchResultsItemPageComponent.new        
+                
+        search_results_page.searchresults_item_names.size.should == 1
+        search_results_page.searchresults_item_names.map {|name| name.text}.should == [@item1_name]
+
+        # click and view preview        
+        search_results_page.searchresults_item_names.first.click
+        wait_for_ajax
+        assert_modal_visible        
+        itempopup.tab_reviews.click
+
+        # review should be there
+        expect(itempopup.review_content.first.text).to have_text(review_text)
+        expect(itempopup.star_ranking.first['star-value']).to have_text("4")    
+
+        # try and review again, should get tooltip        
+        itempopup.write_review_button_blocked.click       
+        expect(itempopup.write_review_button_blocked_tooltip).to have_text("you've already reviewed this item") 
+
+    end
 	
 end
