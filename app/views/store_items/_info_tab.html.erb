@@ -126,7 +126,7 @@
 		<%
 		badges = [ ]					
 			if !(@store_item.cultivation.nil? || @store_item.cultivation.empty?)
-				badges.push(item.stored(:cultivation))																
+				badges.push(@store_item.cultivation)																
 			end
 			if @store_item.dogo
 				badges.push("bogo")

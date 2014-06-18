@@ -61,6 +61,9 @@ RSpec.configure do |config|
   # gives us a function to wait for ajax to complete in tests
   config.include WaitForAjax, type: :feature
 
+  # dvu: try and add waits for modals
+  config.include BootstrapModal, type: :feature
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 

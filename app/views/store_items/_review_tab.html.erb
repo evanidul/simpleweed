@@ -36,7 +36,7 @@
 </div>
 </br>
 
-<% if @item_reviews.empty? %>
+<% if @item_reviews.empty? || @item_reviews.count == 0 %>
 	<div class="store-review">
 		
 		<div class="alert alert-warning fade in">
