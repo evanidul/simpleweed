@@ -594,5 +594,74 @@ feature "store item edit and add" , :js => true, :search =>true do
         expect(itempopup.write_review_button_blocked_tooltip).to have_text("you've already reviewed this item") 
 
     end
+
+    scenario "claim a store, then try to write a review for it, see tooltip saying you can't review your own store" do      
+        
+        @store.email = @adminemail
+        @store.save
+
+        page.visit("/users/sign_in")
+        login_page = LoginPage.new
+        login_page.has_username_input?
+        login_page.has_username_password_input?
+
+        login_page.username_input.set @adminemail
+        login_page.username_password_input.set @adminpassword
+        login_page.sign_in_button.click
+
+        header = HeaderPageComponent.new
+        header.has_edituserlink?
+        expect(header.edituserlink.text).to have_text(@adminusername)
+
+        # search for it     
+        header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+        header.search_button.click
+
+        search_results_page = SearchResultsStoresPageComponent.new                      
+        search_results_page.search_results_store_names.size.should == 1
+        search_results_page.search_results_store_names.map {|name| name.text}.should == [@store_name]
+
+        # click and view preview
+        search_results_page.search_results_store_names.first.click
+        
+        store_page = StorePage.new      
+        expect(store_page.name_header.text).to have_text(@store_name)    
+        store_page.claim_store_button.click
+
+        store_claim_page = StoreClaimPage.new
+        expect(store_claim_page.name_header.text).to have_text(@store_name)
+        store_claim_page.claim_store_button.click       
+        
+        expect(page).to have_text("You have successfully claimed this store.")          
+        
+        expect(store_page.edit_links_tip.text).to have_text("edit links are now available for you")
+        store_has_claim_button = store_page.has_claim_store_button?        
+        assert_equal( false, store_has_claim_button, 'Store should not have a claim button after it is claimed')
+
+        # search for it     
+        header = HeaderPageComponent.new    
+        header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+        header.item_query_input.set @item1_name
+        header.search_button.click
+
+        search_results_page = SearchResultsItemPageComponent.new        
+                
+        search_results_page.searchresults_item_names.size.should == 1
+        search_results_page.searchresults_item_names.map {|name| name.text}.should == [@item1_name]
+
+        # click and view preview        
+        itempopup = ItemPopupComponent.new
+        search_results_page.searchresults_item_names.first.click
+        wait_for_ajax
+        assert_modal_visible        
+        itempopup.tab_reviews.click
+
+        # try and review again, should get tooltip        
+        itempopup.write_review_button_blocked.click       
+        expect(itempopup.write_review_button_blocked_tooltip).to have_text("store managers cannot review items") 
+
+
+
+    end
 	
 end
