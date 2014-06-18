@@ -95,7 +95,7 @@
 			<%= link_to 'login to comment', login_path , data: { toggle: "modal", target: "#modal", remote: login_path} , :class=>"log-in-to-comment" %>
 		<% else %>
 			<%= form_for ([@store, store_review, store_review.store_review_comments.build]), :remote => true, :html => { :id => "new_comment_on_#{store_review.id}" , :class=> "new-store-review-comment-form"} do |f| %>
-				<%= f.text_area :comment, :class => 'form-control new-item-review-comment-input', :required => true, :rows => 1 %>
+				<%= f.text_area :comment, :class => 'form-control new-comment-input', :required => true, :rows => 1 %>
 				<%= f.submit 'post comment', :class => 'btn btn-primary lowercase pull-right save-new-store-review-comment btn-sm' , :id => "save_comment_on_#{store_review.id}"  %>
 			<% end %>		
 		<% end %>
