@@ -1,7 +1,12 @@
 <h4 class="item-search-item-name">
 		<!-- dvu: we don't use link_to because the link name is too complicated to embed -->
   	<%= @store_item.name %>
+  	<a id="review-item-slide-toggle-button" class = "btn btn-primary">write a review</a>
+  	
 </h4>
+
+<%= render 'store_item_reviews/form' %>
+
 <div class="star-rank" >
 	<span class="glyphicon glyphicon-star"></span>
 	<span class="glyphicon glyphicon-star"></span>
@@ -31,8 +36,6 @@
 </div>
 </br>
 
-
-
 <% if @item_reviews.empty? %>
 	<div class="store-review">
 		
@@ -46,7 +49,11 @@
 
 
 
-<% @item_reviews.each do |item_review| %>
+<% @item_reviews.each do |item_review| 
+	
+	if !item_review.id.nil?
+
+	%>
 	<div class="store-review">
 		<h4>			
 			<%= item_review.user.username %>
@@ -131,6 +138,6 @@
 		
 
 	</div> 
+	<% end %>
 <% end %>
 
-<%= render 'store_item_reviews/form' %>
