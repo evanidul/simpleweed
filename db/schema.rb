@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140612122653) do
+ActiveRecord::Schema.define(version: 20140618025411) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,39 @@ ActiveRecord::Schema.define(version: 20140612122653) do
 
   add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true, using: :btree
   add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
+
+  create_table "store_item_review_comments", force: true do |t|
+    t.integer  "store_item_review_id"
+    t.integer  "user_id"
+    t.text     "comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "store_item_review_comments", ["store_item_review_id"], name: "index_store_item_review_comments_on_store_item_review_id", using: :btree
+  add_index "store_item_review_comments", ["user_id"], name: "index_store_item_review_comments_on_user_id", using: :btree
+
+  create_table "store_item_review_votes", force: true do |t|
+    t.integer  "store_item_review_id"
+    t.integer  "user_id"
+    t.integer  "vote"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "store_item_review_votes", ["store_item_review_id"], name: "index_store_item_review_votes_on_store_item_review_id", using: :btree
+  add_index "store_item_review_votes", ["user_id"], name: "index_store_item_review_votes_on_user_id", using: :btree
+
+  create_table "store_item_reviews", force: true do |t|
+    t.integer  "store_item_id"
+    t.integer  "user_id"
+    t.text     "review"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "store_item_reviews", ["store_item_id"], name: "index_store_item_reviews_on_store_item_id", using: :btree
+  add_index "store_item_reviews", ["user_id"], name: "index_store_item_reviews_on_user_id", using: :btree
 
   create_table "store_items", force: true do |t|
     t.integer  "store_id"

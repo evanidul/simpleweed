@@ -43,7 +43,12 @@ Smellyleaf::Application.routes.draw do
       put 'update_claim'
 
     end
-    resources :store_items
+    resources :store_items do 
+      resources :store_item_reviews do
+        resources :store_item_review_comments
+        resources :store_item_review_votes
+      end
+    end
     resources :store_reviews do
       resources :store_review_votes
       resources :store_review_comments

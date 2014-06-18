@@ -1,0 +1,2 @@
+class StoreItemReviewCommentsController < ApplicationController
+end

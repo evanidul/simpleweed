@@ -9,7 +9,7 @@ class StoreItemsController < ApplicationController
 	# loaded from modal, so don't use layout
 	def new
 		# @storeitem = StoreItem.new
-		@store_item = @store.store_items.build
+		@store_item = @store.store_items.build		
 		render layout: false		
 	end
 
@@ -31,6 +31,7 @@ class StoreItemsController < ApplicationController
 		#is the store open?		
 		@is_open = @tds.isStoreOpen(@currenttime, @store)
 
+		@item_reviews = @store_item.store_item_reviews
 		
 		render layout: false
 	end
