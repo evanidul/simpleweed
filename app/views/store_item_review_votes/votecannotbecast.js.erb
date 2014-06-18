@@ -1,0 +1,6 @@
+
+<% if @message.nil? %>
+	bootstrap_alert.warning("Your vote could not be saved.");
+<% else %>
+	bootstrap_alert.warning(' <%= @message %>');
+<% end %>

@@ -67,7 +67,7 @@
 			<tr>
 				<td>					
 					<div class="btn-group-vertical review-vote-controls">		
-						<%= form_for ([@store, @store_item, item_review, item_review.store_item_review_votes.build]), :remote => true, :html => { :id => "new_upvote_on_#{store_item_review.id}" } do |f| %>
+						<%= form_for ([@store, @store_item, item_review, item_review.store_item_review_votes.build]), :remote => true, :html => { :id => "new_upvote_on_#{item_review.id}" } do |f| %>
 							<%= f.hidden_field :vote, :value => "1" %> 
 							<%= button_tag(type: 'submit', class: "btn btn-default upvotebutton") do %>
  								<div class="glyphicon glyphicon-chevron-up"></div>
@@ -78,7 +78,7 @@
 							<div class="review-votes" id="<%=item_review.id%>_vote_sum"><%= item_review.sum_votes %> </div>
 						</div>
 						
-						<%= form_for ([@store, @store_item, item_review, store_item_review.store_review_votes.build]), :remote => true, :html => { :id => "new_downvote_on_#{store_item_review.id}" } do |f| %>
+						<%= form_for ([@store, @store_item, item_review, item_review.store_item_review_votes.build]), :remote => true, :html => { :id => "new_downvote_on_#{item_review.id}" } do |f| %>
 							<%= f.hidden_field :vote, :value => "-1" %> 
 							<%= button_tag(type: 'submit', class: "btn btn-default downvotebutton") do %>
  								<div class="glyphicon glyphicon-chevron-down"></div>
@@ -92,7 +92,7 @@
 			</tr>
 		</table>
 
-		<div id="comments_for_review_<%= store_review.id %>" class="store-review-comments">						
+		<div id="comments_for_review_<%= item_review.id %>" class="store-review-comments">						
 			<!-- dvu: WARNING: be sure to change this template in ajax response as well! -->
 			<% item_review.store_item_review_comments.each do |store_item_review_comment| %>
 				<% 

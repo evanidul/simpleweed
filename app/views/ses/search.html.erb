@@ -86,6 +86,10 @@ if !@store_items || @store_items.empty? %>
 								    <%= raw highlight.format  { |word| "<span class='highlight'> #{word} </span>"  } %>
 							    <% end %>
 							</a>						
+
+							<!-- temporary way to write a review -->
+							<%= link_to 'write a review', new_store_store_item_store_item_review_path(item.stored(:store_name),item.stored(:id)) , data: { toggle: "modal", target: "#modal", remote: new_store_store_item_store_item_review_path(item.stored(:store_name),item.stored(:id))} , id: "write-review-button" , class: "btn btn-primary" %>
+
 							<%
 							if !(item.stored(:maincategory).nil? || item.stored(:maincategory).empty?)
 								itemcategory = item.stored(:maincategory)

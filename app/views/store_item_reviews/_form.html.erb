@@ -1,0 +1,56 @@
+<%= form_for ([@store_item.store, @store_item, @store_item_review]) do |f| %>
+
+	<% form_id = "review_#{@store_item.id}_rating" %>
+
+	<ul class = "store-star-rank">
+	<% (1..5).each do |i| %>
+		<li id="rank_store_stars_<%= i %>" data-stars="<%= i %>" class="rating_star off">
+			<span class="glyphicon glyphicon-star"></span>
+		</li>
+	<% end %>
+	</ul>
+	<%= f.hidden_field :stars, :value => "1" %> <!-- #store_review_stars -->
+
+  <p class = "form-group">
+    
+    <%= f.text_area :review, :class => 'form-control', :required => true, :rows => 4 %>
+  </p>   
+
+  <p class = "form-group pull-right">               
+    <button id="close-button" type="button" class="btn btn-default" data-dismiss="modal">close</button>
+    <%= f.submit :class => 'btn btn-primary lowercase' , :id => 'save_store_item'%>
+  </p>
+
+<script>
+
+	$(".rating_star").click(function() {
+		var star = $(this);		
+		var stars = star.attr("data-stars");
+		set_stars(stars);
+	});
+
+	$( ".rating_star" ).hover(function(e) {
+		var star = $(this);		
+		var stars = star.attr("data-stars");
+		set_stars(stars);		
+	})
+	
+	set_stars = function(stars) {
+		//the actual hidden input val that gets sent via the form
+		$("#store_review_stars").val(stars);
+		
+		for(i=1; i<=5; i++) {
+			if (i <= stars) {
+				$("#" + "rank_store_stars_" + i ).addClass('on');
+			} else {
+				$("#" + "rank_store_stars_" + i ).removeClass('on');
+			}
+		}
+	}
+
+	/** min of 1 star **/
+	set_stars(1);
+
+</script>
+
+<% end %>
