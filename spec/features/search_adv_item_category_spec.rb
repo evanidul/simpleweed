@@ -79,8 +79,8 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		header.search_button.click
 
 		searchresults_page = SearchResultsItemPageComponent.new
-		searchresults_page.searchresults_store_names.size.should == 1
-		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item1.name]
+		searchresults_page.searchresults_item_names.size.should == 1
+		searchresults_page.searchresults_item_names.map {|name| name.text}.should == [@item1.name]
 
 		# new search for hybrid
 		header.show_adv_search_button.click		
@@ -90,8 +90,8 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		
 		header.search_button.click
 		# setting false in the UI doesn't mean filter for false, it means all values (T or F) are acceptable values
-		searchresults_page.searchresults_store_names.size.should == 2
-		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item1.name, @item2.name]
+		searchresults_page.searchresults_item_names.size.should == 2
+		searchresults_page.searchresults_item_names.map {|name| name.text}.should == [@item1.name, @item2.name]
 	end	
 
 	scenario "search : flower & concentrate" do		
@@ -125,8 +125,8 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		header.search_button.click
 
 		searchresults_page = SearchResultsItemPageComponent.new
-		searchresults_page.searchresults_store_names.size.should == 1
-		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item1.name]
+		searchresults_page.searchresults_item_names.size.should == 1
+		searchresults_page.searchresults_item_names.map {|name| name.text}.should == [@item1.name]
 
 		# new search for hybrid
 		header.show_adv_search_button.click		
@@ -136,8 +136,8 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		
 		header.search_button.click
 		# setting false in the UI doesn't mean filter for false, it means all values (T or F) are acceptable values
-		searchresults_page.searchresults_store_names.size.should == 2
-		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item1.name, @item2.name]
+		searchresults_page.searchresults_item_names.size.should == 2
+		searchresults_page.searchresults_item_names.map {|name| name.text}.should == [@item1.name, @item2.name]
 	end	
 
 	scenario "search : concentrate" do		
@@ -171,8 +171,8 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		header.search_button.click
 
 		searchresults_page = SearchResultsItemPageComponent.new
-		searchresults_page.searchresults_store_names.size.should == 1
-		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item1.name]
+		searchresults_page.searchresults_item_names.size.should == 1
+		searchresults_page.searchresults_item_names.map {|name| name.text}.should == [@item1.name]
 
 		# new search for hybrid
 		header.show_adv_search_button.click		
@@ -182,8 +182,8 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		
 		header.search_button.click
 		# setting false in the UI doesn't mean filter for false, it means all values (T or F) are acceptable values
-		searchresults_page.searchresults_store_names.size.should == 2
-		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item1.name, @item2.name]
+		searchresults_page.searchresults_item_names.size.should == 2
+		searchresults_page.searchresults_item_names.map {|name| name.text}.should == [@item1.name, @item2.name]
 	end	
 	scenario "search : concentrate 2" do		
 		@item1 =  @store.store_items.create(:name => "alfafla 1" , :strain =>"indica")		
@@ -216,8 +216,8 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		header.search_button.click
 
 		searchresults_page = SearchResultsItemPageComponent.new
-		searchresults_page.searchresults_store_names.size.should == 1
-		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item1.name]
+		searchresults_page.searchresults_item_names.size.should == 1
+		searchresults_page.searchresults_item_names.map {|name| name.text}.should == [@item1.name]
 
 		# new search for hybrid
 		header.show_adv_search_button.click		
@@ -227,8 +227,8 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		
 		header.search_button.click
 		# setting false in the UI doesn't mean filter for false, it means all values (T or F) are acceptable values
-		searchresults_page.searchresults_store_names.size.should == 2
-		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item1.name, @item2.name]
+		searchresults_page.searchresults_item_names.size.should == 2
+		searchresults_page.searchresults_item_names.map {|name| name.text}.should == [@item1.name, @item2.name]
 	end	
 	scenario "search : concentrate 3" do		
 		@item1 =  @store.store_items.create(:name => "alfafla 1" , :strain =>"indica")		
@@ -261,8 +261,8 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		header.search_button.click
 
 		searchresults_page = SearchResultsItemPageComponent.new
-		searchresults_page.searchresults_store_names.size.should == 1
-		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item1.name]
+		searchresults_page.searchresults_item_names.size.should == 1
+		searchresults_page.searchresults_item_names.map {|name| name.text}.should == [@item1.name]
 
 		# new search for hybrid
 		header.show_adv_search_button.click		
@@ -273,8 +273,8 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		
 		header.search_button.click
 		# setting false in the UI doesn't mean filter for false, it means all values (T or F) are acceptable values
-		searchresults_page.searchresults_store_names.size.should == 2
-		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item2.name, @item3.name]
+		searchresults_page.searchresults_item_names.size.should == 2
+		searchresults_page.searchresults_item_names.map {|name| name.text}.should == [@item2.name, @item3.name]
 	end		
 	scenario "search : concentrate 4, edible" do		
 		@item1 =  @store.store_items.create(:name => "alfafla 1" , :strain =>"indica")		
@@ -307,8 +307,8 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		header.search_button.click
 
 		searchresults_page = SearchResultsItemPageComponent.new
-		searchresults_page.searchresults_store_names.size.should == 1
-		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item1.name]
+		searchresults_page.searchresults_item_names.size.should == 1
+		searchresults_page.searchresults_item_names.map {|name| name.text}.should == [@item1.name]
 
 		# new search for hybrid
 		header.show_adv_search_button.click		
@@ -319,8 +319,8 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		
 		header.search_button.click
 		# setting false in the UI doesn't mean filter for false, it means all values (T or F) are acceptable values
-		searchresults_page.searchresults_store_names.size.should == 2
-		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item2.name, @item3.name]
+		searchresults_page.searchresults_item_names.size.should == 2
+		searchresults_page.searchresults_item_names.map {|name| name.text}.should == [@item2.name, @item3.name]
 	end	
 	scenario "search : edible 2" do		
 		@item1 =  @store.store_items.create(:name => "alfafla 1" , :strain =>"indica")		
@@ -353,8 +353,8 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		header.search_button.click
 
 		searchresults_page = SearchResultsItemPageComponent.new
-		searchresults_page.searchresults_store_names.size.should == 1
-		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item1.name]
+		searchresults_page.searchresults_item_names.size.should == 1
+		searchresults_page.searchresults_item_names.map {|name| name.text}.should == [@item1.name]
 
 		# new search for hybrid
 		header.show_adv_search_button.click		
@@ -365,8 +365,8 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		
 		header.search_button.click
 		# setting false in the UI doesn't mean filter for false, it means all values (T or F) are acceptable values
-		searchresults_page.searchresults_store_names.size.should == 2
-		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item2.name, @item3.name]
+		searchresults_page.searchresults_item_names.size.should == 2
+		searchresults_page.searchresults_item_names.map {|name| name.text}.should == [@item2.name, @item3.name]
 	end	
 	scenario "search : edible , prerolls" do		
 		@item1 =  @store.store_items.create(:name => "alfafla 1" , :strain =>"indica")		
@@ -399,8 +399,8 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		header.search_button.click
 
 		searchresults_page = SearchResultsItemPageComponent.new
-		searchresults_page.searchresults_store_names.size.should == 1
-		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item1.name]
+		searchresults_page.searchresults_item_names.size.should == 1
+		searchresults_page.searchresults_item_names.map {|name| name.text}.should == [@item1.name]
 
 		# new search for hybrid
 		header.show_adv_search_button.click		
@@ -411,8 +411,8 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		
 		header.search_button.click
 		# setting false in the UI doesn't mean filter for false, it means all values (T or F) are acceptable values
-		searchresults_page.searchresults_store_names.size.should == 2
-		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item2.name, @item3.name]
+		searchresults_page.searchresults_item_names.size.should == 2
+		searchresults_page.searchresults_item_names.map {|name| name.text}.should == [@item2.name, @item3.name]
 	end		
 	scenario "search : other" do		
 		@item1 =  @store.store_items.create(:name => "alfafla 1" , :strain =>"indica")		
@@ -445,8 +445,8 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		header.search_button.click
 
 		searchresults_page = SearchResultsItemPageComponent.new
-		searchresults_page.searchresults_store_names.size.should == 1
-		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item1.name]
+		searchresults_page.searchresults_item_names.size.should == 1
+		searchresults_page.searchresults_item_names.map {|name| name.text}.should == [@item1.name]
 
 		# new search for hybrid
 		header.show_adv_search_button.click		
@@ -457,8 +457,8 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		
 		header.search_button.click
 		# setting false in the UI doesn't mean filter for false, it means all values (T or F) are acceptable values
-		searchresults_page.searchresults_store_names.size.should == 2
-		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item2.name, @item3.name]
+		searchresults_page.searchresults_item_names.size.should == 2
+		searchresults_page.searchresults_item_names.map {|name| name.text}.should == [@item2.name, @item3.name]
 	end		
 	scenario "search : accessory" do		
 		@item1 =  @store.store_items.create(:name => "alfafla 1" , :strain =>"indica")		
@@ -491,8 +491,8 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		header.search_button.click
 
 		searchresults_page = SearchResultsItemPageComponent.new
-		searchresults_page.searchresults_store_names.size.should == 1
-		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item1.name]
+		searchresults_page.searchresults_item_names.size.should == 1
+		searchresults_page.searchresults_item_names.map {|name| name.text}.should == [@item1.name]
 
 		# new search for hybrid
 		header.show_adv_search_button.click		
@@ -503,8 +503,8 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		
 		header.search_button.click
 		# setting false in the UI doesn't mean filter for false, it means all values (T or F) are acceptable values
-		searchresults_page.searchresults_store_names.size.should == 2
-		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item2.name, @item3.name]
+		searchresults_page.searchresults_item_names.size.should == 2
+		searchresults_page.searchresults_item_names.map {|name| name.text}.should == [@item2.name, @item3.name]
 	end	
 	scenario "search : accessory 2" do		
 		@item1 =  @store.store_items.create(:name => "alfafla 1" , :strain =>"indica")		
@@ -537,8 +537,8 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		header.search_button.click
 
 		searchresults_page = SearchResultsItemPageComponent.new
-		searchresults_page.searchresults_store_names.size.should == 1
-		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item1.name]
+		searchresults_page.searchresults_item_names.size.should == 1
+		searchresults_page.searchresults_item_names.map {|name| name.text}.should == [@item1.name]
 
 		# new search for hybrid
 		header.show_adv_search_button.click		
@@ -549,8 +549,8 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		
 		header.search_button.click
 		# setting false in the UI doesn't mean filter for false, it means all values (T or F) are acceptable values
-		searchresults_page.searchresults_store_names.size.should == 2
-		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item2.name, @item3.name]
+		searchresults_page.searchresults_item_names.size.should == 2
+		searchresults_page.searchresults_item_names.map {|name| name.text}.should == [@item2.name, @item3.name]
 	end	
 	scenario "search : accessory 3" do		
 		@item1 =  @store.store_items.create(:name => "alfafla 1" , :strain =>"indica")		
@@ -583,8 +583,8 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		header.search_button.click
 
 		searchresults_page = SearchResultsItemPageComponent.new
-		searchresults_page.searchresults_store_names.size.should == 1
-		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item1.name]
+		searchresults_page.searchresults_item_names.size.should == 1
+		searchresults_page.searchresults_item_names.map {|name| name.text}.should == [@item1.name]
 
 		# new search for hybrid
 		header.show_adv_search_button.click		
@@ -595,8 +595,8 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		
 		header.search_button.click
 		# setting false in the UI doesn't mean filter for false, it means all values (T or F) are acceptable values
-		searchresults_page.searchresults_store_names.size.should == 2
-		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item2.name, @item3.name]
+		searchresults_page.searchresults_item_names.size.should == 2
+		searchresults_page.searchresults_item_names.map {|name| name.text}.should == [@item2.name, @item3.name]
 	end	
 	scenario "search : accessory 4" do		
 		@item1 =  @store.store_items.create(:name => "alfafla 1" , :strain =>"indica")		
@@ -634,8 +634,8 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		header.search_button.click
 
 		searchresults_page = SearchResultsItemPageComponent.new
-		searchresults_page.searchresults_store_names.size.should == 2
-		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item1.name, @item2.name]
+		searchresults_page.searchresults_item_names.size.should == 2
+		searchresults_page.searchresults_item_names.map {|name| name.text}.should == [@item1.name, @item2.name]
 
 		# new search for hybrid
 		header.show_adv_search_button.click		
@@ -647,7 +647,7 @@ feature "search adv by strain" , :js => true, :search =>true  do
 		
 		header.search_button.click
 		# setting false in the UI doesn't mean filter for false, it means all values (T or F) are acceptable values
-		searchresults_page.searchresults_store_names.size.should == 2
-		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item3.name, @item4.name]
+		searchresults_page.searchresults_item_names.size.should == 2
+		searchresults_page.searchresults_item_names.map {|name| name.text}.should == [@item3.name, @item4.name]
 	end		
 end	

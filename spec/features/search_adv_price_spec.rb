@@ -97,7 +97,7 @@ feature "search adv by price" , :js => true, :search =>true  do
 		header.search_button.click
 
 		searchresults_page = SearchResultsItemPageComponent.new
-		searchresults_page.searchresults_store_names.size.should == 6		
+		searchresults_page.searchresults_item_names.size.should == 6		
 
 		# filter by price
 		header.show_adv_search_button.click
@@ -109,8 +109,8 @@ feature "search adv by price" , :js => true, :search =>true  do
 		header.search_maxprice.set 6
 		header.search_button.click
 
-		searchresults_page.searchresults_store_names.size.should == 1
-		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item5.name]
+		searchresults_page.searchresults_item_names.size.should == 1
+		searchresults_page.searchresults_item_names.map {|name| name.text}.should == [@item5.name]
 
 		# filter by price
 		header.show_adv_search_button.click
@@ -122,8 +122,8 @@ feature "search adv by price" , :js => true, :search =>true  do
 		header.search_maxprice.set 21
 		header.search_button.click
 
-		searchresults_page.searchresults_store_names.size.should == 1
-		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item6.name]
+		searchresults_page.searchresults_item_names.size.should == 1
+		searchresults_page.searchresults_item_names.map {|name| name.text}.should == [@item6.name]
 
 		# filter by price
 		header.show_adv_search_button.click
@@ -135,8 +135,8 @@ feature "search adv by price" , :js => true, :search =>true  do
 		header.search_maxprice.set 51
 		header.search_button.click
 
-		searchresults_page.searchresults_store_names.size.should == 1
-		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item7.name]
+		searchresults_page.searchresults_item_names.size.should == 1
+		searchresults_page.searchresults_item_names.map {|name| name.text}.should == [@item7.name]
 
 		# filter by price
 		header.show_adv_search_button.click
@@ -148,8 +148,8 @@ feature "search adv by price" , :js => true, :search =>true  do
 		header.search_maxprice.set 101
 		header.search_button.click
 
-		searchresults_page.searchresults_store_names.size.should == 1
-		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item8.name]
+		searchresults_page.searchresults_item_names.size.should == 1
+		searchresults_page.searchresults_item_names.map {|name| name.text}.should == [@item8.name]
 
 		# filter by price
 		header.show_adv_search_button.click
@@ -161,8 +161,8 @@ feature "search adv by price" , :js => true, :search =>true  do
 		header.search_maxprice.set 201
 		header.search_button.click
 
-		searchresults_page.searchresults_store_names.size.should == 1
-		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item9.name]
+		searchresults_page.searchresults_item_names.size.should == 1
+		searchresults_page.searchresults_item_names.map {|name| name.text}.should == [@item9.name]
 
 		# filter by price
 		header.show_adv_search_button.click
@@ -174,8 +174,8 @@ feature "search adv by price" , :js => true, :search =>true  do
 		header.search_maxprice.set 401
 		header.search_button.click
 
-		searchresults_page.searchresults_store_names.size.should == 1
-		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item10.name]
+		searchresults_page.searchresults_item_names.size.should == 1
+		searchresults_page.searchresults_item_names.map {|name| name.text}.should == [@item10.name]
 
 	end
 
@@ -215,7 +215,7 @@ feature "search adv by price" , :js => true, :search =>true  do
 		header.search_button.click
 
 		searchresults_page = SearchResultsItemPageComponent.new
-		searchresults_page.searchresults_store_names.size.should == 6		
+		searchresults_page.searchresults_item_names.size.should == 6		
 
 		# filter by price
 		header.show_adv_search_button.click
@@ -225,8 +225,8 @@ feature "search adv by price" , :js => true, :search =>true  do
 		header.search_pricerangeselect_lessthan25.set true
 		header.search_button.click
 
-		searchresults_page.searchresults_store_names.size.should == 1
-		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item5.name]
+		searchresults_page.searchresults_item_names.size.should == 1
+		searchresults_page.searchresults_item_names.map {|name| name.text}.should == [@item5.name]
 
 		# filter by price
 		header.show_adv_search_button.click
@@ -236,8 +236,8 @@ feature "search adv by price" , :js => true, :search =>true  do
 		header.search_pricerangeselect_between25and50.set true
 		header.search_button.click
 
-		searchresults_page.searchresults_store_names.size.should == 2
-		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item6.name, @item10.name]
+		searchresults_page.searchresults_item_names.size.should == 2
+		searchresults_page.searchresults_item_names.map {|name| name.text}.should == [@item6.name, @item10.name]
 
 		# filter by price
 		header.show_adv_search_button.click
@@ -247,8 +247,8 @@ feature "search adv by price" , :js => true, :search =>true  do
 		header.search_pricerangeselect_between50and100.set true
 		header.search_button.click
 
-		searchresults_page.searchresults_store_names.size.should == 1
-		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item7.name]
+		searchresults_page.searchresults_item_names.size.should == 1
+		searchresults_page.searchresults_item_names.map {|name| name.text}.should == [@item7.name]
 
 		# filter by price
 		header.show_adv_search_button.click
@@ -258,8 +258,8 @@ feature "search adv by price" , :js => true, :search =>true  do
 		header.search_pricerangeselect_between100and200.set true
 		header.search_button.click
 
-		searchresults_page.searchresults_store_names.size.should == 1
-		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item8.name]
+		searchresults_page.searchresults_item_names.size.should == 1
+		searchresults_page.searchresults_item_names.map {|name| name.text}.should == [@item8.name]
 
 		# filter by price
 		header.show_adv_search_button.click
@@ -269,8 +269,8 @@ feature "search adv by price" , :js => true, :search =>true  do
 		header.search_pricerangeselect_morethan200.set true
 		header.search_button.click
 
-		searchresults_page.searchresults_store_names.size.should == 1
-		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item9.name]
+		searchresults_page.searchresults_item_names.size.should == 1
+		searchresults_page.searchresults_item_names.map {|name| name.text}.should == [@item9.name]
 
 
 	end
@@ -310,7 +310,7 @@ feature "search adv by price" , :js => true, :search =>true  do
 		header.search_button.click
 
 		searchresults_page = SearchResultsItemPageComponent.new
-		searchresults_page.searchresults_store_names.size.should == 6		
+		searchresults_page.searchresults_item_names.size.should == 6		
 
 		# filter by price
 		header.show_adv_search_button.click
@@ -319,7 +319,7 @@ feature "search adv by price" , :js => true, :search =>true  do
 		header.search_filterpriceby_.set true # no quantity selected
 		header.search_pricerangeselect_.set true #no price range selected
 
-		searchresults_page.searchresults_store_names.size.should == 6		
+		searchresults_page.searchresults_item_names.size.should == 6		
 
 	end
 
@@ -345,7 +345,7 @@ feature "search adv by price" , :js => true, :search =>true  do
 		header.search_button.click
 
 		searchresults_page = SearchResultsItemPageComponent.new
-		searchresults_page.searchresults_store_names.size.should == 3		
+		searchresults_page.searchresults_item_names.size.should == 3		
 
 		# filter by price
 		header.show_adv_search_button.click
@@ -354,8 +354,8 @@ feature "search adv by price" , :js => true, :search =>true  do
 		header.search_supersize.set true 
 		header.search_button.click		
 
-		searchresults_page.searchresults_store_names.size.should == 2		
-		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item5.name, @item6.name]
+		searchresults_page.searchresults_item_names.size.should == 2		
+		searchresults_page.searchresults_item_names.map {|name| name.text}.should == [@item5.name, @item6.name]
 
 		# badge there?
 		searchresults_page.badge_supersize.size.should == 2
@@ -385,7 +385,7 @@ feature "search adv by price" , :js => true, :search =>true  do
 		header.search_button.click
 
 		searchresults_page = SearchResultsItemPageComponent.new
-		searchresults_page.searchresults_store_names.size.should == 3		
+		searchresults_page.searchresults_item_names.size.should == 3		
 
 		# filter by price
 		header.show_adv_search_button.click
@@ -394,8 +394,8 @@ feature "search adv by price" , :js => true, :search =>true  do
 		header.search_dogo.set true 
 		header.search_button.click		
 
-		searchresults_page.searchresults_store_names.size.should == 2		
-		searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item5.name, @item6.name]
+		searchresults_page.searchresults_item_names.size.should == 2		
+		searchresults_page.searchresults_item_names.map {|name| name.text}.should == [@item5.name, @item6.name]
 
 		# badge there?
 		searchresults_page.badge_bogo.size.should == 2

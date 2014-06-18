@@ -72,7 +72,7 @@ var g_map;
 					<td>
 						<h4>
 					  		<!-- name -->
-					  		<a href="<%= store_path(group.hits[0].stored(:store_id))%>" data-no-turbolink='true' >
+					  		<a class = "search-results-store-name" href="<%= store_path(group.hits[0].stored(:store_id))%>" data-no-turbolink='true' >
 								<% if group.hits[0].highlights(:store_name).size == 0 %>								
 									<!-- have to do because just loading directly renders brackets and newlines -->
 									<% group.hits[0].stored(:store_name).each do |word| %>

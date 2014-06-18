@@ -72,9 +72,9 @@ if !@store_items || @store_items.empty? %>
 
 
 					<td class="item-search-result-meta">
-						<h4 class="item-search-item-name">
+						<h4 >
 							<!-- dvu: we don't use link_to because the link name is too complicated to embed -->
-						  	<a data-remote="<%= store_store_item_path(item.stored(:store_id), item.stored(:id)) %>" data-target="#modal" data-toggle="modal" 
+						  	<a class="item-search-item-name" data-remote="<%= store_store_item_path(item.stored(:store_id), item.stored(:id)) %>" data-target="#modal" data-toggle="modal" 
 						  		href="<%= store_store_item_path(item.stored(:store_id), item.stored(:id)) %>" >
 								<% if item.highlights(:name).size == 0 %>								
 									<!-- have to do because just loading directly renders brackets and newlines -->

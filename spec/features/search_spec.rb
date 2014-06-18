@@ -196,7 +196,7 @@ feature "search page" , :js => true , :search =>true do
         header = HeaderPageComponent.new    
         header.search_button.click
         searchresults_page = SearchResultsItemPageComponent.new
-        searchresults_page.searchresults_store_names.size.should == 0
+        searchresults_page.searchresults_item_names.size.should == 0
 
         header.group_search_button.click
         search_results_page = SearchResultsStoresPageComponent.new
@@ -247,10 +247,11 @@ feature "search page" , :js => true , :search =>true do
         header.search_button.click
 
         searchresults_page = SearchResultsItemPageComponent.new
-        searchresults_page.searchresults_store_names.size.should == 2
-        searchresults_page.searchresults_store_names.map {|name| name.text}.should == [@item1.name, @item2.name]
-        # stores shouldn't be on item results page
-        search_results_page.search_results_store_names.size.should == 0
+
+        searchresults_page.searchresults_item_names.size.should == 2
+        searchresults_page.searchresults_item_names.map {|name| name.text}.should == [@item1.name, @item2.name]
+        
+        
    end
 
    scenario "geospatial search filters" do

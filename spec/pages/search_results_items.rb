@@ -1,7 +1,7 @@
 class SearchResultsItemPageComponent < SitePrism::Page
   # set_url "http://www.google.com"
 
-  elements :searchresults_store_names, ".item-search-item-name > a"
+  elements :searchresults_item_names, ".item-search-item-name"
   
   # badges
   elements :badge_supersize, ".search-item-badge-supersize"  
