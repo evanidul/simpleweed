@@ -1,6 +1,6 @@
 <h4 class="item-pop-up-store-name">
-		<!-- dvu: we don't use link_to because the link name is too complicated to embed -->
-  	<%= @store_item.store.name %>
+		<!-- dvu: we don't use link_to because the link name is too complicated to embed -->  	
+  	<a href="<%= store_path(@store.id)%>" data-no-turbolink='true' > <%= @store.name %></a>
 </h4>
 <div class="item-pop-up-store-promo">
 <%= @store_item.store.promo %>
