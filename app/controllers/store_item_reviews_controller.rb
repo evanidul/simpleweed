@@ -13,7 +13,7 @@ class StoreItemReviewsController < ApplicationController
 		if !authenticate_user!("You must be logged in to write a review.  Login now or sign up!", true) 
 			return 
 		end		
-		@store_item_review = @store_item.store_item_reviews.build		
+		#@store_item_review = @store_item.store_item_reviews.build		
 		render layout: false		
 	end
 

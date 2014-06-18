@@ -1,4 +1,4 @@
-<%= form_for ([@store_item.store, @store_item, @store_item_review]) do |f| %>
+<%= form_for ([@store_item.store, @store_item, @store_item.store_item_reviews.build]) do |f| %>
 
 	<% form_id = "review_#{@store_item.id}_rating" %>
 
@@ -16,8 +16,7 @@
     <%= f.text_area :review, :class => 'form-control', :required => true, :rows => 4 %>
   </p>   
 
-  <p class = "form-group pull-right">               
-    <button id="close-button" type="button" class="btn btn-default" data-dismiss="modal">close</button>
+  <p class = "form-group pull-right">                   
     <%= f.submit :class => 'btn btn-primary lowercase' , :id => 'save_store_item'%>
   </p>
 
@@ -37,7 +36,7 @@
 	
 	set_stars = function(stars) {
 		//the actual hidden input val that gets sent via the form
-		$("#store_review_stars").val(stars);
+		$("#store_item_review_stars").val(stars);
 		
 		for(i=1; i<=5; i++) {
 			if (i <= stars) {

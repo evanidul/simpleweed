@@ -31,6 +31,8 @@
 </div>
 </br>
 
+
+
 <% if @item_reviews.empty? %>
 	<div class="store-review">
 		
@@ -42,9 +44,11 @@
 	</div>
 <% end %>
 
+
+
 <% @item_reviews.each do |item_review| %>
 	<div class="store-review">
-		<h4>
+		<h4>			
 			<%= item_review.user.username %>
 			<small><%= time_ago_in_words(item_review.created_at) %> ago</small>			
 			<ul class = "store-star-rank" style="float:right;" star-value="<%= item_review.stars %>">			
@@ -128,3 +132,5 @@
 
 	</div> 
 <% end %>
+
+<%= render 'store_item_reviews/form' %>
