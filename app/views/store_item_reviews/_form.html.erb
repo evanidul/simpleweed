@@ -20,8 +20,11 @@
   <p class = "form-group pull-right">                   
     <%= f.submit :class => 'btn btn-primary lowercase' , :id => 'save_store_item'%>
   </p>
+  <div class="simple-weed-modal-footer"></div>               
+  
+  <hr />
+
 </div>
-<br/>
 <script>
 
 	$(".rating_star").click(function() {
@@ -54,11 +57,12 @@
 
 
     $(document).ready(function(){
+    	$("#item-review-input-container").hide();
         $("#review-item-slide-toggle-button").click(function(e){
           e.preventDefault();
-          var form = $("#item-review-input-container");
-          console.log(form);
-          form.slideToggle("fast");
+          var div = $("#item-review-input-container");
+          
+          div.slideToggle("fast");
         });
       });
     </script>        
