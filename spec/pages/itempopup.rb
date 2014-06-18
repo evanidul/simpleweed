@@ -14,6 +14,12 @@ class ItemPopupComponent < SitePrism::Page
   element :write_review_button, '#review-item-slide-toggle-button'
 
   # review inputs
+  element :onestar_button, '#rank_store_stars_1'
+  element :twostar_button, '#rank_store_stars_2'
+  element :threestar_button, '#rank_store_stars_3'
+  element :fourstar_button, '#rank_store_stars_4'
+  element :fivestar_button, '#rank_store_stars_5'
+
   element :review_text_input, '#store_item_review_review'
   element :save_review_button, '#save_store_item'
 

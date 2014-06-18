@@ -143,5 +143,319 @@ feature "store item edit and add" , :js => true, :search =>true do
 
     end
 
+    scenario "log on and write a review, choose 1 star" do
+        # login as admin
+        page.visit("/")
+        
+        header = HeaderPageComponent.new
+        header.has_loginlink?
+        header.loginlink.click
+        
+        # login modal
+        header.username.set @adminemail
+        header.password.set @adminpassword
+        header.logininbutton.click
+
+        expect(header.edituserlink.text).to have_text(@adminusername)
+        
+        # search for it     
+        header = HeaderPageComponent.new    
+        header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+        header.item_query_input.set @item1_name
+        header.search_button.click
+
+        search_results_page = SearchResultsItemPageComponent.new        
+                
+        search_results_page.searchresults_item_names.size.should == 1
+        search_results_page.searchresults_item_names.map {|name| name.text}.should == [@item1_name]
+
+        # click and view preview        
+        search_results_page.searchresults_item_names.first.click
+        
+        itempopup = ItemPopupComponent.new
+        wait_for_ajax
+        assert_modal_visible
+        itempopup.tab_reviews.click
+
+        itempopup.write_review_button.click
+        review_text = "i loved this thing"
+        itempopup.onestar_button.click
+        itempopup.review_text_input.set review_text
+        itempopup.save_review_button.click
+
+        # search for it     
+        header = HeaderPageComponent.new    
+        header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+        header.item_query_input.set @item1_name
+        header.search_button.click
+
+        search_results_page = SearchResultsItemPageComponent.new        
+                
+        search_results_page.searchresults_item_names.size.should == 1
+        search_results_page.searchresults_item_names.map {|name| name.text}.should == [@item1_name]
+
+        # click and view preview        
+        search_results_page.searchresults_item_names.first.click
+        wait_for_ajax
+        assert_modal_visible        
+        itempopup.tab_reviews.click
+
+        # review should be there
+        expect(itempopup.review_content.first.text).to have_text(review_text)
+        expect(itempopup.star_ranking.first['star-value']).to have_text("1")       
+
+    end
+
+    scenario "log on and write a review, choose 2 star" do
+        # login as admin
+        page.visit("/")
+        
+        header = HeaderPageComponent.new
+        header.has_loginlink?
+        header.loginlink.click
+        
+        # login modal
+        header.username.set @adminemail
+        header.password.set @adminpassword
+        header.logininbutton.click
+
+        expect(header.edituserlink.text).to have_text(@adminusername)
+        
+        # search for it     
+        header = HeaderPageComponent.new    
+        header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+        header.item_query_input.set @item1_name
+        header.search_button.click
+
+        search_results_page = SearchResultsItemPageComponent.new        
+                
+        search_results_page.searchresults_item_names.size.should == 1
+        search_results_page.searchresults_item_names.map {|name| name.text}.should == [@item1_name]
+
+        # click and view preview        
+        search_results_page.searchresults_item_names.first.click
+        
+        itempopup = ItemPopupComponent.new
+        wait_for_ajax
+        assert_modal_visible
+        itempopup.tab_reviews.click
+
+        itempopup.write_review_button.click
+        review_text = "i loved this thing"
+        itempopup.twostar_button.click
+        itempopup.review_text_input.set review_text
+        itempopup.save_review_button.click
+
+        # search for it     
+        header = HeaderPageComponent.new    
+        header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+        header.item_query_input.set @item1_name
+        header.search_button.click
+
+        search_results_page = SearchResultsItemPageComponent.new        
+                
+        search_results_page.searchresults_item_names.size.should == 1
+        search_results_page.searchresults_item_names.map {|name| name.text}.should == [@item1_name]
+
+        # click and view preview        
+        search_results_page.searchresults_item_names.first.click
+        wait_for_ajax
+        assert_modal_visible        
+        itempopup.tab_reviews.click
+
+        # review should be there
+        expect(itempopup.review_content.first.text).to have_text(review_text)
+        expect(itempopup.star_ranking.first['star-value']).to have_text("2")       
+
+    end
+
+    scenario "log on and write a review, choose 3 star" do
+        # login as admin
+        page.visit("/")
+        
+        header = HeaderPageComponent.new
+        header.has_loginlink?
+        header.loginlink.click
+        
+        # login modal
+        header.username.set @adminemail
+        header.password.set @adminpassword
+        header.logininbutton.click
+
+        expect(header.edituserlink.text).to have_text(@adminusername)
+        
+        # search for it     
+        header = HeaderPageComponent.new    
+        header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+        header.item_query_input.set @item1_name
+        header.search_button.click
+
+        search_results_page = SearchResultsItemPageComponent.new        
+                
+        search_results_page.searchresults_item_names.size.should == 1
+        search_results_page.searchresults_item_names.map {|name| name.text}.should == [@item1_name]
+
+        # click and view preview        
+        search_results_page.searchresults_item_names.first.click
+        
+        itempopup = ItemPopupComponent.new
+        wait_for_ajax
+        assert_modal_visible
+        itempopup.tab_reviews.click
+
+        itempopup.write_review_button.click
+        review_text = "i loved this thing"
+        itempopup.threestar_button.click
+        itempopup.review_text_input.set review_text
+        itempopup.save_review_button.click
+
+        # search for it     
+        header = HeaderPageComponent.new    
+        header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+        header.item_query_input.set @item1_name
+        header.search_button.click
+
+        search_results_page = SearchResultsItemPageComponent.new        
+                
+        search_results_page.searchresults_item_names.size.should == 1
+        search_results_page.searchresults_item_names.map {|name| name.text}.should == [@item1_name]
+
+        # click and view preview        
+        search_results_page.searchresults_item_names.first.click
+        wait_for_ajax
+        assert_modal_visible        
+        itempopup.tab_reviews.click
+
+        # review should be there
+        expect(itempopup.review_content.first.text).to have_text(review_text)
+        expect(itempopup.star_ranking.first['star-value']).to have_text("3")       
+
+    end
+
+    scenario "log on and write a review, choose 4 star" do
+        # login as admin
+        page.visit("/")
+        
+        header = HeaderPageComponent.new
+        header.has_loginlink?
+        header.loginlink.click
+        
+        # login modal
+        header.username.set @adminemail
+        header.password.set @adminpassword
+        header.logininbutton.click
+
+        expect(header.edituserlink.text).to have_text(@adminusername)
+        
+        # search for it     
+        header = HeaderPageComponent.new    
+        header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+        header.item_query_input.set @item1_name
+        header.search_button.click
+
+        search_results_page = SearchResultsItemPageComponent.new        
+                
+        search_results_page.searchresults_item_names.size.should == 1
+        search_results_page.searchresults_item_names.map {|name| name.text}.should == [@item1_name]
+
+        # click and view preview        
+        search_results_page.searchresults_item_names.first.click
+        
+        itempopup = ItemPopupComponent.new
+        wait_for_ajax
+        assert_modal_visible
+        itempopup.tab_reviews.click
+
+        itempopup.write_review_button.click
+        review_text = "i loved this thing"
+        itempopup.fourstar_button.click
+        itempopup.review_text_input.set review_text
+        itempopup.save_review_button.click
+
+        # search for it     
+        header = HeaderPageComponent.new    
+        header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+        header.item_query_input.set @item1_name
+        header.search_button.click
+
+        search_results_page = SearchResultsItemPageComponent.new        
+                
+        search_results_page.searchresults_item_names.size.should == 1
+        search_results_page.searchresults_item_names.map {|name| name.text}.should == [@item1_name]
+
+        # click and view preview        
+        search_results_page.searchresults_item_names.first.click
+        wait_for_ajax
+        assert_modal_visible        
+        itempopup.tab_reviews.click
+
+        # review should be there
+        expect(itempopup.review_content.first.text).to have_text(review_text)
+        expect(itempopup.star_ranking.first['star-value']).to have_text("4")       
+
+    end
+
+    scenario "log on and write a review, choose 5 star" do
+        # login as admin
+        page.visit("/")
+        
+        header = HeaderPageComponent.new
+        header.has_loginlink?
+        header.loginlink.click
+        
+        # login modal
+        header.username.set @adminemail
+        header.password.set @adminpassword
+        header.logininbutton.click
+
+        expect(header.edituserlink.text).to have_text(@adminusername)
+        
+        # search for it     
+        header = HeaderPageComponent.new    
+        header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+        header.item_query_input.set @item1_name
+        header.search_button.click
+
+        search_results_page = SearchResultsItemPageComponent.new        
+                
+        search_results_page.searchresults_item_names.size.should == 1
+        search_results_page.searchresults_item_names.map {|name| name.text}.should == [@item1_name]
+
+        # click and view preview        
+        search_results_page.searchresults_item_names.first.click
+        
+        itempopup = ItemPopupComponent.new
+        wait_for_ajax
+        assert_modal_visible
+        itempopup.tab_reviews.click
+
+        itempopup.write_review_button.click
+        review_text = "i loved this thing"
+        itempopup.fivestar_button.click
+        itempopup.review_text_input.set review_text
+        itempopup.save_review_button.click
+
+        # search for it     
+        header = HeaderPageComponent.new    
+        header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+        header.item_query_input.set @item1_name
+        header.search_button.click
+
+        search_results_page = SearchResultsItemPageComponent.new        
+                
+        search_results_page.searchresults_item_names.size.should == 1
+        search_results_page.searchresults_item_names.map {|name| name.text}.should == [@item1_name]
+
+        # click and view preview        
+        search_results_page.searchresults_item_names.first.click
+        wait_for_ajax
+        assert_modal_visible        
+        itempopup.tab_reviews.click
+
+        # review should be there
+        expect(itempopup.review_content.first.text).to have_text(review_text)
+        expect(itempopup.star_ranking.first['star-value']).to have_text("5")       
+
+    end
 	
 end
