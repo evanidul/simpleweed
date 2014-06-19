@@ -42,5 +42,8 @@ class ItemPopupComponent < SitePrism::Page
   elements :save_new_comment_button, '.save-new-store-review-comment'
   elements :item_review_comments, '.store-review-comment'
 
+  # can't comment when logged out, log in links rendered inline
+  elements :log_in_to_comment_links, '#login-to-comment-on-item-review'
+
   element :cancel_button, '#cancel-button'
 end

@@ -165,7 +165,15 @@
 		</div>
 		<% if current_user.nil? %>
 			<!-- maybe just close modal and click login button -->
-			<%= link_to 'login to comment', login_path , data: { toggle: "modal", target: "#modal", remote: login_path} , :class=>"log-in-to-comment" %>
+			<br/>
+			<a id="login-to-comment-on-item-review">log in to comment </a>
+			<script>
+				$("#login-to-comment-on-item-review").click(function(){
+					$('#modal').modal('hide');
+					$("#log-in-link").click();
+				})
+			</script>
+
 		<% else %>
 			<%= form_for ([@store, @store_item, item_review, item_review.store_item_review_comments.build]), :remote => true, :html => { :id => "new_comment_on_#{item_review.id}" , :class=> "new-store-review-comment-form"} do |f| %>
 				<%= f.text_area :comment, :class => 'form-control new-item-review-comment-input', :required => true, :rows => 1 %>

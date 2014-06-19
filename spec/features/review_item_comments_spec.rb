@@ -203,5 +203,60 @@ feature "store review comments" , :js => true, :search =>true do
 
 	end
 
+	scenario "must be logged on to comment" do
+		# search for it     
+        header = HeaderPageComponent.new    
+        header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+        header.item_query_input.set @item1_name
+        header.search_button.click
+
+        search_results_page = SearchResultsItemPageComponent.new        
+                
+        search_results_page.searchresults_item_names.size.should == 1
+        search_results_page.searchresults_item_names.map {|name| name.text}.should == [@item1_name]
+
+        # click and view preview        
+        search_results_page.searchresults_item_names.first.click
+        
+        itempopup = ItemPopupComponent.new
+        wait_for_ajax
+        assert_modal_visible
+        itempopup.tab_reviews.click
+
+        # review should be there        
+        expect(itempopup.review_content.first.text).to have_text(@item1_user1_reviex_text)
+        expect(itempopup.star_ranking.first['star-value']).to have_text(@item1_user1_reviex_stars.to_s)  
+
+        # must be logged in to comment
+    	itempopup.new_comment_inputs.size.should == 0
+
+    	itempopup.log_in_to_comment_links.first.click
+    	wait_for_ajax
+        assert_modal_visible
+
+    	# login modal
+        header.username.set @adminemail
+        header.password.set @adminpassword
+        header.logininbutton.click
+
+        expect(header.edituserlink.text).to have_text(@adminusername)
+
+        # still on same search page
+		search_results_page.searchresults_item_names.first.click
+        
+        itempopup = ItemPopupComponent.new
+        wait_for_ajax
+        assert_modal_visible
+        itempopup.tab_reviews.click
+
+        # you can comment on your reviews
+        user1_firstcomment = "user1_firstcomment"
+        itempopup.new_comment_inputs.first.set user1_firstcomment
+        itempopup.save_new_comment_button.first.click
+        wait_for_ajax                
+        expect(itempopup.item_review_comments.first).to have_text(user1_firstcomment) 
+        itempopup.cancel_button.click
+
+	end
 
 end	
