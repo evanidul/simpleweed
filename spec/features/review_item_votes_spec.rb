@@ -76,7 +76,7 @@ feature "item review votes" , :js => true, :search =>true do
 		Sunspot.commit
 	end
 
-	scenario "users must login before voting" do
+	scenario "users must login before voting, and cannot vote on their own review" do
 
 		# search for it     
         header = HeaderPageComponent.new    
@@ -131,5 +131,52 @@ feature "item review votes" , :js => true, :search =>true do
         expect(itempopup.alert_on_reviews_tab.text).to have_text("A user can't vote on their own reviews")
 	end
 
+	scenario "users can't vote more than once on a review" do
+		# login as user 2
+        page.visit("/")        
+        header = HeaderPageComponent.new        
+        header.loginlink.click
+
+        # login modal
+        header.username.set @user2username
+        header.password.set @user2password
+        header.logininbutton.click
+        
+        # search for it     
+        header = HeaderPageComponent.new    
+        header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+        header.item_query_input.set @item1_name
+        header.search_button.click
+
+        search_results_page = SearchResultsItemPageComponent.new        
+                
+        search_results_page.searchresults_item_names.size.should == 1
+        search_results_page.searchresults_item_names.map {|name| name.text}.should == [@item1_name]
+
+        # click and view preview        
+        search_results_page.searchresults_item_names.first.click
+        
+        itempopup = ItemPopupComponent.new
+        wait_for_ajax
+        assert_modal_visible
+        itempopup.tab_reviews.click
+
+        # review should be there        
+        expect(itempopup.review_content.first.text).to have_text(@item1_user1_reviex_text)
+        expect(itempopup.star_ranking.first['star-value']).to have_text(@item1_user1_reviex_stars.to_s)  
+
+        expect(itempopup.review_vote_sum.first).to have_text("0")
+        itempopup.upvotebutton.first.click
+        wait_for_ajax
+
+        # first vote should work
+        expect(itempopup.review_vote_sum.first).to have_text("1")
+
+        # second vote should fail
+        itempopup.upvotebutton.first.click
+        wait_for_ajax
+        expect(itempopup.alert_on_reviews_tab.text).to have_text("You cannot cast more than 1 vote per review")
+
+	end
 
 end

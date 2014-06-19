@@ -49,7 +49,7 @@ class StoreItemReviewVotesController < ApplicationController
 					return render 'votecannotbecast' 
 				end
 
-				if messagearray.include? "Store review has already been taken"
+				if messagearray.include? "Store item review has already been taken"
 					@message = 'You cannot cast more than 1 vote per review'
 					return render 'votecannotbecast' 
 				end
