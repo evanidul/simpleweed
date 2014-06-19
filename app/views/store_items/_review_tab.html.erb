@@ -74,7 +74,7 @@
 </br>
 
 <% if @item_reviews.empty? || @item_reviews.count == 0 %>
-	<div class="store-review">
+	<div id="item-popup-no-reviews-yet-prompt">
 		
 		<div class="alert alert-warning fade in">
       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -85,8 +85,8 @@
 <% end %>
 
 
-
-<% @item_reviews.each do |item_review| 
+<div id="item-popup-review-tab-review-container">
+<% @item_reviews.order('updated_at DESC').each do |item_review| 
 	
 	# for some reason, the write new item review form created from .build creates an unsaved item_review object
 	# that will generate nil exceptions if we don't remove it with the following if.
@@ -188,3 +188,4 @@
 	<% end %>
 <% end %>
 
+</div>

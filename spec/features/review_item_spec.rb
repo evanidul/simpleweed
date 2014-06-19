@@ -119,8 +119,12 @@ feature "store item reviews" , :js => true, :search =>true do
         review_text = "i loved this thing"
         itempopup.review_text_input.set review_text
         itempopup.save_review_button.click
+        itempopup.cancel_button.click    
+        
+        
 
-        # search for it     
+        # search for it 
+        page.visit("/")
         header = HeaderPageComponent.new    
         header.search_input.set "7110 Rock Valley Court, San Diego, CA"
         header.item_query_input.set @item1_name
@@ -182,8 +186,11 @@ feature "store item reviews" , :js => true, :search =>true do
         itempopup.onestar_button.click
         itempopup.review_text_input.set review_text
         itempopup.save_review_button.click
+        itempopup.cancel_button.click
+                
 
-        # search for it     
+        # search for it           
+        page.visit("/")
         header = HeaderPageComponent.new    
         header.search_input.set "7110 Rock Valley Court, San Diego, CA"
         header.item_query_input.set @item1_name
@@ -245,8 +252,11 @@ feature "store item reviews" , :js => true, :search =>true do
         itempopup.twostar_button.click
         itempopup.review_text_input.set review_text
         itempopup.save_review_button.click
+        itempopup.cancel_button.click
+        
 
         # search for it     
+        page.visit("/")
         header = HeaderPageComponent.new    
         header.search_input.set "7110 Rock Valley Court, San Diego, CA"
         header.item_query_input.set @item1_name
@@ -308,8 +318,11 @@ feature "store item reviews" , :js => true, :search =>true do
         itempopup.threestar_button.click
         itempopup.review_text_input.set review_text
         itempopup.save_review_button.click
+        itempopup.cancel_button.click
+        
 
-        # search for it     
+        # search for it 
+        page.visit("/")
         header = HeaderPageComponent.new    
         header.search_input.set "7110 Rock Valley Court, San Diego, CA"
         header.item_query_input.set @item1_name
@@ -371,8 +384,11 @@ feature "store item reviews" , :js => true, :search =>true do
         itempopup.fourstar_button.click
         itempopup.review_text_input.set review_text
         itempopup.save_review_button.click
+        itempopup.cancel_button.click
+        
 
         # search for it     
+        page.visit("/")
         header = HeaderPageComponent.new    
         header.search_input.set "7110 Rock Valley Court, San Diego, CA"
         header.item_query_input.set @item1_name
@@ -434,8 +450,11 @@ feature "store item reviews" , :js => true, :search =>true do
         itempopup.fivestar_button.click
         itempopup.review_text_input.set review_text
         itempopup.save_review_button.click
+        itempopup.cancel_button.click
+        
 
-        # search for it     
+        # search for it    
+        page.visit("/")
         header = HeaderPageComponent.new    
         header.search_input.set "7110 Rock Valley Court, San Diego, CA"
         header.item_query_input.set @item1_name
@@ -504,8 +523,11 @@ feature "store item reviews" , :js => true, :search =>true do
         itempopup.fivestar_button.click
         itempopup.review_text_input.set review_text
         itempopup.save_review_button.click
+        itempopup.cancel_button.click
+        
 
-        # search for it     
+        # search for it
+        page.visit("/")    
         header = HeaderPageComponent.new    
         header.search_input.set "7110 Rock Valley Court, San Diego, CA"
         header.item_query_input.set @item1_name
@@ -567,8 +589,10 @@ feature "store item reviews" , :js => true, :search =>true do
         itempopup.fourstar_button.click
         itempopup.review_text_input.set review_text
         itempopup.save_review_button.click
+        itempopup.cancel_button.click        
 
-        # search for it     
+        # search for it   
+        page.visit("/")
         header = HeaderPageComponent.new    
         header.search_input.set "7110 Rock Valley Court, San Diego, CA"
         header.item_query_input.set @item1_name

@@ -170,8 +170,10 @@ feature "item review comments" , :js => true, :search =>true do
         user2_review_text = "user2_review_text"
         itempopup.review_text_input.set user2_review_text
         itempopup.save_review_button.click
+        itempopup.cancel_button.click            
 
-        # search for it     
+        # search for it           
+        page.visit("/")        
         header = HeaderPageComponent.new    
         header.search_input.set "7110 Rock Valley Court, San Diego, CA"
         header.item_query_input.set @item1_name
@@ -191,15 +193,15 @@ feature "item review comments" , :js => true, :search =>true do
         itempopup.tab_reviews.click
 
         # user 2 review should be there        
-        expect(itempopup.review_content.last.text).to have_text(user2_review_text)
-        expect(itempopup.star_ranking.last['star-value']).to have_text("1") # didn't fill out stars, default is 1
+        expect(itempopup.review_content.first.text).to have_text(user2_review_text)
+        expect(itempopup.star_ranking.first['star-value']).to have_text("1") # didn't fill out stars, default is 1
 
         # comment on last review
         user2_secondcomment = "user2_secondcomment"
-        itempopup.new_comment_inputs.last.set user2_secondcomment
-        itempopup.save_new_comment_button.last.click
+        itempopup.new_comment_inputs.first.set user2_secondcomment
+        itempopup.save_new_comment_button.first.click
         wait_for_ajax                        
-        expect(itempopup.item_review_comments.last).to have_text(user2_secondcomment) 
+        expect(itempopup.item_review_comments.first).to have_text(user2_secondcomment) 
 
 	end
 

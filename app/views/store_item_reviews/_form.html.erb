@@ -1,5 +1,5 @@
 <div id="item-review-input-container">
-<%= form_for ([@store_item.store, @store_item, @store_item.store_item_reviews.build]) do |f| %>
+<%= form_for ([@store_item.store, @store_item, @store_item.store_item_reviews.build]), :remote => true do |f| %>
 
 	<% form_id = "review_#{@store_item.id}_rating" %>
 

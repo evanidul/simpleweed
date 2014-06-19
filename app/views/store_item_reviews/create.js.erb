@@ -1,0 +1,11 @@
+
+$("#item-popup-no-reviews-yet-prompt").hide();
+//thank user for writing a review in the alert
+bootstrap_alert.warning("thank you for submitting your review.", "#bootstrap-alert-on-item-popup-reviews-tab", "success");
+
+//click the button to hide the write form
+$("#review-item-slide-toggle-button").click();
+//now hide the button
+$("#review-item-slide-toggle-button").hide();
+
+$("#item-popup-review-tab-review-container" ).prepend("<%= escape_javascript(render @store_item_review) %>")
