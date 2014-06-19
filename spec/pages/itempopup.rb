@@ -40,6 +40,6 @@ class ItemPopupComponent < SitePrism::Page
   elements :downvotebutton, '.downvotebutton'
   elements :new_comment_inputs, '.new-item-review-comment-input'
   elements :save_new_comment_button, '.save-new-store-review-comment'
-  elements :store_review_comments, '.store-review-comment'
+  elements :item_review_comments, '.store-review-comment'
 
 end
