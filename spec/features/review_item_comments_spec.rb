@@ -120,6 +120,86 @@ feature "store review comments" , :js => true, :search =>true do
         itempopup.save_new_comment_button.first.click
         wait_for_ajax                
         expect(itempopup.item_review_comments.first).to have_text(user1_firstcomment) 
+        itempopup.cancel_button.click
+
+        # logout
+        header.logoutlink.click
+        header.loginlink.click
+
+        # login as user 2        
+        header.username.set @user2email
+        header.password.set @user2password
+        header.logininbutton.click        
+        expect(header.edituserlink.text).to have_text(@user2username)
+
+        # search for it     
+        header = HeaderPageComponent.new    
+        header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+        header.item_query_input.set @item1_name
+        header.search_button.click
+
+        search_results_page = SearchResultsItemPageComponent.new        
+                
+        search_results_page.searchresults_item_names.size.should == 1
+        search_results_page.searchresults_item_names.map {|name| name.text}.should == [@item1_name]
+
+        # click and view preview        
+        search_results_page.searchresults_item_names.first.click
+        
+        itempopup = ItemPopupComponent.new
+        wait_for_ajax
+        assert_modal_visible
+        itempopup.tab_reviews.click
+
+        # review should be there        
+        expect(itempopup.review_content.first.text).to have_text(@item1_user1_reviex_text)
+        expect(itempopup.star_ranking.first['star-value']).to have_text(@item1_user1_reviex_stars.to_s) 
+
+        # first comment should be there
+        expect(itempopup.item_review_comments.first).to have_text(user1_firstcomment) 
+
+        # you can comment on your reviews
+        user2_firstcomment = "user2_firstcomment"
+        itempopup.new_comment_inputs.first.set user2_firstcomment
+        itempopup.save_new_comment_button.first.click
+        wait_for_ajax                
+        expect(itempopup.item_review_comments.last).to have_text(user2_firstcomment)         
+
+        # user 2 writes his own review        
+        itempopup.write_review_button.click
+        user2_review_text = "user2_review_text"
+        itempopup.review_text_input.set user2_review_text
+        itempopup.save_review_button.click
+
+        # search for it     
+        header = HeaderPageComponent.new    
+        header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+        header.item_query_input.set @item1_name
+        header.search_button.click
+
+        search_results_page = SearchResultsItemPageComponent.new        
+                
+        search_results_page.searchresults_item_names.size.should == 1
+        search_results_page.searchresults_item_names.map {|name| name.text}.should == [@item1_name]
+
+        # click and view preview        
+        search_results_page.searchresults_item_names.first.click
+        
+        itempopup = ItemPopupComponent.new
+        wait_for_ajax
+        assert_modal_visible
+        itempopup.tab_reviews.click
+
+        # user 2 review should be there        
+        expect(itempopup.review_content.last.text).to have_text(user2_review_text)
+        expect(itempopup.star_ranking.last['star-value']).to have_text("1") # didn't fill out stars, default is 1
+
+        # comment on last review
+        user2_secondcomment = "user2_secondcomment"
+        itempopup.new_comment_inputs.last.set user2_secondcomment
+        itempopup.save_new_comment_button.last.click
+        wait_for_ajax                        
+        expect(itempopup.item_review_comments.last).to have_text(user2_secondcomment) 
 
 	end
 

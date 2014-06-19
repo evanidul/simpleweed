@@ -42,4 +42,5 @@ class ItemPopupComponent < SitePrism::Page
   elements :save_new_comment_button, '.save-new-store-review-comment'
   elements :item_review_comments, '.store-review-comment'
 
+  element :cancel_button, '#cancel-button'
 end
