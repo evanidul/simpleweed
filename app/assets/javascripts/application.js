@@ -36,6 +36,12 @@ jQuery.fn.center = function () {
 /** allows you to popup bootstrap warnings/alerts with javascript **/
 /** use: bootstrap_alert.warning('You cannot cast more than 1 vote per review'); **/
 bootstrap_alert = function() {}
-bootstrap_alert.warning = function(message) {
-    $('#bootstrap-alert').html('<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><div id="flash_notice">'+message+'</div></div>')
+bootstrap_alert.warning = function(message, selector) {
+    newalert_html = '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><div id="flash_notice">'+message+'</div></div>'
+    if(!selector) {
+    	$('#bootstrap-alert').html(newalert_html)
+    } else {
+    	$(selector).html(newalert_html)
+    }
+
 }            

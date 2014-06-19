@@ -13,7 +13,7 @@ require 'pages/registration'
 require 'pages/store_claim'
 require 'pages/itempopup'
 
-feature "store item edit and add" , :js => true, :search =>true do
+feature "store item reviews" , :js => true, :search =>true do
 
   	before :each do
 	    if ENV['TARGETBROWSER'] == "chrome"

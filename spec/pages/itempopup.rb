@@ -45,5 +45,8 @@ class ItemPopupComponent < SitePrism::Page
   # can't comment when logged out, log in links rendered inline
   elements :log_in_to_comment_links, '#login-to-comment-on-item-review'
 
+  # bootstrap alert on modal on reviews tab
+  element :alert_on_reviews_tab, "#bootstrap-alert-on-item-popup-reviews-tab"
+
   element :cancel_button, '#cancel-button'
 end

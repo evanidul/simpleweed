@@ -13,7 +13,7 @@ require 'pages/store_claim'
 require 'pages/search_results_items'
 require 'pages/itempopup'
 
-feature "store review comments" , :js => true, :search =>true do
+feature "item review comments" , :js => true, :search =>true do
 
   	before :each do
 	    if ENV['TARGETBROWSER'] == "chrome"
