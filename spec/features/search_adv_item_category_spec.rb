@@ -278,7 +278,7 @@ feature "search adv by strain" , :js => true, :search =>true  do
 	end		
 	scenario "search : concentrate 4, edible" do		
 		@item1 =  @store.store_items.create(:name => "alfafla 1" , :strain =>"indica")		
-		@item1.maincategory = "concentrate"
+		@item1.maincategory = "other"
 		@item1.subcategory = 'oil/cartridge'
 		@item1.save
 		

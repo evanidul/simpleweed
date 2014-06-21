@@ -70,7 +70,8 @@
 	border-bottom-right-radius: 3px;
 	border-style: none;
 	display:none;
-  width:795px;
+  width:810px;
+  position:absolute;
 }
 
 
@@ -185,10 +186,6 @@
 .tabs-right > .nav-tabs .active > a:focus {
   border-color: #ddd #ddd #ddd transparent;
   *border-left-color: #ffffff;
-}
-
-#search-filter-options {
-  position:absolute;
 }
 
 #search-filter-options > .tab-content {

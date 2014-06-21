@@ -250,7 +250,7 @@ feature "store item edit and add" , :js => true, :search =>true do
   				['kief/dry sieve','concentrate'],
   				['shatter/amberglass','concentrate'],
   				['scissor/finger hash','concentrate'],
-  				['oil/cartridge','concentrate'],
+  				
 
   				['baked','edible'],
   				['candy/chocolate', 'edible'],
@@ -266,6 +266,7 @@ feature "store item edit and add" , :js => true, :search =>true do
   				['seeds','other'],
   				['oral','other'],
   				['topical','other'],
+  				['oil/cartridge','other'],
 
   				['bong/pipe','accessory'],
   				['bong/pipe accessories','accessory'],
