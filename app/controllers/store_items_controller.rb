@@ -34,6 +34,7 @@ class StoreItemsController < ApplicationController
 
 		@item_reviews = @store_item.store_item_reviews
 		
+		@storetab = params[:storetab]		
 		render layout: false
 	end
 
@@ -61,7 +62,7 @@ private
 	def store_item_params
 		params.require(:store_item).permit(:name, :store_id, :description, :thc, :cbd, :cbn, :costhalfgram, :costonegram, :costeighthoz, :costquarteroz,
 			:costhalfoz, :costoneoz, :costperunit, :dogo, :strain, :maincategory, :subcategory, :cultivation,
-			:privatereserve, :topshelf, :supersize, :glutenfree, :sugarfree, :organic, :dose, :og, :kush, :haze)		
+			:privatereserve, :topshelf, :supersize, :glutenfree, :sugarfree, :organic, :dose, :og, :kush, :haze, :storetab)		
 	end		
 
 end

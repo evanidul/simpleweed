@@ -138,38 +138,38 @@
 
 			switch (category) {	
 		  		case "flower":
-			  		data.addRow(['<%= link_to store_item.name, store_store_item_path(@store, store_item),  data: { toggle: "modal", target: "#modal" , remote: store_store_item_path(@store, store_item)} %><% badges.each do |badge| %><span class="badge search-item-badge-<%= badge %>"><%= badge %></span>&nbsp;<% end %>',
+			  		data.addRow(['<%= link_to store_item.name, store_store_item_path(@store, store_item, :storetab => "false"),  data: { toggle: "modal", target: "#modal" , remote: store_store_item_path(@store, store_item, :storetab => "false")} %><% badges.each do |badge| %><span class="badge search-item-badge-<%= badge %>"><%= badge %></span>&nbsp;<% end %>',
 					'<%= store_item.strain %>',
 					'<%= store_item.subcategory %>',
 		    		'<%= store_item.costonegram %>','<%= store_item.costeighthoz %>',
 		     		'<%= store_item.costquarteroz %>','<%= store_item.costhalfoz %>','<%= store_item.costoneoz %>']);	
 		  		break;
 		  		case "concentrate":
-		  			data.addRow(['<%= link_to store_item.name, store_store_item_path(@store, store_item),  data: { toggle: "modal", target: "#modal" , remote: store_store_item_path(@store, store_item)} %><% badges.each do |badge| %><span class="badge search-item-badge-<%= badge %>"><%= badge %></span>&nbsp;<% end %>',
+		  			data.addRow(['<%= link_to store_item.name, store_store_item_path(@store, store_item , :storetab => "false"),  data: { toggle: "modal", target: "#modal" , remote: store_store_item_path(@store, store_item, :storetab => "false")} %><% badges.each do |badge| %><span class="badge search-item-badge-<%= badge %>"><%= badge %></span>&nbsp;<% end %>',
 					'<%= store_item.strain %>',
 					'<%= store_item.subcategory %>',
 		    		'<%= store_item.costhalfgram %>','<%= store_item.costonegram %>','<%= store_item.costeighthoz %>']);	
 		  		break;
 		  		case "edible":
-		  			data.addRow(['<%= link_to store_item.name, store_store_item_path(@store, store_item),  data: { toggle: "modal", target: "#modal" , remote: store_store_item_path(@store, store_item)} %><% badges.each do |badge| %><span class="badge search-item-badge-<%= badge %>"><%= badge %></span>&nbsp;<% end %>',
+		  			data.addRow(['<%= link_to store_item.name, store_store_item_path(@store, store_item, :storetab => "false"),  data: { toggle: "modal", target: "#modal" , remote: store_store_item_path(@store, store_item, :storetab => "false")} %><% badges.each do |badge| %><span class="badge search-item-badge-<%= badge %>"><%= badge %></span>&nbsp;<% end %>',
 		    		'<%= store_item.strain %>',
 		    		'<%= store_item.subcategory %>',
 		    		'<%= store_item.costperunit %>']);
 		  		break;
 		  		case "pre-roll":
-		  			data.addRow(['<%= link_to store_item.name, store_store_item_path(@store, store_item),  data: { toggle: "modal", target: "#modal" , remote: store_store_item_path(@store, store_item)} %><% badges.each do |badge| %><span class="badge search-item-badge-<%= badge %>"><%= badge %></span>&nbsp;<% end %>',
+		  			data.addRow(['<%= link_to store_item.name, store_store_item_path(@store, store_item, :storetab => "false"),  data: { toggle: "modal", target: "#modal" , remote: store_store_item_path(@store, store_item, :storetab => "false")} %><% badges.each do |badge| %><span class="badge search-item-badge-<%= badge %>"><%= badge %></span>&nbsp;<% end %>',
 		    		'<%= store_item.strain %>',
 		    		'<%= store_item.subcategory %>',
 		    		'<%= store_item.costperunit %>']);
 		  		break;
 		  		case "other":
-		  			data.addRow(['<%= link_to store_item.name, store_store_item_path(@store, store_item),  data: { toggle: "modal", target: "#modal" , remote: store_store_item_path(@store, store_item)} %><% badges.each do |badge| %><span class="badge search-item-badge-<%= badge %>"><%= badge %></span>&nbsp;<% end %>',
+		  			data.addRow(['<%= link_to store_item.name, store_store_item_path(@store, store_item, :storetab => "false"),  data: { toggle: "modal", target: "#modal" , remote: store_store_item_path(@store, store_item, :storetab => "false")} %><% badges.each do |badge| %><span class="badge search-item-badge-<%= badge %>"><%= badge %></span>&nbsp;<% end %>',
 		    		'<%= store_item.strain %>',
 		    		'<%= store_item.subcategory %>',
 		    		'<%= store_item.costperunit %>']);
 		  		break;
 		  		case "accessory":
-		  			data.addRow(['<%= link_to store_item.name, store_store_item_path(@store, store_item),  data: { toggle: "modal", target: "#modal" , remote: store_store_item_path(@store, store_item)} %><% badges.each do |badge| %><span class="badge search-item-badge-<%= badge %>"><%= badge %></span>&nbsp;<% end %>',
+		  			data.addRow(['<%= link_to store_item.name, store_store_item_path(@store, store_item, :storetab => "false"),  data: { toggle: "modal", target: "#modal" , remote: store_store_item_path(@store, store_item, :storetab => "false")} %><% badges.each do |badge| %><span class="badge search-item-badge-<%= badge %>"><%= badge %></span>&nbsp;<% end %>',
 		    		'<%= store_item.strain %>',
 		    		'<%= store_item.subcategory %>',
 		    		'<%= store_item.costperunit %>']);

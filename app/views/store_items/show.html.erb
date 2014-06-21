@@ -3,7 +3,9 @@
 	<ul class="nav nav-tabs">
   		<li class="active"><a id= "info-tab-link" href="#info" data-toggle="tab">info</a></li>
   		<li><a id="review-tab-link" href="#reviews" data-toggle="tab">reviews</a></li>  
-  		<li><a id="store-tab-link" href="#store-info" data-toggle="tab">store</a></li>  
+  		<% if @storetab != "false" %>
+  			<li><a id="store-tab-link" href="#store-info" data-toggle="tab">store</a></li>  
+  		<% end %>
 	</ul>
 
     <div class="modal-body">
@@ -14,9 +16,12 @@
 		<div class="tab-pane" id="reviews">
 			<%= render :partial =>'store_items/review_tab' %>			
 		</div>  
-		<div class="tab-pane" id="store-info">
-			<%= render :partial =>'store_items/store_tab' %>			
-		</div>  
+		<% if @storetab != "false" %>
+			<div class="tab-pane" id="store-info">
+				<%= @storetab %>
+				<%= render :partial =>'store_items/store_tab' %>			
+			</div>  
+		<% end %>
 	</div>
 
 
