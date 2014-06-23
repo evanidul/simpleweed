@@ -1,3 +1,43 @@
 // Place all the styles related to the profile controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.username {
+	font-weight:bold;
+	font-family: Helvetica, Arial, 'lucida grande',tahoma,verdana,arial,sans-serif;
+	font-size: 12px;
+	margin-left:4px;
+}
+
+.edit-profile-link {
+	font-family: Helvetica, Arial, 'lucida grande',tahoma,verdana,arial,sans-serif;
+	font-size: 12px;
+	margin-left:4px;
+}
+
+.user-pic {
+	font-size: 40px;
+}
+
+.activity {
+	
+	border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+	margin-bottom : 10px;
+	padding: 12px;
+	background: white;
+	border-bottom: 2px solid #eee!important
+}
+
+.user-pic-feed-item {
+	font-size: 30px;
+	margin-right: 5px;
+}
+
+.item-feed-title {
+	line-height: 18px;
+	font-size:18px;
+}
+
+.feed-item-body {
+	margin-top:5px;
+}

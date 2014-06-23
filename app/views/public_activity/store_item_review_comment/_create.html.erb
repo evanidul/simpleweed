@@ -1,2 +1,18 @@
+<% if activity.trackable %>
 
-added comment to <%= activity.trackable.store_item_review.store_item.name %>
+<table>
+	<tr>
+		<td>
+			<span class="glyphicon glyphicon-user user-pic-feed-item"></span>
+		</td>
+		<td>
+			<div class="item-feed-title"><a><%= activity.trackable.user.username %></a> commented on <a><%= activity.trackable.store_item_review.store_item.name %></a>
+			</div>
+			<div class = "feed-item-body">
+				<%= activity.trackable.comment %>
+			</div>
+
+		</td>
+	</tr>
+</table>
+<% end %>

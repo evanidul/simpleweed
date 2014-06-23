@@ -1,7 +1,26 @@
 </br>
+<div class="col-md-2">
+	<table>
+		<tr>
+			<td>
+				<span class="glyphicon glyphicon-user user-pic"></span>
+			</td>
+			<td>
+				<div class="username">Daniel Vu</div>
+				<div class="edit-profile-link">edit profile </div>
+			</td>
+		</tr>
+	</table>
+	
+</div>
+<div class="activities col-md-6">
 <% @activities.each do |activity| %>
   <div class="activity">
     
     <%= render_activity activity %>
   </div>
  <% end %>
+
+</div>
+
+<div class="right-col-profile col-md-4"

@@ -1,1 +1,5 @@
-added a review of <%= activity.trackable.store.name %>
+<% if activity.trackable %>
+<span class="glyphicon glyphicon-user user-pic-feed-item"></span>
+<a><%= activity.trackable.user.username %></a> added a review of <a><%= activity.trackable.store.name %></a>
+
+<% end %>
