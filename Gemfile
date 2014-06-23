@@ -63,6 +63,9 @@ gem 'newrelic_rpm'
 # allows you to run 'rails generate active_record:session_migration', which allows you to store sessions in the db
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
 
+# powers user feeds
+gem 'public_activity'
+
 group :development, :test do
   # automated testing
   gem 'rspec-rails', '~> 3.0.0.beta'

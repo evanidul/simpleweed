@@ -1,4 +1,8 @@
 class StoreItemReview < ActiveRecord::Base
+
+  include PublicActivity::Model
+  tracked
+
   belongs_to :store_item
   belongs_to :user
 

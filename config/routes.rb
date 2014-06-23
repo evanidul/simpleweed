@@ -11,6 +11,8 @@ Smellyleaf::Application.routes.draw do
   #get "solr", :as => 'store/solr'
   #get 'search' => 's#search'
 
+  resources :profile
+
   resources :ses
 
   namespace :admin do

@@ -1,4 +1,8 @@
 class StoreReview < ActiveRecord::Base
+  # store changes in activity feed
+  include PublicActivity::Model
+  tracked
+
   belongs_to :store
   belongs_to :user
 
