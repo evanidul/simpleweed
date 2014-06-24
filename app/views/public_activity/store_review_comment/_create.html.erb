@@ -1,5 +1,19 @@
 <% if activity.trackable %>
-<span class="glyphicon glyphicon-user user-pic-feed-item"></span>
-<a><%= activity.trackable.user.username %></a> commented on the review of <a><%= activity.trackable.store_review.store.name %></a>
 
+<table>
+	<tr>
+		<td>
+			<span class="glyphicon glyphicon-user user-pic-feed-item"></span>
+		</td>
+		<td>
+			<div class="item-feed-title">
+				<a><%= activity.trackable.user.username %></a> commented on the review of <a><%= activity.trackable.store_review.store.name %></a>
+			</div>
+			<div class = "feed-item-body">
+				<%= activity.trackable.comment %>
+			</div>
+
+		</td>
+	</tr>
+</table>
 <% end %>

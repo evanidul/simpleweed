@@ -18,7 +18,7 @@ class ProfileController < ApplicationController
 		@storeactivities = PublicActivity::Activity.order("created_at desc").where(trackable_id: following_store_ids, trackable_type: "Store")
 
 		@activities = @useractivities.zip(@storeactivities).flatten.compact
-		binding.pry
+		
 	end
 
 	def activity		

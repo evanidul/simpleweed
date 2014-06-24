@@ -1,5 +1,20 @@
-<% if activity.trackable %>
-<span class="glyphicon glyphicon-user user-pic-feed-item"></span>
-<a><%= activity.trackable.user.username %></a> added review of <a><%= activity.trackable.store_item.name %></a>
 
+<% if activity.trackable %>
+
+<table>
+	<tr>
+		<td>
+			<span class="glyphicon glyphicon-user user-pic-feed-item"></span>
+		</td>
+		<td>
+			<div class="item-feed-title">
+				<a><%= activity.trackable.user.username %></a> added review of <a><%= activity.trackable.store_item.name %></a>
+			</div>
+			<div class = "feed-item-body">
+				<%= activity.trackable.review %>
+			</div>
+
+		</td>
+	</tr>
+</table>
 <% end %>

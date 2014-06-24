@@ -1,7 +1,19 @@
 <% if activity.trackable %>
 
- <a><%= activity.trackable.name %></a> has a new announcement.
+<table>
+	<tr>
+		<td>
+			<span class="feed-item-glyphicon glyphicon glyphicon-bullhorn"></span>
+		</td>
+		<td>
+			<div class="item-feed-title">
+				<a><%= activity.trackable.name %></a> has a new announcement.
+			</div>
+			<div class = "feed-item-body">
+				<%= activity.trackable.announcement %> 
+			</div>
 
-<%= activity.trackable.announcement %> 
-
+		</td>
+	</tr>
+</table>
 <% end %>
