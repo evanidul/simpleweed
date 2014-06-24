@@ -1,6 +1,9 @@
 class Store < ActiveRecord::Base
 	has_many :store_items
 	has_many :store_reviews
+
+	# a store may be followed
+	acts_as_followable
 	
 	validates :name, presence: true
 	# these next two lines cause data:importMenuItems to be really slow.

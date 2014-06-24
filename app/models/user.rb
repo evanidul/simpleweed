@@ -1,5 +1,11 @@
 class User < ActiveRecord::Base
 	rolify
+
+	# user can follow 
+	acts_as_follower
+	# user may be followed
+	acts_as_followable
+
 	# Include default devise modules. Others available are:
 	# :confirmable, :lockable, :timeoutable and :omniauthable
 	devise :database_authenticatable, :registerable,

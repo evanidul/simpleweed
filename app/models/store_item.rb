@@ -1,4 +1,8 @@
 class StoreItem < ActiveRecord::Base
+
+	# users may follow store items
+	acts_as_followable
+
 	belongs_to :store
 	validates :name, presence: true
 	has_many :store_item_reviews

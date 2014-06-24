@@ -66,6 +66,10 @@ gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
 # powers user feeds
 gem 'public_activity'
 
+# allows you to follow people, etc
+gem "socialization"
+
+
 group :development, :test do
   # automated testing
   gem 'rspec-rails', '~> 3.0.0.beta'

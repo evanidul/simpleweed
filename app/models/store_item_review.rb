@@ -3,6 +3,9 @@ class StoreItemReview < ActiveRecord::Base
   include PublicActivity::Model
   tracked
 
+  # when a user comments on a store item review, they follow that review
+  acts_as_followable
+
   belongs_to :store_item
   belongs_to :user
 
