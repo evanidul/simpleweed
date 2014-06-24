@@ -11,6 +11,9 @@
 			</td>
 		</tr>
 	</table>
+	<% if @user_is_viewing_own_profile	%>
+		<%= render :partial =>'nav' %>
+	<% end %>
 	
 </div>
 <div class="activities col-md-6">

@@ -5,7 +5,11 @@ class ProfileController < ApplicationController
 		@profile_user = User.find(@profile_owner_id)
 
 		following_ids_of_user_profile = @profile_user.followees(User).collect(&:id)  
-		
+		@user_is_viewing_own_profile = false;
+		if current_user.id == @profile_owner_id
+			@user_is_viewing_own_profile = true;
+		end		
+		@active_tab = "feed-link-li"
 		#@activities = PublicActivity::Activity.order("created_at desc")
 		@activities = PublicActivity::Activity.order("created_at desc").where(owner_id: following_ids_of_user_profile, owner_type: "User")
 	end
@@ -20,6 +24,7 @@ class ProfileController < ApplicationController
 		if current_user.id == @profile_owner_id
 			@user_is_viewing_own_profile = true;
 		end
+		@active_tab = "my-activity-li"
 		
 	end
 

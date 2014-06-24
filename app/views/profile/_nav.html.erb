@@ -1,0 +1,18 @@
+<ul id="profile-nav" class="nav nav-pills nav-stacked">
+	
+	<li id="feed-link-li">
+		<%= link_to 'feed', feed_profile_path(current_user), :id => 'feed-link',:class => '' %>
+	</li>
+	<li id="my-activity-li">
+		<%= link_to 'my activity', activity_profile_path(current_user), :id => 'activity-link',:class => '' %>
+	</li>
+	<li id="account-settings-li">
+		<%= link_to 'account settings', edit_user_registration_path, :id => 'edit-user-link',:class => '' %>
+	</li>
+</ul>	
+<script>
+	var selector = "#" + "<%= @active_tab %>";
+	console.log(selector);
+	$(selector).addClass("active")
+</script>
+
