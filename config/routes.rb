@@ -11,7 +11,15 @@ Smellyleaf::Application.routes.draw do
   #get "solr", :as => 'store/solr'
   #get 'search' => 's#search'
 
-  resources :profile
+  resources :profile do
+    member do
+      get "activity"
+      get "feed"
+      post "follow"
+    end
+  end
+
+  
 
   resources :ses
 

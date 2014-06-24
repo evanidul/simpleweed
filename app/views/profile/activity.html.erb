@@ -1,0 +1,36 @@
+</br>
+<div class="col-md-2">
+	<table>
+		<tr>
+			<td>
+				<span class="glyphicon glyphicon-user user-pic"></span>
+			</td>
+			<td>
+				<div class="username"><%= @profile_user.username %></div>
+				<div class="edit-profile-link">edit profile </div>
+			</td>
+		</tr>
+	</table>
+	
+</div>
+<div class="activities col-md-6">
+<% @activities.each do |activity| %>
+  <div class="activity">
+    
+    <%= render_activity activity %>
+  </div>
+ <% end %>
+
+</div>
+
+<div class="right-col-profile col-md-4">
+	
+	<% if !@user_is_viewing_own_profile	%>
+		<%= form_tag(follow_profile_path, method: "post" , :remote => true) do %>			
+			<%= button_tag(type: 'submit', class: "btn btn-success") do %>
+				<div class="follow-user-star glyphicon glyphicon-star"></div>
+			<% end %>
+		<% end %>
+	<% end %>
+
+</div>
