@@ -3,7 +3,9 @@ class Store < ActiveRecord::Base
 	has_many :store_reviews
 
 	include PublicActivity::Model    
-    tracked        
+    #tracked        
+    # omitting 'tracked' seems to let us fire custom events in the controller whenever the store is being edited, instead of
+    # tracking any updates to the store.
 
 	# a store may be followed
 	acts_as_followable

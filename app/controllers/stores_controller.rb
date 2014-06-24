@@ -176,6 +176,7 @@ class StoresController < ApplicationController
 		@store = Store.find(params[:id])
 	    if @store.update(params[:store].permit(:announcement))
 			redirect_to store_path(@store)
+			@store.create_activity key: 'store.update_announcement'
 		else
 			redirect_to edit_announcement_store_path(@store)
 		end
