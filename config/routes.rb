@@ -51,6 +51,7 @@ Smellyleaf::Application.routes.draw do
       get 'store_preview'
       get 'show_claim'
       put 'update_claim'
+      post 'follow'
 
     end
     resources :store_items do 

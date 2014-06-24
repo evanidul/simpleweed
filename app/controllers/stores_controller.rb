@@ -249,6 +249,15 @@ class StoresController < ApplicationController
 		end	
 	end
 
+	def follow
+		@store = Store.find(params[:id])
+		current_user.follow!(@store)
+
+		respond_to do |format|
+			return format.js {}
+		end
+	end
+
 	# create may only take a name in the future.  Anyway, we may be able to get rid of this block..
 	private 
 	def store_params

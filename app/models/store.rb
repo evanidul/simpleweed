@@ -2,6 +2,9 @@ class Store < ActiveRecord::Base
 	has_many :store_items
 	has_many :store_reviews
 
+	include PublicActivity::Model    
+    tracked        
+
 	# a store may be followed
 	acts_as_followable
 	

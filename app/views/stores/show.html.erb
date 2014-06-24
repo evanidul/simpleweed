@@ -61,10 +61,13 @@
 				</span>	
 			<% end %>
 
-	<span class="follow-user-button btn btn-success pull-right">
-		<span class = "follow-user-star glyphicon glyphicon-star">
-		</span>
-	</span>
+			<span class="pull-right">
+				<%= form_tag(follow_store_path, method: "post" , :remote => true) do %>			
+					<%= button_tag(type: 'submit', class: "btn btn-success follow-store-button ") do %>
+						<div class="follow-user-star glyphicon glyphicon-star"></div>
+					<% end %>
+				<% end %>
+			</span>
 
 		</div> <!-- review-controls -->	
   		<ul class="nav nav-tabs">
