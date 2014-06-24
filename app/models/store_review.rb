@@ -1,7 +1,7 @@
 class StoreReview < ActiveRecord::Base
   # store changes in activity feed
   include PublicActivity::Model
-  tracked
+  tracked :owner => :user
 
   # when a user comments on a review, they follow that review
   acts_as_followable

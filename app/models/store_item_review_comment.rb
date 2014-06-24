@@ -1,7 +1,7 @@
 class StoreItemReviewComment < ActiveRecord::Base
 
   include PublicActivity::Model
-  tracked
+  tracked :owner => :user
   belongs_to :store_item_review
   belongs_to :user
 
