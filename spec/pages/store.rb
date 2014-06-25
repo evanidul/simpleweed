@@ -2,6 +2,9 @@ class StorePage < SitePrism::Page
 	#set_url "/admin/stores"
 
 	element :name_header, "#name"
+
+	# buttons
+	element :follow_store_button, '#follow-store-button'
 	element :claim_store_button, "#claim-store-button"
 	element :write_review_button, '#write-review-button'
 	element :write_review_button_blocked, '#write-review-button-blocked'

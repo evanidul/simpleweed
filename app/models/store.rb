@@ -2,7 +2,7 @@ class Store < ActiveRecord::Base
 	has_many :store_items
 	has_many :store_reviews
 
-	include PublicActivity::Model    
+	include PublicActivity::Common    
     #tracked        
     # omitting 'tracked' seems to let us fire custom events in the controller whenever the store is being edited, instead of
     # tracking any updates to the store.
