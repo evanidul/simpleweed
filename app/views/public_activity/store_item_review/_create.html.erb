@@ -4,33 +4,22 @@
 <table class="feed-item-table">
 	<tr>
 		<td valign = "top">
-			<span class="glyphicon glyphicon-user user-pic-feed-item"></span>
+			<!-- <span class="glyphicon glyphicon-user user-pic-feed-item"></span> -->
 		</td>
 		<td class="feed-item-title-and-body">
-			<div class="item-feed-title">
-				<a><%= activity.trackable.user.username %></a> added review of <a><%= activity.trackable.store_item.name %></a>
-				<div class="time-ago-feed-item"><%= time_ago_in_words(activity.trackable.updated_at) %> ago</div>
-			</div>
-			<div class = "feed-item-body">
+			
+			
 				
-				<ul class = "store-star-rank" star-value="<%= activity.trackable.stars %>">			
-				<% (1..activity.trackable.stars).each do |i| %>
-					<li class="rating_star">
-						<span class="glyphicon glyphicon-star"></span>
-					</li>
-				<% end %>
-				<% darkstars = 5 - activity.trackable.stars
-					(1..darkstars).each do |i| %>
-					<li class="rating_star off">
-						<span class="glyphicon glyphicon-star"></span>
-					</li>
-				<% end %>
-				</ul>			
 				
-				<%= activity.trackable.review %>
-			</div>
+
+				<% @store_item_review = activity.trackable %>
+				<% @store_item = activity.trackable.store_item %>
+				<% @store = @store_item.store %>
+				 
+			
 
 		</td>
 	</tr>
 </table>
+<%= render 'store_item_reviews/store_item_review' %>
 <% end %>
