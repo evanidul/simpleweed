@@ -1,27 +1,11 @@
 
 <% if activity.trackable %>
 
-<table class="feed-item-table">
-	<tr>
-		<td valign = "top">
-			<!-- <span class="glyphicon glyphicon-user user-pic-feed-item"></span> -->
-		</td>
-		<td class="feed-item-title-and-body">
-			
-			
-				
-				
+<% @store_item_review = activity.trackable %>
+<% @store_item = activity.trackable.store_item %>
+<% @store = @store_item.store %>
 
-				<% @store_item_review = activity.trackable %>
-
-				<% @store_item = activity.trackable.store_item %>
-				<% @store = @store_item.store %>
-				 
-			
-
-		</td>
-	</tr>
-</table>
+<% @feed = true %>
 
 <%= render partial: 'store_item_reviews/store_item_review', locals: {store_item_review: @store_item_review} %>
 <% end %>
