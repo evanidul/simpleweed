@@ -93,99 +93,12 @@
 	if !item_review.id.nil?
 
 	%>
-	<div class="store-review">
-		<h4>			
-			<%= item_review.user.username %>
-			<small><%= time_ago_in_words(item_review.created_at) %> ago</small>			
-			<ul class = "store-star-rank" style="float:right;" star-value="<%= item_review.stars %>">			
-			<% (1..item_review.stars).each do |i| %>
-				<li class="rating_star">
-					<span class="glyphicon glyphicon-star"></span>
-				</li>
-			<% end %>
-			<% darkstars = 5 - item_review.stars
-				(1..darkstars).each do |i| %>
-				<li class="rating_star off">
-					<span class="glyphicon glyphicon-star"></span>
-				</li>
-			<% end %>
+	
 
-			</ul>			
-		</h4>			
-
-		<table>
-			<tr>
-				<td>					
-					<div class="btn-group-vertical review-vote-controls">		
-						<%= form_for ([@store, @store_item, item_review, item_review.store_item_review_votes.build]), :remote => true, :html => { :id => "new_upvote_on_#{item_review.id}" } do |f| %>
-							<%= f.hidden_field :vote, :value => "1" %> 
-							<%= button_tag(type: 'submit', class: "btn btn-default upvotebutton") do %>
- 								<div class="glyphicon glyphicon-chevron-up"></div>
-							<% end %>
-
-						<% end %>
-						<div> 
-							<div class="review-votes" id="<%=item_review.id%>_vote_sum"><%= item_review.sum_votes %> </div>
-						</div>
-						
-						<%= form_for ([@store, @store_item, item_review, item_review.store_item_review_votes.build]), :remote => true, :html => { :id => "new_downvote_on_#{item_review.id}" } do |f| %>
-							<%= f.hidden_field :vote, :value => "-1" %> 
-							<%= button_tag(type: 'submit', class: "btn btn-default downvotebutton") do %>
- 								<div class="glyphicon glyphicon-chevron-down"></div>
-							<% end %>
-						<% end %>
-					</div>
-				</td>
-				<td class="review-content">
-					<%= item_review.review %>
-				</td>	
-			</tr>
-		</table>
-
-		<div id="comments_for_review_<%= item_review.id %>" class="store-review-comments">						
-			<!-- dvu: WARNING: be sure to change this template in ajax response as well! -->
-			<% item_review.store_item_review_comments.each do |store_item_review_comment| %>
-				<% 
-					if @store.email == store_item_review_comment.user.email						
-						@ownerstyle = "owner-store-review-comment"
-						@storeownercomment = true
-					else 
-						@ownerstyle = ""
-						@storeownercomment = false
-					end
-				%>
-				<div id="comment_<%= store_item_review_comment.id %>" class="store-review-comment <%=@ownerstyle%>" >
-					<a href="#"><%= store_item_review_comment.user.username %></a>&nbsp
-					<% if @storeownercomment %>
-						<span class="badge owner-badge">store owner</span>&nbsp
-					<% end %>
-
-					<span class="store-review-comment-ago"><%= time_ago_in_words(store_item_review_comment.created_at) %> ago</span><br/>
-					<%= store_item_review_comment.comment %>
-				</div>
-			<% end %>			
-		</div>
-		<% if current_user.nil? %>
-			<!-- maybe just close modal and click login button -->
-			<br/>
-			<a id="login-to-comment-on-item-review">log in to comment </a>
-			<script>
-				$("#login-to-comment-on-item-review").click(function(){
-					$('#modal').modal('hide');
-					$("#log-in-link").click();
-				})
-			</script>
-
-		<% else %>
-			<%= form_for ([@store, @store_item, item_review, item_review.store_item_review_comments.build]), :remote => true, :html => { :id => "new_comment_on_#{item_review.id}" , :class=> "new-store-review-comment-form"} do |f| %>
-				<%= f.text_area :comment, :class => 'form-control new-item-review-comment-input', :required => true, :rows => 1 %>
-				<%= f.submit 'post comment', :class => 'btn btn-primary lowercase pull-right save-new-store-review-comment btn-sm' , :id => "save_comment_on_#{item_review.id}"  %>
-			<% end %>		
-		<% end %>
-		
-
-	</div> 
+	<%= render partial: 'store_item_reviews/store_item_review', locals: {store_item_review: item_review} %>
+	
+	
 	<% end %>
-<% end %>
+	<% end %>
 
 </div>

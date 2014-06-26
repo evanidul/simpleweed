@@ -13,6 +13,7 @@
 				
 
 				<% @store_item_review = activity.trackable %>
+
 				<% @store_item = activity.trackable.store_item %>
 				<% @store = @store_item.store %>
 				 
@@ -21,5 +22,6 @@
 		</td>
 	</tr>
 </table>
-<%= render 'store_item_reviews/store_item_review' %>
+
+<%= render partial: 'store_item_reviews/store_item_review', locals: {store_item_review: @store_item_review} %>
 <% end %>

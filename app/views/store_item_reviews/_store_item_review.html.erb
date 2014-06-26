@@ -1,3 +1,8 @@
+<% 
+if !(store_item_review.nil?)
+	@store_item_review = store_item_review 
+end
+%>
 <div class="store-review">
 		<h4>			
 			<span class="glyphicon glyphicon-user user-pic-feed-item"></span>
@@ -47,7 +52,7 @@
 				</td>	
 			</tr>
 		</table>
-		
+		 
 
 		<div id="comments_for_review_<%= @store_item_review.id %>" class="store-review-comments">						
 			<% @store_item_review.store_item_review_comments.each do |store_item_review_comment| %>
@@ -69,15 +74,26 @@
 					<span class="store-review-comment-ago"><%= time_ago_in_words(store_item_review_comment.created_at) %> ago</span><br/>
 					<%= store_item_review_comment.comment %>
 				</div>
-			<% end %>	
+			<% end # comments loop %>	
 		</div>
 		
-		<%= form_for ([@store, @store_item, @store_item_review, @store_item_review.store_item_review_comments.build]), :remote => true, :html => { :id => "new_comment_on_#{@store_item_review.id}" , :class=> "new-store-review-comment-form"} do |f| %>
+		<% if current_user.nil? %>
+			<!-- maybe just close modal and click login button -->
+			<br/>
+			<a id="login-to-comment-on-item-review">log in to comment </a>
+			<script>
+				$("#login-to-comment-on-item-review").click(function(){
+					$('#modal').modal('hide');
+					$("#log-in-link").click();
+				})
+			</script>
+		<% else %>
+			<%= form_for ([@store, @store_item, @store_item_review, @store_item_review.store_item_review_comments.build]), :remote => true, :html => { :id => "new_comment_on_#{@store_item_review.id}" , :class=> "new-store-review-comment-form"} do |f| %>
 				<%= f.text_area :comment, :class => 'form-control new-item-review-comment-input', :required => true, :rows => 1 %>
 				<%= f.submit 'post comment', :class => 'btn btn-primary lowercase pull-right save-new-store-review-comment btn-sm' , :id => "save_comment_on_#{@store_item_review.id}"  %>
-		<% end %>	
+		<% end #if current_user.nil? %>	
 		
 		
 
 	</div> 
-	
+ <% end %>
