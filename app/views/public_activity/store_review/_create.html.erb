@@ -5,9 +5,10 @@
 		<td class = "feed-item-avatar" valign = "top">
 			<span class="glyphicon glyphicon-user user-pic-feed-item"></span>
 		</td>
-		<td>
+		<td class="feed-item-title-and-body">
 			<div class="item-feed-title">
 				<a><%= activity.trackable.user.username %></a> added a review of <a><%= activity.trackable.store.name %></a>
+				<div class="time-ago-feed-item"><%= time_ago_in_words(activity.trackable.updated_at) %> ago</div>
 			</div>
 			<div class = "feed-item-body">
 				<%= activity.trackable.review %>
