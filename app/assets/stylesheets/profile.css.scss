@@ -30,7 +30,13 @@
 
 .user-pic-feed-item {
 	font-size: 30px;
-	margin-right: 5px;
+	margin-right: 25px;
+	color: #5cb85c;
+	border-color: #4cae4c;
+	border: 2px solid;
+	width: 40px !important;
+	padding : 3px;
+	border-radius : 8px;
 }
 
 .item-feed-title {
@@ -57,16 +63,17 @@
 
 #profile-nav {
 	margin-top: 12px;
-/**
-	list-style: none;
-	width : 100%;
-	margin: 0;
-	padding: 2px; **/
 }
 
 .feed-item-glyphicon {
 	font-size: 30px;
-	margin-right : 5px;
+	margin-right : 25px;
+	color: #f0ad4e;
+	border-color: #eea236;
+	border: 2px solid;
+	width: 40px !important;
+	padding : 3px;
+	border-radius : 8px;
 }
 
 .time-ago-feed-item {
