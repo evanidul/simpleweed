@@ -11,7 +11,9 @@ end
 			<a><%= @store_item_review.user.username %></a>
 			<% if @feed == true %>
 				<span> reviewed 
-					<a><%= @store_item_review.store_item.name %> 
+					<a class="item-search-item-name" data-remote="<%= store_store_item_path(@store_item_review.store_item.store.id, @store_item_review.store_item.id) %>" data-target="#modal" data-toggle="modal" 
+						  		href="<%= store_store_item_path(@store_item_review.store_item.store.id, @store_item_review.store_item.id) %>" >
+						<%= @store_item_review.store_item.name %> 
 					</a>
 				</span>
 			<% end %>
