@@ -1,35 +1,6 @@
 <% if activity.trackable %>
 
-<table class="feed-item-table">
-	<tr>
-		<td class = "feed-item-avatar" valign = "top">
-			<span class="glyphicon glyphicon-user user-pic-feed-item"></span>
-		</td>
-		<td class="feed-item-title-and-body">
-			<div class="item-feed-title">
-				<a><%= activity.trackable.user.username %></a> added a review of <a><%= activity.trackable.store.name %></a>
-				<div class="time-ago-feed-item"><%= time_ago_in_words(activity.trackable.updated_at) %> ago</div>
+<% @feed = true %>
 
-			</div>
-			<div class = "feed-item-body">
-				<ul class = "store-star-rank" star-value="<%= activity.trackable.stars %>">			
-				<% (1..activity.trackable.stars).each do |i| %>
-					<li class="rating_star">
-						<span class="glyphicon glyphicon-star"></span>
-					</li>
-				<% end %>
-				<% darkstars = 5 - activity.trackable.stars
-					(1..darkstars).each do |i| %>
-					<li class="rating_star off">
-						<span class="glyphicon glyphicon-star"></span>
-					</li>
-				<% end %>
-
-				</ul>			
-				<%= activity.trackable.review %>
-			</div>
-
-		</td>
-	</tr>
-</table>
+<%= render partial: 'store_reviews/store_review', locals: {store_review: activity.trackable} %>
 <% end %>
