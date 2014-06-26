@@ -1,16 +1,17 @@
 <% if activity.trackable %>
 <div class="feed-item-store-announcement-update">
-	<table>
+	<table class="feed-item-table">
 		<tr>
-			<td>
+			<td valign = "top">
 				<span class="feed-item-glyphicon glyphicon glyphicon-bullhorn"></span>
 			</td>
-			<td>
-				<div class="item-feed-title">
+			<td class="feed-item-title-and-body">
+				<span class="item-feed-title">
 					<a><%= activity.trackable.name %></a> has a new announcement.
-				</div>
+					<div class="time-ago-feed-item"><%= time_ago_in_words(activity.trackable.updated_at) %> ago</div>
+				</span>
 				<div class = "feed-item-body">
-					<%= activity.trackable.announcement %> 
+					<%= raw activity.trackable.announcement %> 
 				</div>
 
 			</td>

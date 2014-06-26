@@ -34,8 +34,8 @@
 }
 
 .item-feed-title {
-	line-height: 18px;
-	font-size:18px;
+	line-height: 14px;
+	font-size:14px;
 }
 
 .feed-item-body {
@@ -67,4 +67,13 @@
 .feed-item-glyphicon {
 	font-size: 30px;
 	margin-right : 5px;
+}
+
+.time-ago-feed-item {
+	color: gray;
+	float: right !important;
+}
+
+.feed-item-title-and-body {
+	width: 100%;
 }

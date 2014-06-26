@@ -16,7 +16,7 @@
 	<% end %>
 	
 </div>
-<div class="activities col-md-6">
+<div class="activities col-md-7">
 <% @activities.each do |activity| %>
   <div class="activity">
     
@@ -26,7 +26,7 @@
 
 </div>
 
-<div class="right-col-profile col-md-4">
+<div class="right-col-profile col-md-3">
 	
 	<% if !@user_is_viewing_own_profile	%>
 		<%= form_tag(follow_profile_path, method: "post" , :remote => true) do %>			
