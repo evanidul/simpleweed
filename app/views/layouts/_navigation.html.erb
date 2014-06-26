@@ -96,7 +96,7 @@
           <li><a href="#">dispensary</a></li>
           <% if user_signed_in? %>            
             <li>
-              <%= link_to current_user.username, feed_profile_path(current_user), :id => 'edit-user-link',:class => 'navbar-link' %>
+              <%= link_to current_user.username, feed_profile_path(current_user), :id => 'edit-user-link',:class => 'navbar-link' , 'data-no-turbolink' => true %>
 
             </li>
             <li>

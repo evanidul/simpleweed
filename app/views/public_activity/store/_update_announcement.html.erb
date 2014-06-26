@@ -1,19 +1,20 @@
 <% if activity.trackable %>
+<div class="feed-item-store-announcement-update">
+	<table>
+		<tr>
+			<td>
+				<span class="feed-item-glyphicon glyphicon glyphicon-bullhorn"></span>
+			</td>
+			<td>
+				<div class="item-feed-title">
+					<a><%= activity.trackable.name %></a> has a new announcement.
+				</div>
+				<div class = "feed-item-body">
+					<%= activity.trackable.announcement %> 
+				</div>
 
-<table>
-	<tr>
-		<td>
-			<span class="feed-item-glyphicon glyphicon glyphicon-bullhorn"></span>
-		</td>
-		<td>
-			<div class="item-feed-title">
-				<a><%= activity.trackable.name %></a> has a new announcement.
-			</div>
-			<div class = "feed-item-body">
-				<%= activity.trackable.announcement %> 
-			</div>
-
-		</td>
-	</tr>
-</table>
+			</td>
+		</tr>
+	</table>
+</div>
 <% end %>

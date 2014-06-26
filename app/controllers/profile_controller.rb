@@ -17,9 +17,15 @@ class ProfileController < ApplicationController
 
 		@storeactivities = PublicActivity::Activity.order("created_at desc").where(trackable_id: following_store_ids, trackable_type: "Store")
 
-		@activities = @useractivities.zip(@storeactivities).flatten.compact
-		
-	end
+		# only works well when arrays are equal sizes
+		#@activities = @useractivities.zip(@storeactivities).flatten.compact
+
+		@unsortedactivities = @useractivities + @storeactivities
+
+		#	@activities.sort_by(&:created_at)
+		@activities = @unsortedactivities.sort_by { |obj| obj.created_at }.reverse
+
+	end	
 
 	def activity		
 		#current_user = the guy who is viewing the page

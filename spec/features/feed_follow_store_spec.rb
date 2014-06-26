@@ -10,6 +10,7 @@ require 'pages/search_results_stores'
 require 'pages/store_search_preview'
 require 'pages/registration'
 require 'pages/store_claim'
+require 'pages/profile_feed'
 
 feature "review a store" , :js => true, :search =>true do
 
@@ -85,6 +86,24 @@ feature "review a store" , :js => true, :search =>true do
     	# follow store
     	store_page.follow_store_button.click    	
     	expect(store_page.flash_notice.text).to have_text ("this store has been favorited")
+
+    	# announcement
+		expect(store_page.announcement.text).to have_text("none.")
+		store_page.edit_announcement_link.click
+		new_announcement = "My New announcement"
+		store_page.announcement_input.set new_announcement
+		store_page.save_announcement_button.click
+		expect(store_page.announcement.text).to have_text(new_announcement)
+
+		# view profile
+		header.edituserlink.click
+		profile_feed = ProfileFeedPageComponent.new
+
+		wait_for_ajax
+		profile_feed.store_announcement_updates.size.should == 1
+		profile_feed.store_announcement_updates.map {|body| body.text}.should have_text "has a new announcement"
+
+
 	end
 
 	# don't login, try to follow, get login prompt
