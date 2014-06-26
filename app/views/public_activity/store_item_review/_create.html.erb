@@ -12,6 +12,21 @@
 				<div class="time-ago-feed-item"><%= time_ago_in_words(activity.trackable.updated_at) %> ago</div>
 			</div>
 			<div class = "feed-item-body">
+				
+				<ul class = "store-star-rank" star-value="<%= activity.trackable.stars %>">			
+				<% (1..activity.trackable.stars).each do |i| %>
+					<li class="rating_star">
+						<span class="glyphicon glyphicon-star"></span>
+					</li>
+				<% end %>
+				<% darkstars = 5 - activity.trackable.stars
+					(1..darkstars).each do |i| %>
+					<li class="rating_star off">
+						<span class="glyphicon glyphicon-star"></span>
+					</li>
+				<% end %>
+				</ul>			
+				
 				<%= activity.trackable.review %>
 			</div>
 
