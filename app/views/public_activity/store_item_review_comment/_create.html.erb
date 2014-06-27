@@ -7,10 +7,11 @@
 		</td>
 		<td class="feed-item-title-and-body">
 			<div class="item-feed-title"><a><%= activity.trackable.user.username %></a> commented on 
-				<a class="item-search-item-name" data-remote="<%= store_store_item_path(activity.trackable.store_item_review.store_item.store.id, activity.trackable.store_item_review.store_item.id) %>" data-target="#modal" data-toggle="modal" 
-						  		href="<%= store_store_item_path(activity.trackable.store_item_review.store_item.store.id, activity.trackable.store_item_review.store_item.id) %>" >
+				<a class="item-search-item-name" data-remote="<%= store_store_item_path(activity.trackable.store_item_review.store_item.store.id, activity.trackable.store_item_review.store_item.id, :reviewtab => "false") %>" data-target="#modal" data-toggle="modal" 
+						  		href="<%= store_store_item_path(activity.trackable.store_item_review.store_item.store.id, activity.trackable.store_item_review.store_item.id, :reviewtab => "false") %>" >
 						<%= activity.trackable.store_item_review.store_item.name %> 
 				</a>
+				
 				
 				<div class="time-ago-feed-item"><%= time_ago_in_words(activity.trackable.updated_at) %> ago</div>
 			</div>
