@@ -6,10 +6,8 @@
 			<span class="glyphicon glyphicon-user user-pic-feed-item"></span>			
 			<a><%= store_review.user.username %></a>
 			<% if @feed == true %>
-				<span> reviewed 
-					<a>
-						<%= @store.name %> 
-					</a>
+				<span> reviewed 					
+					<a href="<%= store_path(@store.id)%>" data-no-turbolink='true' > <%= @store.name %></a>
 				</span>
 			<% end %>
 			<small><%= time_ago_in_words(store_review.created_at) %> ago</small>			

@@ -46,7 +46,16 @@ class StoreItemsController < ApplicationController
 	def update
 		@store_item = StoreItem.find(params[:id])
 
-		if @store_item.update(store_item_params)
+		@store_item.assign_attributes(store_item_params)
+		# detect changes
+		@store_item.changes
+		#@store_item.changes["strain"]
+
+		# store / create activity
+		
+		#@store.create_activity key: 'store.update_announcement'
+
+		if @store_item.save
 			redirect_to :action => 'index'
 		else
 			render 'edit'
