@@ -34,7 +34,9 @@ class StoreItemsController < ApplicationController
 
 		@item_reviews = @store_item.store_item_reviews
 		
-		@storetab = params[:storetab]		
+		@storetab = params[:storetab]
+		@reviewtab = params[:reviewtab]			
+		
 		render layout: false
 	end
 
