@@ -1,0 +1,280 @@
+<%
+if !(store_item.nil?)
+	@store_item = store_item 
+end
+%>
+
+<div class = "" store-name="<%= @store_item.store.name %>" item-name="<%= @store_item.name %>">
+		<div class = "image-and-meta-container">
+			<table>
+				<tr>
+					<td class="image-td" valign="top">
+						<% imagename = 'weed'+ rand(1..3).to_s + '.jpg' %>
+						<%= image_tag imagename, :class => "item-image-on-feed-page" %>
+					</td>
+
+
+					<td class="item-search-result-meta">
+						<h4 >
+							<!-- dvu: we don't use link_to because the link name is too complicated to embed -->
+						  	<a class="item-search-item-name" data-remote="<%= store_store_item_path(@store_item.store.id, @store_item.id) %>" data-target="#modal" data-toggle="modal" 
+						  		href="<%= store_store_item_path(@store_item.store.id, @store_item.id) %>" >
+								<%= @store_item.name %>
+							</a>						
+						
+							<%
+							if !(@store_item.maincategory.nil? || @store_item.maincategory.empty?)
+								itemcategory = @store_item.maincategory
+								case itemcategory
+									# ['flower', 'concentrate', 'edible', 'pre-roll', 'other', 'accessory']
+									when "flower"
+										%>
+										<table class= "small pull-right search-results-item-price-table">
+											<tr>												
+												<th>1g</th>
+												<th>1/8oz</th>
+												<th>1/4oz</th>
+												<th>1/2oz</th>
+												<th>1oz</th>
+											</tr>
+											<tr>												
+												<td <% if @filterpriceby == "gram" %>
+														class = "highlight"
+													<% end %>
+												>
+													<%= @store_item.costonegram %>
+												</td>
+												<td <% if @filterpriceby == "eighth" %>
+														class = "highlight"
+													<% end %>
+												>
+													<%= @store_item.costeighthoz %>
+												</td>
+												<td <% if @filterpriceby == "quarteroz" %>
+														class = "highlight"
+													<% end %>
+												>
+													<%= @store_item.costquarteroz %>
+												</td>
+												<td <% if @filterpriceby == "halfoz" %>
+														class = "highlight"
+													<% end %>
+												>
+													<%= @store_item.costhalfoz %>
+												</td>
+												<td <% if @filterpriceby == "oz" %>
+														class = "highlight"
+													<% end %>
+												>
+													<%= @store_item.costoneoz %>
+												</td>
+											</tr>
+										</table>
+										<%	
+									when "concentrate"
+										%>
+										<table class= "small pull-right search-results-item-price-table">
+											<tr>
+												<th></th>
+												<th></th>
+												<th>1/2g</th>
+												<th>1g</th>
+												<th>1/8oz</th>												
+											</tr>
+											<tr>
+												<td></td>
+												<td></td>
+												<td <% if @filterpriceby == "halfgram" %>
+														class = "highlight"
+													<% end %>
+												>
+													<%= @store_item.costhalfgram %>
+												</td>
+												<td <% if @filterpriceby == "gram" %>
+														class = "highlight"
+													<% end %>
+												>
+													<%= @store_item.costonegram %>
+												</td>
+												<td <% if @filterpriceby == "eighth" %>
+														class = "highlight"
+													<% end %>
+												>
+													<%= @store_item.costeighthoz %>
+												</td>
+																							
+											</tr>
+										</table>
+										<%	
+									else
+										%>
+										<table class= "small pull-right search-results-item-price-table">
+											<tr>
+												<th></th>
+												<th></th>
+												<th></th>
+												<th></th>												
+												<th>each</th>												
+											</tr>
+											<tr>
+												<td></td>
+												<td></td>
+												<td></td>
+												<td></td>				
+												<td <% if @filterpriceby == "gram" %>
+														class = "highlight"
+													<% end %>
+												>
+													<%= @store_item.costperunit %>
+												</td>
+												
+											</tr>
+										</table>
+										<%		
+									#switch
+									end %>
+								<% end #if %>
+
+
+														
+						</h4>
+						<div class="star-rank" >
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>		
+						</div>
+						<div class ="search-results-item-badges">
+							<%
+							badges = [ ]
+								if !(@store_item.cultivation.nil? || @store_item.cultivation.empty?)
+									badges.push(@store_item.cultivation)																
+								end
+								if @store_item.dogo
+									badges.push("bogo")
+								end
+								if @store_item.topshelf
+									badges.push("topshelf")
+								end
+								if @store_item.privatereserve
+									badges.push("privatereserve")
+								end
+								if @store_item.organic
+									badges.push("organic")
+								end
+								if @store_item.sugarfree
+									badges.push("sugarfree")
+								end
+								if @store_item.glutenfree
+									badges.push("glutenfree")
+								end
+								if @store_item.supersize
+									badges.push("supersize")
+								end
+
+
+							%>
+							<% badges.each do |badge| %>								    
+								<span class="badge search-item-badge-<%= badge %>"><%= badge %></span>
+							<% end %>
+							
+						</div>
+						<div>
+							<div class="search-result-item-available-at">
+								available at 
+								<a href="<%= store_path(@store_item.store.id)%>" data-no-turbolink='true' >
+									<%= @store_item.store.name %>
+								</a>							
+							</div>
+						    
+						    <!-- store address -->
+						    
+						    
+							<% if  @store_item.store.addressline1 && !@store_item.store.addressline1.empty?  %>
+								<%= @store_item.store.addressline1 %>
+							<% end %>
+							<% if  @store_item.store.addressline2 && !@store_item.store.addressline2.empty?  %>
+								<%= @store_item.store.addressline2 %>
+							<% end %>
+							<% if  @store_item.store.city && !@store_item.store.city.empty?  %>
+								<%= @store_item.store.city %>
+							<% end %>
+							<% if  @store_item.store.state && !@store_item.store.state.empty?  %>
+								<%= @store_item.store.state %>
+							<% end %>
+							<% if  @store_item.store.zip && !@store_item.store.zip.empty?  %>
+								<%= @store_item.store.zip %>
+							<% end %>
+							</br>
+							<% if  @store_item.store.phonenumber && !@store_item.store.phonenumber.empty?  %>
+								<%= @store_item.store.phonenumber %>
+							<% end %>
+
+
+
+							</br>
+							<%
+								straincat = [ ]
+								
+								if !(@store_item.strain.nil? || @store_item.strain.empty?)
+									strainstr = "strain: #{@store_item.strain}"
+									straincat.push(strainstr)
+								end	
+								if !(@store_item.maincategory.nil? || @store_item.maincategory.empty?)
+									categorystr = "category: #{@store_item.maincategory}"
+									straincat.push(categorystr)
+								end
+								if !(@store_item.subcategory.nil? || @store_item.subcategory.empty?)	
+									subcatstr = "subcategory: #{@store_item.subcategory}"
+									straincat.push(subcatstr)
+								end	
+							%>
+
+							<div class="search-result-item-category-strain-meta">
+								<%= straincat.join ' | '  %> 
+							</div>
+
+							
+							<%
+								lab = []
+								if !(@store_item.thc.nil? )
+									thcstr = "thc: #{@store_item.thc}"
+									lab.push(thcstr)
+								end
+								if !(@store_item.cbd.nil? )
+									cbdstr = "cbd: #{@store_item.cbd}"
+									lab.push(cbdstr)
+								end
+								if !(@store_item.cbn.nil? )
+									cbnstr = "cbn: #{@store_item.cbn}"
+									lab.push(cbnstr)
+								end
+							%>
+
+							<div class="search-result-item-lab-meta">
+								<%= lab.join ' | '	 %>
+							</div>
+
+							
+							<div class="search-result-item-promo">								
+								<% if !@store_item.promo.nil? && !@store_item.promo.nil? %>
+									<%= @store_item.promo %>
+								<% end %>
+							</div>
+
+
+							<% if  @store_item.description && !@store_item.description.empty?  %>
+								<div class="item-search-item-description">									
+									<%= @store_item.description %>
+								</div>								
+							<% end %>
+							
+							
+
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
