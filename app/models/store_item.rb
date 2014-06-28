@@ -1,5 +1,5 @@
 class StoreItem < ActiveRecord::Base
-
+	include PublicActivity::Common    
 	# users may follow store items
 	acts_as_followable
 

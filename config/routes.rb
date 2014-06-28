@@ -55,6 +55,9 @@ Smellyleaf::Application.routes.draw do
 
     end
     resources :store_items do 
+      member do
+        post 'follow'
+      end
       resources :store_item_reviews do
         resources :store_item_review_comments
         resources :store_item_review_votes

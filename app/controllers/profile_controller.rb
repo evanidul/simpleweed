@@ -6,6 +6,7 @@ class ProfileController < ApplicationController
 
 		following_user_ids = @profile_user.followees(User).collect(&:id)  
 		following_store_ids = @profile_user.followees(Store).collect(&:id)  
+		following_store_item_ids = @profile_user.followees(StoreItem).collect(&:id)  
 
 		@user_is_viewing_own_profile = false;
 		if current_user.id == @profile_owner_id
@@ -17,10 +18,12 @@ class ProfileController < ApplicationController
 
 		@storeactivities = PublicActivity::Activity.order("created_at desc").where(trackable_id: following_store_ids, trackable_type: "Store")
 
+		@storeitemactivities = PublicActivity::Activity.order("created_at desc").where(trackable_id: following_store_item_ids, trackable_type: "StoreItem")
+
 		# only works well when arrays are equal sizes
 		#@activities = @useractivities.zip(@storeactivities).flatten.compact
 
-		@unsortedactivities = @useractivities + @storeactivities
+		@unsortedactivities = @useractivities + @storeactivities +@storeitemactivities
 
 		#	@activities.sort_by(&:created_at)
 		@activities = @unsortedactivities.sort_by { |obj| obj.created_at }.reverse

@@ -50,17 +50,29 @@ class StoreItemsController < ApplicationController
 
 		@store_item.assign_attributes(store_item_params)
 		# detect changes
-		@store_item.changes
-		#@store_item.changes["strain"]
+		changes = @store_item.changes
 
-		# store / create activity
+		# handle price changes		
+		price_change_keys = ["costhalfgram","costhalfgram","costonegram","costeighthoz","costquarteroz","costhalfoz","costoneoz"]
+		price_change_array = changes.keys & price_change_keys
+		has_price_change = !price_change_array.empty?
 		
-		#@store.create_activity key: 'store.update_announcement'
+		@store_item.create_activity key: 'store_item.update_prices'
 
 		if @store_item.save
 			redirect_to :action => 'index'
 		else
 			render 'edit'
+		end
+	end
+
+	def follow
+		@store_item = StoreItem.find(params[:id])
+		
+		current_user.follow!(@store_item)
+
+		respond_to do |format|
+			return format.js {}
 		end
 	end
 

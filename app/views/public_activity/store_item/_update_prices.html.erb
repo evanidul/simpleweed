@@ -1,0 +1,138 @@
+<% if activity.trackable %>
+
+	<% @store_item = activity.trackable %>
+<div class="feed-item-store-announcement-update">
+	<table class="feed-item-table">
+		<tr>
+			<td valign = "top">
+				<span class="feed-item-glyphicon glyphicon glyphicon-bullhorn"></span>
+			</td>
+			<td class="feed-item-title-and-body">
+				<span class="item-feed-title">					
+					<a class="item-search-item-name" data-remote="<%= store_store_item_path(activity.trackable.store.id, activity.trackable.id, :reviewtab => "false") %>" data-target="#modal" data-toggle="modal" 
+						  		href="<%= store_store_item_path(activity.trackable.store.id, activity.trackable.id, :reviewtab => "false") %>" >
+						<%= activity.trackable.name %> 
+					</a>
+					 prices have been changed.
+					<div class="time-ago-feed-item"><%= time_ago_in_words(activity.trackable.updated_at) %> ago</div>
+				</span>
+				<div class = "feed-item-body">
+					<%
+					if !(@store_item.maincategory.nil? || @store_item.maincategory.empty?)
+						itemcategory = @store_item.maincategory
+						case itemcategory
+							# ['flower', 'concentrate', 'edible', 'pre-roll', 'other', 'accessory']
+							when "flower"
+								%>
+								<table class= "small search-results-item-price-table">
+									<tr>												
+										<th>1g</th>
+										<th>1/8oz</th>
+										<th>1/4oz</th>
+										<th>1/2oz</th>
+										<th>1oz</th>
+									</tr>
+									<tr>												
+										<td <% if @filterpriceby == "gram" %>
+												class = "highlight"
+											<% end %>
+										>
+											<%= @store_item.costonegram %>
+										</td>
+										<td <% if @filterpriceby == "eighth" %>
+												class = "highlight"
+											<% end %>
+										>
+											<%= @store_item.costeighthoz %>
+										</td>
+										<td <% if @filterpriceby == "quarteroz" %>
+												class = "highlight"
+											<% end %>
+										>
+											<%= @store_item.costquarteroz %>
+										</td>
+										<td <% if @filterpriceby == "halfoz" %>
+												class = "highlight"
+											<% end %>
+										>
+											<%= @store_item.costhalfoz %>
+										</td>
+										<td <% if @filterpriceby == "oz" %>
+												class = "highlight"
+											<% end %>
+										>
+											<%= @store_item.costoneoz %>
+										</td>
+									</tr>
+								</table>
+								<%	
+							when "concentrate"
+								%>
+								<table class= "small search-results-item-price-table">
+									<tr>
+										<th></th>
+										<th></th>
+										<th>1/2g</th>
+										<th>1g</th>
+										<th>1/8oz</th>												
+									</tr>
+									<tr>
+										<td></td>
+										<td></td>
+										<td <% if @filterpriceby == "halfgram" %>
+												class = "highlight"
+											<% end %>
+										>
+											<%= @store_item.costhalfgram %>
+										</td>
+										<td <% if @filterpriceby == "gram" %>
+												class = "highlight"
+											<% end %>
+										>
+											<%= @store_item.costonegram %>
+										</td>
+										<td <% if @filterpriceby == "eighth" %>
+												class = "highlight"
+											<% end %>
+										>
+											<%= @store_item.costeighthoz %>
+										</td>
+																					
+									</tr>
+								</table>
+								<%	
+							else
+								%>
+								<table class= "small search-results-item-price-table">
+									<tr>
+										<th></th>
+										<th></th>
+										<th></th>
+										<th></th>												
+										<th>each</th>												
+									</tr>
+									<tr>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>				
+										<td <% if @filterpriceby == "gram" %>
+												class = "highlight"
+											<% end %>
+										>
+											<%= @store_item.costperunit %>
+										</td>
+										
+									</tr>
+								</table>
+										
+							
+							<% end #switch%>
+						<% end #if %>		
+				</div>
+
+			</td>
+		</tr>
+	</table>
+</div>
+<% end %>
