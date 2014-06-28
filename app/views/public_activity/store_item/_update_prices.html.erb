@@ -1,9 +1,24 @@
 <% if activity.trackable %>
 
-	<% @feeditem_notification = "prices have been updated!" %>
+<div class="">
+	<table class="feed-item-table">
+		<tr>
+			<td valign = "top">
+				<% imagename = 'weed'+ rand(1..3).to_s + '.jpg' %>
+				<%= image_tag imagename, :class => "item-image-on-feed-page" %>
+			</td>
+			<td class="feed-item-title-and-body">
+				<span class="item-feed-title">
+					<a href="<%= store_path(activity.trackable.id)%>" data-no-turbolink='true' > <%= activity.trackable.name %></a>
+					 has updated prices 
+					<div class="time-ago-feed-item-prices"><%= time_ago_in_words(activity.trackable.updated_at) %> ago</div>
+				</span>
+				<div class = "feed-item-body">
+					<%= render partial: 'store_items/store_item', locals: {store_item: activity.trackable} %>
+				</div>
 
-	<%= render partial: 'store_items/store_item', locals: {store_item: activity.trackable} %>
-
-
-
+			</td>
+		</tr>
+	</table>
+</div>
 <% end %>

@@ -13,10 +13,18 @@
 				</a>
 				
 				
-				<div class="time-ago-feed-item"><%= time_ago_in_words(activity.trackable.updated_at) %> ago</div>
+				<div class="time-ago-feed-item-prices"><%= time_ago_in_words(activity.trackable.updated_at) %> ago</div>
 			</div>
 			<div class = "feed-item-body">
-				<%= activity.trackable.comment %>
+
+
+					
+
+					<%= render partial: 'store_items/store_item', locals: {store_item: activity.trackable.store_item_review.store_item} %>
+
+
+
+
 			</div>
 
 		</td>
