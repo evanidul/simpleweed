@@ -1,6 +1,6 @@
 <% if activity.trackable %>
 
-	<% @store_item = activity.trackable %>
+	<% @feeditem_notification = "prices have been updated!" %>
 
 	<%= render partial: 'store_items/store_item', locals: {store_item: activity.trackable} %>
 

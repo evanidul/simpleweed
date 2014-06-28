@@ -145,6 +145,13 @@ end
 							<span class="glyphicon glyphicon-star"></span>
 							<span class="glyphicon glyphicon-star"></span>		
 						</div>
+						<% if !@feeditem_notification.nil? %>
+							<div class="alert alert-success fade in">
+						      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+						      <strong><%= @feeditem_notification %></strong>
+						       
+						    </div>
+						<% end %>
 						<div class ="search-results-item-badges">
 							<%
 							badges = [ ]
