@@ -22,7 +22,7 @@
 
 				<%= render partial: 'store_items/store_item', locals: {store_item: activity.trackable.store_item_review.store_item} %>
 				
-				<div id="comments_for_review_<%= @store_item_review.id %>_read_only" class="item-review-comments-on-feed">						
+				<div id="comments_for_item_review_<%= @store_item_review.id %>_read_only" class="item-review-comments-on-feed">						
 					<% @store_item_review.store_item_review_comments.last(3).each do |store_item_review_comment| %>
 						<% 
 							if @store.email == store_item_review_comment.user.email						

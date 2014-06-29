@@ -69,7 +69,7 @@ end
 		</table>
 		 
 
-		<div id="comments_for_review_<%= @store_item_review.id %>" class="store-review-comments">						
+		<div id="comments_for_item_review_<%= @store_item_review.id %>" class="store-review-comments">						
 			<% @store_item_review.store_item_review_comments.each do |store_item_review_comment| %>
 				<% 
 					if @store.email == store_item_review_comment.user.email						
