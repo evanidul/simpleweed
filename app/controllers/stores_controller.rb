@@ -117,6 +117,7 @@ class StoresController < ApplicationController
 	def update_firsttimepatientdeals
 		@store = Store.find(params[:id])
 	    if @store.update(params[:store].permit(:firsttimepatientdeals))
+			@store.create_activity key: 'store.update_ftp'
 			redirect_to store_path(@store)
 		else
 			redirect_to edit_firsttimepatientdeals_store_path(@store)
@@ -149,6 +150,7 @@ class StoresController < ApplicationController
 		@store = Store.find(params[:id])
 	    if @store.update(params[:store].permit(:addressline1, :addressline2, :city, :state, :zip, :phonenumber, :email, :website,
 	    	:facebook, :twitter, :instagram ))
+	    	@store.create_activity key: 'store.update_contact'
 			redirect_to store_path(@store)
 		else
 			redirect_to edit_contact_store_path(@store)

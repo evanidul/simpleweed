@@ -272,6 +272,124 @@ feature "review a store" , :js => true, :search =>true do
 		profile_feed.store_hours_updates.map {|body| body.text}.should have_text "has updated it's store hours."
 	end
 
+	scenario "login, follow a store, should see success message, update ftp, see on feed" do	
+		# login as admin
+		page.visit("/")
+		
+		header = HeaderPageComponent.new
+		header.has_loginlink?
+		header.loginlink.click
+    	
+    	# login modal
+    	header.username.set @adminemail
+    	header.password.set @adminpassword
+		header.logininbutton.click
+
+		expect(header.edituserlink.text).to have_text(@adminusername)
+		# search for it		
+        header = HeaderPageComponent.new	
+		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+        header.search_button.click
+
+    	search_results_page = SearchResultsStoresPageComponent.new    	
+    	        
+        search_results_page.search_results_store_names.size.should == 1
+        search_results_page.search_results_store_names.map {|name| name.text}.should == [@store_name]
+
+    	# click and view preview
+    	search_results_page.search_results_store_names.first.click
+    	store_page = StorePage.new
+    	expect(store_page.name_header.text).to have_text(@store_name)
+
+    	# follow store
+    	store_page.follow_store_button.click    	
+    	expect(store_page.flash_notice.text).to have_text ("this store has been favorited")
+
+    	# update ftp
+		store_page.edit_first_time_patient_deals_link.click
+		new_ftpd = "No new deals today!"
+		store_page.first_time_patient_deals_input.set new_ftpd
+		store_page.save_first_time_patient_deals_button.click
+		expect(store_page.first_time_patient_deals_text.text).to have_text(new_ftpd)    	
+		store_page.firsttimepatientdeals.should be_checked
+		
+		# view profile
+		header.edituserlink.click
+		profile_feed = ProfileFeedPageComponent.new
+
+		wait_for_ajax
+		profile_feed.store_ftp_updates.size.should == 1
+		profile_feed.store_ftp_updates.map {|body| body.text}.should have_text "has updated it's first time patient deals"
+	end
+
+	scenario "login, follow a store, should see success message, update contact/address, see on feed" do	
+		# login as admin
+		page.visit("/")
+		
+		header = HeaderPageComponent.new
+		header.has_loginlink?
+		header.loginlink.click
+    	
+    	# login modal
+    	header.username.set @adminemail
+    	header.password.set @adminpassword
+		header.logininbutton.click
+
+		expect(header.edituserlink.text).to have_text(@adminusername)
+		# search for it		
+        header = HeaderPageComponent.new	
+		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+        header.search_button.click
+
+    	search_results_page = SearchResultsStoresPageComponent.new    	
+    	        
+        search_results_page.search_results_store_names.size.should == 1
+        search_results_page.search_results_store_names.map {|name| name.text}.should == [@store_name]
+
+    	# click and view preview
+    	search_results_page.search_results_store_names.first.click
+    	store_page = StorePage.new
+    	expect(store_page.name_header.text).to have_text(@store_name)
+
+    	# follow store
+    	store_page.follow_store_button.click    	
+    	expect(store_page.flash_notice.text).to have_text ("this store has been favorited")
+
+    	store_page.edit_contact_link.click
+    	new_addressline1 = "7110 Rock Valley Court"
+    	store_page.addressline1_input.set new_addressline1
+    	new_addressline2 = "Apt. 506"
+    	store_page.addressline2_input.set new_addressline2
+    	new_city = "Denver"	
+    	store_page.city_input.set new_city
+    	new_state = "CO"
+    	store_page.state_input.set new_state
+    	new_zip = "92122"
+    	store_page.zip_input.set new_zip
+    	new_phonenumber = "1-415-123-1234"
+    	store_page.phonenumber_input.set new_phonenumber
+    	new_email = "evanidul@gmail.com"
+    	store_page.email_input.set new_email
+    	new_website = "www.evanidul.com"
+    	store_page.website_input.set new_website
+    	new_fb = "www.facebook.com/mypage"
+    	store_page.facebook_input.set new_fb
+    	new_twitter = "www.twitter.com/asd"
+    	store_page.twitter_input.set new_twitter
+    	new_instagram = "www.instagram.com/asdf"
+    	store_page.instagram_input.set new_instagram
+
+    	store_page.save_store_contact_button.click
+
+		# view profile
+		header.edituserlink.click
+		profile_feed = ProfileFeedPageComponent.new
+
+		wait_for_ajax
+		profile_feed.store_contact_updates.size.should == 1
+		profile_feed.store_contact_updates.map {|body| body.text}.should have_text "has updated it's contact information and address."
+	end	
+
 	# don't login, try to follow, get login prompt
 	scenario "find a store, follow a store, get login prompt, login, follow a store , should see success message" do
 		# search for it		
