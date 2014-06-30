@@ -210,6 +210,68 @@ feature "review a store" , :js => true, :search =>true do
 		profile_feed.store_dailyspecials_updates.map {|body| body.text}.should have_text "has updated daily specials."
 	end
 
+	scenario "login, follow a store, should see success message, update store hours, see on feed" do	
+		# login as admin
+		page.visit("/")
+		
+		header = HeaderPageComponent.new
+		header.has_loginlink?
+		header.loginlink.click
+    	
+    	# login modal
+    	header.username.set @adminemail
+    	header.password.set @adminpassword
+		header.logininbutton.click
+
+		expect(header.edituserlink.text).to have_text(@adminusername)
+		# search for it		
+        header = HeaderPageComponent.new	
+		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+        header.search_button.click
+
+    	search_results_page = SearchResultsStoresPageComponent.new    	
+    	        
+        search_results_page.search_results_store_names.size.should == 1
+        search_results_page.search_results_store_names.map {|name| name.text}.should == [@store_name]
+
+    	# click and view preview
+    	search_results_page.search_results_store_names.first.click
+    	store_page = StorePage.new
+    	expect(store_page.name_header.text).to have_text(@store_name)
+
+    	# follow store
+    	store_page.follow_store_button.click    	
+    	expect(store_page.flash_notice.text).to have_text ("this store has been favorited")
+
+		# update store hours
+		store_page.edit_hours_link.click
+
+		sunday_open_h = "01"
+		sunday_open_m = "15"
+		sunday_close_h = "13"
+		sunday_close_m = "30"
+
+		#store_page.date_storehourssundayopenhour.find("option[value='12']").select_option
+		store_page.date_storehourssundayopenhour.find("option[value='" + sunday_open_h +"']").select_option
+		store_page.date_storehourssundayopenminute.find("option[value='" + sunday_open_m +"']").select_option
+		store_page.date_storehourssundayclosehour.find("option[value='" + sunday_close_h +"']").select_option
+		store_page.date_storehourssundaycloseminute.find("option[value='" + sunday_close_m +"']").select_option
+
+		store_page.save_store_hours_button.click 
+
+		# verify 
+		expect(store_page.sunday_hours.text).to have_text("1:15 AM") 
+		expect(store_page.sunday_hours.text).to have_text("1:30 PM") 
+
+		# view profile
+		header.edituserlink.click
+		profile_feed = ProfileFeedPageComponent.new
+
+		wait_for_ajax
+		profile_feed.store_hours_updates.size.should == 1
+		profile_feed.store_hours_updates.map {|body| body.text}.should have_text "has updated it's store hours."
+	end
+
 	# don't login, try to follow, get login prompt
 	scenario "find a store, follow a store, get login prompt, login, follow a store , should see success message" do
 		# search for it		

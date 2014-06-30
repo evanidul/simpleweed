@@ -219,6 +219,7 @@ class StoresController < ApplicationController
 	    second = @store.update(params[:store].permit(:sundayclosed, :mondayclosed, :tuesdayclosed, :wednesdayclosed, :thursdayclosed, :fridayclosed, :saturdayclosed))  
 		    
 	    if(first && second) 
+	    	@store.create_activity key: 'store.update_hours'
 			redirect_to store_path(@store)
 		else
 			redirect_to edit_hours_store_path(@store)
