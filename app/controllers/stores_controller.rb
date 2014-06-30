@@ -132,6 +132,8 @@ class StoresController < ApplicationController
 		@store = Store.find(params[:id])
 	    if @store.update(params[:store].permit(:dailyspecialsmonday, :dailyspecialstuesday,
 			:dailyspecialswednesday, :dailyspecialsthursday, :dailyspecialsfriday, :dailyspecialssaturday, :dailyspecialssunday))
+			
+	    	@store.create_activity key: 'store.update_dailyspecials'
 			redirect_to store_path(@store)
 		else
 			redirect_to edit_dailyspecials_store_path(@store)

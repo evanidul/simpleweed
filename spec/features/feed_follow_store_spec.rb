@@ -156,10 +156,59 @@ feature "review a store" , :js => true, :search =>true do
 		wait_for_ajax
 		profile_feed.store_description_updates.size.should == 1
 		profile_feed.store_description_updates.map {|body| body.text}.should have_text "has updated it's store description"
-
-
 	end
 
+	scenario "login, follow a store, should see success message, update store daily specials, see on feed" do	
+		# login as admin
+		page.visit("/")
+		
+		header = HeaderPageComponent.new
+		header.has_loginlink?
+		header.loginlink.click
+    	
+    	# login modal
+    	header.username.set @adminemail
+    	header.password.set @adminpassword
+		header.logininbutton.click
+
+		expect(header.edituserlink.text).to have_text(@adminusername)
+		# search for it		
+        header = HeaderPageComponent.new	
+		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+        header.search_button.click
+
+    	search_results_page = SearchResultsStoresPageComponent.new    	
+    	        
+        search_results_page.search_results_store_names.size.should == 1
+        search_results_page.search_results_store_names.map {|name| name.text}.should == [@store_name]
+
+    	# click and view preview
+    	search_results_page.search_results_store_names.first.click
+    	store_page = StorePage.new
+    	expect(store_page.name_header.text).to have_text(@store_name)
+
+    	# follow store
+    	store_page.follow_store_button.click    	
+    	expect(store_page.flash_notice.text).to have_text ("this store has been favorited")
+
+    	# daily specials
+		specials_default_value = "none."		
+		expect(store_page.dailyspecials_sunday_text.text).to have_text(specials_default_value)    			
+
+		store_page.edit_daily_specials_link.click
+		store_page.dailyspecials_sunday_input.set "Sunday's Special"
+		store_page.save_store_daily_specials_button.click
+	
+		expect(store_page.dailyspecials_sunday_text.text).to have_text("Sunday's Special")    			
+		
+		# view profile
+		header.edituserlink.click
+		profile_feed = ProfileFeedPageComponent.new
+
+		wait_for_ajax
+		profile_feed.store_dailyspecials_updates.size.should == 1
+		profile_feed.store_dailyspecials_updates.map {|body| body.text}.should have_text "has updated daily specials."
+	end
 
 	# don't login, try to follow, get login prompt
 	scenario "find a store, follow a store, get login prompt, login, follow a store , should see success message" do
