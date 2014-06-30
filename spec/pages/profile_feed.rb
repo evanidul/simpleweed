@@ -5,6 +5,7 @@ class ProfileFeedPageComponent < SitePrism::Page
   
   # STORE feed items
   elements :store_announcement_updates, ".feed-item-store-announcement-update"
+  elements :store_description_updates, ".feed-item-store-description-update"
 
 end
 

@@ -54,7 +54,7 @@ feature "review a store" , :js => true, :search =>true do
 
 	end
 	
-	scenario "login, follow a store, should see success message" do	
+	scenario "login, follow a store, should see success message, update store announcement, see on feed" do	
 		# login as admin
 		page.visit("/")
 		
@@ -105,6 +105,61 @@ feature "review a store" , :js => true, :search =>true do
 
 
 	end
+
+	scenario "login, follow a store, should see success message, update store description, see on feed" do	
+		# login as admin
+		page.visit("/")
+		
+		header = HeaderPageComponent.new
+		header.has_loginlink?
+		header.loginlink.click
+    	
+    	# login modal
+    	header.username.set @adminemail
+    	header.password.set @adminpassword
+		header.logininbutton.click
+
+		expect(header.edituserlink.text).to have_text(@adminusername)
+		# search for it		
+        header = HeaderPageComponent.new	
+		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+        header.search_button.click
+
+    	search_results_page = SearchResultsStoresPageComponent.new    	
+    	        
+        search_results_page.search_results_store_names.size.should == 1
+        search_results_page.search_results_store_names.map {|name| name.text}.should == [@store_name]
+
+    	# click and view preview
+    	search_results_page.search_results_store_names.first.click
+    	store_page = StorePage.new
+    	expect(store_page.name_header.text).to have_text(@store_name)
+
+    	# follow store
+    	store_page.follow_store_button.click    	
+    	expect(store_page.flash_notice.text).to have_text ("this store has been favorited")
+
+    	# check has default description
+		expect(store_page.description.text).to have_text("none.")    					
+		store_page.description_edit_link.click
+		
+		# change description
+		new_description = "My New Description"
+		store_page.store_description_input.set new_description	
+		store_page.save_store_description_button.click
+		expect(store_page.description.text).to have_text(new_description)   
+
+		# view profile
+		header.edituserlink.click
+		profile_feed = ProfileFeedPageComponent.new
+
+		wait_for_ajax
+		profile_feed.store_description_updates.size.should == 1
+		profile_feed.store_description_updates.map {|body| body.text}.should have_text "has updated it's store description"
+
+
+	end
+
 
 	# don't login, try to follow, get login prompt
 	scenario "find a store, follow a store, get login prompt, login, follow a store , should see success message" do

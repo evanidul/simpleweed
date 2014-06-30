@@ -1,5 +1,5 @@
 <% if activity.trackable %>
-<div class="feed-item-store-announcement-update"><!-- class used for selenium -->
+<div class="feed-item-store-description-update"><!-- class used for selenium -->
 	<table class="feed-item-table">
 		<tr>
 			<td valign = "top">
@@ -8,11 +8,11 @@
 			<td class="feed-item-title-and-body">
 				<span class="item-feed-title">
 					<a href="<%= store_path(activity.trackable.id)%>" data-no-turbolink='true' > <%= activity.trackable.name %></a>
-					 has a new announcement.
+					 has updated it's store description.
 					<div class="time-ago-feed-item"><%= time_ago_in_words(activity.trackable.updated_at) %> ago</div>
 				</span>
 				<div class = "feed-item-body">
-					<%= raw activity.trackable.announcement %> 
+					
 				</div>
 
 			</td>

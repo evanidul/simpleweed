@@ -99,13 +99,14 @@ class StoresController < ApplicationController
 		render layout: false		
 	end
 
-	def update_description
+	def update_description		
 		@store = Store.find(params[:id])
 	    if @store.update(params[:store].permit(:description))
+			@store.create_activity key: 'store.update_description'
 			redirect_to store_path(@store)
 		else
 			redirect_to edit_description_store_path(@store)
-		end
+		end	
 	end
 
 	def edit_firsttimepatientdeals
