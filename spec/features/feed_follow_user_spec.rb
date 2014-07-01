@@ -171,7 +171,11 @@ feature "follow users" , :js => true, :search =>true do
 		profile_feed.user_following_user_feed_items.map {|body| body.text}.should have_text @user2username + " is following " + @adminusername
 
 		# user's review and comment are also in the feed, test as well...
-
+		
+		feeditem2 = "evanidul commented on the review of og"
+		feeditem3 = "evanidul reviewed og"
+		expect(page).to have_text(feeditem2) 
+		expect(page).to have_text(feeditem3) 
 	end
 
 
