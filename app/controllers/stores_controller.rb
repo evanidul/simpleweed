@@ -180,8 +180,8 @@ class StoresController < ApplicationController
 	def update_announcement
 		@store = Store.find(params[:id])
 	    if @store.update(params[:store].permit(:announcement))
-			redirect_to store_path(@store)
 			@store.create_activity key: 'store.update_announcement'
+			redirect_to store_path(@store)			
 		else
 			redirect_to edit_announcement_store_path(@store)
 		end

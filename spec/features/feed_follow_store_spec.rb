@@ -389,8 +389,7 @@ feature "review a store" , :js => true, :search =>true do
 		profile_feed.store_contact_updates.size.should == 1
 		profile_feed.store_contact_updates.map {|body| body.text}.should have_text "has updated it's contact information and address."
 	end	
-
-	# don't login, try to follow, get login prompt
+	
 	scenario "find a store, follow a store, get login prompt, login, follow a store , should see success message" do
 		# search for it		
         header = HeaderPageComponent.new	
@@ -431,5 +430,63 @@ feature "review a store" , :js => true, :search =>true do
 		expect(page).to have_text(feeditem4) 
 	end
 
+	# add item for followed store should yield feed item
+	scenario "find a store, follow a store, get login prompt, login, follow a store , add item, should see new item in feed" do
+		# search for it		
+        header = HeaderPageComponent.new	
+		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+        header.search_button.click
+
+    	search_results_page = SearchResultsStoresPageComponent.new    	
+    	        
+        search_results_page.search_results_store_names.size.should == 1
+        search_results_page.search_results_store_names.map {|name| name.text}.should == [@store_name]
+
+    	# click and view preview
+    	search_results_page.search_results_store_names.first.click
+    	store_page = StorePage.new
+    	expect(store_page.name_header.text).to have_text(@store_name)
+
+    	# follow store
+    	store_page.follow_store_button.click
+
+    	# should see login modal
+    	header.username.set @adminemail
+    	header.password.set @adminpassword
+		header.logininbutton.click
+
+		expect(header.edituserlink.text).to have_text(@adminusername)
+
+		# should still be on store page
+		expect(store_page.name_header.text).to have_text(@store_name)
+
+		# follow store
+    	store_page.follow_store_button.click  
+    	wait_for_ajax  	
+    	expect(store_page.flash_notice.text).to have_text ("this store has been favorited")
+
+    	# go to store menu edit page
+    	page.visit(store_store_items_path(@store))
+    	items_page = StoreItemsPage.new		
+		expect(items_page.store_name.text).to have_text(@store_name)
+		items_page.add_store_item_button.click
+
+		# add new item
+		item_name = "Weedy"
+		items_page.store_item_name.set item_name
+		items_page.store_item_strain.select 'sativa'
+		items_page.store_item_maincategory.select 'flower'
+		items_page.store_item_subcategory.select 'bud'
+
+		items_page.save_store_item_button.click
+
+		# view profile your profile
+		header.edituserlink.click		
+		feeditem = @store_name + " added a new item"
+		expect(page).to have_text(feeditem) 
+
+		expect(page).to have_text(item_name) 
+    	
+	end
 
 end

@@ -15,7 +15,10 @@ class StoreItemsController < ApplicationController
 
 	def create		
 		@store_item =  @store.store_items.create(store_item_params)		
-		@store_item.save
+		if @store_item.save
+			@store.activity_params = {:store_item_id => @store_item.id}			
+			@store.create_activity key: 'store.add_item'
+		end
 		redirect_to :action => 'index'  			
 	end
 
