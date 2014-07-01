@@ -28,9 +28,12 @@ class ProfileController < ApplicationController
 		#@activities = @useractivities.zip(@storeactivities).flatten.compact
 
 		@unsortedactivities = @useractivities + @storeactivities +@storeitemactivities
+		
+		# @useractivities and @storeactivities may return the same activities, but we don't want that in the feed.
+		@uniq_activities = @unsortedactivities.uniq
 
 		#	@activities.sort_by(&:created_at)
-		@activities = @unsortedactivities.sort_by { |obj| obj.created_at }.reverse
+		@activities = @uniq_activities.sort_by { |obj| obj.created_at }.reverse
 
 	end	
 
