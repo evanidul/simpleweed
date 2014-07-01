@@ -49,4 +49,6 @@ class ItemPopupComponent < SitePrism::Page
   element :alert_on_reviews_tab, "#bootstrap-alert-on-item-popup-reviews-tab"
 
   element :cancel_button, '#cancel-button'
+
+  elements :user_links, '.user-link'
 end

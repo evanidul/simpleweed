@@ -11,7 +11,8 @@ class ProfileFeedPageComponent < SitePrism::Page
   elements :store_ftp_updates, ".feed-item-store-ftp-update"
   elements :store_contact_updates, ".feed-item-store-contact-update"
 
-  
+  # USER feed items
+  elements :user_following_user_feed_items, '.feed-item-user-following-user'
 
 end
 

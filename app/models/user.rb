@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
 	# user may be followed
 	acts_as_followable
 
+	include PublicActivity::Common    
+
 	# Include default devise modules. Others available are:
 	# :confirmable, :lockable, :timeoutable and :omniauthable
 	devise :database_authenticatable, :registerable,

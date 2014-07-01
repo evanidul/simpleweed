@@ -11,7 +11,8 @@ end
 			<span class="glyphicon glyphicon-user user-pic-feed-item"></span>
 			</td>
 			<td>
-				<a><%= @store_item_review.user.username %></a>
+				<!-- <a><%= @store_item_review.user.username %></a> -->
+				<%= link_to @store_item_review.user.username , activity_profile_path(@store_item_review.user), :class => 'user-link', 'data-no-turbolink' => true %>
 				<% if @feed == true %>
 					<span> reviewed 
 						<a class="item-search-item-name" data-remote="<%= store_store_item_path(@store_item_review.store_item.store.id, @store_item_review.store_item.id , :reviewtab => "false")  %>" data-target="#modal" data-toggle="modal" 

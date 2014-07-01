@@ -5,6 +5,10 @@ class ProfileController < ApplicationController
 		@profile_user = User.find(@profile_owner_id)
 
 		following_user_ids = @profile_user.followees(User).collect(&:id)  
+
+		# always follow yourself
+		following_user_ids << current_user.id
+
 		following_store_ids = @profile_user.followees(Store).collect(&:id)  
 		following_store_item_ids = @profile_user.followees(StoreItem).collect(&:id)  
 
@@ -55,7 +59,12 @@ class ProfileController < ApplicationController
 
 		current_user.follow!(@profile_user)
 
+		@profile_user.create_activity key: 'user.followed', owner: current_user
 
+		respond_to do |format|
+			return format.js {}
+		end
+		
 	end
 
 end

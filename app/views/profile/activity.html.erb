@@ -30,7 +30,7 @@
 	
 	<% if !@user_is_viewing_own_profile	%>
 		<%= form_tag(follow_profile_path, method: "post" , :remote => true) do %>			
-			<%= button_tag(type: 'submit', class: "btn btn-success") do %>
+			<%= button_tag(type: 'submit', class: "btn btn-success follow-user-button") do %>
 				<div class="follow-user-star glyphicon glyphicon-star"></div>
 			<% end %>
 		<% end %>

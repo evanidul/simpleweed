@@ -1,0 +1,24 @@
+<% if activity.trackable %>
+
+<div class = "feed-item-user-following-user">
+	<table class="feed-item-table">
+		<tr>
+			<td valign = "top">
+				<span class="glyphicon glyphicon-user user-pic-feed-item"></span>
+			</td>
+			<td class="feed-item-title-and-body">
+				<div class="item-feed-title">
+					<a><%= activity.owner.username %></a> is following 
+					<a><%= activity.trackable.username %> </a>
+					
+					<div class="time-ago-feed-item"><%= time_ago_in_words(activity.trackable.updated_at) %> ago</div>
+				</div>
+				<div class = "feed-item-body">
+					
+				</div>
+
+			</td>
+		</tr>
+	</table>
+</div>
+<% end %>
