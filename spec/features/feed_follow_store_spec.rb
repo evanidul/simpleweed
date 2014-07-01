@@ -39,6 +39,13 @@ feature "review a store" , :js => true, :search =>true do
 		user.save
 		user.add_role :admin # sets a global role
 
+		@user2email = "user2@gmail.com"
+        @user2password = "password"
+        @user2username = "user2"
+        user2 = User.new(:email => @user2email, :password => @user2password, :password_confirmation => @user2password, :username => @user2username)
+        user2.skip_confirmation!        
+        user2.save
+
 		@store_name = "My new store"
 		@store_addressline1 = "7110 Rock Valley Court"
 		@store_city = "San Diego"
@@ -488,5 +495,101 @@ feature "review a store" , :js => true, :search =>true do
 		expect(page).to have_text(item_name) 
     	
 	end
+
+	# add item for followed store should yield feed item
+	scenario "find a store, follow a store, get login prompt, login, follow a store , login as user 2, review that store, login as user 1 and see review in feed" do
+		# search for it		
+        header = HeaderPageComponent.new	
+		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+        header.search_button.click
+
+    	search_results_page = SearchResultsStoresPageComponent.new    	
+    	        
+        search_results_page.search_results_store_names.size.should == 1
+        search_results_page.search_results_store_names.map {|name| name.text}.should == [@store_name]
+
+    	# click and view preview
+    	search_results_page.search_results_store_names.first.click
+    	store_page = StorePage.new
+    	expect(store_page.name_header.text).to have_text(@store_name)
+
+    	# follow store
+    	store_page.follow_store_button.click
+
+    	# should see login modal
+    	header.username.set @adminemail
+    	header.password.set @adminpassword
+		header.logininbutton.click
+
+		expect(header.edituserlink.text).to have_text(@adminusername)
+
+		# should still be on store page
+		expect(store_page.name_header.text).to have_text(@store_name)
+
+		# follow store
+    	store_page.follow_store_button.click  
+    	wait_for_ajax  	
+    	expect(store_page.flash_notice.text).to have_text ("this store has been favorited")
+
+    	# logout
+        header.logoutlink.click
+        header.loginlink.click
+
+    	# login modal
+    	header.username.set @user2email
+    	header.password.set @user2password
+		header.logininbutton.click
+
+		expect(header.edituserlink.text).to have_text(@user2username)
+		# search for it		
+        header = HeaderPageComponent.new	
+		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+        header.search_button.click
+
+    	search_results_page = SearchResultsStoresPageComponent.new    	
+    	        
+        search_results_page.search_results_store_names.size.should == 1
+        search_results_page.search_results_store_names.map {|name| name.text}.should == [@store_name]
+
+    	# click and view preview
+    	search_results_page.search_results_store_names.first.click
+    	store_page = StorePage.new
+    	expect(store_page.name_header.text).to have_text(@store_name)
+
+    	store_page.write_review_button.click
+    	store_page.cancel_write_review_button.click
+    	store_page.write_review_button.click
+		review_text = "I hated this place!"
+    	store_page.review_text.set review_text
+    	store_page.save_review_button.click
+
+    	#expect success message
+    	expect(store_page.flash_notice.text).to have_text("Thank you")
+    	store_page.tabs_reviews.click
+    	    	    
+    	expect(store_page.review_content.first.text).to have_text(review_text)
+
+		expect(store_page.star_ranking.first['star-value']).to have_text("1")    	
+
+		# logout
+        header.logoutlink.click
+        header.loginlink.click
+
+    	# login modal
+    	header.username.set @adminemail
+    	header.password.set @adminpassword
+		header.logininbutton.click
+
+		expect(header.edituserlink.text).to have_text(@adminusername)
+
+		# view profile your profile
+		header.edituserlink.click		
+		feeditem =  @user2username + " reviewed " + @store_name
+		expect(page).to have_text(feeditem) 
+
+		
+    	
+	end
+
 
 end

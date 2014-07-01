@@ -27,6 +27,10 @@ class StoreReviewsController < ApplicationController
 		@store_review.user = current_user
 		if @store_review.save
 			flash[:notice] = "Thank you for submitting your review."
+
+			@store.activity_params = {:store_review_id => @store_review.id}			
+			@store.create_activity key: 'store.add_review'
+
 			redirect_to store_path(@store)
 		else 
 			messagearray = @store_review.errors.full_messages

@@ -1,0 +1,10 @@
+<%
+	store_review_id = activity.parameters[:store_review_id]
+	new_store_review = StoreReview.find(store_review_id)
+%>
+<% if activity.trackable && new_store_review %>
+
+<% @feed = true %>
+
+<%= render partial: 'store_reviews/store_review', locals: {store_review: new_store_review} %>
+<% end %>
