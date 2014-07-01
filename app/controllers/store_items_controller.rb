@@ -71,6 +71,8 @@ class StoreItemsController < ApplicationController
 		
 		current_user.follow!(@store_item)
 
+		@store_item.create_activity key: 'store_item.followed', owner: current_user
+
 		respond_to do |format|
 			return format.js {}
 		end

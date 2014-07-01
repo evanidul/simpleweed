@@ -176,6 +176,34 @@ feature "follow users" , :js => true, :search =>true do
 		feeditem3 = "evanidul reviewed og"
 		expect(page).to have_text(feeditem2) 
 		expect(page).to have_text(feeditem3) 
+
+		# search for it     
+        header = HeaderPageComponent.new    
+        header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+        header.item_query_input.set @item1_name
+        header.search_button.click
+
+        search_results_page = SearchResultsItemPageComponent.new        
+                
+        search_results_page.searchresults_item_names.size.should == 1
+        search_results_page.searchresults_item_names.map {|name| name.text}.should == [@item1_name]
+
+        # click and view preview        
+        search_results_page.searchresults_item_names.first.click
+        
+        itempopup = ItemPopupComponent.new
+        wait_for_ajax
+        assert_modal_visible
+        itempopup.tab_reviews.click
+
+		# follow the item
+        itempopup.follow_item_button.click
+        itempopup.cancel_button.click
+
+        # view profile your profile
+		header.edituserlink.click		
+		feeditem4 = "user2 followed og"
+		expect(page).to have_text(feeditem4) 
 	end
 
 

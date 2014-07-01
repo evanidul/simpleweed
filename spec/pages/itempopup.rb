@@ -12,6 +12,7 @@ class ItemPopupComponent < SitePrism::Page
   # REVIEW TAB
   # write a review button
   element :write_review_button, '#review-item-slide-toggle-button'
+  element :follow_item_button, '#follow-store-item-button'
 
   # review inputs
   element :onestar_button, '#rank_store_stars_1'
