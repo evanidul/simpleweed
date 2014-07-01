@@ -424,6 +424,11 @@ feature "review a store" , :js => true, :search =>true do
     	store_page.follow_store_button.click  
     	wait_for_ajax  	
     	expect(store_page.flash_notice.text).to have_text ("this store has been favorited")
+
+    	# view profile your profile
+		header.edituserlink.click		
+		feeditem4 = "evanidul followed " + @store_name
+		expect(page).to have_text(feeditem4) 
 	end
 
 

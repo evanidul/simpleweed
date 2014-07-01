@@ -258,7 +258,10 @@ class StoresController < ApplicationController
 
 	def follow
 		@store = Store.find(params[:id])
-		current_user.follow!(@store)
+		
+		if current_user.follow!(@store)
+			@store.create_activity key: 'store.followed', owner: current_user
+		end
 
 		respond_to do |format|
 			return format.js {}
