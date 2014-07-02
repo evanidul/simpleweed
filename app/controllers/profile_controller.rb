@@ -19,8 +19,11 @@ class ProfileController < ApplicationController
 			@user_is_viewing_own_profile = true;
 		end		
 		@active_tab = "feed-link-li"
-		#@activities = PublicActivity::Activity.order("created_at desc")
-		@useractivities = PublicActivity::Activity.order("created_at desc").where(owner_id: following_user_ids, owner_type: "User")
+		
+		# we exclude add_comment b/c we pull those in with @storereviewcommentactivities, and we filter it in such a way that each new comment
+		# doesn't create a feed item, otherwise, the feed would be flooded.
+		# .where("key != ?", "store_review.add_comment")
+		@useractivities = PublicActivity::Activity.order("created_at desc").where(owner_id: following_user_ids, owner_type: "User").where("key != ?", "store_review.add_comment")
 
 		@storeactivities = PublicActivity::Activity.order("created_at desc").where(trackable_id: following_store_ids, trackable_type: "Store")
 
