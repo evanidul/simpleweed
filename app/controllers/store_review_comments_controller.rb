@@ -31,6 +31,14 @@ class StoreReviewCommentsController < ApplicationController
 			end
 
 			if @store_review_comment.save
+				# if a user comments on a review, they are immediately following that review so that they receive future comment alerts
+				# on that review
+				current_user.follow!(@storereview)
+
+				# create a feed item for new comments
+				@storereview.activity_params = {:store_review_comment_id => @store_review_comment.id}			
+				@storereview.create_activity key: 'store_review.add_comment'
+
 				return format.js {}
 			else
 				messagearray = @store_review_comment.errors.full_messages	

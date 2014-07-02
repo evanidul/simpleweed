@@ -28,6 +28,9 @@ class StoreReviewsController < ApplicationController
 		if @store_review.save
 			flash[:notice] = "Thank you for submitting your review."
 
+			# the user who wrote the review follows it to receive notifications when there are new comments			
+			@store_review.user.follow!(@store_review)
+
 			@store.activity_params = {:store_review_id => @store_review.id}			
 			@store.create_activity key: 'store.add_review'
 

@@ -12,6 +12,8 @@ class ProfileController < ApplicationController
 		following_store_ids = @profile_user.followees(Store).collect(&:id)  
 		following_store_item_ids = @profile_user.followees(StoreItem).collect(&:id)  
 
+		following_store_review_ids = @profile_user.followees(StoreReview).collect(&:id)  
+
 		@user_is_viewing_own_profile = false;
 		if current_user.id == @profile_owner_id
 			@user_is_viewing_own_profile = true;
@@ -24,10 +26,12 @@ class ProfileController < ApplicationController
 
 		@storeitemactivities = PublicActivity::Activity.order("created_at desc").where(trackable_id: following_store_item_ids, trackable_type: "StoreItem")
 
+		@storereviewcommentactivities = PublicActivity::Activity.order("created_at desc").where(trackable_id: following_store_review_ids, key: "store_review.add_comment").to_a.uniq{ |row| row.trackable_id }
+
 		# only works well when arrays are equal sizes
 		#@activities = @useractivities.zip(@storeactivities).flatten.compact
 
-		@unsortedactivities = @useractivities + @storeactivities +@storeitemactivities
+		@unsortedactivities = @useractivities + @storeactivities + @storeitemactivities + @storereviewcommentactivities
 		
 		# @useractivities and @storeactivities may return the same activities, but we don't want that in the feed.
 		@uniq_activities = @unsortedactivities.uniq
