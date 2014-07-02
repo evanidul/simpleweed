@@ -40,7 +40,7 @@ class ProfileController < ApplicationController
 		@uniq_activities = @unsortedactivities.uniq
 
 		#	@activities.sort_by(&:created_at)
-		@activities = @uniq_activities.sort_by { |obj| obj.created_at }.reverse
+		@activities = @uniq_activities.sort_by { |obj| obj.created_at }.reverse.first(20)
 
 	end	
 
@@ -49,7 +49,7 @@ class ProfileController < ApplicationController
 		# params[:id] = the owner of the profile
 		@profile_owner_id = params[:id].to_i
 		@profile_user = User.find(@profile_owner_id)
-		@activities = PublicActivity::Activity.order("created_at desc").where(owner_id: params[:id], owner_type: "User")		
+		@activities = PublicActivity::Activity.order("created_at desc").where(owner_id: params[:id], owner_type: "User").first(20)
 		@user_is_viewing_own_profile = false;
 		if current_user.id == @profile_owner_id
 			@user_is_viewing_own_profile = true;
