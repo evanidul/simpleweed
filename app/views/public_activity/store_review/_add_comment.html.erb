@@ -7,8 +7,14 @@
 		</td>
 		<td class="feed-item-title-and-body">
 			<div class="item-feed-title">
-				<span><a><%= activity.trackable.user.username %></a>'s review of </span>
-				<a><%= activity.trackable.store.name %></a> <span> has new comments </span>
+				<span>					
+					<%= link_to activity.trackable.user.username , activity_profile_path(activity.trackable.user), :class => 'user-link', 'data-no-turbolink' => true %>							
+					<span>'s review of </span>
+				</span>
+				<a>					
+					<a href="<%= store_path(activity.trackable.store.id)%>" data-no-turbolink='true' > <%= activity.trackable.store.name %></a>
+				</a> 
+				<span> has new comments </span>
 				
 				<div class="time-ago-feed-item"><%= time_ago_in_words(activity.trackable.updated_at) %> ago</div>
 			</div>

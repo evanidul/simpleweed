@@ -9,7 +9,9 @@
 			<span class="glyphicon glyphicon-user user-pic-feed-item"></span>
 		</td>
 		<td class="feed-item-title-and-body">
-			<div class="item-feed-title"><a><%= activity.trackable.user.username %></a> commented on the review of
+			<div class="item-feed-title">				
+				<%= link_to activity.trackable.user.username , activity_profile_path(activity.trackable.user), :class => 'user-link', 'data-no-turbolink' => true %>
+				<span> commented on the review of</span>
 				<a class="item-search-item-name" data-remote="<%= store_store_item_path(activity.trackable.store_item_review.store_item.store.id, activity.trackable.store_item_review.store_item.id, :reviewtab => "false") %>" data-target="#modal" data-toggle="modal" 
 						  		href="<%= store_store_item_path(activity.trackable.store_item_review.store_item.store.id, activity.trackable.store_item_review.store_item.id, :reviewtab => "false") %>" >
 						<%= activity.trackable.store_item_review.store_item.name %> 
@@ -33,8 +35,8 @@
 								@storeownercomment = false
 							end
 						%>
-						<div id="comment_<%= store_item_review_comment.id %>" class="store-review-comment <%=@ownerstyle%>" >
-							<a href="#"><%= store_item_review_comment.user.username %></a>&nbsp
+						<div id="comment_<%= store_item_review_comment.id %>" class="store-review-comment <%=@ownerstyle%>" >							
+							<%= link_to store_item_review_comment.user.username , activity_profile_path(store_item_review_comment.user), :class => 'user-link', 'data-no-turbolink' => true %>							
 							<% if @storeownercomment %>
 								<span class="badge owner-badge">store owner</span>&nbsp
 							<% end %>

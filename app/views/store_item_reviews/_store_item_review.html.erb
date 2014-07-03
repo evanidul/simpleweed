@@ -69,24 +69,7 @@ end
 					<%= @store_item_review.review %>
 					<div id="comments_for_item_review_<%= @store_item_review.id %>" class="item-review-comments">						
 						<% @store_item_review.store_item_review_comments.each do |store_item_review_comment| %>
-							<% 
-								if @store.email == store_item_review_comment.user.email						
-									@ownerstyle = "owner-store-review-comment"
-									@storeownercomment = true
-								else 
-									@ownerstyle = ""
-									@storeownercomment = false
-								end
-							%>
-							<div id="comment_<%= store_item_review_comment.id %>" class="store-review-comment <%=@ownerstyle%>" >
-								<a href="#"><%= store_item_review_comment.user.username %></a>&nbsp
-								<% if @storeownercomment %>
-									<span class="badge owner-badge">store owner</span>&nbsp
-								<% end %>
-
-								<span class="store-review-comment-ago"><%= time_ago_in_words(store_item_review_comment.created_at) %> ago</span><br/>
-								<%= store_item_review_comment.comment %>
-							</div>
+							<%= render partial: 'store_item_review_comments/store_item_review_comment', locals: {store_item_review_comment: store_item_review_comment} %>
 						<% end # comments loop %>	
 					</div>
 					
