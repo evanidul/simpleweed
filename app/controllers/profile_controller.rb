@@ -1,8 +1,10 @@
 class ProfileController < ApplicationController
 
+	before_filter :load_profile_user
+
 	def feed				
-		@profile_owner_id = params[:id].to_i
-		@profile_user = User.find(@profile_owner_id)
+		# @profile_owner_id = params[:id].to_i
+		# @profile_user = User.find(@profile_owner_id)
 
 		following_user_ids = @profile_user.followees(User).collect(&:id)  
 
@@ -14,10 +16,10 @@ class ProfileController < ApplicationController
 
 		following_store_review_ids = @profile_user.followees(StoreReview).collect(&:id)  
 
-		@user_is_viewing_own_profile = false;
-		if current_user.id == @profile_owner_id
-			@user_is_viewing_own_profile = true;
-		end		
+		# @user_is_viewing_own_profile = false;
+		# if current_user.id == @profile_owner_id
+		# 	@user_is_viewing_own_profile = true;
+		# end		
 		@active_tab = "feed-link-li"
 		
 		# we exclude add_comment b/c we pull those in with @storereviewcommentactivities, and we filter it in such a way that each new comment
@@ -47,22 +49,23 @@ class ProfileController < ApplicationController
 	def activity		
 		#current_user = the guy who is viewing the page
 		# params[:id] = the owner of the profile
-		@profile_owner_id = params[:id].to_i
-		@profile_user = User.find(@profile_owner_id)
+		# @profile_owner_id = params[:id].to_i
+		# @profile_user = User.find(@profile_owner_id)
 		@activities = PublicActivity::Activity.order("created_at desc").where(owner_id: params[:id], owner_type: "User").first(20)
-		@user_is_viewing_own_profile = false;
-		if current_user.id == @profile_owner_id
-			@user_is_viewing_own_profile = true;
-		end
+		# @user_is_viewing_own_profile = false;
+		# if current_user.id == @profile_owner_id
+		# 	@user_is_viewing_own_profile = true;
+		# end
 		@active_tab = "my-activity-li"
 		
 	end
 
+	# when a user follows another user, this endpoint handles what happens after clicking the star
 	def follow
 
-		@profile_owner_id = params[:id].to_i
-		@profile_user = User.find(@profile_owner_id)
-		# can't follow yourself
+		# @profile_owner_id = params[:id].to_i
+		# @profile_user = User.find(@profile_owner_id)
+		# # can't follow yourself
 		if current_user.id == @profile_owner_id
 			return false
 		end
@@ -77,4 +80,35 @@ class ProfileController < ApplicationController
 		
 	end
 
+	# when a user wants to see which users he is following
+	def followingusers
+		@active_tab = "following-link-li"
+		@following_users = @profile_user.followees(User)
+		
+	end
+
+	# when a user wants to see which stores he is following
+	def followingstores
+		@active_tab = "following-link-li"
+		@following_store = @profile_user.followees(Store)  
+	end
+
+	# when a user wants to see which items he is following
+	def followingitems
+		@active_tab = "following-link-li"
+		@following_store_items = @profile_user.followees(StoreItem)
+	end
+
+private
+    def load_profile_user
+      	@profile_owner_id = params[:id].to_i
+		@profile_user = User.find(@profile_owner_id)
+		@user_is_viewing_own_profile = false;
+		if current_user.id == @profile_owner_id
+			@user_is_viewing_own_profile = true;
+		end
+    end
+
+
 end
+

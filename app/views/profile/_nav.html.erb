@@ -6,6 +6,21 @@
 	<li id="my-activity-li">
 		<%= link_to 'my activity', activity_profile_path(current_user), :id => 'activity-link',:class => '' %>
 	</li>
+	<li id="following-link-li" class="dropdown">
+		<a href="#" data-toggle="dropdown" class="dropdown-toggle">following <b class="caret pull-right"></b></a>
+		<ul class="dropdown-menu">
+			<li>
+				<%= link_to 'people', followingusers_profile_path(current_user), :id => 'following-people-link',:class => '' %>
+			</li>
+			<li>				
+				<%= link_to 'stores', followingstores_profile_path(current_user), :id => 'following-stores-link',:class => '' %>
+			</li>
+			<li>				
+				<%= link_to 'items', followingitems_profile_path(current_user), :id => 'following-items-link',:class => '' %>
+			</li>
+		</ul>
+	</li>
+
 	<li id="account-settings-li">
 		<%= link_to 'account settings', edit_user_registration_path, :id => 'edit-user-link',:class => '' %>
 	</li>

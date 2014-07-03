@@ -1,0 +1,29 @@
+</br>
+<div class="col-md-2">
+	<table>
+		<tr>
+			<td>
+				<span class="glyphicon glyphicon-user user-pic"></span>
+			</td>
+			<td>
+				<div class="username"><%= @profile_user.username %></div>
+				<div class="edit-profile-link">edit profile </div>
+			</td>
+		</tr>
+	</table>
+	<% if @user_is_viewing_own_profile	%>
+		<%= render :partial =>'nav' %>
+	<% end %>
+	
+</div>
+<div class="col-md-8">
+	<div class="followed-items">		
+		<% @following_store_items.each do |item| %>
+			<%= render partial: 'store_items/store_item', locals: {store_item: item} %>	
+			<hr/>
+		<% end %>		
+	</div>
+</div>
+
+<div class="right-col-profile col-md-2">
+</div>

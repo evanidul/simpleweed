@@ -16,6 +16,9 @@ Smellyleaf::Application.routes.draw do
       get "activity"
       get "feed"
       post "follow"
+      get "followingusers"
+      get "followingstores"
+      get "followingitems"
     end
   end
 
