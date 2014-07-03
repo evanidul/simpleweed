@@ -8,9 +8,6 @@ end
 		<div class = "image-and-meta-container">
 			<table>
 				<tr>
-					
-
-
 					<td class="item-search-result-meta">
 						<h4 >
 							<!-- dvu: we don't use link_to because the link name is too complicated to embed -->
@@ -131,8 +128,6 @@ end
 									#switch
 									end %>
 								<% end #if %>
-
-
 														
 						</h4>
 						<div class="star-rank" >
@@ -176,8 +171,6 @@ end
 								if @store_item.supersize
 									badges.push("supersize")
 								end
-
-
 							%>
 							<% badges.each do |badge| %>								    
 								<span class="badge search-item-badge-<%= badge %>"><%= badge %></span>
@@ -238,8 +231,6 @@ end
 							<div class="search-result-item-category-strain-meta">
 								<%= straincat.join ' | '  %> 
 							</div>
-
-							
 							<%
 								lab = []
 								if !(@store_item.thc.nil? )
@@ -260,16 +251,11 @@ end
 								<%= lab.join ' | '	 %>
 							</div>
 
-							
 							<div class="search-result-item-promo">								
 								<% if !@store_item.promo.nil? && !@store_item.promo.nil? %>
 									<%= @store_item.promo %>
 								<% end %>
 							</div>
-
-
-							
-							
 
 						</div>
 					</td>

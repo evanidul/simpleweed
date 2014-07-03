@@ -1,7 +1,5 @@
-<% 
-	
+<% 	
 	@store = store_review_comment.store_review.store
-
 
 	if @store.email == store_review_comment.user.email						
 		@ownerstyle = "owner-store-review-comment"
@@ -11,8 +9,8 @@
 		@storeownercomment = false
 	end
 %>
-<div id="comment_<%= store_review_comment.id %>" class="store-review-comment <%=@ownerstyle%>" >
-	<a href="#"><%= store_review_comment.user.username %></a>&nbsp
+<div id="comment_<%= store_review_comment.id %>" class="store-review-comment <%=@ownerstyle%>" >	
+	<%= link_to store_review_comment.user.username , activity_profile_path(store_review_comment.user), :class => 'user-link', 'data-no-turbolink' => true %> &nbsp							
 	<% if @storeownercomment %>
 		<span class="badge owner-badge">store owner</span>&nbsp
 	<% end %>

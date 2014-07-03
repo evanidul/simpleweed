@@ -10,8 +10,7 @@ end
 		
 			<span class="glyphicon glyphicon-user user-pic-feed-item"></span>
 			</td>
-			<td>
-				<!-- <a><%= @store_item_review.user.username %></a> -->
+			<td>				
 				<%= link_to @store_item_review.user.username , activity_profile_path(@store_item_review.user), :class => 'user-link', 'data-no-turbolink' => true %>
 				<% if @feed == true %>
 					<span> reviewed 
@@ -38,11 +37,7 @@ end
 				<% end %>
 
 				</ul>
-			</td>
-		
-				
-
-		
+			</td>		
 			<tr>
 				<td>					
 					<div class="btn-group-vertical review-vote-controls">		
@@ -91,11 +86,5 @@ end
 				</td>	
 			</tr>
 		</table>
-		 
-
-		
-		
-		
-
 	</div> 
  <% end %>
