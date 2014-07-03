@@ -18,8 +18,8 @@
 </div>
 <div class="col-md-8">
 	<div class="followed-stores">		
-		<% @following_store.each do |store| %>
-			<%= store.name %>	
+		<% @following_store.each do |store| %>			
+			<a href="<%= store_path(store.id)%>" data-no-turbolink='true' > <%= store.name %>	</a>
 			<hr/>
 		<% end %>		
 	</div>

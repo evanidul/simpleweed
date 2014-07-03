@@ -21,8 +21,30 @@
 <div class="col-md-8">
 	<div class="followed-users">		
 		<% @following_users.each do |user| %>
-			<%= user.username %>	
-			<hr/>
+			<div class="followed-user">
+				<table style="width:100%">
+					<tr>
+						<td>
+							<span class = "feed-item-avatar" valign = "top">
+								<span class="glyphicon glyphicon-user user-pic-feed-item"></span>
+							</span>		
+						</td>
+						<td>			
+							<%= link_to user.username , activity_profile_path(user), :class => 'user-link', 'data-no-turbolink' => true %>	
+						</td>
+						<td>
+							<%= form_tag(follow_profile_path, method: "post" , class: "unfollow-user-form",:remote => true) do %>			
+								<%= button_tag(type: 'submit', class: "btn btn-default pull-right") do %>
+									<span>unfollow</span>
+								<% end %>
+							<% end %>	
+						</td>
+					</tr>
+				</table>
+				<hr/>
+			</div>
+
+
 		<% end %>		
 	</div>
 </div>
