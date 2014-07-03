@@ -80,6 +80,23 @@ class ProfileController < ApplicationController
 		
 	end
 
+	def unfollow
+		id_of_person_to_unfollow = params[:id].to_i
+
+		@user_to_unfollow = User.find(id_of_person_to_unfollow)
+
+		if current_user.id == id_of_person_to_unfollow
+			return false
+		end
+
+		current_user.unfollow!(@user_to_unfollow)
+
+		respond_to do |format|
+			return format.js {}
+		end
+
+	end
+
 	# when a user wants to see which users he is following
 	def followingusers
 		@active_tab = "following-link-li"
