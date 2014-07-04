@@ -7,9 +7,10 @@
 				<span class="glyphicon glyphicon-user user-pic-feed-item"></span>
 			</td>
 			<td class="feed-item-title-and-body">
-				<div class="item-feed-title">
-					<a><%= activity.owner.username %></a> is following 
-					<a><%= activity.trackable.username %> </a>
+				<div class="item-feed-title">					
+					<%= link_to activity.owner.username , activity_profile_path(activity.owner), :class => 'user-link', 'data-no-turbolink' => true %>							
+					<span> is following </span>					
+					<%= link_to activity.trackable.username , activity_profile_path(activity.trackable), :class => 'user-link', 'data-no-turbolink' => true %>							
 					
 					<div class="time-ago-feed-item"><%= time_ago_in_words(activity.trackable.updated_at) %> ago</div>
 				</div>
