@@ -20,7 +20,7 @@
 <div class="col-md-8">
 	<div class="followed-stores">		
 		<% @following_store.each do |store| %>			
-			<div class="followed-store">
+			<div class="followed-store" id = "<%= store.id%>">
 				<table style="width:100%">
 					<tr>
 						<td>

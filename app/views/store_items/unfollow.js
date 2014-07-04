@@ -1,3 +1,4 @@
-(function(store_item_name){
+(function(store_item_name, id){
 	bootstrap_alert.warning(store_item_name + " has been unfollowed", null, "success");	
-})("<%= @store_item.name %>")
+	$("#" + id).remove();
+})("<%= @store_item.name %>", <%= @store_item.id %>)

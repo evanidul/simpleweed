@@ -19,21 +19,23 @@
 <div class="col-md-8">
 	<div class="followed-items">		
 		<% @following_store_items.each do |item| %>
-			<table>
-				<tr>
-					<td>
-						<%= render partial: 'store_items/store_item', locals: {store_item: item} %>	
-					</td>
-					<td>
-						<%= form_tag(unfollow_store_store_item_path(item.store,item), method: "post" , class: "unfollow-item-form",:remote => true) do %>			
-							<%= button_tag(type: 'submit', class: "btn btn-default pull-right") do %>
-								<span>unfollow</span>
-							<% end %>
-						<% end %>	
-					</td>
-				</tr>
-			</table>
-			<hr/>
+			<div id="<%=item.id%>">
+				<table>
+					<tr>
+						<td>
+							<%= render partial: 'store_items/store_item', locals: {store_item: item} %>	
+						</td>
+						<td>
+							<%= form_tag(unfollow_store_store_item_path(item.store,item), method: "post" , class: "unfollow-item-form",:remote => true) do %>			
+								<%= button_tag(type: 'submit', class: "btn btn-default pull-right") do %>
+									<span>unfollow</span>
+								<% end %>
+							<% end %>	
+						</td>
+					</tr>
+				</table>
+				<hr/>
+			</div>
 		<% end %>		
 	</div>
 </div>

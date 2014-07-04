@@ -21,7 +21,7 @@
 <div class="col-md-8">
 	<div class="followed-users">		
 		<% @following_users.each do |user| %>
-			<div class="followed-user">
+			<div class="followed-user" id = "<%= user.id %>">
 				<table style="width:100%">
 					<tr>
 						<td>

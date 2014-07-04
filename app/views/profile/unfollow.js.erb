@@ -1,3 +1,4 @@
-(function(username){
+(function(username , id){
 	bootstrap_alert.warning(username + " has been unfollowed", null, "success");	
-})("<%= @user_to_unfollow.username %>")
+	$("#" + id).remove();
+})("<%= @user_to_unfollow.username %>" ,  <%= @user_to_unfollow.id %>)
