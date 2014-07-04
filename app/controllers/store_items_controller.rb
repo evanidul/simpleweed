@@ -81,6 +81,16 @@ class StoreItemsController < ApplicationController
 		end
 	end
 
+	def unfollow
+		@store_item = StoreItem.find(params[:id])
+
+		current_user.unfollow!(@store_item)
+
+		respond_to do |format|
+			return format.js {}
+		end
+	end
+
 private
     def load_store
       @store = Store.find(params[:store_id])

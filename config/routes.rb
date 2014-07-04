@@ -57,11 +57,12 @@ Smellyleaf::Application.routes.draw do
       put 'update_claim'
       post 'follow'
       post "unfollow"
-      
+
     end
     resources :store_items do 
       member do
         post 'follow'
+        post 'unfollow'
       end
       resources :store_item_reviews do
         resources :store_item_review_comments
