@@ -1,5 +1,8 @@
 <% 
-	if store_item_review_comment.store_item_review.store_item.store.email == store_item_review_comment.user.email						
+	@role_service = Simpleweed::Security::Roleservice.new
+	is_store_owner = @role_service.isUserStoreOwnerOf(store_item_review_comment.user,store_item_review_comment.store_item_review.store_item.store)
+
+	if is_store_owner	
 		@ownerstyle = "owner-store-review-comment"
 		@storeownercomment = true
 	else 
