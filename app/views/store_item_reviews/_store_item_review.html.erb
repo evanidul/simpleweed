@@ -82,9 +82,10 @@ end
 						<%= form_for ([@store, @store_item, @store_item_review, @store_item_review.store_item_review_comments.build]), :remote => true, :html => { :id => "new_comment_on_#{@store_item_review.id}" , :class=> "new-store-review-comment-form"} do |f| %>
 							<%= f.text_area :comment, :class => 'form-control new-item-review-comment-input', :required => true, :rows => 1 %>
 							<%= f.submit 'post comment', :class => 'btn btn-primary lowercase pull-right save-new-store-review-comment btn-sm' , :id => "save_comment_on_#{@store_item_review.id}"  %>
+						<% end %>	
 					<% end #if current_user.nil? %>	
 				</td>	
 			</tr>
 		</table>
 	</div> 
- <% end %>
+ 
