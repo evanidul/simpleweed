@@ -21,11 +21,11 @@
   			<% else %>
   				<span class="write-review-button-blocked">
 					<!-- <a class="btn btn-default" >Write a Review</a> -->
-					<%= link_to 'write a review', new_store_store_review_path(@store) , id: "write-review-button-blocked" , class: "btn btn-default", "data-content"=>"<span id='write-review-blocked-tip'>"+canReviewResult+"</span>" %>
+					<%= link_to 'write a review', new_store_store_review_path(@store) , id: "write-review-button-blocked-on-item-popup" , class: "btn btn-default", "data-content"=>"<span id='write-review-blocked-tip'>"+canReviewResult+"</span>" %>
 					<script>
-						$('#write-review-button-blocked').click(function(e){
+						$('#write-review-button-blocked-on-item-popup').click(function(e){
 						  	e.preventDefault();
-						  	$('#write-review-button-blocked').popover({ 
+						  	$('#write-review-button-blocked-on-item-popup').popover({ 
 							    html : true,
 							    placement : "right"
 							}).popover('show');

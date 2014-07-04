@@ -31,7 +31,7 @@ class ItemPopupComponent < SitePrism::Page
   element :write_review_button_blocked_tooltip , '#write-review-blocked-tip'
 
   # alternate review button that shows up if you're a store owner or can't write a review b/c you already wrote one
-  element :write_review_button_blocked, '#write-review-button-blocked'
+  element :write_review_button_blocked, '#write-review-button-blocked-on-item-popup'
 
   # i cut and pasted the UI from stores, so the classes should be the same, even tho semantically incorrect
   elements :review_content, '.review-content'
