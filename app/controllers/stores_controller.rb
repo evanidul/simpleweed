@@ -187,6 +187,11 @@ class StoresController < ApplicationController
 		end
 	end
 
+	def edit_promo
+		@store = Store.find(params[:id])
+		render layout: false		
+	end
+
 	def update_promo
 		@store = Store.find(params[:id])
 	    if @store.update(params[:store].permit(:promo))
