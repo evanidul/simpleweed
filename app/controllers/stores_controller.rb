@@ -187,6 +187,16 @@ class StoresController < ApplicationController
 		end
 	end
 
+	def update_promo
+		@store = Store.find(params[:id])
+	    if @store.update(params[:store].permit(:promo))
+			@store.create_activity key: 'store.update_promo'
+			redirect_to store_path(@store)			
+		else
+			redirect_to edit_promo_store_path(@store)
+		end
+	end
+
 	def edit_deliveryarea
 		@store = Store.find(params[:id])
 		render layout: false		

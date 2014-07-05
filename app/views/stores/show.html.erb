@@ -20,7 +20,15 @@
 	<!-- left, main section -->
     <div class="col-md-8">		
 		
-		<h1 id="name"><%= @store.name %> <small><%= @store.promo %></small></h1>  		
+		<h1 id="name"><%= @store.name %> 
+			<small><%= @store.promo %></small>
+			<% if @role_service.canManageStore(current_user, @store) %>					
+				<%= link_to edit_promo_store_path(@store), data: { toggle: "modal", target: "#modal", remote: edit_promo_store_path(@store)} , id: "edit-promo-link",  class: "btn edit-store-link" do %>
+					<span class="glyphicon glyphicon-edit"></span>
+				<% end %>
+			<% end %>  		
+		</h1>
+
   		<div id="review-controls">
 			<!-- pro coding right here -->
 			<div class="star-rank">

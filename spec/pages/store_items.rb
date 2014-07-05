@@ -18,6 +18,7 @@ class StoreItemsPage < SitePrism::Page
 	# add item panel
 	element :store_item_name, '#store_item_name'
 	element :store_item_description, '#store_item_description'
+	element :promo, '#store_item_promo'
 	element :thc, '#thc-percent'
 	element :cbd,'#cbd-percent'
 	element :cbn, '#cbn-percent'

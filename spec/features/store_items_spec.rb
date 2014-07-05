@@ -95,6 +95,7 @@ feature "store item edit and add" , :js => true, :search =>true do
 		# add new item
 		item_name = "Weedy"
 		item_description = "It's so weedy."
+		item_promo = "special promotion!"
 		item_thc = "5.2"
 		item_cbd = "5.20"
 		item_cbn = "5.15"
@@ -109,6 +110,7 @@ feature "store item edit and add" , :js => true, :search =>true do
 
 		items_page.store_item_name.set item_name
 		items_page.store_item_description.set item_description
+		items_page.promo.set item_promo
 		items_page.thc.set item_thc
 		items_page.cbd.set item_cbd		
 		items_page.cbn.set item_cbn
@@ -145,6 +147,7 @@ feature "store item edit and add" , :js => true, :search =>true do
 		# verify values    	
     	expect(items_page.store_item_name.value).to have_text(item_name)
     	expect(items_page.store_item_description.value).to have_text(item_description)
+    	expect(items_page.promo.value).to have_text(item_promo)
 		expect(items_page.thc.value).to have_text(item_thc)
 		expect(items_page.cbd.value).to have_text("5.2") # trailing 0 gets dropped
 		expect(items_page.cbn.value).to have_text(item_cbn)
@@ -165,6 +168,7 @@ feature "store item edit and add" , :js => true, :search =>true do
 		# change values	
 		item_nameUP = "weedy 2 up"
 		item_descriptionUP = "It's so weedy updated."
+		item_promoUP = "No more promotions..."
 		item_thcUP = "2"
 		item_cbdUP = "5"
 		item_cbnUP = "0.5"
@@ -179,6 +183,7 @@ feature "store item edit and add" , :js => true, :search =>true do
 		
 		items_page.store_item_name.set item_nameUP
 		items_page.store_item_description.set item_descriptionUP
+		items_page.promo.set item_promoUP
 		items_page.thc.set item_thcUP
 		items_page.cbd.set item_cbdUP		
 		items_page.cbn.set item_cbnUP
@@ -213,6 +218,7 @@ feature "store item edit and add" , :js => true, :search =>true do
 		# verify values    	
     	expect(items_page.store_item_name.value).to have_text(item_nameUP)
     	expect(items_page.store_item_description.value).to have_text(item_descriptionUP)
+    	expect(items_page.promo.value).to have_text(item_promoUP)
 		expect(items_page.thc.value).to have_text(item_thcUP)
 		expect(items_page.cbd.value).to have_text(item_cbdUP) 
 		expect(items_page.cbn.value).to have_text(item_cbnUP)

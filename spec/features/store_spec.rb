@@ -91,7 +91,7 @@ feature "store page" , :js => true do
     	stores_page.has_no_newstore_button?    	
   	end
 
-	scenario "sign in as admin, create a new store, edit description, edit first time patient deals" do
+	scenario "sign in as admin, create a new store, edit description and most other things on this page" do
 				
 		page.visit("/users/sign_in")
 		login_page = LoginPage.new
@@ -293,6 +293,13 @@ feature "store page" , :js => true do
 		store_page.deliveryarea_input.set new_deliveryarea
 		store_page.save_store_deliveryarea_button.click
 		expect(store_page.deliveryarea.text).to have_text(new_deliveryarea)
+
+		# promo
+		store_page.promo_edit_link.click
+		new_promo = "new promo"
+		store_page.promo_input.set new_promo
+		store_page.save_promo_button.click
+		expect(store_page.name_header).to have_text(new_promo)
   	end
 
   		scenario "sign in as admin, create a new store, edit store hours" do

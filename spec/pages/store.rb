@@ -42,6 +42,12 @@ class StorePage < SitePrism::Page
 	# menu (main page)
 	element :edit_store_items, "#edit_store_items"
 
+	#promo (main page)
+	element :promo_edit_link, '#edit-promo-link'
+	#promo (modal)
+	element :promo_input, '#store_promo_input'
+	element :save_promo_button, '#save_store_promo_button'
+
 	#description (main page)
 	element :description, "#description"
 	element :description_edit_link, "#edit-description-link"
