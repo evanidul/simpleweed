@@ -71,9 +71,10 @@ end
 					<% if current_user.nil? %>
 						<!-- maybe just close modal and click login button -->
 						<br/>
-						<a id="login-to-comment-on-item-review">log in to comment </a>
+						<a href="#" class="login-to-comment-on-item-review">log in to comment </a>
 						<script>
-							$("#login-to-comment-on-item-review").click(function(){
+							$(".login-to-comment-on-item-review").click(function(e){
+								e.preventDefault();
 								$('#modal').modal('hide');
 								$("#log-in-link").click();
 							})
