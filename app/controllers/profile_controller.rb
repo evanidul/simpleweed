@@ -44,6 +44,35 @@ class ProfileController < ApplicationController
 		#	@activities.sort_by(&:created_at)
 		@activities = @uniq_activities.sort_by { |obj| obj.created_at }.reverse.first(20)
 
+		# store reviews and item reviews must be unique in the feed for the inline forms to work
+		uniq_store_review_ids = []
+		uniq_item_review_ids = []
+		@activities.each do |activity|
+			if activity.trackable.is_a? StoreReview
+				if uniq_store_review_ids.include? activity.trackable.id
+					# remove it					
+					@activities.delete(activity)
+				else 
+					uniq_store_review_ids << activity.trackable.id
+				end
+			end
+			if activity.trackable.is_a? StoreItemReview
+				if uniq_item_review_ids.include? activity.trackable.id
+					# remove it
+					@activities.delete(activity)
+				else
+					uniq_item_review_ids << activity.trackable.id
+				end
+			end
+			if activity.key == "store.add_review"				
+				if uniq_store_review_ids.include? activity.parameters[:store_review_id]
+		     		@activities.delete(activity)		     		
+		     	else
+					uniq_store_review_ids << activity.parameters[:store_review_id]
+		     	end
+		    end
+		end # do
+		
 	end	
 
 	def activity		
