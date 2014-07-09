@@ -1,5 +1,6 @@
 class ProfileFeedPageComponent < SitePrism::Page
   
+  elements :user_links, '.user-link'
   
   # various types of feed items
   
@@ -13,6 +14,9 @@ class ProfileFeedPageComponent < SitePrism::Page
 
   # USER feed items
   elements :user_following_user_feed_items, '.feed-item-user-following-user'
+
+  # STORE REVIEW feed items
+  elements :store_reviews, '.store-review'
 
 end
 
