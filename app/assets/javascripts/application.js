@@ -45,7 +45,7 @@ bootstrap_alert.warning = function(message, selector, level) {
     if (!level) {
         level = "danger"             
     }    
-    newalert_html = '<div class="alert alert-'+ level +' alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><div id="flash_notice">'+message+'</div></div>'
+    newalert_html = '<div class="alert alert-'+ level +' alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><div class="flash_notice">'+message+'</div></div>'
     if(!selector) {
     	$('#bootstrap-alert').html(newalert_html)
     } else {

@@ -3,7 +3,8 @@ if !(store_item_review.nil?)
 	@store_item_review = store_item_review 
 end
 %>
-<div class="store-review">
+<div class="store-review">	
+	<div id = "bootstrap-alert-item-review-id-<%= @store_item_review.id %>"></div>
 	<table class = "item-review-display-and-comment-vote-controls">
 		<tr>
 			<td>
@@ -37,56 +38,57 @@ end
 				<% end %>
 
 				</ul>
-			</td>		
-			<tr>
-				<td>					
-					<div class="btn-group-vertical review-vote-controls">		
-						<%= form_for ([@store, @store_item, @store_item_review, @store_item_review.store_item_review_votes.build]), :remote => true, :html => { :id => "new_upvote_on_#{@store_item_review.id}" } do |f| %>
-							<%= f.hidden_field :vote, :value => "1" %> 
-							<%= button_tag(type: 'submit', class: "btn btn-default upvotebutton") do %>
- 								<div class="glyphicon glyphicon-chevron-up"></div>
-							<% end %>
+			</td>	
+		</tr>		
+		<tr>
+			<td>					
+				<div class="btn-group-vertical review-vote-controls">		
+					<%= form_for ([@store, @store_item, @store_item_review, @store_item_review.store_item_review_votes.build]), :remote => true, :html => { :id => "new_upvote_on_#{@store_item_review.id}" } do |f| %>
+						<%= f.hidden_field :vote, :value => "1" %> 
+						<%= button_tag(type: 'submit', class: "btn btn-default upvotebutton") do %>
+								<div class="glyphicon glyphicon-chevron-up"></div>
+						<% end %>
 
-						<% end %>
-						<div> 
-							<div class="review-votes" id="<%=@store_item_review.id%>_vote_sum"><%= @store_item_review.sum_votes %> </div>
-						</div>
-						
-						<%= form_for ([@store, @store_item, @store_item_review, @store_item_review.store_item_review_votes.build]), :remote => true, :html => { :id => "new_downvote_on_#{@store_item_review.id}" } do |f| %>
-							<%= f.hidden_field :vote, :value => "-1" %> 
-							<%= button_tag(type: 'submit', class: "btn btn-default downvotebutton") do %>
- 								<div class="glyphicon glyphicon-chevron-down"></div>
-							<% end %>
-						<% end %>
-					</div>
-				</td>
-				<td class="review-content">
-					<%= @store_item_review.review %>
-					<div id="comments_for_item_review_<%= @store_item_review.id %>" class="item-review-comments">						
-						<% @store_item_review.store_item_review_comments.each do |store_item_review_comment| %>
-							<%= render partial: 'store_item_review_comments/store_item_review_comment', locals: {store_item_review_comment: store_item_review_comment} %>
-						<% end # comments loop %>	
+					<% end %>
+					<div> 
+						<div class="review-votes" id="<%=@store_item_review.id%>_vote_sum"><%= @store_item_review.sum_votes %> </div>
 					</div>
 					
-					<% if current_user.nil? %>
-						<!-- maybe just close modal and click login button -->
-						<br/>
-						<a href="#" class="login-to-comment-on-item-review">log in to comment </a>
-						<script>
-							$(".login-to-comment-on-item-review").click(function(e){
-								e.preventDefault();
-								$('#modal').modal('hide');
-								$("#log-in-link").click();
-							})
-						</script>
-					<% else %>
-						<%= form_for ([@store, @store_item, @store_item_review, @store_item_review.store_item_review_comments.build]), :remote => true, :html => { :id => "new_comment_on_#{@store_item_review.id}" , :class=> "new-store-review-comment-form"} do |f| %>
-							<%= f.text_area :comment, :class => 'form-control new-item-review-comment-input', :required => true, :rows => 1 %>
-							<%= f.submit 'post comment', :class => 'btn btn-primary lowercase pull-right save-new-store-review-comment btn-sm' , :id => "save_comment_on_#{@store_item_review.id}"  %>
-						<% end %>	
-					<% end #if current_user.nil? %>	
-				</td>	
-			</tr>
-		</table>
-	</div> 
+					<%= form_for ([@store, @store_item, @store_item_review, @store_item_review.store_item_review_votes.build]), :remote => true, :html => { :id => "new_downvote_on_#{@store_item_review.id}" } do |f| %>
+						<%= f.hidden_field :vote, :value => "-1" %> 
+						<%= button_tag(type: 'submit', class: "btn btn-default downvotebutton") do %>
+								<div class="glyphicon glyphicon-chevron-down"></div>
+						<% end %>
+					<% end %>
+				</div>
+			</td>
+			<td class="review-content">
+				<%= @store_item_review.review %>
+				<div id="comments_for_item_review_<%= @store_item_review.id %>" class="item-review-comments">						
+					<% @store_item_review.store_item_review_comments.each do |store_item_review_comment| %>
+						<%= render partial: 'store_item_review_comments/store_item_review_comment', locals: {store_item_review_comment: store_item_review_comment} %>
+					<% end # comments loop %>	
+				</div>
+				
+				<% if current_user.nil? %>
+					<!-- maybe just close modal and click login button -->
+					<br/>
+					<a href="#" class="login-to-comment-on-item-review">log in to comment </a>
+					<script>
+						$(".login-to-comment-on-item-review").click(function(e){
+							e.preventDefault();
+							$('#modal').modal('hide');
+							$("#log-in-link").click();
+						})
+					</script>
+				<% else %>
+					<%= form_for ([@store, @store_item, @store_item_review, @store_item_review.store_item_review_comments.build]), :remote => true, :html => { :id => "new_comment_on_#{@store_item_review.id}" , :class=> "new-store-review-comment-form"} do |f| %>
+						<%= f.text_area :comment, :class => 'form-control new-item-review-comment-input', :required => true, :rows => 1 %>
+						<%= f.submit 'post comment', :class => 'btn btn-primary lowercase pull-right save-new-store-review-comment btn-sm' , :id => "save_comment_on_#{@store_item_review.id}"  %>
+					<% end %>	
+				<% end #if current_user.nil? %>	
+			</td>	
+		</tr>
+	</table>
+</div> 
  

@@ -1,6 +1,6 @@
 
 <% if @message.nil? %>
-	bootstrap_alert.warning("Your vote could not be saved.", "#bootstrap-alert-on-item-popup-reviews-tab");
+	bootstrap_alert.warning("Your vote could not be saved.", "#bootstrap-alert-item-review-id-<%= @store_item_review.id %>");
 <% else %>
-	bootstrap_alert.warning(' <%= @message %>',"#bootstrap-alert-on-item-popup-reviews-tab");
+	bootstrap_alert.warning(' <%= @message %>',"#bootstrap-alert-item-review-id-<%= @store_item_review.id %>");
 <% end %>

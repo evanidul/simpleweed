@@ -47,7 +47,7 @@ class ItemPopupComponent < SitePrism::Page
   elements :log_in_to_comment_links, '.login-to-comment-on-item-review'
 
   # bootstrap alert on modal on reviews tab
-  element :alert_on_reviews_tab, "#bootstrap-alert-on-item-popup-reviews-tab"
+  elements :alerts_on_reviews_tab, ".flash_notice"
 
   element :cancel_button, '#cancel-button'
 

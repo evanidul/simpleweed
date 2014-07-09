@@ -405,7 +405,8 @@ feature "store review votes" , :js => true, :search =>true do
         store_page.upvotebutton.first.click
         wait_for_ajax        
         expect(store_page.review_vote_sum.first).to have_text("1")
-        expect(store_page.flash_notice.text).to have_text("You cannot cast more than 1 vote per review")
+        #expect(store_page.flash_notice.text).to have_text("You cannot cast more than 1 vote per review")
+        expect(store_page.review_flash_notices.first.text).to have_text("You cannot cast more than 1 vote per review")
     end
 
     scenario "a user cannot vote on their own review" do
@@ -455,7 +456,10 @@ feature "store review votes" , :js => true, :search =>true do
         expect(store_page.review_vote_sum.first).to have_text("0")
 
         # should see error        
-        expect(store_page.flash_notice.text).to have_text("A user can't vote on their own reviews")
+        #expect(store_page.flash_notice.text).to have_text("A user can't vote on their own reviews")
+        expect(store_page.review_flash_notices.last.text).to have_text("A user can't vote on their own reviews")
+
+        
 
     end
 end

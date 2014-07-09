@@ -128,7 +128,7 @@ feature "item review votes" , :js => true, :search =>true do
         wait_for_ajax
 
 
-        expect(itempopup.alert_on_reviews_tab.text).to have_text("A user can't vote on their own reviews")
+        expect(itempopup.alerts_on_reviews_tab.last.text).to have_text("A user can't vote on their own reviews")
 	end
 
 	scenario "users can't vote more than once on a review" do
@@ -175,7 +175,7 @@ feature "item review votes" , :js => true, :search =>true do
         # second vote should fail
         itempopup.upvotebutton.first.click
         wait_for_ajax
-        expect(itempopup.alert_on_reviews_tab.text).to have_text("You cannot cast more than 1 vote per review")
+        expect(itempopup.alerts_on_reviews_tab.first.text).to have_text("You cannot cast more than 1 vote per review")
 
 	end
 

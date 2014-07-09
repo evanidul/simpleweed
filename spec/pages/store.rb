@@ -10,7 +10,9 @@ class StorePage < SitePrism::Page
 	element :write_review_button_blocked, '#write-review-button-blocked'
 	element :write_review_button_blocked_tooltip, '#write-review-blocked-tip'
 	element :first_write_review_tooltip, '#write-review-first-tip'
-	element :flash_notice, '#flash_notice'
+	element :flash_notice, '.flash_notice'
+
+	elements :review_flash_notices, '.flash_notice'
 
 	# review modal (write new review)
 	element :review_text, '#store_review_review'  #review input
