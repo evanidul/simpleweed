@@ -65,7 +65,110 @@ feature "things that trigger item review feed items" , :js => true, :search =>tr
 
 	end
 	
-    
+    scenario "if you follow a store item and someone writes a review, you see that review on your feed" do
+        # login as admin
+        page.visit("/")        
+        header = HeaderPageComponent.new        
+        header.loginlink.click
+        
+        # login modal
+        header.username.set @adminemail
+        header.password.set @adminpassword
+        header.logininbutton.click
+
+        expect(header.edituserlink.text).to have_text(@adminusername)
+
+        # search for it     
+        header = HeaderPageComponent.new    
+        header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+        header.item_query_input.set @item1_name
+        header.search_button.click
+
+        search_results_page = SearchResultsItemPageComponent.new        
+                
+        search_results_page.searchresults_item_names.size.should == 1
+        search_results_page.searchresults_item_names.map {|name| name.text}.should == [@item1_name]
+
+        # click and view preview        
+        search_results_page.searchresults_item_names.first.click
+        
+        itempopup = ItemPopupComponent.new
+        wait_for_ajax
+        assert_modal_visible
+        itempopup.tab_reviews.click
+
+        # follow the item
+        itempopup.follow_item_button.click
+        itempopup.cancel_button.click
+
+        # logout
+        header.logoutlink.click
+        header.loginlink.click
+
+        # login modal
+        header.username.set @user2email
+        header.password.set @user2password
+        header.logininbutton.click
+
+        expect(header.edituserlink.text).to have_text(@user2username)
+        
+        # search for it     
+        header = HeaderPageComponent.new    
+        header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+        header.item_query_input.set @item1_name
+        header.search_button.click
+
+        search_results_page = SearchResultsItemPageComponent.new        
+                
+        search_results_page.searchresults_item_names.size.should == 1
+        search_results_page.searchresults_item_names.map {|name| name.text}.should == [@item1_name]
+
+        # click and view preview        
+        search_results_page.searchresults_item_names.first.click
+        
+        itempopup = ItemPopupComponent.new
+        wait_for_ajax
+        assert_modal_visible
+        itempopup.tab_reviews.click
+
+        itempopup.write_review_button.click
+        review_text = "i loved this thing"
+        itempopup.review_text_input.set review_text
+        itempopup.save_review_button.click
+        itempopup.cancel_button.click       
+
+        # logout
+        header.logoutlink.click
+        header.loginlink.click
+
+        # login modal
+        header.username.set @adminemail
+        header.password.set @adminpassword
+        header.logininbutton.click
+
+        expect(header.edituserlink.text).to have_text(@adminusername)
+
+        # view profile your profile
+        header.edituserlink.click       
+        feeditem =  @user2username + " reviewed " + @item1_name
+                
+        expect(page).to have_text(feeditem) 
+
+        profile_feed_page = ProfileFeedPageComponent.new
+        profile_feed_page.item_reviews.size.should == 1
+
+        # follow the user who wrote the review (user 2)
+        profile_feed_page.user_links.first.click        
+        profile_activity_page = ProfileActivityPageComponent.new
+        profile_activity_page.follow_user_button.click
+
+        # view profile your profile
+        header.edituserlink.click               
+
+        # should not see duplicate store reviews for the same store + user combo
+        profile_feed_page.item_reviews.size.should == 1
+
+    end
 
 	scenario "if you follow store, store item and user, and that user writes a review, it should only yield 1 feed item" do
 		# search for it		
