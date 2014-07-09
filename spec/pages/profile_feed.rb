@@ -18,6 +18,9 @@ class ProfileFeedPageComponent < SitePrism::Page
   # STORE REVIEW feed items
   elements :store_reviews, '.store-review'
 
+  # ITEM REVIEW feed items
+  elements :item_reviews, '.item-review'
+
 end
 
 

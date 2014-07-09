@@ -31,12 +31,14 @@ class ProfileController < ApplicationController
 
 		@storeitemactivities = PublicActivity::Activity.order("created_at desc").where(trackable_id: following_store_item_ids, trackable_type: "StoreItem")
 
+		@storeitemreviewactivities = PublicActivity::Activity.order("created_at desc").where(trackable_id: following_store_item_ids, trackable_type: "StoreItemReview")
+
 		@storereviewcommentactivities = PublicActivity::Activity.order("created_at desc").where(trackable_id: following_store_review_ids, key: "store_review.add_comment").to_a.uniq{ |row| row.trackable_id }
 
 		# only works well when arrays are equal sizes
 		#@activities = @useractivities.zip(@storeactivities).flatten.compact
 
-		@unsortedactivities = @useractivities + @storeactivities + @storeitemactivities + @storereviewcommentactivities
+		@unsortedactivities = @useractivities + @storeactivities + @storeitemactivities + @storeitemreviewactivities + @storereviewcommentactivities
 		
 		# @useractivities and @storeactivities may return the same activities, but we don't want that in the feed.
 		@uniq_activities = @unsortedactivities.uniq
