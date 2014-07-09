@@ -91,6 +91,14 @@ class ProfileController < ApplicationController
 		
 	end
 
+	def myreviews
+		@feed = true 
+		@store_reviews = StoreReview.order("created_at desc").where(user_id: current_user.id)
+		@store_item_reviews = StoreItemReview.order("created_at desc").where(user_id: current_user.id)
+
+		@active_tab = "my-reviews-li"
+	end
+
 	# when a user follows another user, this endpoint handles what happens after clicking the star
 	def follow
 

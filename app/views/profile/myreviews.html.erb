@@ -1,0 +1,65 @@
+</br>
+<div class="col-md-2">
+	<table>
+		<tr>
+			<td>
+				<span class="glyphicon glyphicon-user user-pic"></span>
+			</td>
+			<td>
+				<div class="username"><%= @profile_user.username %></div>
+				<div class="edit-profile-link">edit profile </div>
+			</td>
+		</tr>
+	</table>
+	<% if @user_is_viewing_own_profile	%>
+		<%= render :partial =>'nav' %>
+	<% end %>
+	
+</div>
+<div class="activities col-md-7">
+	<ul class="nav nav-tabs">
+  		<li class="active"><a href="#store-reviews" data-toggle="tab">store reviews</a></li>
+  		<li><a id="tabs-reviews" href="#item-reviews" data-toggle="tab">item reviews</a></li>  
+	</ul>
+
+	<div id="my-reviews-tab-content" class="tab-content">
+  		<div class="tab-pane active" id="store-reviews">
+  			<br/>
+  			<% @store_reviews.each do |store_review| %>
+			  <div class="store-review">
+			    <%= render partial: 'store_reviews/store_review', locals: {store_review: store_review} %>
+			  </div>  
+			<% end %>
+  		</div>
+  		
+  		<div class="tab-pane" id="item-reviews">
+  			<br/>
+			<% @store_item_reviews.each do |store_item_review| %>
+			  <div class="store-item-review">
+			    <%= render partial: 'store_item_reviews/store_item_review', locals: {store_item_review: store_item_review} %>
+			  </div>  
+			<% end %>  		
+  		</div>
+  	</div>
+	
+
+<script>
+$('#my-reviews-tab-content .nav-tabs a').click(function (e) {
+  e.preventDefault()
+  $(this).tab('show') 
+})
+</script>
+
+</div> <!- feed div, main container -->
+
+<div class="right-col-profile col-md-3">
+	
+	<% if !@user_is_viewing_own_profile	%>
+		<%= form_tag(follow_profile_path, method: "post" , :remote => true) do %>			
+			<%= button_tag(type: 'submit', class: "btn btn-success follow-user-button") do %>
+				<div class="follow-user-star glyphicon glyphicon-star"></div>
+			<% end %>
+		<% end %>
+	<% end %>
+
+</div>

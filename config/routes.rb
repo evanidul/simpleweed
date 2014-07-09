@@ -20,6 +20,7 @@ Smellyleaf::Application.routes.draw do
       get "followingstores"
       get "followingitems"
       post "unfollow"
+      get "myreviews"
     end
   end
 

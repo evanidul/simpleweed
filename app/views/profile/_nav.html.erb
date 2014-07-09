@@ -6,6 +6,9 @@
 	<li id="my-activity-li">
 		<%= link_to 'my activity', activity_profile_path(current_user), :id => 'activity-link',:class => '' %>
 	</li>
+	<li id="my-reviews-li">
+		<%= link_to 'my reviews', myreviews_profile_path(current_user), :id => 'activity-link',:class => '' %>
+	</li>	
 	<li id="following-link-li" class="dropdown">
 		<a href="#" data-toggle="dropdown" class="dropdown-toggle">following <b class="caret pull-right"></b></a>
 		<ul class="dropdown-menu">
