@@ -1,0 +1,14 @@
+
+<br/>
+<span class="add-feed-button">				
+	<%= link_to 'add new feed', new_feed_path() , data: { toggle: "modal", target: "#modal", remote: new_feed_path()} , id: "add-new-feed-button" , class: "btn btn-primary" %>
+</span>			
+<br/>
+
+<% @feeds.each do |feed| %>
+	<div class="feed-name">		
+		<a href="<%= feed_path(feed.id)%>" data-no-turbolink='true' >
+			<%= feed.name %>
+		</a>
+	</div>
+<% end %>

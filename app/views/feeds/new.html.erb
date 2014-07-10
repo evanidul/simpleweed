@@ -1,0 +1,21 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title" id="myModalLabel">new feed</h4>          
+    </div>
+    <div class="modal-body">
+        <%= form_for :feed, url: feeds_path do |f| %>
+          <p class = "form-group">
+            <%= f.label :name,  "name"  %><br>
+            <%= f.text_field :name, :class => 'form-control' , :required => true   %>
+          </p>             
+                        
+          <p class = "form-group pull-right">              	
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <%= f.submit :class => 'btn btn-primary' , :id => 'save_feed'%>
+          </p>
+        <% end %>
+      <div class="simple-weed-modal-footer"></div>            
+      </div><!-- modal-body -->        
+  </div> <!-- modal-content -->
+</div>    
