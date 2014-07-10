@@ -1,1 +1,14 @@
-<h4><%= @feed.name %><h4>
+<br/>
+<h3><%= @feed.name %></h3>
+
+<span class="add-new-post-button">				
+	<%= link_to 'write a post', new_feed_feed_post_path(@feed.id) , data: { toggle: "modal", target: "#modal", remote: new_feed_feed_post_path(@feed.id)} , id: "add-new-post-button" , class: "btn btn-primary" %>
+</span>			
+
+<div class="posts">	
+	<!-- TODO: order by most recent -->
+	<% @feed.feed_posts.each do | post | %>		
+		<%= post.title %>			
+	<% end %>
+
+</div>

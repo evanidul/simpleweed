@@ -24,7 +24,9 @@ Smellyleaf::Application.routes.draw do
     end
   end
 
-  resources :feeds
+  resources :feeds do
+    resources :feed_posts
+  end
   
 
   resources :ses
