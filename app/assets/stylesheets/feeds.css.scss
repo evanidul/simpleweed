@@ -10,3 +10,32 @@
 	padding: 10px;
 	margin-bottom: 10px;
 }
+
+.post-title {
+	font-size: 16px;
+}
+
+.post {
+	
+	padding-bottom: 10px;
+}
+
+.post-user-actions {
+	margin: 0;
+	padding: 0;
+}
+
+.post-user-actions li {
+	list-style-type: none;
+	display: inline;
+	margin-right: 10px;
+	color: gray;
+}
+
+.post-user-actions li a {
+	color: gray;	
+}
+
+.post-time-ago {
+	color: gray;
+}

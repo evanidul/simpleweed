@@ -1,0 +1,26 @@
+<div class="activities col-md-9">
+	<br/>
+	<h3>
+		<%= link_to 'feed home', feeds_path %>
+		<span> / </span>
+		<%= link_to @post.feed.name, feed_path(@post.feed.id) %>
+	</h3>
+	<hr>
+	<div class="post-full">
+		<div class="post-title">	
+			<h2><%= @post.title %>		</h2>
+			
+		</div>
+		<div class="post-submitted-text">
+			<span>submitted </span>
+			<small> <%= time_ago_in_words(@post.created_at) %> ago </small>
+			<span> by </span>
+			<%= link_to @post.user.username , activity_profile_path(@post.user), :class => 'user-link', 'data-no-turbolink' => true %>
+		</div>
+		<div class="post-post">		
+			<%= @post.post %>
+		</div>
+
+	</div>	
+
+</div>

@@ -1,14 +1,23 @@
-<br/>
-<h3><%= @feed.name %></h3>
 
-<span class="add-new-post-button">				
-	<%= link_to 'write a post', new_feed_feed_post_path(@feed.id) , data: { toggle: "modal", target: "#modal", remote: new_feed_feed_post_path(@feed.id)} , id: "add-new-post-button" , class: "btn btn-primary" %>
-</span>			
+<div class="activities col-md-9">
 
-<div class="posts">	
-	<!-- TODO: order by most recent -->
-	<% @feed.feed_posts.each do | post | %>		
-		<%= post.title %>			
-	<% end %>
+	<br/>
+	<h3>
+		<%= link_to 'feed home', feeds_path %>
+		<span> / </span>
+		<%= @feed.name %>
+	</h3>
 
+	<hr>
+	<span class="add-new-post-button">				
+		<%= link_to 'write a post', new_feed_feed_post_path(@feed.id) , data: { toggle: "modal", target: "#modal", remote: new_feed_feed_post_path(@feed.id)} , id: "add-new-post-button" , class: "btn btn-primary pull-right" %>
+	</span>			
+
+
+	<div class="posts">			
+		<% @feed.feed_posts.order("created_at desc").each do | post | %>					
+			<%= render partial: 'feed_posts/feed_post', locals: {post: post} %>			
+		<% end %>
+
+	</div>
 </div>

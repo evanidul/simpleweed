@@ -1,0 +1,27 @@
+<div class="post">
+	<div class="post-title">
+		<%= link_to post.title, feed_feed_post_path(post.feed.id, post.id) , 'data-no-turbolink' => true %>		
+	</div>
+	<div class="post-submitted-text">
+		<span>submitted </span>
+		<span class="post-time-ago">
+			<small> <%= time_ago_in_words(post.created_at) %> ago </small>
+		</span>
+		<span> by </span>
+		<%= link_to post.user.username , activity_profile_path(post.user), :class => 'user-link', 'data-no-turbolink' => true %>
+	</div>
+	<ul class="post-user-actions">
+		<li>
+			<a href="<%= feed_feed_post_path(post.feed.id, post.id) %>">0 comments</a>
+		</li>
+		<li>
+			<a href="#">share</a>
+		</li>
+		<li>
+			<a href="#">follow</a>			
+		</li>
+		<li>
+			<a href="#">flag</a>			
+		</li>
+	</ul>
+</div>	
