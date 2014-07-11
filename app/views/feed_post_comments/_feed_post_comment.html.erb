@@ -1,0 +1,22 @@
+<% 
+	# requires feed_post_comment
+	@role_service = Simpleweed::Security::Roleservice.new
+	is_store_owner = @role_service.isStoreOwner(feed_post_comment.user)
+
+	if is_store_owner	
+		@ownerstyle = "owner-store-review-comment"
+		@storeownercomment = true
+	else 
+		@ownerstyle = ""
+		@storeownercomment = false
+	end
+%>
+<div id="post_comment_<%= feed_post_comment.id %>" class="feed-post-comment <%=@ownerstyle%>" >								
+	<%= link_to feed_post_comment.user.username , activity_profile_path(feed_post_comment.user), :class => 'user-link', 'data-no-turbolink' => true %>&nbsp		
+	<% if @storeownercomment %>
+		<span class="badge owner-badge">store owner</span>&nbsp
+	<% end %>
+
+	<span class="store-review-comment-ago"><%= time_ago_in_words(feed_post_comment.created_at) %> ago</span><br/>
+	<%= feed_post_comment.comment %>
+</div>

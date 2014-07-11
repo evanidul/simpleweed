@@ -1,0 +1,9 @@
+
+(function(response) {	
+	$("#" + "comments_for_feed_post_" + response.feed_post_id ).append("<%= escape_javascript(render @feed_post_comment) %>")		
+})(
+	{
+		message:'ok',	
+		feed_post_id: "<%= @feed_post.id %>",		
+	}
+)

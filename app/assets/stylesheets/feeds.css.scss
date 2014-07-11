@@ -39,3 +39,25 @@
 .post-time-ago {
 	color: gray;
 }
+
+.new-feed-post-comment-input {
+	width: 85% !important;
+	display: inline !important;
+}
+
+.save-new-feed-post-comment  {
+	float: right !important;
+	display:inline !important; 
+}
+
+.feed-post-comment 	{
+	background-color: rgb(247, 249, 250);
+	margin: 1px;
+	padding-left: 10px;
+	padding-top: 2px;
+}
+
+.feed-post-comments {
+	margin-top: 10px;
+	margin-bottom: 10px;	
+}
