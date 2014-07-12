@@ -1,0 +1,14 @@
+
+(function(response) {
+	//27_vote_sum
+	id = response.post_id
+	$("#feed_post_" + id + "_vote_sum").html(response.currentcount)
+	console.log('done');
+})(
+	{
+		message:'ok',	
+		post_id: <%= @feed_post.id %>,
+		vote: <%= @vote %>,
+		currentcount: <%= @currentcount %>
+	}
+)

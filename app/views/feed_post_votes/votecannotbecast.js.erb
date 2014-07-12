@@ -1,0 +1,7 @@
+
+<% if @message.nil? %>
+	bootstrap_alert.warning("Your vote could not be saved." , '#bootstrap-alert-feed-post-id-<%= @feed_post.id%>');
+<% else %>
+	bootstrap_alert.warning('<%= @message %>' , '#bootstrap-alert-feed-post-id-<%= @feed_post.id%>');
+<% end %>
+

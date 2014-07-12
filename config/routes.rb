@@ -27,6 +27,7 @@ Smellyleaf::Application.routes.draw do
   resources :feeds do
     resources :feed_posts do
       resources :feed_post_comments
+      resources :feed_post_votes
     end
   end
   
