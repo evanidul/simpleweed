@@ -1,10 +1,13 @@
 <div class="activities col-md-9">
 	<br/>
-	<h3>feed home</h3>
-	<hr>
-	<span class="add-feed-button">				
+	<h3>feed home
+		<span class="add-feed-button">				
 		<%= link_to 'add new feed', new_feed_path() , data: { toggle: "modal", target: "#modal", remote: new_feed_path()} , id: "add-new-feed-button" , class: "btn btn-primary pull-right" %>
-	</span>			
+		</span>			
+	</h3>
+	
+	<hr>
+	
 	
 
 	<% @feeds.each do |feed| %>

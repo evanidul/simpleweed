@@ -6,12 +6,15 @@
 		<%= link_to 'feed home', feeds_path %>
 		<span> / </span>
 		<%= @feed.name %>
+		<span class="add-new-post-button">				
+		<%= link_to 'write a post', new_feed_feed_post_path(@feed.id) , data: { toggle: "modal", target: "#modal", remote: new_feed_feed_post_path(@feed.id)} , id: "add-new-post-button" , class: "btn btn-primary pull-right" %>
+		</span>			
 	</h3>
 
+
+
 	<hr>
-	<span class="add-new-post-button">				
-		<%= link_to 'write a post', new_feed_feed_post_path(@feed.id) , data: { toggle: "modal", target: "#modal", remote: new_feed_feed_post_path(@feed.id)} , id: "add-new-post-button" , class: "btn btn-primary pull-right" %>
-	</span>			
+	
 
 
 	<div class="posts">			
