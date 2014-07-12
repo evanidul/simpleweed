@@ -38,7 +38,7 @@
 				</div>
 				<ul class="post-user-actions">
 					<li>
-						<a href="<%= feed_feed_post_path(post.feed.id, post.id) %>">0 comments</a>
+						<a href="<%= feed_feed_post_path(post.feed.id, post.id) %>"><%= post.feed_post_comments.count %> comments</a>
 					</li>
 					<li>
 						<a href="#">share</a>
