@@ -1,0 +1,19 @@
+<div class="btn-group-vertical review-vote-controls">		
+	<%= form_for ([post.feed, post, post.feed_post_votes.build]), :remote => true, :html => { :id => "new_upvote_on_#{post.id}" } do |f| %>
+		<%= f.hidden_field :vote, :value => "1" %> 
+		<%= button_tag(type: 'submit', class: "btn btn-default upvotebutton") do %>
+				<div class="glyphicon glyphicon-chevron-up"></div>
+		<% end %>
+
+	<% end %>
+	<div> 
+		<div class="review-votes" id="feed_post_<%=post.id%>_vote_sum"><%= post.sum_votes %> </div>
+	</div>
+	
+	<%= form_for ([post.feed, post, post.feed_post_votes.build]), :remote => true, :html => { :id => "new_downvote_on_#{post.id}" } do |f| %>
+		<%= f.hidden_field :vote, :value => "-1" %> 
+		<%= button_tag(type: 'submit', class: "btn btn-default downvotebutton") do %>
+				<div class="glyphicon glyphicon-chevron-down"></div>
+		<% end %>
+	<% end %>
+</div>
