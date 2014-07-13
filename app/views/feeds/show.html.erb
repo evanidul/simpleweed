@@ -1,7 +1,16 @@
 
+<ul id="feed-top-nav">
+	<li>
+		<a href="<%= feeds_path %> ">feed home </a>
+	</li>
+	<% @feeds.each do |feed| %>
+		<li><%= link_to feed.name, feed_path(feed.id) %></li>
+	<% end %>
+</ul>
+
 <div class="activities col-md-9">
 
-	<br/>
+	
 	<h3>
 		<%= link_to 'feed home', feeds_path %>
 		<span> / </span>

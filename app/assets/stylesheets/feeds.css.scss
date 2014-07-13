@@ -15,9 +15,20 @@
 	font-size: 16px;
 }
 
-.post {
-	
+.post {	
 	padding-bottom: 10px;
+}
+
+#feed-top-nav {
+	margin-left: 10px;
+	padding-left: 0px;		
+	margin-top: 10px;	
+}
+
+#feed-top-nav li {
+	list-style-type: none;
+	display: inline;
+	margin-right: 5px;
 }
 
 .post-user-actions {
