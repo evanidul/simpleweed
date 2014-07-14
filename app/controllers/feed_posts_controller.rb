@@ -23,6 +23,22 @@ class FeedPostsController < ApplicationController
 
 	end
 
+	# show modal for adding flag reason
+	def add_flag
+		render layout: false
+	end
+
+	# process the flag add post from add_flag
+	def flag
+		postparams = params[:flag].permit(:reason)
+		
+		current_user.flag!(@post, postparams[:reason] )
+
+		respond_to do |format|			
+			return format.js {}
+		end
+	end
+
 	private 
 	def feed_post_params
 		params.require(:feed_post).permit(:title, :post, :link)		

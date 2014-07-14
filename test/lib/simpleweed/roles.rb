@@ -5,7 +5,7 @@ require 'test_helper'
 class Roles < ActiveSupport::TestCase
 
 	test "add basic admin role via rollify" do
-		user = User.new(:email => 'test@example.com', :password => 'password', :password_confirmation => 'password')
+		user = User.new(:username => 'user1', :email => 'test@example.com', :password => 'password', :password_confirmation => 'password')
 		user.save
 		user.add_role :admin # sets a global role
 		result = user.has_role? :admin
@@ -14,7 +14,7 @@ class Roles < ActiveSupport::TestCase
 	end	
 
 	test "add scoped role to a single store" do
-		user = User.new(:email => 'test@example.com', :password => 'password', :password_confirmation => 'password')
+		user = User.new(:username => 'user1', :email => 'test@example.com', :password => 'password', :password_confirmation => 'password')
 		user.save
 
 		# create Stores
@@ -37,7 +37,7 @@ class Roles < ActiveSupport::TestCase
 	end	
 
 	test "removing a scoped role doesn't affect other store instances" do
-		user = User.new(:email => 'test@example.com', :password => 'password', :password_confirmation => 'password')
+		user = User.new(:username => 'user1', :email => 'test@example.com', :password => 'password', :password_confirmation => 'password')
 		user.save
 
 		# create Stores
@@ -76,7 +76,7 @@ class Roles < ActiveSupport::TestCase
 	test "add/remove store owner/store manager via service" do
 		service = Simpleweed::Security::Roleservice.new
 
-		user = User.new(:email => 'test@example.com', :password => 'password', :password_confirmation => 'password')
+		user = User.new(:username => 'user1', :email => 'test@example.com', :password => 'password', :password_confirmation => 'password')
 		user.save
 
 		# create Stores

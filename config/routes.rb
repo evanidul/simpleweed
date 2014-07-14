@@ -25,9 +25,14 @@ Smellyleaf::Application.routes.draw do
   end
 
   resources :feeds do
+    
     resources :feed_posts do
       resources :feed_post_comments
       resources :feed_post_votes
+      member do 
+        get 'add_flag'
+        post 'flag'        
+      end
     end
   end
   
@@ -38,6 +43,7 @@ Smellyleaf::Application.routes.draw do
       # Directs /admin/products/* to Admin::ProductsController
       # (app/controllers/admin/products_controller.rb)
       resources :stores
+      resources :flags
     end
 
   resources :stores do

@@ -1,0 +1,39 @@
+<br><br>
+<table class="table">
+		<th>id</th>
+		<th>flagged object type</th>
+		<th>flagged object id </th>
+		<th>flagger id </th>
+		<th>reason </th>
+		<th>created at </th>
+		<th>updated at </th>
+	
+<% @flaggings.each do |flag| %>
+
+		<tr>
+			<td>
+				<%= flag.id %>
+			</td>
+			<td>
+				<%= flag.flaggable_type %>
+			</td>
+			<td>
+				<%= flag.flaggable_id %>
+			</td>
+			<td>
+				<%= flag.flagger_id %>
+			</td>
+			<td>
+				<%= flag.reason %>
+			</td>
+			<td>
+				<%= flag.created_at %>
+			</td>
+			<td>
+				<%= flag.updated_at %>
+			</td>
+		</tr>
+	
+<% end %>
+
+</table>
