@@ -1,9 +1,10 @@
 <br><br>
 <table class="table">
+		<th></th>
 		<th>id</th>
 		<th>flagged object type</th>
 		<th>flagged object id </th>
-		<th>flagger id </th>
+		<th>flagger name </th>
 		<th>reason </th>
 		<th>created at </th>
 		<th>updated at </th>
@@ -11,6 +12,15 @@
 <% @flaggings.each do |flag| %>
 
 		<tr>
+			<td>				
+				<%= form_for :flagging, url: admin_flags_destroy_path,  method: :delete do |f| %>
+		          <p class = "form-group "> 
+		          	<%= f.hidden_field :flagger_id, :value => flag.flagger_id %>             			           
+		          	<%= f.hidden_field :flaggable_id, :value => flag.flaggable_id %>             			            
+		            <%= f.submit "delete flag", :class => 'btn btn-primary' %>
+		          </p>
+		        <% end %>
+			</td>
 			<td>
 				<%= flag.id %>
 			</td>
@@ -21,16 +31,17 @@
 				<%= flag.flaggable_id %>
 			</td>
 			<td>
-				<%= flag.flagger_id %>
+				<% user = User.find(flag.flagger_id) %>
+				<%= user.username %>
 			</td>
 			<td>
 				<%= flag.reason %>
 			</td>
 			<td>
-				<%= flag.created_at %>
+				<%= time_ago_in_words(flag.created_at) %>
 			</td>
 			<td>
-				<%= flag.updated_at %>
+				<%= time_ago_in_words(flag.updated_at) %>
 			</td>
 		</tr>
 	

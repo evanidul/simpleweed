@@ -43,7 +43,11 @@ Smellyleaf::Application.routes.draw do
       # Directs /admin/products/* to Admin::ProductsController
       # (app/controllers/admin/products_controller.rb)
       resources :stores
-      resources :flags
+      #resources :flags
+      
+      get 'flags/index'
+      delete 'flags/destroy'
+      
     end
 
   resources :stores do
