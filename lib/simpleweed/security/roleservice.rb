@@ -76,7 +76,8 @@ module Simpleweed
 	  				return false
 	  			else
 	  				# returns all stores that this user is a storemanager of
-	  				stores = Store.with_role(:storemanager, user)
+	  				stores = Store.with_role(:storemanager, user)	  				
+	  				
 	  				if stores.empty? #returns empty array, not nil
 	  					return false
 	  				else 

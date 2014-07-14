@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140712033655) do
+ActiveRecord::Schema.define(version: 20140714014657) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 20140712033655) do
     t.text     "link"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "flaggings_count"
   end
 
   add_index "feed_posts", ["feed_id"], name: "index_feed_posts_on_feed_id", using: :btree
@@ -88,6 +89,19 @@ ActiveRecord::Schema.define(version: 20140712033655) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "flaggings", force: true do |t|
+    t.string   "flaggable_type"
+    t.integer  "flaggable_id"
+    t.string   "flagger_type"
+    t.integer  "flagger_id"
+    t.text     "reason"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "flaggings", ["flaggable_type", "flaggable_id"], name: "index_flaggings_on_flaggable_type_and_flaggable_id", using: :btree
+  add_index "flaggings", ["flagger_type", "flagger_id", "flaggable_type", "flaggable_id"], name: "access_flaggings", using: :btree
 
   create_table "follows", force: true do |t|
     t.string   "follower_type"
@@ -244,6 +258,7 @@ ActiveRecord::Schema.define(version: 20140712033655) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "stars"
+    t.integer  "flaggings_count"
   end
 
   add_index "store_reviews", ["store_id"], name: "index_store_reviews_on_store_id", using: :btree
@@ -349,6 +364,7 @@ ActiveRecord::Schema.define(version: 20140712033655) do
     t.string   "unconfirmed_email"
     t.boolean  "admin"
     t.string   "username"
+    t.integer  "flaggings_count"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

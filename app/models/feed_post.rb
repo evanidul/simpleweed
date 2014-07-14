@@ -7,6 +7,9 @@ class FeedPost < ActiveRecord::Base
   
   validates :user, presence: true
 
+  # posts may be flagged
+  make_flaggable
+
   def sum_votes
     feed_post_votes.sum(:vote)
   end  	

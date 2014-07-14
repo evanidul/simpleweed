@@ -69,6 +69,9 @@ gem 'public_activity'
 # allows you to follow people, etc
 gem "socialization"
 
+# allows you to flag objects (https://github.com/medihack/make_flaggable)
+gem 'make_flaggable', :git => 'https://github.com/medihack/make_flaggable.git'
+
 
 group :development, :test do
   # automated testing

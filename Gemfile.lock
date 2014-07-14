@@ -8,6 +8,13 @@ GIT
       railties (>= 4.0.0, < 5)
 
 GIT
+  remote: https://github.com/medihack/make_flaggable.git
+  revision: b0831cf7a4909adef48f4e731c96b7b99da882f9
+  specs:
+    make_flaggable (0.0.3)
+      activerecord (>= 3.0, < 4.2)
+
+GIT
   remote: https://github.com/stripe/stripe-ruby
   revision: 637d5899f614a6f4d0fa2147f9b3b8b1c8b39b28
   specs:
@@ -257,6 +264,7 @@ DEPENDENCIES
   geocoder
   jbuilder (~> 1.2)
   jquery-rails
+  make_flaggable!
   newrelic_rpm
   pg
   pry

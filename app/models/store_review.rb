@@ -12,6 +12,9 @@ class StoreReview < ActiveRecord::Base
   has_many :store_review_votes
   has_many :store_review_comments
 
+  # store reviews may be flagged
+  make_flaggable
+
   validates :review, :stars, :user, :store, presence: true
   validates_inclusion_of :stars, :in => 1..5
 

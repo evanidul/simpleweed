@@ -6,6 +6,11 @@ class User < ActiveRecord::Base
 	# user may be followed
 	acts_as_followable
 
+	# users may flag objects
+	make_flagger
+	# users may only flag an object once
+	make_flagger :flag_once => true
+
 	include PublicActivity::Common    
 
 	# Include default devise modules. Others available are:
