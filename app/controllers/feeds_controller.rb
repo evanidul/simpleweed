@@ -4,6 +4,8 @@ class FeedsController < ApplicationController
 	def index
 		# @feeds used for top feed nav
 		@feeds = Feed.all
+
+		@roleservice = Simpleweed::Security::Roleservice.new
 				
 		@top_posts_from_today = []
 		# TODO: fill this array with top posts from each feed for the current day

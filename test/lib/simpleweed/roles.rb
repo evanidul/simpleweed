@@ -25,6 +25,33 @@ class Roles < ActiveSupport::TestCase
 		assert_equal(true, roleservice.canManagePost(user) , 'admins should be able to manage posts')
 	end
 
+	test "admins can add new community feeds" do
+		user = User.new(:username => 'user1', :email => 'test@example.com', :password => 'password', :password_confirmation => 'password')
+		user.save
+		user.add_role :admin # sets a global role
+		result = user.has_role? :admin
+
+		assert_equal( true, result, 'User should have admin role assigned but does not')
+
+		roleservice = Simpleweed::Security::Roleservice.new
+		assert_equal(true, roleservice.canAddCommunityFeed(user) , 'admins should be able to add new community feeds')
+	end
+
+	test "normal users cannot add community feeds nor manage posts" do
+		user = User.new(:username => 'user1', :email => 'test@example.com', :password => 'password', :password_confirmation => 'password')
+		user.save
+
+		result = user.has_role? :admin
+
+		assert_equal( false , result, 'User should NOT have admin role assigned')
+
+		roleservice = Simpleweed::Security::Roleservice.new
+		assert_equal(false, roleservice.canAddCommunityFeed(user) , 'normal users should not be able to add community feeds')
+
+		assert_equal(false, roleservice.canManagePost(user) , 'normal users should not be able to delete posts')
+
+	end
+
 	test "add scoped role to a single store" do
 		user = User.new(:username => 'user1', :email => 'test@example.com', :password => 'password', :password_confirmation => 'password')
 		user.save

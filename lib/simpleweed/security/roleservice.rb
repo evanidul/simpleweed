@@ -164,6 +164,19 @@ module Simpleweed
 	  			end
 	  		end
 
+	  		def canAddCommunityFeed(user)
+	  			
+	  			if user.nil? 
+	  				return false
+	  			end
+
+	  			if user.has_role?(:admin)
+	  				return true
+	  			else
+	  				return false
+	  			end
+	  		end
+
 		end #class
 	end
 end
