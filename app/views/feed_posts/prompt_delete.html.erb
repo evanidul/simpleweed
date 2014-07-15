@@ -1,0 +1,21 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title" id="myModalLabel">delete post</h4>          
+    </div>
+    <div class="modal-body">
+        <%= form_for :feed_post, url: feed_feed_post_path, method: 'delete' do |f| %>
+          <div>
+            are you sure you want to delete this post?  this is permanent...
+          </div>
+          </br>
+                        
+          <p class = "form-group pull-right">              	
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <%= f.submit 'delete post' ,:class => 'btn btn-danger' , :id => 'delete_post_submit'%>
+          </p>
+        <% end %>
+      <div class="simple-weed-modal-footer"></div>            
+      </div><!-- modal-body -->        
+  </div> <!-- modal-content -->
+</div>    

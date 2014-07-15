@@ -23,6 +23,18 @@ class FeedPostsController < ApplicationController
 
 	end
 
+	def prompt_delete
+		render layout: false
+	end
+
+	def destroy
+		if @post			
+			@post.destroy
+	    	flash[:danger] = "post has been deleted"
+	    end
+		redirect_to feed_path(@feed.id)
+	end
+
 	# show modal for adding flag reason
 	def add_flag
 		render layout: false

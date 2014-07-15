@@ -2,8 +2,8 @@ class FeedPost < ActiveRecord::Base
   belongs_to :feed
   belongs_to :user
 
-  has_many :feed_post_comments
-  has_many :feed_post_votes
+  has_many :feed_post_comments, :dependent => :destroy
+  has_many :feed_post_votes, :dependent => :destroy
   
   validates :user, presence: true
 

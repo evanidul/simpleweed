@@ -32,6 +32,7 @@ Smellyleaf::Application.routes.draw do
       member do 
         get 'add_flag'
         post 'flag'        
+        get 'prompt_delete'
       end
     end
   end
