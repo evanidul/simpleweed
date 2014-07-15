@@ -150,6 +150,19 @@ module Simpleweed
 	  			end
 	  		end
 
+	  		# this is lame that cancan + rollify force me to do these, but oh well!
+	  		def canManagePost(user)
+	  			
+	  			if user.nil? 
+	  				return false
+	  			end
+
+	  			if user.has_role?(:admin)
+	  				return true
+	  			else
+	  				return false
+	  			end
+	  		end
 
 		end #class
 	end

@@ -20,14 +20,20 @@ class FeedPostsController < ApplicationController
 	end
 
 	def show
-
+		@roleservice = Simpleweed::Security::Roleservice.new
 	end
 
 	def prompt_delete
+		# TODO: add authorization
+		# roleservice = Simpleweed::Security::Roleservice.new
+		# assert_equal(true, roleservice.canManagePost(user) , 'admins should be able to manage posts')
 		render layout: false
 	end
 
 	def destroy
+		# TODO: add authorization
+		# roleservice = Simpleweed::Security::Roleservice.new
+		# assert_equal(true, roleservice.canManagePost(user) , 'admins should be able to manage posts')
 		if @post			
 			@post.destroy
 	    	flash[:danger] = "post has been deleted"

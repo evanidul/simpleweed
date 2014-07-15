@@ -13,6 +13,18 @@ class Roles < ActiveSupport::TestCase
 		assert_equal( true, result, 'User should have admin role assigned but does not')
 	end	
 
+	test "admins can manage posts" do
+		user = User.new(:username => 'user1', :email => 'test@example.com', :password => 'password', :password_confirmation => 'password')
+		user.save
+		user.add_role :admin # sets a global role
+		result = user.has_role? :admin
+
+		assert_equal( true, result, 'User should have admin role assigned but does not')
+
+		roleservice = Simpleweed::Security::Roleservice.new
+		assert_equal(true, roleservice.canManagePost(user) , 'admins should be able to manage posts')
+	end
+
 	test "add scoped role to a single store" do
 		user = User.new(:username => 'user1', :email => 'test@example.com', :password => 'password', :password_confirmation => 'password')
 		user.save

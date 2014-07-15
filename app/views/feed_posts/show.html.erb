@@ -4,9 +4,11 @@
 		<%= link_to 'feed home', feeds_path %>
 		<span> / </span>
 		<%= link_to @post.feed.name, feed_path(@post.feed.id) %>
-		<span class="delete-post-button pull-right">				
-			<%= link_to 'delete', prompt_delete_feed_feed_post_path(@post.feed.id, @post.id) , data: { toggle: "modal", target: "#modal", remote: prompt_delete_feed_feed_post_path(@post.feed.id, @post.id)} , id: "delete-post-button" , class: "btn btn-danger" %>
+		<% if @roleservice.canManagePost(current_user) %>
+			<span class="delete-post-button pull-right">				
+				<%= link_to 'delete', prompt_delete_feed_feed_post_path(@post.feed.id, @post.id) , data: { toggle: "modal", target: "#modal", remote: prompt_delete_feed_feed_post_path(@post.feed.id, @post.id)} , id: "delete-post-button" , class: "btn btn-danger" %>
 			</span>			
+		<% end %>
 	</h3>
 	<hr>
 	<table>
