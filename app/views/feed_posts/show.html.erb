@@ -11,7 +11,7 @@
 		<% end %>
 	</h3>
 	<hr>
-	<table>
+	<table class = "post-full-view">
 		<tr>
 			<td class="vote-controls-post-snippet">
 				<%= render partial: 'feed_post_votes/feed_post_vote', locals: {post: @post} %>			
@@ -20,7 +20,15 @@
 				<div class="post-full">
 					<div id="bootstrap-alert-feed-post-id-<%= @post.id%>"></div>
 					<div class="post-title">	
-						<h2><%= @post.title %></h2>
+						<% 
+							if !@post.link.empty?
+								urlservice = Simpleweed::Url::Urlservice.new
+								nicelink = urlservice.url_with_protocol(@post.link)
+							else 
+								nicelink = "#"
+							end
+						%>
+						<h2><a href="<%= nicelink %>"><%= @post.title %></a></h2>
 						
 					</div>
 					<div class="post-submitted-text">
@@ -33,7 +41,7 @@
 					</div>
 					<div class="post-post">		
 						<%= @post.post %>
-					</div>
+					</div>					
 
 				</div>
 				<div id="comments_for_feed_post_<%= @post.id %>" class="feed-post-comments">
