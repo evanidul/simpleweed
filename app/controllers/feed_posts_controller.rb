@@ -47,11 +47,21 @@ class FeedPostsController < ApplicationController
 	end
 
 	# process the flag add post from add_flag
-	def flag
+	def flag		
 		postparams = params[:flag].permit(:reason)
 		
-		current_user.flag!(@post, postparams[:reason] )
+		begin
+			current_user.flag!(@post, postparams[:reason] )
+		rescue MakeFlaggable::Exceptions::AlreadyFlaggedError
+			return render 'already_flagged'
+		end
 
+		respond_to do |format|			
+			return format.js {}
+		end
+	end
+
+	def already_flagged
 		respond_to do |format|			
 			return format.js {}
 		end

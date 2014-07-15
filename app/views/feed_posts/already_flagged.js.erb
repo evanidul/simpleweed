@@ -1,0 +1,7 @@
+$('#modal').modal('hide');
+<% if @message.nil? %>
+	bootstrap_alert.warning("Your flag has already been saved and a community manager will process it soon." , '#bootstrap-alert-feed-post-id-<%= @post.id %>', 'success');
+<% else %>
+	bootstrap_alert.warning('<%= @message %>' , '#bootstrap-alert-feed-post-id-<%= @post.id %>' 'success');
+<% end %>
+
