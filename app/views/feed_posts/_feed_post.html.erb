@@ -8,7 +8,15 @@
 				<div id="bootstrap-alert-feed-post-id-<%= post.id%>"></div>
 
 				<div class="post-title">
-					<%= link_to post.title, feed_feed_post_path(post.feed.id, post.id) , 'data-no-turbolink' => true %>		
+					<% if post.link && !post.link.empty? %>
+						<% 
+							urlservice = Simpleweed::Url::Urlservice.new
+							nicelink = urlservice.url_with_protocol(post.link)
+						%>
+						<a href="<%= nicelink %>"><%= post.title %></a>
+					<% else %>						
+						<%= link_to post.title, feed_feed_post_path(post.feed.id, post.id) , 'data-no-turbolink' => true %>		
+					<% end %>
 				</div>
 				<div class="post-submitted-text">
 					<span>submitted </span>
