@@ -25,6 +25,10 @@
 					</span>
 					<span> by </span>
 					<%= link_to post.user.username , activity_profile_path(post.user), :class => 'user-link', 'data-no-turbolink' => true %>
+					
+					<% if render_feedname == true %>
+						<span> to <%= link_to post.feed.name, feed_path(post.feed.id) , 'data-no-turbolink' => true %>		</span>
+					<% end %>
 				</div>
 				<ul class="post-user-actions">
 					<li>

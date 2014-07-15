@@ -18,15 +18,9 @@
 	
 	<hr>
 	
-	
-
-	<% @feeds.each do |feed| %>
-		<div class="feed-name">		
-			<h4>
-				<a href="<%= feed_path(feed.id)%>" data-no-turbolink='true' >
-					<%= feed.name %>
-				</a>
-			</h4>
-		</div>
+	<% @top_posts_from_today.each do |post| %>		
+		<%= render partial: 'feed_posts/feed_post', locals: {post: post, render_feedname: true} %>			
 	<% end %>
+
+	
 </div>
