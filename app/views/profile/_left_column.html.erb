@@ -1,0 +1,13 @@
+<table>
+	<tr>
+		<td>
+			<span class="glyphicon glyphicon-user user-pic"></span>
+		</td>
+		<td>
+			<div class="username"><%= profile_user.username %></div>			
+		</td>
+	</tr>
+</table>
+<% if user_is_viewing_own_profile	%>
+	<%= render :partial =>'profile/nav' %>
+<% end %>

@@ -1,21 +1,7 @@
 
 </br>
 <div class="col-md-2">
-	<table>
-		<tr>
-			<td>
-				<span class="glyphicon glyphicon-user user-pic"></span>
-			</td>
-			<td>
-				<div class="username"><%= @profile_user.username %></div>
-				<div class="edit-profile-link">edit profile </div>
-			</td>
-		</tr>
-	</table>
-	<% if @user_is_viewing_own_profile	%>
-		<%= render :partial =>'nav' %>
-	<% end %>
-	
+	<%= render :partial =>'left_column', locals: {profile_user: @profile_user, user_is_viewing_own_profile: @user_is_viewing_own_profile }%>	
 </div>
 <div class="col-md-8">
 	<div class="followed-stores">		
