@@ -22,7 +22,7 @@
 	
 	<hr>
 	
-	<% @top_posts_from_today.each do |post| %>		
+	<% @top_posts.each do |post| %>		
 		<%= render partial: 'feed_posts/feed_post', locals: {post: post, render_feedname: true} %>			
 	<% end %>
 
