@@ -1,0 +1,27 @@
+
+<%= render partial: 'nav_feed' %>
+
+<div class="activities col-md-9">
+
+	
+	<h3>
+		<%= link_to 'feed home', feeds_path %>
+		<span> / </span>
+		recent store reviews
+		
+	</h3>
+
+
+
+	<hr>
+	
+	<% @reviews.each do |store_review| %>
+	  <div class="store-review">
+	  	<% @feed = true %>
+	    <%= render partial: 'store_reviews/store_review', locals: {store_review: store_review} %>
+	  </div>  
+	<% end %>
+
+	
+</div>
+

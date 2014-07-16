@@ -1,0 +1,12 @@
+<ul id="feed-top-nav">
+	<li>
+		<a href="<%= feeds_path %> ">feed home </a>
+	</li>
+	<li>
+		<a href="<%= feeds_recent_store_reviews_path %> ">store reviews </a>
+	</li>
+
+	<% @feeds.each do |feed| %>
+		<li><%= link_to feed.name, feed_path(feed.id) %></li>
+	<% end %>
+</ul>
