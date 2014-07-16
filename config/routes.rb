@@ -8,6 +8,8 @@ Smellyleaf::Application.routes.draw do
   get "modals/registration", :as => 'registration_modal'
 
   get "feeds/recent_store_reviews", to: 'feeds#recent_store_reviews'
+  get "feeds/recent_item_reviews", to: 'feeds#recent_item_reviews'
+
   # resources :stores
 
   #get "solr", :as => 'store/solr'

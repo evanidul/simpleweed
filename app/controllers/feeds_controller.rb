@@ -44,8 +44,15 @@ class FeedsController < ApplicationController
 	def recent_store_reviews
 		# @feeds used for top feed nav
 		@feeds = Feed.all
-		
+
 		@reviews = StoreReview.order("created_at desc").limit(20)
+	end
+
+	def recent_item_reviews
+		# @feeds used for top feed nav
+		@feeds = Feed.all
+
+		@reviews = StoreItemReview.order("created_at desc").limit(20)
 	end
 
 	def new
