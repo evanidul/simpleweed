@@ -1,5 +1,9 @@
 <% content_for :head do %>
-	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>		
+	<% if Rails.env == 'production' %>		
+		<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=<%= Smellyleaf::Application.config.maps_api_key %>"></script>			
+	<% else %>
+		<script type="text/javascript" src="http://maps.google.com/maps/api/js"></script>			
+	<% end %>		
 	<!-- info box -->
 	<script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/src/infobox.js"></script>
 	<!-- infinite scroll -->

@@ -90,4 +90,7 @@ Smellyleaf::Application.configure do
     :enable_starttls_auto => true,
     :port => 465
   }
+
+  config.maps_api_key = "AIzaSyDM-y6QAoQSXv_5pibe5pWxQSdxzvr3y7g"
+  
 end
