@@ -34,12 +34,7 @@
 					<li>
 						<a href="<%= feed_feed_post_path(post.feed.id, post.id) %>"><%= post.feed_post_comments.count %> comments</a>
 					</li>
-					<li>
-						<a href="#">share</a>
-					</li>
-					<li>
-						<a href="#">follow</a>			
-					</li>
+					
 					<li>
 						<%= link_to 'flag', add_flag_feed_feed_post_path(post.feed.id, post.id), data: { toggle: "modal", target: "#modal", remote: add_flag_feed_feed_post_path(post.feed.id, post.id)} , id: "add-flag-on-post-link" %>
 						
