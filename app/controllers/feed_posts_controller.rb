@@ -20,6 +20,7 @@ class FeedPostsController < ApplicationController
 	end
 
 	def show
+		@feeds = Feed.all
 		@roleservice = Simpleweed::Security::Roleservice.new
 	end
 
