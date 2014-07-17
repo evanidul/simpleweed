@@ -1,3 +1,5 @@
+# a feed page, diy, faq, etc.
+
 class CommunityFeedPage < SitePrism::Page
   # set_url "http://www.google.com"
 
@@ -6,8 +8,8 @@ class CommunityFeedPage < SitePrism::Page
 
   # new post modal
   element :feed_post_title_input, '#feed_post_title'  
-  element :text_tab, '#feed-post-text-input'
-  element :link_tab, '#feed-post-link-input'
+  element :text_tab, '#text-tab'
+  element :link_tab, '#link-tab'
   element :feed_post_content_input, '#feed_post_post'
   element :feed_link_input, '#feed_post_link'
   element :save_post_button, '#save_feed_post'
@@ -15,5 +17,6 @@ class CommunityFeedPage < SitePrism::Page
   # posts
   elements :post_titles, '.post-title a'
   elements :post_username_links, '.user-link'
+  elements :post_comments_link, '.post_comment_link'
 
 end

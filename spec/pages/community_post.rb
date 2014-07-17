@@ -1,3 +1,4 @@
+# detail view of a post, it's post content, and the comments on the page
 class CommunityPostPage < SitePrism::Page
   # set_url "http://www.google.com"
 

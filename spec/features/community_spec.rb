@@ -181,9 +181,70 @@ feature "review a store" , :js => true, :search =>true do
 
    		wait_for_ajax
    		expect(post.comments.first.text).to have_text(comment)
-
-
 	end
 
+
+	scenario "login as admin, create a feed, create a post which is a link, click on that post comments link, see post, add comment, verify new comment added inline" do	
+		# login as admin
+		page.visit("/")
+
+		header = HeaderPageComponent.new
+		header.has_loginlink?
+		header.loginlink.click
+    	
+    	# login modal
+    	header.username.set @adminemail
+    	header.password.set @adminpassword
+		header.logininbutton.click
+
+		expect(header.edituserlink.text).to have_text(@adminusername)
+
+		# go to community
+		header.community_home_link.click
+
+		community_home_page = CommunityFeedHomePage.new
+		
+		# add new feed
+		community_home_page.add_new_feed_button.click
+
+		new_feed_name = "new stuff"
+		community_home_page.new_feed_name_input.set new_feed_name
+		community_home_page.save_feed_button.click
+
+		community_home_page.dynamic_feed_links.first.click
+
+		feed_page = CommunityFeedPage.new		
+		expect(feed_page.feed_name_span.text).to have_text(new_feed_name)
+
+		# add new post
+		feed_page.add_new_post_button.click
+		post_title = "my first post"
+		post_link_content = "http://www.yahoo.com"
+		feed_page.feed_post_title_input.set post_title
+		feed_page.link_tab.click
+		feed_page.feed_link_input.set post_link_content
+		feed_page.save_post_button.click
+		
+		expect(feed_page.post_titles.first.text).to have_text(post_title)
+
+		# click on post comments link
+		feed_page.post_comments_link.first.click
+
+		# view post
+		post = CommunityPostPage.new		
+		expect(post.post_title_link.text).to have_text(post_title)
+   	
+   		# add new comment
+   		comment = "nice post dude!"     
+   		post.new_comment_input.set comment
+   		post.save_comment_button.click
+
+   		wait_for_ajax
+   		expect(post.comments.first.text).to have_text(comment)
+
+   		# follow the link
+   		post.post_title_link.click
+   		expect(page).to have_text("ahoo")
+	end
 
 end

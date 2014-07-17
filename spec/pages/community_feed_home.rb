@@ -1,3 +1,4 @@
+# the main feed for community
 class CommunityFeedHomePage < SitePrism::Page
   # set_url "http://www.google.com"
 
