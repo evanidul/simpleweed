@@ -1,5 +1,6 @@
 class HeaderPageComponent < SitePrism::Page
   # set_url "http://www.google.com"
+  element :community_home_link, '#community-home-link'
   element :edituserlink, "#edit-user-link"
   element :loginlink, "#log-in-link"
   element :logoutlink, "#logout-link"

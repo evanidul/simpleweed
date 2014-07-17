@@ -10,6 +10,6 @@
 	</li>
 
 	<% @feeds.each do |feed| %>
-		<li><%= link_to feed.name, feed_path(feed.id) %></li>
+		<li class="dynamic-feed"><%= link_to feed.name, feed_path(feed.id) %></li>
 	<% end %>
 </ul>
