@@ -201,22 +201,59 @@
 	<div class="search-result-item-promo">								
 		<%= @store_item.promo %>
 	</div>
-	<div id="item-description">
-		<h4>description</h4>
-		<p><%= raw @store_item.description %>
-		</p>
-	</div>
+	<% if @store_item.description && !@store_item.description.empty? %>
+		<div id="item-description">
+			<h4>description</h4>
+			<p><%= raw @store_item.description %>
+			</p>
+		</div>
+	<% end %>
 
+	<% 
+		top_review = @store_item.store_item_reviews.sort_by {|review| review.sum_votes}.reverse.first
+	%>
+	<% if top_review %>
+		<h4>top review</h4>
+		<div class="item-review">	
+			<table class = "item-review-display-and-comment-vote-controls">
+				<tr>
+					<td>				
+						<span class="glyphicon glyphicon-user user-pic-feed-item"></span>
+					</td>
+					<td>				
+						<%= link_to top_review.user.username , activity_profile_path(top_review.user), :class => 'user-link', 'data-no-turbolink' => true %>						
+						<small> <%= time_ago_in_words(top_review.created_at) %> ago</small>			
+						<ul class = "store-star-rank" style="float:right;" star-value="<%= top_review.stars %>">			
+						<% (1..top_review.stars).each do |i| %>
+							<li class="rating_star">
+								<span class="glyphicon glyphicon-star"></span>
+							</li>
+						<% end %>	
+						<% darkstars = 5 - top_review.stars
+							(1..darkstars).each do |i| %>
+							<li class="rating_star off">
+								<span class="glyphicon glyphicon-star"></span>
+							</li>
+						<% end %>
 
-	<h4 class="modal-title" id="myModalLabel">top review
-		<div class="star-rank">
-			<span class="glyphicon glyphicon-star"></span>
-			<span class="glyphicon glyphicon-star"></span>
-			<span class="glyphicon glyphicon-star"></span>
-			<span class="glyphicon glyphicon-star"></span>
-			<span class="glyphicon glyphicon-star"></span>		
-		</div>      			    	
-  	</h4>          
-  	<div id="top-review">
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vestibulum metus quam, non dapibus metus molestie non. Proin vel metus eget odio rutrum euismod. Aenean quam justo, tempus et varius vel, pulvinar adipiscing lorem. Pellentesque eget nisi vel neque facilisis laoreet vel vel mi. Cras tempor nibh id augue gravida commodo.
-  	</div>
+						</ul>
+					</td>	
+				</tr>		
+				<tr>
+					<td>					
+					</td>
+					<td class="review-content">
+						<%= top_review.review %>
+						<div id="read-only-comments_for_item_review_<%= top_review.id %>" class="item-review-comments">						
+							<% top_review.store_item_review_comments.each do |store_item_review_comment| %>
+								<%= render partial: 'store_item_review_comments/store_item_review_comment', locals: {store_item_review_comment: store_item_review_comment} %>
+							<% end # comments loop %>	
+						</div>
+					</td>	
+				</tr>
+			</table>
+		</div>
+		</br> 
+	<% end %>
+
+	
