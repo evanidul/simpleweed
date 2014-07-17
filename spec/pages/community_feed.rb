@@ -14,6 +14,6 @@ class CommunityFeedPage < SitePrism::Page
   
   # posts
   elements :post_titles, '.post-title'
-
+  elements :post_username_links, '.user-link'
 
 end

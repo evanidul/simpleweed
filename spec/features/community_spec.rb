@@ -63,7 +63,7 @@ feature "review a store" , :js => true, :search =>true do
 
 	end
 	
-	scenario "login as admin, create a feed, create a post" do	
+	scenario "login as admin, create a feed, create a post, logout, nav to post, click username link, get login page" do	
 		# login as admin
 		page.visit("/")
 
@@ -82,6 +82,8 @@ feature "review a store" , :js => true, :search =>true do
 		header.community_home_link.click
 
 		community_home_page = CommunityFeedHomePage.new
+		
+		# add new feed
 		community_home_page.add_new_feed_button.click
 
 		new_feed_name = "new stuff"
@@ -93,6 +95,7 @@ feature "review a store" , :js => true, :search =>true do
 		feed_page = CommunityFeedPage.new		
 		expect(feed_page.feed_name_span.text).to have_text(new_feed_name)
 
+		# add new post
 		feed_page.add_new_post_button.click
 		post_title = "my first post"
 		post_content = "i don't have much to say"
@@ -101,6 +104,24 @@ feature "review a store" , :js => true, :search =>true do
 		feed_page.save_post_button.click
 		
 		expect(feed_page.post_titles.first.text).to have_text(post_title)
+
+        # logout
+        header.logoutlink.click
+
+		# go to community
+		header.community_home_link.click        
+		community_home_page.dynamic_feed_links.first.click
+
+		# click on the username of the first post
+		feed_page.post_username_links.first.click
+
+		# must be logged in to see a user profile
+		login_page = LoginPage.new		
+		login_page.has_username_input?		
+		login_page.has_username_password_input?
+		login_page.username_input.set @adminemail
+    	login_page.username_password_input.set @adminpassword        	
+    	login_page.sign_in_button.click		
 
 	end
 
