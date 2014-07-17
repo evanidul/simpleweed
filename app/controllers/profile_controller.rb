@@ -78,6 +78,9 @@ class ProfileController < ApplicationController
 	end	
 
 	def activity		
+
+		authenticate_user!("You must be logged in to view this user.  Login now or sign up!") 
+		
 		#current_user = the guy who is viewing the page
 		# params[:id] = the owner of the profile
 		# @profile_owner_id = params[:id].to_i
@@ -160,6 +163,11 @@ private
       	@profile_owner_id = params[:id].to_i
 		@profile_user = User.find(@profile_owner_id)
 		@user_is_viewing_own_profile = false;
+		
+		if current_user.nil?
+			@user_is_viewing_own_profile = true;
+			return
+		end
 		if current_user.id == @profile_owner_id
 			@user_is_viewing_own_profile = true;
 		end
