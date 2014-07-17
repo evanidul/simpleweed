@@ -13,6 +13,7 @@ require 'pages/store_claim'
 require 'pages/profile_feed'
 require 'pages/community_feed_home'
 require 'pages/community_feed'
+require 'pages/community_post'
 
 feature "review a store" , :js => true, :search =>true do
 
@@ -122,7 +123,67 @@ feature "review a store" , :js => true, :search =>true do
 		login_page.username_input.set @adminemail
     	login_page.username_password_input.set @adminpassword        	
     	login_page.sign_in_button.click		
+	end
+
+	scenario "login as admin, create a feed, create a post, click on that post link, see post, add comment, verify new comment added inline" do	
+		# login as admin
+		page.visit("/")
+
+		header = HeaderPageComponent.new
+		header.has_loginlink?
+		header.loginlink.click
+    	
+    	# login modal
+    	header.username.set @adminemail
+    	header.password.set @adminpassword
+		header.logininbutton.click
+
+		expect(header.edituserlink.text).to have_text(@adminusername)
+
+		# go to community
+		header.community_home_link.click
+
+		community_home_page = CommunityFeedHomePage.new
+		
+		# add new feed
+		community_home_page.add_new_feed_button.click
+
+		new_feed_name = "new stuff"
+		community_home_page.new_feed_name_input.set new_feed_name
+		community_home_page.save_feed_button.click
+
+		community_home_page.dynamic_feed_links.first.click
+
+		feed_page = CommunityFeedPage.new		
+		expect(feed_page.feed_name_span.text).to have_text(new_feed_name)
+
+		# add new post
+		feed_page.add_new_post_button.click
+		post_title = "my first post"
+		post_content = "i don't have much to say"
+		feed_page.feed_post_title_input.set post_title
+		feed_page.feed_post_content_input.set post_content
+		feed_page.save_post_button.click
+		
+		expect(feed_page.post_titles.first.text).to have_text(post_title)
+
+		# click on post
+		feed_page.post_titles.first.click
+
+		# view post
+		post = CommunityPostPage.new		
+		expect(post.post_title_link.text).to have_text(post_title)
+   	
+   		# add new comment
+   		comment = "nice post dude!"     
+   		post.new_comment_input.set comment
+   		post.save_comment_button.click
+
+   		wait_for_ajax
+   		expect(post.comments.first.text).to have_text(comment)
+
 
 	end
+
 
 end

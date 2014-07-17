@@ -13,7 +13,7 @@ class CommunityFeedPage < SitePrism::Page
   element :save_post_button, '#save_feed_post'
   
   # posts
-  elements :post_titles, '.post-title'
+  elements :post_titles, '.post-title a'
   elements :post_username_links, '.user-link'
 
 end
