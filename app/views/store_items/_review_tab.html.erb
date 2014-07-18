@@ -38,11 +38,12 @@
 
   	<% end #if current_user.nil? %>
   	<span class="pull-right">
-		<%= form_tag(follow_store_store_item_path, method: "post" , :remote => true) do %>			
-			<%= button_tag(type: 'submit', class: "btn btn-success follow-store-button ", id: "follow-store-item-button") do %>
-				<div>follow</div>
-			<% end %>
+		<% if !current_user.nil? && current_user.follows?(@store_item) %>
+			<%= render :partial =>'unfollow_item_button', locals: {item: @store_item }%>		
+		<% else %>
+			<%= render :partial =>'follow_item_button', locals: {item: @store_item }%>		
 		<% end %>
+		
 		<% if current_user.nil? %>
 			<script>						
 				$("#follow-store-item-button").click(function(e){

@@ -1,1 +1,9 @@
-bootstrap_alert.warning("this item has been favorited", "#bootstrap-alert-on-item-popup-reviews-tab", "success");
+
+(function(response) {	
+	$("#" + "follow-item-form-" + response.item_id ).replaceWith("<%= escape_javascript(render(:partial => 'unfollow_item_button', :locals => {item:  @store_item } )) %>")		
+})(
+	{
+		message:'ok',	
+		item_id: "<%= @store_item.id %>",		
+	}
+)

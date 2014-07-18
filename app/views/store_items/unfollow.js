@@ -1,4 +1,9 @@
-(function(store_item_name, id){
-	bootstrap_alert.warning(store_item_name + " has been unfollowed", null, "success");	
-	$("#" + id).remove();
-})("<%= @store_item.name %>", <%= @store_item.id %>)
+
+(function(response) {	
+	$("#" + "unfollow-item-form-" + response.item_id ).replaceWith("<%= escape_javascript(render(:partial => 'follow_item_button', :locals => {item:  @store_item } )) %>")		
+})(
+	{
+		message:'ok',	
+		item_id: "<%= @store_item.id %>",		
+	}
+)
