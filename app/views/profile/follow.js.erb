@@ -1,1 +1,9 @@
-bootstrap_alert.warning("this user has been favorited", null, "success");
+
+(function(response) {	
+	$("#" + "follow-user-form-" + response.user_id ).replaceWith("<%= escape_javascript(render(:partial => 'unfollow_user_button', :locals => {user:  @profile_user } )) %>")		
+})(
+	{
+		message:'ok',	
+		user_id: "<%= @profile_user.id %>",		
+	}
+)

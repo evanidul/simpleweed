@@ -1,0 +1,5 @@
+<%= form_tag(unfollow_profile_path(user), method: "post" , id: "unfollow-user-form-#{user.id}",:remote => true) do %>			
+	<%= button_tag(type: 'submit', class: "btn btn-default") do %>
+		<span>unfollow</span>
+	<% end %>
+<% end %>	

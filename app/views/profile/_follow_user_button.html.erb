@@ -1,0 +1,5 @@
+<%= form_tag(follow_profile_path(user), id: "follow-user-form-#{user.id}" , method: "post" , :remote => true) do %>			
+	<%= button_tag(type: 'submit', class: "btn btn-success follow-user-button") do %>
+		<div>follow</div>
+	<% end %>
+<% end %>

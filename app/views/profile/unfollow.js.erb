@@ -1,4 +1,9 @@
-(function(username , id){
-	bootstrap_alert.warning(username + " has been unfollowed", null, "success");	
-	$("#" + id).remove();
-})("<%= @user_to_unfollow.username %>" ,  <%= @user_to_unfollow.id %>)
+
+(function(response) {	
+	$("#" + "unfollow-user-form-" + response.user_id ).replaceWith("<%= escape_javascript(render(:partial => 'follow_user_button', :locals => {user: @profile_user} )) %>")		
+})(
+	{
+		message:'ok',	
+		user_id: "<%= @profile_user.id %>",		
+	}	
+)

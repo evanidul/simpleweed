@@ -15,10 +15,10 @@
 <div class="right-col-profile col-md-3">
 	
 	<% if !@user_is_viewing_own_profile	%>
-		<%= form_tag(follow_profile_path, method: "post" , :remote => true) do %>			
-			<%= button_tag(type: 'submit', class: "btn btn-success follow-user-button") do %>
-				<div class="follow-user-star glyphicon glyphicon-star"></div>
-			<% end %>
+		<% if current_user.follows?(@profile_user) %>
+			<%= render :partial =>'unfollow_user_button', locals: {user: @profile_user }%>		
+		<% else %>
+			<%= render :partial =>'follow_user_button', locals: {user: @profile_user }%>		
 		<% end %>
 	<% end %>
 
