@@ -18,7 +18,9 @@
 							<a href="<%= store_path(store.id)%>" data-no-turbolink='true' > <%= store.name %>	</a>
 						</td>
 						<td>
-							<%= render :partial =>'stores/unfollow_store_button', locals: {store: store }%>									
+							<span class = "pull-right">
+								<%= render :partial =>'stores/unfollow_store_button', locals: {store: store }%>						
+							</span>				
 						</td>
 					</tr>
 				</table>
