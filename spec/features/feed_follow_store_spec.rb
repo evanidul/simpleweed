@@ -91,8 +91,8 @@ feature "review a store" , :js => true, :search =>true do
     	expect(store_page.name_header.text).to have_text(@store_name)
 
     	# follow store
-    	store_page.follow_store_button.click    	
-    	expect(store_page.flash_notice.text).to have_text ("this store has been favorited")
+    	store_page.follow_store_button.click    	    	
+    	expect(store_page.unfollow_store_button.text).to have_text ("unfollow")
 
     	# announcement
 		expect(store_page.announcement.text).to have_text("none.")
@@ -144,7 +144,7 @@ feature "review a store" , :js => true, :search =>true do
 
     	# follow store
     	store_page.follow_store_button.click    	
-    	expect(store_page.flash_notice.text).to have_text ("this store has been favorited")
+    	expect(store_page.unfollow_store_button.text).to have_text ("unfollow")
 
     	# check has default description
 		expect(store_page.description.text).to have_text("none.")    					
@@ -196,7 +196,7 @@ feature "review a store" , :js => true, :search =>true do
 
     	# follow store
     	store_page.follow_store_button.click    	
-    	expect(store_page.flash_notice.text).to have_text ("this store has been favorited")
+    	expect(store_page.unfollow_store_button.text).to have_text ("unfollow")
 
     	# daily specials
 		specials_default_value = "none."		
@@ -248,7 +248,7 @@ feature "review a store" , :js => true, :search =>true do
 
     	# follow store
     	store_page.follow_store_button.click    	
-    	expect(store_page.flash_notice.text).to have_text ("this store has been favorited")
+    	expect(store_page.unfollow_store_button.text).to have_text ("unfollow")
 
 		# update store hours
 		store_page.edit_hours_link.click
@@ -310,7 +310,7 @@ feature "review a store" , :js => true, :search =>true do
 
     	# follow store
     	store_page.follow_store_button.click    	
-    	expect(store_page.flash_notice.text).to have_text ("this store has been favorited")
+    	expect(store_page.unfollow_store_button.text).to have_text ("unfollow")
 
     	# update ftp
 		store_page.edit_first_time_patient_deals_link.click
@@ -360,7 +360,7 @@ feature "review a store" , :js => true, :search =>true do
 
     	# follow store
     	store_page.follow_store_button.click    	
-    	expect(store_page.flash_notice.text).to have_text ("this store has been favorited")
+    	expect(store_page.unfollow_store_button.text).to have_text ("unfollow")
 
     	store_page.edit_contact_link.click
     	new_addressline1 = "7110 Rock Valley Court"
@@ -429,7 +429,7 @@ feature "review a store" , :js => true, :search =>true do
 		# follow store
     	store_page.follow_store_button.click  
     	wait_for_ajax  	
-    	expect(store_page.flash_notice.text).to have_text ("this store has been favorited")
+    	expect(store_page.unfollow_store_button.text).to have_text ("unfollow")
 
     	# view profile your profile
 		header.edituserlink.click		
@@ -470,7 +470,7 @@ feature "review a store" , :js => true, :search =>true do
 		# follow store
     	store_page.follow_store_button.click  
     	wait_for_ajax  	
-    	expect(store_page.flash_notice.text).to have_text ("this store has been favorited")
+    	expect(store_page.unfollow_store_button.text).to have_text ("unfollow")
 
     	# go to store menu edit page
     	page.visit(store_store_items_path(@store))
@@ -529,7 +529,7 @@ feature "review a store" , :js => true, :search =>true do
 		# follow store
     	store_page.follow_store_button.click  
     	wait_for_ajax  	
-    	expect(store_page.flash_notice.text).to have_text ("this store has been favorited")
+    	expect(store_page.unfollow_store_button.text).to have_text ("unfollow")
 
     	# logout
         header.logoutlink.click

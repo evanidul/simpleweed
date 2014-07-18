@@ -5,6 +5,7 @@ class StorePage < SitePrism::Page
 
 	# buttons
 	element :follow_store_button, '#follow-store-button'
+	element :unfollow_store_button, '#unfollow-store-button'
 	element :claim_store_button, "#claim-store-button"
 	element :write_review_button, '#write-review-button'
 	element :write_review_button_blocked, '#write-review-button-blocked'
