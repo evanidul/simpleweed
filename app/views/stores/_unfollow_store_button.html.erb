@@ -1,0 +1,5 @@
+<%= form_tag(unfollow_store_path(store), method: "post" , id: "unfollow-store-form-#{store.id}", class: "unfollow-store-form",:remote => true) do %>			
+	<%= button_tag(type: 'submit', class: "btn btn-default unfollow-store-button") do %>
+		<span>unfollow</span>
+	<% end %>
+<% end %>	

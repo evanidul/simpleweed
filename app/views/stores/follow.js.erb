@@ -1,1 +1,9 @@
-bootstrap_alert.warning("this store has been favorited", null, "success");
+
+(function(response) {	
+	$("#" + "follow-store-form-" + response.store_id ).replaceWith("<%= escape_javascript(render(:partial => 'unfollow_store_button', :locals => {store:  @store } )) %>")		
+})(
+	{
+		message:'ok',	
+		store_id: "<%= @store.id %>",		
+	}
+)
