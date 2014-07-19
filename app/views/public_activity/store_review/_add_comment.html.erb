@@ -14,19 +14,18 @@
 				<a>					
 					<a href="<%= store_path(activity.trackable.store.id)%>" data-no-turbolink='true' > <%= activity.trackable.store.name %></a>
 				</a> 
-				<span> has new comments </span>
+				<span> has a new comment </span>
 				
 				<div class="time-ago-feed-item"><%= time_ago_in_words(activity.trackable.updated_at) %> ago</div>
 			</div>
-			<div class = "feed-item-body">
-				<%= activity.trackable.review %>
+			<div class = "feed-item-body">				
 				<% @store_review = activity.trackable 
-				   @recent_comments = @store_review.store_review_comments.last(3)
+				   @comment = StoreReviewComment.find(activity.parameters[:store_review_comment_id])
 				%>
 
-				<% @recent_comments.each do |store_review_comment| %>
-					<%= render partial: 'store_review_comments/store_review_comment', locals: {store_review_comment: store_review_comment} %>
-				<% end %>			
+				
+					<%= render partial: 'store_review_comments/store_review_comment', locals: {store_review_comment: @comment} %>
+				
 			</div>
 
 		</td>

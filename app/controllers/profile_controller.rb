@@ -90,6 +90,11 @@ class ProfileController < ApplicationController
 		# if current_user.id == @profile_owner_id
 		# 	@user_is_viewing_own_profile = true;
 		# end
+
+		# object id + object type should be unique, otherwise you'll see items that appear to be dupes in the feed
+		#@activities = @activities.uniq {|activity| activity.trackable_id.to_s + activity.trackable_type.to_s}		
+
+		
 		@active_tab = "my-activity-li"
 		
 	end
