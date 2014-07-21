@@ -72,6 +72,8 @@ gem "socialization"
 # allows you to flag objects (https://github.com/medihack/make_flaggable)
 gem 'make_flaggable', :git => 'https://github.com/medihack/make_flaggable.git'
 
+# delayed jobs allows you to send mail asynchronously
+gem 'delayed_job_active_record'
 
 group :development, :test do
   # automated testing
