@@ -1,8 +1,8 @@
 <div style="margin-top: 10px;margin-bottom: 10px;">
-    <h3>
-	    <%= link_to @stalker.username , activity_profile_url(@stalker.id)  %>							
-		<span> is now following </span>						
-		<%= link_to "you" , activity_profile_url(@notify.id) %>							
+    <h3>	    
+	    <a href = "<%= activity_profile_url(@stalker.id) %>" style="text-decoration: none;" ><%= @stalker.username %></a>
+		<span> is now following </span>								
+		<a href = "<%= activity_profile_url(@notify.id) %>" style="text-decoration: none;" >you</a>
 	</h3>				
 </div>	
 <div>
