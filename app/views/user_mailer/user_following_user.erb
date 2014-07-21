@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
-    <h1>
+<div class="email-body">
+    <h3>
 	    <%= link_to @stalker.username , activity_profile_url(@stalker.id), :class => 'user-link', 'data-no-turbolink' => true %>							
 		<span> is now following </span>						
 		<%= link_to "you" , activity_profile_url(@notify.id), :class => 'user-link', 'data-no-turbolink' => true %>							
-	</h1>				
-  </body>
-</html>
+	</h3>				
+</div>	
+<div class="email-call-to-action">
+	<%= link_to 'view profile', activity_profile_url(@stalker.id)  , class: "btn btn-primary"%>
+</div>	

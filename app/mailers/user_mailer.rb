@@ -1,5 +1,6 @@
 class UserMailer < ActionMailer::Base
   default from: "evanidul@simpleweed.org"
+  layout 'base_email_template'
 
   def test(email)
     mail(:to => email, :subject => "Hello World!")
