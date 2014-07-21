@@ -12,6 +12,6 @@ class UserMailer < ActionMailer::Base
   	@notify = notify
   	mail(:to => notify.email, :subject => subject)
   end
-  handle_asynchronously :user_following_user
+  
 
 end
