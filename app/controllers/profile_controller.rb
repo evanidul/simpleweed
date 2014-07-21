@@ -123,7 +123,7 @@ class ProfileController < ApplicationController
 
 		
 		if result == true
-			UserMailer.user_following_user(@profile_user, current_user)
+			UserMailer.user_following_user(@profile_user, current_user).deliver
 		end
 
 		respond_to do |format|
