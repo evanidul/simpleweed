@@ -117,9 +117,14 @@ class ProfileController < ApplicationController
 			return false
 		end
 
-		current_user.follow!(@profile_user)
+		result = current_user.follow!(@profile_user)
 
 		@profile_user.create_activity key: 'user.followed', owner: current_user
+
+		
+		if result == true
+			UserMailer.user_following_user(@profile_user, current_user)
+		end
 
 		respond_to do |format|
 			return format.js {}

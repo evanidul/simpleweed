@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>
+	    <%= link_to @stalker.username , activity_profile_path(@stalker.id), :class => 'user-link', 'data-no-turbolink' => true %>							
+		<span> is now following </span>						
+		<%= link_to "you" , activity_profile_path(@notify.id), :class => 'user-link', 'data-no-turbolink' => true %>							
+	</h1>				
+  </body>
+</html>
