@@ -31,6 +31,13 @@ class StoreItemReviewCommentsController < ApplicationController
 			end
 
 			if @store_item_review_comment.save
+
+				# if the user who commented wasn't the same as the user who wrote the review, notify the user who wrote the review
+				# that the review has new comments				
+				if @store_item_review_comment.user != @store_item_review.user
+					UserMailer.delay.user_commented_on_item_review(@store_item_review_comment.user, @store_item_review)
+				end
+
 				return format.js {}
 			else
 				messagearray = @store_item_review_comment.errors.full_messages	

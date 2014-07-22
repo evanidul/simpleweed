@@ -24,5 +24,12 @@ class UserMailer < ActionMailer::Base
   	mail(:to => review.user.email, :subject => subject)
   end
 
+  def user_commented_on_item_review(commenter, itemreview)
+	subject = "#{commenter.username} commented on your review of #{itemreview.store_item.name}"
+	@commenter = commenter
+	@itemreview = itemreview	
+	mail(:to => itemreview.user.email, :subject => subject)
+  end
+  
 
 end
