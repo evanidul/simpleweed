@@ -14,6 +14,10 @@ class FeedPostCommentsController < ApplicationController
 
 			
 			if @feed_post_comment.save
+
+				if @feed_post_comment.user != @feed_post.user
+					UserMailer.delay.user_commented_on_post(@feed_post_comment.user, @feed_post)
+				end
 			
 				return format.js {}
 			else
