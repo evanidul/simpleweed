@@ -35,7 +35,7 @@ class UserMailer < ActionMailer::Base
   	subject = "#{commenter.username} commented on #{post.title}"
   	@commenter = commenter
   	@post = post
-  	mail(:to => post.user, :subject => subject)
+  	mail(:to => post.user.email, :subject => subject)
   end
 
 end
