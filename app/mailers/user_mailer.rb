@@ -6,12 +6,23 @@ class UserMailer < ActionMailer::Base
     mail(:to => email, :subject => "Hello World!")
   end
 
+  # FOLLOWING 
+
   def user_following_user(notify, stalker)
   	subject = "#{stalker.username} is now following you"
   	@stalker = stalker
   	@notify = notify
   	mail(:to => notify.email, :subject => subject)
   end
-  
+
+  # COMMENTS
+
+  def user_commented_on_store_review(commenter, review)
+  	subject = "#{commenter.username} commented on your review of #{review.store.name}"
+  	@commenter = commenter
+  	@review = review
+  	mail(:to => review.user.email, :subject => subject)
+  end
+
 
 end

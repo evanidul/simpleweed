@@ -39,6 +39,12 @@ class StoreReviewCommentsController < ApplicationController
 				@storereview.activity_params = {:store_review_comment_id => @store_review_comment.id}			
 				@storereview.create_activity key: 'store_review.add_comment'
 
+				# if the user who commented wasn't the same as the user who wrote the review, notify the user who wrote the review
+				# that the review has new comments				
+				if @store_review_comment.user != @store_review_comment.store_review.user
+					UserMailer.delay.user_commented_on_store_review(@store_review_comment.user, @store_review_comment.store_review)
+				end
+
 				return format.js {}
 			else
 				messagearray = @store_review_comment.errors.full_messages	
