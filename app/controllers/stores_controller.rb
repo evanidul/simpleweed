@@ -290,6 +290,9 @@ class StoresController < ApplicationController
 		
 		if current_user.follow!(@store)
 			@store.create_activity key: 'store.followed', owner: current_user
+
+			# notify store owner of the new follower			
+			UserMailer.delay.user_following_store(@store, current_user)
 		end
 
 		respond_to do |format|

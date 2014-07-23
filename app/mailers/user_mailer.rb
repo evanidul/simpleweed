@@ -15,7 +15,18 @@ class UserMailer < ActionMailer::Base
   	mail(:to => notify.email, :subject => subject)
   end
 
+  def user_following_store(store, follower)
+	subject = "#{follower.username} is now following #{store.name}"
+  	@follower = follower
+  	@store = store
+  	
+  	# switch this once we go live
+  	#mail(:to => store.email, :subject => subject)
+  	mail(:to => "evanidul@gmail.com", :subject => subject)
+  end
+
   # NOTIFY STORE FOLLOWERS OF AN UPDATE
+
   def store_has_updated_ftp(follower, store)
   	subject = "#{store.name} has updated first time patient deals"
   	@follower = follower
