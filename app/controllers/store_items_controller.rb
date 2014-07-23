@@ -72,9 +72,14 @@ class StoreItemsController < ApplicationController
 	def follow
 		@store_item = StoreItem.find(params[:id])
 		
-		current_user.follow!(@store_item)
+		if current_user.follow!(@store_item)
 
-		@store_item.create_activity key: 'store_item.followed', owner: current_user
+			@store_item.create_activity key: 'store_item.followed', owner: current_user
+
+			# notify store owner of the new follower			
+			UserMailer.delay.user_following_item(@store_item, current_user)
+
+		end
 
 		respond_to do |format|
 			return format.js {}
