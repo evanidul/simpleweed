@@ -25,6 +25,7 @@ class StoreReviewsController < ApplicationController
 		end
 		@store_review =  @store.store_reviews.create(store_review_params)		
 		@store_review.user = current_user
+		
 		if @store_review.save
 			flash[:notice] = "Thank you for submitting your review."
 
@@ -33,6 +34,9 @@ class StoreReviewsController < ApplicationController
 
 			@store.activity_params = {:store_review_id => @store_review.id}			
 			@store.create_activity key: 'store.add_review'
+
+			# notify store owner of the new review
+			UserMailer.delay.store_has_new_review(@store_review)
 
 			redirect_to store_path(@store)
 		else 

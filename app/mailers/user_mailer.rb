@@ -31,7 +31,18 @@ class UserMailer < ActionMailer::Base
   	@item = item
   	
   	# switch this once we go live
-  	#mail(:to => store.email, :subject => subject)
+  	#mail(:to => item.store.email, :subject => subject)
+  	mail(:to => "evanidul@gmail.com", :subject => subject)
+  end
+
+  # NOTIFY STORE OWNERS OF NEW REVIEWS
+
+  def store_has_new_review(review)
+	subject = "#{review.user.username} wrote a new review about #{review.store}"
+  	@review = review
+  	
+  	# switch this once we go live
+  	#mail(:to => review.store.email, :subject => subject)
   	mail(:to => "evanidul@gmail.com", :subject => subject)
   end
 
