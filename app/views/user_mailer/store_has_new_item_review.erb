@@ -1,12 +1,12 @@
 <div style="margin-top: 10px;margin-bottom: 10px;">
     <h3>	    
-	    <a href = "<%= activity_profile_url(@review.user.id) %>" style="text-decoration: none;" ><%= @review.user.username %></a>
+	    <a href = "<%= activity_profile_url(@itemreview.user.id) %>" style="text-decoration: none;" ><%= @itemreview.user.username %></a>
 		<span> just wrote a review on </span>								
-		<a href = "<%= store_url(@review.store.id) %>" style="text-decoration: none;" > <%= @review.store.name %> </a>
+		<%= @itemreview.store_item.name %>@<a href = "<%= store_url(@itemreview.store_item.store.id) %>" style="text-decoration: none;" > <%= @itemreview.store_item.store.name %> </a>
 	</h3>				
 </div>	
 <div>
-	<a href = "<%= store_url(@review.store.id) %>" style="color: white;
+	<a href = "<%= store_url(@itemreview.store_item.store.id) %>" style="color: white;
 		background-color: #428bca;
 		border-color: #357ebd;
 		display: inline-block;

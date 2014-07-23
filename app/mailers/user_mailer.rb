@@ -46,6 +46,15 @@ class UserMailer < ActionMailer::Base
   	mail(:to => "evanidul@gmail.com", :subject => subject)
   end
 
+  def store_has_new_item_review(itemreview)
+	subject = "#{itemreview.user.username} wrote a new review about #{itemreview.store_item.name}@#{itemreview.store_item.store.name}"
+  	@itemreview = itemreview
+  	
+  	# switch this once we go live
+  	#mail(:to => review.store.email, :subject => subject)
+  	mail(:to => "evanidul@gmail.com", :subject => subject)
+  end	
+
   # NOTIFY STORE FOLLOWERS OF AN UPDATE
 
   def store_has_updated_ftp(follower, store)

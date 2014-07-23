@@ -30,6 +30,10 @@ class StoreItemReviewsController < ApplicationController
 			if @store_item_review.save
 				# flash[:notice] = "Thank you for submitting your review."
 				# redirect_to store_path(@store_item.store)
+
+				# notify store owner about the new review
+				UserMailer.delay.store_has_new_item_review(@store_item_review)
+
 				return format.js {}
 			else 
 				messagearray = @store_item_review.errors.full_messages
