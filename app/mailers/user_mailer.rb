@@ -38,7 +38,7 @@ class UserMailer < ActionMailer::Base
   # NOTIFY STORE OWNERS OF NEW REVIEWS
 
   def store_has_new_review(review)
-	subject = "#{review.user.username} wrote a new review about #{review.store}"
+	subject = "#{review.user.username} wrote a new review about #{review.store.name}"
   	@review = review
   	
   	# switch this once we go live
