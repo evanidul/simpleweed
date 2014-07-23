@@ -15,6 +15,14 @@ class UserMailer < ActionMailer::Base
   	mail(:to => notify.email, :subject => subject)
   end
 
+  # NOTIFY STORE FOLLOWERS OF AN UPDATE
+  def store_has_updated_ftp(follower, store)
+  	subject = "#{store.name} has updated first time patient deals"
+  	@follower = follower
+  	@store = store
+  	mail(:to => follower.email, :subject => subject)
+  end
+
   # COMMENTS
 
   def user_commented_on_store_review(commenter, review)

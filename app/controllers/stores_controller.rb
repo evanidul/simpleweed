@@ -119,6 +119,13 @@ class StoresController < ApplicationController
 	    if @store.update(params[:store].permit(:firsttimepatientdeals))
 			@store.create_activity key: 'store.update_ftp'
 			redirect_to store_path(@store)
+
+			# send email notifications to store followers
+			following_users = @store.followers(User)
+			following_users.each do |user|
+				UserMailer.delay.store_has_updated_ftp(user, @store)
+			end	
+
 		else
 			redirect_to edit_firsttimepatientdeals_store_path(@store)
 		end
