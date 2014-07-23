@@ -23,6 +23,13 @@ class UserMailer < ActionMailer::Base
   	mail(:to => follower.email, :subject => subject)
   end
 
+  def store_has_updated_dailyspecials(follower, store)
+  	subject = "#{store.name} has updated daily specials"
+  	@follower = follower
+  	@store = store
+  	mail(:to => follower.email, :subject => subject)
+  end
+
   # COMMENTS
 
   def user_commented_on_store_review(commenter, review)

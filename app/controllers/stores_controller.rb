@@ -120,8 +120,8 @@ class StoresController < ApplicationController
 			@store.create_activity key: 'store.update_ftp'
 			redirect_to store_path(@store)
 
-			# send email notifications to store followers
-			following_users = @store.followers(User)
+			# send email notifications to store followers			
+			following_users = @store.followers(User)			
 			following_users.each do |user|
 				UserMailer.delay.store_has_updated_ftp(user, @store)
 			end	
@@ -142,6 +142,13 @@ class StoresController < ApplicationController
 			:dailyspecialswednesday, :dailyspecialsthursday, :dailyspecialsfriday, :dailyspecialssaturday, :dailyspecialssunday))
 			
 	    	@store.create_activity key: 'store.update_dailyspecials'
+
+			# send email notifications to store followers
+			following_users = @store.followers(User)
+			following_users.each do |user|
+				UserMailer.delay.store_has_updated_dailyspecials(user, @store)
+			end	
+
 			redirect_to store_path(@store)
 		else
 			redirect_to edit_dailyspecials_store_path(@store)
