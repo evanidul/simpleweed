@@ -218,7 +218,9 @@
 			<table class = "item-review-display-and-comment-vote-controls">
 				<tr>
 					<td>				
-						<span class="glyphicon glyphicon-user user-pic-feed-item"></span>
+						<span class="feed-item-icon-container">
+							<%= render partial: 'profile/profile_image', locals: {user: top_review.user} %>
+						</span>
 					</td>
 					<td>				
 						<%= link_to top_review.user.username , activity_profile_path(top_review.user), :class => 'user-link', 'data-no-turbolink' => true %>						

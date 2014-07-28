@@ -1,0 +1,9 @@
+<% if user.avatar_url.blank? %>	
+	<%= link_to activity_profile_path(user)  do %>
+		<span class="glyphicon glyphicon-user user-pic"></span>		    			
+	<% end %>	
+<% else %>
+	<%= link_to activity_profile_path(user)  do %>
+		<img class="user-pic" width="40px" height="40px" src = "http:<%= user.avatar_url %>"></img>
+	<% end %>		
+<% end %>

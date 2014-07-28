@@ -6,7 +6,9 @@
 <table class="feed-item-table">
 	<tr>
 		<td class = "feed-item-avatar" valign = "top">
-			<span class="glyphicon glyphicon-user user-pic-feed-item"></span>
+			<span class="feed-item-icon-container">
+				<%= render partial: 'profile/profile_image', locals: {user: activity.trackable.user} %>
+			</span>
 		</td>
 		<td class="feed-item-title-and-body">
 			<div class="item-feed-title">				
