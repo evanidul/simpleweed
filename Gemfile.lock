@@ -54,6 +54,10 @@ GEM
       tzinfo (~> 0.3.37)
     addressable (2.3.6)
     arel (4.0.2)
+    aws-sdk (1.27.0)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
+      uuidtools (~> 2.1)
     bcrypt (3.1.7)
     bootstrap-sass (3.0.3.0)
       sass (~> 3.2)
@@ -247,6 +251,7 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    uuidtools (2.1.4)
     warden (1.2.3)
       rack (>= 1.0)
     websocket (1.0.7)
@@ -259,6 +264,7 @@ PLATFORMS
 DEPENDENCIES
   action_mailer_cache_delivery
   activerecord-session_store!
+  aws-sdk
   bootstrap-sass (~> 3.0.3.0)
   cancancan (~> 1.7)
   capybara

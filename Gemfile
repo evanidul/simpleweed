@@ -75,6 +75,9 @@ gem 'make_flaggable', :git => 'https://github.com/medihack/make_flaggable.git'
 # delayed jobs allows you to send mail asynchronously
 gem 'delayed_job_active_record'
 
+# amazon sdk for s3 file/photo uploads
+gem 'aws-sdk'
+
 group :development, :test do
   # automated testing
   gem 'rspec-rails', '~> 3.0.0.beta'

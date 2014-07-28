@@ -25,6 +25,8 @@ Smellyleaf::Application.routes.draw do
       get "followingitems"
       post "unfollow"
       get "myreviews"
+      get "edit_photo"
+      put "update_photo"
     end
   end
 

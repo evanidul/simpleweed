@@ -168,6 +168,24 @@ class ProfileController < ApplicationController
 		@following_store_items = @profile_user.followees(StoreItem)
 	end
 
+	def edit_photo
+		
+		@s3_direct_post = S3_BUCKET.presigned_post(key: "uploads/users/avatars/#{SecureRandom.uuid}/${filename}", success_action_status: 201, acl: :public_read)
+
+		render layout: false
+	end
+
+	def update_photo
+		@user = current_user
+	    if @user.update(params[:user].permit(:avatar_url))
+			redirect_to feed_profile_path(@user)
+		else
+			# error notice?
+			redirect_to feed_profile_path(@user)
+		end
+
+	end
+
 private
     def load_profile_user
       	@profile_owner_id = params[:id].to_i
@@ -182,7 +200,6 @@ private
 			@user_is_viewing_own_profile = true;
 		end
     end
-
 
 end
 
