@@ -4,7 +4,7 @@
           <h4 class="modal-title" id="myModalLabel"><%= @profile_user.username %>'s photo</h4>          
         </div>
         <div class="modal-body">
-
+          
             <% if @profile_user.avatar_url.blank? %>
             <!-- dvu: this should depend on if you are the profile user or looking at someone else -->
               <span class="glyphicon glyphicon-user user-pic-large"></span>           
@@ -14,36 +14,49 @@
             <% end %>
 
             <% if @user_is_viewing_own_profile == true %>
-            <div class="user-photo-upload-form">
-              <%= form_for :user, url: update_photo_profile_path, method: "put", html: { class: "directUpload" } do |f| %>
-                <p class = "form-group">
-                  <%= f.label :avatar_url,  "set a new photo"  %><br>
-                  <%= f.file_field :avatar_url %>
-                </p>             
-                             
-                <p class = "form-group pull-right">              	
-                  <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
-                  <%= f.submit :class => 'btn btn-primary lowercase' , :id => 'save_user_photo_button'%>
-                </p>
+              
+                <%= form_for :user, url: update_photo_profile_path, method: "put", html: { class: "directUpload" } do |f| %>
+                  <p class = "form-group">
+                    
+                    <div id = "upload-user-avatar">
+                      <div class="file-upload-wrapper">
+                        <%= f.file_field :avatar_url %>
+                      </div>
+                      <button type="button" id="file-upload-button" class="btn btn-warning btn-xs">upload image</button>
+                    </div>
+                  </p>             
+              
+                         
+            <p class = "form-group pull-right">              	
+              <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+              <%= f.submit "save photo" , :class => 'btn btn-primary lowercase' , :id => 'save_user_photo_button'%>
+            </p>
               <% end %>
-            </div>
+            <% else %>
+              <p class = "form-group pull-right">               
+                <button style="margin-top:70px;" type="button" class="btn btn-default" data-dismiss="modal">close</button>                
+              </p>
             <% end %>
 
+
             <div class="simple-weed-modal-footer">
-            </div>
+            
           </div><!-- modal-footer -->
-      </div> <!-- modal-content -->
-</div>    
+      </div> <!-- modal-body -->
+  </div>    <!-- modal-content -->
+<!-- modal- dialog -->
 
 <script>
 $(function() {
   $('.directUpload').find("input:file").each(function(i, elem) {
-    var fileInput    = $(elem);
+    var fileInput    = $(elem);    
+    var fileUploadButton = $("#file-upload-button")
     var form         = $(fileInput.parents('form:first'));
-    var submitButton = form.find('input[type="submit"]');
+    var submitButton = $("#save_user_photo_button");
     var progressBar  = $("<div class='bar'></div>");
-    var barContainer = $("<div class='progress'></div>").append(progressBar);
-    fileInput.after(barContainer);
+    var barContainer = $("<div class='sw-progress'></div>").append(progressBar);
+    //fileInput.after(barContainer);
+    fileUploadButton.after(barContainer)
     fileInput.fileupload({
       fileInput:       fileInput,
       url:             '<%= @s3_direct_post.url %>',
@@ -53,6 +66,7 @@ $(function() {
       paramName:        'file', // S3 does not like nested name fields i.e. name="user[avatar_url]"
       dataType:         'XML',  // S3 returns XML if success_action_status is set to 201
       replaceFileInput: false,
+
       progressall: function (e, data) {
         var progress = parseInt(data.loaded / data.total * 100, 10);
         progressBar.css('width', progress + '%')
@@ -64,11 +78,11 @@ $(function() {
           css('background', 'green').
           css('display', 'block').
           css('width', '0%').
-          text("Loading...");
+          text("uploading...");
       },
       done: function(e, data) {
         submitButton.prop('disabled', false);
-        progressBar.text("Uploading done");
+        progressBar.text("uploading done");
 
         // extract key and generate URL from response
         var key   = $(data.jqXHR.responseXML).find("Key").text();
@@ -83,7 +97,7 @@ $(function() {
 
         progressBar.
           css("background", "red").
-          text("Failed");
+          text("failed");
       }
     });
   });

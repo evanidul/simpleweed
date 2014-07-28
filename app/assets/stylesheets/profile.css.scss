@@ -39,7 +39,25 @@
 .user-photo-upload-form {
 	
 	float:right;
+	margin-bottom: 40px;
 }
+
+#upload-user-avatar {
+    position: relative;
+}
+
+#upload-user-avatar .file-upload-wrapper {
+    opacity: 0;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    z-index: 2;
+}
+
+.user-pic-and-upload-form {
+	height: 150px;
+}
+
 
 .activity {
 	
