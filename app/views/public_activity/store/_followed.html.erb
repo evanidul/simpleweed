@@ -3,7 +3,9 @@
 	<table class="feed-item-table">
 		<tr>
 			<td valign = "top">
-				<span class="feed-item-glyphicon glyphicon glyphicon-bullhorn"></span>
+				<span class="feed-item-icon-container">
+					<%= render partial: 'profile/profile_image', locals: {user: activity.owner} %>
+				</span>
 			</td>
 			<td class="feed-item-title-and-body">
 				<span class="item-feed-title">
