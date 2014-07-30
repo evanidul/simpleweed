@@ -10,6 +10,7 @@ class StoreItemsController < ApplicationController
 	def new
 		# @storeitem = StoreItem.new
 		@store_item = @store.store_items.build		
+		@s3_direct_post = S3_BUCKET.presigned_post(key: "uploads/stores/#{@store.id}/items/#{@store_item.id}/#{SecureRandom.uuid}/${filename}", success_action_status: 201, acl: :public_read)
 		render layout: false		
 	end
 
