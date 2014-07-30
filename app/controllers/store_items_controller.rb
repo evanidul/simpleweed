@@ -45,6 +45,7 @@ class StoreItemsController < ApplicationController
 
 	def edit		
 	  	@store_item = StoreItem.find(params[:id])
+ 		@s3_direct_post = S3_BUCKET.presigned_post(key: "uploads/stores/#{@store.id}/items/#{@store_item.id}/#{SecureRandom.uuid}/${filename}", success_action_status: 201, acl: :public_read)
 	  	render layout: false
 	end
 
@@ -105,7 +106,7 @@ private
 	def store_item_params
 		params.require(:store_item).permit(:name, :store_id, :description, :thc, :cbd, :cbn, :costhalfgram, :costonegram, :costeighthoz, :costquarteroz,
 			:costhalfoz, :costoneoz, :costperunit, :dogo, :strain, :maincategory, :subcategory, :cultivation,
-			:privatereserve, :topshelf, :supersize, :glutenfree, :sugarfree, :organic, :dose, :og, :kush, :haze, :storetab, :promo)		
+			:privatereserve, :topshelf, :supersize, :glutenfree, :sugarfree, :organic, :dose, :og, :kush, :haze, :storetab, :promo, :image_url)		
 	end		
 
 end

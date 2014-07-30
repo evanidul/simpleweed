@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140728053525) do
+ActiveRecord::Schema.define(version: 20140730024245) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -241,6 +241,7 @@ ActiveRecord::Schema.define(version: 20140728053525) do
     t.boolean  "haze"
     t.text     "promo"
     t.integer  "syncid"
+    t.string   "image_url"
   end
 
   add_index "store_items", ["store_id"], name: "index_store_items_on_store_id", using: :btree
