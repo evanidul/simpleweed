@@ -74,6 +74,8 @@ class StoreItem < ActiveRecord::Base
 
 	    text   :promo, :stored => true
 
+	    string :image_url, :stored => true
+
 	    integer :store_id, :stored => true
 	    string(:store_id_str) { |p| p.store.id.to_s }
 	    
