@@ -4,15 +4,15 @@
           <h4 class="modal-title" id="myModalLabel"><%= @profile_user.username %>'s photo</h4>          
         </div>
         <div class="modal-body">
-          
+            <div class="avatar-container">
             <% if @profile_user.avatar_url.blank? %>
             <!-- dvu: this should depend on if you are the profile user or looking at someone else -->
               <span class="glyphicon glyphicon-user user-pic-large"></span>           
             
             <% else %>          
-                <img class="user-pic-large" width="40px" height="40px" src = "http:<%= @profile_user.avatar_url %>"></img>            
+                <img class="user-pic-large-borderless" width="40px" height="40px" src = "http:<%= @profile_user.avatar_url %>"></img>            
             <% end %>
-
+            </div>
             <% if @user_is_viewing_own_profile == true %>
               
                 <%= form_for :user, url: update_photo_profile_path, method: "put", html: { class: "directUpload" } do |f| %>
@@ -91,6 +91,16 @@ $(function() {
         // create hidden field
         var input = $("<input />", { type:'hidden', name: fileInput.attr('name'), value: url })
         form.append(input);
+
+        //dvu: change the pic to the uploaded one
+        var currentImage = $(".avatar-container");        
+        var newImage = $('<div/>', {'class': 'avatar-container'}).append(
+          jQuery('<img/>', {        
+          src: 'http:' + url,
+          class: 'user-pic-large-borderless'
+          })
+        );
+        currentImage.replaceWith(newImage);
       },
       fail: function(e, data) {
         submitButton.prop('disabled', false);
