@@ -263,6 +263,17 @@ $(function() {
         // create hidden field
         var input = $("<input />", { type:'hidden', name: fileInput.attr('name'), value: url })
         form.append(input);
+
+        //dvu: change the pic to the uploaded one
+        var currentImage = $(".item-image-menu-edit");        
+        var newImage = $('<div/>', {'class': 'item-image-menu-edit'}).append(
+	        jQuery('<img/>', {		    
+			    src: 'http:' + url,
+			    class: 'user-pic-large-borderless'
+			})
+	    );
+	    currentImage.replaceWith(newImage);
+
       },
       fail: function(e, data) {
         submitButton.prop('disabled', false);
