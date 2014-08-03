@@ -1,7 +1,15 @@
-<h4 class="item-pop-up-store-name">
-		<!-- dvu: we don't use link_to because the link name is too complicated to embed -->  	
-  	<a href="<%= store_path(@store.id)%>" data-no-turbolink='true' > <%= @store.name %></a>
-</h4>
+<table>
+	<tr>
+		<td class="item-img-td">
+			<%= render partial: 'stores/store_image', locals: {store: @store} %>
+		</td>
+		<td>
+			<h4 class="item-pop-up-store-name">
+				<a href="<%= store_path(@store.id)%>" data-no-turbolink='true' > <%= @store.name %></a>
+			</h4>
+		</td>
+	</tr>
+</table>  	
 <div class="item-pop-up-store-promo">
 <%= @store_item.store.promo %>
 </div>

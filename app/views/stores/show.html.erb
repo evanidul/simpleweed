@@ -29,7 +29,7 @@
 					<% if @store.avatar_url.blank? %>
 						<!-- dvu: this should depend on if you are the profile user or looking at someone else -->
 						<%= link_to edit_photo_store_path(@store), data: { toggle: "modal", target: "#modal", remote: edit_photo_store_path(@store)} , id: "edit-store-photo-link",  class: "btn edit-store-photo-link" do %>
-							<span class="glyphicon glyphicon-leaf user-pic"></span>    				
+							<span class="glyphicon glyphicon-tree-deciduous user-pic"></span>    				
 						<% end %>	
 						<% else %>
 							<%= link_to edit_photo_store_path(@store), data: { toggle: "modal", target: "#modal", remote: edit_photo_store_path(@store)} , id: "edit-store-photo-link",  class: "btn edit-store-photo-link" do %>

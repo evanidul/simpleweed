@@ -7,7 +7,7 @@
             <div class="avatar-container">
             <% if @store.avatar_url.blank? %>
             <!-- dvu: this should depend on if you are the profile user or looking at someone else -->
-              <span class="glyphicon glyphicon-leaf user-pic-large"></span>           
+              <span class="glyphicon glyphicon-tree-deciduous user-pic-large"></span>           
             
             <% else %>          
                 <img class="user-pic-large-borderless" width="40px" height="40px" src = "http:<%= @store.avatar_url %>"></img>            
@@ -34,7 +34,7 @@
               <% end %>
             <% else %>
               <p class = "form-group pull-right">               
-                <button style="margin-top:70px;" type="button" class="btn btn-default" data-dismiss="modal">close</button>                
+                <button style="margin-top:0px;" type="button" class="btn btn-default" data-dismiss="modal">close</button>                
               </p>
             <% end %>
 
