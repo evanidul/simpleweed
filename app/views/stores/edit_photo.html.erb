@@ -1,0 +1,117 @@
+ <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel"><%= @store.name %>'s photo</h4>          
+        </div>
+        <div class="modal-body">
+            <div class="avatar-container">
+            <% if @store.avatar_url.blank? %>
+            <!-- dvu: this should depend on if you are the profile user or looking at someone else -->
+              <span class="glyphicon glyphicon-leaf user-pic-large"></span>           
+            
+            <% else %>          
+                <img class="user-pic-large-borderless" width="40px" height="40px" src = "http:<%= @store.avatar_url %>"></img>            
+            <% end %>
+            </div>
+            <% if @role_service.canManageStore(current_user, @store) %>
+              
+                <%= form_for :store, url: update_photo_store_path, method: "put", html: { class: "directUpload" } do |f| %>
+                  <p class = "form-group">
+                    
+                    <div id = "upload-user-avatar">
+                      <div class="file-upload-wrapper">
+                        <%= f.file_field :avatar_url %>
+                      </div>
+                      <button type="button" id="file-upload-button" class="btn btn-warning btn-xs">upload image</button>
+                    </div>
+                  </p>             
+              
+                         
+            <p class = "form-group pull-right">              	
+              <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+              <%= f.submit "save photo" , :class => 'btn btn-primary lowercase' , :id => 'save_store_photo_button'%>
+            </p>
+              <% end %>
+            <% else %>
+              <p class = "form-group pull-right">               
+                <button style="margin-top:70px;" type="button" class="btn btn-default" data-dismiss="modal">close</button>                
+              </p>
+            <% end %>
+
+
+            <div class="simple-weed-modal-footer">
+            
+          </div><!-- modal-footer -->
+      </div> <!-- modal-body -->
+  </div>    <!-- modal-content -->
+<!-- modal- dialog -->
+
+<script>
+$(function() {
+  $('.directUpload').find("input:file").each(function(i, elem) {
+    var fileInput    = $(elem);    
+    var fileUploadButton = $("#file-upload-button")
+    var form         = $(fileInput.parents('form:first'));
+    var submitButton = $("#save_store_photo_button");
+    var progressBar  = $("<div class='bar'></div>");
+    var barContainer = $("<div class='sw-progress'></div>").append(progressBar);
+    //fileInput.after(barContainer);
+    fileUploadButton.after(barContainer)
+    fileInput.fileupload({
+      fileInput:       fileInput,
+      url:             '<%= @s3_direct_post.url %>',
+      type:            'POST',
+      autoUpload:       true,
+      formData:         <%= @s3_direct_post.fields.to_json.html_safe %>,
+      paramName:        'file', // S3 does not like nested name fields i.e. name="user[avatar_url]"
+      dataType:         'XML',  // S3 returns XML if success_action_status is set to 201
+      replaceFileInput: false,
+
+      progressall: function (e, data) {
+        var progress = parseInt(data.loaded / data.total * 100, 10);
+        progressBar.css('width', progress + '%')
+      },
+      start: function (e) {
+        submitButton.prop('disabled', true);
+
+        progressBar.
+          css('background', 'green').
+          css('display', 'block').
+          css('width', '0%').
+          text("uploading...");
+      },
+      done: function(e, data) {
+        submitButton.prop('disabled', false);
+        progressBar.text("uploading done");
+
+        // extract key and generate URL from response
+        var key   = $(data.jqXHR.responseXML).find("Key").text();
+        var url   = '//<%= @s3_direct_post.url.host %>/' + key;
+
+        // create hidden field
+        var input = $("<input />", { type:'hidden', name: fileInput.attr('name'), value: url })
+        form.append(input);
+
+        //dvu: change the pic to the uploaded one
+        var currentImage = $(".avatar-container");        
+        var newImage = $('<div/>', {'class': 'avatar-container'}).append(
+          jQuery('<img/>', {        
+          src: 'http:' + url,
+          class: 'user-pic-large-borderless'
+          })
+        );
+        currentImage.replaceWith(newImage);
+      },
+      fail: function(e, data) {
+        submitButton.prop('disabled', false);
+
+        progressBar.
+          css("background", "red").
+          text("failed");
+      }
+    });
+  });
+});
+
+
+</script>

@@ -83,6 +83,8 @@ Smellyleaf::Application.routes.draw do
       post 'unfollow'
       get 'edit_promo'
       put 'update_promo'
+      get "edit_photo"
+      put "update_photo"
 
     end
     resources :store_items do 

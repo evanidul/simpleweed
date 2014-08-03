@@ -23,15 +23,32 @@
 <div class="row">
 	<!-- left, main section -->
     <div class="col-md-8">		
-		
-		<h1 id="name"><%= @store.name %> 
-			<small><%= @store.promo %></small>
-			<% if @role_service.canManageStore(current_user, @store) %>					
-				<%= link_to edit_promo_store_path(@store), data: { toggle: "modal", target: "#modal", remote: edit_promo_store_path(@store)} , id: "edit-promo-link",  class: "btn edit-store-link" do %>
-					<span class="glyphicon glyphicon-edit"></span>
-				<% end %>
-			<% end %>  		
-		</h1>
+    	<table>
+    		<tr>
+    			<td>
+					<% if @store.avatar_url.blank? %>
+						<!-- dvu: this should depend on if you are the profile user or looking at someone else -->
+						<%= link_to edit_photo_store_path(@store), data: { toggle: "modal", target: "#modal", remote: edit_photo_store_path(@store)} , id: "edit-store-photo-link",  class: "btn edit-store-photo-link" do %>
+							<span class="glyphicon glyphicon-leaf user-pic"></span>    				
+						<% end %>	
+						<% else %>
+							<%= link_to edit_photo_store_path(@store), data: { toggle: "modal", target: "#modal", remote: edit_photo_store_path(@store)} , id: "edit-store-photo-link",  class: "btn edit-store-photo-link" do %>
+								<img class="user-pic-borderless" width="40px" height="40px" src = "http:<%= @store.avatar_url %>"></img>
+							<% end %>					
+					<% end %>	
+				</td>
+				<td class="store-name-and-edit">
+					<h1 id="name"><%= @store.name %> 
+						<small><%= @store.promo %></small>
+						<% if @role_service.canManageStore(current_user, @store) %>					
+							<%= link_to edit_promo_store_path(@store), data: { toggle: "modal", target: "#modal", remote: edit_promo_store_path(@store)} , id: "edit-promo-link",  class: "btn edit-store-link" do %>
+								<span class="glyphicon glyphicon-edit"></span>
+							<% end %>
+						<% end %>  		
+					</h1>
+				</td>
+			</tr>
+		</table>
 
   		<div id="review-controls">
 			<!-- pro coding right here -->

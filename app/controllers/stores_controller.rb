@@ -1,5 +1,7 @@
 class StoresController < ApplicationController
 
+	before_filter :load_store
+
 	def index
 		if params[:search]
       		#@stores = Store.find(:all, :limit => 5).reverse
@@ -20,7 +22,7 @@ class StoresController < ApplicationController
 	end
 
 	# called from /admin/stores, so send it back to that controller
-	def create
+	def create		
 		@store = Store.new(store_params)
 		@store.save
 		# redirect_to :action => 'index' 
@@ -29,7 +31,6 @@ class StoresController < ApplicationController
 	end
 
 	def show
-		@store = Store.find(params[:id])
 
 		if(@store.latitude && @store.longitude)
 			@timezone = TZWhere.lookup(@store.latitude, @store.longitude)
@@ -59,9 +60,24 @@ class StoresController < ApplicationController
 		
 	end
 
+	def edit_photo
+		@s3_direct_post = S3_BUCKET.presigned_post(key: "uploads/stores/#{@store.id}/avatar/#{SecureRandom.uuid}/${filename}", success_action_status: 201, acl: :public_read)
+		@role_service = Simpleweed::Security::Roleservice.new
+		render layout: false
+	end
+
+	def update_photo		
+	    if @store.update(params[:store].permit(:avatar_url))
+			redirect_to store_path(@store)
+		else
+			# error notice?
+			redirect_to store_path(@store)
+		end
+
+	end
+
 	#dvu: dead code?  Think we've killed the store browser view...
-	def store_preview
-		@store = Store.find(params[:id])
+	def store_preview		
 		@tds = Simpleweed::Timedateutil::Timedateservice.new
 		@store_items = @store.store_items.order('name ASC')
 		@grouped_store_items = @store_items.group_by &:category
@@ -69,8 +85,7 @@ class StoresController < ApplicationController
 		render :layout => false
 	end
 
-	def update
-	  @store = Store.find(params[:id])
+	def update	  
 	 
 	  if @store.update(params[:store].permit(:name,:addressline1, :addressline2, :city, :state, :zip, :phonenumber, :dailyspecialsmonday, :dailyspecialstuesday,
 			:dailyspecialswednesday, :dailyspecialsthursday, :dailyspecialsfriday, :dailyspecialssaturday, :dailyspecialssunday,
@@ -83,8 +98,7 @@ class StoresController < ApplicationController
 	  end
 	end
 
-	def destroy
-	  @store = Store.find(params[:id])
+	def destroy	  
 	  @store.destroy
 	 
 	  redirect_to stores_path
@@ -94,13 +108,11 @@ class StoresController < ApplicationController
 	## Store Edit Endpoints
 	##
 	def edit_description
-		#authorize! :manage, Store
-		@store = Store.find(params[:id])
+		#authorize! :manage, Store		
 		render layout: false		
 	end
 
-	def update_description		
-		@store = Store.find(params[:id])
+	def update_description				
 	    if @store.update(params[:store].permit(:description))
 			@store.create_activity key: 'store.update_description'
 			redirect_to store_path(@store)
@@ -109,13 +121,11 @@ class StoresController < ApplicationController
 		end	
 	end
 
-	def edit_firsttimepatientdeals
-		@store = Store.find(params[:id])
+	def edit_firsttimepatientdeals		
 		render layout: false		
 	end
 
-	def update_firsttimepatientdeals
-		@store = Store.find(params[:id])
+	def update_firsttimepatientdeals		
 	    if @store.update(params[:store].permit(:firsttimepatientdeals))
 			@store.create_activity key: 'store.update_ftp'
 			redirect_to store_path(@store)
@@ -131,13 +141,11 @@ class StoresController < ApplicationController
 		end
 	end
 
-	def edit_dailyspecials
-		@store = Store.find(params[:id])
+	def edit_dailyspecials		
 		render layout: false		
 	end
 
-	def update_dailyspecials
-		@store = Store.find(params[:id])
+	def update_dailyspecials		
 	    if @store.update(params[:store].permit(:dailyspecialsmonday, :dailyspecialstuesday,
 			:dailyspecialswednesday, :dailyspecialsthursday, :dailyspecialsfriday, :dailyspecialssaturday, :dailyspecialssunday))
 			
@@ -155,13 +163,11 @@ class StoresController < ApplicationController
 		end
 	end
 
-	def edit_contact
-		@store = Store.find(params[:id])
+	def edit_contact		
 		render layout: false		
 	end
 
-	def update_contact
-		@store = Store.find(params[:id])
+	def update_contact		
 	    if @store.update(params[:store].permit(:addressline1, :addressline2, :city, :state, :zip, :phonenumber, :email, :website,
 	    	:facebook, :twitter, :instagram ))
 	    	@store.create_activity key: 'store.update_contact'
@@ -171,13 +177,11 @@ class StoresController < ApplicationController
 		end
 	end
 
-	def edit_features
-		@store = Store.find(params[:id])
+	def edit_features		
 		render layout: false		
 	end
 
-	def update_features
-		@store = Store.find(params[:id])
+	def update_features		
 	    if @store.update(params[:store].permit(:acceptscreditcards, :atmaccess, :automaticdispensingmachines, :deliveryservice, :handicapaccess,
 			:loungearea, :petfriendly, :securityguard, :labtested, :eighteenplus, :twentyoneplus, :hasphotos, :onsitetesting ))
 			redirect_to store_path(@store)
@@ -186,13 +190,11 @@ class StoresController < ApplicationController
 		end
 	end
 
-	def edit_announcement
-		@store = Store.find(params[:id])
+	def edit_announcement		
 		render layout: false		
 	end
 
-	def update_announcement
-		@store = Store.find(params[:id])
+	def update_announcement		
 	    if @store.update(params[:store].permit(:announcement))
 			@store.create_activity key: 'store.update_announcement'
 			redirect_to store_path(@store)			
@@ -201,13 +203,11 @@ class StoresController < ApplicationController
 		end
 	end
 
-	def edit_promo
-		@store = Store.find(params[:id])
+	def edit_promo		
 		render layout: false		
 	end
 
-	def update_promo
-		@store = Store.find(params[:id])
+	def update_promo		
 	    if @store.update(params[:store].permit(:promo))
 			@store.create_activity key: 'store.update_promo'
 			redirect_to store_path(@store)			
@@ -216,13 +216,11 @@ class StoresController < ApplicationController
 		end
 	end
 
-	def edit_deliveryarea
-		@store = Store.find(params[:id])
+	def edit_deliveryarea		
 		render layout: false		
 	end
 
-	def update_deliveryarea
-		@store = Store.find(params[:id])
+	def update_deliveryarea		
 	    if @store.update(params[:store].permit(:deliveryarea))
 			redirect_to store_path(@store)
 		else
@@ -230,13 +228,11 @@ class StoresController < ApplicationController
 		end
 	end
 
-	def edit_hours
-		@store = Store.find(params[:id])
+	def edit_hours		
 		render layout: false		
 	end
 
-	def update_hours
-		@store = Store.find(params[:id])
+	def update_hours		
 	    
 	    first = @store.update(params[:date].permit(:storehourssundayopenhour, :storehourssundayopenminute, :storehourssundayclosehour, :storehourssundaycloseminute,
 			:storehoursmondayopenhour, :storehoursmondayopenminute, :storehoursmondayclosehour, :storehoursmondaycloseminute,
@@ -258,13 +254,11 @@ class StoresController < ApplicationController
 	end
 
 	def show_claim
-		authenticate_user!("You must sign in as the user who's email appears on that store's page inorder to claim this store")
-		@store = Store.find(params[:id])
+		authenticate_user!("You must sign in as the user who's email appears on that store's page inorder to claim this store")		
 	end
 
 	def update_claim
-		authenticate_user!("You must sign in as the user who's email appears on that store's page inorder to claim this store")
-		@store = Store.find(params[:id])
+		authenticate_user!("You must sign in as the user who's email appears on that store's page inorder to claim this store")		
 		role_service = Simpleweed::Security::Roleservice.new
 
 		# add store - owner role to logged in user
@@ -285,8 +279,7 @@ class StoresController < ApplicationController
 		end	
 	end
 
-	def follow
-		@store = Store.find(params[:id])
+	def follow		
 		
 		if current_user.follow!(@store)
 			@store.create_activity key: 'store.followed', owner: current_user
@@ -300,8 +293,7 @@ class StoresController < ApplicationController
 		end
 	end
 
-	def unfollow
-		@store = Store.find(params[:id])
+	def unfollow		
 
 		current_user.unfollow!(@store)
 
@@ -310,6 +302,14 @@ class StoresController < ApplicationController
 		end
 
 	end
+
+	private
+    def load_store      
+      id = params[:id]      
+      if !id.nil?
+      	@store = Store.find(params[:id])
+      end
+    end
 
 	# create may only take a name in the future.  Anyway, we may be able to get rid of this block..
 	private 
