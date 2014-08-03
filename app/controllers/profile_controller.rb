@@ -169,8 +169,8 @@ class ProfileController < ApplicationController
 	end
 
 	def edit_photo
-		
-		@s3_direct_post = S3_BUCKET.presigned_post(key: "uploads/users/avatars/#{SecureRandom.uuid}/${filename}", success_action_status: 201, acl: :public_read)
+		@user = current_user
+		@s3_direct_post = S3_BUCKET.presigned_post(key: "uploads/users/#{@user.id}/avatars/#{SecureRandom.uuid}/${filename}", success_action_status: 201, acl: :public_read)
 
 		render layout: false
 	end
