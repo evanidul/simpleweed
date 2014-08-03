@@ -1,5 +1,9 @@
 <% if store.avatar_url.blank? %>	
-	<span class="glyphicon glyphicon-tree-deciduous user-pic"></span>		    				
+	<%= link_to store_path(store)  do %>
+		<span class="glyphicon glyphicon-tree-deciduous user-pic"></span>		    				
+	<% end %>
 <% else %>	
-	<img class="user-pic-borderless" width="40px" height="40px" src = "http:<%= store.avatar_url %>"></img>	
+	<%= link_to store_path(store)  do %>
+		<img class="user-pic-borderless" width="40px" height="40px" src = "http:<%= store.avatar_url %>"></img>	
+	<% end %>
 <% end %>
