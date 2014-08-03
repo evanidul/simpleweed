@@ -5,5 +5,8 @@ AWS.config(access_key_id:     'AKIAIZ7ULV6XKP6MJ2NA',
            secret_access_key: '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' )
 
 
-
-S3_BUCKET = AWS::S3.new.buckets['simpleweed-development']
+if Rails.env == 'production'
+	S3_BUCKET = AWS::S3.new.buckets['simpleweed-development']
+else	
+	S3_BUCKET = AWS::S3.new.buckets['simpleweed-development']
+end
