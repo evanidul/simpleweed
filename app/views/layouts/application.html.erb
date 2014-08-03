@@ -3,14 +3,15 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for?(:title) ? yield(:title) : "simpleweed" %></title>
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "simpleweed" %>">
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "simpleweed" %>">    
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
     <!-- FONTAWESOME -->
     <!-- <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"> -->
-    
-  <%= yield :head %>
+    <!-- adds stripe js -->
+    <%= yield :koudoku %>     
+    <%= yield :head %>
   </head>
   <body>
     <!-- <header class="header"> -->

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140802235616) do
+ActiveRecord::Schema.define(version: 20140803090904) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,13 @@ ActiveRecord::Schema.define(version: 20140802235616) do
     t.integer  "failed_attempts",    default: 0
     t.string   "unlock_token"
     t.datetime "locked_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "coupons", force: true do |t|
+    t.string   "code"
+    t.string   "free_trial_length"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -151,6 +158,18 @@ ActiveRecord::Schema.define(version: 20140802235616) do
 
   add_index "mentions", ["mentionable_id", "mentionable_type"], name: "fk_mentionables", using: :btree
   add_index "mentions", ["mentioner_id", "mentioner_type"], name: "fk_mentions", using: :btree
+
+  create_table "plans", force: true do |t|
+    t.string   "name"
+    t.string   "stripe_id"
+    t.float    "price"
+    t.string   "interval"
+    t.text     "features"
+    t.boolean  "highlight"
+    t.integer  "display_order"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "roles", force: true do |t|
     t.string   "name"
@@ -361,6 +380,18 @@ ActiveRecord::Schema.define(version: 20140802235616) do
     t.integer  "syncid"
     t.text     "promo"
     t.string   "avatar_url"
+  end
+
+  create_table "subscriptions", force: true do |t|
+    t.string   "stripe_id"
+    t.integer  "plan_id"
+    t.string   "last_four"
+    t.integer  "coupon_id"
+    t.string   "card_type"
+    t.float    "current_price"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|

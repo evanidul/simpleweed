@@ -1,5 +1,13 @@
 Smellyleaf::Application.routes.draw do
 
+  # Added by Koudoku.
+  mount Koudoku::Engine, at: 'koudoku'
+  scope module: 'koudoku' do
+    get 'pricing' => 'subscriptions#index', as: 'pricing'
+  end
+
+
+
   devise_for :admins
   devise_for :users
   root 'welcome#index'

@@ -10,7 +10,9 @@
  *
  *= require_self
  *= require_tree .
+
  *= require bootstrap
+
  */
 
 #loading-indicator {
@@ -233,3 +235,120 @@
   color:   white;
   display: none;
 }
+
+
+/* line 1, /Users/evanidul/.rvm/gems/ruby-2.0.0-p353/gems/koudoku-0.0.11/app/assets/stylesheets/koudoku/pricing-table.scss */
+ul.koudoku-pricing-table {
+  position: relative;
+  margin: 20px 0;
+  margin-left: 25px;
+  list-style: none;
+}
+
+.koudoku-pricing-table .span3 {
+  width:19% !important;
+  float: left;
+  min-height: 1px;
+  margin-left: 20px;
+}
+
+ul.features {
+  padding: 0px !important;
+}
+
+ul.koudoku-pricing-table .thumbnail {
+  display: block;
+  padding: 4px;
+  line-height: 20px;
+  border: 1px solid #ddd;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.055);
+  -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.055);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.055);
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  background-color: rgb(247, 247, 247);
+  margin-bottom:0px !important;
+}
+
+ul.koudoku-pricing-table .plan-primary .thumbnail  {
+ background-color: white; 
+}
+
+ul.koudoku-pricing-table li.plan {
+  text-align: center;
+  background-color: #f5f5f5;
+  margin-top: 17px;
+  margin-left: 0;
+  position: relative;
+  z-index: 99;
+  display:inline;
+  width: 30%;
+}
+
+ul.koudoku-pricing-table li.plan.plan-primary {
+  background-color: #f9f9f9;
+  margin-top: 0px;
+  margin-left: -5px;
+  margin-right: -5px;
+  z-index: 100;
+}
+
+ul.koudoku-pricing-table li.plan.plan-primary h3 {
+  font-size: 32.5px;
+  line-height: 51px;
+}
+
+ul.koudoku-pricing-table li.plan.plan-primary h4 {
+  line-height: 22px;
+}
+
+ul.koudoku-pricing-table li.plan.plan-primary a, ul.koudoku-pricing-table li.plan.plan-primary input[type=submit] {
+  font-size: 21.5px;
+  line-height: 26px;
+}
+
+ul.koudoku-pricing-table li.plan.plan-primary ul.features {
+  margin-bottom: 12px;
+}
+
+ul.koudoku-pricing-table li.plan.plan-primary ul.features li {
+  font-size: 12pt;
+}
+
+ul.koudoku-pricing-table li.plan .call-to-action {
+  margin: 10px 0;
+}
+
+ul.koudoku-pricing-table li.plan .features {
+  margin: 0;
+}
+
+ul.koudoku-pricing-table li.plan .features li {
+  list-style: none;
+  padding: 8px;
+  line-height: 18px;
+  vertical-align: top;
+  border-top: 1px solid #dddddd;
+}
+
+ul.koudoku-pricing-table li.plan .features li:first-child {
+  border-top: none;
+}
+
+ul.koudoku-pricing-table .social-proof {
+  padding: 17px 0;
+}
+
+ul.koudoku-pricing-table .social-proof blockquote h2, ul.koudoku-pricing-table .social-proof blockquote h3, ul.koudoku-pricing-table .social-proof blockquote h4 {
+  padding: 5px 0;
+}
+
+.koudoku-social-proof-container {
+  width: 100%;
+}
+

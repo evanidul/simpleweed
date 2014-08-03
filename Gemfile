@@ -78,6 +78,9 @@ gem 'delayed_job_active_record'
 # amazon sdk for s3 file/photo uploads
 gem 'aws-sdk'
 
+# https://github.com/andrewculver/koudoku, stripe + subscription management
+gem 'koudoku'
+
 group :development, :test do
   # automated testing
   gem 'rspec-rails', '~> 3.0.0.beta'
