@@ -60,7 +60,7 @@
 }
 
 #upload-user-avatar {
-    position: relative;
+    position: relative;    
 }
 
 #upload-user-avatar .file-upload-wrapper {
@@ -68,13 +68,16 @@
     cursor: pointer;
     position: absolute;
     top: 0;
-    z-index: 2;
+    z-index: 2;    
 }
 
 .user-pic-and-upload-form {
 	height: 150px;
 }
 
+#file-upload-button {
+	margin-bottom:15px;
+}
 
 .activity {
 	

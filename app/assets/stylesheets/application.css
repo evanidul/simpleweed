@@ -224,17 +224,6 @@
   float:right;
 }
 
-.sw-progress {
-  max-width: 600px;
-  margin:    0.2em 0 0.2em 0;
-}
-
-.sw-progress .bar {
-  height:  1.5em;
-  padding: 0.2em;
-  color:   white;
-  display: none;
-}
 
 
 /* line 1, /Users/evanidul/.rvm/gems/ruby-2.0.0-p353/gems/koudoku-0.0.11/app/assets/stylesheets/koudoku/pricing-table.scss */
