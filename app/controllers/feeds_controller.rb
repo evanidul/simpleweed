@@ -24,6 +24,7 @@ class FeedsController < ApplicationController
 			return
 		end
 
+		# if not enough, fill from past week
 		@top_posts_from_this_week = []
 
 		@feeds.each do | feed | 		
@@ -38,6 +39,21 @@ class FeedsController < ApplicationController
 
 		@top_posts = @top_posts_from_this_week
 
+		# if not enough, fill from all
+		@top_posts_from_all = []
+
+		@feeds.each do | feed | 		
+			all_posts = feed.feed_posts			
+			most_popular_posts = all_posts.sort_by {|post| post.sum_votes}.reverse
+			
+			for i in 0..3
+				if most_popular_posts[i]
+					@top_posts_from_all << most_popular_posts[i]
+				end
+			end
+		end
+
+		@top_posts = @top_posts_from_all
 
 	end
 
