@@ -30,7 +30,7 @@
     <%= f.text_field :promo, :class => 'form-control'    %>
   </p>   
 
-  <%= f.select :strain ,[['indica','indica'],['sativa','sativa'],['hybrid','hybrid']], {include_blank: 'select strain'}, :required => true  %>
+  <%= f.select :strain ,[['indica','indica'],['sativa','sativa'],['hybrid','hybrid']], {include_blank: 'select strain'} %>
   
   <%= f.select :maincategory ,[['flower','flower'], ['concentrate','concentrate'], ['edible','edible'], ['pre-roll','pre-roll'], 
   								['other','other'], ['accessory','accessory']], {include_blank: 'select category' }, :required => true  %>
