@@ -10,6 +10,8 @@ require 'pages/search_results_stores'
 require 'pages/store_search_preview'
 require 'pages/registration'
 require 'pages/store_claim'
+require 'page_components/profile_nav'
+require 'pages/profile_myreviews'
 
 feature "review a store" , :js => true, :search =>true do
 
@@ -73,7 +75,7 @@ feature "review a store" , :js => true, :search =>true do
     	expect(store_page.first_write_review_tooltip.text).to have_text("Be the first")
 	end
 
-	scenario "review a star with default 1 star" do
+	scenario "review a star with default 1 star, see your review in profile, see your review in community section" do
 		# login as admin
 		page.visit("/")
 		
@@ -115,7 +117,18 @@ feature "review a store" , :js => true, :search =>true do
     	    	    
     	expect(store_page.review_content.first.text).to have_text(review_text)
 
-		expect(store_page.star_ranking.first['star-value']).to have_text("1")    	
+		expect(store_page.star_ranking.first['star-value']).to have_text("1")    
+
+        # go to your profile        
+        header.edituserlink.click       	
+        profile_nav = ProfileNavPageComponent.new
+        profile_nav.my_reviews_link.click
+
+        myreviews_page = ProfileMyReviewsPageComponent.new
+        myreviews_page.store_reviews.size.should == 1
+
+        # go to community, see review
+
 	end
 
 	scenario "review , choose 1 star" do

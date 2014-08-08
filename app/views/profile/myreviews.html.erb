@@ -5,26 +5,22 @@
 </div>
 <div class="activities col-md-7">
 	<ul class="nav nav-tabs">
-  		<li class="active"><a href="#store-reviews" data-toggle="tab">store reviews</a></li>
+  		<li class="active"><a id="store-reviews" href="#store-reviews" data-toggle="tab">store reviews</a></li>
   		<li><a id="tabs-reviews" href="#item-reviews" data-toggle="tab">item reviews</a></li>  
 	</ul>
 
 	<div id="my-reviews-tab-content" class="tab-content">
   		<div class="tab-pane active" id="store-reviews">
   			<br/>
-  			<% @store_reviews.each do |store_review| %>
-			  <div class="store-review">
-			    <%= render partial: 'store_reviews/store_review', locals: {store_review: store_review} %>
-			  </div>  
+  			<% @store_reviews.each do |store_review| %>			 
+			    <%= render partial: 'store_reviews/store_review', locals: {store_review: store_review} %>			  
 			<% end %>
   		</div>
   		
   		<div class="tab-pane" id="item-reviews">
   			<br/>
-			<% @store_item_reviews.each do |store_item_review| %>
-			  <div class="store-item-review">
-			    <%= render partial: 'store_item_reviews/store_item_review', locals: {store_item_review: store_item_review} %>
-			  </div>  
+			<% @store_item_reviews.each do |store_item_review| %>			  
+			    <%= render partial: 'store_item_reviews/store_item_review', locals: {store_item_review: store_item_review} %>		
 			<% end %>  		
   		</div>
   	</div>

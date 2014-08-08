@@ -12,6 +12,9 @@ require 'pages/store_search_preview'
 require 'pages/registration'
 require 'pages/store_claim'
 require 'pages/itempopup'
+require 'page_components/profile_nav'
+require 'pages/profile_myreviews'
+
 
 feature "store item reviews" , :js => true, :search =>true do
 
@@ -81,7 +84,7 @@ feature "store item reviews" , :js => true, :search =>true do
     	expect(itempopup.be_the_first.text).to have_text("no reviews yet")       
 	end
 
-    scenario "log on and write a review with default 1 star" do
+    scenario "log on and write a review with default 1 star, go to profile and see review in my reviews" do
         # login as admin
         page.visit("/")
         
@@ -121,7 +124,15 @@ feature "store item reviews" , :js => true, :search =>true do
         itempopup.save_review_button.click
         itempopup.cancel_button.click    
         
-        
+        # go to your profile        
+        page.visit("/")
+        header.edituserlink.click           
+        profile_nav = ProfileNavPageComponent.new
+        profile_nav.my_reviews_link.click
+
+        myreviews_page = ProfileMyReviewsPageComponent.new
+        myreviews_page.item_review_tab.click
+        myreviews_page.item_reviews.size.should == 1      
 
         # search for it 
         page.visit("/")
@@ -143,7 +154,7 @@ feature "store item reviews" , :js => true, :search =>true do
 
         # review should be there
         expect(itempopup.review_content.first.text).to have_text(review_text)
-        expect(itempopup.star_ranking.first['star-value']).to have_text("1")       
+        expect(itempopup.star_ranking.first['star-value']).to have_text("1") 
 
     end
 
