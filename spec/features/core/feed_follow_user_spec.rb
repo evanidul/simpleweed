@@ -15,6 +15,7 @@ require 'pages/search_results_items'
 require 'pages/itempopup'
 require 'pages/profile_activity_page'
 require 'page_components/profile_nav'
+require 'pages/profile_following'
 
 feature "follow users" , :js => true, :search =>true do
 
@@ -206,8 +207,27 @@ feature "follow users" , :js => true, :search =>true do
 		feeditem4 = "user2 followed og"
 		expect(page).to have_text(feeditem4) 
 
+        # unfollow user
         profile_nav = ProfileNavPageComponent.new
-        
+        profile_nav.following_link.click
+
+        following_page = ProfileFollowingPageComponent.new
+        following_page.followed_users.size.should == 1
+
+        following_page.unfollow_user_buttons.size.should == 1
+        following_page.unfollow_user_buttons.first.click
+        wait_for_ajax
+
+        following_page.unfollow_user_buttons.size.should == 0
+        following_page.follow_user_buttons.size.should == 1
+
+        # follow user again
+        following_page.follow_user_buttons.first.click
+        wait_for_ajax
+
+        following_page.unfollow_user_buttons.size.should == 1
+        following_page.follow_user_buttons.size.should == 0      
+
 	end
 
 
