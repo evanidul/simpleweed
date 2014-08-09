@@ -74,7 +74,7 @@ feature "follow users" , :js => true, :search =>true do
 
 	end
 	
-	scenario "find a store, review it, log on as someone else, follow that person, see that you are following that person in feed, see their review" do
+	scenario "find a store, review it, log on as someone else, follow that person, see that you are following that person in feed, see their review, unfollow the user" do
 		# login as admin
         page.visit("/")
         

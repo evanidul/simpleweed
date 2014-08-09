@@ -11,6 +11,9 @@ require 'pages/store_search_preview'
 require 'pages/registration'
 require 'pages/store_claim'
 require 'pages/profile_feed'
+require 'page_components/profile_nav'
+require 'pages/profile_following'
+
 
 feature "review a store" , :js => true, :search =>true do
 
@@ -110,6 +113,27 @@ feature "review a store" , :js => true, :search =>true do
 		profile_feed.store_announcement_updates.size.should == 1
 		profile_feed.store_announcement_updates.map {|body| body.text}.should have_text "has a new announcement"
 
+		# unfollow store
+        profile_nav = ProfileNavPageComponent.new
+        profile_nav.following_link.click
+
+        following_page = ProfileFollowingPageComponent.new
+        following_page.store_tab.click
+        following_page.followed_stores.size.should == 1
+
+        following_page.unfollow_store_buttons.size.should == 1
+        following_page.unfollow_store_buttons.first.click
+        wait_for_ajax
+
+        following_page.unfollow_store_buttons.size.should == 0
+        following_page.follow_store_buttons.size.should == 1
+
+        # follow store again
+        following_page.follow_store_buttons.first.click
+        wait_for_ajax
+
+        following_page.unfollow_store_buttons.size.should == 1
+        following_page.follow_store_buttons.size.should == 0      
 
 	end
 
