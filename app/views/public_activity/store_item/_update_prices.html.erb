@@ -9,7 +9,14 @@
 			</td>
 			<td class="feed-item-title-and-body">
 				<span class="item-feed-title">
-					<a href="<%= store_path(activity.trackable.id)%>" data-no-turbolink='true' > <%= activity.trackable.name %></a>
+					<% store_item = StoreItem.find(activity.trackable.id) %>
+
+					
+					<a class="item-search-item-name" data-remote="<%= store_store_item_path(store_item.store.id, store_item.id , :reviewtab => "false")  %>" data-target="#modal" data-toggle="modal" 
+							  		href="<%= store_store_item_path(store_item.store.id, store_item.id, :reviewtab => "false") %>" >
+					<%= store_item.name %> 
+					</a>		  		
+					
 					 has updated prices 
 					<div class="time-ago-feed-item-prices"><%= time_ago_in_words(activity.trackable.updated_at) %> ago</div>
 				</span>
