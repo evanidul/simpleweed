@@ -18,5 +18,8 @@ class CommunityFeedPage < SitePrism::Page
   elements :post_titles, '.post-title a'
   elements :post_username_links, '.user-link'
   elements :post_comments_link, '.post_comment_link'
+  elements :post_upvote_buttons, '.upvotebutton'
+  elements :post_flash_notices, '.flash_notice'
+
 
 end
