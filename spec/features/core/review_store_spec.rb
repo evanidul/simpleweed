@@ -11,7 +11,9 @@ require 'pages/store_search_preview'
 require 'pages/registration'
 require 'pages/store_claim'
 require 'page_components/profile_nav'
+require 'page_components/community_nav'
 require 'pages/profile_myreviews'
+require 'pages/community_recent_store_reviews'
 
 feature "review a store" , :js => true, :search =>true do
 
@@ -128,6 +130,11 @@ feature "review a store" , :js => true, :search =>true do
         myreviews_page.store_reviews.size.should == 1
 
         # go to community, see review
+        header.community_home_link.click
+        community_nav = CommunityNavPageComponent.new
+        community_nav.recent_store_reviews_link.click
+        community_recent_store_reviews_page = CommunityRecentStoreReviewsPageComponent.new
+        community_recent_store_reviews_page.recent_store_reviews.size.should == 1
 
 	end
 

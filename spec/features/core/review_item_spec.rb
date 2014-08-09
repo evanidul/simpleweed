@@ -13,8 +13,9 @@ require 'pages/registration'
 require 'pages/store_claim'
 require 'pages/itempopup'
 require 'page_components/profile_nav'
+require 'page_components/community_nav'
 require 'pages/profile_myreviews'
-
+require 'pages/community_recent_item_reviews'
 
 feature "store item reviews" , :js => true, :search =>true do
 
@@ -84,7 +85,7 @@ feature "store item reviews" , :js => true, :search =>true do
     	expect(itempopup.be_the_first.text).to have_text("no reviews yet")       
 	end
 
-    scenario "log on and write a review with default 1 star, go to profile and see review in my reviews" do
+    scenario "log on and write a review with default 1 star, go to profile and see review in my reviews, see in com recent item reviews" do
         # login as admin
         page.visit("/")
         
@@ -133,6 +134,13 @@ feature "store item reviews" , :js => true, :search =>true do
         myreviews_page = ProfileMyReviewsPageComponent.new
         myreviews_page.item_review_tab.click
         myreviews_page.item_reviews.size.should == 1      
+
+        # go to recent item reviews in comm, it should be there        
+        header.community_home_link.click
+        community_nav = CommunityNavPageComponent.new
+        community_nav.recent_item_reviews_link.click
+        community_recent_item_reviews_page = CommunityRecentItemReviewsPageComponent.new
+        community_recent_item_reviews_page.recent_item_reviews.size.should == 1
 
         # search for it 
         page.visit("/")

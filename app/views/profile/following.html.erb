@@ -1,0 +1,115 @@
+</br>
+<div class="col-md-2">
+	<%= render :partial =>'left_column', locals: {profile_user: @profile_user, user_is_viewing_own_profile: @user_is_viewing_own_profile }%>
+	
+</div>
+<div class="activities col-md-7">
+	<ul class="nav nav-tabs">
+  		<li class="active"><a id="following-people-tab" href="#following-people" data-toggle="tab">people</a></li>
+  		<li><a id="following-store-tab" href="#following-store" data-toggle="tab">stores</a></li>  
+  		<li><a id="following-items-tab" href="#following-items" data-toggle="tab">items</a></li>  
+	</ul>
+
+	<div id="my-reviews-tab-content" class="tab-content">
+  		<div class="tab-pane active" id="following-people">
+  			<br/>
+  			<div class="followed-users">		
+				<% @following_users.each do |user| %>
+					<div class="followed-user" id = "<%= user.id %>">
+						<table style="width:100%">
+							<tr>
+								<td>
+									<span class = "feed-item-avatar" valign = "top">
+										<span class="feed-item-icon-container">
+											<%= render partial: 'profile/profile_image', locals: {user: user} %>
+										</span>
+									</span>		
+								</td>
+								<td>			
+									<%= link_to user.username , activity_profile_path(user), :class => 'user-link', 'data-no-turbolink' => true %>	
+								</td>
+								<td>
+									<%= render :partial =>'unfollow_user_button', locals: {user: user }%>									
+								</td>
+							</tr>
+						</table>
+						<hr/>
+					</div>
+				<% end %>		
+			</div>
+  		</div>
+  		
+  		<div class="tab-pane" id="following-store">
+  			<br/>
+  			<div class="followed-stores">		
+				<% @following_store.each do |store| %>			
+					<div class="followed-store" id = "<%= store.id%>">
+						<table style="width:100%">
+							<tr>
+								<td>
+									<span class = "feed-item-avatar" valign = "top">
+										<span class="glyphicon glyphicon-user user-pic-feed-item"></span>
+									</span>		
+								</td>
+								<td>			
+									<a href="<%= store_path(store.id)%>" data-no-turbolink='true' > <%= store.name %>	</a>
+								</td>
+								<td>
+									<span class = "pull-right">
+										<%= render :partial =>'stores/unfollow_store_button', locals: {store: store }%>						
+									</span>				
+								</td>
+							</tr>
+						</table>
+						<hr/>
+					</div>
+
+
+				<% end %>		
+			</div>
+  		</div>
+
+  		<div class="tab-pane" id="following-items">
+  			<br/>
+	  		<div class="followed-items">		
+				<% @following_store_items.each do |item| %>
+					<div id="<%=item.id%>">
+						<table>
+							<tr>
+								<td>
+									<%= render partial: 'store_items/store_item', locals: {store_item: item} %>	
+								</td>
+								<td>
+									<%= render :partial =>'store_items/unfollow_item_button', locals: {item: item }%>									
+								</td>
+							</tr>
+						</table>
+						<hr/>
+					</div>
+				<% end %>		
+			</div>
+		</div>
+
+  	</div> <!-- my-reviews-tab-content -->
+	
+
+<script>
+$('#my-reviews-tab-content .nav-tabs a').click(function (e) {
+  e.preventDefault()
+  $(this).tab('show') 
+})
+</script>
+
+</div> <!- feed div, main container -->
+
+<div class="right-col-profile col-md-3">
+	
+	<% if !@user_is_viewing_own_profile	%>
+		<%= form_tag(follow_profile_path, method: "post" , :remote => true) do %>			
+			<%= button_tag(type: 'submit', class: "btn btn-success follow-user-button") do %>
+				<div class="follow-user-star glyphicon glyphicon-star"></div>
+			<% end %>
+		<% end %>
+	<% end %>
+
+</div>

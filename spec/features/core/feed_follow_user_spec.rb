@@ -14,6 +14,7 @@ require 'pages/profile_feed'
 require 'pages/search_results_items'
 require 'pages/itempopup'
 require 'pages/profile_activity_page'
+require 'page_components/profile_nav'
 
 feature "follow users" , :js => true, :search =>true do
 
@@ -204,6 +205,9 @@ feature "follow users" , :js => true, :search =>true do
 		header.edituserlink.click		
 		feeditem4 = "user2 followed og"
 		expect(page).to have_text(feeditem4) 
+
+        profile_nav = ProfileNavPageComponent.new
+        
 	end
 
 

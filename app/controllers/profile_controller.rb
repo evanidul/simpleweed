@@ -149,24 +149,31 @@ class ProfileController < ApplicationController
 
 	end
 
-	# when a user wants to see which users he is following
-	def followingusers
-		@active_tab = "following-link-li"
+	def following
+		@active_tab = "following-li"
 		@following_users = @profile_user.followees(User)
-		
-	end
-
-	# when a user wants to see which stores he is following
-	def followingstores
-		@active_tab = "following-link-li"
 		@following_store = @profile_user.followees(Store)  
-	end
-
-	# when a user wants to see which items he is following
-	def followingitems
-		@active_tab = "following-link-li"
 		@following_store_items = @profile_user.followees(StoreItem)
 	end
+
+	# when a user wants to see which users he is following
+	# def followingusers
+	# 	@active_tab = "following-link-li"
+	# 	@following_users = @profile_user.followees(User)
+		
+	# end
+
+	# # when a user wants to see which stores he is following
+	# def followingstores
+	# 	@active_tab = "following-link-li"
+	# 	@following_store = @profile_user.followees(Store)  
+	# end
+
+	# # when a user wants to see which items he is following
+	# def followingitems
+	# 	@active_tab = "following-link-li"
+	# 	@following_store_items = @profile_user.followees(StoreItem)
+	# end
 
 	def edit_photo
 		@user = current_user

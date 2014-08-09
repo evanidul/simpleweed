@@ -16,10 +16,10 @@
 	<hr>
 	
 	<% @reviews.each do |store_item_review| %>
-	  <div class="store-item-review">
+	  
 	  	<% @feed = true %>
 	    <%= render partial: 'store_item_reviews/store_item_review', locals: {store_item_review: store_item_review} %>
-	  </div>  
+	  
 	<% end %>  		
 	
 </div>
