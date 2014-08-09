@@ -17,6 +17,9 @@ class ProfileFollowingPageComponent < SitePrism::Page
   elements :unfollow_store_buttons, '.unfollow-store-button'
   elements :follow_store_buttons, '.follow-store-button'
 
+  elements :unfollow_item_buttons, '.unfollow-item-button'
+  elements :follow_item_buttons, '.follow-item-button'
+
 end
 
 

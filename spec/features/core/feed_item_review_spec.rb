@@ -14,6 +14,8 @@ require 'pages/profile_feed'
 require 'pages/profile_activity_page'
 require 'pages/itempopup'
 require 'pages/search_results_items'
+require 'page_components/profile_nav'
+require 'pages/profile_following'
 
 feature "things that trigger item review feed items" , :js => true, :search =>true do
 
@@ -251,6 +253,28 @@ feature "things that trigger item review feed items" , :js => true, :search =>tr
 
         # should not see duplicate store reviews for the same store + user combo
         profile_feed_page.item_reviews.size.should == 1
+
+        # unfollow item
+        profile_nav = ProfileNavPageComponent.new
+        profile_nav.following_link.click
+
+        following_page = ProfileFollowingPageComponent.new
+        following_page.item_tab.click
+        following_page.followed_items.size.should == 1
+
+        following_page.unfollow_item_buttons.size.should == 1
+        following_page.unfollow_item_buttons.first.click
+        wait_for_ajax
+
+        following_page.unfollow_item_buttons.size.should == 0
+        following_page.follow_item_buttons.size.should == 1
+
+        # follow store again
+        following_page.follow_item_buttons.first.click
+        wait_for_ajax
+
+        following_page.unfollow_item_buttons.size.should == 1
+        following_page.follow_item_buttons.size.should == 0   
 
     end
 
