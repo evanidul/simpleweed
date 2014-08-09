@@ -28,7 +28,7 @@
 			</td>
 			<td>
 				<%=  %>
-				<%= link_to flag.flaggable_type, feed_feed_post_path(feed_post.feed.id, feed_post)  %>
+				<%= link_to flag.flaggable_type, feed_feed_post_path(feed_post.feed.id, feed_post) , :class => "post-link" %>
 			</td>
 			<td>
 				<%= flag.flaggable_id %>

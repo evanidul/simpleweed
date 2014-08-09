@@ -9,4 +9,8 @@ class CommunityPostPage < SitePrism::Page
 
   elements :comments, '.feed-post-comment '
 
+  element :delete_post_button, '#delete-post-button'
+  # delete post modal
+  element :delete_post_verify_button, '#delete_post_submit'
+
 end
