@@ -36,7 +36,7 @@
 					</li>
 					
 					<li>
-						<%= link_to 'flag', add_flag_feed_feed_post_path(post.feed.id, post.id), data: { toggle: "modal", target: "#modal", remote: add_flag_feed_feed_post_path(post.feed.id, post.id)} , id: "add-flag-on-post-link" %>
+						<%= link_to 'flag', add_flag_feed_feed_post_path(post.feed.id, post.id), data: { toggle: "modal", target: "#modal", remote: add_flag_feed_feed_post_path(post.feed.id, post.id)} , id: "add-flag-on-post-link", class: "flag-post" %>
 						
 					</li>
 					

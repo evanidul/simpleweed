@@ -20,6 +20,11 @@ class CommunityFeedPage < SitePrism::Page
   elements :post_comments_link, '.post_comment_link'
   elements :post_upvote_buttons, '.upvotebutton'
   elements :post_flash_notices, '.flash_notice'
+  elements :post_flag_links, '.flag-post'
 
+  # flag modal
+  element :flag_reason_input, '#flag_reason'
+  element :close_button, '#close-modal-button'
+  element :save_flag_button, '#add_flag_on_post'
 
 end

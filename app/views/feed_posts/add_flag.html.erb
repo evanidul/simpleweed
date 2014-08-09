@@ -10,7 +10,7 @@
           <%= f.text_area :reason, :rows => 3,  :class => 'form-control' %>                
           
           <p class = "form-group pull-right">              	
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-default" id="close-modal-button" data-dismiss="modal">Close</button>
             <%= f.submit :class => 'btn btn-primary' , :id => 'add_flag_on_post'%>
           </p>
         <% end %>
