@@ -50,47 +50,16 @@
 			</tr>
 		</table>
 
-  		<div id="review-controls">
+  		<ul id="review-controls">
 			<!-- pro coding right here -->
-			<div class="star-rank">
+			<li class="star-rank">
 				<span class="glyphicon glyphicon-star"></span>
 				<span class="glyphicon glyphicon-star"></span>
 				<span class="glyphicon glyphicon-star"></span>
 				<span class="glyphicon glyphicon-star"></span>
 				<span class="glyphicon glyphicon-star"></span>		
-			</div>
-			
-			<% 
-			canReviewResult = @role_service.canViewWriteReviewButton(current_user, @store) 
-			if canReviewResult == true
-
-				%>
-				<span class="write-review-button">				
-					<%= link_to 'write a review', new_store_store_review_path(@store) , data: { toggle: "modal", target: "#modal", remote: new_store_store_review_path(@store)} , id: "write-review-button" , class: "btn btn-primary", "data-content"=>"<span id='write-review-first-tip'>Be the first!</span>" %>
-				</span>			
-			<% else %>
-				<span class="write-review-button-blocked">
-					<!-- <a class="btn btn-default" >Write a Review</a> -->
-					<%= link_to 'write a review', new_store_store_review_path(@store) , id: "write-review-button-blocked" , class: "btn btn-default", "data-content"=>"<span id='write-review-blocked-tip'>"+canReviewResult+"</span>" %>
-					<script>
-						$('#write-review-button-blocked').click(function(e){
-						  	e.preventDefault();
-						  	$('#write-review-button-blocked').popover({ 
-							    html : true,
-							    placement : "right"
-							}).popover('show');
-					
-						});
-					</script>
-				</span>
-			<% end %>
-			<% if @role_service.findStoreOwnerForStore(@store).size < 1 %>
-				<span class="claim-store-button">
-					<%= link_to 'claim', show_claim_store_path(@store), class: 'btn btn-warning' , id: "claim-store-button" %>
-				</span>	
-			<% end %>
-
-			<span class="pull-right">
+			</li>
+			<li>
 				<% if !current_user.nil? && current_user.follows?(@store) %>
 					<%= render :partial =>'unfollow_store_button', locals: {store: @store }%>		
 				<% else %>
@@ -104,9 +73,42 @@
 						})
 					</script>
 				<% end %>
-			</span>
+			</li>
+			<% if @role_service.findStoreOwnerForStore(@store).size < 1 %>
+				<li class="claim-store-button">
+					<%= link_to 'CLAIM', show_claim_store_path(@store), class: 'btn btn-warning' , id: "claim-store-button" %>
+				</li>	
+			<% end %>
+			<% 
+			canReviewResult = @role_service.canViewWriteReviewButton(current_user, @store) 
+			if canReviewResult == true
 
-		</div> <!-- review-controls -->	
+				%>
+				<li class="write-review-button">				
+					<%= link_to 'REVIEW', new_store_store_review_path(@store) , data: { toggle: "modal", target: "#modal", remote: new_store_store_review_path(@store)} , id: "write-review-button" , class: "btn btn-primary", "data-content"=>"<span id='write-review-first-tip'>Be the first!</span>" %>
+				</li>			
+			<% else %>
+				<li class="write-review-button-blocked">
+					<!-- <a class="btn btn-default" >Write a Review</a> -->
+					<%= link_to 'write a review', new_store_store_review_path(@store) , id: "write-review-button-blocked" , class: "btn btn-default", "data-content"=>"<span id='write-review-blocked-tip'>"+canReviewResult+"</span>" %>
+					<script>
+						$('#write-review-button-blocked').click(function(e){
+						  	e.preventDefault();
+						  	$('#write-review-button-blocked').popover({ 
+							    html : true,
+							    placement : "right"
+							}).popover('show');
+					
+						});
+					</script>
+				</li>
+			<% end %>
+			
+
+			
+		</ul>
+
+		
   		<ul class="nav nav-tabs">
 	  		<li class="active"><a href="#store-info" data-toggle="tab">info</a></li>
 	  		<li><a id="tabs-reviews" href="#store-reviews" data-toggle="tab">reviews</a></li>  

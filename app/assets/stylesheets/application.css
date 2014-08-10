@@ -8,10 +8,11 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
+ *= require bootstrap
  *= require_self
  *= require_tree .
 
- *= require bootstrap
+ 
 
  */
 
@@ -341,3 +342,20 @@ ul.koudoku-pricing-table .social-proof blockquote h2, ul.koudoku-pricing-table .
   width: 100%;
 }
 
+.btn-warning {
+  color: white;
+  background-color: #A7CE85;
+  border-color: #A7CE85;
+}
+
+.btn-success {
+  color: white;
+  background-color: #A7CE85;
+  border-color: #A7CE85;
+}
+
+.btn-primary {
+  color: white;
+  background-color: #A7CE85;
+  border-color: #A7CE85;
+}

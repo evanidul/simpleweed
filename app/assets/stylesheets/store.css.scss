@@ -1195,7 +1195,7 @@ body .ui-tooltip {
 }
 
 .star-rank {
-	display:inline;
+	
 }
 
 .reviews-link {
@@ -1208,7 +1208,7 @@ body .ui-tooltip {
 }
 
 .write-review-button {
-	float:right;
+	
 }
 
 .write-review-button-blocked {
@@ -1254,7 +1254,14 @@ body .ui-tooltip {
 }
 
 #review-controls {
+	list-style-type: none;
 	margin-bottom: 25px;
+	padding-left:0;	
+}
+
+#review-controls li { 
+	display: inline; 
+	margin-right: 7px;
 }
 
 .red {
@@ -1392,12 +1399,16 @@ tr.hours-row > td {
 }
 
 #claim-store-button {
-	float:right;
-	margin-right:5px;
+	
+	
 }
 
 .glyphicon-star {
-	color: #f0ad4e;
+	color: white;
+	background-color: rgb(34, 150, 34);
+	border-radius: 6px;
+	margin: 0.5px;
+	padding: 0.2px;
 }
 
 #search-left-container {
@@ -1417,4 +1428,8 @@ tr.hours-row > td {
 
 .store-name-and-edit {
 	width: 100%;
+}
+
+.edit-store-photo-link {
+	padding-left: 0px;
 }

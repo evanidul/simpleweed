@@ -1,5 +1,5 @@
-<%= form_tag(follow_store_path(store), id: "follow-store-form-#{store.id}" , method: "post" , :remote => true) do %>			
+<%= form_tag(follow_store_path(store), id: "follow-store-form-#{store.id}" , method: "post" , :remote => true, class: "follow-store-form") do %>			
 	<%= button_tag(type: 'submit', class: "btn btn-success follow-store-button ", id: "follow-store-button") do %>
-		<div>follow</div>
+		<div>FOLLOW</div>
 	<% end %>
 <% end %>
