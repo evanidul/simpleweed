@@ -160,7 +160,7 @@
 	</div>
 	<div class="col-md-5">
 		<div class="header-and-edit-link">
-			<h3 class="inline-header">announcement</h3>
+			<h3 >announcement</h3>
 			<% if @role_service.canManageStore(current_user, @store) %>				
 				<%= link_to edit_announcement_store_path(@store), data: { toggle: "modal", target: "#modal", remote: edit_announcement_store_path(@store)} , id: "edit-announcement-link",  class: "btn edit-store-link" do %>
     					<span class="glyphicon glyphicon-edit"></span>
@@ -174,7 +174,16 @@
 				none.
 			<% end %>
 		</div>
-	</div>
+		<h3>recent photos</h3>
+		<% imagename = 'weed'+ rand(1..3).to_s + '.jpg' %>
+		<%= image_tag imagename, :class => "item-search-result-store-logo-grouped" %>
+		<% imagename = 'weed'+ rand(1..3).to_s + '.jpg' %>
+		<%= image_tag imagename, :class => "item-search-result-store-logo-grouped" %>
+		<% imagename = 'weed'+ rand(1..3).to_s + '.jpg' %>
+		<%= image_tag imagename, :class => "item-search-result-store-logo-grouped" %>
+		<% imagename = 'weed'+ rand(1..3).to_s + '.jpg' %>
+		<%= image_tag imagename, :class => "item-search-result-store-logo-grouped" %>
+	</div><!-- col-md-5 -->
 
 	 
 	
