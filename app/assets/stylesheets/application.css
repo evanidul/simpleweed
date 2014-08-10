@@ -371,3 +371,7 @@ h1 {
 h3 {
   font-weight: 400;
 }
+
+.badge {
+  background-color:darkgreen;
+}
