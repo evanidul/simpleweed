@@ -22,7 +22,7 @@
 
 <div class="row">
 	<!-- left, main section -->
-    <div class="col-md-8">		
+    <div class="col-md-12">		
     	<table>
     		<tr>
     			<td>
@@ -103,12 +103,80 @@
 					</script>
 				</li>
 			<% end %>
-			
-
-			
 		</ul>
+		<div class="based-on">
+			based on 120 reviews
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div id="contact">
+			<div class="header-and-edit-link">
+				<h3 class = "inline-header">business info</h3>
+				<% if @role_service.canManageStore(current_user, @store) %>					
+					<%= link_to edit_contact_store_path(@store), data: { toggle: "modal", target: "#modal", remote: edit_contact_store_path(@store)} , id: "edit-contact-link",  class: "btn edit-store-link" do %>
+    					<span class="glyphicon glyphicon-edit"></span>
+					<% end %>
+				<% end %>
+			</div>
+			<address>					
+				<span id="addressline1"><%= @store.addressline1  %></span>
+					<br>
+				<% if  @store.addressline2 && !@store.addressline2.empty?  %>
+					<span id="addressline2"><%= @store.addressline2  %></span>
+					<br>
+				<% end %>	
+				<span id="city"><%= @store.city  %></span>, 
+				<span id="state"><%= @store.state  %></span>
+				<span id="zip"><%= @store.zip  %></span>
+				<br />
+				 
+				 <abbr title="Phone">p:</abbr> 
+				 <span id="phonenumber"><%= @store.phonenumber  %></span>
+				 <br />
+				 <abbr title="Email">e:</abbr> 
+				 <span id="email"><%= @store.email  %></span>
+				 <br />
+				 <abbr title="Website">w:</abbr> 
+				 <span id="website"><%= @store.website  %></span>
+				 <br />
+				 <abbr title="Facebook">facebook:</abbr> 
+				 <span id="facebook"><%= raw @store.facebook  %></span>
+				 <br>
+				 <abbr title="Twitter">twitter:</abbr> 
+				 <span id="twitter"><%= raw @store.twitter  %> </span>
+			 	<br/>
+				 <abbr title="Instagram">instagram:</abbr> 
+				 <span id="instagram"><%= raw @store.instagram  %></span>
+				 <br>
+			</address>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="store-map-loc">		
+			<div id="gmap_canvas"></div>
+		</div>
+	</div>
+	<div class="col-md-5">
+		<div class="header-and-edit-link">
+			<h3 class="inline-header">announcement</h3>
+			<% if @role_service.canManageStore(current_user, @store) %>				
+				<%= link_to edit_announcement_store_path(@store), data: { toggle: "modal", target: "#modal", remote: edit_announcement_store_path(@store)} , id: "edit-announcement-link",  class: "btn edit-store-link" do %>
+    					<span class="glyphicon glyphicon-edit"></span>
+					<% end %>
+			<% end %>
+		</div>
+		<div id="announcement">
+			<% if  @store.announcement && !@store.announcement.empty?  %>
+				<%= raw @store.announcement %>
+			<% else %>
+				none.
+			<% end %>
+		</div>
+	</div>
 
-		
+	 
+	
+	<div class="col-md-8">			
   		<ul class="nav nav-tabs">
 	  		<li class="active"><a href="#store-info" data-toggle="tab">info</a></li>
 	  		<li><a id="tabs-reviews" href="#store-reviews" data-toggle="tab">reviews</a></li>  
@@ -118,7 +186,7 @@
 	  		<div class="tab-pane active" id="store-info"><%= render 'show_info_panel' %></div>
 	  		<div class="tab-pane" id="store-reviews"><%= render 'show_reviews_panel' %></div>
 	  	</div>
-	</div> <!-- end of left container -->
+	
 
 <script>
 $('#item-preview-tab-content .nav-tabs a').click(function (e) {
@@ -127,12 +195,11 @@ $('#item-preview-tab-content .nav-tabs a').click(function (e) {
 })
 </script>
   
+  	</div>
 
     <!-- right, side bar -->
     <div class="col-md-4">
-        <div class="store-map-loc">
-		
-		<div id="gmap_canvas"></div>
+        
 		
 		<script type="text/javascript">
 
@@ -177,50 +244,9 @@ $('#item-preview-tab-content .nav-tabs a').click(function (e) {
 			google.maps.event.addDomListener(window, "load", codeAddress);
 			
 		</script>
-		</div>
+		
 		<!-- end of google maps -->
-		<div id="contact">
-			<div class="header-and-edit-link">
-				<h3 class = "inline-header">contact</h3>
-				<% if @role_service.canManageStore(current_user, @store) %>					
-					<%= link_to edit_contact_store_path(@store), data: { toggle: "modal", target: "#modal", remote: edit_contact_store_path(@store)} , id: "edit-contact-link",  class: "btn edit-store-link" do %>
-    					<span class="glyphicon glyphicon-edit"></span>
-					<% end %>
-				<% end %>
-			</div>
-			<address>
-				<strong><%= @store.name  %></strong><br/>
-				<span id="addressline1"><%= @store.addressline1  %></span>
-					<br>
-				<% if  @store.addressline2 && !@store.addressline2.empty?  %>
-					<span id="addressline2"><%= @store.addressline2  %></span>
-					<br>
-				<% end %>	
-				<span id="city"><%= @store.city  %></span>, 
-				<span id="state"><%= @store.state  %></span>
-				<span id="zip"><%= @store.zip  %></span>
-				<br />
-				 
-				 <abbr title="Phone">p:</abbr> 
-				 <span id="phonenumber"><%= @store.phonenumber  %></span>
-				 <br />
-				 <abbr title="Email">e:</abbr> 
-				 <span id="email"><%= @store.email  %></span>
-				 <br />
-				 <abbr title="Website">w:</abbr> 
-				 <span id="website"><%= @store.website  %></span>
-				 <br />
-				 <abbr title="Facebook">facebook:</abbr> 
-				 <span id="facebook"><%= raw @store.facebook  %></span>
-				 <br>
-				 <abbr title="Twitter">twitter:</abbr> 
-				 <span id="twitter"><%= raw @store.twitter  %> </span>
-			 	<br/>
-				 <abbr title="Instagram">instagram:</abbr> 
-				 <span id="instagram"><%= raw @store.instagram  %></span>
-				 <br>
-			</address>
-		</div>
+		
 
 		<div id="debug" class="hidden">
 		<h3 >Debug</h3>
@@ -257,21 +283,7 @@ $('#item-preview-tab-content .nav-tabs a').click(function (e) {
 		</script>
 
 								
-		<div class="header-and-edit-link">
-			<h3 class="inline-header">announcement</h3>
-			<% if @role_service.canManageStore(current_user, @store) %>				
-				<%= link_to edit_announcement_store_path(@store), data: { toggle: "modal", target: "#modal", remote: edit_announcement_store_path(@store)} , id: "edit-announcement-link",  class: "btn edit-store-link" do %>
-    					<span class="glyphicon glyphicon-edit"></span>
-					<% end %>
-			<% end %>
-		</div>
-		<div id="announcement">
-			<% if  @store.announcement && !@store.announcement.empty?  %>
-				<%= raw @store.announcement %>
-			<% else %>
-				none.
-			<% end %>
-		</div>
+		
 			
 
 		<div class="header-and-edit-link">		

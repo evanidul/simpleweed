@@ -1216,11 +1216,9 @@ body .ui-tooltip {
 }
 
 #gmap_canvas {
-	margin-top: 123px;
-	margin-bottom: 20px;
-	float:right;
-	height:350px;
-	width:350px;	
+	margin-top: 20px;	
+	height:250px;
+	width:370px;	
 }
 
 #description {
@@ -1254,8 +1252,7 @@ body .ui-tooltip {
 }
 
 #review-controls {
-	list-style-type: none;
-	margin-bottom: 25px;
+	list-style-type: none;	
 	padding-left:0;	
 }
 
@@ -1407,7 +1404,7 @@ tr.hours-row > td {
 	color: white;
 	background-color: rgb(34, 150, 34);
 	border-radius: 50%;
-	margin: 0.5px;
+	margin: 0.7px;
 	padding: 0.2px;
 }
 
@@ -1432,4 +1429,9 @@ tr.hours-row > td {
 
 .edit-store-photo-link {
 	padding-left: 0px;
+}
+
+.based-on {
+	font-style:italic;
+	font-size:12px;
 }
