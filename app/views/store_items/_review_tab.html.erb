@@ -13,7 +13,7 @@
   		</tr>
   	</table>  	
   	<% if current_user.nil? %>
-		<a id="review-item-slide-toggle-button" class = "btn btn-primary pull-right">write a review</a>
+		<a id="review-item-slide-toggle-button" class = "btn btn-primary pull-right">REVIEW</a>
   		<script>
   			$("#review-item-slide-toggle-button").click(function() {
   				/** close bootstrap modal first **/
@@ -26,11 +26,11 @@
   		 canReviewResult = @role_service.canViewWriteReviewButtonForItem(current_user, @store_item) 
 			if canReviewResult == true
   			%>
-  			<a id="review-item-slide-toggle-button" class = "btn btn-primary pull-right">write a review</a>
+  			<a id="review-item-slide-toggle-button" class = "btn btn-primary pull-right">REVIEW</a>
   			<% else %>
   				<span class="write-review-button-blocked">
 					<!-- <a class="btn btn-default" >Write a Review</a> -->
-					<%= link_to 'write a review', new_store_store_review_path(@store) , id: "write-review-button-blocked-on-item-popup" , class: "btn btn-default", "data-content"=>"<span id='write-review-blocked-tip'>"+canReviewResult+"</span>" %>
+					<%= link_to 'REVIEW', new_store_store_review_path(@store) , id: "write-review-button-blocked-on-item-popup" , class: "btn btn-default pull-right", "data-content"=>"<span id='write-review-blocked-tip'>"+canReviewResult+"</span>" %>
 					<script>
 						$('#write-review-button-blocked-on-item-popup').click(function(e){
 						  	e.preventDefault();

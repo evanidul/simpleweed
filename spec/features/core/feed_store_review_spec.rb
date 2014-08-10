@@ -94,7 +94,7 @@ feature "things that trigger store review feed items" , :js => true, :search =>t
 		# follow store
     	store_page.follow_store_button.click  
     	wait_for_ajax  	
-    	expect(store_page.unfollow_store_button.text).to have_text ("unfollow")
+    	expect(store_page.unfollow_store_button.text).to have_text ("UNFOLLOW")
 
     	# logout
         header.logoutlink.click
