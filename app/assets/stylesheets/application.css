@@ -342,20 +342,24 @@ ul.koudoku-pricing-table .social-proof blockquote h2, ul.koudoku-pricing-table .
   width: 100%;
 }
 
+.btn {
+  line-height:0.908571;
+}
+
 .btn-warning {
   color: white;
-  background-color: #A7CE85;
-  border-color: #A7CE85;
+  background-color: #A4D37C;
+  border-color: #A4D37C;
 }
 
 .btn-success {
   color: white;
-  background-color: #A7CE85;
-  border-color: #A7CE85;
+  background-color: #A4D37C;
+  border-color: #A4D37C;
 }
 
 .btn-primary {
   color: white;
-  background-color: #A7CE85;
-  border-color: #A7CE85;
+  background-color: #A4D37C;
+  border-color: #A4D37C;
 }
