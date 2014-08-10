@@ -1213,7 +1213,7 @@ body .ui-tooltip {
 }
 
 .write-review-button-blocked {
-	float:right;
+
 }
 
 #gmap_canvas {
@@ -1281,7 +1281,7 @@ body .ui-tooltip {
 }
  
 .simple-weed-google-table-header-cell {
-	background: rgb(247, 247, 247);  	//slightly darker gray than row select gray
+	background: #D8E0D8 !important;  	//slightly darker gray than row select gray
 	//background: #9AA9B8  			 	//dark blue gray
 }
 
@@ -1383,8 +1383,9 @@ tr.hours-row > td {
 	width: 649px;
 }
 
+/* dead code? */
 .simple-weed-google-table-header-cell-store-preview {
-	background: #A7A7AA !important 	//slightly darker gray than row select gray
+	background: black !important 	
 	//background: #9AA9B8  			 	//dark blue gray
 }
 
