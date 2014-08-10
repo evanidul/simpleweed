@@ -98,6 +98,7 @@
 	margin-top: 2px;
 	padding: .5em .5em .5em .7em;
 	min-height: 0; /* support: IE7 */
+	color:white;
 }
 .ui-accordion .ui-accordion-icons {
 	padding-left: 2.2em;
@@ -1292,7 +1293,7 @@ body .ui-tooltip {
 
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
 	//background : white !important;
-	background : rgb(238, 244, 250) !important;
+	background : #5EA35B !important;
 	border: none !important;
 }
 
@@ -1449,4 +1450,13 @@ tr.hours-row > td {
 
 .bottom-section {
 	margin-top: 26px;
+}
+
+#item-preview-tab-content.tab-content {
+	border-right: 1px solid;
+	border-bottom: 1px solid;
+	border-left: 1px solid;
+	border-color: #dddddd;
+	padding: 25px;
+
 }
