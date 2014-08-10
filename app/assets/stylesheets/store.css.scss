@@ -1195,7 +1195,7 @@ body .ui-tooltip {
 }
 
 .star-rank {
-	
+	margin-right:34px !important;	
 }
 
 .reviews-link {
@@ -1404,8 +1404,9 @@ tr.hours-row > td {
 	color: white;
 	background-color: rgb(34, 150, 34);
 	border-radius: 50%;
-	margin: 0.7px;
+	margin: 1.8px;
 	padding: 0.2px;
+	font-size:18px;
 }
 
 #search-left-container {
@@ -1434,4 +1435,8 @@ tr.hours-row > td {
 .based-on {
 	font-style:italic;
 	font-size:12px;
+}
+
+.store-header {
+	margin-top:16px;
 }
