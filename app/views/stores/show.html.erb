@@ -161,7 +161,7 @@
 	</div>
 	<div class="col-md-5">
 		<div class="header-and-edit-link">
-			<h3 >announcement</h3>
+			<h3 class="inline-header">announcement</h3>
 			<% if @role_service.canManageStore(current_user, @store) %>				
 				<%= link_to edit_announcement_store_path(@store), data: { toggle: "modal", target: "#modal", remote: edit_announcement_store_path(@store)} , id: "edit-announcement-link",  class: "btn edit-store-link" do %>
     					<span class="glyphicon glyphicon-edit"></span>

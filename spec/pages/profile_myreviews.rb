@@ -4,7 +4,7 @@ class ProfileMyReviewsPageComponent < SitePrism::Page
   elements :item_reviews, '.item-review'
 
   # nav
-  element :store_review_tab, '#store-reviews'
+  element :store_review_tab, '#tabs-store-reviews'
   element :item_review_tab, '#tabs-reviews'
 
   
