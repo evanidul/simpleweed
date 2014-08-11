@@ -32,7 +32,8 @@ class StoreItemsController < ApplicationController
 		#0 is Sunday
 		@dayint = @currenttime.to_date.wday  
 		@day = Date::DAYNAMES[@dayint]
-		@tds = Simpleweed::Timedateutil::Timedateservice.new		
+		@tds = Simpleweed::Timedateutil::Timedateservice.new	
+		@urlservice = Simpleweed::Url::Urlservice.new	
 		#is the store open?		
 		@is_open = @tds.isStoreOpen(@currenttime, @store)
 		@role_service = Simpleweed::Security::Roleservice.new

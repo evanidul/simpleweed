@@ -1,12 +1,36 @@
-<table>
+<table id="store-header-on-item-modal">
 	<tr>
 		<td class="item-img-td">
 			<%= render partial: 'stores/store_image', locals: {store: @store} %>
 		</td>
 		<td>
-			<h4 class="item-pop-up-store-name">
-				<a href="<%= store_path(@store.id)%>" data-no-turbolink='true' > <%= @store.name %></a>
+			<h4 class="item-pop-up-store-name inline-header">
+				<a href="<%= store_path(@store.id)%>" data-no-turbolink='true' > <%= @store.name %></a>								
 			</h4>
+			<% if !@store.facebook.blank? %>						
+				<a id="facebook" href="<%= @urlservice.url_with_protocol(@store.facebook) %>">
+					<span class="fa-stack fa store-header-icons-item-modal">
+					  <i class="fa fa-circle fa-stack-2x"></i>
+					  <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+					</span>
+				</a>
+			<% end %>
+			<% if !@store.twitter.blank? %>						
+				<a id="twitter" href="<%= @urlservice.url_with_protocol(@store.twitter) %>">
+					<span class="fa-stack fa store-header-icons-item-modal">
+					  <i class="fa fa-circle fa-stack-2x"></i>
+					  <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+					</span>
+				</a>
+			<% end %>	
+			<% if !@store.instagram.blank? %>						
+				<a id="instagram" href="<%= @urlservice.url_with_protocol(@store.instagram) %>">
+					<span class="fa-stack fa store-header-icons-item-modal">
+					  <i class="fa fa-circle fa-stack-2x"></i>
+					  <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+					</span>
+				</a>
+			<% end %>
 		</td>
 	</tr>
 </table>  	
@@ -72,9 +96,12 @@ end
 <% end %>
 </div>	
 <br/>
+<hr/>
 <table id="item-popup-store-details">
 	<tr>
-		<td class="store-info">
+		<td class="store-info" style="vertical-align:top;">
+			<h4 class = "inline-header">business info</h4>
+			<br/><br/>
 			<address>				
 				<span id="addressline1"><%= @store.addressline1  %></span>
 					<br>
@@ -86,25 +113,26 @@ end
 				<span id="state"><%= @store.state  %></span>
 				<span id="zip"><%= @store.zip  %></span>
 				<br />
+				 <br/>
+				 <% if !@store.website.blank? %>						
+					<abbr title="Website">w:</abbr>
+					<a id="website" href="<%= @urlservice.url_with_protocol(@store.website) %>">
+						<%= @store.website  %>
+					</a>
+					<br />
+				<% end %>
 				 
-				 <abbr title="Phone">p:</abbr> 
-				 <span id="phonenumber"><%= @store.phonenumber  %></span>
-				 <br />
-				 <abbr title="Email">e:</abbr> 
-				 <span id="email"><%= @store.email  %></span>
-				 <br />
-				 <abbr title="Website">w:</abbr> 
-				 <span id="website"><%= @store.website  %></span>
-				 <br />
-				 <abbr title="Facebook">facebook:</abbr> 
-				 <span id="facebook"><%= raw @store.facebook  %></span>
-				 <br>
-				 <abbr title="Twitter">twitter:</abbr> 
-				 <span id="twitter"><%= raw @store.twitter  %> </span>
-			 	<br/>
-				 <abbr title="Instagram">instagram:</abbr> 
-				 <span id="instagram"><%= raw @store.instagram  %></span>
-				 <br>
+				 <% if !@store.phonenumber.blank? %>						
+					 <abbr title="Phone">p:</abbr> 
+					 <span id="phonenumber"><%= @store.phonenumber  %></span>
+					 <br />
+				 <% end %>
+				 <% if !@store.email.blank? %>						
+					 <abbr title="Email">e:</abbr> 
+					 <span id="email"><%= @store.email  %></span>
+					 <br />
+				<% end %>
+				 
 			</address>
 		</td>
 		<td valign = "top">
@@ -198,11 +226,12 @@ end
 		</td>
 	</tr>
 </table>
-
+<hr/>
 <h4 class = "inline-header">description </h4>
-<p id="description">				
+<div id="description" class = "store-description-on-modal">				
 	<%= raw @store.description %>								
-</p> 
+</div> 
+<hr/>
 <h4 class = "inline-header">first time patient deals </h4>
 <p id="first-time-patient-deals">
 	<% if  @store.firsttimepatientdeals && !@store.firsttimepatientdeals.empty?  %>
@@ -211,4 +240,4 @@ end
 		none.
 	<% end %>
 </p>
-
+<hr/>
