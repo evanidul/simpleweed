@@ -176,6 +176,7 @@
 					 <br />
 				<% end %>
 				 
+				 <div id="ts-store-status"></div>
 				 
 				 <br/>
 			</address>
@@ -312,11 +313,17 @@ $('#item-preview-tab-content .nav-tabs a').click(function (e) {
 			});
 
 			function setStoreStatus(dayint, status, color) {
+				// store schedule elements
 				var idPrefix = "store-status-";
 				var divid = idPrefix + dayint;				
 				var selector = "#" + divid ;
 				$(selector).html(status);				
 				$(selector).addClass(color)
+				// set in top section business info as well
+				var topSectionIdPrefix = "ts-store-status";
+				var topSectionSelector = "#" + topSectionIdPrefix;
+				$(topSectionSelector).html(status);
+				$(topSectionSelector).addClass(color)
 			}
 
 		</script>
