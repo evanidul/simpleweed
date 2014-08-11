@@ -1432,6 +1432,8 @@ tr.hours-row > td {
 
 .edit-store-photo-link {
 	padding-left: 0px;
+	padding-top: 0px;
+	padding-bottom: 8px;
 }
 
 .based-on {
@@ -1440,7 +1442,8 @@ tr.hours-row > td {
 }
 
 .store-header {
-	margin-top:16px;
+	margin-top:26px;
+	margin-bottom:12px;
 }
 
 .top-section {
@@ -1460,4 +1463,31 @@ tr.hours-row > td {
 	border-color: #dddddd;
 	padding: 25px;
 
+}
+
+.store-name {
+	font-size: 40px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+.store-header-table td {
+	padding:0; margin:0;
+	height:40px;
+}
+.store-header-table {
+	border-collapse: collapse;
+}
+
+.store-header-icons {
+	position:relative;
+	bottom:10px;
+}
+
+.store-name-and-edit a {
+	color:black;
+}
+
+.store-name-and-edit a:hover {
+	color:#229622;
 }

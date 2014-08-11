@@ -25,7 +25,7 @@
     
     <div class="col-md-12">		
     	<div class="store-header">
-	    	<table>
+	    	<table class="store-header-table">
 	    		<tr>
 	    			<td>
 						<% if @store.avatar_url.blank? %>
@@ -39,8 +39,8 @@
 								<% end %>					
 						<% end %>	
 					</td>
-					<td class="store-name-and-edit">
-						<h1 id="name"><%= @store.name %> 
+					<td class="store-name-and-edit">						
+						<h1 id="name" class="store-name" style="display:inline"><%= @store.name %> 
 							<small><%= @store.promo %></small>
 							<% if @role_service.canManageStore(current_user, @store) %>					
 								<%= link_to edit_promo_store_path(@store), data: { toggle: "modal", target: "#modal", remote: edit_promo_store_path(@store)} , id: "edit-promo-link",  class: "btn edit-store-link" do %>
@@ -48,6 +48,24 @@
 								<% end %>
 							<% end %>  		
 						</h1>
+						<a href="http://www.facebook.com">
+							<span class="fa-stack fa-lg store-header-icons">
+							  <i class="fa fa-circle fa-stack-2x"></i>
+							  <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+							</span>
+						</a>
+						<a href="http://www.facebook.com">
+							<span class="fa-stack fa-lg store-header-icons">
+							  <i class="fa fa-circle fa-stack-2x"></i>
+							  <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+							</span>
+						</a>
+						<a href="http://www.facebook.com">
+							<span class="fa-stack fa-lg store-header-icons">
+							  <i class="fa fa-circle fa-stack-2x"></i>
+							  <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+							</span>
+						</a>
 					</td>
 				</tr>
 			</table>
