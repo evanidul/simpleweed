@@ -13,6 +13,7 @@
     function drawTable() {
       var data = new google.visualization.DataTable();
       data.addColumn('string', 'date added');
+      data.addColumn('string', 'hiddenlink');
       data.addColumn('string', 'name');
       data.addColumn('string', 'strain');
       data.addColumn('string', 'category');
@@ -23,11 +24,13 @@
       data.addColumn('string', '1/4 oz');
       data.addColumn('string', '1/2 oz');
       data.addColumn('string', '1 oz');
+      data.addColumn('string', 'per unit');
 
       <% @store_items.each do |store_item| %>
         data.addRow([
           '<%= store_item.created_at %>' ,
           '<%= link_to store_item.name, edit_store_store_item_path(@store, store_item),  data: { toggle: "modal", target: "#modal" , remote: edit_store_store_item_path(@store, store_item)} %>' , 
+          '<%= store_item.name %>',
           '<%= store_item.strain %>' ,
           '<%= store_item.maincategory %>' ,          
           '<%= store_item.subcategory %>' ,
@@ -36,10 +39,14 @@
           '<%= store_item.costeighthoz %>',
           '<%= store_item.costquarteroz %>',
           '<%= store_item.costhalfoz %>',
-          '<%= store_item.costoneoz %>']);
+          '<%= store_item.costoneoz %>',
+          '<%= store_item.costperunit %>'
+          ]);
       <% end %>      
       var table = new google.visualization.Table(document.getElementById('table_div'));
-      table.draw(data, {showRowNumber: false, allowHtml: true});
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0,2,3,4,5,6,7,8,9,10,11,12]); /** drop hidden column 1 **/
+      table.draw(view, {showRowNumber: false, allowHtml: true});
 
       google.visualization.events.addListener(table, 'select', selectHandler);
 
