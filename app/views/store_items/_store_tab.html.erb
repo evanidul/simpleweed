@@ -6,6 +6,9 @@
 		<td>
 			<h4 class="item-pop-up-store-name inline-header">
 				<a href="<%= store_path(@store.id)%>" data-no-turbolink='true' > <%= @store.name %></a>								
+				<small>
+					<%= @store_item.store.promo %>
+				</small>
 			</h4>
 			<% if !@store.facebook.blank? %>						
 				<a id="facebook" href="<%= @urlservice.url_with_protocol(@store.facebook) %>">
@@ -34,9 +37,7 @@
 		</td>
 	</tr>
 </table>  	
-<div class="item-pop-up-store-promo">
-<%= @store_item.store.promo %>
-</div>
+
 <div class="star-rank" >
 	<span class="glyphicon glyphicon-star"></span>
 	<span class="glyphicon glyphicon-star"></span>
@@ -112,23 +113,22 @@ end
 				<span id="city"><%= @store.city  %></span>, 
 				<span id="state"><%= @store.state  %></span>
 				<span id="zip"><%= @store.zip  %></span>
-				<br />
+				 <br/>
 				 <br/>
 				 <% if !@store.website.blank? %>						
-					<abbr title="Website">w:</abbr>
+					<i class="glyphicon glyphicon-home"></i>					
 					<a id="website" href="<%= @urlservice.url_with_protocol(@store.website) %>">
 						<%= @store.website  %>
 					</a>
 					<br />
-				<% end %>
-				 
-				 <% if !@store.phonenumber.blank? %>						
-					 <abbr title="Phone">p:</abbr> 
+				<% end %>				 
+				 <% if !@store.phonenumber.blank? %>											 
+					 <i class="glyphicon glyphicon-earphone"></i>					
 					 <span id="phonenumber"><%= @store.phonenumber  %></span>
 					 <br />
 				 <% end %>
-				 <% if !@store.email.blank? %>						
-					 <abbr title="Email">e:</abbr> 
+				 <% if !@store.email.blank? %>				 	
+					 <i class="glyphicon glyphicon-envelope"></i>					
 					 <span id="email"><%= @store.email  %></span>
 					 <br />
 				<% end %>
@@ -227,16 +227,22 @@ end
 	</tr>
 </table>
 <hr/>
+
+<% if !@store.description.blank? %>											 
 <h4 class = "inline-header">description </h4>
 <div id="description" class = "store-description-on-modal">				
 	<%= raw @store.description %>								
 </div> 
 <hr/>
+<% end %>
+
 <h4 class = "inline-header">first time patient deals </h4>
 <p id="first-time-patient-deals">
 	<% if  @store.firsttimepatientdeals && !@store.firsttimepatientdeals.empty?  %>
+		</br>
 		<%= raw @store.firsttimepatientdeals %>
 	<% else %>
+		</br>
 		none.
 	<% end %>
 </p>
