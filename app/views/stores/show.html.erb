@@ -156,16 +156,26 @@
 				<span id="state"><%= @store.state  %></span>
 				<span id="zip"><%= @store.zip  %></span>
 				<br />
+				<br />
 				 
-				 <abbr title="Phone">p:</abbr> 
-				 <span id="phonenumber"><%= @store.phonenumber  %></span>
+				 <% if !@store.website.blank? %>						
+					<abbr title="Website">w:</abbr>
+					<a id="instagram" href="<%= @urlservice.url_with_protocol(@store.website) %>">
+						<%= @store.website  %>
+					</a>
+				<% end %>
 				 <br />
-				 <abbr title="Email">e:</abbr> 
-				 <span id="email"><%= @store.email  %></span>
-				 <br />
-				 <abbr title="Website">w:</abbr> 
-				 <span id="website"><%= @store.website  %></span>
-				 <br />
+				 <% if !@store.phonenumber.blank? %>						
+					 <abbr title="Phone">p:</abbr> 
+					 <span id="phonenumber"><%= @store.phonenumber  %></span>
+					 <br />
+				 <% end %>
+				 <% if !@store.email.blank? %>						
+					 <abbr title="Email">e:</abbr> 
+					 <span id="email"><%= @store.email  %></span>
+					 <br />
+				<% end %>
+				 
 				 
 				 <br/>
 			</address>
