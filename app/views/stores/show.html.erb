@@ -431,6 +431,7 @@ $('#item-preview-tab-content .nav-tabs a').click(function (e) {
 				<td id="store-status-6" class="hours-current-status"></td>
 			</tr>
 		</table>
+		<hr />
 
 		<div class="header-and-edit-link">		
 			<h3 class="inline-header">daily specials</h3>
@@ -470,7 +471,26 @@ $('#item-preview-tab-content .nav-tabs a').click(function (e) {
 				<td id="dailyspecials_saturday" class="daily-specials-val"><%= @store.dailyspecialssaturday %></td>
 			</tr>
 		</table>
+		<hr />
 		
+		<div class="header-and-edit-link">
+			<h4 class = "inline-header">first time patient deals </h4>
+			<% if @role_service.canManageStore(current_user, @store) %>								
+				<%= link_to edit_firsttimepatientdeals_store_path(@store), data: { toggle: "modal", target: "#modal", remote: edit_firsttimepatientdeals_store_path(@store)} , id: "edit-first-time-patient-deals-link",  class: "btn edit-store-link" do %>
+						<span class="glyphicon glyphicon-edit"></span>
+				<% end %>
+
+			<%end %>
+		</div>
+		<p id="first-time-patient-deals">
+			<% if  @store.firsttimepatientdeals && !@store.firsttimepatientdeals.empty?  %>
+				<%= raw @store.firsttimepatientdeals %>
+			<% else %>
+				none.
+			<% end %>
+		</p>
+		<hr/>
+
 		<div class="header-and-edit-link">
 			<h3 class="inline-header">dispensary features</h3>
 			<% if @role_service.canManageStore(current_user, @store) %>				
@@ -539,7 +559,7 @@ $('#item-preview-tab-content .nav-tabs a').click(function (e) {
 				<td><%= check_box_tag :onsitetesting , 1 , @store.onsitetesting ? true : false, disabled: true %></td>
 			</tr>			
 		</table>
-
+		<hr />
 								
 		<div class="header-and-edit-link">
 			<h3 class="inline-header">delivery areas</h3>
@@ -557,7 +577,7 @@ $('#item-preview-tab-content .nav-tabs a').click(function (e) {
 				none.
 			<% end %>
 		</div>
-		
+		<hr />
 
     </div><!-- end right, side bar -->
 </div> <!-- end of 'row' -->
