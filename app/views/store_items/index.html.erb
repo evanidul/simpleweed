@@ -1,5 +1,5 @@
 <h2 id="store_name"><%= link_to @store.name, store_path(@store) , 'data-no-turbolink' => true %> </h2>
-<h3>item menu</h3>
+<h3 class="item-menu-edit">item menu</h3>
 
 <% content_for :head do %>
   <script type='text/javascript' src='https://www.google.com/jsapi'></script>
@@ -46,7 +46,11 @@
       var table = new google.visualization.Table(document.getElementById('table_div'));
       var view = new google.visualization.DataView(data);
       view.setColumns([0,2,3,4,5,6,7,8,9,10,11,12]); /** drop hidden column 1 **/
-      table.draw(view, {showRowNumber: false, allowHtml: true});
+
+      var cssClassNames = {headerRow: "simple-weed-google-table-header", headerCell: "simple-weed-google-table-header-cell"};
+      table.draw(view, {showRowNumber: false, allowHtml: true, cssClassNames: cssClassNames});
+
+      
 
       google.visualization.events.addListener(table, 'select', selectHandler);
 

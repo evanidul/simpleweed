@@ -378,3 +378,12 @@ h3 {
 }
 
 
+/** google table overrides **/
+.simple-weed-google-table-header {
+  background: white;
+}
+ 
+.simple-weed-google-table-header-cell {
+  background: #D8E0D8 !important;   //slightly darker gray than row select gray
+  //background: #9AA9B8         //dark blue gray
+}
