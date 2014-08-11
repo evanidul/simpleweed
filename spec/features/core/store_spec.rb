@@ -221,9 +221,9 @@ feature "store page" , :js => true do
     	expect(store_page.phonenumber.text).to have_text(new_phonenumber)    						
     	expect(store_page.email.text).to have_text(new_email)
     	expect(store_page.website.text).to have_text(new_website)
-    	expect(store_page.facebook.text).to have_text(new_fb)
-    	expect(store_page.twitter.text).to have_text(new_twitter)
-    	expect(store_page.instagram.text).to have_text(new_instagram)
+    	expect(store_page.facebook['href']).to have_text(new_fb)
+    	expect(store_page.twitter['href']).to have_text(new_twitter)
+    	expect(store_page.instagram['href']).to have_text(new_instagram)
 	
 		#features
 		#ftpd is true because we have a default text for it
