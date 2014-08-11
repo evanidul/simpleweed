@@ -132,7 +132,11 @@
 			<% end %>
 		</ul>
 		<div class="based-on">
-			based on 120 reviews
+			<% if @store.store_reviews.count == 0 %>
+				0 reviews
+			<% else %>
+				based on <%= @store.store_reviews.count %> reviews
+			<% end %>
 		</div>
 	</div>
 	<div class="col-md-3">
