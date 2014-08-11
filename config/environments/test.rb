@@ -38,4 +38,5 @@ Smellyleaf::Application.configure do
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
   config.action_mailer.default_url_options = { :host => 'localhost' }
+  config.action_dispatch.show_exceptions = true
 end

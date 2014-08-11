@@ -163,6 +163,7 @@ feature "store review comments" , :js => true, :search =>true do
         
 
         # user 2 writes his own review
+        page.execute_script "window.scrollTo(0,0)"        # scroll to top of the page for button to be visible
         store_page.write_review_button.click         
         review_text_user2 = "I loved this place!"
         store_page.review_text.set review_text_user2
