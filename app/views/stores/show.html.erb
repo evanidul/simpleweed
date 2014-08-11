@@ -164,7 +164,7 @@
 				 
 				 <% if !@store.website.blank? %>						
 					<abbr title="Website">w:</abbr>
-					<a id="instagram" href="<%= @urlservice.url_with_protocol(@store.website) %>">
+					<a id="website" href="<%= @urlservice.url_with_protocol(@store.website) %>">
 						<%= @store.website  %>
 					</a>
 				<% end %>
