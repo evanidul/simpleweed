@@ -133,8 +133,7 @@ feature "store item edit and add" , :js => true, :search =>true do
     	row_links = items_page.row_links
 
 	    	#items_page.searchresults[index].click
-	    	#items_page.searchresults.first.click # most recently added will be on top?
-	    	 
+	    	#items_page.searchresults.first.click # most recently added will be on top?	    	 
 	    	items_page.searchresults.each {|item_link| 
 	    		
 	    		if item_link.text.include? item_name
@@ -144,7 +143,7 @@ feature "store item edit and add" , :js => true, :search =>true do
 
 	    	}
 
-		# verify values    	
+		# verify values    			
     	expect(items_page.store_item_name.value).to have_text(item_name)
     	expect(items_page.store_item_description.value).to have_text(item_description)
     	expect(items_page.promo.value).to have_text(item_promo)

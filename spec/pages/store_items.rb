@@ -7,7 +7,9 @@ class StoreItemsPage < SitePrism::Page
 	element :firstSearchResult_row, "#table_div > div > div > table > tbody > tr:nth-child(2)"
 	element :firstSearchResult_item_name, "#table_div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(2)"
 
-	elements :searchresults, "#table_div > div > div > table > tbody > tr > td:nth-child(2) > a"
+	#elements :searchresults, "#table_div > div > div > table > tbody > tr > td:nth-child(1) > a"
+	elements :searchresults, "#table_div > div > div > table > tbody > tr > td:nth-child(2)"
+	
 
 
 							#table_div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(2) > a

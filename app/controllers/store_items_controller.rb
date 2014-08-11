@@ -4,6 +4,7 @@ class StoreItemsController < ApplicationController
 	
 	def index
 	  	@store_items = @store.store_items;
+	  	@urlservice = Simpleweed::Url::Urlservice.new
 	end
 
 	# loaded from modal, so don't use layout
