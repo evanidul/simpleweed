@@ -58,11 +58,14 @@ class StoreItemsController < ApplicationController
 		changes = @store_item.changes
 
 		# handle price changes		
+		
 		price_change_keys = ["costhalfgram","costhalfgram","costonegram","costeighthoz","costquarteroz","costhalfoz","costoneoz"]
 		price_change_array = changes.keys & price_change_keys
 		has_price_change = !price_change_array.empty?
 		
-		@store_item.create_activity key: 'store_item.update_prices'
+		if has_price_change
+			@store_item.create_activity key: 'store_item.update_prices'
+		end
 
 		if @store_item.save
 			redirect_to :action => 'index'
