@@ -46,6 +46,7 @@
 
 	  switch (category) {
 	  		case "flower":
+	  			data.addColumn('string', 'hiddenlink');
 		  		data.addColumn('string', '');
 			  	data.addColumn('string', 'strain');	  
 			  	data.addColumn('string', 'subcategory');	  
@@ -54,38 +55,55 @@
 			  	data.addColumn('string', '1/4');
 			  	data.addColumn('string', '1/2');
 			  	data.addColumn('string', '1 oz');
+			  	var view = new google.visualization.DataView(data);
+	  			view.setColumns([1,2,3,4,5,6,7]); 
 	  		break;
 	  		case "concentrate":
+	  			data.addColumn('string', 'hiddenlink');
 	  			data.addColumn('string', '');
 			  	data.addColumn('string', 'strain');	  
 			  	data.addColumn('string', 'subcategory');	  
 		  		data.addColumn('string', '1/2g');
 			  	data.addColumn('string', '1g');
 			  	data.addColumn('string', '1/8');
+			  	var view = new google.visualization.DataView(data);
+	  			view.setColumns([1,2,3,4,5]); 
 	  		break;
 	  		case "edible":
+	  			data.addColumn('string', 'hiddenlink');
 	  			data.addColumn('string', '');
 			  	data.addColumn('string', 'strain');	  
 			  	data.addColumn('string', 'subcategory');	  
 			  	data.addColumn('string', 'each');
+			  	var view = new google.visualization.DataView(data);
+	  			view.setColumns([1,2,3]); 
 	  		break;
 	  		case "pre-roll":
+	  			data.addColumn('string', 'hiddenlink');
 	  			data.addColumn('string', '');
 			  	data.addColumn('string', 'strain');	  
 			  	data.addColumn('string', 'subcategory');	  
 			  	data.addColumn('string', 'each');
+			  	var view = new google.visualization.DataView(data);
+	  			view.setColumns([1,2,3]); 
 	  		break;
 	  		case "other":
+	  			data.addColumn('string', 'hiddenlink');
 	  			data.addColumn('string', '');
 			  	data.addColumn('string', 'strain');	  
 			  	data.addColumn('string', 'subcategory');	  
 			  	data.addColumn('string', 'each');
+			  	var view = new google.visualization.DataView(data);
+	  			view.setColumns([1,2,3]); 
 	  		break;
 	  		case "accessory":
+	  			data.addColumn('string', 'hiddenlink');
 	  			data.addColumn('string', '');
 			  	data.addColumn('string', 'strain');	  
 			  	data.addColumn('string', 'subcategory');	  
 			  	data.addColumn('string', 'each');
+			  	var view = new google.visualization.DataView(data);
+	  			view.setColumns([1,2,3]); 
 	  		break;
 	  }
 
@@ -121,6 +139,7 @@
 			switch (category) {	
 		  		case "flower":
 			  		data.addRow(['<%= link_to store_item.name, store_store_item_path(@store, store_item, :storetab => "false"),  data: { toggle: "modal", target: "#modal" , remote: store_store_item_path(@store, store_item, :storetab => "false")} %><% badges.each do |badge| %><span class="badge search-item-badge-<%= badge %>"><%= badge %></span>&nbsp;<% end %>',
+			  		'<%= store_item.name %>',
 					'<%= store_item.strain %>',
 					'<%= store_item.subcategory %>',
 		    		'<%= store_item.costonegram %>','<%= store_item.costeighthoz %>',
@@ -128,30 +147,35 @@
 		  		break;
 		  		case "concentrate":
 		  			data.addRow(['<%= link_to store_item.name, store_store_item_path(@store, store_item , :storetab => "false"),  data: { toggle: "modal", target: "#modal" , remote: store_store_item_path(@store, store_item, :storetab => "false")} %><% badges.each do |badge| %><span class="badge search-item-badge-<%= badge %>"><%= badge %></span>&nbsp;<% end %>',
+	  				'<%= store_item.name %>',
 					'<%= store_item.strain %>',
 					'<%= store_item.subcategory %>',
 		    		'<%= store_item.costhalfgram %>','<%= store_item.costonegram %>','<%= store_item.costeighthoz %>']);	
 		  		break;
 		  		case "edible":
 		  			data.addRow(['<%= link_to store_item.name, store_store_item_path(@store, store_item, :storetab => "false"),  data: { toggle: "modal", target: "#modal" , remote: store_store_item_path(@store, store_item, :storetab => "false")} %><% badges.each do |badge| %><span class="badge search-item-badge-<%= badge %>"><%= badge %></span>&nbsp;<% end %>',
+		  			'<%= store_item.name %>',	
 		    		'<%= store_item.strain %>',
 		    		'<%= store_item.subcategory %>',
 		    		'<%= store_item.costperunit %>']);
 		  		break;
 		  		case "pre-roll":
 		  			data.addRow(['<%= link_to store_item.name, store_store_item_path(@store, store_item, :storetab => "false"),  data: { toggle: "modal", target: "#modal" , remote: store_store_item_path(@store, store_item, :storetab => "false")} %><% badges.each do |badge| %><span class="badge search-item-badge-<%= badge %>"><%= badge %></span>&nbsp;<% end %>',
+		  			'<%= store_item.name %>',	
 		    		'<%= store_item.strain %>',
 		    		'<%= store_item.subcategory %>',
 		    		'<%= store_item.costperunit %>']);
 		  		break;
 		  		case "other":
 		  			data.addRow(['<%= link_to store_item.name, store_store_item_path(@store, store_item, :storetab => "false"),  data: { toggle: "modal", target: "#modal" , remote: store_store_item_path(@store, store_item, :storetab => "false")} %><% badges.each do |badge| %><span class="badge search-item-badge-<%= badge %>"><%= badge %></span>&nbsp;<% end %>',
+		  			'<%= store_item.name %>',	
 		    		'<%= store_item.strain %>',
 		    		'<%= store_item.subcategory %>',
 		    		'<%= store_item.costperunit %>']);
 		  		break;
 		  		case "accessory":
 		  			data.addRow(['<%= link_to store_item.name, store_store_item_path(@store, store_item, :storetab => "false"),  data: { toggle: "modal", target: "#modal" , remote: store_store_item_path(@store, store_item, :storetab => "false")} %><% badges.each do |badge| %><span class="badge search-item-badge-<%= badge %>"><%= badge %></span>&nbsp;<% end %>',
+		  			'<%= store_item.name %>',	
 		    		'<%= store_item.strain %>',
 		    		'<%= store_item.subcategory %>',
 		    		'<%= store_item.costperunit %>']);
@@ -164,8 +188,10 @@
 
       var table = new google.visualization.Table(document.getElementById("table_<%= maincategory %>"));
       
+	  
+
  	  var cssClassNames = {headerRow: "simple-weed-google-table-header", headerCell: "simple-weed-google-table-header-cell"};
-      table.draw(data, {showRowNumber: false, allowHtml: true, cssClassNames: cssClassNames, width: '749px'});
+      table.draw(view, {showRowNumber: false, allowHtml: true, cssClassNames: cssClassNames, width: '749px'});
       
       
       google.visualization.events.addListener(table, 'sort', setWidth);
@@ -174,7 +200,7 @@
       function selectHandler(e) {
         var selection = table.getSelection();         /** gets everything that's selected **/
         var item = selection[0];                      /** we only support selecting one at this time, if more than one is selected, we'll just use the first    item **/			        
-        var str = data.getFormattedValue(item.row, 0); /** gets the link stored in the first column of the selected row, ie <a data-remote="/students/29" data-                                                   target="#modal" data-toggle="modal" href="/students/29">Davvy</a>  **/			        
+        var str = data.getFormattedValue(item.row, 0); /** gets the link stored in the first column of the selected row, ie <a data-remote="/students/29" data-                                                   target="#modal" data-toggle="modal" href="/students/29">Davvy</a>  **/        
         var target = $(str).attr("href");   /** from that string, only extract the href attr **/
         
         $("#modal").load(target, function() {   /** and load that href into the modal.  This is similar to the modal code in application.html.erb **/
