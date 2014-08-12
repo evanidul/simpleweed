@@ -29,6 +29,8 @@
 
 .image-td {
 	padding-right:20px;	
+	border-right: 1px solid;
+	border-color: lightgray;
 }
 
 .item-search-item-name {
@@ -37,6 +39,7 @@
 
 .item-search-result-meta {
 	width: 100%;
+	padding-left: 20px;
 }
 
 .item-search-item-description {
