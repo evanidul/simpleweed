@@ -11,10 +11,10 @@
 						<% end %>
 					</td>
 
-
 					<td class="item-search-result-meta">
 						<h2 >
 							<!-- dvu: we don't use link_to because the link name is too complicated to embed -->
+						  	<div class="store-item-name-container">
 						  	<a class="item-search-item-name-main-page" data-remote="<%= store_store_item_path(item.stored(:store_id), item.stored(:id)) %>" data-target="#modal" data-toggle="modal" 
 						  		href="<%= store_store_item_path(item.stored(:store_id), item.stored(:id)) %>" >
 								<% if item.highlights(:name).size == 0 %>								
@@ -27,7 +27,7 @@
 								    <%= raw highlight.format  { |word| "<span class='highlight'> #{word} </span>"  } %>
 							    <% end %>
 							</a>						
-						
+							</div>
 							<%= render partial: 'ses/store_item_price_table', locals: {item: item} %>			  
 
 
