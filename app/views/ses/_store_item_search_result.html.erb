@@ -15,7 +15,7 @@
 					<td class="item-search-result-meta">
 						<h2 >
 							<!-- dvu: we don't use link_to because the link name is too complicated to embed -->
-						  	<a class="item-search-item-name" data-remote="<%= store_store_item_path(item.stored(:store_id), item.stored(:id)) %>" data-target="#modal" data-toggle="modal" 
+						  	<a class="item-search-item-name-main-page" data-remote="<%= store_store_item_path(item.stored(:store_id), item.stored(:id)) %>" data-target="#modal" data-toggle="modal" 
 						  		href="<%= store_store_item_path(item.stored(:store_id), item.stored(:id)) %>" >
 								<% if item.highlights(:name).size == 0 %>								
 									<!-- have to do because just loading directly renders brackets and newlines -->
@@ -29,7 +29,7 @@
 							</a>						
 						
 							<%= render partial: 'ses/store_item_price_table', locals: {item: item} %>			  
-										  
+
 
 														
 						</h2>
@@ -100,48 +100,17 @@
 								</a>							
 							</div>
 
-							</br>
-							<%
-								straincat = [ ]
-								
-								if !(item.stored(:strain).nil? || item.stored(:strain).empty?)
-									strainstr = "strain: #{item.stored(:strain)}"
-									straincat.push(strainstr)
-								end	
-								if !(item.stored(:maincategory).nil? || item.stored(:maincategory).empty?)
-									categorystr = "category: #{item.stored(:maincategory)}"
-									straincat.push(categorystr)
-								end
-								if !(item.stored(:subcategory).nil? || item.stored(:subcategory).empty?)	
-									subcatstr = "subcategory: #{item.stored(:subcategory)}"
-									straincat.push(subcatstr)
-								end	
-							%>
-
-							<div class="search-result-item-category-strain-meta">
-								<%= straincat.join ' | '  %> 
-							</div>
-
 							
-							<%
-								lab = []
-								if !(item.stored(:thc).nil? )
-									thcstr = "thc: #{item.stored(:thc)}"
-									lab.push(thcstr)
-								end
-								if !(item.stored(:cbd).nil? )
-									cbdstr = "cbd: #{item.stored(:cbd)}"
-									lab.push(cbdstr)
-								end
-								if !(item.stored(:cbn).nil? )
-									cbnstr = "cbn: #{item.stored(:cbn)}"
-									lab.push(cbnstr)
-								end
-							%>
-
-							<div class="search-result-item-lab-meta">
-								<%= lab.join ' | '	 %>
-							</div>
+							<% if !(item.stored(:strain).blank?) %>
+								strain:		<%= item.stored(:strain) %><br/>
+							<% end %>
+							<% if !(item.stored(:maincategory).blank?) %>
+								category:		<%= item.stored(:maincategory) %><br/>
+							<% end %>
+							<% if !(item.stored(:subcategory).blank?) %>
+								subcategory:		<%= item.stored(:subcategory) %><br/>
+							<% end %>
+							
 
 							<!-- thc : <%= item.stored(:thc) %> | cbd : <%= item.stored(:cbd) %> | cbn : <%= item.stored(:cbn) %> 
 							</br> -->
