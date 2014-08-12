@@ -146,15 +146,35 @@
 }
 
 .search-results-item-price-table th {	
-
+	padding: 10px;
+	color:black;
+	font-weight: 400;
 }
 
+.search-results-item-price-table td {	
+	padding: 10px;
+	color:black;
+	font-weight: 400;
+}
+
+.price-table-price-row {
+	border-bottom: 1px solid;
+	color: lightgray;
+}
+
+.price-table-header-row {
+	background-color: rgb(240, 240, 240);
+	border: solid 1px;
+	border-color: lightgray;
+}
 .item-search-item-name {
 	color: black;
-	font-weight:200;
+	font-weight: 100;
 }
 
 .search-result-item-promo {
 	font-style: italic;
 	color: gray;
 }
+
+

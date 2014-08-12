@@ -6,14 +6,14 @@
 		when "flower"
 			%>
 			<table class= "small pull-right search-results-item-price-table">
-				<tr>												
+				<tr class="price-table-header-row">												
 					<th>1g</th>
 					<th>1/8oz</th>
 					<th>1/4oz</th>
 					<th>1/2oz</th>
 					<th>1oz</th>
 				</tr>
-				<tr>												
+				<tr class="price-table-price-row">												
 					<td <% if @filterpriceby == "gram" %>
 							class = "highlight"
 						<% end %>
@@ -50,14 +50,14 @@
 		when "concentrate"
 			%>
 			<table class= "small pull-right search-results-item-price-table">
-				<tr>
+				<tr class="price-table-header-row">
 					<th></th>
 					<th></th>
 					<th>1/2g</th>
 					<th>1g</th>
 					<th>1/8oz</th>												
 				</tr>
-				<tr>
+				<tr class="price-table-price-row">
 					<td></td>
 					<td></td>
 					<td <% if @filterpriceby == "halfgram" %>
@@ -85,14 +85,14 @@
 		else
 			%>			
 			<table class= "small pull-right search-results-item-price-table">
-				<tr>
+				<tr class="price-table-header-row">
 					<th></th>
 					<th></th>
 					<th></th>
 					<th></th>												
 					<th>each</th>												
 				</tr>
-				<tr>
+				<tr class="price-table-price-row">
 					<td></td>
 					<td></td>
 					<td></td>
