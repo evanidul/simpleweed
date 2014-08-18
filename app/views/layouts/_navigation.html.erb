@@ -94,12 +94,33 @@
 
           <li><a href="<%= main_app.feeds_path %>" id="community-home-link">community</a></li>          
           <% if user_signed_in? %>            
+            <!--
             <li>
               <%= link_to 'Pricing', main_app.pricing_path %>
             </li>
             <li>              
               <%= link_to "plans",koudoku.owner_subscriptions_path(current_user), 'data-no-turbolink' => true %>
             </li>
+          -->
+            <%
+              @role_service = Simpleweed::Security::Roleservice.new
+              stores = @role_service.findStoresOwned(current_user)
+            %>
+            <% if !stores.empty? %>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  stores
+                  <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <% stores.each do |store| %>   
+                  <li>
+                    <%= link_to store.name, main_app.store_path(store.id), 'data-no-turbolink' => true %>
+                  </li>
+                  <% end %>
+                </ul>
+              </li>
+            <% end %>
             <li>
               <%= link_to current_user.username, main_app.feed_profile_path(current_user), :id => 'edit-user-link',:class => 'navbar-link' , 'data-no-turbolink' => true %>
 

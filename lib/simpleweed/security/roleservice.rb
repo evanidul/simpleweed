@@ -60,6 +60,15 @@ module Simpleweed
 	  			end
 	  		end
 
+	  		def findStoresOwned(user)	  			
+	  			if user.nil?
+	  				return false
+	  			else
+	  				stores = Store.with_role(:storeowner, user)
+	  				return stores
+	  			end
+	  		end
+
 	  		# duv: returns true if the user is the store manager for the GIVEN store, but false if given any other store.
 	  		# use isStoreManager(user) if you just want to check if the user managers ANY stores.
 	  		def isUserStoreManagerOf(user, store) 
