@@ -1,4 +1,8 @@
 class StoreItem < ActiveRecord::Base
+
+	# enables soft delete
+	acts_as_paranoid
+
 	include PublicActivity::Common    
 	# users may follow store items
 	acts_as_followable

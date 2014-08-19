@@ -78,6 +78,9 @@
   opacity: 0.9;
 }
 
+.inline {
+  display:inline !important;
+}
 
 /* custom inclusion of right, left and below tabs */
 

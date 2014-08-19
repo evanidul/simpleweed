@@ -94,12 +94,14 @@ Smellyleaf::Application.routes.draw do
       put 'update_promo'
       get "edit_photo"
       put "update_photo"
+      get 'archived_items'
 
     end
     resources :store_items do 
       member do
         post 'follow'
         post 'unfollow'
+        get 'delete_prompt'
       end
       resources :store_item_reviews do
         resources :store_item_review_comments

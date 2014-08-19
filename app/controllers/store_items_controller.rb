@@ -2,8 +2,8 @@ class StoreItemsController < ApplicationController
 
 	before_filter :load_store
 	
-	def index
-	  	@store_items = @store.store_items;
+	def index		
+	  	@store_items = @store.store_items
 	  	@urlservice = Simpleweed::Url::Urlservice.new
 	end
 
@@ -103,8 +103,24 @@ class StoreItemsController < ApplicationController
 		end
 	end
 
+	def delete_prompt
+		@store_item = StoreItem.find(params[:id])
+	end
+
+	def destroy
+		# TODO: add authorization
+		# roleservice = Simpleweed::Security::Roleservice.new
+		# assert_equal(true, roleservice.canManagePost(user) , 'admins should be able to manage posts')
+		@store_item = StoreItem.find(params[:id])
+		if @store_item			
+			@store_item.destroy
+	    	flash[:notice] = @store_item.name + " has been archived"
+	    end
+		redirect_to store_store_items_path(@store)
+	end
+
 private
-    def load_store
+    def load_store    	
       @store = Store.find(params[:store_id])
     end
 

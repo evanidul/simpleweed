@@ -1,0 +1,38 @@
+<br/>
+<h2>archiving guidelines</h2>
+<div class="well">
+	<p>		
+	items may be archived when items are no longer sold.  however, it is prohibited to remove an item for the sake of clearing bad reviews or low item scores.  if it is deemed that an item has been removed for this purpose, actions will be taken against the store to reflect what is construed as abuse of the site.  an example of such an activity is archiving an item to clear a bad review, then recreating the same item in hopes of getting better reviews for it.
+	</p>
+	<p>
+	if an item has gotten bad reviews and you wish to no longer carry the item at the store, that will not be considered misuse of the site.
+	</p>
+	<p>
+	items may be archived if an item has temporarily out of stock, and may be restored at a later date in time once back in stock.
+	</p>
+
+</div>	
+
+<div style="width:50%" class="well">
+	<%= render partial: 'store_items/store_item', locals: {store_item: @store_item} %>
+</div>
+
+<div>
+
+	<div >
+		<%= form_for :store_item, url: store_store_item_path, method: 'delete', :html => {:class => 'inline'} do |f| %>
+          <div>
+            <h4>archive this item? </h4>
+          </div>
+          </br>
+                        
+          <p class = "form-group ">              	
+            <%= link_to 'cancel', store_store_items_path(@store) , :class => "btn btn-default" %>    
+            <%= f.submit 'archive' ,:class => 'btn btn-danger' , :id => 'delete_item_submit'%>
+          </p>
+        <% end %>		
+		
+	</div>
+</div>
+
+

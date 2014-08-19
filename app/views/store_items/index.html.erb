@@ -33,8 +33,11 @@
         <span class="glyphicon glyphicon-star"></span>    
       </li>
       <li>
-        <%= link_to "Add Item", new_store_store_item_path, id: "new_store_item_top", data: { toggle: "modal", target: "#modal" , remote: new_store_store_item_path} , class: 'btn btn-primary lowercase'%>
+        <%= link_to "add item", new_store_store_item_path, id: "new_store_item_top", data: { toggle: "modal", target: "#modal" , remote: new_store_store_item_path} , class: 'btn btn-primary lowercase'%>
       </li>      
+      <li>
+        <%= link_to "archived items", archived_items_store_path(@store.id), id: "archived-items-link" , class: 'btn btn-primary lowercase'%>
+      </li>
     </ul>
 
 
