@@ -19,7 +19,7 @@
 	<%= form_for :store_item, url: undestroy_store_store_item_path, method: 'post', :html => {:class => 'inline'} do |f| %>                        
       <p class = "form-group pull-right">              	
         <button id="cancel-button" type="button" class="btn btn-default" data-dismiss="modal">close</button>
-        <%= f.submit 'unarchive' ,:class => 'btn btn-primary' , :id => 'delete_item_submit'%>
+        <%= f.submit 'unarchive' ,:class => 'btn btn-primary' , :id => 'unarchive_item_submit'%>
       </p>
     <% end %>		
 	

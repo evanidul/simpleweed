@@ -1,27 +1,29 @@
 <% if activity.trackable %>
-<div class="feed-item-store-followed"><!-- class used for selenium -->
-	<table class="feed-item-table">
-		<tr>
-			<td valign = "top">
-				<span class="feed-item-icon-container">
-					<%= render partial: 'profile/profile_image', locals: {user: activity.owner} %>
-				</span>
-			</td>
-			<td class="feed-item-title-and-body">
-				<span class="item-feed-title">
-					<%= link_to activity.owner.username, activity_profile_path(activity.owner), :class => 'user-link', 'data-no-turbolink' => true %>
-					<span> followed </span>
+<div class="activity">
+	<div class="feed-item-store-followed"><!-- class used for selenium -->
+		<table class="feed-item-table">
+			<tr>
+				<td valign = "top">
+					<span class="feed-item-icon-container">
+						<%= render partial: 'profile/profile_image', locals: {user: activity.owner} %>
+					</span>
+				</td>
+				<td class="feed-item-title-and-body">
+					<span class="item-feed-title">
+						<%= link_to activity.owner.username, activity_profile_path(activity.owner), :class => 'user-link', 'data-no-turbolink' => true %>
+						<span> followed </span>
 
-					<a href="<%= store_path(activity.trackable.id)%>" data-no-turbolink='true' > <%= activity.trackable.name %></a>
-					 
-					<div class="time-ago-feed-item"><%= time_ago_in_words(activity.trackable.updated_at) %> ago</div>
-				</span>
-				<div class = "feed-item-body">
-					
-				</div>
+						<a href="<%= store_path(activity.trackable.id)%>" data-no-turbolink='true' > <%= activity.trackable.name %></a>
+						 
+						<div class="time-ago-feed-item"><%= time_ago_in_words(activity.trackable.updated_at) %> ago</div>
+					</span>
+					<div class = "feed-item-body">
+						
+					</div>
 
-			</td>
-		</tr>
-	</table>
+				</td>
+			</tr>
+		</table>
+	</div>
 </div>
 <% end %>

@@ -2,6 +2,9 @@ class StoreItemReviewVote < ActiveRecord::Base
   belongs_to :store_item_review
   belongs_to :user
 
+  # enables soft delete
+  acts_as_paranoid
+
   validates_inclusion_of :vote, :in => [1,-1]
   validates :store_item_review, :user, presence: true
 

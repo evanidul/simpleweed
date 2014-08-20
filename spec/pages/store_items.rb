@@ -2,7 +2,9 @@ class StoreItemsPage < SitePrism::Page
 	#set_url "/admin/stores"
 
 	element :store_name, "#store_name"
+
 	element :add_store_item_button, "#new_store_item"
+	element :archived_items_button, '#archived-items-link'
 
 	element :firstSearchResult_row, "#table_div > div > div > table > tbody > tr:nth-child(2)"
 	element :firstSearchResult_item_name, "#table_div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(2)"
@@ -63,6 +65,7 @@ class StoreItemsPage < SitePrism::Page
 
 	# save & close
 	element :save_store_item_button, "#save_store_item"
+	element :archive_item_button, '#archive-item-link'
 	element :close_button, "#close-button"
 
 end

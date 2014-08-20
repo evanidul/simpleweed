@@ -1,36 +1,37 @@
 <% if activity.trackable %>
-
-<table class="feed-item-table">
-	<tr>
-		<td valign = "top">
-			<span class="feed-item-icon-container">
-				<%= render partial: 'profile/profile_image', locals: {user: activity.trackable.user} %>
-			</span>
-		</td>
-		<td class="feed-item-title-and-body">
-			<div class="item-feed-title">
-				<span>					
-					<%= link_to activity.trackable.user.username , activity_profile_path(activity.trackable.user), :class => 'user-link', 'data-no-turbolink' => true %>							
-					<span>'s review of </span>
+<div class="activity">
+	<table class="feed-item-table">
+		<tr>
+			<td valign = "top">
+				<span class="feed-item-icon-container">
+					<%= render partial: 'profile/profile_image', locals: {user: activity.trackable.user} %>
 				</span>
-				<a>					
-					<a href="<%= store_path(activity.trackable.store.id)%>" data-no-turbolink='true' > <%= activity.trackable.store.name %></a>
-				</a> 
-				<span> has a new comment </span>
-				
-				<div class="time-ago-feed-item"><%= time_ago_in_words(activity.trackable.updated_at) %> ago</div>
-			</div>
-			<div class = "feed-item-body">				
-				<% @store_review = activity.trackable 
-				   @comment = StoreReviewComment.find(activity.parameters[:store_review_comment_id])
-				%>
+			</td>
+			<td class="feed-item-title-and-body">
+				<div class="item-feed-title">
+					<span>					
+						<%= link_to activity.trackable.user.username , activity_profile_path(activity.trackable.user), :class => 'user-link', 'data-no-turbolink' => true %>							
+						<span>'s review of </span>
+					</span>
+					<a>					
+						<a href="<%= store_path(activity.trackable.store.id)%>" data-no-turbolink='true' > <%= activity.trackable.store.name %></a>
+					</a> 
+					<span> has a new comment </span>
+					
+					<div class="time-ago-feed-item"><%= time_ago_in_words(activity.trackable.updated_at) %> ago</div>
+				</div>
+				<div class = "feed-item-body">				
+					<% @store_review = activity.trackable 
+					   @comment = StoreReviewComment.find(activity.parameters[:store_review_comment_id])
+					%>
 
-				
-					<%= render partial: 'store_review_comments/store_review_comment', locals: {store_review_comment: @comment} %>
-				
-			</div>
+					
+						<%= render partial: 'store_review_comments/store_review_comment', locals: {store_review_comment: @comment} %>
+					
+				</div>
 
-		</td>
-	</tr>
-</table>
+			</td>
+		</tr>
+	</table>
+</div>
 <% end %>

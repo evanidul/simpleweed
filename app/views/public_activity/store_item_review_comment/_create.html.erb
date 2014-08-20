@@ -2,31 +2,32 @@
 	@store_item_review = activity.trackable.store_item_review
 	@store = @store_item_review.store_item.store
  %>
+<div class="activity">
+	<table class="feed-item-table">
+		<tr>
+			<td class = "feed-item-avatar" valign = "top">
+				<span class="feed-item-icon-container">
+					<%= render partial: 'profile/profile_image', locals: {user: activity.trackable.user} %>
+				</span>
+			</td>
+			<td class="feed-item-title-and-body">
+				<div class="item-feed-title">				
+					<%= link_to activity.trackable.user.username , activity_profile_path(activity.trackable.user), :class => 'user-link', 'data-no-turbolink' => true %>
+					<span> commented on the review of</span>
+					<a class="item-search-item-name" data-remote="<%= store_store_item_path(activity.trackable.store_item_review.store_item.store.id, activity.trackable.store_item_review.store_item.id, :reviewtab => "false") %>" data-target="#modal" data-toggle="modal" 
+							  		href="<%= store_store_item_path(activity.trackable.store_item_review.store_item.store.id, activity.trackable.store_item_review.store_item.id, :reviewtab => "false") %>" >
+							<%= activity.trackable.store_item_review.store_item.name %> 
+					</a>
+					
+					
+					<div class="time-ago-feed-item-prices"><%= time_ago_in_words(activity.trackable.updated_at) %> ago</div>
+				</div>
+				<div class = "feed-item-body">
 
-<table class="feed-item-table">
-	<tr>
-		<td class = "feed-item-avatar" valign = "top">
-			<span class="feed-item-icon-container">
-				<%= render partial: 'profile/profile_image', locals: {user: activity.trackable.user} %>
-			</span>
-		</td>
-		<td class="feed-item-title-and-body">
-			<div class="item-feed-title">				
-				<%= link_to activity.trackable.user.username , activity_profile_path(activity.trackable.user), :class => 'user-link', 'data-no-turbolink' => true %>
-				<span> commented on the review of</span>
-				<a class="item-search-item-name" data-remote="<%= store_store_item_path(activity.trackable.store_item_review.store_item.store.id, activity.trackable.store_item_review.store_item.id, :reviewtab => "false") %>" data-target="#modal" data-toggle="modal" 
-						  		href="<%= store_store_item_path(activity.trackable.store_item_review.store_item.store.id, activity.trackable.store_item_review.store_item.id, :reviewtab => "false") %>" >
-						<%= activity.trackable.store_item_review.store_item.name %> 
-				</a>
-				
-				
-				<div class="time-ago-feed-item-prices"><%= time_ago_in_words(activity.trackable.updated_at) %> ago</div>
-			</div>
-			<div class = "feed-item-body">
-
-				<%= render partial: 'store_item_review_comments/store_item_review_comment', locals: {store_item_review_comment: activity.trackable} %>
-			</div>			
-		</td>
-	</tr>
-</table>
+					<%= render partial: 'store_item_review_comments/store_item_review_comment', locals: {store_item_review_comment: activity.trackable} %>
+				</div>			
+			</td>
+		</tr>
+	</table>
+</div>
 <% end %>

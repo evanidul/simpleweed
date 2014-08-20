@@ -1,24 +1,26 @@
 <% if activity.trackable %>
-<div class="feed-item-store-promo-update"><!-- class used for selenium -->
-	<table class="feed-item-table">
-		<tr>
-			<td valign = "top">
-				<span class="feed-item-icon-container">
-					<%= render partial: 'stores/store_image', locals: {store: activity.trackable} %>
-				</span>
-			</td>
-			<td class="feed-item-title-and-body">
-				<span class="item-feed-title">
-					<a href="<%= store_path(activity.trackable.id)%>" data-no-turbolink='true' > <%= activity.trackable.name %></a>
-					 has a new promo.
-					<div class="time-ago-feed-item"><%= time_ago_in_words(activity.trackable.updated_at) %> ago</div>
-				</span>
-				<div class = "feed-item-body">
-					<%= activity.trackable.promo %> 
-				</div>
+<div class="activity">
+	<div class="feed-item-store-promo-update"><!-- class used for selenium -->
+		<table class="feed-item-table">
+			<tr>
+				<td valign = "top">
+					<span class="feed-item-icon-container">
+						<%= render partial: 'stores/store_image', locals: {store: activity.trackable} %>
+					</span>
+				</td>
+				<td class="feed-item-title-and-body">
+					<span class="item-feed-title">
+						<a href="<%= store_path(activity.trackable.id)%>" data-no-turbolink='true' > <%= activity.trackable.name %></a>
+						 has a new promo.
+						<div class="time-ago-feed-item"><%= time_ago_in_words(activity.trackable.updated_at) %> ago</div>
+					</span>
+					<div class = "feed-item-body">
+						<%= activity.trackable.promo %> 
+					</div>
 
-			</td>
-		</tr>
-	</table>
+				</td>
+			</tr>
+		</table>
+	</div>
 </div>
 <% end %>

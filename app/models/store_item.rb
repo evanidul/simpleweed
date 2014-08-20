@@ -9,7 +9,7 @@ class StoreItem < ActiveRecord::Base
 
 	belongs_to :store
 	validates :name, presence: true
-	has_many :store_item_reviews
+	has_many :store_item_reviews, dependent: :destroy
 
 	STRAINS = ['','indica', 'sativa', 'hybrid']
 	validates_inclusion_of :strain, :in => STRAINS,:allow_nil => true,

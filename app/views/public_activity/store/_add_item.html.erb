@@ -3,31 +3,32 @@
 	new_store_item = StoreItem.find(item_id)
 %>
 <% if activity.trackable && new_store_item %>
-	
-<div class="feed-item-store-added-item"><!-- class used for selenium -->
-	<table class="feed-item-table">
-		<tr>
-			<td valign = "top">
-				<span class="feed-item-icon-container">
-					<%= render partial: 'stores/store_image', locals: {store: activity.trackable} %>
-				</span>
-			</td>
-			<td class="feed-item-title-and-body">
-				<span class="item-feed-title">
-					
-					<a href="<%= store_path(activity.trackable.id)%>" data-no-turbolink='true' > <%= activity.trackable.name %></a>
-					<span> added a new item 
+<div class="activity">	
+	<div class="feed-item-store-added-item"><!-- class used for selenium -->
+		<table class="feed-item-table">
+			<tr>
+				<td valign = "top">
+					<span class="feed-item-icon-container">
+						<%= render partial: 'stores/store_image', locals: {store: activity.trackable} %>
 					</span>
-					
-					
-					<div class="time-ago-feed-item"><%= time_ago_in_words(activity.trackable.updated_at) %> ago</div>
-				</span>
-				<div class = "feed-item-body">
-					<%= render partial: 'store_items/store_item', locals: {store_item: new_store_item} %>
-				</div>
+				</td>
+				<td class="feed-item-title-and-body">
+					<span class="item-feed-title">
+						
+						<a href="<%= store_path(activity.trackable.id)%>" data-no-turbolink='true' > <%= activity.trackable.name %></a>
+						<span> added a new item 
+						</span>
+						
+						
+						<div class="time-ago-feed-item"><%= time_ago_in_words(activity.trackable.updated_at) %> ago</div>
+					</span>
+					<div class = "feed-item-body">
+						<%= render partial: 'store_items/store_item', locals: {store_item: new_store_item} %>
+					</div>
 
-			</td>
-		</tr>
-	</table>
+				</td>
+			</tr>
+		</table>
+	</div>
 </div>
 <% end %>

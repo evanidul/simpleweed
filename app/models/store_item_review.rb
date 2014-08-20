@@ -1,5 +1,8 @@
 class StoreItemReview < ActiveRecord::Base
 
+  # enables soft delete
+  acts_as_paranoid
+
   include PublicActivity::Model
   tracked :owner => :user
 
@@ -9,8 +12,8 @@ class StoreItemReview < ActiveRecord::Base
   belongs_to :store_item
   belongs_to :user
 
-  has_many :store_item_review_votes
-  has_many :store_item_review_comments
+  has_many :store_item_review_votes, dependent: :destroy
+  has_many :store_item_review_comments, dependent: :destroy
 
   validates :review, :stars, :user, :store_item, presence: true
   validates_inclusion_of :stars, :in => 1..5

@@ -6,6 +6,7 @@
 <% @store = @store_item.store %>
 
 <% @feed = true %>
-
-<%= render partial: 'store_item_reviews/store_item_review', locals: {store_item_review: @store_item_review} %>
+<div class="activity">
+	<%= render partial: 'store_item_reviews/store_item_review', locals: {store_item_review: @store_item_review} %>
+</div>
 <% end %>

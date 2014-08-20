@@ -5,6 +5,7 @@
 <% if activity.trackable && new_store_review %>
 
 <% @feed = true %>
-
-<%= render partial: 'store_reviews/store_review', locals: {store_review: new_store_review} %>
+<div class="activity">
+	<%= render partial: 'store_reviews/store_review', locals: {store_review: new_store_review} %>
+</div>
 <% end %>

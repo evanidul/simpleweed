@@ -2,5 +2,7 @@
 
 <% @feed = true %>
 
-<%= render partial: 'store_reviews/store_review', locals: {store_review: activity.trackable} %>
+<div class="activity">
+	<%= render partial: 'store_reviews/store_review', locals: {store_review: activity.trackable} %>
+</div>
 <% end %>

@@ -122,7 +122,7 @@ class StoreItemsController < ApplicationController
 	def undestroy
 		@store_item = StoreItem.only_deleted.find(params[:id])
 		if @store_item
-			StoreItem.restore(@store_item.id)
+			StoreItem.restore(@store_item.id, :recursive => true)
 			flash[:notice] = @store_item.name + " has been unarchived"
 		end
 		redirect_to store_store_items_path(@store)		
