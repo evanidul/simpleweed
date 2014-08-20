@@ -1,0 +1,36 @@
+<div class="modal-dialog">
+  <div class="modal-content">    
+	<ul class="nav nav-tabs">
+  		<li class="active"><a id= "info-tab-link" href="#info" data-toggle="tab">info</a></li>
+  		
+	</ul>
+
+    <div class="modal-body">
+		<!-- Tab panes -->
+		<div class="tab-content item-modal">
+		  	<%= render :partial =>'store_items/info_tab' %>
+		</div>  	
+		
+	</div>
+
+
+    
+		
+	<%= form_for :store_item, url: undestroy_store_store_item_path, method: 'post', :html => {:class => 'inline'} do |f| %>                        
+      <p class = "form-group pull-right">              	
+        <button id="cancel-button" type="button" class="btn btn-default" data-dismiss="modal">close</button>
+        <%= f.submit 'unarchive' ,:class => 'btn btn-primary' , :id => 'delete_item_submit'%>
+      </p>
+    <% end %>		
+	
+    <div class="simple-weed-modal-footer">
+    </div>  
+  </div> <!-- modal-content -->
+</div>    
+<script>
+//be careful with css selector.  If you remove .nav-tabs, it'll disable all the links in the tab panels.
+$('#item-preview-tab-content .nav-tabs a').click(function (e) {
+  e.preventDefault()
+  $(this).tab('show')  
+})
+</script>

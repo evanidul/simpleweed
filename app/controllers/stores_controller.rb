@@ -105,6 +105,10 @@ class StoresController < ApplicationController
 	  redirect_to stores_path
 	end
 
+	def archived_items
+		@store_items = @store.store_items.only_deleted
+	end
+
 	## 
 	## Store Edit Endpoints
 	##

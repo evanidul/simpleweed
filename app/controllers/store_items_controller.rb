@@ -119,6 +119,20 @@ class StoreItemsController < ApplicationController
 		redirect_to store_store_items_path(@store)
 	end
 
+	def undestroy
+		@store_item = StoreItem.only_deleted.find(params[:id])
+		if @store_item
+			StoreItem.restore(@store_item.id)
+			flash[:notice] = @store_item.name + " has been unarchived"
+		end
+		redirect_to store_store_items_path(@store)		
+	end
+
+	def restore_modal
+		@store_item = StoreItem.only_deleted.find(params[:id])				
+		@role_service = Simpleweed::Security::Roleservice.new		
+	end
+
 private
     def load_store    	
       @store = Store.find(params[:store_id])

@@ -97,11 +97,14 @@ Smellyleaf::Application.routes.draw do
       get 'archived_items'
 
     end
+    
     resources :store_items do 
       member do
         post 'follow'
         post 'unfollow'
-        get 'delete_prompt'
+        get 'delete_prompt'        
+        get 'restore_modal'
+        post 'undestroy'
       end
       resources :store_item_reviews do
         resources :store_item_review_comments
