@@ -10,6 +10,7 @@ require 'pages/search_results_stores'
 require 'pages/store_search_preview.rb'
 require 'pages/store_items_archive_prompt.rb'
 require 'pages/store_archived_items.rb'
+require 'pages/search_results_items'
 
 feature "store item archive tests" , :js => true, :search =>true do
 
@@ -46,7 +47,8 @@ feature "store item archive tests" , :js => true, :search =>true do
 		@store = Store.new(:name => @store_name , :addressline1 => @store_addressline1, :city => @store_city, :state => @store_ca, :zip => @store_zip)
 		@store.save	
 
-		@item1 =  @store.store_items.create(:name => "og" , :strain =>"indica")
+		@item1name = "asdfasdf"
+		@item1 =  @store.store_items.create(:name => @item1name , :strain =>"indica", :maincategory => "flower")
 		@item1.cultivation = "indoor"		
 		@item1.save
 		Sunspot.commit
@@ -126,5 +128,77 @@ feature "store item archive tests" , :js => true, :search =>true do
 
 	    	}
 	end	    	
+
+	scenario "create a store, add some items, archive item, archived items should not show in search results" do
+		page.visit("/users/sign_in")
+		login_page = LoginPage.new
+		login_page.username_input.set @adminemail
+    	login_page.username_password_input.set @adminpassword
+    	login_page.sign_in_button.click
+
+    	page.visit(store_path(@store))
+    	store_page = StorePage.new
+
+    	page.visit(store_store_items_path(@store))
+    	items_page = StoreItemsPage.new		
+		expect(items_page.store_name.text).to have_text(@store_name)
+		items_page.add_store_item_button.click
+
+		# add new item
+		item_name = "Weedy"
+		items_page.store_item_name.set item_name
+		items_page.store_item_strain.select 'sativa'
+		items_page.store_item_maincategory.select 'flower'
+		items_page.store_item_subcategory.select 'bud'
+
+		items_page.save_store_item_button.click
+
+		# back to items index
+		row_links = items_page.row_links
+
+	    	#items_page.searchresults[index].click
+	    	#items_page.searchresults.first.click # most recently added will be on top?
+	    	 
+	    	items_page.searchresults.each {|item_link| 
+	    		
+	    		if item_link.text.include? item_name
+	    			item_link.click
+	    			break
+	    		end
+
+	    	}
+
+	    items_page.archive_item_button.click
+		
+		store_items_archive_prompt_page = StoreItemsArchivePromptPage.new
+		store_items_archive_prompt_page.archive_button.click
+
+		expect(page).to have_text('has been archived')
+
+		# archived items should not show in search
+		header = HeaderPageComponent.new		
+		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+		header.item_query_input.set item_name		
+		header.search_button.click
+
+		searchresults_page = SearchResultsItemPageComponent.new
+		searchresults_page.searchresults_item_names.size.should == 0
+		
+		# search for an item so we can see store page
+		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+		header.item_query_input.set @item1name
+		header.search_button.click
+
+		searchresults_page = SearchResultsItemPageComponent.new
+		searchresults_page.searchresults_item_names.size.should == 1
+		searchresults_page.searchresults_item_names.map {|name| name.text}.should == [@item1name]
+		
+		searchresults_page.searchresults_store_names.first.click
+
+		# archived items shouldn't show on store page menu
+		store_page = StorePage.new
+		expect(page).to have_text(@item1name)
+		expect(page).should_not have_text(item_name)
+	end
 
 end	
