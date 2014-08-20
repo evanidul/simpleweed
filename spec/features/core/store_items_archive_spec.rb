@@ -153,12 +153,7 @@ feature "store item archive tests" , :js => true, :search =>true do
 
 		items_page.save_store_item_button.click
 
-		# back to items index
-		row_links = items_page.row_links
-
-	    	#items_page.searchresults[index].click
-	    	#items_page.searchresults.first.click # most recently added will be on top?
-	    	 
+		# back to items index			 
 	    	items_page.searchresults.each {|item_link| 
 	    		
 	    		if item_link.text.include? item_name
