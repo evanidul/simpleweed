@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140820034106) do
+ActiveRecord::Schema.define(version: 20140821032605) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -268,6 +268,7 @@ ActiveRecord::Schema.define(version: 20140820034106) do
     t.integer  "syncid"
     t.string   "image_url"
     t.datetime "deleted_at"
+    t.decimal  "stars"
   end
 
   add_index "store_items", ["deleted_at"], name: "index_store_items_on_deleted_at", using: :btree
@@ -388,6 +389,7 @@ ActiveRecord::Schema.define(version: 20140820034106) do
     t.integer  "syncid"
     t.text     "promo"
     t.string   "avatar_url"
+    t.decimal  "stars"
   end
 
   create_table "subscriptions", force: true do |t|
