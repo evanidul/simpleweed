@@ -40,6 +40,13 @@ class StoreItemReviewVotesController < ApplicationController
 				#@currentcount = @storereview.store_review_votes.sum(:vote)
 				@currentcount = @store_item_review.sum_votes
 
+				# update store stars
+				@scoreservice = Simpleweed::Score::Scoreservice.new				
+				store_item = @store_item_review_vote.store_item_review.store_item
+				score = @scoreservice.calculate_stars_for_item(store_item)
+				store_item.stars = score
+				store_item.save			
+
 				return format.js {}
 			else 
 				messagearray = @store_item_review_vote.errors.full_messages

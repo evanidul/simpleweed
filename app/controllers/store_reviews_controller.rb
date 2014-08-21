@@ -38,6 +38,12 @@ class StoreReviewsController < ApplicationController
 			# notify store owner of the new review
 			UserMailer.delay.store_has_new_review(@store_review)
 
+			# update store stars
+			@scoreservice = Simpleweed::Score::Scoreservice.new
+			score = @scoreservice.calculate_stars_for_store(@store)
+			@store.stars = score
+			@store.save			
+
 			redirect_to store_path(@store)
 		else 
 			messagearray = @store_review.errors.full_messages
