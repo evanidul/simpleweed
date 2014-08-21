@@ -34,11 +34,7 @@
 														
 						</h2>
 						<div class="star-rank" >
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>		
+							<%= render partial: 'layouts/stars', locals: {score: item.stored(:stars)} %>
 						</div>
 						
 						<div>

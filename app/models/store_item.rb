@@ -80,6 +80,8 @@ class StoreItem < ActiveRecord::Base
 
 	    string :image_url, :stored => true
 
+	    float :stars, :stored => true
+
 	    integer :store_id, :stored => true
 	    string(:store_id_str) { |p| p.store.id.to_s }
 	    

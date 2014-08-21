@@ -39,11 +39,7 @@
 </table>  	
 
 <div class="star-rank" >
-	<span class="glyphicon glyphicon-star"></span>
-	<span class="glyphicon glyphicon-star"></span>
-	<span class="glyphicon glyphicon-star"></span>
-	<span class="glyphicon glyphicon-star"></span>
-	<span class="glyphicon glyphicon-star"></span>		
+	<%= render partial: 'layouts/stars', locals: {score: @store.stars} %>						
 </div>  
 <div class ="search-results-store-badges">
 <%

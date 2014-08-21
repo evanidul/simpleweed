@@ -128,11 +128,7 @@
 		<% end #if %>						
 	</h4>			
 	<div class="star-rank" >
-		<span class="glyphicon glyphicon-star"></span>
-		<span class="glyphicon glyphicon-star"></span>
-		<span class="glyphicon glyphicon-star"></span>
-		<span class="glyphicon glyphicon-star"></span>
-		<span class="glyphicon glyphicon-star"></span>		
+		<%= render partial: 'layouts/stars', locals: {score: @store_item.stars} %>						
 	</div>
 	<div class ="search-results-item-badges">
 		<%
@@ -237,20 +233,9 @@
 					<td>				
 						<%= link_to top_review.user.username , activity_profile_path(top_review.user), :class => 'user-link', 'data-no-turbolink' => true %>						
 						<small> <%= time_ago_in_words(top_review.created_at) %> ago</small>			
-						<ul class = "store-star-rank" style="float:right;" star-value="<%= top_review.stars %>">			
-						<% (1..top_review.stars).each do |i| %>
-							<li class="rating_star">
-								<span class="glyphicon glyphicon-star"></span>
-							</li>
-						<% end %>	
-						<% darkstars = 5 - top_review.stars
-							(1..darkstars).each do |i| %>
-							<li class="rating_star off">
-								<span class="glyphicon glyphicon-star"></span>
-							</li>
-						<% end %>
-
-						</ul>
+						<span style="float:right;">
+							<%= render partial: 'layouts/stars', locals: {score: top_review.stars} %>						
+						</span>
 					</td>	
 				</tr>		
 				<tr>
