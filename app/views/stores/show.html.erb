@@ -80,11 +80,7 @@
   		<ul id="review-controls">
 			<!-- pro coding right here -->
 			<li class="star-rank">
-				<span class="glyphicon glyphicon-star"></span>
-				<span class="glyphicon glyphicon-star"></span>
-				<span class="glyphicon glyphicon-star"></span>
-				<span class="glyphicon glyphicon-star"></span>
-				<span class="glyphicon glyphicon-star"></span>		
+				<%= render partial: 'layouts/stars', locals: {score: @store.stars} %>
 			</li>
 			<li>
 				<% if !current_user.nil? && current_user.follows?(@store) %>

@@ -1,0 +1,26 @@
+<%
+	if score.nil?
+		score = 0
+	end
+	remainder = score - score.to_i # 3.3333 - 3 = 0.3333
+	if (remainder > 0.8) && (score < 5)
+		stars = score + 1
+	else 
+		stars = score.to_i  # to_i drops any .35
+	end
+%>
+
+<ul class = "store-star-rank" star-value="<%= score %>">			
+<% (1..stars).each do |i| %>
+	<li class="rating_star">
+		<span class="glyphicon glyphicon-star"></span>
+	</li>
+<% end %>	
+<% darkstars = 5 - stars
+	(1..darkstars).each do |i| %>
+	<li class="rating_star off">
+		<span class="glyphicon glyphicon-star"></span>
+	</li>
+<% end %>
+
+</ul>
