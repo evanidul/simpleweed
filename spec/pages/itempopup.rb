@@ -35,7 +35,7 @@ class ItemPopupComponent < SitePrism::Page
 
   # i cut and pasted the UI from stores, so the classes should be the same, even tho semantically incorrect
   elements :review_content, '.review-content'
-  elements :star_ranking, '.store-star-rank'
+  elements :star_ranking, "#item-popup-review-tab-review-container .store-star-rank"
   elements :review_vote_sum, '.review-votes'
   elements :upvotebutton, '.upvotebutton'
   elements :downvotebutton, '.downvotebutton'

@@ -30,7 +30,7 @@ class StorePage < SitePrism::Page
 
 	# reviews (on review tab)
 	elements :review_content, '.review-content'
-	elements :star_ranking, '.store-star-rank'
+	elements :star_ranking, "#store-page-store-reviews-container .store-star-rank"
 	elements :review_vote_sum, '.review-votes'
 	elements :upvotebutton, '.upvotebutton'
 	elements :downvotebutton, '.downvotebutton'

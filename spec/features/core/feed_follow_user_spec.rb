@@ -109,7 +109,7 @@ feature "follow users" , :js => true, :search =>true do
         itempopup.tab_reviews.click
 
         # review should be there        
-        expect(itempopup.review_content.first.text).to have_text(@item1_user1_reviex_text)
+        expect(itempopup.review_content.first.text).to have_text(@item1_user1_reviex_text)        
         expect(itempopup.star_ranking.first['star-value']).to have_text(@item1_user1_reviex_stars.to_s)  
 
         # you can comment on your reviews
