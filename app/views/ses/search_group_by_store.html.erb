@@ -60,8 +60,9 @@ var g_map;
 
   # By default, there is only one document per group (the highest
   # scoring one); if `limit` is specified (see below), multiple
-  # documents can be returned per group
+  # documents can be returned per group  
   
+  store = Store.find(group.hits[0].stored(:store_id))
   %>
 <div id="search-results">  
   	<div class="item-search-result-container" latitude="<%= group.hits[0].stored(:store_latitude) %>" longitude="<%= group.hits[0].stored(:store_longitude) %>" store-name="<%= group.hits[0].stored(:store_name)%>" 
@@ -90,11 +91,8 @@ var g_map;
 							
 						</h4>
 						<div class="star-rank" >
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>		
+							<!-- not pulling out of index, want most recent value -->
+							<%= render partial: 'layouts/stars', locals: {score: store.stars} %>						
 						</div>
 						<div class ="search-results-store-badges">
 							<%

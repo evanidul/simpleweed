@@ -123,6 +123,10 @@ class StoreItem < ActiveRecord::Base
 	  		store.longitude
 	  	end
 
+	  	float :store_stars, :stored => true do
+	  		store.stars
+	  	end
+
 	  	# store features
 	  	boolean :store_deliveryservice, :stored => true do
 	  		store.deliveryservice
