@@ -14,6 +14,15 @@
   		<div class="tab-pane active" id="following-people">
   			<br/>
   			<div class="followed-users">		
+  				<% if @following_users.size <= 0 %>
+  					<div class="well">you have not followed any users.</div>
+  					<div class="well">writing or commenting on reviews is a great way to find people.  						
+  						<%= link_to "go" , feeds_recent_store_reviews_path, :class => 'btn btn-primary pull-right', 'data-no-turbolink' => true %>	
+  					</div>
+  					<div class="well">meet people in the <a href="<%= feeds_path %>" id="community-home-link">community</a> section
+  						<%= link_to "go" , feeds_path, :class => 'btn btn-primary pull-right', 'data-no-turbolink' => true %>	
+  					</div>
+  				<% end %>
 				<% @following_users.each do |user| %>
 					<div class="followed-user" id = "<%= user.id %>">
 						<table style="width:100%">
@@ -41,7 +50,13 @@
   		
   		<div class="tab-pane" id="following-store">
   			<br/>
-  			<div class="followed-stores">		
+  			<% if @following_store.size <= 0 %>
+				<div class="well">you have not followed any stores.</div>
+				<div class="well">follow stores to get access to store updates. 
+					<%= link_to "go" , feeds_recent_store_reviews_path, :class => 'btn btn-primary pull-right', 'data-no-turbolink' => true %>	
+				</div>  					
+			<% end %>		
+  			<div class="followed-stores">  				
 				<% @following_store.each do |store| %>			
 					<div class="followed-store" id = "<%= store.id%>">
 						<table style="width:100%">
@@ -71,6 +86,13 @@
 
   		<div class="tab-pane" id="following-items">
   			<br/>
+  			<% if @following_store_items.size <= 0 %>
+				<div class="well">you have not followed any items.</div>
+				<div class="well">follow items to get access to item updates. 
+					<%= link_to "go" , feeds_recent_item_reviews_path, :class => 'btn btn-primary pull-right', 'data-no-turbolink' => true %>	
+				</div>  					
+			<% end %>		
+
 	  		<div class="followed-items">		
 				<% @following_store_items.each do |item| %>
 					<div class="store-item" id="<%=item.id%>">
