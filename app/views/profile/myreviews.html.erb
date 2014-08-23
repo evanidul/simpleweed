@@ -12,6 +12,11 @@
 	<div id="my-reviews-tab-content" class="tab-content">
   		<div class="tab-pane active" id="store-reviews">
   			<br/>
+  			<% if @store_reviews.size <= 0 %>
+				<div class="well">you have not reviewed any stores.</div>
+				<div class="well">reviewing stores is a great way to meet other people and to let stores know how to improve.					
+				</div>  					
+			<% end %>		
   			<% @store_reviews.each do |store_review| %>			 
 			    <%= render partial: 'store_reviews/store_review', locals: {store_review: store_review} %>			  
 			<% end %>
@@ -19,6 +24,11 @@
   		
   		<div class="tab-pane" id="item-reviews">
   			<br/>
+  			<% if @store_item_reviews.size <= 0 %>
+				<div class="well">you have not reviewed any items.</div>
+				<div class="well">reviewing items is a great way to meet other people and to let stores know which products you like.					
+				</div>  					
+			<% end %>		
 			<% @store_item_reviews.each do |store_item_review| %>			  
 			    <%= render partial: 'store_item_reviews/store_item_review', locals: {store_item_review: store_item_review} %>		
 			<% end %>  		

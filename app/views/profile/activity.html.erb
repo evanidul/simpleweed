@@ -3,9 +3,18 @@
 	<%= render :partial =>'left_column', locals: {profile_user: @profile_user, user_is_viewing_own_profile: @user_is_viewing_own_profile }%>
 </div>
 <div class="activities col-md-7">
+<% if @activities.size <= 0 %>
+	<div class="well">you have no activity.</div>
+	<div class="well">start meeting people by reading and commenting on reviews					
+	</div>  					
+	<div class="well">meet people in the <a href="<%= feeds_path %>" id="community-home-link">community</a> section
+		<%= link_to "go" , feeds_path, :class => 'btn btn-primary pull-right', 'data-no-turbolink' => true %>	
+	</div>
+<% end %>		
+
+
 <% @activities.each do |activity| %>
-  
-    
+  	
     <%= render_activity activity %>
   
  <% end %>
