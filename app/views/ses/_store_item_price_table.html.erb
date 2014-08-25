@@ -1,6 +1,5 @@
 <%
-
-	itemcategory = item.stored(:maincategory)	
+	
 	case itemcategory
 		# ['flower', 'concentrate', 'edible', 'pre-roll', 'other', 'accessory']
 		when "flower"
@@ -18,31 +17,31 @@
 							class = "highlight"
 						<% end %>
 					>
-						<%= item.stored(:costonegram) %>
+						<%= costonegram %>
 					</td>
 					<td <% if @filterpriceby == "eighth" %>
 							class = "highlight"
 						<% end %>
 					>
-						<%= item.stored(:costeighthoz) %>
+						<%= costeighthoz %>						
 					</td>
 					<td <% if @filterpriceby == "quarteroz" %>
 							class = "highlight"
 						<% end %>
 					>
-						<%= item.stored(:costquarteroz) %>
+						<%= costquarteroz %>
 					</td>
 					<td <% if @filterpriceby == "halfoz" %>
 							class = "highlight"
 						<% end %>
 					>
-						<%= item.stored(:costhalfoz) %>
+						<%= costhalfoz %>
 					</td>
 					<td <% if @filterpriceby == "oz" %>
 							class = "highlight"
 						<% end %>
 					>
-						<%= item.stored(:costoneoz) %>
+						<%= costoneoz %>
 					</td>
 				</tr>
 			</table>
@@ -60,19 +59,19 @@
 							class = "highlight"
 						<% end %>
 					>
-						<%= item.stored(:costhalfgram) %>
+						<%= costhalfgram %>
 					</td>
 					<td <% if @filterpriceby == "gram" %>
 							class = "highlight"
 						<% end %>
 					>
-						<%= item.stored(:costonegram) %>
+						<%= costonegram %>
 					</td>
 					<td <% if @filterpriceby == "eighth" %>
 							class = "highlight"
 						<% end %>
 					>
-						<%= item.stored(:costeighthoz) %>
+						<%= costeighthoz %>
 					</td>
 																
 				</tr>
@@ -89,7 +88,7 @@
 							class = "highlight"
 						<% end %>
 					>
-						<%= item.stored(:costperunit) %>
+						<%= costperunit %>
 					</td>
 					
 				</tr>

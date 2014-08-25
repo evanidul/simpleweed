@@ -27,13 +27,17 @@
 						    <% end %>
 						</a>						
 						</span>
-							
-							
-							
-
-														
 						
-						<%= render partial: 'ses/store_item_price_table', locals: {item: item} %>			  
+						<%= render partial: 'ses/store_item_price_table', locals: {
+							itemcategory: item.stored(:maincategory),
+							costonegram: item.stored(:costonegram),
+							costeighthoz: item.stored(:costeighthoz),
+							costquarteroz: item.stored(:costquarteroz),
+							costhalfoz: item.stored(:costhalfoz),
+							costoneoz: item.stored(:costoneoz),
+							costhalfgram: item.stored(:costhalfgram),
+							costperunit: item.stored(:costperunit)
+						} %>			  
 						<div class="star-rank" >
 							<%= render partial: 'layouts/stars', locals: {score: item.stored(:stars)} %>
 						</div>
