@@ -225,9 +225,11 @@
   *border-left-color: #ffffff;
 }
 
-#search-filter-options > .tab-content {
-	background-color: #222222;
-	color: white;
+#search-filter-options .tab-content {
+	border-right: 1px solid;
+  border-left: 1px solid;
+  border-color:lightgray;
+  margin-top: 7px;
 }
 
 /** background color - adv. search panel **/
