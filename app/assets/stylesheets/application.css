@@ -99,7 +99,8 @@
 	display:none;
   width:810px;
   position:absolute;
-  opacity: 0.9;
+  /**opacity: 0.9;**/
+
 }
 
 .inline {
@@ -107,6 +108,8 @@
 }
 
 /* custom inclusion of right, left and below tabs */
+
+
 
 .tabs-below > .nav-tabs,
 .tabs-right > .nav-tabs,
@@ -133,27 +136,30 @@
   margin-bottom: 0;  
 }
 
+/** color of unselected tabs **/
 .tabs-below > .nav-tabs > li > a {
   -webkit-border-radius: 0 0 4px 4px;
      -moz-border-radius: 0 0 4px 4px;
           border-radius: 0 0 4px 4px;
-    background-color: gray;
+    background-color: rgb(202, 202, 202);
 	color: white;
 }
 
+/** when you hover over a tab link , adv-search panel **/
 .tabs-below > .nav-tabs > li > a:hover,
 .tabs-below > .nav-tabs > li > a:focus {
   border-top-color: #ddd;
   border-bottom-color: transparent;
-  background-color: #222222;
+  background-color: #599659;
   color: white;
 }
 
+/** the currently selected tab **/
 .tabs-below > .nav-tabs > .active > a,
 .tabs-below > .nav-tabs > .active > a:hover,
 .tabs-below > .nav-tabs > .active > a:focus {
   border-color: transparent #ddd #ddd #ddd;
-  background-color: #222222;
+  background-color: #599659;
   color: white;
 }
 
@@ -224,11 +230,12 @@
 	color: white;
 }
 
+/** background color - adv. search panel **/
 #search-filter-options .tab-content .tab-pane {
 	/**height: 158px; **/
   height: 390px;
-	background-color:#222222;
-	color:white;
+	background-color:white;
+	
 	padding: 10px;
 }
 
