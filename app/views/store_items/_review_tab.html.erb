@@ -2,16 +2,9 @@
 
 <h4 class="item-search-item-name">
 		<!-- dvu: we don't use link_to because the link name is too complicated to embed -->
-  	<table>
-  		<tr>
-  			<td class="item-img-td">
-  				<%= render partial: 'store_items/item_image', locals: {item: @store_item} %>
-  			</td>
-  			<td>
-				<%= @store_item.name %>
-  			</td>
-  		</tr>
-  	</table>  	
+  	<span class="item-popup-item-name">
+  		<%= @store_item.name %>
+  	</span>  	
   	<% if current_user.nil? %>
 		<a id="review-item-slide-toggle-button" class = "btn btn-primary pull-right">REVIEW</a>
   		<script>

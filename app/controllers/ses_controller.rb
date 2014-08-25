@@ -449,6 +449,11 @@ class SesController < ApplicationController
 		uri_params = CGI.parse(uri.query)
 		currentpagestr = uri_params['se[pg]'].first #not sure why it gets returned as an array.  The pagination control param.
 
+		if currentpagestr.to_i == 1
+			@counter = 1
+		else	
+			@counter = ((currentpagestr.to_i - 1)  * 100) + 1
+		end
 		nextpagenum = currentpagestr.to_i + 1;
 		nextpagestr = nextpagenum.to_s
 		@nextlink = orig.sub('se%5Bpg%5D=' + currentpagestr,'se%5Bpg%5D=' +nextpagestr)  # increment the pagination param by 1

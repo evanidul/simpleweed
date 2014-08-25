@@ -63,8 +63,11 @@ if !@store_items || @store_items.empty? %>
 	</div>
 <% end %>
 <div id="search-results">
+ 
+
 <% @store_items.each do |item| %>	
-	<%= render partial: 'ses/store_item_search_result', locals: {item: item} %>			  
+	<%= render partial: 'ses/store_item_search_result', locals: {item: item, counter: @counter} %>			  
+<% @counter = @counter + 1 %>
 <% end %> 
 </div> <!-- search-results -->
 
