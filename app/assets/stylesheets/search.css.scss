@@ -54,6 +54,7 @@
 
 .search-inputs {
 	width : 160px !important;
+	background-color: rgb(241, 241, 241);
 }
 
 #item-search-results-map {
@@ -104,8 +105,8 @@
 
 //toggle group search button in nav
 #group-search-results {
-	background : #222222;
-	color: white;
+	background : white;
+	color: black;
 }
 
 .search-option-radio {

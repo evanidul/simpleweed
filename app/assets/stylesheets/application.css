@@ -15,6 +15,11 @@
  
 
  */
+#submit-item-search {
+  background-color: #A4D37C;
+  color: white;
+  height: 33px;
+}
 
 #loading-indicator {
 	z-index:1000;
@@ -23,10 +28,27 @@
 }
 
 /** override bootstrap rounded navbar corners **/
+
+/** header links **/
+.navbar-inverse .navbar-nav > li > a {
+  color: rgb(104, 104, 104);
+  font-weight:500;
+}
+
+/** header, store drop down on hover **/
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+  background-color:#599659;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover {
+  color: #599659;
+  font-weight:500;
+}
+
 .navbar {
 	border-radius : 0px !important;
 	/** fix the header size.  Make it fixed so that if we remove elements (like search on the homepage) the logo doesn't get cut off **/
-	height: 77px !important;
+	height: 77px !important;  
 }
 
 .navbar-form {
@@ -34,7 +56,9 @@
 }
 
 .navbar-inverse {
-	border-style: none !important;
+  border-bottom: 1px solid;  
+  background-color: white;
+
 }
 
 .navbar-brand,
@@ -61,7 +85,7 @@
 }
 
 #show-search-filters {
-	color:white;
+	color:black;
 	background-color: transparent;
 }
 
