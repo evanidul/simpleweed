@@ -1,0 +1,46 @@
+<table class="search-item-results-meta-table">
+	<tr>
+		<td >													
+			<span class="item-results-field-type">shop info:</span>													
+		</td>
+		<td>
+			<a class="search-results-store-links" href="<%= store_path(store_id) %>" data-no-turbolink='true' >
+				<%= store_name %>
+			</a>	
+		</td>
+	</tr>
+
+	<% if !strain.blank? %>									
+	<tr>
+		<td>
+			<span class="item-results-field-type">strain:</span>
+		</td>
+		<td>
+			<%= strain %>
+		</td>
+	</tr>
+	<% end %>
+
+	<% if !maincategory.blank? %>									
+	<tr>
+		<td>
+			<span class="item-results-field-type">category:</span>
+		</td>
+		<td>
+			<%= maincategory %>
+		</td>
+	</tr>
+	<% end %>
+
+	<% if !subcategory.blank? %>									
+	<tr>
+		<td>
+			<span class="item-results-field-type">subcategory:</span>
+		</td>
+		<td>
+			<%= subcategory %>
+		</td>
+	</tr>
+	<% end %>
+
+</table>

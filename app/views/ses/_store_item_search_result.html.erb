@@ -43,63 +43,17 @@
 						</div>
 						
 						<div>
-							<table class="search-item-results-meta-table">
-								<tr>
-									<td >										
-										
-											<span class="item-results-field-type">shop info:</span>
-																	
-										
-									</td>
-									<td>
-										<a class="search-results-store-links" href="<%= store_path(item.stored(:store_id))%>" data-no-turbolink='true' >
-											<% if item.highlights(:store_name).size == 0 %>
-												<!-- have to do because just loading directly renders brackets and newlines -->
-												<% item.stored(:store_name).each do |word| %>
-													<%= word %>
-												<% end %>
-											<% end %>
-											<% item.highlights(:store_name).each do |highlight| %>								    
-											    <%= raw highlight.format  { |word| "<span class='highlight'> #{word} </span>"  } %>
-										    <% end %>							
-										</a>	
-									</td>
-								</tr>
-
-								<% if !(item.stored(:strain).blank?) %>									
-								<tr>
-									<td>
-										<span class="item-results-field-type">strain:</span>
-									</td>
-									<td>
-										<%= item.stored(:strain) %>
-									</td>
-								</tr>
-								<% end %>
-
-								<% if !(item.stored(:maincategory).blank?) %>									
-								<tr>
-									<td>
-										<span class="item-results-field-type">category:</span>
-									</td>
-									<td>
-										<%= item.stored(:maincategory) %>
-									</td>
-								</tr>
-								<% end %>
-
-								<% if !(item.stored(:subcategory).blank?) %>									
-								<tr>
-									<td>
-										<span class="item-results-field-type">subcategory:</span>
-									</td>
-									<td>
-										<%= item.stored(:subcategory) %>
-									</td>
-								</tr>
-								<% end %>
-
-							</table>
+							<%
+								full_store_name = item.stored(:store_name).join(" ")
+								
+							%>
+							<%= render partial: 'store_items/store_item_meta_data', locals: {
+								store_id: item.stored(:store_id),
+								store_name: full_store_name,
+								strain: item.stored(:strain),
+								maincategory: item.stored(:maincategory),
+								subcategory: item.stored(:subcategory)
+							} %>
 							
 							
 
