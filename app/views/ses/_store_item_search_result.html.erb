@@ -12,27 +12,28 @@
 					</td>
 
 					<td class="item-search-result-meta">
-						<h2 >
-							<!-- dvu: we don't use link_to because the link name is too complicated to embed -->
-						  	<span class="store-item-name-container">
-						  	<a class="item-search-item-name-main-page" data-remote="<%= store_store_item_path(item.stored(:store_id), item.stored(:id)) %>" data-target="#modal" data-toggle="modal" 
-						  		href="<%= store_store_item_path(item.stored(:store_id), item.stored(:id)) %>" >
-								<% if item.highlights(:name).size == 0 %>								
-									<!-- have to do because just loading directly renders brackets and newlines -->
-									<% item.stored(:name).each do |word| %>
-										<%= word %>
-									<% end %>
+						<!-- dvu: we don't use link_to because the link name is too complicated to embed -->
+					  	<span class="store-item-name-container">
+					  	<a class="item-search-item-name-main-page" data-remote="<%= store_store_item_path(item.stored(:store_id), item.stored(:id)) %>" data-target="#modal" data-toggle="modal" 
+					  		href="<%= store_store_item_path(item.stored(:store_id), item.stored(:id)) %>" >
+							<% if item.highlights(:name).size == 0 %>								
+								<!-- have to do because just loading directly renders brackets and newlines -->
+								<% item.stored(:name).each do |word| %>
+									<%= word %>
 								<% end %>
-								<% item.highlights(:name).each do |highlight| %>								    
-								    <%= raw highlight.format  { |word| "<span class='highlight'> #{word} </span>"  } %>
-							    <% end %>
-							</a>						
-							</span>
-							<%= render partial: 'ses/store_item_price_table', locals: {item: item} %>			  
-
+							<% end %>
+							<% item.highlights(:name).each do |highlight| %>								    
+							    <%= raw highlight.format  { |word| "<span class='highlight'> #{word} </span>"  } %>
+						    <% end %>
+						</a>						
+						</span>
+							
+							
+							
 
 														
-						</h2>
+						
+						<%= render partial: 'ses/store_item_price_table', locals: {item: item} %>			  
 						<div class="star-rank" >
 							<%= render partial: 'layouts/stars', locals: {score: item.stored(:stars)} %>
 						</div>
@@ -40,7 +41,7 @@
 						<div>
 							<table class="search-item-results-meta-table">
 								<tr>
-									<td>										
+									<td >										
 										
 											<span class="item-results-field-type">shop info:</span>
 																	

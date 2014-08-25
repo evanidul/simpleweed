@@ -195,17 +195,20 @@
 	vertical-align: top;
 }
 
-tbody td{
-	
-}
-td:nth-child(1){
+
+.search-item-results-meta-table td:nth-child(1){
     width:120px;
 }
-td:nth-child(2){
-	
-}
+
 
 .item-results-field-type {
 	font-weight : 700;
 }
 
+.store-item-name-container {
+	font-size:34px;
+}
+
+.store-item-name-container a:hover {
+	color: green;
+}
