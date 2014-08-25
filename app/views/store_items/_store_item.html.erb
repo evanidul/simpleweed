@@ -6,7 +6,7 @@ end
 
 <div class = "" store-name="<%= @store_item.store.name %>" item-name="<%= @store_item.name %>">
 		<div class = "image-and-meta-container">
-			<table>
+			<table style="width:100%;">
 				<tr>
 					<td >
 						<h4 >
@@ -15,121 +15,18 @@ end
 						  		href="<%= store_store_item_path(@store_item.store.id, @store_item.id, :reviewtab => "false") %>" >
 								<%= @store_item.name %>
 							</a>						
-						
-							<%
-							if !(@store_item.maincategory.nil? || @store_item.maincategory.empty?)
-								itemcategory = @store_item.maincategory
-								case itemcategory
-									# ['flower', 'concentrate', 'edible', 'pre-roll', 'other', 'accessory']
-									when "flower"
-										%>
-										<table class= "small pull-right search-results-item-price-table">
-											<tr>												
-												<th>1g</th>
-												<th>1/8oz</th>
-												<th>1/4oz</th>
-												<th>1/2oz</th>
-												<th>1oz</th>
-											</tr>
-											<tr>												
-												<td <% if @filterpriceby == "gram" %>
-														class = "highlight"
-													<% end %>
-												>
-													<%= @store_item.costonegram %>
-												</td>
-												<td <% if @filterpriceby == "eighth" %>
-														class = "highlight"
-													<% end %>
-												>
-													<%= @store_item.costeighthoz %>
-												</td>
-												<td <% if @filterpriceby == "quarteroz" %>
-														class = "highlight"
-													<% end %>
-												>
-													<%= @store_item.costquarteroz %>
-												</td>
-												<td <% if @filterpriceby == "halfoz" %>
-														class = "highlight"
-													<% end %>
-												>
-													<%= @store_item.costhalfoz %>
-												</td>
-												<td <% if @filterpriceby == "oz" %>
-														class = "highlight"
-													<% end %>
-												>
-													<%= @store_item.costoneoz %>
-												</td>
-											</tr>
-										</table>
-										<%	
-									when "concentrate"
-										%>
-										<table class= "small pull-right search-results-item-price-table">
-											<tr>
-												<th></th>
-												<th></th>
-												<th>1/2g</th>
-												<th>1g</th>
-												<th>1/8oz</th>												
-											</tr>
-											<tr>
-												<td></td>
-												<td></td>
-												<td <% if @filterpriceby == "halfgram" %>
-														class = "highlight"
-													<% end %>
-												>
-													<%= @store_item.costhalfgram %>
-												</td>
-												<td <% if @filterpriceby == "gram" %>
-														class = "highlight"
-													<% end %>
-												>
-													<%= @store_item.costonegram %>
-												</td>
-												<td <% if @filterpriceby == "eighth" %>
-														class = "highlight"
-													<% end %>
-												>
-													<%= @store_item.costeighthoz %>
-												</td>
-																							
-											</tr>
-										</table>
-										<%	
-									else
-										%>
-										<table class= "small pull-right search-results-item-price-table">
-											<tr>
-												<th></th>
-												<th></th>
-												<th></th>
-												<th></th>												
-												<th>each</th>												
-											</tr>
-											<tr>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>				
-												<td <% if @filterpriceby == "gram" %>
-														class = "highlight"
-													<% end %>
-												>
-													<%= @store_item.costperunit %>
-												</td>
-												
-											</tr>
-										</table>
-										<%		
-									#switch
-									end %>
-								<% end #if %>
 														
 						</h4>
+						<%= render partial: 'ses/store_item_price_table', locals: {
+							itemcategory: @store_item.maincategory,
+							costonegram: @store_item.costonegram,
+							costeighthoz: @store_item.costeighthoz,
+							costquarteroz: @store_item.costquarteroz,
+							costhalfoz: @store_item.costhalfoz,
+							costoneoz: @store_item.costoneoz,
+							costhalfgram: @store_item.costhalfgram,
+							costperunit: @store_item.costperunit
+						} %>	
 						<div class="star-rank" >
 							<%= render partial: 'layouts/stars', locals: {score: @store_item.stars} %>						
 						</div>
