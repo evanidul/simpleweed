@@ -5,7 +5,7 @@
 		# ['flower', 'concentrate', 'edible', 'pre-roll', 'other', 'accessory']
 		when "flower"
 			%>
-			<table class= "small pull-right search-results-item-price-table">
+			<table class= "pull-right search-results-item-price-table">
 				<tr class="price-table-header-row">												
 					<th>1g</th>
 					<th>1/8oz</th>
@@ -49,17 +49,13 @@
 			<%	
 		when "concentrate"
 			%>
-			<table class= "small pull-right search-results-item-price-table">
-				<tr class="price-table-header-row">
-					<th></th>
-					<th></th>
+			<table class= "pull-right search-results-item-price-table" style="width: 165px !important">
+				<tr class="price-table-header-row">					
 					<th>1/2g</th>
 					<th>1g</th>
 					<th>1/8oz</th>												
 				</tr>
-				<tr class="price-table-price-row">
-					<td></td>
-					<td></td>
+				<tr class="price-table-price-row">					
 					<td <% if @filterpriceby == "halfgram" %>
 							class = "highlight"
 						<% end %>
@@ -84,19 +80,11 @@
 			<%	
 		else
 			%>			
-			<table class= "small pull-right search-results-item-price-table">
+			<table class= "pull-right search-results-item-price-table" style="width: 55px !important">
 				<tr class="price-table-header-row">
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>												
 					<th>each</th>												
 				</tr>
 				<tr class="price-table-price-row">
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>				
 					<td <% if @filterpriceby == "gram" %>
 							class = "highlight"
 						<% end %>

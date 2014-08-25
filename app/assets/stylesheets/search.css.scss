@@ -159,6 +159,7 @@
 	padding: 10px;
 	color:black;
 	font-weight: 400;
+	border: 1px solid lightgray;
 }
 
 .search-results-item-price-table td {	
@@ -167,9 +168,8 @@
 	font-weight: 400;
 }
 
-.price-table-price-row {
-	border-bottom: 1px solid;
-	color: lightgray;
+.price-table-price-row td{
+	border: 1px solid lightgray;	
 }
 
 .price-table-header-row {
