@@ -95,7 +95,10 @@ var g_infobox = new InfoBox({
 
 (window.initHoverForSearchResults = function() {
 	$( ".item-search-result-container" ).hover(function(e) {
-		$(this).addClass('search-item-hover-focus');
+		//$(this).addClass('search-item-hover-focus');
+    $(this).find(".image-td").addClass('image-td-hover');
+
+    //border-right: 1px solid;
 
 		e.preventDefault();
 		lat = $( this ).attr('latitude')
@@ -124,8 +127,10 @@ var g_infobox = new InfoBox({
 
 		}
 		, 
+    // on hover out
 		function() {
-		$(this).removeClass('search-item-hover-focus');
+		  //$(this).removeClass('search-item-hover-focus');      
+      $(this).find(".image-td").removeClass('image-td-hover');
 		}
 	);
 })(); //initHoverForSearchResults
