@@ -1,19 +1,12 @@
 <div class="tab-pane active" id="info">
-	<h4 class="item-search-item-name">
-		<!-- dvu: we don't use link_to because the link name is too complicated to embed -->
-  	<table>
-  		<tr>
-  			<td class="item-img-td">
-  				<%= render partial: 'store_items/item_image', locals: {item: @store_item} %>
-  			</td>
-  			<td>
-				<%= @store_item.name %>
-  			</td>
-  		</tr>
-  	</table>
+	
+	<span class="item-popup-item-name">
+  		<%= @store_item.name %>
+  	</span>  	
 	  	
-	  	
-  	<%= render partial: 'ses/store_item_price_table', locals: {
+  						
+	
+	<%= render partial: 'ses/store_item_price_table', locals: {
 							itemcategory: @store_item.maincategory,
 							costonegram: @store_item.costonegram,
 							costeighthoz: @store_item.costeighthoz,
@@ -23,8 +16,7 @@
 							costhalfgram: @store_item.costhalfgram,
 							costperunit: @store_item.costperunit
 						} %>	
-						
-	</h4>			
+	
 	<div class="star-rank" >
 		<%= render partial: 'layouts/stars', locals: {score: @store_item.stars} %>						
 	</div>
@@ -71,6 +63,8 @@
 								maincategory: @store_item.maincategory,
 								subcategory: @store_item.subcategory
 							} %>
+
+    <hr />
 
 	<div class="search-result-item-promo">								
 		<%= @store_item.promo %>
