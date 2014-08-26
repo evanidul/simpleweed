@@ -5,8 +5,8 @@ class SearchResultsItemPageComponent < SitePrism::Page
   elements :searchresults_store_names, '.search-results-store-links'
 
   # badges
-  elements :badge_supersize, ".search-item-badge-supersize"  
-  elements :badge_bogo, ".search-item-badge-bogo"  
+  elements :badge_supersize, ".search-item-badge-ss"  
+  elements :badge_bogo, ".search-item-badge-b"  
 
   # cultivation is a badge that may be several different values, but we just check this one b/c i'm lazy.
   elements :badge_indoor, ".search-item-badge-indoor"
@@ -15,10 +15,10 @@ class SearchResultsItemPageComponent < SitePrism::Page
   elements :badge_kush, ".search-item-badge-kush"
   elements :badge_haze, ".search-item-badge-haze"
 
-  elements :badge_organic, ".search-item-badge-organic"
-  elements :badge_sugarfree, ".search-item-badge-sugarfree"
-  elements :badge_glutenfree, ".search-item-badge-glutenfree"
-  elements :badge_topshelf, ".search-item-badge-topshelf"
-  elements :badge_privatereserve, ".search-item-badge-privatereserve"
+  elements :badge_organic, ".search-item-badge-o"
+  elements :badge_sugarfree, ".search-item-badge-sf"
+  elements :badge_glutenfree, ".search-item-badge-gf"
+  elements :badge_topshelf, ".search-item-badge-ts"
+  elements :badge_privatereserve, ".search-item-badge-pr"
   
 end
