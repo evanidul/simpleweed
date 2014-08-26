@@ -437,7 +437,7 @@ class SesController < ApplicationController
 
 			
 
-		
+		@badge_service = Simpleweed::Badge::Badgeservice.new		
 
 		# loads all the objects from the db?
 		#@store_items = @itemsearch.results 

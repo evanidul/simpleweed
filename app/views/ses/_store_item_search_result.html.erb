@@ -69,32 +69,45 @@
 									badges.push(item.stored(:cultivation))																
 								end
 								if item.stored(:dogo)
-									badges.push("bogo")
+									badges.push("b")
 								end
 								if item.stored(:topshelf)
-									badges.push("topshelf")
+									badges.push("ts")
 								end
 								if item.stored(:privatereserve)
-									badges.push("privatereserve")
+									badges.push("pr")
 								end
 								if item.stored(:organic)
-									badges.push("organic")
+									badges.push("o")
 								end
 								if item.stored(:sugarfree)
-									badges.push("sugarfree")
+									badges.push("sf")
 								end
 								if item.stored(:glutenfree)
-									badges.push("glutenfree")
+									badges.push("gf")
 								end
 								if item.stored(:supersize)
-									badges.push("supersize")
+									badges.push("ss")
 								end
 
+								# badge_description = Hash.new
+								# badge_description["b"] = "buy one get one"
+								# badge_description["ts"] = "top shelf: the best of the best"
+								# badge_description["pr"] = "private reserve: only sold here"
+								# badge_description["o"] = "organic: grown organically"
+								# badge_description["sf"] = "sugar free: no sugar in this product"
+								# badge_description["gf"] = "gluten free: no gluten in this product"
+								# badge_description["ss"] = "super size: get a little extra"
 
 							%>
 							<% badges.each do |badge| %>								    
-								<span class="badge search-item-badge-<%= badge %>"><%= badge %></span>
+								<span class="badge search-item-badge-<%= badge %>" data-toggle="tooltip" data-placement="bottom" title="<%= @badge_service.getBadgeDescription(badge) %>"><%= badge %></span>
+								
+								
 							<% end %>
+
+
+
 							
 							</div>
 						</span>

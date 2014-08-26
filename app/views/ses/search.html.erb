@@ -70,6 +70,22 @@ if !@store_items || @store_items.empty? %>
 <% @counter = @counter + 1 %>
 <% end %> 
 </div> <!-- search-results -->
+<!-- activate badge tooltips -->
+<script>
+  $('.badge').hover(
+    function(e){
+      e.preventDefault();
+      $(this).tooltip({ 
+        html : true,
+        placement : "bottom"
+      }).tooltip('show')
+    },
+      function(e){
+        $(this).tooltip('hide')
+      }
+
+  );
+  </script>
 
 <div id="item-search-results-map" class = "search-items-map"></div>
 
