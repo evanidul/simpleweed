@@ -30,41 +30,33 @@
 								maincategory: @store_item.maincategory,
 								subcategory: @store_item.subcategory
 							} %>
-		<div class ="search-results-item-badges">
-			<%
-			badges = [ ]					
-				if !(@store_item.cultivation.nil? || @store_item.cultivation.empty?)
-					badges.push(@store_item.cultivation)																
-				end
-				if @store_item.dogo
-					badges.push("bogo")
-				end
-				if @store_item.topshelf
-					badges.push("topshelf")
-				end
-				if @store_item.privatereserve
-					badges.push("privatereserve")
-				end
-				if @store_item.organic
-					badges.push("organic")
-				end
-				if @store_item.sugarfree
-					badges.push("sugarfree")
-				end
-				if @store_item.glutenfree
-					badges.push("glutenfree")
-				end
-				if @store_item.supersize
-					badges.push("supersize")
-				end
+		<%= render partial: 'store_items/badges', locals: {
+								cultivation: @store_item.cultivation,
+								dogo: @store_item.dogo,
+								topshelf: @store_item.topshelf,
+								privatereserve: @store_item.privatereserve,
+								organic: @store_item.organic,
+								sugarfree: @store_item.sugarfree,
+								glutenfree: @store_item.glutenfree,
+								supersize: @store_item.supersize
+							} %>
+<!-- activate badge tooltips -->
+<script>
+  $('.badge').hover(
+    function(e){
+      e.preventDefault();
+      $(this).tooltip({ 
+        html : true,
+        placement : "bottom"
+      }).tooltip('show')
+    },
+      function(e){
+        $(this).tooltip('hide')
+      }
 
-
-			%>
-			<% badges.each do |badge| %>								    
-				<span class="badge search-item-badge-<%= badge %>"><%= badge %></span>
-			<% end %>
+  );
+</script>
 		
-		</div>
 	</span>
     
 	<% if !@store_item.promo.blank? %>

@@ -53,63 +53,22 @@
 								maincategory: item.stored(:maincategory),
 								subcategory: item.stored(:subcategory)
 							} %>
-							<div class ="search-results-item-badges-search">
-							<%
-							badges = [ ]
-								# if item.stored(:og)
-								# 	badges.push("og")
-								# end
-								# if item.stored(:kush)
-								# 	badges.push("kush")
-								# end
-								# if item.stored(:haze)
-								# 	badges.push("haze")
-								# end
-								if !(item.stored(:cultivation).nil? || item.stored(:cultivation).empty?)
-									badges.push(item.stored(:cultivation))																
-								end
-								if item.stored(:dogo)
-									badges.push("b")
-								end
-								if item.stored(:topshelf)
-									badges.push("ts")
-								end
-								if item.stored(:privatereserve)
-									badges.push("pr")
-								end
-								if item.stored(:organic)
-									badges.push("o")
-								end
-								if item.stored(:sugarfree)
-									badges.push("sf")
-								end
-								if item.stored(:glutenfree)
-									badges.push("gf")
-								end
-								if item.stored(:supersize)
-									badges.push("ss")
-								end
-
-								# badge_description = Hash.new
-								# badge_description["b"] = "buy one get one"
-								# badge_description["ts"] = "top shelf: the best of the best"
-								# badge_description["pr"] = "private reserve: only sold here"
-								# badge_description["o"] = "organic: grown organically"
-								# badge_description["sf"] = "sugar free: no sugar in this product"
-								# badge_description["gf"] = "gluten free: no gluten in this product"
-								# badge_description["ss"] = "super size: get a little extra"
-
-							%>
-							<% badges.each do |badge| %>								    
-								<span class="badge search-item-badge-<%= badge %>" data-toggle="tooltip" data-placement="bottom" title="<%= @badge_service.getBadgeDescription(badge) %>"><%= badge %></span>
-								
-								
-							<% end %>
+							
+							<%= render partial: 'store_items/badges', locals: {
+								cultivation: item.stored(:cultivation),
+								dogo: item.stored(:dogo),
+								topshelf: item.stored(:topshelf),
+								privatereserve: item.stored(:privatereserve),
+								organic: item.stored(:organic),
+								sugarfree: item.stored(:sugarfree),
+								glutenfree: item.stored(:glutenfree),
+								supersize: item.stored(:supersize)
+							} %>
 
 
 
 							
-							</div>
+							
 						</span>
 				
 							<% if !item.highlights(:promo).nil? && !item.stored(:promo).nil? && !item.stored(:promo)[0].blank? %>

@@ -1,0 +1,55 @@
+<div class ="search-results-item-badges-search">
+<%
+@badge_service = Simpleweed::Badge::Badgeservice.new
+badges = [ ]
+	# if item.stored(:og)
+	# 	badges.push("og")
+	# end
+	# if item.stored(:kush)
+	# 	badges.push("kush")
+	# end
+	# if item.stored(:haze)
+	# 	badges.push("haze")
+	# end
+	if !(cultivation.nil? || cultivation.empty?)
+		badges.push(cultivation)																
+	end
+	if dogo
+		badges.push("b")
+	end
+	if topshelf
+		badges.push("ts")
+	end
+	if privatereserve
+		badges.push("pr")
+	end
+	if organic
+		badges.push("o")
+	end
+	if sugarfree
+		badges.push("sf")
+	end
+	if glutenfree
+		badges.push("gf")
+	end
+	if supersize
+		badges.push("ss")
+	end
+
+	# badge_description = Hash.new
+	# badge_description["b"] = "buy one get one"
+	# badge_description["ts"] = "top shelf: the best of the best"
+	# badge_description["pr"] = "private reserve: only sold here"
+	# badge_description["o"] = "organic: grown organically"
+	# badge_description["sf"] = "sugar free: no sugar in this product"
+	# badge_description["gf"] = "gluten free: no gluten in this product"
+	# badge_description["ss"] = "super size: get a little extra"
+
+%>
+<% badges.each do |badge| %>								    
+	<span class="badge search-item-badge-<%= badge %>" data-toggle="tooltip" data-placement="bottom" title="<%= @badge_service.getBadgeDescription(badge) %>"><%= badge %></span>
+	
+	
+<% end %>
+
+</div>
