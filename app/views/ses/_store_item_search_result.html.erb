@@ -53,7 +53,7 @@
 								maincategory: item.stored(:maincategory),
 								subcategory: item.stored(:subcategory)
 							} %>
-							<span class ="search-results-item-badges-search">
+							<div class ="search-results-item-badges-search">
 							<%
 							badges = [ ]
 								# if item.stored(:og)
@@ -96,7 +96,7 @@
 								<span class="badge search-item-badge-<%= badge %>"><%= badge %></span>
 							<% end %>
 							
-							</span>
+							</div>
 						</span>
 				
 							<% if !item.highlights(:promo).nil? && !item.stored(:promo).nil? && !item.stored(:promo)[0].blank? %>

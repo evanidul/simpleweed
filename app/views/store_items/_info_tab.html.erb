@@ -30,7 +30,7 @@
 								maincategory: @store_item.maincategory,
 								subcategory: @store_item.subcategory
 							} %>
-		<span class ="search-results-item-badges">
+		<div class ="search-results-item-badges">
 			<%
 			badges = [ ]					
 				if !(@store_item.cultivation.nil? || @store_item.cultivation.empty?)
@@ -64,7 +64,7 @@
 				<span class="badge search-item-badge-<%= badge %>"><%= badge %></span>
 			<% end %>
 		
-		</span>
+		</div>
 	</span>
     
 	<% if !@store_item.promo.blank? %>
