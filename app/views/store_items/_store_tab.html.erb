@@ -1,245 +1,247 @@
-<table id="store-header-on-item-modal">
-	<tr>
-		<td class="item-img-td">
-			<%= render partial: 'stores/store_image', locals: {store: @store} %>
-		</td>
-		<td>
-			<h4 class="item-pop-up-store-name inline-header">
-				<a href="<%= store_path(@store.id)%>" data-no-turbolink='true' > <%= @store.name %></a>								
-				<small>
-					<%= @store_item.store.promo %>
-				</small>
-			</h4>
-			<% if !@store.facebook.blank? %>						
-				<a id="facebook" href="<%= @urlservice.url_with_protocol(@store.facebook) %>">
-					<span class="fa-stack fa store-header-icons-item-modal">
-					  <i class="fa fa-circle fa-stack-2x"></i>
-					  <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-					</span>
-				</a>
-			<% end %>
-			<% if !@store.twitter.blank? %>						
-				<a id="twitter" href="<%= @urlservice.url_with_protocol(@store.twitter) %>">
-					<span class="fa-stack fa store-header-icons-item-modal">
-					  <i class="fa fa-circle fa-stack-2x"></i>
-					  <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-					</span>
-				</a>
-			<% end %>	
-			<% if !@store.instagram.blank? %>						
-				<a id="instagram" href="<%= @urlservice.url_with_protocol(@store.instagram) %>">
-					<span class="fa-stack fa store-header-icons-item-modal">
-					  <i class="fa fa-circle fa-stack-2x"></i>
-					  <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
-					</span>
-				</a>
-			<% end %>
-		</td>
-	</tr>
-</table>  	
-
-<div class="star-rank" >
-	<%= render partial: 'layouts/stars', locals: {score: @store.stars} %>						
-</div>  
-<div class ="search-results-store-badges">
-<%
-
-badges = [ ]
-if @store_item.store.deliveryservice
-	badges.push("deliveryservice")
-end
-if @store_item.store.acceptscreditcards
-	badges.push("acceptscreditcards")
-end
-if @store_item.store.atmaccess
-	badges.push("atmaccess")
-end
-if @store_item.store.automaticdispensingmachines
-	badges.push("automaticdispensingmachines")
-end
-if @store_item.store.firsttimepatientdeals
-	badges.push("firsttimepatientdeals")
-end
-if @store_item.store.handicapaccess
-	badges.push("handicapaccess")
-end
-if @store_item.store.loungearea
-	badges.push("loungearea")
-end
-if @store_item.store.petfriendly
-	badges.push("petfriendly")
-end
-if @store_item.store.securityguard
-	badges.push("securityguard")
-end
-if @store_item.store.eighteenplus
-	badges.push("eighteenplus")
-end
-if @store_item.store.twentyoneplus
-	badges.push("twentyoneplus")
-end
-if @store_item.store.hasphotos
-	badges.push("hasphotos")
-end
-if @store_item.store.labtested
-	badges.push("labtested")
-end
-if @store_item.store.onsitetesting
-	badges.push("onsitetesting")
-end
-%>
-<% badges.each do |badge| %>								    
-	<span class="badge search-store-badge-<%= badge %>"><%= badge %></span>
-<% end %>
-</div>	
-<br/>
-<hr/>
-<table id="item-popup-store-details">
-	<tr>
-		<td class="store-info" style="vertical-align:top;">
-			<h4 class = "inline-header">business info</h4>
-			<br/><br/>
-			<address>				
-				<span id="addressline1"><%= @store.addressline1  %></span>
-					<br>
-				<% if  @store.addressline2 && !@store.addressline2.empty?  %>
-					<span id="addressline2"><%= @store.addressline2  %></span>
-					<br>
-				<% end %>	
-				<span id="city"><%= @store.city  %></span>, 
-				<span id="state"><%= @store.state  %></span>
-				<span id="zip"><%= @store.zip  %></span>
-				 <br/>
-				 <br/>
-				 <% if !@store.website.blank? %>						
-					<i class="glyphicon glyphicon-home"></i>					
-					<a id="website" href="<%= @urlservice.url_with_protocol(@store.website) %>">
-						<%= @store.website  %>
+<div class="item-tab-content-container">
+	<table id="store-header-on-item-modal">
+		<tr>
+			<td class="item-img-td">
+				<%= render partial: 'stores/store_image', locals: {store: @store} %>
+			</td>
+			<td>
+				<h4 class="item-pop-up-store-name inline-header">
+					<a href="<%= store_path(@store.id)%>" data-no-turbolink='true' > <%= @store.name %></a>								
+					<small>
+						<%= @store_item.store.promo %>
+					</small>
+				</h4>
+				<% if !@store.facebook.blank? %>						
+					<a id="facebook" href="<%= @urlservice.url_with_protocol(@store.facebook) %>">
+						<span class="fa-stack fa store-header-icons-item-modal">
+						  <i class="fa fa-circle fa-stack-2x"></i>
+						  <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+						</span>
 					</a>
-					<br />
-				<% end %>				 
-				 <% if !@store.phonenumber.blank? %>											 
-					 <i class="glyphicon glyphicon-earphone"></i>					
-					 <span id="phonenumber"><%= @store.phonenumber  %></span>
-					 <br />
-				 <% end %>
-				 <% if !@store.email.blank? %>				 	
-					 <i class="glyphicon glyphicon-envelope"></i>					
-					 <span id="email"><%= @store.email  %></span>
-					 <br />
 				<% end %>
-				 
-			</address>
-		</td>
-		<td valign = "top">
+				<% if !@store.twitter.blank? %>						
+					<a id="twitter" href="<%= @urlservice.url_with_protocol(@store.twitter) %>">
+						<span class="fa-stack fa store-header-icons-item-modal">
+						  <i class="fa fa-circle fa-stack-2x"></i>
+						  <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+						</span>
+					</a>
+				<% end %>	
+				<% if !@store.instagram.blank? %>						
+					<a id="instagram" href="<%= @urlservice.url_with_protocol(@store.instagram) %>">
+						<span class="fa-stack fa store-header-icons-item-modal">
+						  <i class="fa fa-circle fa-stack-2x"></i>
+						  <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+						</span>
+					</a>
+				<% end %>
+			</td>
+		</tr>
+	</table>  	
 
-			<table id="storehours">			
-				<tr>
-					<td class="day">sunday</td>
-					<td class="store-hours-text" id="sunday-hours">
-						<% if @store.sundayclosed %>
-							Closed					
-						<% else %>
-						<%= @tds.formatMilitaryTimeAsAMPM(@store.storehourssundayopenhour, @store.storehourssundayopenminute ) %> -
-						<%= @tds.formatMilitaryTimeAsAMPM(@store.storehourssundayclosehour, @store.storehourssundaycloseminute ) %>		
-						<% end %>
-					</td>
-					<td id="store-status-0" class="hours-current-status"></td>
-				</tr>				
-				<tr>
-					<td class="day">monday</td>
-					<td class="store-hours-text" id="monday-hours">
-						<% if @store.mondayclosed %>
-							Closed					
-						<% else %>
-						<%= @tds.formatMilitaryTimeAsAMPM(@store.storehoursmondayopenhour, @store.storehoursmondayopenminute ) %> -
-						<%= @tds.formatMilitaryTimeAsAMPM(@store.storehoursmondayclosehour, @store.storehoursmondaycloseminute ) %>
-						<% end %>
-					</td>
-					<td id="store-status-1" class="hours-current-status"></td>
-				</tr>
-				<tr>
-					<td class="day">tuesday</td>
-					<td class="store-hours-text" id="tuesday-hours">
-						<% if @store.tuesdayclosed %>
-							Closed					
-						<% else %>					
-						<%= @tds.formatMilitaryTimeAsAMPM(@store.storehourstuesdayopenhour, @store.storehourstuesdayopenminute ) %> -
-						<%= @tds.formatMilitaryTimeAsAMPM(@store.storehourstuesdayclosehour, @store.storehourstuesdaycloseminute ) %>
-						<% end %>
-					</td>
-					<td id="store-status-2" class="hours-current-status"></td>
-				</tr>
-				<tr>
-					<td class="day">wednesday</td>
-					<td class="store-hours-text" id="wednesday-hours">
-						<% if @store.wednesdayclosed %>
-							Closed					
-						<% else %>					
-						<%= @tds.formatMilitaryTimeAsAMPM(@store.storehourswednesdayopenhour, @store.storehourswednesdayopenminute ) %> -
-						<%= @tds.formatMilitaryTimeAsAMPM(@store.storehourswednesdayclosehour, @store.storehourswednesdaycloseminute ) %>
-						<% end %>
-					</td>
-					<td id="store-status-3" class="hours-current-status"></td>
-				</tr>
-				<tr>
-					<td class="day">thursday</td>
-					<td class="store-hours-text" id="thursday-hours">
-						<% if @store.thursdayclosed %>
-							Closed					
-						<% else %>					
-						<%= @tds.formatMilitaryTimeAsAMPM(@store.storehoursthursdayopenhour, @store.storehoursthursdayopenminute ) %> -
-						<%= @tds.formatMilitaryTimeAsAMPM(@store.storehoursthursdayclosehour, @store.storehoursthursdaycloseminute ) %>
-						<% end %>
-					</td>
-					<td id="store-status-4" class="hours-current-status"></td>
-				</tr>
-				<tr>
-					<td class="day">friday</td>
-					<td class="store-hours-text" id="friday-hours">
-						<% if @store.fridayclosed %>
-							Closed					
-						<% else %>										
-						<%= @tds.formatMilitaryTimeAsAMPM(@store.storehoursfridayopenhour, @store.storehoursfridayopenminute ) %> -
-						<%= @tds.formatMilitaryTimeAsAMPM(@store.storehoursfridayclosehour, @store.storehoursfridaycloseminute ) %>
-						<% end %>
-					</td>
-					<td id="store-status-5" class="hours-current-status"></td>
-				</tr>
-				<tr>
-					<td class="day">saturday</td>
-					<td class="store-hours-text" id="saturday-hours">
-						<% if @store.saturdayclosed %>
-							Closed					
-						<% else %>										
-						<%= @tds.formatMilitaryTimeAsAMPM(@store.storehourssaturdayopenhour, @store.storehourssaturdayopenminute ) %> -
-						<%= @tds.formatMilitaryTimeAsAMPM(@store.storehourssaturdayclosehour, @store.storehourssaturdaycloseminute ) %>
-						<% end %>
-					</td>
-					<td id="store-status-6" class="hours-current-status"></td>
-				</tr>
-			</table>
-		</td>
-	</tr>
-</table>
-<hr/>
+	<div class="star-rank" >
+		<%= render partial: 'layouts/stars', locals: {score: @store.stars} %>						
+	</div>  
+	<div class ="search-results-store-badges">
+	<%
 
-<% if !@store.description.blank? %>											 
-<h4 class = "inline-header">description </h4>
-<div id="description" class = "store-description-on-modal">				
-	<%= raw @store.description %>								
-</div> 
-<hr/>
-<% end %>
-
-<h4 class = "inline-header">first time patient deals </h4>
-<p id="first-time-patient-deals">
-	<% if  @store.firsttimepatientdeals && !@store.firsttimepatientdeals.empty?  %>
-		</br>
-		<%= raw @store.firsttimepatientdeals %>
-	<% else %>
-		</br>
-		none.
+	badges = [ ]
+	if @store_item.store.deliveryservice
+		badges.push("deliveryservice")
+	end
+	if @store_item.store.acceptscreditcards
+		badges.push("acceptscreditcards")
+	end
+	if @store_item.store.atmaccess
+		badges.push("atmaccess")
+	end
+	if @store_item.store.automaticdispensingmachines
+		badges.push("automaticdispensingmachines")
+	end
+	if @store_item.store.firsttimepatientdeals
+		badges.push("firsttimepatientdeals")
+	end
+	if @store_item.store.handicapaccess
+		badges.push("handicapaccess")
+	end
+	if @store_item.store.loungearea
+		badges.push("loungearea")
+	end
+	if @store_item.store.petfriendly
+		badges.push("petfriendly")
+	end
+	if @store_item.store.securityguard
+		badges.push("securityguard")
+	end
+	if @store_item.store.eighteenplus
+		badges.push("eighteenplus")
+	end
+	if @store_item.store.twentyoneplus
+		badges.push("twentyoneplus")
+	end
+	if @store_item.store.hasphotos
+		badges.push("hasphotos")
+	end
+	if @store_item.store.labtested
+		badges.push("labtested")
+	end
+	if @store_item.store.onsitetesting
+		badges.push("onsitetesting")
+	end
+	%>
+	<% badges.each do |badge| %>								    
+		<span class="badge search-store-badge-<%= badge %>"><%= badge %></span>
 	<% end %>
-</p>
-<hr/>
+	</div>	
+	<br/>
+	<hr/>
+	<table id="item-popup-store-details">
+		<tr>
+			<td class="store-info" style="vertical-align:top;">
+				<h4 class = "inline-header">business info</h4>
+				<br/><br/>
+				<address>				
+					<span id="addressline1"><%= @store.addressline1  %></span>
+						<br>
+					<% if  @store.addressline2 && !@store.addressline2.empty?  %>
+						<span id="addressline2"><%= @store.addressline2  %></span>
+						<br>
+					<% end %>	
+					<span id="city"><%= @store.city  %></span>, 
+					<span id="state"><%= @store.state  %></span>
+					<span id="zip"><%= @store.zip  %></span>
+					 <br/>
+					 <br/>
+					 <% if !@store.website.blank? %>						
+						<i class="glyphicon glyphicon-home"></i>					
+						<a id="website" href="<%= @urlservice.url_with_protocol(@store.website) %>">
+							<%= @store.website  %>
+						</a>
+						<br />
+					<% end %>				 
+					 <% if !@store.phonenumber.blank? %>											 
+						 <i class="glyphicon glyphicon-earphone"></i>					
+						 <span id="phonenumber"><%= @store.phonenumber  %></span>
+						 <br />
+					 <% end %>
+					 <% if !@store.email.blank? %>				 	
+						 <i class="glyphicon glyphicon-envelope"></i>					
+						 <span id="email"><%= @store.email  %></span>
+						 <br />
+					<% end %>
+					 
+				</address>
+			</td>
+			<td valign = "top">
+
+				<table id="storehours">			
+					<tr>
+						<td class="day">sunday</td>
+						<td class="store-hours-text" id="sunday-hours">
+							<% if @store.sundayclosed %>
+								Closed					
+							<% else %>
+							<%= @tds.formatMilitaryTimeAsAMPM(@store.storehourssundayopenhour, @store.storehourssundayopenminute ) %> -
+							<%= @tds.formatMilitaryTimeAsAMPM(@store.storehourssundayclosehour, @store.storehourssundaycloseminute ) %>		
+							<% end %>
+						</td>
+						<td id="store-status-0" class="hours-current-status"></td>
+					</tr>				
+					<tr>
+						<td class="day">monday</td>
+						<td class="store-hours-text" id="monday-hours">
+							<% if @store.mondayclosed %>
+								Closed					
+							<% else %>
+							<%= @tds.formatMilitaryTimeAsAMPM(@store.storehoursmondayopenhour, @store.storehoursmondayopenminute ) %> -
+							<%= @tds.formatMilitaryTimeAsAMPM(@store.storehoursmondayclosehour, @store.storehoursmondaycloseminute ) %>
+							<% end %>
+						</td>
+						<td id="store-status-1" class="hours-current-status"></td>
+					</tr>
+					<tr>
+						<td class="day">tuesday</td>
+						<td class="store-hours-text" id="tuesday-hours">
+							<% if @store.tuesdayclosed %>
+								Closed					
+							<% else %>					
+							<%= @tds.formatMilitaryTimeAsAMPM(@store.storehourstuesdayopenhour, @store.storehourstuesdayopenminute ) %> -
+							<%= @tds.formatMilitaryTimeAsAMPM(@store.storehourstuesdayclosehour, @store.storehourstuesdaycloseminute ) %>
+							<% end %>
+						</td>
+						<td id="store-status-2" class="hours-current-status"></td>
+					</tr>
+					<tr>
+						<td class="day">wednesday</td>
+						<td class="store-hours-text" id="wednesday-hours">
+							<% if @store.wednesdayclosed %>
+								Closed					
+							<% else %>					
+							<%= @tds.formatMilitaryTimeAsAMPM(@store.storehourswednesdayopenhour, @store.storehourswednesdayopenminute ) %> -
+							<%= @tds.formatMilitaryTimeAsAMPM(@store.storehourswednesdayclosehour, @store.storehourswednesdaycloseminute ) %>
+							<% end %>
+						</td>
+						<td id="store-status-3" class="hours-current-status"></td>
+					</tr>
+					<tr>
+						<td class="day">thursday</td>
+						<td class="store-hours-text" id="thursday-hours">
+							<% if @store.thursdayclosed %>
+								Closed					
+							<% else %>					
+							<%= @tds.formatMilitaryTimeAsAMPM(@store.storehoursthursdayopenhour, @store.storehoursthursdayopenminute ) %> -
+							<%= @tds.formatMilitaryTimeAsAMPM(@store.storehoursthursdayclosehour, @store.storehoursthursdaycloseminute ) %>
+							<% end %>
+						</td>
+						<td id="store-status-4" class="hours-current-status"></td>
+					</tr>
+					<tr>
+						<td class="day">friday</td>
+						<td class="store-hours-text" id="friday-hours">
+							<% if @store.fridayclosed %>
+								Closed					
+							<% else %>										
+							<%= @tds.formatMilitaryTimeAsAMPM(@store.storehoursfridayopenhour, @store.storehoursfridayopenminute ) %> -
+							<%= @tds.formatMilitaryTimeAsAMPM(@store.storehoursfridayclosehour, @store.storehoursfridaycloseminute ) %>
+							<% end %>
+						</td>
+						<td id="store-status-5" class="hours-current-status"></td>
+					</tr>
+					<tr>
+						<td class="day">saturday</td>
+						<td class="store-hours-text" id="saturday-hours">
+							<% if @store.saturdayclosed %>
+								Closed					
+							<% else %>										
+							<%= @tds.formatMilitaryTimeAsAMPM(@store.storehourssaturdayopenhour, @store.storehourssaturdayopenminute ) %> -
+							<%= @tds.formatMilitaryTimeAsAMPM(@store.storehourssaturdayclosehour, @store.storehourssaturdaycloseminute ) %>
+							<% end %>
+						</td>
+						<td id="store-status-6" class="hours-current-status"></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<hr/>
+
+	<% if !@store.description.blank? %>											 
+	<h4 class = "inline-header">description </h4>
+	<div id="description" class = "store-description-on-modal">				
+		<%= raw @store.description %>								
+	</div> 
+	<hr/>
+	<% end %>
+
+	<h4 class = "inline-header">first time patient deals </h4>
+	<p id="first-time-patient-deals">
+		<% if  @store.firsttimepatientdeals && !@store.firsttimepatientdeals.empty?  %>
+			</br>
+			<%= raw @store.firsttimepatientdeals %>
+		<% else %>
+			</br>
+			none.
+		<% end %>
+	</p>
+	
+</div>

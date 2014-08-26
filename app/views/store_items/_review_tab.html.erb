@@ -1,119 +1,121 @@
-<div id="bootstrap-alert-on-item-popup-reviews-tab"></div>
+<div class="item-tab-content-container">
+	<div id="bootstrap-alert-on-item-popup-reviews-tab"></div>
 
-<h4 class="item-search-item-name">
-		<!-- dvu: we don't use link_to because the link name is too complicated to embed -->
-  	<span class="item-popup-item-name">
-  		<%= @store_item.name %>
-  	</span>  	
-  	<% if current_user.nil? %>
-		<a id="review-item-slide-toggle-button" class = "btn btn-primary pull-right">REVIEW</a>
-  		<script>
-  			$("#review-item-slide-toggle-button").click(function() {
-  				/** close bootstrap modal first **/
-				$('#modal').modal('hide');
-				$("#log-in-link").click();	
-  			})
-			
-  		</script>
-  	<% else 
-  		 canReviewResult = @role_service.canViewWriteReviewButtonForItem(current_user, @store_item) 
-			if canReviewResult == true
-  			%>
-  			<a id="review-item-slide-toggle-button" class = "btn btn-primary pull-right">REVIEW</a>
-  			<% else %>
-  				<span class="write-review-button-blocked">
-					<!-- <a class="btn btn-default" >Write a Review</a> -->
-					<%= link_to 'REVIEW', new_store_store_review_path(@store) , id: "write-review-button-blocked-on-item-popup" , class: "btn btn-default pull-right", "data-content"=>"<span id='write-review-blocked-tip'>"+canReviewResult+"</span>" %>
-					<script>
-						$('#write-review-button-blocked-on-item-popup').click(function(e){
-						  	e.preventDefault();
-						  	$('#write-review-button-blocked-on-item-popup').popover({ 
-							    html : true,
-							    placement : "right"
-							}).popover('show');
-					
-						});
-					</script>
-				</span>
-			<% end #if canReviewResult %>
-  			
-
-  	<% end #if current_user.nil? %>
-  	<span class="pull-right">
-		<% if !current_user.nil? && current_user.follows?(@store_item) %>
-			<%= render :partial =>'unfollow_item_button', locals: {item: @store_item }%>		
-		<% else %>
-			<%= render :partial =>'follow_item_button', locals: {item: @store_item }%>		
-		<% end %>
-		
-		<% if current_user.nil? %>
-			<script>						
-				$("#follow-store-item-button").click(function(e){
-					e.preventDefault();	
+	<h4 class="item-search-item-name">
+			<!-- dvu: we don't use link_to because the link name is too complicated to embed -->
+	  	<span class="item-popup-item-name">
+	  		<%= @store_item.name %>
+	  	</span>  	
+	  	<% if current_user.nil? %>
+			<a id="review-item-slide-toggle-button" class = "btn btn-primary pull-right">REVIEW</a>
+	  		<script>
+	  			$("#review-item-slide-toggle-button").click(function() {
+	  				/** close bootstrap modal first **/
 					$('#modal').modal('hide');
-					$("#log-in-link").click();
-				})
-			</script>
-		<% end %>
-	</span>
-  	
-</h4>
+					$("#log-in-link").click();	
+	  			})
+				
+	  		</script>
+	  	<% else 
+	  		 canReviewResult = @role_service.canViewWriteReviewButtonForItem(current_user, @store_item) 
+				if canReviewResult == true
+	  			%>
+	  			<a id="review-item-slide-toggle-button" class = "btn btn-primary pull-right">REVIEW</a>
+	  			<% else %>
+	  				<span class="write-review-button-blocked">
+						<!-- <a class="btn btn-default" >Write a Review</a> -->
+						<%= link_to 'REVIEW', new_store_store_review_path(@store) , id: "write-review-button-blocked-on-item-popup" , class: "btn btn-default pull-right", "data-content"=>"<span id='write-review-blocked-tip'>"+canReviewResult+"</span>" %>
+						<script>
+							$('#write-review-button-blocked-on-item-popup').click(function(e){
+							  	e.preventDefault();
+							  	$('#write-review-button-blocked-on-item-popup').popover({ 
+								    html : true,
+								    placement : "right"
+								}).popover('show');
+						
+							});
+						</script>
+					</span>
+				<% end #if canReviewResult %>
+	  			
 
-<% if !current_user.nil? %>
-	<%= render 'store_item_reviews/form' %>
-<% end %>
+	  	<% end #if current_user.nil? %>
+	  	<span class="pull-right">
+			<% if !current_user.nil? && current_user.follows?(@store_item) %>
+				<%= render :partial =>'unfollow_item_button', locals: {item: @store_item }%>		
+			<% else %>
+				<%= render :partial =>'follow_item_button', locals: {item: @store_item }%>		
+			<% end %>
+			
+			<% if current_user.nil? %>
+				<script>						
+					$("#follow-store-item-button").click(function(e){
+						e.preventDefault();	
+						$('#modal').modal('hide');
+						$("#log-in-link").click();
+					})
+				</script>
+			<% end %>
+		</span>
+	  	
+	</h4>
 
-<div class="star-rank" >
-	<%= render partial: 'layouts/stars', locals: {score: @store_item.stars} %>						
-</div>  
-<%
-	straincat = [ ]
-	
-	if !(@store_item.strain.nil? || @store_item.strain.empty?)
-		strainstr = "strain: #{@store_item.strain}"
-		straincat.push(strainstr)
-	end	
-	if !(@store_item.maincategory.nil? || @store_item.maincategory.empty?)
-		categorystr = "category: #{@store_item.maincategory}"
-		straincat.push(categorystr)
-	end
-	if !(@store_item.subcategory.nil? || @store_item.subcategory.empty?)	
-		subcatstr = "subcategory: #{@store_item.subcategory}"
-		straincat.push(subcatstr)
-	end	
-%>
-
-<div class="search-result-item-category-strain-meta">
-	<%= straincat.join ' | '  %> 
-</div>
-</br>
-
-<% if @item_reviews.empty? || @item_reviews.count == 0 %>
-	<div id="item-popup-no-reviews-yet-prompt">
-		
-		<div class="alert alert-warning fade in">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-      <strong>no reviews yet.</strong> be the first to review this item!
-       
-    </div>
-	</div>
-<% end %>
-
-
-<div id="item-popup-review-tab-review-container">
-<% @item_reviews.order('updated_at DESC').each do |item_review| 
-	
-	# for some reason, the write new item review form created from .build creates an unsaved item_review object
-	# that will generate nil exceptions if we don't remove it with the following if.
-	if !item_review.id.nil?
-
-	%>
-	
-
-	<%= render partial: 'store_item_reviews/store_item_review', locals: {store_item_review: item_review} %>
-	
-	
+	<% if !current_user.nil? %>
+		<%= render 'store_item_reviews/form' %>
 	<% end %>
-<% end %>
 
-</div>
+	<div class="star-rank" >
+		<%= render partial: 'layouts/stars', locals: {score: @store_item.stars} %>						
+	</div>  
+	<%
+		straincat = [ ]
+		
+		if !(@store_item.strain.nil? || @store_item.strain.empty?)
+			strainstr = "strain: #{@store_item.strain}"
+			straincat.push(strainstr)
+		end	
+		if !(@store_item.maincategory.nil? || @store_item.maincategory.empty?)
+			categorystr = "category: #{@store_item.maincategory}"
+			straincat.push(categorystr)
+		end
+		if !(@store_item.subcategory.nil? || @store_item.subcategory.empty?)	
+			subcatstr = "subcategory: #{@store_item.subcategory}"
+			straincat.push(subcatstr)
+		end	
+	%>
+
+	<div class="search-result-item-category-strain-meta">
+		<%= straincat.join ' | '  %> 
+	</div>
+	</br>
+
+	<% if @item_reviews.empty? || @item_reviews.count == 0 %>
+		<div id="item-popup-no-reviews-yet-prompt">
+			
+			<div class="alert alert-warning fade in">
+	      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+	      <strong>no reviews yet.</strong> be the first to review this item!
+	       
+	    </div>
+		</div>
+	<% end %>
+
+
+	<div id="item-popup-review-tab-review-container">
+	<% @item_reviews.order('updated_at DESC').each do |item_review| 
+		
+		# for some reason, the write new item review form created from .build creates an unsaved item_review object
+		# that will generate nil exceptions if we don't remove it with the following if.
+		if !item_review.id.nil?
+
+		%>
+		
+
+		<%= render partial: 'store_item_reviews/store_item_review', locals: {store_item_review: item_review} %>
+		
+		
+		<% end %>
+	<% end %>
+
+	</div>
+</div>	

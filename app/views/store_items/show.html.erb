@@ -1,34 +1,38 @@
 <div class="modal-dialog modal-lg">
   <div class="modal-content">    
-	<ul class="nav nav-tabs">
-  		<li class="active"><a id= "info-tab-link" href="#info" data-toggle="tab">info</a></li>
-  		<% if @reviewtab != "false" %>
-  			<li><a id="review-tab-link" href="#reviews" data-toggle="tab">reviews</a></li>  
-  		<% end %>
-  		<% if @storetab != "false" %>
-  			<li><a id="store-tab-link" href="#store-info" data-toggle="tab">store</a></li>  
-  		<% end %>
-	</ul>
+	
 
-    <div class="modal-body">
+    <div class="sw-modal-body">
+    	<div class="item-popup-tab-nav-container">
+	    	<ul class="nav nav-tabs">
+		  		<li class="active"><a id= "info-tab-link" href="#info" data-toggle="tab">info</a></li>
+		  		<% if @reviewtab != "false" %>
+		  			<li><a id="review-tab-link" href="#reviews" data-toggle="tab">reviews</a></li>  
+		  		<% end %>
+		  		<% if @storetab != "false" %>
+		  			<li><a id="store-tab-link" href="#store-info" data-toggle="tab">store</a></li>  
+		  		<% end %>
+			</ul>
+		</div>
 		<!-- Tab panes -->
 		<div class="tab-content item-modal">
-		  	<%= render :partial =>'store_items/info_tab' %>
-		</div>  	
+			<div class="tab-pane active" id="info">
+	  			<%= render :partial =>'store_items/info_tab' %>		  	
+			</div>  	
 		<% if @reviewtab != "false" %>
 			<div class="tab-pane" id="reviews">
-				<%= render :partial =>'store_items/review_tab' %>			
+				<%= render :partial =>'store_items/review_tab' %>							
 			</div>  
 		<% end %>
 		<% if @storetab != "false" %>
-			<div class="tab-pane" id="store-info">				
-				<%= render :partial =>'store_items/store_tab' %>			
+			<div class="tab-pane" id="store-info">								
+				<%= render :partial =>'store_items/store_tab' %>							
 			</div>  
 		<% end %>
-	</div>
+		</div>
 
-
-    <p class = "form-group pull-right">               
+	<hr/>
+    <p class = "form-group pull-right" style="margin-right:20px; margin-bottom:15px;">               
 		<button id="cancel-button" type="button" class="btn btn-default" data-dismiss="modal">close</button>
 	
 	</p>
