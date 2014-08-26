@@ -50,7 +50,7 @@
 			<% end %>
 		</div>
 	<br/>
-	<hr/>
+	
 	<table id="item-popup-store-details">
 		<tr>
 			<td class="store-info" style="vertical-align:top;">
@@ -90,7 +90,31 @@
 			</td>
 			<td valign = "top">
 
-				<table id="storehours">			
+				
+			</td>
+		</tr>
+	</table>
+	<hr/>
+
+	<div class="row">											 
+		<div class="col-md-8">
+			<h4 class = "inline-header">description </h4>
+			<div id="description" class = "store-description-on-modal">				
+				<% if !@store.description.blank? %>
+					<%= raw @store.description %>								
+				<% else %>
+					none.
+				<% end %>
+			</div> 
+		</div>
+
+		<div class="col-md-4">
+			<div class="center">
+				<%= link_to 'VIEW MENU', store_path(@store), class: 'btn btn-primary' , id: "view-store-button" %>
+			</div>
+			<hr/>
+			<h4>hours</h4>
+			<table id="storehours">			
 					<tr>
 						<td class="day">sunday</td>
 						<td class="store-hours-text" id="sunday-hours">
@@ -176,28 +200,22 @@
 						<td id="store-status-6" class="hours-current-status"></td>
 					</tr>
 				</table>
-			</td>
-		</tr>
-	</table>
-	<hr/>
+				<hr/>
+				<h4 class = "inline-header">first time patient deals </h4>
+				<p id="first-time-patient-deals">
+					<% if  @store.firsttimepatientdeals && !@store.firsttimepatientdeals.empty?  %>
+						</br>
+						<%= raw @store.firsttimepatientdeals %>
+					<% else %>
+						</br>
+						none.
+					<% end %>
+				</p>
+		</div><!-- right col -->
+	</div><!-- row end -->
+	
+	
 
-	<% if !@store.description.blank? %>											 
-	<h4 class = "inline-header">description </h4>
-	<div id="description" class = "store-description-on-modal">				
-		<%= raw @store.description %>								
-	</div> 
-	<hr/>
-	<% end %>
-
-	<h4 class = "inline-header">first time patient deals </h4>
-	<p id="first-time-patient-deals">
-		<% if  @store.firsttimepatientdeals && !@store.firsttimepatientdeals.empty?  %>
-			</br>
-			<%= raw @store.firsttimepatientdeals %>
-		<% else %>
-			</br>
-			none.
-		<% end %>
-	</p>
+	
 	
 </div>

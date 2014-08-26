@@ -15,6 +15,12 @@
  
 
  */
+
+.center {
+    margin: auto;
+    width: 50%;    
+}
+
 .sw-modal-body {
   position:relative;
   padding: 0px;
