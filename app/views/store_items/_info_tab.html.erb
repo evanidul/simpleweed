@@ -20,50 +20,52 @@
 	<div class="star-rank" >
 		<%= render partial: 'layouts/stars', locals: {score: @store_item.stars} %>						
 	</div>
-	<div class ="search-results-item-badges">
-		<%
-		badges = [ ]					
-			if !(@store_item.cultivation.nil? || @store_item.cultivation.empty?)
-				badges.push(@store_item.cultivation)																
-			end
-			if @store_item.dogo
-				badges.push("bogo")
-			end
-			if @store_item.topshelf
-				badges.push("topshelf")
-			end
-			if @store_item.privatereserve
-				badges.push("privatereserve")
-			end
-			if @store_item.organic
-				badges.push("organic")
-			end
-			if @store_item.sugarfree
-				badges.push("sugarfree")
-			end
-			if @store_item.glutenfree
-				badges.push("glutenfree")
-			end
-			if @store_item.supersize
-				badges.push("supersize")
-			end
-
-
-		%>
-		<% badges.each do |badge| %>								    
-			<span class="badge search-item-badge-<%= badge %>"><%= badge %></span>
-		<% end %>
-		
-	</div>
 	
-	<%= render partial: 'store_items/store_item_meta_data', locals: {
+	
+	<span class="meta-and-badges-container">	
+		<%= render partial: 'store_items/store_item_meta_data', locals: {
 								store_id: @store_item.store.id,
 								store_name: @store_item.store.name,
 								strain: @store_item.strain,
 								maincategory: @store_item.maincategory,
 								subcategory: @store_item.subcategory
 							} %>
+		<span class ="search-results-item-badges">
+			<%
+			badges = [ ]					
+				if !(@store_item.cultivation.nil? || @store_item.cultivation.empty?)
+					badges.push(@store_item.cultivation)																
+				end
+				if @store_item.dogo
+					badges.push("bogo")
+				end
+				if @store_item.topshelf
+					badges.push("topshelf")
+				end
+				if @store_item.privatereserve
+					badges.push("privatereserve")
+				end
+				if @store_item.organic
+					badges.push("organic")
+				end
+				if @store_item.sugarfree
+					badges.push("sugarfree")
+				end
+				if @store_item.glutenfree
+					badges.push("glutenfree")
+				end
+				if @store_item.supersize
+					badges.push("supersize")
+				end
 
+
+			%>
+			<% badges.each do |badge| %>								    
+				<span class="badge search-item-badge-<%= badge %>"><%= badge %></span>
+			<% end %>
+		
+		</span>
+	</span>
     
 	<% if !@store_item.promo.blank? %>
 	<div class="search-result-item-promo pull-right">								

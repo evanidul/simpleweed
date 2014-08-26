@@ -201,7 +201,7 @@
 	width: 50%	;
 	vertical-align: top;
 	display: inline;
-	float:left;
+	
 }
 
 
@@ -224,5 +224,10 @@
 
 .search-results-item-badges-search {
 	margin-top:10px;
+	
+}
+
+.meta-and-badges-container {
 	float:left;
+	width: 49%;
 }
