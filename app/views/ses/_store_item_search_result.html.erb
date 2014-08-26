@@ -24,7 +24,7 @@
 						</a>						
 						</span>
 						
-						<%= render partial: 'ses/store_item_price_table', locals: {
+ 						<%= render partial: 'ses/store_item_price_table', locals: {
 							itemcategory: item.stored(:maincategory),
 							costonegram: item.stored(:costonegram),
 							costeighthoz: item.stored(:costeighthoz),
@@ -33,12 +33,13 @@
 							costoneoz: item.stored(:costoneoz),
 							costhalfgram: item.stored(:costhalfgram),
 							costperunit: item.stored(:costperunit)
-						} %>			  
+						} %>
+
 						<div class="star-rank" >
 							<%= render partial: 'layouts/stars', locals: {score: item.stored(:stars)} %>
 						</div>
 						
-						<div>
+						
 							<%
 								full_store_name = item.stored(:store_name).join(" ")
 								
@@ -50,31 +51,28 @@
 								maincategory: item.stored(:maincategory),
 								subcategory: item.stored(:subcategory)
 							} %>
-							
-							
+				
+							<% if !item.highlights(:promo).nil? && !item.stored(:promo).nil? && !item.stored(:promo)[0].blank? %>
+							<span class="search-result-item-promo pull-right">													
+									<% if item.highlights(:promo).size == 0 %>
+										<!-- have to do because just loading directly renders brackets and newlines -->
+										<% item.stored(:promo).each do |word| %>
+											<%= word %>
+										<% end %>
+									<% end %>
+									<% item.highlights(:promo).each do |highlight| %>								    
+									    <%= raw highlight.format  { |word| "<span class='highlight'> #{word} </span>"  } %>
+								    <% end %>							
+							</span>
+							<% end %>	
 
 							<!-- thc : <%= item.stored(:thc) %> | cbd : <%= item.stored(:cbd) %> | cbn : <%= item.stored(:cbn) %> 
 							</br> -->
-							<div class="search-result-item-promo">								
-								<% if !item.highlights(:promo).nil? && !item.stored(:promo).nil? %>
-									<% if item.highlights(:promo).size == 0 %>
-											<!-- have to do because just loading directly renders brackets and newlines -->
-											<% item.stored(:promo).each do |word| %>
-												<%= word %>
-											<% end %>
-										<% end %>
-										<% item.highlights(:promo).each do |highlight| %>								    
-										    <%= raw highlight.format  { |word| "<span class='highlight'> #{word} </span>"  } %>
-									    <% end %>							
-								<% end %>
-							</div>
-
-
+							
+							<!-- DON'T DELETE!  
 							<% if  item.stored(:description) && !item.stored(:description).empty?  %>
-								<div class="item-search-item-description">
-									<!-- if there are no highlight matches, nothing is rendered without this -->
-									<% if item.highlights(:description).size == 0 %>
-										<!-- have to do because just loading directly renders brackets and newlines -->
+								<div class="item-search-item-description">									
+									<% if item.highlights(:description).size == 0 %>										
 										<% item.stored(:description).each do |word| %>
 											<%= word %>
 										<% end %>
@@ -84,11 +82,11 @@
 								    <% end %>
 								</div>								
 							<% end %>
+							-->
 							
-							
-
-						</div>
-						<div class ="search-results-item-badges">
+							<div style="clear:both;"></div>
+						
+						<span class ="search-results-item-badges-search">
 							<%
 							badges = [ ]
 								# if item.stored(:og)
@@ -131,13 +129,9 @@
 								<span class="badge search-item-badge-<%= badge %>"><%= badge %></span>
 							<% end %>
 							
-						</div>
+						</span>
 					</td>
 				</tr>
 			</table>
 		</div>
-<!-- 		<div class="glyphicon glyphicon-user item-search-user-logo"></div>
-		<span>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ornare ante id sapien ullamcorper, vel pharetra nulla pulvinar. Nullam orci est, dapibus sit amet risus in, ultricies mattis turpis. Aliquam laoreet cursus libero, sed porta est auctor quis. Integer leo nibh, ultricies 
-		</span> -->
 	</div>

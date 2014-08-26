@@ -188,13 +188,20 @@
 
 .search-result-item-promo {
 	font-style: italic;
-	color: gray;
+	color: white;
+	background-color: #A4D37C;
+	width: 50%;
+	height: 100px;
+	margin-top:20px;
+	padding: 15px;
 }
 
 .search-item-results-meta-table {
 	margin-top: 10px;
 	width: 50%	;
 	vertical-align: top;
+	display: inline;
+	float:left;
 }
 
 
@@ -213,4 +220,9 @@
 
 .store-item-name-container a:hover {
 	color: green;
+}
+
+.search-results-item-badges-search {
+	margin-top:10px;
+	float:left;
 }

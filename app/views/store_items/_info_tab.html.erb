@@ -64,11 +64,14 @@
 								subcategory: @store_item.subcategory
 							} %>
 
-    <hr />
-
-	<div class="search-result-item-promo">								
+    
+	<% if !@store_item.promo.blank? %>
+	<div class="search-result-item-promo pull-right">								
 		<%= @store_item.promo %>
 	</div>
+	<% end %>
+	<div style="clear:both;"></div>
+	<hr />
 	<% if @store_item.description && !@store_item.description.empty? %>
 		<div id="item-description">
 			<h4>description</h4>
