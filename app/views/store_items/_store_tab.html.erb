@@ -94,7 +94,7 @@
 			<td valign = "top">
 
 				<div class="store-map-loc">		
-					<div id="gmap_canvas"></div>
+					<div id="gmap_canvas_item_popup"></div>
 				</div>
 
 			</td>
@@ -246,7 +246,7 @@
 						center: new google.maps.LatLng(results[0].geometry.location),
 						mapTypeId: google.maps.MapTypeId.ROADMAP
 					}
-			        map = new google.maps.Map(document.getElementById("gmap_canvas"), myOptions);
+			        map = new google.maps.Map(document.getElementById("gmap_canvas_item_popup"), myOptions);
 			        map.setCenter(results[0].geometry.location);
 			        var marker = new google.maps.Marker({
 			            map: map, 
