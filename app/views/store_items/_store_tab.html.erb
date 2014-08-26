@@ -42,57 +42,13 @@
 	<div class="star-rank" >
 		<%= render partial: 'layouts/stars', locals: {score: @store.stars} %>						
 	</div>  
-	<div class ="search-results-store-badges">
-	<%
-
-	badges = [ ]
-	if @store_item.store.deliveryservice
-		badges.push("deliveryservice")
-	end
-	if @store_item.store.acceptscreditcards
-		badges.push("acceptscreditcards")
-	end
-	if @store_item.store.atmaccess
-		badges.push("atmaccess")
-	end
-	if @store_item.store.automaticdispensingmachines
-		badges.push("automaticdispensingmachines")
-	end
-	if @store_item.store.firsttimepatientdeals
-		badges.push("firsttimepatientdeals")
-	end
-	if @store_item.store.handicapaccess
-		badges.push("handicapaccess")
-	end
-	if @store_item.store.loungearea
-		badges.push("loungearea")
-	end
-	if @store_item.store.petfriendly
-		badges.push("petfriendly")
-	end
-	if @store_item.store.securityguard
-		badges.push("securityguard")
-	end
-	if @store_item.store.eighteenplus
-		badges.push("eighteenplus")
-	end
-	if @store_item.store.twentyoneplus
-		badges.push("twentyoneplus")
-	end
-	if @store_item.store.hasphotos
-		badges.push("hasphotos")
-	end
-	if @store_item.store.labtested
-		badges.push("labtested")
-	end
-	if @store_item.store.onsitetesting
-		badges.push("onsitetesting")
-	end
-	%>
-	<% badges.each do |badge| %>								    
-		<span class="badge search-store-badge-<%= badge %>"><%= badge %></span>
-	<% end %>
-	</div>	
+	<div class="based-on" style="margin-top:10px;">
+			<% if @store.store_reviews.count == 0 %>
+				0 reviews
+			<% else %>
+				based on <%= @store.store_reviews.count %> reviews
+			<% end %>
+		</div>
 	<br/>
 	<hr/>
 	<table id="item-popup-store-details">
