@@ -7,6 +7,9 @@
 # Ignore bundler config.
 /.bundle
 
+# ignore log file from my data import rake tasks
+/logfile.log
+
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
