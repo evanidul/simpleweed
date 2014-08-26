@@ -16,6 +16,10 @@
 
  */
 
+.modal-lg {
+  width: 800px;
+}
+
 #submit-item-search {
   background-color: #A4D37C;
   color: white;
