@@ -206,5 +206,17 @@
 }
 
 #profile-nav .active > a {
+	background-color: #429538;
+}
+
+#profile-nav > a:focus {
+	background-color: #8CC63E;	
+}
+
+#profile-nav a:hover, a:focus {
+	color: white;
+}
+
+#profile-nav a:hover {
 	background-color: #8CC63E;
 }

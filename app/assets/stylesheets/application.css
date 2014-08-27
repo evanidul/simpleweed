@@ -165,7 +165,7 @@
 .tabs-below > .nav-tabs > li > a:focus {
   border-top-color: #ddd;
   border-bottom-color: transparent;
-  background-color: #599659;
+  background-color: #8CC63E;
   color: white;
 }
 
@@ -174,7 +174,7 @@
 .tabs-below > .nav-tabs > .active > a:hover,
 .tabs-below > .nav-tabs > .active > a:focus {
   border-color: transparent #ddd #ddd #ddd;
-  background-color: #599659;
+  background-color: #429538;
   color: white;
 }
 
