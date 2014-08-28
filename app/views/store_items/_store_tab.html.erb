@@ -107,7 +107,14 @@
 			<h4 class = "inline-header">description </h4>
 			<div id="description" class = "store-description-on-modal">				
 				<% if !@store.description.blank? %>
-					<%= raw @store.description %>								
+					<div id="store-description-on-modal" class="hideStoreDescriptionOnModal">
+						<%= raw @store.description %>													    
+					</div>
+					<% if @store.description.length > 800 %>
+						<div class="show-more">
+					        <a elementToExpand="#store-description-on-modal" hideClass="hideStoreDescriptionOnModal" showClass="showStoreDescriptionOnModal" >show more</a>
+					    </div>
+				    <% end %>
 				<% else %>
 					none.
 				<% end %>
@@ -277,5 +284,24 @@
 // 	console.log('shown triggered');
 //     google.maps.event.trigger(map, "resize");
 // });		
+
+$(".show-more a").on("click", function() {
+    var $this = $(this);            
+    var element = $this.attr("elementToExpand")
+    var hideClass = $this.attr("hideClass")            
+    var showClass = $this.attr("showClass")          
+    var $content = $(element);
+    var linkText = $this.text().toUpperCase();    
+    
+    if(linkText === "SHOW MORE"){
+        console.log('showing more');             
+        console.log($content);
+        $content.switchClass(hideClass, showClass, 0);
+    } 
+
+    //$this.text(linkText);
+    $this.remove();
+});
+
 </script>
 

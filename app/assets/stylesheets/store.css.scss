@@ -1513,3 +1513,14 @@ tr.hours-row > td {
     line-height: 20px;
     height: auto;
 }
+
+.hideStoreDescriptionOnModal {
+	overflow: hidden;
+    line-height: 20px;
+    height: 364px;
+}
+
+.showStoreDescriptionOnModal {
+	line-height: 20px;
+    height: auto;
+}

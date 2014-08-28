@@ -22,6 +22,8 @@
         ga('send', 'pageview');
       </script>
     <% end %>
+    <!-- jquery UI for switchClass -->
+    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
     <!-- adds stripe js -->
     <%= yield :koudoku %>     
     <%= yield :head %>
@@ -67,6 +69,7 @@
         });
         
         //link mush specify elementToExpand attribute (selector), as well as classes to be toggled
+        //doesn't work on modals
         $(".show-more a").on("click", function() {
             var $this = $(this);            
             var element = $this.attr("elementToExpand")
@@ -75,14 +78,10 @@
             var $content = $(element);
             var linkText = $this.text().toUpperCase();    
             
-            if(linkText === "SHOW MORE"){
-                console.log('showing more');                
-                linkText = "show less";
+            if(linkText === "SHOW MORE"){                              
                 $content.switchClass(hideClass, showClass, 0);
-            } 
-
-            //$this.text(linkText);
-            $this.remove();
+            }             
+            $this.remove(); //delete the show more link after it's clicked.
         });
 
       </script>

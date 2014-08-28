@@ -17,12 +17,17 @@
 			 <% end %> <!-- show pop up? -->
 		<% end %> <!-- if store manager -->
 	</div>
-	<div id="description" class="hideStoreDescription">				
+	<div id="description" >				
 		<%= raw @store.description %>										
 	</div> 
+	<% if @store.description.length > 600 %>
+	<script>
+		$("#description").addClass("hideStoreDescription");
+	</script>
 	<div class="show-more">
         <a elementToExpand="#description" hideClass="hideStoreDescription" showClass="showStoreDescription" >show more</a>
     </div>
+    <% end %>
 <% end %>
 			
 
