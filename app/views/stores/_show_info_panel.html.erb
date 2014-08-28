@@ -17,9 +17,12 @@
 			 <% end %> <!-- show pop up? -->
 		<% end %> <!-- if store manager -->
 	</div>
-	<p id="description">				
-		<%= raw @store.description %>								
-	</p> 
+	<div id="description" class="hideStoreDescription">				
+		<%= raw @store.description %>										
+	</div> 
+	<div class="show-more">
+        <a elementToExpand="#description" hideClass="hideStoreDescription" showClass="showStoreDescription" >show more</a>
+    </div>
 <% end %>
 			
 

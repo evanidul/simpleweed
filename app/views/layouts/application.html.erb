@@ -65,17 +65,25 @@
             $(this).empty()
             $(this).removeData('bs.modal');
         });
-
-        /** old fix still flickers old window on a new window load **/
-        // $("a[data-target=#modal]").click(function(ev) {
-        //     ev.preventDefault();
-        //     var target = $(this).attr("href");
+        
+        //link mush specify elementToExpand attribute (selector), as well as classes to be toggled
+        $(".show-more a").on("click", function() {
+            var $this = $(this);            
+            var element = $this.attr("elementToExpand")
+            var hideClass = $this.attr("hideClass")            
+            var showClass = $this.attr("showClass")          
+            var $content = $(element);
+            var linkText = $this.text().toUpperCase();    
             
-        //     // load the url and show modal on success
-        //     $("#modal").load(target, function() { 
-        //          $("#modal").modal("show"); 
-        //     });
-        // });
+            if(linkText === "SHOW MORE"){
+                console.log('showing more');                
+                linkText = "show less";
+                $content.switchClass(hideClass, showClass, 0);
+            } 
+
+            //$this.text(linkText);
+            $this.remove();
+        });
 
       </script>
       

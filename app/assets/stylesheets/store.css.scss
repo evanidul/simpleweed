@@ -1502,3 +1502,14 @@ tr.hours-row > td {
 	font-size: 34px !important;
 	font-weight: 100 !important;
 }
+
+.hideStoreDescription {
+    overflow: hidden;
+    line-height: 20px;
+    height: 164px;
+}
+
+.showStoreDescription {
+    line-height: 20px;
+    height: auto;
+}
