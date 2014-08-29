@@ -16,6 +16,15 @@
 
  */
 
+ input[type=range].vertical
+{
+    writing-mode: bt-lr; /* IE */
+    -webkit-appearance: slider-vertical; /* WebKit */
+    width: 8px;
+    height: 200px;
+    padding: 0 5px;
+}
+
 .center {
     margin: auto;
     width: 50%;    

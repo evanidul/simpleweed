@@ -64,21 +64,65 @@
 		<%= @store_item.promo %>
 	</div>
 	<% end %>
+
 	<div style="clear:both;"></div>
-	
-	<% if @store_item.description && !@store_item.description.empty? %>
-		<div id="item-description">
-			<h4>description</h4>
-			<p><%= raw @store_item.description %>
-			</p>
+	<hr/>
+	<div class="row">											 
+		<div class="col-md-6">
+			<h3>item description:</h3>
 		</div>
-	<% end %>
+		<div class="col-md-6">
+			<h3>lab info:</h3>
+		</div>
+	</div>	
+	<div class="row">											 
+		<div class="col-md-6">			
+			<div id="item-description">					
+				<% if @store_item.description && !@store_item.description.empty? %>
+					<p><%= raw @store_item.description %>
+					</p>
+				<% else %>
+					none.
+				<% end %>			
+			</div>
+			
+		</div>
+		<div class="col-md-6">
+			<!-- Native sliders that are resetted correctly -->
+			<table class="item-lab-sliders">
+				<tr>
+					<th>
+						thc%
+					</th>
+					<th>
+						cbd%
+					</th>
+					<th>
+						cbn%
+					</th>
+				</tr>
+				<tr>
+					<td>
+						<input type="range" min="0" max="50" value="39.75" disabled="true" class="vertical"><br>
+					</td>
+					<td>
+						<input type="range" min="0" max="50" value="50.8" disabled="true" class="vertical"><br>	  
+					</td>
+					<td>
+						<input type="range" min="0" max="50" value="20.2" disabled="true" class="vertical"><br>	  
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	
+	<hr/>
 
 	<% 
 		top_review = @store_item.store_item_reviews.sort_by {|review| review.sum_votes}.reverse.first
 	%>
 	<% if top_review %>
-		<h4>top review</h4>
+		<h3>top review</h3>
 		<div class="item-review">	
 			<table class = "item-review-display-and-comment-vote-controls">
 				<tr>
@@ -110,6 +154,12 @@
 			</table>
 		</div>
 		</br> 
+	<% else %>
+		<h3>top review</h3>
+		<div class="alert alert-warning fade in">
+	      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+	      <strong>no reviews yet.</strong> be the first to review this item!
+	    </div>
 	<% end %>
 	
 </div>
