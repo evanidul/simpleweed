@@ -296,7 +296,9 @@ $(".show-more a").on("click", function() {
     if(linkText === "SHOW MORE"){
         console.log('showing more');             
         console.log($content);
-        $content.switchClass(hideClass, showClass, 0);
+        //$content.switchClass(hideClass, showClass, 0);
+        $content.removeClass(hideClass);
+        $content.addClass(showClass);
     } 
 
     //$this.text(linkText);

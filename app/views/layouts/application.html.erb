@@ -23,7 +23,7 @@
       </script>
     <% end %>
     <!-- jquery UI for switchClass -->
-    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <!--<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>-->
     <!-- adds stripe js -->
     <%= yield :koudoku %>     
     <%= yield :head %>
@@ -79,7 +79,9 @@
             var linkText = $this.text().toUpperCase();    
             
             if(linkText === "SHOW MORE"){                              
-                $content.switchClass(hideClass, showClass, 0);
+                //$content.switchClass(hideClass, showClass, 0);
+                $content.removeClass(hideClass);
+                $content.addClass(showClass);
             }             
             $this.remove(); //delete the show more link after it's clicked.
         });
