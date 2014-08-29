@@ -7,13 +7,13 @@ module Simpleweed
 		class Badgeservice
 
 			@@badge_description = Hash.new
-			@@badge_description["b"] = "buy one get one"
-			@@badge_description["ts"] = "top shelf: the best of the best"
-			@@badge_description["pr"] = "private reserve: only sold here"
-			@@badge_description["o"] = "organic: grown organically"
-			@@badge_description["sf"] = "sugar free: no sugar in this product"
-			@@badge_description["gf"] = "gluten free: no gluten in this product"
-			@@badge_description["ss"] = "super size: get a little extra"
+			@@badge_description["b"] = "buy one, get one free"
+			@@badge_description["ts"] = "high quality strains"
+			@@badge_description["pr"] = "very high quality strains, limited quantities, exclusive"
+			@@badge_description["o"] = "organic"
+			@@badge_description["sf"] = "sugar-free"
+			@@badge_description["gf"] = "gluten-free"
+			@@badge_description["ss"] = "get a little extra for the same price"
 
 			def getBadgeDescription(badgeStr)
 				return @@badge_description[badgeStr]
