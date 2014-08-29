@@ -88,6 +88,7 @@
 						 <span id="email"><%= @store.email  %></span>
 						 <br />
 					<% end %>
+					<div id="ts-store-status"></div>
 					 
 				</address>
 			</td>
@@ -305,5 +306,26 @@ $(".show-more a").on("click", function() {
     $this.remove();
 });
 
+
+
+			
+$( document ).ready(function() {
+	var isStoreOpen = <%= @is_open %>;					
+	if ( isStoreOpen ) {
+		setStoreStatus("open now", "green");
+	} else {
+		setStoreStatus("closed now", "red");
+	}  
+});
+
+function setStoreStatus(status, color) {
+	// set in top section business info as well
+	var topSectionIdPrefix = "ts-store-status";
+	var topSectionSelector = "#" + topSectionIdPrefix;
+	$(topSectionSelector).html(status);
+	$(topSectionSelector).addClass(color)
+}
+
+		
 </script>
 
