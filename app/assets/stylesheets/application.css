@@ -22,7 +22,18 @@
     -webkit-appearance: slider-vertical; /* WebKit */
     width: 8px;
     height: 200px;
-    padding: 0 5px;
+    padding: 0 5px;    
+}
+
+
+::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: #429538;
+    margin-top: -5px;
 }
 
 .center {
