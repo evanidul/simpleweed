@@ -251,8 +251,7 @@ $('#item-preview-tab-content .nav-tabs a').click(function (e) {
   			function codeAddress() {
 				    //In this case it gets the address from an element on the page, but obviously you  could just pass it to the method instead
 
-				    geocoder = new google.maps.Geocoder();
-				    //var address = "7110 Rock Valley Court, San Diego, CA 92122";
+				    geocoder = new google.maps.Geocoder();				    
 				    var address = "<%= escape_javascript @store.address %>";
 
 				    geocoder.geocode( { 'address': address}, function(results, status) {
