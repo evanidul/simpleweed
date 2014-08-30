@@ -45,6 +45,22 @@
 	<% if !@store.promo.blank? %>
 		<h4 class="inline-header">current promotion:</h4><span>  <%= @store.promo %></span>
 	<% end %>
+	<span class="pull-right">
+		<% if !current_user.nil? && current_user.follows?(@store) %>
+			<%= render :partial =>'stores/unfollow_store_button', locals: {store: @store }%>		
+		<% else %>
+			<%= render :partial =>'stores/follow_store_button', locals: {store: @store }%>		
+		<% end %>
+	</span>
+	<% if current_user.nil? %>
+		<script>						
+			$("#follow-store-button").click(function(e){
+				e.preventDefault();	
+				$("#log-in-link").click();
+			})
+		</script>
+	<% end %>
+
 	<div class="based-on" style="margin-top:10px;">
 			<% if @store.store_reviews.count == 0 %>
 				0 reviews
