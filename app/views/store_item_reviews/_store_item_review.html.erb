@@ -55,7 +55,7 @@ end
 			<td class="review-content">
 				<%= @store_item_review.review %>
 				<div id="comments_for_item_review_<%= @store_item_review.id %>" class="item-review-comments">						
-					<% @store_item_review.store_item_review_comments.each do |store_item_review_comment| %>
+					<% @store_item_review.store_item_review_comments.sort_by(&:created_at).each do |store_item_review_comment| %>
 						<%= render partial: 'store_item_review_comments/store_item_review_comment', locals: {store_item_review_comment: store_item_review_comment} %>
 					<% end # comments loop %>	
 				</div>
