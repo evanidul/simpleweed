@@ -299,7 +299,7 @@ feature "store page" , :js => true do
 		new_promo = "new promo"
 		store_page.promo_input.set new_promo
 		store_page.save_promo_button.click
-		expect(store_page.name_header).to have_text(new_promo)
+		expect(store_page.store_promo).to have_text(new_promo)
   	end
 
   		scenario "sign in as admin, create a new store, edit store hours" do
