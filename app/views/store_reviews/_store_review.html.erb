@@ -49,7 +49,7 @@
 					<%= store_review.review %>
 					<div id="comments_for_store_review_<%= store_review.id %>" class="store-review-comments">						
 						<!-- dvu: WARNING: be sure to change this template in ajax response as well! -->
-						<% store_review.store_review_comments.each do |store_review_comment| %>
+						<% store_review.store_review_comments.sort_by(&:created_at).each do |store_review_comment| %>
 							<%= render partial: 'store_review_comments/store_review_comment', locals: {store_review_comment: store_review_comment} %>
 						<% end %>			
 					</div>
