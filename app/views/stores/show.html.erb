@@ -40,8 +40,7 @@
 						<% end %>	
 					</td>
 					<td class="store-name-and-edit">						
-						<h1 id="name" class="store-name" style="display:inline"><%= @store.name %> 
-							<small><%= @store.promo %></small>
+						<h1 id="name" class="store-name" style="display:inline"><%= @store.name %> 							
 							<% if @role_service.canManageStore(current_user, @store) %>					
 								<%= link_to edit_promo_store_path(@store), data: { toggle: "modal", target: "#modal", remote: edit_promo_store_path(@store)} , id: "edit-promo-link",  class: "btn edit-store-link" do %>
 									<span class="glyphicon glyphicon-edit"></span>
@@ -77,11 +76,17 @@
 			</table>
 		</div>
 
-  		<ul id="review-controls">
+  		<ul id="store-stars-and-promo">
 			<!-- pro coding right here -->
 			<li class="star-rank">
 				<%= render partial: 'layouts/stars', locals: {score: @store.stars} %>
 			</li>
+			<li>
+				<% if !@store.promo.blank? %>
+					<h3 class="inline-header">current promotion:</h3><span>  <%= @store.promo %></span>
+				<% end %>
+			</li>
+		<ul id="review-controls">			
 			<li>
 				<% if !current_user.nil? && current_user.follows?(@store) %>
 					<%= render :partial =>'unfollow_store_button', locals: {store: @store }%>		

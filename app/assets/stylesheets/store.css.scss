@@ -1257,9 +1257,20 @@ body .ui-tooltip {
 	width: 100%;
 }
 
+#store-stars-and-promo {
+	list-style-type: none;	
+	padding-left:0;	
+}
+
+#store-stars-and-promo li {
+	display: inline; 
+	margin-right: 7px;
+}
+
 #review-controls {
 	list-style-type: none;	
 	padding-left:0;	
+	float: right !important;
 }
 
 #review-controls li { 
