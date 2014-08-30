@@ -103,7 +103,7 @@ var g_infobox = new InfoBox({
          zIndex: 3000,
          boxStyle: {
             background: "url('http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/examples/tipbox.gif') no-repeat",
-            opacity: 0.75,
+            
             width: "280px"
         },
         closeBoxMargin: "12px 4px 2px 2px",
@@ -128,14 +128,14 @@ var g_infobox = new InfoBox({
 		storename = storename.replace(/\"\]/g , "");
 		itemname = itemname_unscrubbed.replace(/\[\"/g , "");
 		itemname = itemname.replace(/\"\]/g , "");	
-
-		// var image = './assets/leaf.png';
-		var image = '<%= asset_path 'leaf.png' %>';
+		
+		//var image = '<%= asset_path 'leaf.png' %>';
 		var loc = new google.maps.LatLng(lat,long)
 		marker = new google.maps.Marker({
 		    	position: loc,
-		        map: g_map,
-		        icon: image
+		        map: g_map
+          //   ,
+		        // icon: image
 			});
 
 		//g_map.setCenter(marker.getPosition());
