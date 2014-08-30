@@ -9,10 +9,7 @@
 			</td>
 			<td>
 				<h4 class="item-pop-up-store-name inline-header">
-					<a href="<%= store_path(@store.id)%>" data-no-turbolink='true' > <%= @store.name %></a>								
-					<small>
-						<%= @store_item.store.promo %>
-					</small>
+					<a href="<%= store_path(@store.id)%>" data-no-turbolink='true' > <%= @store.name %></a>													
 				</h4>
 				<% if !@store.facebook.blank? %>						
 					<a id="facebook" href="<%= @urlservice.url_with_protocol(@store.facebook) %>">
@@ -42,9 +39,12 @@
 		</tr>
 	</table>  	
 
-	<div class="star-rank" >
+	<span class="star-rank" >
 		<%= render partial: 'layouts/stars', locals: {score: @store.stars} %>						
-	</div>  
+	</span>  
+	<% if !@store.promo.blank? %>
+		<h4 class="inline-header">current promotion:</h4><span>  <%= @store.promo %></span>
+	<% end %>
 	<div class="based-on" style="margin-top:10px;">
 			<% if @store.store_reviews.count == 0 %>
 				0 reviews
