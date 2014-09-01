@@ -93,15 +93,7 @@
       <ul class="nav navbar-nav navbar-right">     
 
           <li><a href="<%= main_app.feeds_path %>" id="community-home-link">community</a></li>          
-          <% if user_signed_in? %>            
-            <!--
-            <li>
-              <%= link_to 'Pricing', main_app.pricing_path %>
-            </li>
-            <li>              
-              <%= link_to "plans",koudoku.owner_subscriptions_path(current_user), 'data-no-turbolink' => true %>
-            </li>
-          -->
+          <% if user_signed_in? %>                        
             <%
               @role_service = Simpleweed::Security::Roleservice.new
               stores = @role_service.findStoresOwned(current_user)

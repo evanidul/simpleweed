@@ -78,9 +78,6 @@ gem 'delayed_job_active_record'
 # amazon sdk for s3 file/photo uploads
 gem 'aws-sdk'
 
-# https://github.com/andrewculver/koudoku, stripe + subscription management
-gem 'koudoku'
-
 # https://github.com/radar/paranoia, allows soft deletes (store items)
 gem "paranoia", "~> 2.0"
 
