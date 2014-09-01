@@ -9,7 +9,7 @@
         <span class="icon-bar"></span>
       </button>
       
-      <%= link_to image_tag("simpleweed_h_rgb.png", height: '53', width: '150'), main_app.root_path, 'data-no-turbolink' => true, class: "navbar-brand simple-weed-logo" %>          
+      <%= link_to image_tag("simpleweed_h_rgb.png", height: '53', width: '150'), root_path, 'data-no-turbolink' => true, class: "navbar-brand simple-weed-logo" %>          
           
       </a>
     </div>
@@ -26,7 +26,7 @@
           @search = Se.new 
         end
       %>
-      <%= form_for @search, :url=> main_app.ses_path, :method=>'get', :html => {:class => "navbar-form navbar-left"} do |f| %>
+      <%= form_for @search, :url=> ses_path, :method=>'get', :html => {:class => "navbar-form navbar-left"} do |f| %>
         
         <div class="form-group"> 
           <%= f.text_field :itemsearch, :class => 'form-control search-inputs', placeholder: "search items, dispensaries"  %>
@@ -92,7 +92,7 @@
       <% end %>
       <ul class="nav navbar-nav navbar-right">     
 
-          <li><a href="<%= main_app.feeds_path %>" id="community-home-link">community</a></li>          
+          <li><a href="<%= feeds_path %>" id="community-home-link">community</a></li>          
           <% if user_signed_in? %>                        
             <%
               @role_service = Simpleweed::Security::Roleservice.new
@@ -107,25 +107,25 @@
                 <ul class="dropdown-menu" role="menu">
                   <% stores.each do |store| %>   
                   <li>
-                    <%= link_to store.name, main_app.store_path(store.id), 'data-no-turbolink' => true %>
+                    <%= link_to store.name, store_path(store.id), 'data-no-turbolink' => true %>
                   </li>
                   <% end %>
                 </ul>
               </li>
             <% end %>
             <li>
-              <%= link_to current_user.username, main_app.feed_profile_path(current_user), :id => 'edit-user-link',:class => 'navbar-link' , 'data-no-turbolink' => true %>
+              <%= link_to current_user.username, feed_profile_path(current_user), :id => 'edit-user-link',:class => 'navbar-link' , 'data-no-turbolink' => true %>
 
             </li>
             <li>
-              <%= link_to "log out", main_app.destroy_user_session_path, 'data-no-turbolink' => true, :id => 'logout-link', method: :delete, :class => 'navbar-link'  %>
+              <%= link_to "log out", destroy_user_session_path, 'data-no-turbolink' => true, :id => 'logout-link', method: :delete, :class => 'navbar-link'  %>
             </li>
           <% else %>
           <li>
-            <%= link_to 'sign up', main_app.registration_modal_path , data: { toggle: "modal", target: "#modal", remote: main_app.registration_modal_path} , id: "register-link" %>            
+            <%= link_to 'sign up', registration_modal_path , data: { toggle: "modal", target: "#modal", remote: registration_modal_path} , id: "register-link" %>            
           </li>
           <li>             
-            <%= link_to 'login', main_app.login_path , data: { toggle: "modal", target: "#modal", remote: main_app.login_path} , id: "log-in-link" %>
+            <%= link_to 'login', login_path , data: { toggle: "modal", target: "#modal", remote: login_path} , id: "log-in-link" %>
           </li>
           <% end %>
         </li>
