@@ -1694,6 +1694,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#111111', end
 	margin-right: 5px;	
 }
 
+.subscription-glyph-green {
+	color: #429538;
+	margin-right: 5px;	
+}
+
 .ul-basic-features {
 	border-radius: 10px;
 	
@@ -1730,6 +1735,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#111111', end
 	font-size: 11PX;
 	font-weight: 600;
 	color: rgb(78, 68, 68);
+	border: 1px solid lightgray;
 }
 
 .ul-plus-features li {
@@ -1737,7 +1743,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#111111', end
 }
 
 .ul-plus-features li hr {
-	border-top:2px solid #E0E0E0;
+	border-top:2px solid lightgray;
 	margin-top:5px;
 	margin-bottom:0px;
 }
