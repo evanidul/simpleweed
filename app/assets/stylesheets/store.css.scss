@@ -1589,21 +1589,62 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#111111', end
 	
 }
 
-.subscription-dollar-sign {
+.subscription-dollar-sign-free {
 	font-size: 32px;
 	font-weight:100;
-	position: relative;	
-	left: 40px;
+	position: relative;		
 	top: 30px;
 	color: white;
 }
 
-.subscription-month {
+.subscription-month-free {
 	font-size: 12px;
 	color: #e6e6e6;
 	position: relative;
-	top: 96px;
-	left: -50px;
+	top: 96px;	
+	left: -15px;
+}
+
+.subscription-dollar-sign-basic {
+	font-size: 32px;
+	font-weight:100;
+	position: relative;		
+	top: 30px;
+	left: 42px;
+	color: white;
+}
+
+.subscription-month-basic {
+	font-size: 12px;
+	color: #e6e6e6;
+	position: relative;
+	top: 96px;	
+	left: -51px;
+}
+
+.subscription-dollar-sign-plus {
+	font-size: 32px;
+	font-weight:100;
+	position: relative;		
+	top: 30px;
+	color: white;
+	left:33px;
+}
+
+.subscription-month-plus {
+	font-size: 12px;
+	color: #e6e6e6;
+	position: relative;
+	top: 96px;	
+	left:-16px;
+}
+
+.subscription-dollar-cost-plus {
+	color:white;	
+	font-size: 100px;
+	font-weight: 100;
+	left:24px;
+	position:relative;	
 }
 
 .subscription-free-trial {
