@@ -1,13 +1,14 @@
 Geocoder.configure(
 
   # geocoding service (see below for supported options):
-  :lookup => :google,
+  :lookup => :google_premier,
 
   # IP address geocoding service (see below for supported options):
   #:ip_lookup => :maxmind,
 
   # to use an API key:
   #:api_key => "...",
+  :api_key => ["3MljO_KtLS9BjQ-PMp3T1WRoWbY=","gme-simpleweedllc", "simpleweed-channel"],
 
   # geocoding service request timeout, in seconds (default 3):
   :timeout => 5,
