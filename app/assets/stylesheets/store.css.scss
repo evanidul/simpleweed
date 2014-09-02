@@ -1691,5 +1691,53 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#111111', end
 }
 
 .subscription-glyph {
-	margin-right: 5px;
+	margin-right: 5px;	
+}
+
+.ul-basic-features {
+	border-radius: 10px;
+	
+	list-style-type: none;
+	padding-left:0;
+	margin-top:20px;
+	padding-bottom: 10px;
+	font-size: 11PX;
+	font-weight: 600;
+	color: rgb(78, 68, 68);
+}
+
+.ul-basic-features li {
+	padding: 10px 10px 0 10px;
+}
+
+.ul-basic-features li hr {
+	border-top:2px solid #E0E0E0;
+	margin-top:5px;
+	margin-bottom:0px;
+}
+
+
+
+
+
+.ul-plus-features {
+	border-radius: 10px;
+	
+	list-style-type: none;
+	padding-left:0;
+	margin-top:20px;
+	padding-bottom: 10px;
+	font-size: 11PX;
+	font-weight: 600;
+	color: rgb(78, 68, 68);
+}
+
+.ul-plus-features li {
+	padding: 10px 10px 0 10px;
+}
+
+.ul-plus-features li hr {
+	border-top:2px solid #E0E0E0;
+	margin-top:5px;
+	margin-bottom:0px;
 }
