@@ -91,6 +91,6 @@ Smellyleaf::Application.configure do
     :port => 465
   }
 
-  config.maps_api_key = "AIzaSyDM-y6QAoQSXv_5pibe5pWxQSdxzvr3y7g"
+  config.maps_api_key = "gme-simpleweedllc"
   
 end
