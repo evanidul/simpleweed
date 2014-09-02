@@ -1622,3 +1622,33 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#111111', end
 	padding:15px 25px;
 	font-size:10px;
 }
+
+.subscription-header {
+	padding:30px;
+}
+
+.ul-core-features {
+	border-radius: 10px;
+	background-color: #F0F0F0;
+	list-style-type: none;
+	padding-left:0;
+	margin-top:20px;
+	padding-bottom: 10px;
+	font-size: 11PX;
+	font-weight: 600;
+	color: rgb(78, 68, 68);
+}
+
+.ul-core-features li {
+	padding: 10px 10px 0 10px;
+}
+
+.ul-core-features li hr {
+	border-top:2px solid #E0E0E0;
+	margin-top:5px;
+	margin-bottom:0px;
+}
+
+.subscription-glyph {
+	margin-right: 5px;
+}
