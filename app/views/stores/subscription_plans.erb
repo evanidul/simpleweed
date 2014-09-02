@@ -1,6 +1,30 @@
 
 <br/>
-<h1 class="subscription-header center">manage your subscription</h1>
+
+<table class="store-header-table">
+    <tr>
+      <td>
+      <% if @store.avatar_url.blank? %>
+        <!-- dvu: this should depend on if you are the profile user or looking at someone else -->
+        <%= link_to edit_photo_store_path(@store), data: { toggle: "modal", target: "#modal", remote: edit_photo_store_path(@store)} , id: "edit-store-photo-link",  class: "btn edit-store-photo-link" do %>
+          <span class="glyphicon glyphicon-tree-deciduous user-pic"></span>           
+        <% end %> 
+        <% else %>
+          <%= link_to edit_photo_store_path(@store), data: { toggle: "modal", target: "#modal", remote: edit_photo_store_path(@store)} , id: "edit-store-photo-link",  class: "btn edit-store-photo-link" do %>
+            <img class="user-pic-borderless" width="40px" height="40px" src = "http:<%= @store.avatar_url %>"></img>
+          <% end %>         
+      <% end %> 
+      </td>
+      <td class="store-name-and-edit">            
+        <h1 id="store_name" class="store-name" style="display:inline"><%= link_to @store.name, store_path(@store) , 'data-no-turbolink' => true %>
+          <small><%= @store.promo %></small>              
+        </h1>
+        
+      </td>
+    </tr>
+</table>
+
+<h2 class="subscription-header">manage your subscription</h2>
 <div class="row">
 	
 	<%= render partial: 'stores/subscription_plan' %>
