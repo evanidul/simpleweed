@@ -308,6 +308,21 @@ class StoresController < ApplicationController
 
 	end
 
+	def subscription_plans
+		# user must be logged in
+		# user must be the store owner/manager of this store
+		@role_service = Simpleweed::Security::Roleservice.new
+		if @role_service.canManageStore(current_user, @store)
+			return
+		else 
+			redirect_to unauthorized_subscription_plans_store_path(@store)
+		end
+	end
+
+	def unauthorized_subscription_plans
+
+	end
+
 	private
     def load_store      
       id = params[:id]      

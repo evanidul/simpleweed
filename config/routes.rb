@@ -90,6 +90,8 @@ Smellyleaf::Application.routes.draw do
       get "edit_photo"
       put "update_photo"
       get 'archived_items'
+      get 'subscription_plans'
+      get 'unauthorized_subscription_plans'
 
     end
     
