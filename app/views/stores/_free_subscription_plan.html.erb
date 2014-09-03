@@ -4,15 +4,17 @@
 			gram
 			
 			<%= form_tag subscribe_store_store_path , :class => "stripe-button-form" do %>
+				
+			  <%= hidden_field_tag :plan_id, 1 %>
 			  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
 			          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-			          data-description="subscribe to 'gram' plan"			          
+			          data-description="enter credit card info"			          
 			          data-label="subscribe",
 			          data-panel-label="subscribe",
   					  data-allow-remember-me="false",
   					  data-email="<%= current_user.email %>"
 	          ></script>
-	          <% end %>
+	        <% end %>
 			
 		</div>			
 		<div class="plan-cost center">

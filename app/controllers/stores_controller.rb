@@ -324,6 +324,9 @@ class StoresController < ApplicationController
 	end
 
 	def subscribe_store
+		@stripe_token = params[:stripeToken]
+		@plan_id = params[:plan_id]
+
 
 	end
 
