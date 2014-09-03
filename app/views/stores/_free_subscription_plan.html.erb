@@ -1,7 +1,8 @@
 <div class="col-md-3">		
 	<div class="plan-description-container">
 		<div class="plan-name">
-			free
+			gram
+			<%= link_to 'subscribe', store_path(@store), class: 'btn btn-primary pull-right' , id: "choose-free-button" %>
 		</div>			
 		<div class="plan-cost center">
 			<span class="subscription-dollar-sign-free pull-left">
@@ -12,14 +13,14 @@
 			</span>
 
 			<div class="subscription-dollar-cost ">
-				<span>0</span>			
+				<span>9</span>			
 			</div>
 			<div class="subscription-free-trial">
-				for free always
+				1 month free trial
 			</div>
 		</div>
 		<div class="cancel-text">
-			directory services are always free, so why not start getting more customers today?
+			try simple weed for a month, and see if we can help you sell an extra gram
 		</div>
 	</div>
 	<%= render partial: 'stores/free_subscription_features' %>
