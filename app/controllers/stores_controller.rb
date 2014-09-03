@@ -326,9 +326,35 @@ class StoresController < ApplicationController
 	def subscribe_store
 		@stripe_token = params[:stripeToken]
 		@plan_id = params[:plan_id]
+		@cust_email = params[:stripeEmail]
 
+		if !@store.stripe_customer_id.blank?
+			customer = Stripe::Customer.retrieve(@store.stripe_customer_id)
+		end
 
+		# create a new customer
+		if customer.blank?
+			# Create a Customer
+			customer = Stripe::Customer.create(
+			  :card => @stripe_token,
+			  :plan => @plan_id,
+			  :email => @cust_email
+			)
+
+			@store.stripe_customer_id = customer.id
+			@store.plan_id = @plan_id
+			@store.save
+
+		else
+			#...else update their plan
+			customer.plan = @plan_id
+			customer.save
+			@store.plan_id = @plan_id
+			@store.save
+		end
 	end
+
+
 
 	private
     def load_store      
