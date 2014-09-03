@@ -24,7 +24,14 @@
     </tr>
 </table>
 
-<h2 class="subscription-header">manage your subscription</h2>
+<h2 class="subscription-header">
+  <% if @store.plan_id.blank? %>
+    choose a plan
+  <% else %>
+      <% @subscription_service = Simpleweed::Subscription::Subscriptionservice.new %>
+      current plan: <%= @subscription_service.getPlanNameFromID(@store.plan_id) %> ($<%= @subscription_service.getPlanCostPerMonthFromID(@store.plan_id) %>/mo)
+  <% end %>
+</h2>
 <div class="row">
 	
 	<%= render partial: 'stores/free_subscription_plan' %>
