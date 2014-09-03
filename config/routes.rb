@@ -92,6 +92,7 @@ Smellyleaf::Application.routes.draw do
       get 'archived_items'
       get 'subscription_plans'
       get 'unauthorized_subscription_plans'
+      post 'subscribe_store'
 
     end
     

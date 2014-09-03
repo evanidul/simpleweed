@@ -81,6 +81,9 @@ gem 'aws-sdk'
 # https://github.com/radar/paranoia, allows soft deletes (store items)
 gem "paranoia", "~> 2.0"
 
+# stripe, cc payments
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+
 group :development, :test do
   # automated testing
   gem 'rspec-rails', '~> 3.0.0.beta'

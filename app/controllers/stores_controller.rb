@@ -323,6 +323,10 @@ class StoresController < ApplicationController
 
 	end
 
+	def subscribe_store
+
+	end
+
 	private
     def load_store      
       id = params[:id]      

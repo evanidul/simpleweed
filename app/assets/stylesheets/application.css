@@ -36,6 +36,32 @@
     margin-top: -5px;
 }
 
+/** stripe button overrides **/
+.stripe-button-el {
+  background-image: linear-gradient(#8CC63E,#8CC63E) !important;
+  float:right !important;
+}
+
+.stripe-button-el span {
+
+  float:right !important;
+  display: inline !important;
+  line-height: 25px !important;
+  height: 25px !important;
+  min-height: 25px !important;
+  background:#8CC63E !important;
+  background-image: -webkit-linear-gradient(#8CC63E,#8CC63E,#8CC63E) !important;
+  background-image: -moz-linear-gradient(#8CC63E,#8CC63E 85%,#8CC63E) !important;
+  background-image: -ms-linear-gradient(#8CC63E,#8CC63E 85%,#8CC63E) !important;
+  background-image: -o-linear-gradient(#8CC63E,#8CC63E 85%,#8CC63E) !important;
+  background-image: linear-gradient(#8CC63E);
+}
+
+/** the forms that contain stripe checkout buttons should be display: inline; **/
+.stripe-button-form {
+  display:inline;
+}
+
 .center {
     margin: auto;
     width: 50%;    
