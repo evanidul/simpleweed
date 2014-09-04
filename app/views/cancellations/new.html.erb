@@ -1,0 +1,19 @@
+<br />
+
+<h3>
+	we put a lot of time and passion into our work.  	
+</h3>
+
+<h4>let us know how we can make things better and  we'll do our best to make things right.</h4>
+
+<%= form_for ([@store, @cancellation]) do |f| %>
+  <%= f.text_area :reason, :rows => 4,  :class => 'form-control ' , :id => 'cancellation_reason_input' , :required => true   %>
+  
+
+
+  <p class = "form-group pull-right">               
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    <%= f.submit :class => 'btn btn-primary' , :id => 'save_cancellation'%>
+  </p>
+<% end %>
+

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140903110251) do
+ActiveRecord::Schema.define(version: 20140904040816) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,19 @@ ActiveRecord::Schema.define(version: 20140903110251) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "cancellations", force: true do |t|
+    t.integer  "store_id"
+    t.integer  "user_id"
+    t.text     "reason"
+    t.integer  "plan_id"
+    t.string   "stripe_customer_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "cancellations", ["store_id"], name: "index_cancellations_on_store_id", using: :btree
+  add_index "cancellations", ["user_id"], name: "index_cancellations_on_user_id", using: :btree
 
   create_table "delayed_jobs", force: true do |t|
     t.integer  "priority",   default: 0, null: false

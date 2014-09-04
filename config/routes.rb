@@ -18,6 +18,8 @@ Smellyleaf::Application.routes.draw do
   #get "solr", :as => 'store/solr'
   #get 'search' => 's#search'
 
+
+
   resources :profile do
     member do
       get "activity"
@@ -62,6 +64,7 @@ Smellyleaf::Application.routes.draw do
     end
 
   resources :stores do
+    resources :cancellations
     # custom edit modal panel routes.  Needed to add custom controller endpoints and these routes match those.
     member do
       get 'edit_description'
@@ -93,6 +96,7 @@ Smellyleaf::Application.routes.draw do
       get 'subscription_plans'
       get 'unauthorized_subscription_plans'
       post 'subscribe_store'
+      
 
     end
     

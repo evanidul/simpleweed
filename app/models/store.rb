@@ -1,6 +1,7 @@
 class Store < ActiveRecord::Base
 	has_many :store_items
 	has_many :store_reviews
+	has_many :cancellations
 
 	include PublicActivity::Common    
     #tracked        
