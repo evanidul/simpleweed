@@ -360,7 +360,42 @@ class StoresController < ApplicationController
 		end
 	end
 
+	def change_credit_card
 
+	end
+
+	def update_credit_card
+		
+		
+		if !@store.stripe_customer_id.blank?
+			customer = Stripe::Customer.retrieve(@store.stripe_customer_id)
+		end
+
+		token = Stripe::Token.create(
+		  card: {
+		    number: params[:number],
+		    exp_month: params[:date][:month],
+		    exp_year: params[:date][:year],
+		    cvc: params[:cvc]
+		  }
+		)
+
+		card = customer.cards.create(card: token.id)
+		card.save
+		customer.default_card = card.id
+		customer.save
+
+		flash[:notice] = 'Saved. Your card information has been updated.'
+		redirect_to subscription_plans_store_path		
+
+		rescue Stripe::InvalidRequestError => e
+			flash[:warning] = 'Stripe reported an error while updating your card. Please try again.'
+			redirect_to change_credit_card_store_path(@store)
+		rescue Stripe::CardError => e
+			flash[:warning] = e.message
+			redirect_to change_credit_card_store_path(@store)
+		
+	end
 
 	private
     def load_store      
@@ -378,6 +413,8 @@ class StoresController < ApplicationController
 			:acceptscreditcards, :atmaccess, :automaticdispensingmachines, :deliveryservice, :firsttimepatientdeals, :handicapaccess,
 			:loungearea, :petfriendly, :securityguard)		
 	end		
+
+
 
 
 end

@@ -96,6 +96,8 @@ Smellyleaf::Application.routes.draw do
       get 'subscription_plans'
       get 'unauthorized_subscription_plans'
       post 'subscribe_store'
+      get 'change_credit_card'
+      post 'update_credit_card'
       
 
     end

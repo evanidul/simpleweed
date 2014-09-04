@@ -1,0 +1,31 @@
+<br/>
+<%= form_tag( { controller: 'stores', action: 'update_credit_card' }, method: 'post', class: 'form-horizontal') do %>
+  <div class='form-group'>
+    <%= label_tag        :number, 'Card Number', class: 'col-sm-3 control-label' %>
+    <div class='col-sm-6'>  
+      <%= text_field_tag :number, nil, class: 'form-control', placeholder: 'We accept Visa, MasterCard, AMEX and Discover' %>
+    </div>
+  </div>
+
+  <div class='form-group'>
+    <%= label_tag        :cvc, 'Security Code (CVC)', class: 'col-sm-3 control-label' %>
+      <div class='col-sm-6'>
+        <%= text_field_tag :cvc, nil, class: 'form-control', placeholder: 'The code on the back of your card (CVC)' %>
+      </div>
+  </div>
+
+  <div class='form-group'>
+    <%= label_tag        :exp_month, 'Expiration Date', class: 'col-sm-3 control-label' %>
+    <div class='col-sm-3'>
+      <%= select_month   nil, { add_month_numbers: true }, { id: 'exp_month', class: 'form-control btm-space' } %>
+    </div>
+    <div class='col-sm-3'>
+      <%= select_year    nil, { start_year: Date.today.year, end_year: Date.today.year+15 }, { id: 'exp_year', class: 'form-control btm-space' } %>
+    </div>
+  </div>
+  <div class='form-group'>
+    <div class='col-sm-3 col-sm-offset-6'>
+      <%= submit_tag 'Update', class: 'btn btn-success btn-block' %>
+    </div>
+  </div>
+<% end %>

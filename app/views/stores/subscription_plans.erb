@@ -31,6 +31,8 @@
       <% @subscription_service = Simpleweed::Subscription::Subscriptionservice.new %>
       current plan: <%= @subscription_service.getPlanNameFromID(@store.plan_id) %> ($<%= @subscription_service.getPlanCostPerMonthFromID(@store.plan_id) %>/mo)
       <%= link_to "cancel", new_store_cancellation_path(@store), id: "cancel-subscription-link", class: "cancel-subscription-link" %>
+      <%= link_to "change credit card", change_credit_card_store_path(@store), id: "change-credit-card-link", class: "change-credit-card-link" %>
+      
   <% end %>
 </h2>
 <div class="row">
