@@ -25,9 +25,11 @@ class CancellationsController < ApplicationController
 
 		if @cancellation.save
 			flash[:notice] = "your cancellation has been processed.  we're sorry to see you go."
+			redirect_to store_path(@store)
 		else
 			messagearray = @cancellation.errors.full_messages
 			flash[:warning] = messagearray
+			redirect_to store_path(@store)
 		end
 	end
 

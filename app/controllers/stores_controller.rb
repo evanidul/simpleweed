@@ -345,12 +345,18 @@ class StoresController < ApplicationController
 			@store.plan_id = @plan_id
 			@store.save
 
+			flash[:notice] = "thank you for subscribing"
+			redirect_to store_path(@store)
+
 		else
 			#...else update their plan
 			customer.plan = @plan_id
 			customer.save
 			@store.plan_id = @plan_id
 			@store.save
+
+			flash[:notice] = "thank you for subscribing"
+			redirect_to store_path(@store)
 		end
 	end
 
