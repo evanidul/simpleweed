@@ -13,9 +13,9 @@
 		  
 
 		  <br />
-		  <p class = "form-group pull-right">               
-		    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		    <%= f.submit :class => 'btn btn-primary' , :id => 'save_cancellation'%>
+		  <p class = "form-group pull-right">               		    
+		    <%= link_to "cancel", subscription_plans_store_path(@store), id: "cancel-cancel-subscription-link", class: "btn btn-default" %>
+		    <%= f.submit "cancel subscription", :class => 'btn btn-primary' , :id => 'save_cancellation'%>
 		  </p>
 		<% end %>
 	</div>
