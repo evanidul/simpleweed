@@ -186,4 +186,31 @@ feature "plan three" , :js => true do
 		store_page.should have_save_store_avatar_button
 	end
 
+	scenario "plan 3 can change first time patient deals" do
+				
+		page.visit("/users/sign_in")
+		login_page = LoginPage.new
+
+		login_page.username_input.set @adminusername
+    	login_page.username_password_input.set @adminpassword
+    	login_page.sign_in_button.click
+
+    	header = HeaderPageComponent.new
+    	expect(header.edituserlink.text).to have_text(@adminusername)
+
+		# go to store
+		page.visit(store_path(@store))		
+    	
+    	store_page = StorePage.new    	
+		expect(store_page.name_header.text).to have_text(@store_name)    			
+		
+		store_page.edit_first_time_patient_deals_link.click
+		
+		new_ftpd = "No new deals today!"
+		store_page.first_time_patient_deals_input.set new_ftpd
+		store_page.save_first_time_patient_deals_button.click
+		expect(store_page.first_time_patient_deals_text.text).to have_text(new_ftpd)    	
+		store_page.firsttimepatientdeals.should be_checked
+	end
+
 end

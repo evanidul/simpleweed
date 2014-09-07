@@ -452,12 +452,8 @@ $('#item-preview-tab-content .nav-tabs a').click(function (e) {
 		
 		<div class="header-and-edit-link">
 			<h4 class = "inline-header">first time patient deals </h4>
-			<% if @role_service.canManageStore(current_user, @store) %>								
-				<%= link_to edit_firsttimepatientdeals_store_path(@store), data: { toggle: "modal", target: "#modal", remote: edit_firsttimepatientdeals_store_path(@store)} , id: "edit-first-time-patient-deals-link",  class: "btn edit-store-link" do %>
-						<span class="glyphicon glyphicon-edit"></span>
-				<% end %>
+			<%= render partial: 'stores/editlinks/edit_first_time_patient_deals' %>		
 
-			<%end %>
 		</div>
 		<p id="first-time-patient-deals">
 			<% if  @store.firsttimepatientdeals && !@store.firsttimepatientdeals.empty?  %>
