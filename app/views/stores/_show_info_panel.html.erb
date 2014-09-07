@@ -1,21 +1,7 @@
 <% if  @store.description && !@store.description.empty?  %>			
 	<div class="header-and-edit-link">
 		<h4 class = "inline-header">description </h4>			
-		<% if @role_service.canManageStore(current_user, @store) %>
-			 <%= link_to edit_description_store_path(@store), data: { toggle: "modal", target: "#modal", remote: edit_description_store_path(@store)} , id: "edit-description-link",  class: "btn edit-store-link" , "data-content"=>"<span id='edit-links-tip'>edit links are now available for you to manage your store.</span>" do %>
-    					<span class="glyphicon glyphicon-edit"></span>
-			<% end %>	
-			 <% if params[:show_edit_popover] == "true" %>				 
-				 <script>				 
-				 $(function () {
-					  $('#edit-description-link').popover({ 
-					    html : true,
-					    placement : "left"
-					  }).popover('show');
-					});
-				 </script>
-			 <% end %> <!-- show pop up? -->
-		<% end %> <!-- if store manager -->
+		<%= render partial: 'stores/editlinks/edit_store_description' %>
 	</div>
 	<div id="description" >				
 		<%= raw @store.description %>										

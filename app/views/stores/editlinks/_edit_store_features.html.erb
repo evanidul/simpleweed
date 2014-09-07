@@ -1,0 +1,11 @@
+<% if @role_service.canManageStore(current_user, @store) %>				
+	<% if @subscription_service.canStoreUseFeature(@store, "store-features") %>
+		<%= link_to edit_features_store_path(@store), data: { toggle: "modal", target: "#modal", remote: edit_features_store_path(@store)} , id: "edit-features-link",  class: "btn edit-store-link" do %>
+				<span class="glyphicon glyphicon-edit"></span>
+		<% end %>
+	<% else %>
+		<%= link_to subscription_plans_store_path(@store.id), id: "edit-features-link" , class: 'btn edit-store-link' do %>
+			<span class="glyphicon glyphicon-edit"></span>
+		<% end %>
+	<% end %>
+<% end %>	

@@ -41,11 +41,7 @@
 					</td>
 					<td class="store-name-and-edit">						
 						<h1 id="name" class="store-name" style="display:inline"><%= @store.name %> 							
-							<% if @role_service.canManageStore(current_user, @store) %>					
-								<%= link_to edit_promo_store_path(@store), data: { toggle: "modal", target: "#modal", remote: edit_promo_store_path(@store)} , id: "edit-promo-link",  class: "btn edit-store-link" do %>
-									<span class="glyphicon glyphicon-edit"></span>
-								<% end %>
-							<% end %>  		
+							<%= render partial: 'stores/editlinks/edit_store_promo' %>
 						</h1>
 						<% if !@store.facebook.blank? %>						
 							<a id="facebook" href="<%= @urlservice.url_with_protocol(@store.facebook) %>">
@@ -292,17 +288,7 @@ $('#item-preview-tab-content .nav-tabs a').click(function (e) {
 		<!-- end of google maps -->
 		
 
-		<div id="debug" class="hidden">
-		<h3 >Debug</h3>
-		 <%= @timezone %><br>
-		 <%= @currenttime %><br>
-		 <%= @secondsSinceMidnight %><br>
-		 <%= @day %><br>
-		 <%= @debug %><br>
-		is open? <%= @is_open %>
-		filepath : <%= @store.filepath %>  <br/>
-
-		</div>
+		
 
 		<script type="text/javascript">
 			
@@ -493,12 +479,7 @@ $('#item-preview-tab-content .nav-tabs a').click(function (e) {
 
 		<div class="header-and-edit-link">
 			<h3 class="inline-header">dispensary features</h3>
-			<% if @role_service.canManageStore(current_user, @store) %>				
-				<%= link_to edit_features_store_path(@store), data: { toggle: "modal", target: "#modal", remote: edit_features_store_path(@store)} , id: "edit-features-link",  class: "btn edit-store-link" do %>
-    					<span class="glyphicon glyphicon-edit"></span>
-				<% end %>
-
-			<% end %>	
+			<%= render partial: 'stores/editlinks/edit_store_features' %>		
 		</div>
 		
 		<table id="dispensaryfeatures">

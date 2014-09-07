@@ -55,6 +55,7 @@ feature "review a store" , :js => true, :search =>true do
 		@store_ca = "CA"
 		@store_zip = "92122"
 		@store = Store.new(:name => @store_name , :addressline1 => @store_addressline1, :city => @store_city, :state => @store_ca, :zip => @store_zip)
+		@store.plan_id = 5
 		@store.save			
 		
 		@item1 =  @store.store_items.create(:name => "og" , :strain =>"indica")

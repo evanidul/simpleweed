@@ -36,6 +36,7 @@ module Simpleweed
 			end
 
 			def canStoreUseFeature(store, featureName)
+				
 				if store.blank?
 					return false
 				end

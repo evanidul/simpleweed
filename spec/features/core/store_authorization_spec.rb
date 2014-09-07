@@ -75,6 +75,14 @@ feature "authorization tests" , :js => true, :search =>true do
     	stores_page.modal_store_name_input.set store_name
     	stores_page.modal_save_button.click
 
+        # modify store's plan ID
+        @store = Store.find_by_name(store_name)
+        @store.plan_id = 5
+        @store.save
+    
+        # reload the page after setting plan id
+        page.visit(store_path(@store))
+
     	store_page = StorePage.new    	
 		expect(store_page.name_header.text).to have_text(store_name)    			
 		

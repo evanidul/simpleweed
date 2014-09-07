@@ -50,6 +50,7 @@ feature "store item reviews" , :js => true, :search =>true do
 		@store_ca = "CA"
 		@store_zip = "92122"
 		@store = Store.new(:name => @store_name , :addressline1 => @store_addressline1, :city => @store_city, :state => @store_ca, :zip => @store_zip)
+        @store.plan_id = 5
 		@store.save	
 
         @item1_name = "og"
@@ -640,7 +641,7 @@ feature "store item reviews" , :js => true, :search =>true do
 
     scenario "claim a store, then try to write a review for it, see tooltip saying you can't review your own store" do      
         
-        @store.email = @adminemail
+        @store.email = @adminemail        
         @store.save
 
         page.visit("/users/sign_in")
