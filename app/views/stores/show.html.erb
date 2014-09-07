@@ -412,11 +412,7 @@ $('#item-preview-tab-content .nav-tabs a').click(function (e) {
 
 		<div class="header-and-edit-link">		
 			<h3 class="inline-header">daily specials</h3>
-			<% if @role_service.canManageStore(current_user, @store) %>				
-				<%= link_to edit_dailyspecials_store_path(@store), data: { toggle: "modal", target: "#modal", remote: edit_dailyspecials_store_path(@store)} , id: "edit-daily-specials-link",  class: "btn edit-store-link" do %>
-    					<span class="glyphicon glyphicon-edit"></span>
-				<% end %>
-			<% end %>
+			<%= render partial: 'stores/editlinks/edit_store_daily_specials' %>		
 		</div>
 		<table id="dailyspecials">
 			<tr>

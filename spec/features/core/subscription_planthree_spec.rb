@@ -213,4 +213,42 @@ feature "plan three" , :js => true do
 		store_page.firsttimepatientdeals.should be_checked
 	end
 
+	scenario "plan 3 cannot change daily specials" do
+				
+		page.visit("/users/sign_in")
+		login_page = LoginPage.new
+
+		login_page.username_input.set @adminusername
+    	login_page.username_password_input.set @adminpassword
+    	login_page.sign_in_button.click
+
+    	header = HeaderPageComponent.new
+    	expect(header.edituserlink.text).to have_text(@adminusername)
+
+		# go to store
+		page.visit(store_path(@store))		
+    	
+    	store_page = StorePage.new    	
+		expect(store_page.name_header.text).to have_text(@store_name)    			
+		
+		store_page.edit_daily_specials_link.click
+		
+		store_page.dailyspecials_sunday_input.set "Sunday's Special"
+		store_page.dailyspecials_monday_input.set "Monday's Special"
+		store_page.dailyspecials_tuesday_input.set "Tuesday's Special"
+		store_page.dailyspecials_wednesday_input.set "Wednesday's Special"
+		store_page.dailyspecials_thursday_input.set "Thursday's Special"
+		store_page.dailyspecials_friday_input.set "Friday's Special"
+		store_page.dailyspecials_saturday_input.set "Saturday's Special"
+		store_page.save_store_daily_specials_button.click
+	
+		expect(store_page.dailyspecials_sunday_text.text).to have_text("Sunday's Special")    			
+		expect(store_page.dailyspecials_monday_text.text).to have_text("Monday's Special")    			
+		expect(store_page.dailyspecials_tuesday_text.text).to have_text("Tuesday's Special")    			
+		expect(store_page.dailyspecials_wednesday_text.text).to have_text("Wednesday's Special")    			
+		expect(store_page.dailyspecials_thursday_text.text).to have_text("Thursday's Special")    	
+		expect(store_page.dailyspecials_friday_text.text).to have_text("Friday's Special")    			
+		expect(store_page.dailyspecials_saturday_text.text).to have_text("Saturday's Special")    
+	end
+
 end
