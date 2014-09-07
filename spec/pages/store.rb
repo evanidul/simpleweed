@@ -2,6 +2,11 @@ class StorePage < SitePrism::Page
 	#set_url "/admin/stores"
 
 	element :name_header, "#name"
+	element :store_avatar, '#edit-store-photo-link'
+
+	# avatar upload popup
+	element :save_store_avatar_button , '#save_store_photo_button'
+
 	element :store_promo, "#store-stars-and-promo"
 	# buttons
 	element :follow_store_button, '#follow-store-button'

@@ -28,16 +28,7 @@
 	    	<table class="store-header-table">
 	    		<tr>
 	    			<td>
-						<% if @store.avatar_url.blank? %>
-							<!-- dvu: this should depend on if you are the profile user or looking at someone else -->
-							<%= link_to edit_photo_store_path(@store), data: { toggle: "modal", target: "#modal", remote: edit_photo_store_path(@store)} , id: "edit-store-photo-link",  class: "btn edit-store-photo-link" do %>
-								<span class="glyphicon glyphicon-tree-deciduous user-pic"></span>    				
-							<% end %>	
-							<% else %>
-								<%= link_to edit_photo_store_path(@store), data: { toggle: "modal", target: "#modal", remote: edit_photo_store_path(@store)} , id: "edit-store-photo-link",  class: "btn edit-store-photo-link" do %>
-									<img class="user-pic-borderless" width="40px" height="40px" src = "http:<%= @store.avatar_url %>"></img>
-								<% end %>					
-						<% end %>	
+						<%= render partial: 'stores/editlinks/edit_store_avatar' %>
 					</td>
 					<td class="store-name-and-edit">						
 						<h1 id="name" class="store-name" style="display:inline"><%= @store.name %> 							
