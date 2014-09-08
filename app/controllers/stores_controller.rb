@@ -78,6 +78,11 @@ class StoresController < ApplicationController
 
 	def update_photo
 
+		subscription_service = Simpleweed::Subscription::Subscriptionservice.new
+		if !subscription_service.canStoreUseFeature(@store, "store-image-hosting")
+			redirect_to subscription_plans
+		end
+		
 	    if @store.update(params[:store].permit(:avatar_url))
 			redirect_to store_path(@store)
 		else
@@ -125,10 +130,18 @@ class StoresController < ApplicationController
 	## Store Edit Endpoints
 	##
 	def edit_description		
+		subscription_service = Simpleweed::Subscription::Subscriptionservice.new
+		if !subscription_service.canStoreUseFeature(@store, "store-description")
+			redirect_to subscription_plans
+		end
 		render layout: false		
 	end
 
 	def update_description			
+		subscription_service = Simpleweed::Subscription::Subscriptionservice.new
+		if !subscription_service.canStoreUseFeature(@store, "store-description")
+			redirect_to subscription_plans
+		end
 
 	    if @store.update(params[:store].permit(:description))
 			@store.create_activity key: 'store.update_description'
@@ -138,11 +151,20 @@ class StoresController < ApplicationController
 		end	
 	end
 
-	def edit_firsttimepatientdeals				
+	def edit_firsttimepatientdeals		
+		subscription_service = Simpleweed::Subscription::Subscriptionservice.new
+		if !subscription_service.canStoreUseFeature(@store, "store-first-time-patient-deals")
+			redirect_to subscription_plans
+		end
+
 		render layout: false		
 	end
 
 	def update_firsttimepatientdeals				
+		subscription_service = Simpleweed::Subscription::Subscriptionservice.new
+		if !subscription_service.canStoreUseFeature(@store, "store-first-time-patient-deals")
+			redirect_to subscription_plans
+		end
 
 	    if @store.update(params[:store].permit(:firsttimepatientdeals))
 			@store.create_activity key: 'store.update_ftp'
@@ -159,12 +181,23 @@ class StoresController < ApplicationController
 		end
 	end
 
-	def edit_dailyspecials			
+	def edit_dailyspecials	
+
+		subscription_service = Simpleweed::Subscription::Subscriptionservice.new
+		if !subscription_service.canStoreUseFeature(@store, "store-daily-specials")
+			redirect_to subscription_plans
+		end
+
 		render layout: false		
 	end
 
 	def update_dailyspecials		
 		
+		subscription_service = Simpleweed::Subscription::Subscriptionservice.new
+		if !subscription_service.canStoreUseFeature(@store, "store-daily-specials")
+			redirect_to subscription_plans
+		end
+
 	    if @store.update(params[:store].permit(:dailyspecialsmonday, :dailyspecialstuesday,
 			:dailyspecialswednesday, :dailyspecialsthursday, :dailyspecialsfriday, :dailyspecialssaturday, :dailyspecialssunday))
 			
@@ -198,11 +231,21 @@ class StoresController < ApplicationController
 	end
 
 	def edit_features		
+		subscription_service = Simpleweed::Subscription::Subscriptionservice.new
+		if !subscription_service.canStoreUseFeature(@store, "store-features")
+			redirect_to subscription_plans
+		end
+
 		render layout: false		
 	end
 
 	def update_features		
 		
+		subscription_service = Simpleweed::Subscription::Subscriptionservice.new
+		if !subscription_service.canStoreUseFeature(@store, "store-features")
+			redirect_to subscription_plans
+		end
+
 	    if @store.update(params[:store].permit(:acceptscreditcards, :atmaccess, :automaticdispensingmachines, :deliveryservice, :handicapaccess,
 			:loungearea, :petfriendly, :securityguard, :labtested, :eighteenplus, :twentyoneplus, :hasphotos, :onsitetesting ))
 			redirect_to store_path(@store)
@@ -226,11 +269,20 @@ class StoresController < ApplicationController
 	end
 
 	def edit_promo		
+		subscription_service = Simpleweed::Subscription::Subscriptionservice.new
+		if !subscription_service.canStoreUseFeature(@store, "store-promo")
+			redirect_to subscription_plans
+		end
+
 		render layout: false		
 	end
 
 	def update_promo		
-		
+		subscription_service = Simpleweed::Subscription::Subscriptionservice.new
+		if !subscription_service.canStoreUseFeature(@store, "store-promo")
+			redirect_to subscription_plans
+		end
+
 	    if @store.update(params[:store].permit(:promo))
 			@store.create_activity key: 'store.update_promo'
 			redirect_to store_path(@store)			
