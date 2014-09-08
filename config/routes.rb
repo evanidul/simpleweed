@@ -67,6 +67,7 @@ Smellyleaf::Application.routes.draw do
     resources :cancellations
     # custom edit modal panel routes.  Needed to add custom controller endpoints and these routes match those.
     member do
+      get 'error_authorization'
       get 'edit_description'
       put 'update_description'
       get 'edit_firsttimepatientdeals'
@@ -99,6 +100,7 @@ Smellyleaf::Application.routes.draw do
       get 'change_credit_card'
       post 'update_credit_card'
       
+
 
     end
     

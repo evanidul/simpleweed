@@ -1,7 +1,13 @@
 class StoresController < ApplicationController
 
 	before_filter :load_store
+	before_filter :must_be_logged_on_as_store_manager, :except => [:error_authorization, :edit_photo, :index, :new, :create, :show, :show_claim, :update_claim,:follow, :unfollow, :subscription_plans]
 
+	def error_authorization
+
+	end
+
+	# for tests, but not used really in real app.
 	def index
 		if params[:search]
       		#@stores = Store.find(:all, :limit => 5).reverse
@@ -23,6 +29,8 @@ class StoresController < ApplicationController
 
 	# called from /admin/stores, so send it back to that controller
 	def create		
+		authenticate_user!("You must be logged in to create a store")		
+		# add admin check
 		@store = Store.new(store_params)
 		@store.save
 		# redirect_to :action => 'index' 
@@ -68,7 +76,8 @@ class StoresController < ApplicationController
 		render layout: false
 	end
 
-	def update_photo		
+	def update_photo
+
 	    if @store.update(params[:store].permit(:avatar_url))
 			redirect_to store_path(@store)
 		else
@@ -79,46 +88,48 @@ class StoresController < ApplicationController
 	end
 
 	#dvu: dead code?  Think we've killed the store browser view...
-	def store_preview		
-		@tds = Simpleweed::Timedateutil::Timedateservice.new
-		@store_items = @store.store_items.order('name ASC')
-		@grouped_store_items = @store_items.group_by &:category
+	# def store_preview		
+	# 	@tds = Simpleweed::Timedateutil::Timedateservice.new
+	# 	@store_items = @store.store_items.order('name ASC')
+	# 	@grouped_store_items = @store_items.group_by &:category
 
-		render :layout => false
-	end
+	# 	render :layout => false
+	# end
 
-	def update	  
-	 
-	  if @store.update(params[:store].permit(:name,:addressline1, :addressline2, :city, :state, :zip, :phonenumber, :dailyspecialsmonday, :dailyspecialstuesday,
+	def update	  	  	
+
+		if @store.update(params[:store].permit(:name,:addressline1, :addressline2, :city, :state, :zip, :phonenumber, :dailyspecialsmonday, :dailyspecialstuesday,
 			:dailyspecialswednesday, :dailyspecialsthursday, :dailyspecialsfriday, :dailyspecialssaturday, :dailyspecialssunday,
 			:acceptscreditcards, :atmaccess, :automaticdispensingmachines, :deliveryservice, :firsttimepatientdeals, :handicapaccess,
 			:loungearea, :petfriendly, :securityguard))
-	    # redirect_to :action => 'index'
-	    redirect_to :controller => 'admin/stores', :action => 'index'
-	  else
-	    render 'edit'
-	  end
+			# redirect_to :action => 'index'
+			redirect_to :controller => 'admin/stores', :action => 'index'
+		else
+			render 'edit'
+		end
 	end
 
-	def destroy	  
-	  @store.destroy
+	# where is this called?  should force admin!!
+	# def destroy	  
+	# 	authenticate_user!("You must be logged in to delete a store")
+	#   	@store.destroy
 	 
-	  redirect_to stores_path
-	end
+	#   	redirect_to stores_path
+	# end
 
-	def archived_items
+	def archived_items		
 		@store_items = @store.store_items.only_deleted
 	end
 
 	## 
 	## Store Edit Endpoints
 	##
-	def edit_description
-		#authorize! :manage, Store		
+	def edit_description		
 		render layout: false		
 	end
 
-	def update_description				
+	def update_description			
+
 	    if @store.update(params[:store].permit(:description))
 			@store.create_activity key: 'store.update_description'
 			redirect_to store_path(@store)
@@ -127,11 +138,12 @@ class StoresController < ApplicationController
 		end	
 	end
 
-	def edit_firsttimepatientdeals		
+	def edit_firsttimepatientdeals				
 		render layout: false		
 	end
 
-	def update_firsttimepatientdeals		
+	def update_firsttimepatientdeals				
+
 	    if @store.update(params[:store].permit(:firsttimepatientdeals))
 			@store.create_activity key: 'store.update_ftp'
 			redirect_to store_path(@store)
@@ -147,11 +159,12 @@ class StoresController < ApplicationController
 		end
 	end
 
-	def edit_dailyspecials		
+	def edit_dailyspecials			
 		render layout: false		
 	end
 
 	def update_dailyspecials		
+		
 	    if @store.update(params[:store].permit(:dailyspecialsmonday, :dailyspecialstuesday,
 			:dailyspecialswednesday, :dailyspecialsthursday, :dailyspecialsfriday, :dailyspecialssaturday, :dailyspecialssunday))
 			
@@ -174,6 +187,7 @@ class StoresController < ApplicationController
 	end
 
 	def update_contact		
+		
 	    if @store.update(params[:store].permit(:addressline1, :addressline2, :city, :state, :zip, :phonenumber, :email, :website,
 	    	:facebook, :twitter, :instagram ))
 	    	@store.create_activity key: 'store.update_contact'
@@ -188,6 +202,7 @@ class StoresController < ApplicationController
 	end
 
 	def update_features		
+		
 	    if @store.update(params[:store].permit(:acceptscreditcards, :atmaccess, :automaticdispensingmachines, :deliveryservice, :handicapaccess,
 			:loungearea, :petfriendly, :securityguard, :labtested, :eighteenplus, :twentyoneplus, :hasphotos, :onsitetesting ))
 			redirect_to store_path(@store)
@@ -201,6 +216,7 @@ class StoresController < ApplicationController
 	end
 
 	def update_announcement		
+		
 	    if @store.update(params[:store].permit(:announcement))
 			@store.create_activity key: 'store.update_announcement'
 			redirect_to store_path(@store)			
@@ -214,6 +230,7 @@ class StoresController < ApplicationController
 	end
 
 	def update_promo		
+		
 	    if @store.update(params[:store].permit(:promo))
 			@store.create_activity key: 'store.update_promo'
 			redirect_to store_path(@store)			
@@ -227,6 +244,7 @@ class StoresController < ApplicationController
 	end
 
 	def update_deliveryarea		
+		
 	    if @store.update(params[:store].permit(:deliveryarea))
 			redirect_to store_path(@store)
 		else
@@ -238,8 +256,8 @@ class StoresController < ApplicationController
 		render layout: false		
 	end
 
-	def update_hours		
-	    
+	def update_hours			    
+
 	    first = @store.update(params[:date].permit(:storehourssundayopenhour, :storehourssundayopenminute, :storehourssundayclosehour, :storehourssundaycloseminute,
 			:storehoursmondayopenhour, :storehoursmondayopenminute, :storehoursmondayclosehour, :storehoursmondaycloseminute,
 			:storehourstuesdayopenhour, :storehourstuesdayopenminute, :storehourstuesdayclosehour, :storehourstuesdaycloseminute,
@@ -286,7 +304,7 @@ class StoresController < ApplicationController
 	end
 
 	def follow		
-		
+		authenticate_user!("You must be logged in to follow a store")
 		if current_user.follow!(@store)
 			@store.create_activity key: 'store.followed', owner: current_user
 
@@ -300,7 +318,7 @@ class StoresController < ApplicationController
 	end
 
 	def unfollow		
-
+		authenticate_user!("You must be logged in to unfollow a store")
 		current_user.unfollow!(@store)
 
 		respond_to do |format|
@@ -310,21 +328,11 @@ class StoresController < ApplicationController
 	end
 
 	def subscription_plans
-		# user must be logged in
-		# user must be the store owner/manager of this store
-		@role_service = Simpleweed::Security::Roleservice.new
-		if @role_service.canManageStore(current_user, @store)
-			return
-		else 
-			redirect_to unauthorized_subscription_plans_store_path(@store)
-		end
+		
 	end
 
-	def unauthorized_subscription_plans
+	def subscribe_store		
 
-	end
-
-	def subscribe_store
 		@stripe_token = params[:stripeToken]
 		@plan_id = params[:plan_id]
 		@cust_email = params[:stripeEmail]
@@ -362,11 +370,10 @@ class StoresController < ApplicationController
 	end
 
 	def change_credit_card
-
+		
 	end
 
-	def update_credit_card
-		
+	def update_credit_card		
 		
 		if !@store.stripe_customer_id.blank?
 			customer = Stripe::Customer.retrieve(@store.stripe_customer_id)
@@ -415,7 +422,14 @@ class StoresController < ApplicationController
 			:loungearea, :petfriendly, :securityguard)		
 	end		
 
-
+	private 
+	def must_be_logged_on_as_store_manager
+		authenticate_user!("You must be logged in to update a store")	
+		@role_service = Simpleweed::Security::Roleservice.new
+		if !@role_service.canManageStore(current_user, @store)
+			redirect_to error_authorization_store(@store)
+		end
+	end
 
 
 end
