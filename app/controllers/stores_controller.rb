@@ -82,7 +82,7 @@ class StoresController < ApplicationController
 		if !subscription_service.canStoreUseFeature(@store, "store-image-hosting")
 			redirect_to subscription_plans
 		end
-		
+
 	    if @store.update(params[:store].permit(:avatar_url))
 			redirect_to store_path(@store)
 		else
@@ -280,7 +280,8 @@ class StoresController < ApplicationController
 	def update_promo		
 		subscription_service = Simpleweed::Subscription::Subscriptionservice.new
 		if !subscription_service.canStoreUseFeature(@store, "store-promo")
-			redirect_to subscription_plans
+			redirect_to subscription_plans_store_path(@store) and return
+
 		end
 
 	    if @store.update(params[:store].permit(:promo))
@@ -476,10 +477,13 @@ class StoresController < ApplicationController
 
 	private 
 	def must_be_logged_on_as_store_manager
-		authenticate_user!("You must be logged in to update a store")	
-		@role_service = Simpleweed::Security::Roleservice.new
-		if !@role_service.canManageStore(current_user, @store)
-			redirect_to error_authorization_store(@store)
+		if authenticate_user!("You must be logged in to update a store")	
+		
+			@role_service = Simpleweed::Security::Roleservice.new
+			if !@role_service.canManageStore(current_user, @store)
+				#redirect_to error_authorization_store_path(@store)
+				render :error_authorization and return
+			end
 		end
 	end
 
