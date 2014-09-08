@@ -1,21 +1,33 @@
 <% if @store.avatar_url.blank? %>
-	<% if @subscription_service.canStoreUseFeature(@store, "store-image-hosting") %>	
-		<%= link_to edit_photo_store_path(@store), data: { toggle: "modal", target: "#modal", remote: edit_photo_store_path(@store)} , id: "edit-store-photo-link",  class: "btn edit-store-photo-link" do %>
-			<span class="glyphicon glyphicon-tree-deciduous user-pic"></span>    				
-		<% end %>	
+	<% if @role_service.canManageStore(current_user, @store) %>
+		<% if @subscription_service.canStoreUseFeature(@store, "store-image-hosting") %>	
+			<%= link_to edit_photo_store_path(@store), data: { toggle: "modal", target: "#modal", remote: edit_photo_store_path(@store)} , id: "edit-store-photo-link",  class: "btn edit-store-photo-link" do %>
+				<span class="glyphicon glyphicon-tree-deciduous user-pic"></span>    				
+			<% end %>	
+		<% else %>
+			<%= link_to subscription_plans_store_path(@store.id), id: "edit-store-photo-link",  class: "btn edit-store-photo-link" do %>
+				<span class="glyphicon glyphicon-tree-deciduous user-pic"></span>    				
+			<% end %>	
+		<% end %>
 	<% else %>
-		<%= link_to subscription_plans_store_path(@store.id), id: "edit-store-photo-link",  class: "btn edit-store-photo-link" do %>
-			<span class="glyphicon glyphicon-tree-deciduous user-pic"></span>    				
+		<%= link_to edit_photo_store_path(@store), data: { toggle: "modal", target: "#modal", remote: edit_photo_store_path(@store)} , id: "edit-store-photo-link",  class: "btn edit-store-photo-link" do %>
+				<span class="glyphicon glyphicon-tree-deciduous user-pic"></span>    				
 		<% end %>	
 	<% end %>
 <% else %>
-	<% if @subscription_service.canStoreUseFeature(@store, "store-image-hosting") %>	
-		<%= link_to edit_photo_store_path(@store), data: { toggle: "modal", target: "#modal", remote: edit_photo_store_path(@store)} , id: "edit-store-photo-link",  class: "btn edit-store-photo-link" do %>
-			<img class="user-pic-borderless" width="40px" height="40px" src = "http:<%= @store.avatar_url %>"></img>
-		<% end %>	
+	<% if @role_service.canManageStore(current_user, @store) %> 
+		<% if @subscription_service.canStoreUseFeature(@store, "store-image-hosting") %>	
+			<%= link_to edit_photo_store_path(@store), data: { toggle: "modal", target: "#modal", remote: edit_photo_store_path(@store)} , id: "edit-store-photo-link",  class: "btn edit-store-photo-link" do %>
+				<img class="user-pic-borderless" width="40px" height="40px" src = "http:<%= @store.avatar_url %>"></img>
+			<% end %>	
+		<% else %>
+			<%= link_to subscription_plans_store_path(@store.id), id: "edit-store-photo-link",  class: "btn edit-store-photo-link" do %>
+				<img class="user-pic-borderless" width="40px" height="40px" src = "http:<%= @store.avatar_url %>"></img>
+			<% end %>	
+		<% end %>
 	<% else %>
-		<%= link_to subscription_plans_store_path(@store.id), id: "edit-store-photo-link",  class: "btn edit-store-photo-link" do %>
-			<img class="user-pic-borderless" width="40px" height="40px" src = "http:<%= @store.avatar_url %>"></img>
-		<% end %>	
-	<% end %>				
+		<%= link_to edit_photo_store_path(@store), data: { toggle: "modal", target: "#modal", remote: edit_photo_store_path(@store)} , id: "edit-store-photo-link",  class: "btn edit-store-photo-link" do %>
+				<img class="user-pic-borderless" width="40px" height="40px" src = "http:<%= @store.avatar_url %>"></img>  				
+		<% end %>		
+	<% end %>					
 <% end %>				
