@@ -234,8 +234,60 @@ describe StoresController do
 			put :update_photo, id: @store.id, store: {avatar_url: @avatar_url}
     		expect(response).to redirect_to subscription_plans_store_url
 		end
-
-
 	end	#update_photo
+
+	describe 'update_dailyspecials' do
+		it "works if admin logs in and plan_id is 3 or greater" do
+			@store.plan_id = 3
+			@store.save
+			sign_in @admin
+			
+			@dailyspecialsmonday = "cookies"
+			put :update_dailyspecials, id: @store.id, store: {dailyspecialsmonday: @dailyspecialsmonday}
+			expect(response).to redirect_to store_url
+    		@store.reload    		
+    		expect(@store.dailyspecialsmonday).to eq(@dailyspecialsmonday)    		
+		end
+
+		it "works if store owner logs in and plan_id is 3 or greater" do
+			@store.plan_id = 3			
+			@store.save								
+			role_service = Simpleweed::Security::Roleservice.new							
+			role_service.addStoreOwnerRoleToStore(@user, @store)
+			sign_in @user
+			
+			@dailyspecialsmonday = "cookies"
+			put :update_dailyspecials, id: @store.id, store: {dailyspecialsmonday: @dailyspecialsmonday}
+			expect(response).to redirect_to store_url
+    		@store.reload    		
+    		expect(@store.dailyspecialsmonday).to eq(@dailyspecialsmonday)    		
+		end
+
+		it "requires login" do
+			#sign_in user
+			@dailyspecialsmonday = "cookies"
+			put :update_dailyspecials, id: @store.id, store: {dailyspecialsmonday: @dailyspecialsmonday}
+    		expect(response).to redirect_to new_user_session_url
+    		expect(@store.dailyspecialsmonday).to eq("none.")    		
+		end		
+
+		it "renders error when user not admin nor store owner" do			    		
+			sign_in @user
+    		@dailyspecialsmonday = "cookies"
+			put :update_dailyspecials, id: @store.id, store: {dailyspecialsmonday: @dailyspecialsmonday}
+    		expect(response).to render_template :error_authorization
+    		expect(@store.dailyspecialsmonday).to eq("none.")    		
+		end
+
+		it "redirects to subscription page if plan_id is 2 " do						
+			@store.plan_id = 2
+			@store.save										
+			sign_in @admin
+
+			@dailyspecialsmonday = "cookies"
+			put :update_dailyspecials, id: @store.id, store: {dailyspecialsmonday: @dailyspecialsmonday}
+    		expect(response).to redirect_to subscription_plans_store_url
+		end
+	end #update_dailyspecials
 
 end
