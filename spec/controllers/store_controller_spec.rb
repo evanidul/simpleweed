@@ -37,15 +37,8 @@ describe StoresController do
     		pw = 'idontreallysmoke'
     		request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials(user,pw)
 
-		  	@adminemail = "evanidul@gmail.com"
-		  	@adminpassword = "password"
-			@adminusername = "evanidul"
-	        user = User.new(:email => @adminemail, :password => @adminpassword, :password_confirmation => @adminpassword, :username => @adminusername)
-			user.skip_confirmation!
-			user.save
-			user.add_role :admin # sets a global role
+			#user = create(:admin)
 
-			# login			
 			#sign_in user
 
     		put :update_promo, id: @store.id, store: {promo: 'first store promo'}
@@ -67,13 +60,7 @@ describe StoresController do
     		pw = 'idontreallysmoke'
     		request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials(user,pw)
 
-		  	@adminemail = "evanidul@gmail.com"
-		  	@adminpassword = "password"
-			@adminusername = "evanidul"
-	        user = User.new(:email => @adminemail, :password => @adminpassword, :password_confirmation => @adminpassword, :username => @adminusername)
-			user.skip_confirmation!
-			user.save
-			#user.add_role :admin # sets a global role
+    		user = create(:user)		  				
 
 			# login			
 			sign_in user
@@ -99,17 +86,12 @@ describe StoresController do
 			user = 'ddadmin'
     		pw = 'idontreallysmoke'
     		request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials(user,pw)
-
-		  	@adminemail = "evanidul@gmail.com"
-		  	@adminpassword = "password"
-			@adminusername = "evanidul"
-	        user = User.new(:email => @adminemail, :password => @adminpassword, :password_confirmation => @adminpassword, :username => @adminusername)
-			user.skip_confirmation!
-			user.save
-			user.add_role :admin # sets a global role
-
+			
+			user = create(:admin)
+			
 			# login			
 			sign_in user
+			
 			@new_promo = 'first store promo'
     		put :update_promo, id: @store.id, store: {promo: @new_promo}
 
@@ -133,13 +115,7 @@ describe StoresController do
     		pw = 'idontreallysmoke'
     		request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials(user,pw)
 
-		  	@adminemail = "evanidul@gmail.com"
-		  	@adminpassword = "password"
-			@adminusername = "evanidul"
-	        user = User.new(:email => @adminemail, :password => @adminpassword, :password_confirmation => @adminpassword, :username => @adminusername)
-			user.skip_confirmation!
-			user.save
-			user.add_role :admin # sets a global role
+			user = create(:admin)
 
 			# login			
 			sign_in user

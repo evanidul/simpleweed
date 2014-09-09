@@ -108,6 +108,9 @@ group :development, :test do
   # https://github.com/p0deje/action_mailer_cache_delivery  
   gem 'action_mailer_cache_delivery'
 
+  # build objects for testing
+  gem 'factory_girl_rails'
+
 end
 
 group :doc do
