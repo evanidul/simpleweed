@@ -30,6 +30,7 @@ describe StoresController do
 			@store.plan_id = 3			
 			@store.save															
 			sign_in @admin			
+			
 			@new_promo = 'first store promo'
     		put :update_promo, id: @store.id, store: {promo: @new_promo}
     		expect(response).to redirect_to store_url
@@ -43,6 +44,7 @@ describe StoresController do
 			role_service = Simpleweed::Security::Roleservice.new							
 			role_service.addStoreOwnerRoleToStore(@user, @store)
 			sign_in @user
+			
 			@new_promo = 'first store promo'
     		put :update_promo, id: @store.id, store: {promo: @new_promo}
     		expect(response).to redirect_to store_url
@@ -79,11 +81,51 @@ describe StoresController do
 			@store.plan_id = 2
 			@store.save
 			sign_in @admin
+			
 			@new_description = 'this store is awesome'
 			put :update_description, id: @store.id, store: {description: @new_description}
 			expect(response).to redirect_to store_url
     		@store.reload
     		expect(@store.description).to eq(@new_description)
+		end
+
+		it "works if store owner logs in and plan_id is 2 or greater" do
+			@store.plan_id = 2			
+			@store.save								
+			role_service = Simpleweed::Security::Roleservice.new							
+			role_service.addStoreOwnerRoleToStore(@user, @store)
+			sign_in @user
+			
+			@new_description = 'this store is awesome'
+			put :update_description, id: @store.id, store: {description: @new_description}
+			expect(response).to redirect_to store_url
+    		@store.reload
+    		expect(@store.description).to eq(@new_description)
+		end
+
+		it "requires login" do
+			#sign_in user
+			@new_description = 'this store is awesome'
+    		put :update_description, id: @store.id, store: {description: @new_description}
+    		expect(response).to redirect_to new_user_session_url
+    		expect(@store.description).to eq("none.")
+		end
+
+		it "renders error when user not admin nor store owner" do			    		
+			sign_in @user
+    		put :update_description, id: @store.id, store: {description: @new_description}
+    		expect(response).to render_template :error_authorization
+    		expect(@store.description).to eq("none.")     		
+		end
+
+		it "redirects to subscription page if plan_id is 1 " do						
+			@store.plan_id = 1
+			@store.save										
+			sign_in @admin
+
+			@new_description = 'this store is awesome'
+    		put :update_description, id: @store.id, store: {description: @new_description}
+    		expect(response).to redirect_to subscription_plans_store_url
 		end
 	end #update_description
 

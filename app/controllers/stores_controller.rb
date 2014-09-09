@@ -132,7 +132,7 @@ class StoresController < ApplicationController
 	def edit_description		
 		subscription_service = Simpleweed::Subscription::Subscriptionservice.new
 		if !subscription_service.canStoreUseFeature(@store, "store-description")
-			redirect_to subscription_plans
+			redirect_to subscription_plans_store_path(@store) and return
 		end
 		render layout: false		
 	end
@@ -140,7 +140,7 @@ class StoresController < ApplicationController
 	def update_description			
 		subscription_service = Simpleweed::Subscription::Subscriptionservice.new
 		if !subscription_service.canStoreUseFeature(@store, "store-description")
-			redirect_to subscription_plans
+			redirect_to subscription_plans_store_path(@store) and return
 		end
 
 	    if @store.update(params[:store].permit(:description))
@@ -271,7 +271,7 @@ class StoresController < ApplicationController
 	def edit_promo		
 		subscription_service = Simpleweed::Subscription::Subscriptionservice.new
 		if !subscription_service.canStoreUseFeature(@store, "store-promo")
-			redirect_to subscription_plans
+			redirect_to subscription_plans_store_path(@store) and return
 		end
 
 		render layout: false		
