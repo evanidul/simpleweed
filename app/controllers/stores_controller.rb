@@ -233,7 +233,7 @@ class StoresController < ApplicationController
 	def edit_features		
 		subscription_service = Simpleweed::Subscription::Subscriptionservice.new
 		if !subscription_service.canStoreUseFeature(@store, "store-features")
-			redirect_to subscription_plans
+			redirect_to subscription_plans_store_path(@store) and return
 		end
 
 		render layout: false		
@@ -243,7 +243,7 @@ class StoresController < ApplicationController
 		
 		subscription_service = Simpleweed::Subscription::Subscriptionservice.new
 		if !subscription_service.canStoreUseFeature(@store, "store-features")
-			redirect_to subscription_plans
+			redirect_to subscription_plans_store_path(@store) and return
 		end
 
 	    if @store.update(params[:store].permit(:acceptscreditcards, :atmaccess, :automaticdispensingmachines, :deliveryservice, :handicapaccess,
