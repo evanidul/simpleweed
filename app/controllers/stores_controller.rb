@@ -80,7 +80,7 @@ class StoresController < ApplicationController
 
 		subscription_service = Simpleweed::Subscription::Subscriptionservice.new
 		if !subscription_service.canStoreUseFeature(@store, "store-image-hosting")
-			redirect_to subscription_plans
+			redirect_to subscription_plans_store_path(@store) and return
 		end
 
 	    if @store.update(params[:store].permit(:avatar_url))

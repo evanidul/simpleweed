@@ -182,4 +182,60 @@ describe StoresController do
 		end
 	end #update_features
 
+	describe 'update_photo' do
+		it "works if admin logs in and plan_id is 2 or greater" do
+			@store.plan_id = 3
+			@store.save
+			sign_in @admin
+			
+			@avatar_url = "http://something.com/image.jpg"			
+			put :update_photo, id: @store.id, store: {avatar_url: @avatar_url}
+			expect(response).to redirect_to store_url
+    		@store.reload
+    		expect(@store.avatar_url).to eq(@avatar_url)    		
+		end
+
+		it "works if store owner logs in and plan_id is 2 or greater" do
+			@store.plan_id = 2			
+			@store.save								
+			role_service = Simpleweed::Security::Roleservice.new							
+			role_service.addStoreOwnerRoleToStore(@user, @store)
+			sign_in @user
+			
+			@avatar_url = "http://something.com/image.jpg"			
+			put :update_photo, id: @store.id, store: {avatar_url: @avatar_url}
+			expect(response).to redirect_to store_url
+    		@store.reload
+    		expect(@store.avatar_url).to eq(@avatar_url)    		
+		end
+
+		it "requires login" do
+			#sign_in user
+			@avatar_url = "http://something.com/image.jpg"			
+			put :update_photo, id: @store.id, store: {avatar_url: @avatar_url}
+    		expect(response).to redirect_to new_user_session_url
+    		expect(@store.avatar_url).to be_nil     		    		
+		end		
+
+		it "renders error when user not admin nor store owner" do			    		
+			sign_in @user
+    		@avatar_url = "http://something.com/image.jpg"			
+			put :update_photo, id: @store.id, store: {avatar_url: @avatar_url}
+    		expect(response).to render_template :error_authorization
+    		expect(@store.avatar_url).to be_nil     		    		
+		end
+
+		it "redirects to subscription page if plan_id is 1 " do						
+			@store.plan_id = 1
+			@store.save										
+			sign_in @admin
+
+			@avatar_url = "http://something.com/image.jpg"			
+			put :update_photo, id: @store.id, store: {avatar_url: @avatar_url}
+    		expect(response).to redirect_to subscription_plans_store_url
+		end
+
+
+	end	#update_photo
+
 end
