@@ -1,7 +1,7 @@
 class StoresController < ApplicationController
 
 	before_filter :load_store
-	before_filter :must_be_logged_on_as_store_manager, :except => [:error_authorization, :edit_photo, :index, :new, :create, :show, :show_claim, :update_claim,:follow, :unfollow, :subscription_plans]
+	before_filter :must_be_logged_on_as_store_manager, :except => [:error_authorization, :edit_photo, :index, :new, :create, :show, :show_claim, :update_claim,:follow, :unfollow]
 
 	def error_authorization
 
@@ -24,6 +24,11 @@ class StoresController < ApplicationController
 
 	# loaded from modal, so don't use layout
 	def new
+		authenticate_user!("You must be logged in to create a store")		
+		# add admin check
+		if !current_user.has_role?(:admin)
+			render :error_authorization and return
+		end
 		render layout: false		
 	end
 
@@ -31,6 +36,10 @@ class StoresController < ApplicationController
 	def create		
 		authenticate_user!("You must be logged in to create a store")		
 		# add admin check
+		if !current_user.has_role?(:admin)
+			render :error_authorization and return
+		end
+
 		@store = Store.new(store_params)
 		@store.save
 		# redirect_to :action => 'index' 
@@ -101,18 +110,18 @@ class StoresController < ApplicationController
 	# 	render :layout => false
 	# end
 
-	def update	  	  	
+	# def update	  	  	
 
-		if @store.update(params[:store].permit(:name,:addressline1, :addressline2, :city, :state, :zip, :phonenumber, :dailyspecialsmonday, :dailyspecialstuesday,
-			:dailyspecialswednesday, :dailyspecialsthursday, :dailyspecialsfriday, :dailyspecialssaturday, :dailyspecialssunday,
-			:acceptscreditcards, :atmaccess, :automaticdispensingmachines, :deliveryservice, :firsttimepatientdeals, :handicapaccess,
-			:loungearea, :petfriendly, :securityguard))
-			# redirect_to :action => 'index'
-			redirect_to :controller => 'admin/stores', :action => 'index'
-		else
-			render 'edit'
-		end
-	end
+	# 	if @store.update(params[:store].permit(:name,:addressline1, :addressline2, :city, :state, :zip, :phonenumber, :dailyspecialsmonday, :dailyspecialstuesday,
+	# 		:dailyspecialswednesday, :dailyspecialsthursday, :dailyspecialsfriday, :dailyspecialssaturday, :dailyspecialssunday,
+	# 		:acceptscreditcards, :atmaccess, :automaticdispensingmachines, :deliveryservice, :firsttimepatientdeals, :handicapaccess,
+	# 		:loungearea, :petfriendly, :securityguard))
+	# 		# redirect_to :action => 'index'
+	# 		redirect_to :controller => 'admin/stores', :action => 'index'
+	# 	else
+	# 		render 'edit'
+	# 	end
+	# end
 
 	# where is this called?  should force admin!!
 	# def destroy	  
@@ -154,7 +163,7 @@ class StoresController < ApplicationController
 	def edit_firsttimepatientdeals		
 		subscription_service = Simpleweed::Subscription::Subscriptionservice.new
 		if !subscription_service.canStoreUseFeature(@store, "store-first-time-patient-deals")
-			redirect_to subscription_plans
+			redirect_to subscription_plans_store_path(@store) and return
 		end
 
 		render layout: false		
@@ -163,7 +172,7 @@ class StoresController < ApplicationController
 	def update_firsttimepatientdeals				
 		subscription_service = Simpleweed::Subscription::Subscriptionservice.new
 		if !subscription_service.canStoreUseFeature(@store, "store-first-time-patient-deals")
-			redirect_to subscription_plans
+			redirect_to subscription_plans_store_path(@store) and return
 		end
 
 	    if @store.update(params[:store].permit(:firsttimepatientdeals))

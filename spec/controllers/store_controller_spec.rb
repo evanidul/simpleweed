@@ -25,6 +25,19 @@ describe StoresController do
 		end
 	end
 
+	describe 'create' do
+		it "works as an admin" do
+			sign_in @admin			
+			expect{post :create, store: attributes_for(:store)}.to change(Store, :count).by(1)			
+		end
+
+		it "fails as a normal user" do
+			sign_in @user
+			expect{post :create, store: attributes_for(:store)}.to change(Store, :count).by(0)			
+			expect(response).to render_template :error_authorization
+		end
+	end # create
+
 	describe 'update_promo' do
 		it "works if admin user is logged in and plan_id is 2 or greater" do						
 			@store.plan_id = 3			
@@ -289,5 +302,59 @@ describe StoresController do
     		expect(response).to redirect_to subscription_plans_store_url
 		end
 	end #update_dailyspecials
+
+	describe 'update_firsttimepatientdeals' do
+		it "works if admin logs in and plan_id is 3 or greater" do
+			@store.plan_id = 3
+			@store.save
+			sign_in @admin
+			
+			@firsttimepatientdeals = "i'll give you free pot"
+			put :update_firsttimepatientdeals, id: @store.id, store: {firsttimepatientdeals: @firsttimepatientdeals}
+			expect(response).to redirect_to store_url
+    		@store.reload    		
+    		expect(@store.firsttimepatientdeals).to eq(@firsttimepatientdeals)    		
+		end
+
+		it "works if store owner logs in and plan_id is 3 or greater" do
+			@store.plan_id = 3			
+			@store.save								
+			role_service = Simpleweed::Security::Roleservice.new							
+			role_service.addStoreOwnerRoleToStore(@user, @store)
+			sign_in @user
+			
+			@firsttimepatientdeals = "i'll give you free pot"
+			put :update_firsttimepatientdeals, id: @store.id, store: {firsttimepatientdeals: @firsttimepatientdeals}
+			expect(response).to redirect_to store_url
+    		@store.reload    		
+    		expect(@store.firsttimepatientdeals).to eq(@firsttimepatientdeals)    		
+		end
+
+		it "requires login" do
+			#sign_in user
+			@firsttimepatientdeals = "i'll give you free pot"
+			put :update_firsttimepatientdeals, id: @store.id, store: {firsttimepatientdeals: @firsttimepatientdeals}
+    		expect(response).to redirect_to new_user_session_url
+    		expect(@store.firsttimepatientdeals).to be_nil
+		end				
+
+		it "renders error when user not admin nor store owner" do			    		
+			sign_in @user
+    		@firsttimepatientdeals = "i'll give you free pot"
+			put :update_firsttimepatientdeals, id: @store.id, store: {firsttimepatientdeals: @firsttimepatientdeals}
+    		expect(response).to render_template :error_authorization
+    		expect(@store.firsttimepatientdeals).to be_nil
+		end		
+
+		it "redirects to subscription page if plan_id is 2 " do						
+			@store.plan_id = 2
+			@store.save										
+			sign_in @admin
+
+			@firsttimepatientdeals = "i'll give you free pot"
+			put :update_firsttimepatientdeals, id: @store.id, store: {firsttimepatientdeals: @firsttimepatientdeals}
+    		expect(response).to redirect_to subscription_plans_store_url
+		end
+	end #update_firsttimepatientdeals
 
 end
