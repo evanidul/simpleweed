@@ -1,7 +1,9 @@
 class StoreItemsController < ApplicationController
 
 	before_filter :load_store
-	
+	before_filter :must_be_logged_on_as_store_manager, :except => [:show, :follow, :unfollow]
+
+	# store menu item management page
 	def index		
 	  	@store_items = @store.store_items
 	  	@urlservice = Simpleweed::Url::Urlservice.new
