@@ -79,6 +79,32 @@ feature "plan two" , :js => true do
 		expect(store_page.store_promo).to have_text(new_promo)
 	end
 
+	scenario "plan 2 can change store announcement" do
+		page.visit("/users/sign_in")
+		login_page = LoginPage.new
+
+		login_page.username_input.set @adminusername
+    	login_page.username_password_input.set @adminpassword
+    	login_page.sign_in_button.click
+
+    	header = HeaderPageComponent.new
+    	expect(header.edituserlink.text).to have_text(@adminusername)
+
+		# go to store
+		page.visit(store_path(@store))		
+    	
+    	store_page = StorePage.new    	
+		expect(store_page.name_header.text).to have_text(@store_name)    			
+		
+		store_page.edit_announcement_link.click
+
+		new_announcement = "new stuff here"
+		store_page.announcement_input.set new_announcement
+		store_page.save_announcement_button.click
+		expect(store_page.announcement).to have_text(new_announcement)
+
+	end	
+
 	scenario "plan 2 can change business description" do
 				
 		page.visit("/users/sign_in")

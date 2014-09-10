@@ -16,6 +16,7 @@ module Simpleweed
 			@@feature_to_plan_hash["store-description"] = 2
 			@@feature_to_plan_hash["store-features"] = 2
 			@@feature_to_plan_hash["store-image-hosting"] = 2
+			@@feature_to_plan_hash["store-announcements"] = 2
 
 			@@feature_to_plan_hash["store-daily-specials"] = 3
 			@@feature_to_plan_hash["store-first-time-patient-deals"] = 3

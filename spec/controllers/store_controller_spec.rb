@@ -266,6 +266,61 @@ describe StoresController do
 		end
 	end # create
 
+	describe 'update_announcement' do
+		it "works if admin user is logged in and plan_id is 2 or greater" do						
+			@store.plan_id = 2		
+			@store.save															
+			sign_in @admin			
+			
+			new_announcement = 'new stuff here'
+    		put :update_announcement, id: @store.id, store: {announcement: new_announcement}
+    		expect(response).to redirect_to store_url
+    		@store.reload
+    		expect(@store.announcement).to eq(new_announcement)
+		end
+
+		it "works if the user is a store manager and plan_id is 2 or greater" do
+			@store.plan_id = 3			
+			@store.save								
+			role_service = Simpleweed::Security::Roleservice.new							
+			role_service.addStoreOwnerRoleToStore(@user, @store)
+			sign_in @user
+			
+			new_announcement = 'new stuff here'
+    		put :update_announcement, id: @store.id, store: {announcement: new_announcement}
+    		expect(response).to redirect_to store_url
+    		@store.reload
+    		expect(@store.announcement).to eq(new_announcement)
+		end
+
+		it "requires login" do
+			#sign_in user
+    		new_announcement = 'new stuff here'
+    		put :update_announcement, id: @store.id, store: {announcement: new_announcement}
+    		expect(response).to redirect_to new_user_session_url
+    		expect(@store.announcement).to eq('none.')
+		end
+
+		it "renders error when user not admin nor store owner" do			    		
+			sign_in @user
+    		new_announcement = 'new stuff here'
+    		put :update_announcement, id: @store.id, store: {announcement: new_announcement}
+    		expect(response).to render_template :error_authorization
+    		expect(@store.announcement).to eq('none.')
+		end
+
+		it "redirects to subscription page if plan_id is 1 " do						
+			@store.plan_id = 1
+			@store.save										
+			sign_in @admin
+			new_announcement = 'new stuff here'
+    		put :update_announcement, id: @store.id, store: {announcement: new_announcement}
+    		expect(response).to redirect_to subscription_plans_store_url
+    		expect(@store.announcement).to eq('none.')
+		end
+
+	end #update_announcement
+
 	describe 'update_promo' do
 		it "works if admin user is logged in and plan_id is 2 or greater" do						
 			@store.plan_id = 3			
