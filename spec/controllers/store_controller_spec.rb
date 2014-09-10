@@ -25,6 +25,13 @@ describe StoresController do
 		end
 	end
 
+	describe 'update_claim' do
+		it 'requires login' do
+			put :update_claim, id: @store.id
+			expect(response).to redirect_to new_user_session_url
+		end
+	end
+
 	describe 'archived_items' do
 		it 'requires login' do
 			get :archived_items, id: @store.id
@@ -124,7 +131,7 @@ describe StoresController do
     		expect(response).to render_template :error_authorization
     		expect(@store.storehourssundayopenhour).to be_nil
 		end
-		
+
 	end
 
 	describe 'update_contact' do

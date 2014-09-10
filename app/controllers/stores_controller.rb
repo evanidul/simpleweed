@@ -23,8 +23,10 @@ class StoresController < ApplicationController
 	end
 
 	# loaded from modal, so don't use layout
-	def new
-		authenticate_user!("You must be logged in to create a store")		
+	def new		
+		if(!authenticate_user!("You must be logged in to create a store"))
+			return
+		end			
 		# add admin check
 		if !current_user.has_role?(:admin)
 			render :error_authorization and return
@@ -34,7 +36,9 @@ class StoresController < ApplicationController
 
 	# called from /admin/stores, so send it back to that controller
 	def create		
-		authenticate_user!("You must be logged in to create a store")		
+		if(!authenticate_user!("You must be logged in to create a store"))
+			return
+		end			
 		# add admin check
 		if !current_user.has_role?(:admin)
 			render :error_authorization and return
@@ -309,12 +313,18 @@ class StoresController < ApplicationController
 		end
 	end
 
-	def show_claim
-		authenticate_user!("You must sign in as the user who's email appears on that store's page inorder to claim this store")		
+	def show_claim		
+		if(!authenticate_user!("You must sign in as the user who's email appears on that store's page inorder to claim this store"))
+			return
+		end
 	end
 
+	# this code is not protected by the filter because users who are not yet store owners need to be able to claim a store, 
+	# so be extra careful with the security around this.
 	def update_claim
-		authenticate_user!("You must sign in as the user who's email appears on that store's page inorder to claim this store")		
+		if(!authenticate_user!("You must sign in as the user who's email appears on that store's page inorder to claim this store"))
+			return
+		end
 		role_service = Simpleweed::Security::Roleservice.new
 
 		# add store - owner role to logged in user
@@ -335,8 +345,10 @@ class StoresController < ApplicationController
 		end	
 	end
 
-	def follow		
-		authenticate_user!("You must be logged in to follow a store")
+	def follow				
+		if(!authenticate_user!("You must be logged in to follow a store"))
+			return
+		end
 		if current_user.follow!(@store)
 			@store.create_activity key: 'store.followed', owner: current_user
 
@@ -350,7 +362,10 @@ class StoresController < ApplicationController
 	end
 
 	def unfollow		
-		authenticate_user!("You must be logged in to unfollow a store")
+		if(!authenticate_user!("You must be logged in to unfollow a store"))
+			return
+		end
+		
 		current_user.unfollow!(@store)
 
 		respond_to do |format|
@@ -462,7 +477,12 @@ class StoresController < ApplicationController
 			if !@role_service.canManageStore(current_user, @store)
 				#redirect_to error_authorization_store_path(@store)
 				render :error_authorization and return
+			else
+				# SUCCESS: pass it through	
 			end
+		else 
+			# not logged in, will redirect to login page
+			return	
 		end
 	end
 
