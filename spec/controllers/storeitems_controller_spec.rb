@@ -258,11 +258,44 @@ describe StoreItemsController do
 
 			# have to destroy an item first...
 			expect{ delete :destroy, store_id: @store.id, id: @item.id }.to change(StoreItem, :count).by(-1)
-												
+
 			expect{ post :undestroy, store_id: @store.id, id: @item.id}.to change(StoreItem, :count).by(1)
 			expect(response).to redirect_to :store_store_items
 			expect(request.flash[:notice]).to eq(@item.name + " has been unarchived")
 		end
   	end #undestroy
+
+  	describe 'restore_modal' do
+  		it 'requires login'  do
+  			get :restore_modal, store_id: @store.id, id: @item.id
+  			expect(response).to redirect_to new_user_session_url
+  		end
+  		it 'fails as a normal user' do
+  			sign_in @user
+  			get :restore_modal, store_id: @store.id, id: @item.id
+  			expect(response).to render_template :error_authorization
+  		end
+  		it 'fails as another store owner' do
+			@store_other = create(:store)
+			@store_owner_other = create(:user)
+			role_service = Simpleweed::Security::Roleservice.new							
+			role_service.addStoreOwnerRoleToStore(@store_owner_other, @store_other)
+			sign_in @store_owner_other
+
+			get :restore_modal, store_id: @store.id, id: @item.id
+			expect(response).to render_template :error_authorization			
+		end
+		it 'works as store owner' do
+			role_service = Simpleweed::Security::Roleservice.new							
+			role_service.addStoreOwnerRoleToStore(@user, @store)
+			sign_in @user
+
+			# have to destroy an item first...
+			expect{ delete :destroy, store_id: @store.id, id: @item.id }.to change(StoreItem, :count).by(-1)
+									
+			get :restore_modal, store_id: @store.id, id: @item.id
+			expect(response).to render_template :restore_modal			
+		end
+  	end #restore_modal
 
 end
