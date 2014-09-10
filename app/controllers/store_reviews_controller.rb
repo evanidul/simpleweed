@@ -23,6 +23,14 @@ class StoreReviewsController < ApplicationController
 		if !authenticate_user!("You must be logged in to write a review.  Login now or sign up!", true) 
 			return 
 		end
+
+		# store manager & owners cannot review stores
+		@role_service = Simpleweed::Security::Roleservice.new
+		if @role_service.isStoreManager(current_user) || @role_service.isStoreOwner(current_user)
+			# UI blocks this, so we do this just to protect service layer
+			render "stores/error_authorization" and return
+		end
+
 		@store_review =  @store.store_reviews.create(store_review_params)		
 		@store_review.user = current_user
 		
