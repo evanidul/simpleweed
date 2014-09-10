@@ -200,4 +200,35 @@ describe StoreItemsController do
   		end
   	end #unfollow
 
+  	describe 'destroy' do
+  		it 'requires login' do
+  			delete :destroy, store_id: @store.id, id: @item.id
+  			expect(response).to redirect_to new_user_session_url
+  		end
+  		it 'fails as a normal user' do
+  			sign_in @user
+  			delete :destroy, store_id: @store.id, id: @item.id
+  			expect(response).to render_template :error_authorization
+  		end
+  		it 'fails as another store owner' do
+			@store_other = create(:store)
+			@store_owner_other = create(:user)
+			role_service = Simpleweed::Security::Roleservice.new							
+			role_service.addStoreOwnerRoleToStore(@store_owner_other, @store_other)
+			sign_in @store_owner_other
+
+			delete :destroy, store_id: @store.id, id: @item.id
+			expect(response).to render_template :error_authorization			
+		end
+		it 'works as store owner' do
+			role_service = Simpleweed::Security::Roleservice.new							
+			role_service.addStoreOwnerRoleToStore(@user, @store)
+			sign_in @user
+									
+			expect{ delete :destroy, store_id: @store.id, id: @item.id }.to change(StoreItem, :count).by(-1)
+			expect(response).to redirect_to :store_store_items
+			expect(request.flash[:notice]).to eq(@item.name + " has been archived")
+		end
+  	end
+
 end
