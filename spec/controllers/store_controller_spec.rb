@@ -56,6 +56,37 @@ describe StoresController do
 
 	end
 
+	describe 'subscription_plans' do
+		it 'requires login' do
+			get :subscription_plans, id: @store.id
+			expect(response).to redirect_to new_user_session_url
+		end
+		it 'fails as a normal user' do
+			sign_in @user
+			get :subscription_plans, id: @store.id
+			expect(response).to render_template :error_authorization
+		end
+		it 'fails as another store owner' do
+			@store_other = create(:store)
+			@store_owner_other = create(:user)
+			role_service = Simpleweed::Security::Roleservice.new							
+			role_service.addStoreOwnerRoleToStore(@store_owner_other, @store_other)
+			sign_in @store_owner_other
+
+			get :subscription_plans, id: @store.id
+			expect(response).to render_template :error_authorization			
+		end
+		it 'works as store owner' do
+			role_service = Simpleweed::Security::Roleservice.new							
+			role_service.addStoreOwnerRoleToStore(@user, @store)
+			sign_in @user
+
+			get :subscription_plans, id: @store.id
+			expect(response).to render_template :subscription_plans			
+		end
+
+	end
+
 	describe 'update_contact' do
 		it 'works as admin, plan_id is 1 or greater or plan_id is nil' do
 			sign_in @admin
