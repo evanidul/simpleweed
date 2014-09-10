@@ -18,6 +18,10 @@ describe StoreItemsController do
   		@user = create(:user)		  									
   	end
 
+  	before(:each) do
+  		@item = create(:store_item, :store => @store)
+  	end
+
   	describe 'index' do
   		it 'requires login' do
 			get :index, store_id: @store.id
@@ -108,4 +112,14 @@ describe StoreItemsController do
 		end
   	end #create
 
+  	describe 'show' do
+  		it 'does not require login' do
+  			get :show, store_id: @store.id, id: @item.id
+  			expect(response).to render_template :show
+  		end
+
+  	end #show
+
+
+  	
 end
