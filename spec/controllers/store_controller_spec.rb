@@ -641,4 +641,17 @@ describe StoresController do
 		end
 	end #update_firsttimepatientdeals
 
+	describe 'follow' do
+		it 'requires login' do
+			post :follow, id: @store.id
+			expect(response).to redirect_to new_user_session_url
+		end
+	end #follow
+
+	describe 'unfollow' do
+		it 'requires login' do
+			post :unfollow, id: @store.id
+			expect(response).to redirect_to new_user_session_url
+		end
+	end #unfollow
 end
