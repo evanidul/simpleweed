@@ -481,22 +481,7 @@ class StoresController < ApplicationController
 			:loungearea, :petfriendly, :securityguard)		
 	end		
 
-	private 
-	def must_be_logged_on_as_store_manager
-		if authenticate_user!("You must be logged in to update a store")	
-		
-			@role_service = Simpleweed::Security::Roleservice.new
-			if !@role_service.canManageStore(current_user, @store)
-				#redirect_to error_authorization_store_path(@store)
-				render :error_authorization and return
-			else
-				# SUCCESS: pass it through	
-			end
-		else 
-			# not logged in, will redirect to login page
-			return	
-		end
-	end
+	
 
 
 end

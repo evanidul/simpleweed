@@ -1,7 +1,8 @@
 class CancellationsController < ApplicationController
 
 	before_filter :load_store
-
+	before_filter :must_be_logged_on_as_store_manager
+	
 	def new
 		@cancellation = @store.cancellations.build		
 	end
@@ -44,5 +45,6 @@ class CancellationsController < ApplicationController
 		params.require(:cancellation).permit(:store_id, :user_id, :reason)		
 	end		
 
+	
 
 end
