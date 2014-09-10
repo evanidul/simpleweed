@@ -120,6 +120,46 @@ describe StoresController do
 
 	end
 
+	describe 'update_deliveryarea' do
+		it 'works as admin, plan_id is 1 or greater or plan_id is nil' do
+			sign_in @admin
+
+			new_delivery_area = "ohio"
+			put :update_deliveryarea, id: @store.id, store: {deliveryarea: new_delivery_area}
+			expect(response).to redirect_to store_url
+    		@store.reload    		
+    		expect(@store.deliveryarea).to eq(new_delivery_area)
+		end
+
+		it 'works for store managers' do
+			role_service = Simpleweed::Security::Roleservice.new							
+			role_service.addStoreOwnerRoleToStore(@user, @store)
+			sign_in @user
+			
+			new_delivery_area = "ohio"
+			put :update_deliveryarea, id: @store.id, store: {deliveryarea: new_delivery_area}
+			expect(response).to redirect_to store_url
+    		@store.reload    		
+    		expect(@store.deliveryarea).to eq(new_delivery_area)
+		end
+
+		it "requires login" do
+			new_delivery_area = "ohio"
+			put :update_deliveryarea, id: @store.id, store: {deliveryarea: new_delivery_area}
+    		expect(response).to redirect_to new_user_session_url
+    		expect(@store.deliveryarea).to eq('none.')
+		end
+
+		it "renders error when user not admin nor store owner" do			    		
+			sign_in @user
+    		new_delivery_area = "ohio"
+			put :update_deliveryarea, id: @store.id, store: {deliveryarea: new_delivery_area}    		
+    		expect(response).to render_template :error_authorization
+    		expect(@store.deliveryarea).to eq('none.')
+		end
+
+	end #update_deliveryarea
+
 	describe 'update_hours' do
 		it 'works as admin, plan_id is 1 or greater or plan_id is nil' do
 			sign_in @admin
