@@ -101,36 +101,6 @@ class StoresController < ApplicationController
 
 	end
 
-	#dvu: dead code?  Think we've killed the store browser view...
-	# def store_preview		
-	# 	@tds = Simpleweed::Timedateutil::Timedateservice.new
-	# 	@store_items = @store.store_items.order('name ASC')
-	# 	@grouped_store_items = @store_items.group_by &:category
-
-	# 	render :layout => false
-	# end
-
-	# def update	  	  	
-
-	# 	if @store.update(params[:store].permit(:name,:addressline1, :addressline2, :city, :state, :zip, :phonenumber, :dailyspecialsmonday, :dailyspecialstuesday,
-	# 		:dailyspecialswednesday, :dailyspecialsthursday, :dailyspecialsfriday, :dailyspecialssaturday, :dailyspecialssunday,
-	# 		:acceptscreditcards, :atmaccess, :automaticdispensingmachines, :deliveryservice, :firsttimepatientdeals, :handicapaccess,
-	# 		:loungearea, :petfriendly, :securityguard))
-	# 		# redirect_to :action => 'index'
-	# 		redirect_to :controller => 'admin/stores', :action => 'index'
-	# 	else
-	# 		render 'edit'
-	# 	end
-	# end
-
-	# where is this called?  should force admin!!
-	# def destroy	  
-	# 	authenticate_user!("You must be logged in to delete a store")
-	#   	@store.destroy
-	 
-	#   	redirect_to stores_path
-	# end
-
 	def archived_items		
 		@store_items = @store.store_items.only_deleted
 	end
