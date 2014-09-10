@@ -79,6 +79,9 @@ class StoreItemsController < ApplicationController
 	end
 
 	def follow
+		if(!authenticate_user!("You must be logged in to follow an item"))
+			return
+		end
 		@store_item = StoreItem.find(params[:id])
 		
 		if current_user.follow!(@store_item)
@@ -96,6 +99,9 @@ class StoreItemsController < ApplicationController
 	end
 
 	def unfollow
+		if(!authenticate_user!("You must be logged in to unfollow an item"))
+			return
+		end
 		@store_item = StoreItem.find(params[:id])
 
 		current_user.unfollow!(@store_item)

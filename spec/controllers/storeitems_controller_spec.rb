@@ -186,4 +186,18 @@ describe StoreItemsController do
 		end
   	end #update
 
+  	describe 'follow' do
+  		it 'requires login' do
+  			post :follow, store_id: @store.id, id: @item.id
+			expect(response).to redirect_to new_user_session_url
+  		end
+  	end # follow
+
+  	describe 'unfollow' do
+		it 'requires login' do
+  			post :unfollow, store_id: @store.id, id: @item.id
+			expect(response).to redirect_to new_user_session_url
+  		end
+  	end #unfollow
+
 end
