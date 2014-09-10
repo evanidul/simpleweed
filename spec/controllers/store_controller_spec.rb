@@ -87,6 +87,46 @@ describe StoresController do
 
 	end
 
+	describe 'update_hours' do
+		it 'works as admin, plan_id is 1 or greater or plan_id is nil' do
+			sign_in @admin
+
+			new_sundayopen = 10
+			put :update_hours, id: @store.id, date: {storehourssundayopenhour: new_sundayopen}, store: {}
+			expect(response).to redirect_to store_url
+    		@store.reload    		
+    		expect(@store.storehourssundayopenhour).to eq(new_sundayopen)
+		end
+
+		it 'works for store managers' do
+			role_service = Simpleweed::Security::Roleservice.new							
+			role_service.addStoreOwnerRoleToStore(@user, @store)
+			sign_in @user
+			
+			new_sundayopen = 10
+			put :update_hours, id: @store.id, date: {storehourssundayopenhour: new_sundayopen}, store: {}
+			expect(response).to redirect_to store_url
+    		@store.reload    		
+    		expect(@store.storehourssundayopenhour).to eq(new_sundayopen)
+		end
+
+		it "requires login" do
+			new_sundayopen = 10
+			put :update_hours, id: @store.id, date: {storehourssundayopenhour: new_sundayopen}, store: {}
+    		expect(response).to redirect_to new_user_session_url
+    		expect(@store.storehourssundayopenhour).to be_nil
+		end
+
+		it "renders error when user not admin nor store owner" do			    		
+			sign_in @user
+    		new_sundayopen = 10
+			put :update_hours, id: @store.id, date: {storehourssundayopenhour: new_sundayopen}, store: {}
+    		expect(response).to render_template :error_authorization
+    		expect(@store.storehourssundayopenhour).to be_nil
+		end
+		
+	end
+
 	describe 'update_contact' do
 		it 'works as admin, plan_id is 1 or greater or plan_id is nil' do
 			sign_in @admin
