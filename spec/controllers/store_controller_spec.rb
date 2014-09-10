@@ -128,11 +128,11 @@ describe StoresController do
 			@store.save															
 			sign_in @admin			
 			
-			@new_promo = 'first store promo'
-    		put :update_promo, id: @store.id, store: {promo: @new_promo}
+			new_promo = 'first store promo'
+    		put :update_promo, id: @store.id, store: {promo: new_promo}
     		expect(response).to redirect_to store_url
     		@store.reload
-    		expect(@store.promo).to eq(@new_promo)
+    		expect(@store.promo).to eq(new_promo)
 		end
 
 		it "works if the user is a store manager and plan_id is 2 or greater" do
@@ -142,11 +142,11 @@ describe StoresController do
 			role_service.addStoreOwnerRoleToStore(@user, @store)
 			sign_in @user
 			
-			@new_promo = 'first store promo'
-    		put :update_promo, id: @store.id, store: {promo: @new_promo}
+			new_promo = 'first store promo'
+    		put :update_promo, id: @store.id, store: {promo: new_promo}
     		expect(response).to redirect_to store_url
     		@store.reload
-    		expect(@store.promo).to eq(@new_promo)
+    		expect(@store.promo).to eq(new_promo)
 		end
 
 		it "requires login" do
@@ -167,8 +167,8 @@ describe StoresController do
 			@store.plan_id = 1
 			@store.save										
 			sign_in @admin
-			@new_promo = 'first store promo'
-    		put :update_promo, id: @store.id, store: {promo: @new_promo}
+			new_promo = 'first store promo'
+    		put :update_promo, id: @store.id, store: {promo: new_promo}
     		expect(response).to redirect_to subscription_plans_store_url
 		end
 	end #update_promo
@@ -179,11 +179,11 @@ describe StoresController do
 			@store.save
 			sign_in @admin
 			
-			@new_description = 'this store is awesome'
-			put :update_description, id: @store.id, store: {description: @new_description}
+			new_description = 'this store is awesome'
+			put :update_description, id: @store.id, store: {description: new_description}
 			expect(response).to redirect_to store_url
     		@store.reload
-    		expect(@store.description).to eq(@new_description)
+    		expect(@store.description).to eq(new_description)
 		end
 
 		it "works if store owner logs in and plan_id is 2 or greater" do
@@ -193,24 +193,25 @@ describe StoresController do
 			role_service.addStoreOwnerRoleToStore(@user, @store)
 			sign_in @user
 			
-			@new_description = 'this store is awesome'
-			put :update_description, id: @store.id, store: {description: @new_description}
+			new_description = 'this store is awesome'
+			put :update_description, id: @store.id, store: {description: new_description}
 			expect(response).to redirect_to store_url
     		@store.reload
-    		expect(@store.description).to eq(@new_description)
+    		expect(@store.description).to eq(new_description)
 		end
 
 		it "requires login" do
 			#sign_in user
-			@new_description = 'this store is awesome'
-    		put :update_description, id: @store.id, store: {description: @new_description}
+			new_description = 'this store is awesome'
+    		put :update_description, id: @store.id, store: {description: new_description}
     		expect(response).to redirect_to new_user_session_url
     		expect(@store.description).to eq("none.")
 		end
 
 		it "renders error when user not admin nor store owner" do			    		
 			sign_in @user
-    		put :update_description, id: @store.id, store: {description: @new_description}
+			new_description = 'this store is awesome'
+    		put :update_description, id: @store.id, store: {description: new_description}
     		expect(response).to render_template :error_authorization
     		expect(@store.description).to eq("none.")     		
 		end
@@ -220,8 +221,8 @@ describe StoresController do
 			@store.save										
 			sign_in @admin
 
-			@new_description = 'this store is awesome'
-    		put :update_description, id: @store.id, store: {description: @new_description}
+			new_description = 'this store is awesome'
+    		put :update_description, id: @store.id, store: {description: new_description}
     		expect(response).to redirect_to subscription_plans_store_url
 		end
 	end #update_description
@@ -285,11 +286,11 @@ describe StoresController do
 			@store.save
 			sign_in @admin
 			
-			@avatar_url = "http://something.com/image.jpg"			
-			put :update_photo, id: @store.id, store: {avatar_url: @avatar_url}
+			avatar_url = "http://something.com/image.jpg"			
+			put :update_photo, id: @store.id, store: {avatar_url: avatar_url}
 			expect(response).to redirect_to store_url
     		@store.reload
-    		expect(@store.avatar_url).to eq(@avatar_url)    		
+    		expect(@store.avatar_url).to eq(avatar_url)    		
 		end
 
 		it "works if store owner logs in and plan_id is 2 or greater" do
@@ -299,25 +300,25 @@ describe StoresController do
 			role_service.addStoreOwnerRoleToStore(@user, @store)
 			sign_in @user
 			
-			@avatar_url = "http://something.com/image.jpg"			
-			put :update_photo, id: @store.id, store: {avatar_url: @avatar_url}
+			avatar_url = "http://something.com/image.jpg"			
+			put :update_photo, id: @store.id, store: {avatar_url: avatar_url}
 			expect(response).to redirect_to store_url
     		@store.reload
-    		expect(@store.avatar_url).to eq(@avatar_url)    		
+    		expect(@store.avatar_url).to eq(avatar_url)    		
 		end
 
 		it "requires login" do
 			#sign_in user
-			@avatar_url = "http://something.com/image.jpg"			
-			put :update_photo, id: @store.id, store: {avatar_url: @avatar_url}
+			avatar_url = "http://something.com/image.jpg"			
+			put :update_photo, id: @store.id, store: {avatar_url: avatar_url}
     		expect(response).to redirect_to new_user_session_url
     		expect(@store.avatar_url).to be_nil     		    		
 		end		
 
 		it "renders error when user not admin nor store owner" do			    		
 			sign_in @user
-    		@avatar_url = "http://something.com/image.jpg"			
-			put :update_photo, id: @store.id, store: {avatar_url: @avatar_url}
+    		avatar_url = "http://something.com/image.jpg"			
+			put :update_photo, id: @store.id, store: {avatar_url: avatar_url}
     		expect(response).to render_template :error_authorization
     		expect(@store.avatar_url).to be_nil     		    		
 		end
@@ -327,8 +328,8 @@ describe StoresController do
 			@store.save										
 			sign_in @admin
 
-			@avatar_url = "http://something.com/image.jpg"			
-			put :update_photo, id: @store.id, store: {avatar_url: @avatar_url}
+			avatar_url = "http://something.com/image.jpg"			
+			put :update_photo, id: @store.id, store: {avatar_url: avatar_url}
     		expect(response).to redirect_to subscription_plans_store_url
 		end
 	end	#update_photo
@@ -339,11 +340,11 @@ describe StoresController do
 			@store.save
 			sign_in @admin
 			
-			@dailyspecialsmonday = "cookies"
-			put :update_dailyspecials, id: @store.id, store: {dailyspecialsmonday: @dailyspecialsmonday}
+			dailyspecialsmonday = "cookies"
+			put :update_dailyspecials, id: @store.id, store: {dailyspecialsmonday: dailyspecialsmonday}
 			expect(response).to redirect_to store_url
     		@store.reload    		
-    		expect(@store.dailyspecialsmonday).to eq(@dailyspecialsmonday)    		
+    		expect(@store.dailyspecialsmonday).to eq(dailyspecialsmonday)    		
 		end
 
 		it "works if store owner logs in and plan_id is 3 or greater" do
@@ -353,25 +354,25 @@ describe StoresController do
 			role_service.addStoreOwnerRoleToStore(@user, @store)
 			sign_in @user
 			
-			@dailyspecialsmonday = "cookies"
-			put :update_dailyspecials, id: @store.id, store: {dailyspecialsmonday: @dailyspecialsmonday}
+			dailyspecialsmonday = "cookies"
+			put :update_dailyspecials, id: @store.id, store: {dailyspecialsmonday: dailyspecialsmonday}
 			expect(response).to redirect_to store_url
     		@store.reload    		
-    		expect(@store.dailyspecialsmonday).to eq(@dailyspecialsmonday)    		
+    		expect(@store.dailyspecialsmonday).to eq(dailyspecialsmonday)    		
 		end
 
 		it "requires login" do
 			#sign_in user
-			@dailyspecialsmonday = "cookies"
-			put :update_dailyspecials, id: @store.id, store: {dailyspecialsmonday: @dailyspecialsmonday}
+			dailyspecialsmonday = "cookies"
+			put :update_dailyspecials, id: @store.id, store: {dailyspecialsmonday: dailyspecialsmonday}
     		expect(response).to redirect_to new_user_session_url
     		expect(@store.dailyspecialsmonday).to eq("none.")    		
 		end		
 
 		it "renders error when user not admin nor store owner" do			    		
 			sign_in @user
-    		@dailyspecialsmonday = "cookies"
-			put :update_dailyspecials, id: @store.id, store: {dailyspecialsmonday: @dailyspecialsmonday}
+    		dailyspecialsmonday = "cookies"
+			put :update_dailyspecials, id: @store.id, store: {dailyspecialsmonday: dailyspecialsmonday}
     		expect(response).to render_template :error_authorization
     		expect(@store.dailyspecialsmonday).to eq("none.")    		
 		end
@@ -381,8 +382,8 @@ describe StoresController do
 			@store.save										
 			sign_in @admin
 
-			@dailyspecialsmonday = "cookies"
-			put :update_dailyspecials, id: @store.id, store: {dailyspecialsmonday: @dailyspecialsmonday}
+			dailyspecialsmonday = "cookies"
+			put :update_dailyspecials, id: @store.id, store: {dailyspecialsmonday: dailyspecialsmonday}
     		expect(response).to redirect_to subscription_plans_store_url
 		end
 	end #update_dailyspecials
@@ -393,11 +394,11 @@ describe StoresController do
 			@store.save
 			sign_in @admin
 			
-			@firsttimepatientdeals = "i'll give you free pot"
-			put :update_firsttimepatientdeals, id: @store.id, store: {firsttimepatientdeals: @firsttimepatientdeals}
+			firsttimepatientdeals = "i'll give you free pot"
+			put :update_firsttimepatientdeals, id: @store.id, store: {firsttimepatientdeals: firsttimepatientdeals}
 			expect(response).to redirect_to store_url
     		@store.reload    		
-    		expect(@store.firsttimepatientdeals).to eq(@firsttimepatientdeals)    		
+    		expect(@store.firsttimepatientdeals).to eq(firsttimepatientdeals)    		
 		end
 
 		it "works if store owner logs in and plan_id is 3 or greater" do
@@ -407,25 +408,25 @@ describe StoresController do
 			role_service.addStoreOwnerRoleToStore(@user, @store)
 			sign_in @user
 			
-			@firsttimepatientdeals = "i'll give you free pot"
-			put :update_firsttimepatientdeals, id: @store.id, store: {firsttimepatientdeals: @firsttimepatientdeals}
+			firsttimepatientdeals = "i'll give you free pot"
+			put :update_firsttimepatientdeals, id: @store.id, store: {firsttimepatientdeals: firsttimepatientdeals}
 			expect(response).to redirect_to store_url
     		@store.reload    		
-    		expect(@store.firsttimepatientdeals).to eq(@firsttimepatientdeals)    		
+    		expect(@store.firsttimepatientdeals).to eq(firsttimepatientdeals)    		
 		end
 
 		it "requires login" do
 			#sign_in user
-			@firsttimepatientdeals = "i'll give you free pot"
-			put :update_firsttimepatientdeals, id: @store.id, store: {firsttimepatientdeals: @firsttimepatientdeals}
+			firsttimepatientdeals = "i'll give you free pot"
+			put :update_firsttimepatientdeals, id: @store.id, store: {firsttimepatientdeals: firsttimepatientdeals}
     		expect(response).to redirect_to new_user_session_url
     		expect(@store.firsttimepatientdeals).to be_nil
 		end				
 
 		it "renders error when user not admin nor store owner" do			    		
 			sign_in @user
-    		@firsttimepatientdeals = "i'll give you free pot"
-			put :update_firsttimepatientdeals, id: @store.id, store: {firsttimepatientdeals: @firsttimepatientdeals}
+    		firsttimepatientdeals = "i'll give you free pot"
+			put :update_firsttimepatientdeals, id: @store.id, store: {firsttimepatientdeals: firsttimepatientdeals}
     		expect(response).to render_template :error_authorization
     		expect(@store.firsttimepatientdeals).to be_nil
 		end		
@@ -435,8 +436,8 @@ describe StoresController do
 			@store.save										
 			sign_in @admin
 
-			@firsttimepatientdeals = "i'll give you free pot"
-			put :update_firsttimepatientdeals, id: @store.id, store: {firsttimepatientdeals: @firsttimepatientdeals}
+			firsttimepatientdeals = "i'll give you free pot"
+			put :update_firsttimepatientdeals, id: @store.id, store: {firsttimepatientdeals: firsttimepatientdeals}
     		expect(response).to redirect_to subscription_plans_store_url
 		end
 	end #update_firsttimepatientdeals
