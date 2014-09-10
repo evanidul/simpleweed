@@ -329,9 +329,11 @@ class StoresController < ApplicationController
 
 		# add store - owner role to logged in user
 		# redir to store page with edit tags rendered and tool tips showing them.
+
 		if role_service.findStoreOwnerForStore(@store).size >= 1
 			flash[:notice] = "This store has already been claimed.  Please contact support if you feel like this is in error."
-			redirect_to store_path(@store, :show_edit_popover => 'true')
+			redirect_to store_path(@store)
+			return
 		end
 
 		if current_user.email == @store.email
@@ -339,9 +341,11 @@ class StoresController < ApplicationController
 			role_service.addStoreOwnerRoleToStore(current_user, @store)
 			flash[:notice] = "You have successfully claimed this store.  We've added new edit links below to allow you to manage this store."
 			redirect_to store_path(@store, :show_edit_popover => 'true')
+			return
 		else 			
 			flash[:notice] = "Your email must match the email of this store, in order to claim it."
-			redirect_to store_path(@store, :show_edit_popover => 'true')  # dvu: why do we show the popover if they failed to claim?
+			redirect_to store_path(@store) 
+			return
 		end	
 	end
 

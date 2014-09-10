@@ -30,6 +30,32 @@ describe StoresController do
 			put :update_claim, id: @store.id
 			expect(response).to redirect_to new_user_session_url
 		end
+		it 'does not work if someone else has claimed it' do			
+			@store_owner_other = create(:user)
+			role_service = Simpleweed::Security::Roleservice.new							
+			role_service.addStoreOwnerRoleToStore(@store_owner_other, @store)
+
+			sign_in @user
+			put :update_claim, id: @store.id
+			expect(response).to redirect_to store_url			
+			expect(request.flash[:notice]).to eq("This store has already been claimed.  Please contact support if you feel like this is in error.")
+		end
+		it 'doesnt work if your email doesnt match the store email' do
+			sign_in @user
+			put :update_claim, id: @store.id
+			expect(response).to redirect_to store_url			
+			expect(request.flash[:notice]).to eq("Your email must match the email of this store, in order to claim it.")
+		end
+		it 'should work if its unclaimed and your email matches' do
+			@store.email = @user.email
+			@store.save		
+
+			sign_in @user
+			put :update_claim, id: @store.id
+			extra_params = "?show_edit_popover=true"
+			expect(response).to redirect_to store_url + extra_params			#has extra query param to show popup
+			expect(request.flash[:notice]).to eq("You have successfully claimed this store.  We've added new edit links below to allow you to manage this store.")
+		end
 	end
 
 	describe 'archived_items' do
