@@ -56,6 +56,59 @@ describe StoresController do
 
 	end
 
+	describe 'update_contact' do
+		it 'works as admin, plan_id is 1 or greater or plan_id is nil' do
+			sign_in @admin
+
+			new_city = 'las vegas'
+			put :update_contact, id: @store.id, store: {city: new_city}
+			expect(response).to redirect_to store_url
+    		@store.reload
+    		expect(@store.city).to eq(new_city)
+    		expect(@store.plan_id).to be_nil
+		end
+
+		it 'works for store managers' do
+			role_service = Simpleweed::Security::Roleservice.new							
+			role_service.addStoreOwnerRoleToStore(@user, @store)
+			sign_in @user
+			
+			new_city = 'las vegas'
+			put :update_contact, id: @store.id, store: {city: new_city}
+			expect(response).to redirect_to store_url
+    		@store.reload
+    		expect(@store.city).to eq(new_city)
+    		expect(@store.plan_id).to be_nil
+		end
+
+		it "requires login" do
+			new_city = 'las vegas'			
+    		put :update_contact, id: @store.id, store: {city: new_city}
+    		expect(response).to redirect_to new_user_session_url
+    		expect(@store.city).to eq("San Diego")
+		end
+
+		it "renders error when user not admin nor store owner" do			    		
+			sign_in @user
+    		new_city = 'las vegas'			
+    		put :update_contact, id: @store.id, store: {city: new_city}
+    		expect(response).to render_template :error_authorization
+    		expect(@store.city).to eq("San Diego")
+		end
+		it 'works for a store with a plan of 2' do
+			@store.plan_id = 2
+			@store.save										
+			sign_in @admin
+
+			new_city = 'las vegas'
+			put :update_contact, id: @store.id, store: {city: new_city}
+			expect(response).to redirect_to store_url
+    		@store.reload
+    		expect(@store.city).to eq(new_city)
+		end
+
+	end
+
 	describe 'create' do
 		it "works as an admin" do
 			sign_in @admin			
