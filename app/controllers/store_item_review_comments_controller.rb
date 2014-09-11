@@ -2,11 +2,11 @@ class StoreItemReviewCommentsController < ApplicationController
 
 	before_filter :load_store_item_review
 
-	def login
-		respond_to do |format|
-			format.js {}
-		end
-	end
+	# def login
+	# 	respond_to do |format|
+	# 		format.js {}
+	# 	end
+	# end
 
 	def commentsaveerror
 		respond_to do |format|
@@ -15,8 +15,11 @@ class StoreItemReviewCommentsController < ApplicationController
 	end
 
 	def create
-		if current_user.nil?		
-			return render 'login'
+		# if current_user.nil?		
+		# 	return render 'login'
+		# end
+		if(!authenticate_user!("You must be logged in to create a comment on item reviews"))
+			return
 		end
 
 		respond_to do |format|
