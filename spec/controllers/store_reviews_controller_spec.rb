@@ -18,10 +18,6 @@ describe StoreReviewsController do
   		@user = create(:user)		  									
   	end
 
-  	# before(:each) do
-  	# 	@item = create(:store_item, :store => @store)
-  	# end
-
   	describe 'new' do
   		it 'requires login' do
   			get :new, store_id: @store.id
@@ -31,7 +27,7 @@ describe StoreReviewsController do
 
   	describe 'create' do
   		it 'requires login' do
-  			post :create, store_id: @store.id, store_item_review: attributes_for(:store_review)
+  			post :create, store_id: @store.id, store_review: attributes_for(:store_review)
   			expect(response).to render_template "modals/login"
   		end
   		it 'doesnt allow store owners or managers to review' do
@@ -41,7 +37,7 @@ describe StoreReviewsController do
 			role_service.addStoreOwnerRoleToStore(@store_owner_other, @store_other)
 			sign_in @store_owner_other
 
-			post :create, store_id: @store.id, store_item_review: attributes_for(:store_review)
+			post :create, store_id: @store.id, store_review: attributes_for(:store_review)
 			expect(response).to render_template :error_authorization
   		end
   		it 'doesnt allow users to review more than once (protected at model tier)' do
