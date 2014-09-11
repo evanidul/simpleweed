@@ -2,11 +2,11 @@ class StoreReviewCommentsController < ApplicationController
 
 	before_filter :load_store_review
 
-	def login
-		respond_to do |format|
-			format.js {}
-		end
-	end
+	# def login
+	# 	respond_to do |format|
+	# 		format.js {}
+	# 	end
+	# end
 
 	def commentsaveerror
 		respond_to do |format|
@@ -14,9 +14,10 @@ class StoreReviewCommentsController < ApplicationController
 		end
 	end
 
+	# anyone who's logged in can comment, including owners and admins.
 	def create
-		if current_user.nil?		
-			return render 'login'
+		if !authenticate_user!("You must be logged in to write a comment on a review.  Login now or sign up!") 
+			return 
 		end
 
 		respond_to do |format|
