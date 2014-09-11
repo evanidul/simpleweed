@@ -9,7 +9,7 @@ class StoreReviewsController < ApplicationController
 
 	# Require: Must be logged in
 	# Require: Can only write one store review per user
-	# Require: Storeowner/manager cannot review their own stores?
+	# Require: Storeowner/manager cannot review 
 	def new
 		if !authenticate_user!("You must be logged in to write a review.  Login now or sign up!", true) 
 			return 

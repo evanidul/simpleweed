@@ -7,8 +7,8 @@ class StoreItemReviewsController < ApplicationController
 
 
 	# Require: Must be logged in
-	# Require: Can only write one store review per user
-	# Require: Storeowner/manager cannot review their own stores?
+	# Require: Can only write one store review per user (enforced at model level)
+	# Require: Storeowner/manager cannot review 
 	def new
 		if !authenticate_user!("You must be logged in to write a review.  Login now or sign up!", true) 
 			return 
@@ -41,10 +41,12 @@ class StoreItemReviewsController < ApplicationController
 				@store_item.save			
 
 				return format.js {}
-			else 
+			else 				
 				messagearray = @store_item_review.errors.full_messages
-				flash[:warning] = messagearray
-				redirect_to store_path(@store_item.store)
+				flash[:warning] = messagearray.first
+				format.html	{
+					redirect_to store_path(@store_item.store)
+				}
 			end
 		end # respond_to
 	end
