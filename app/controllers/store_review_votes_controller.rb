@@ -17,9 +17,10 @@ class StoreReviewVotesController < ApplicationController
 	end
 
 	def create		
-		
+		# this breaks our pattern for auth check because it's an ajax request that returns javascript which will show the login
+		# popup
 		if current_user.nil?
-			#format.js { file 'login' }
+			#format.js { file 'login' }			
 			return render 'login'
 		end
 

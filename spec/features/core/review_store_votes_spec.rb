@@ -307,7 +307,7 @@ feature "store review votes" , :js => true, :search =>true do
         wait_for_ajax        
 
         # expect login prompt
-        # login as user 2        
+        # login as user 2                
         header.username.set @user2email
         header.password.set @user2password
         header.logininbutton.click           
