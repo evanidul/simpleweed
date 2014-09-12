@@ -72,10 +72,28 @@ class FeedsController < ApplicationController
 	end
 
 	def new
+		if(!authenticate_user!("You must be logged in to create a feed"))
+			return
+		end
+		
+		if !current_user.has_role?(:admin)
+			#redirect_to error_authorization_store_path(@store)
+			render "stores/error_authorization" and return
+		end			
+
 		render layout: false		
 	end
 
 	def create
+		if(!authenticate_user!("You must be logged in to create a feed"))
+			return
+		end			
+
+		if !current_user.has_role?(:admin)
+			#redirect_to error_authorization_store_path(@store)
+			render "stores/error_authorization" and return
+		end			
+		
 		@feed = Feed.new(feed_params)
 		@feed.save		
 		redirect_to feeds_path()
