@@ -3,9 +3,9 @@ class FeedPostCommentsController < ApplicationController
 	before_filter :load_feed_post
 
 	def create
-		if current_user.nil?		
-			return render 'login'
-		end
+		if !authenticate_user!("You must be logged in to comment on a post.  Login now or sign up!") 
+			return 
+		end		
 
 		respond_to do |format|
 		
