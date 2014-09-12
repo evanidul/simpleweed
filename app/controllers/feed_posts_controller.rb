@@ -3,13 +3,16 @@ class FeedPostsController < ApplicationController
 	before_filter :load_feed
 
 	def new
+		if(!authenticate_user!("You must be logged in to create a post"))
+			return
+		end			
 		render layout: false		
 	end
 
 	def create		
-		if current_user.nil?		
-			return render 'login'
-		end
+		if(!authenticate_user!("You must be logged in to create a post"))
+			return
+		end			
 
 		@feed_post =  @feed.feed_posts.create(feed_post_params)		
 		@feed_post.user = current_user
@@ -32,9 +35,15 @@ class FeedPostsController < ApplicationController
 	end
 
 	def destroy
-		# TODO: add authorization
-		# roleservice = Simpleweed::Security::Roleservice.new
-		# assert_equal(true, roleservice.canManagePost(user) , 'admins should be able to manage posts')
+		if(!authenticate_user!("You must be logged as admin to delete a feed post"))
+			return
+		end			
+
+		if !current_user.has_role?(:admin)
+			#redirect_to error_authorization_store_path(@store)
+			render "stores/error_authorization" and return
+		end		
+
 		if @post			
 			@post.destroy
 	    	flash[:danger] = "post has been deleted"
@@ -48,7 +57,10 @@ class FeedPostsController < ApplicationController
 	end
 
 	# process the flag add post from add_flag
-	def flag		
+	def flag	
+		if(!authenticate_user!("You must be logged as admin to delete a feed post"))
+			return
+		end				
 		postparams = params[:flag].permit(:reason)
 		
 		begin

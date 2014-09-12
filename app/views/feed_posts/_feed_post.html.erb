@@ -36,7 +36,11 @@
 					</li>
 					
 					<li>
-						<%= link_to 'flag', add_flag_feed_feed_post_path(post.feed.id, post.id), data: { toggle: "modal", target: "#modal", remote: add_flag_feed_feed_post_path(post.feed.id, post.id)} , id: "add-flag-on-post-link", class: "flag-post" %>
+						<% if !current_user.nil? %>
+							<%= link_to 'flag', add_flag_feed_feed_post_path(post.feed.id, post.id), data: { toggle: "modal", target: "#modal", remote: add_flag_feed_feed_post_path(post.feed.id, post.id)} , id: "add-flag-on-post-link", class: "flag-post" %>
+						<% else %>
+							<%= link_to 'flag', login_path , data: { toggle: "modal", target: "#modal", remote: login_path} , id: "add-flag-on-post-link", class: "flag-post" %>
+						<% end %>
 						
 					</li>
 					

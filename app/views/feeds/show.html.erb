@@ -9,7 +9,11 @@
 		<span> / </span>
 		<span id="feed-name"><%= @feed.name %></span>
 		<span class="add-new-post-button">				
-		<%= link_to 'write a post', new_feed_feed_post_path(@feed.id) , data: { toggle: "modal", target: "#modal", remote: new_feed_feed_post_path(@feed.id)} , id: "add-new-post-button" , class: "btn btn-primary pull-right" %>
+			<% if !current_user.nil? %>			
+				<%= link_to 'write a post', new_feed_feed_post_path(@feed.id) , data: { toggle: "modal", target: "#modal", remote: new_feed_feed_post_path(@feed.id)} , id: "add-new-post-button" , class: "btn btn-primary pull-right" %>
+			<% else %>
+				<%= link_to 'write a post', login_path , data: { toggle: "modal", target: "#modal", remote: login_path} , id: "add-new-post-button", class: "btn btn-primary pull-right" %>
+			<% end %>
 		</span>			
 	</h3>
 
