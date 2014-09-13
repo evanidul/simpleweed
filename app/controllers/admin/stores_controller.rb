@@ -1,15 +1,13 @@
 class Admin::StoresController < ApplicationController
 
-	before_action :authenticate_user!
+	before_filter :must_be_admin
 
-	def index
-  		authorize! :manage, Store
+	def index  		
 	  	@stores = Store.all	 
 	end
 
 	# loaded from modal, so don't use layout
-	def new
-		authorize! :manage, Store
+	def new		
 		@store = Store.new
 		render layout: false
 	end
@@ -24,26 +22,24 @@ class Admin::StoresController < ApplicationController
 	# 	redirect_to :controller => 'stores', :action => 'show'			
 	# end
 
-	def show
-		authorize! :manage, Store
-		@store = Store.find(params[:id])
-		render layout: false
-	end
+	# dead code?
+	# def show		
+	# 	@store = Store.find(params[:id])
+	# 	render layout: false
+	# end
 
-	def edit
-		authorize! :manage, Store
-	  	@store = Store.find(params[:id])
-	end
-
+	# def edit		
+	#   	@store = Store.find(params[:id])
+	# end
 
 
-	def destroy
-		authorize! :manage, Store
-	  	@store = Store.find(params[:id])
-	  	@store.destroy
+
+	# def destroy		
+	#   	@store = Store.find(params[:id])
+	#   	@store.destroy
 	 
-	  	redirect_to admin_stores_path
-	end
+	#   	redirect_to admin_stores_path
+	# end
 
 
 	private 
