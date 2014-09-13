@@ -51,7 +51,7 @@ class ApplicationController < ActionController::Base
 
 	protected 
 	def must_be_logged_on_as_store_manager
-		if authenticate_user!("You must be logged in to update a store")	
+		if authenticate_user!("You must be logged in to complete this action")	
 		
 			@role_service = Simpleweed::Security::Roleservice.new
 			if !@role_service.canManageStore(current_user, @store)
@@ -63,6 +63,21 @@ class ApplicationController < ActionController::Base
 		else 
 			# not logged in, will redirect to login page
 			return	
+		end
+	end
+
+	protected
+	def must_be_admin
+		if authenticate_user!("You must be logged in to complete this action")	
+			#@role_service = Simpleweed::Security::Roleservice.new
+			if !current_user.has_role?(:admin)
+				render "stores/error_authorization" and return
+			else
+				# SUCCESS: pass it through
+			end
+		else
+			#not logged in, will redirect to login page
+			return
 		end
 	end
 

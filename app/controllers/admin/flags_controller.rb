@@ -1,5 +1,7 @@
 class Admin::FlagsController < ApplicationController
 
+	before_filter :must_be_admin
+
 	def index
 		@flaggings = Flagging.all
 	end
