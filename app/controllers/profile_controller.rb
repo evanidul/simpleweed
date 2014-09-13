@@ -1,6 +1,7 @@
 class ProfileController < ApplicationController
 
 	before_filter :load_profile_user
+	before_filter :must_be_profile_owner_to_view, :except => [:activity, :follow, :unfollow, :edit_photo]
 
 	def feed				
 		# @profile_owner_id = params[:id].to_i
@@ -109,7 +110,9 @@ class ProfileController < ApplicationController
 
 	# when a user follows another user, this endpoint handles what happens after clicking the star
 	def follow
-
+		if(!authenticate_user!("You must be logged in to create a store"))
+			return
+		end			
 		# @profile_owner_id = params[:id].to_i
 		# @profile_user = User.find(@profile_owner_id)
 		# # can't follow yourself
@@ -133,6 +136,9 @@ class ProfileController < ApplicationController
 	end
 
 	def unfollow
+		if(!authenticate_user!("You must be logged in to create a store"))
+			return
+		end			
 		id_of_person_to_unfollow = params[:id].to_i
 
 		@user_to_unfollow = User.find(id_of_person_to_unfollow)
@@ -176,14 +182,14 @@ class ProfileController < ApplicationController
 	# end
 
 	def edit_photo
-		@user = current_user
+		@user = @profile_user
 		@s3_direct_post = S3_BUCKET.presigned_post(key: "uploads/users/#{@user.id}/avatars/#{SecureRandom.uuid}/${filename}", success_action_status: 201, acl: :public_read)
 
 		render layout: false
 	end
 
 	def update_photo
-		@user = current_user
+		@user = @profile_user
 	    if @user.update(params[:user].permit(:avatar_url))
 			redirect_to feed_profile_path(@user)
 		else
@@ -197,16 +203,31 @@ private
     def load_profile_user
       	@profile_owner_id = params[:id].to_i
 		@profile_user = User.find(@profile_owner_id)
-		@user_is_viewing_own_profile = false;
+		@user_is_viewing_own_profile = false
 		
 		if current_user.nil?
-			@user_is_viewing_own_profile = true;
+			@user_is_viewing_own_profile = false
 			return
 		end
 		if current_user.id == @profile_owner_id
-			@user_is_viewing_own_profile = true;
+			@user_is_viewing_own_profile = true
 		end
     end
+
+private
+	def must_be_profile_owner_to_view
+		if authenticate_user!("You must be logged in to complete this action")	
+			#@role_service = Simpleweed::Security::Roleservice.new
+			if @user_is_viewing_own_profile != true
+				render "stores/error_authorization" and return
+			else
+				# SUCCESS: pass it through
+			end
+		else
+			#not logged in, will redirect to login page
+			return
+		end
+	end    
 
 end
 

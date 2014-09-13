@@ -26,9 +26,9 @@ Smellyleaf::Application.routes.draw do
       get "feed"
       post "follow"
       get 'following'
-      get "followingusers"
-      get "followingstores"
-      get "followingitems"
+      # get "followingusers"
+      # get "followingstores"
+      # get "followingitems"
       post "unfollow"
       get "myreviews"
       get "edit_photo"
