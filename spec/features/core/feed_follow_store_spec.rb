@@ -7,13 +7,14 @@ require 'pages/store'
 require 'pages/homepage'
 require 'pages/store_items'
 require 'pages/search_results_stores'
+require 'pages/search_results_items'
 require 'pages/store_search_preview'
 require 'pages/registration'
 require 'pages/store_claim'
 require 'pages/profile_feed'
 require 'page_components/profile_nav'
 require 'pages/profile_following'
-
+require 'pages/itempopup'
 
 feature "review a store" , :js => true, :search =>true do
 
@@ -611,10 +612,163 @@ feature "review a store" , :js => true, :search =>true do
 		header.edituserlink.click		
 		feeditem =  @user2username + " reviewed " + @store_name
 		expect(page).to have_text(feeditem) 
-
-		
-    	
 	end
 
+	scenario "login, search item, follow a store from store tab, should see success message, update store announcement, see on feed" do	
+		# login as admin
+		page.visit("/")
+		
+		header = HeaderPageComponent.new
+		header.has_loginlink?
+		header.loginlink.click
+    	
+    	# login modal
+    	header.username.set @adminemail
+    	header.password.set @adminpassword
+		header.logininbutton.click
+
+		# expect(header.edituserlink.text).to have_text(@adminusername)
+		# search for it		
+        header = HeaderPageComponent.new	
+		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+        header.item_query_input.set "og"		
+        header.search_button.click
+
+        # click on first result
+    	searchresults_page = SearchResultsItemPageComponent.new
+		searchresults_page.searchresults_item_names.size.should == 1
+		searchresults_page.searchresults_item_names.map {|name| name.text}.should == [@item1.name]
+		searchresults_page.searchresults_item_names.first.click
+        
+    	# click and view preview
+    	item_popup = ItemPopupComponent.new
+    	item_popup.tab_store.click
+
+    	# follow store
+    	item_popup.store_tab_follow_button.click    	    	
+    	expect(item_popup.store_tab_unfollow_button.text).to have_text ("UNFOLLOW")
+    	item_popup.store_tab_view_store_button.click
+
+    	# announcement on store page
+    	store_page = StorePage.new
+		expect(store_page.announcement.text).to have_text("none.")
+		store_page.edit_announcement_link.click
+		new_announcement = "My New announcement"
+		store_page.announcement_input.set new_announcement
+		store_page.save_announcement_button.click
+		expect(store_page.announcement.text).to have_text(new_announcement)
+
+		# view profile
+		header.edituserlink.click
+		profile_feed = ProfileFeedPageComponent.new
+
+		wait_for_ajax
+		profile_feed.store_announcement_updates.size.should == 1
+		profile_feed.store_announcement_updates.map {|body| body.text}.should have_text "has a new announcement"
+
+		# unfollow store
+        profile_nav = ProfileNavPageComponent.new
+        profile_nav.following_link.click
+
+        following_page = ProfileFollowingPageComponent.new
+        following_page.store_tab.click
+        following_page.followed_stores.size.should == 1
+
+        following_page.unfollow_store_buttons.size.should == 1
+        following_page.unfollow_store_buttons.first.click
+        wait_for_ajax
+
+        following_page.unfollow_store_buttons.size.should == 0
+        following_page.follow_store_buttons.size.should == 1
+
+        # follow store again
+        following_page.follow_store_buttons.first.click
+        wait_for_ajax
+
+        following_page.unfollow_store_buttons.size.should == 1
+        following_page.follow_store_buttons.size.should == 0      
+
+	end
+
+	scenario "search item, follow a store from store tab, see login prompt, login and follow again, should see success message, update store announcement, see on feed" do	
+				
+		# search for it		
+        header = HeaderPageComponent.new	
+		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
+        header.item_query_input.set "og"		
+        header.search_button.click
+
+        # click on first result
+    	searchresults_page = SearchResultsItemPageComponent.new
+		searchresults_page.searchresults_item_names.size.should == 1
+		searchresults_page.searchresults_item_names.map {|name| name.text}.should == [@item1.name]
+		searchresults_page.searchresults_item_names.first.click
+        
+    	# click and view preview
+    	item_popup = ItemPopupComponent.new
+    	item_popup.tab_store.click
+
+    	# follow store
+    	item_popup.store_tab_follow_button.click    
+
+    	# login modal
+    	header.username.set @adminemail
+    	header.password.set @adminpassword
+		header.logininbutton.click	    	
+
+		# back to search results
+		searchresults_page.searchresults_item_names.size.should == 1
+		searchresults_page.searchresults_item_names.map {|name| name.text}.should == [@item1.name]
+		searchresults_page.searchresults_item_names.first.click
+        
+    	# click and view preview
+    	item_popup = ItemPopupComponent.new
+    	item_popup.tab_store.click
+
+    	# follow store
+    	item_popup.store_tab_follow_button.click    
+    	expect(item_popup.store_tab_unfollow_button.text).to have_text ("UNFOLLOW")
+    	item_popup.store_tab_view_store_button.click
+
+    	# announcement on store page
+    	store_page = StorePage.new
+		expect(store_page.announcement.text).to have_text("none.")
+		store_page.edit_announcement_link.click
+		new_announcement = "My New announcement"
+		store_page.announcement_input.set new_announcement
+		store_page.save_announcement_button.click
+		expect(store_page.announcement.text).to have_text(new_announcement)
+
+		# view profile
+		header.edituserlink.click
+		profile_feed = ProfileFeedPageComponent.new
+
+		wait_for_ajax
+		profile_feed.store_announcement_updates.size.should == 1
+		profile_feed.store_announcement_updates.map {|body| body.text}.should have_text "has a new announcement"
+
+		# unfollow store
+        profile_nav = ProfileNavPageComponent.new
+        profile_nav.following_link.click
+
+        following_page = ProfileFollowingPageComponent.new
+        following_page.store_tab.click
+        following_page.followed_stores.size.should == 1
+
+        following_page.unfollow_store_buttons.size.should == 1
+        following_page.unfollow_store_buttons.first.click
+        wait_for_ajax
+
+        following_page.unfollow_store_buttons.size.should == 0
+        following_page.follow_store_buttons.size.should == 1
+
+        # follow store again
+        following_page.follow_store_buttons.first.click
+        wait_for_ajax
+
+        following_page.unfollow_store_buttons.size.should == 1
+        following_page.follow_store_buttons.size.should == 0      
+
+	end
 
 end

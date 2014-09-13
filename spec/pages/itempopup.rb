@@ -52,4 +52,9 @@ class ItemPopupComponent < SitePrism::Page
   element :cancel_button, '#cancel-button'
 
   elements :user_links, '.user-link'
+
+  # STORE TAB
+  element :store_tab_follow_button, '#follow-store-button'
+  element :store_tab_unfollow_button, '#unfollow-store-button'
+  element :store_tab_view_store_button, '#view-store-button'
 end
