@@ -88,8 +88,7 @@ var g_infobox = new InfoBox({
          pixelOffset: new google.maps.Size(-140, 0),
          zIndex: 3000,
          boxStyle: {
-            background: "url('http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/examples/tipbox.gif') no-repeat",
-            opacity: 0.75,
+            background: "url('http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/examples/tipbox.gif') no-repeat",            
             width: "280px"
         },
         closeBoxMargin: "12px 4px 2px 2px",
@@ -98,8 +97,8 @@ var g_infobox = new InfoBox({
     });
 
 (window.initHoverForSearchResults = function() {
-	$( ".item-search-result-container" ).hover(function(e) {
-		$(this).addClass('search-item-hover-focus');
+	$( ".item-search-result-container" ).hover(function(e) {		
+		$(this).find(".image-td").addClass('image-td-hover');
 
 		e.preventDefault();
 		lat = $( this ).attr('latitude')
@@ -112,13 +111,11 @@ var g_infobox = new InfoBox({
 		itemname = itemname_unscrubbed.replace(/\[\"/g , "");
 		itemname = itemname.replace(/\"\]/g , "");	
 
-		// var image = './assets/leaf.png';
-		var image = '<%= asset_path 'leaf.png' %>';
+		
 		var loc = new google.maps.LatLng(lat,long)
 		marker = new google.maps.Marker({
 		    	position: loc,
-		        map: g_map,
-		        icon: image
+		        map: g_map
 			});
 
 		//g_map.setCenter(marker.getPosition());
@@ -127,8 +124,8 @@ var g_infobox = new InfoBox({
 		g_infobox.open(g_map, marker);
 		}
 		, 
-		function() {
-		$(this).removeClass('search-item-hover-focus');
+		function() {			
+			$(this).find(".image-td").removeClass('image-td-hover');
 		}
 	);
 })(); //initHoverForSearchResults
