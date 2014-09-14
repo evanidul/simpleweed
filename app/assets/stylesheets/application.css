@@ -364,7 +364,12 @@ h3 {
 }
  
 .simple-weed-google-table-header-cell {
-  background: #D8E0D8 !important;   
+  background: rgb(245, 244, 244) !important;   
+  padding-bottom: 2px !important;
+  padding-left: 10px !important;
+  padding-top: 2px !important;
+  font-size: 14px !important;
+  border-bottom: 1px solid lightgray !important;
 }
 
 .simple-weed-google-table-header-cell-menu-editor {
@@ -377,11 +382,19 @@ h3 {
   
 }
 
-.simple-weed-google-table-table-cell-menu-editor {
-  padding-left:5px !important;
+.simple-weed-google-table-table-cell {
+  padding-left:10px !important;
   border-bottom: 1px solid lightgray;
   padding-top: 5px !important;
   padding-bottom: 5px !important;
+}
+
+.simple-weed-google-table-table-cell-menu-editor {
+  padding-left:10px !important;
+  border-bottom: 1px solid lightgray;
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
+  
 }
 
 .simple-weed-google-table-hover-row {
@@ -391,9 +404,8 @@ h3 {
 }
 
 .simple-weed-google-table-selectedrow {
-  background-color: #CDE0B3 !important;  /** lighter than our light green **/ 
- 
- color:white;
+  background-color: #CDE0B3 !important;  /** lighter than our light green **/  
+  color:white;
 }
 
 .simple-weed-google-table-header-cell-archived-menu-editor {

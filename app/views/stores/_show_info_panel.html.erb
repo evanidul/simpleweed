@@ -41,7 +41,7 @@
 	  switch (category) {
 	  		case "flower":
 	  			data.addColumn('string', 'hiddenlink');
-		  		data.addColumn('string', '');
+		  		data.addColumn('string', 'name');
 			  	data.addColumn('string', 'strain');	  
 			  	data.addColumn('string', 'subcategory');	  
 			  	data.addColumn('string', '1g');
@@ -54,7 +54,7 @@
 	  		break;
 	  		case "concentrate":
 	  			data.addColumn('string', 'hiddenlink');
-	  			data.addColumn('string', '');
+	  			data.addColumn('string', 'name');
 			  	data.addColumn('string', 'strain');	  
 			  	data.addColumn('string', 'subcategory');	  
 		  		data.addColumn('string', '1/2g');
@@ -65,7 +65,7 @@
 	  		break;
 	  		case "edible":
 	  			data.addColumn('string', 'hiddenlink');
-	  			data.addColumn('string', '');
+	  			data.addColumn('string', 'name');
 			  	data.addColumn('string', 'strain');	  
 			  	data.addColumn('string', 'subcategory');	  
 			  	data.addColumn('string', 'each');
@@ -74,7 +74,7 @@
 	  		break;
 	  		case "pre-roll":
 	  			data.addColumn('string', 'hiddenlink');
-	  			data.addColumn('string', '');
+	  			data.addColumn('string', 'name');
 			  	data.addColumn('string', 'strain');	  
 			  	data.addColumn('string', 'subcategory');	  
 			  	data.addColumn('string', 'each');
@@ -83,7 +83,7 @@
 	  		break;
 	  		case "other":
 	  			data.addColumn('string', 'hiddenlink');
-	  			data.addColumn('string', '');
+	  			data.addColumn('string', 'name');
 			  	data.addColumn('string', 'strain');	  
 			  	data.addColumn('string', 'subcategory');	  
 			  	data.addColumn('string', 'each');
@@ -92,7 +92,7 @@
 	  		break;
 	  		case "accessory":
 	  			data.addColumn('string', 'hiddenlink');
-	  			data.addColumn('string', '');
+	  			data.addColumn('string', 'name');
 			  	data.addColumn('string', 'strain');	  
 			  	data.addColumn('string', 'subcategory');	  
 			  	data.addColumn('string', 'each');
@@ -182,7 +182,8 @@
 
       var table = new google.visualization.Table(document.getElementById("table_<%= maincategory %>"));
 
- 	  var cssClassNames = {headerRow: "simple-weed-google-table-header", headerCell: "simple-weed-google-table-header-cell"};
+      var cssClassNames = {headerRow: "simple-weed-google-table-header", headerCell: "simple-weed-google-table-header-cell", tableCell: "simple-weed-google-table-table-cell-menu-editor", hoverTableRow: "simple-weed-google-table-hover-row", selectedTableRow: "simple-weed-google-table-selectedrow", tableCell: "simple-weed-google-table-table-cell"};
+ 	  // var cssClassNames = {headerRow: "simple-weed-google-table-header", headerCell: "simple-weed-google-table-header-cell",hoverTableRow: "simple-weed-google-table-hover-row",selectedTableRow: "simple-weed-google-table-selectedrow"};
       table.draw(view, {showRowNumber: false, allowHtml: true, cssClassNames: cssClassNames, width: '698px'});
             
       google.visualization.events.addListener(table, 'sort', setWidth);
