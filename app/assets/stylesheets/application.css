@@ -395,3 +395,12 @@ h3 {
  
  color:white;
 }
+
+.simple-weed-google-table-header-cell-archived-menu-editor {
+  background-color: rgb(223, 100, 100) !important;
+  color: white !important;  
+  padding-bottom: 2px !important;
+  padding-left: 10px !important;
+  padding-top: 12px !important;
+  font-size: 15px !important;
+}

@@ -17,24 +17,26 @@
       <td class="store-name-and-edit">            
         <h1 id="store_name" class="store-name" style="display:inline"><%= link_to @store.name, store_path(@store) , 'data-no-turbolink' => true %>
           <small><%= @store.promo %></small>              
-        </h1>
-        
+        </h1>        
       </td>
     </tr>
   </table>
+  <%= render partial: 'layouts/stars', locals: {score: @store.stars} %>           
+  <%= link_to "MANAGE SUBSCRIPTIONS", subscription_plans_store_path(@store.id), id: "manage-subscriptions-link" , class: 'btn btn-primary pull-right' %>
+  <hr />
+</div>
 
-  <ul id="archived-menu-editor-controls">
-      <!-- pro coding right here -->
-      <li class="star-rank">
-        <%= render partial: 'layouts/stars', locals: {score: @store.stars} %>           
-      </li>
-      <li>
-        <%= link_to "back to menu", store_store_items_path(@store.id), id: "menu-items-link" , class: 'btn btn-danger lowercase'%>
-      </li>
-    </ul>
+<ul id="archived-menu-editor-controls">
+  <li id="menu-label">
+   archived items
+  </li>
+  <li>
+    <%= link_to "BACK TO MENU", store_store_items_path(@store.id), id: "menu-items-link" , class: 'btn btn-primary'%>
+  </li>
+</ul>
 
 
-<h3 class="archived-item-menu-edit">archived items</h3>
+
 
 <% content_for :head do %>
   <script type='text/javascript' src='https://www.google.com/jsapi'></script>
@@ -82,7 +84,7 @@
       var view = new google.visualization.DataView(data);
       view.setColumns([0,2,3,4,5,6,7,8,9,10,11,12]); /** drop hidden column 1 **/
 
-      var cssClassNames = {headerRow: "simple-weed-google-table-header", headerCell: "simple-weed-google-table-header-cell"};
+      var cssClassNames = {headerRow: "simple-weed-google-table-header", headerCell: "simple-weed-google-table-header-cell-archived-menu-editor", tableCell: "simple-weed-google-table-table-cell-menu-editor", hoverTableRow: "simple-weed-google-table-hover-row", selectedTableRow: "simple-weed-google-table-selectedrow"};
       table.draw(view, {showRowNumber: false, allowHtml: true, cssClassNames: cssClassNames});
 
       

@@ -139,6 +139,7 @@ class StoreItemsController < ApplicationController
 	def restore_modal
 		@store_item = StoreItem.only_deleted.find(params[:id])				
 		@role_service = Simpleweed::Security::Roleservice.new		
+		render layout: false
 	end
 
 private
