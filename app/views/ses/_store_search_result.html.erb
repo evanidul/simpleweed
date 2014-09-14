@@ -1,3 +1,4 @@
+<% store = Store.find(group.hits[0].stored(:store_id)) %>
 <div class="item-search-result-container" latitude="<%= group.hits[0].stored(:store_latitude) %>" longitude="<%= group.hits[0].stored(:store_longitude) %>" store-name="<%= group.hits[0].stored(:store_name)%>" 
 								item-name="" >
   		<div class = "image-and-meta-container">
@@ -22,9 +23,13 @@
 						</a>
 						
 						</h4>
+						<% if !store.promo.blank? %>
+							<div class="search-store-promo">
+								<%= store.promo %>
+							</div>
+						<% end %>
 						<div class="search-store-result-star-rank" >
-							<!-- not pulling out of index, want most recent value -->
-							<% store = Store.find(group.hits[0].stored(:store_id)) %>
+							<!-- not pulling out of index, want most recent value -->							
 							<%= render partial: 'layouts/stars', locals: {score: store.stars} %>						
 						</div>
 						<div class="search-results-store-info">
