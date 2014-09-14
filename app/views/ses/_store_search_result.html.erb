@@ -16,7 +16,7 @@
 			</a>
 			
 			</h4>
-			<div class="star-rank" >
+			<div class="search-store-result-star-rank" >
 				<!-- not pulling out of index, want most recent value -->
 				<% store = Store.find(group.hits[0].stored(:store_id)) %>
 				<%= render partial: 'layouts/stars', locals: {score: store.stars} %>						
