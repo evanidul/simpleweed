@@ -1,3 +1,10 @@
+if Rails.env == 'production'
+    geocodertimeout = 5
+  else
+    geocodertimeout = 10
+  end
+
+
 Geocoder.configure(
 
   # geocoding service (see below for supported options):
@@ -11,8 +18,9 @@ Geocoder.configure(
   :api_key => ["3MljO_KtLS9BjQ-PMp3T1WRoWbY=","gme-simpleweedllc", "simpleweed-channel"],
 
   # geocoding service request timeout, in seconds (default 3):
-  :timeout => 5,
-
+  
+  :timeout => geocodertimeout,
+  
   # set default units to kilometers:
   :units => :km,
 
