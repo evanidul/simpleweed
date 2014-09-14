@@ -63,11 +63,11 @@ var g_map;
   # documents can be returned per group  
   
   
-  %>
-  
+  %>  	
   	<%= render partial: 'ses/store_search_result', locals: {group: group, counter: @counter} %>			  
-  
+	<% @counter = @counter + 1 %>  
 <% end %>
+
 
 </div> <!-- search-results -->
 <% if !@isLastPage %>

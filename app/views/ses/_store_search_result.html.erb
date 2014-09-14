@@ -1,35 +1,46 @@
 <div class="item-search-result-container" latitude="<%= group.hits[0].stored(:store_latitude) %>" longitude="<%= group.hits[0].stored(:store_longitude) %>" store-name="<%= group.hits[0].stored(:store_name)%>" 
 								item-name="" >
   		<div class = "image-and-meta-container">
-			<h4>
-	  		<!-- name -->
-	  		<a class = "search-results-store-name" href="<%= store_path(group.hits[0].stored(:store_id))%>" data-no-turbolink='true' >
-				<% if group.hits[0].highlights(:store_name).size == 0 %>								
-					<!-- have to do because just loading directly renders brackets and newlines -->
-					<% group.hits[0].stored(:store_name).each do |word| %>
-						<%= word %>
-					<% end %>
-				<% end %>
-				<% group.hits[0].highlights(:store_name).each do |highlight| %>								    
-				    <%= raw highlight.format  { |word| "<span class='highlight'> #{word} </span>"  } %>
-				<% end %>
-			</a>
+  			<table>
+				<tr>
+					<td class="image-td" valign="top">
+						<%= counter %>
+					</td>
+					<td class="item-search-result-meta">
+						<h4>
+				  		<!-- name -->
+				  		<a class = "search-results-store-name" href="<%= store_path(group.hits[0].stored(:store_id))%>" data-no-turbolink='true' >
+							<% if group.hits[0].highlights(:store_name).size == 0 %>								
+								<!-- have to do because just loading directly renders brackets and newlines -->
+								<% group.hits[0].stored(:store_name).each do |word| %>
+									<%= word %>
+								<% end %>
+							<% end %>
+							<% group.hits[0].highlights(:store_name).each do |highlight| %>								    
+							    <%= raw highlight.format  { |word| "<span class='highlight'> #{word} </span>"  } %>
+							<% end %>
+						</a>
+						
+						</h4>
+						<div class="search-store-result-star-rank" >
+							<!-- not pulling out of index, want most recent value -->
+							<% store = Store.find(group.hits[0].stored(:store_id)) %>
+							<%= render partial: 'layouts/stars', locals: {score: store.stars} %>						
+						</div>
+						<div class="search-results-store-info">
+							<%= render partial: 'ses/store_info', locals: {group: group} %>						
+						</div>
+						<div class ="search-results-store-badges pull-right">
+							<div class="item-results-field-type">features:</div>
+							<%= render partial: 'ses/store_features', locals: {group: group} %>						
+						</div>	
+					    
+						<div style="clear:both;"></div>
+					</td>
+				</tr>
+			</table>
+
 			
-			</h4>
-			<div class="search-store-result-star-rank" >
-				<!-- not pulling out of index, want most recent value -->
-				<% store = Store.find(group.hits[0].stored(:store_id)) %>
-				<%= render partial: 'layouts/stars', locals: {score: store.stars} %>						
-			</div>
-			<div class="search-results-store-info">
-				<%= render partial: 'ses/store_info', locals: {group: group} %>						
-			</div>
-			<div class ="search-results-store-badges pull-right">
-				<div class="item-results-field-type">features:</div>
-				<%= render partial: 'ses/store_features', locals: {group: group} %>						
-			</div>	
-		    
-			<div style="clear:both;"></div>
 		
 					
 		  	
