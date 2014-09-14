@@ -22,24 +22,28 @@
       </td>
     </tr>
   </table>
+  <%= render partial: 'layouts/stars', locals: {score: @store.stars} %>           
+  <%= link_to "MANAGE SUBSCRIPTIONS", subscription_plans_store_path(@store.id), id: "manage-subscriptions-link" , class: 'btn btn-primary pull-right'%>
+  <hr />
 
-  <ul id="menu-editor-controls">      
-      <li class="star-rank">
-        <%= render partial: 'layouts/stars', locals: {score: @store.stars} %>           
+  
+  <ul id="menu-editor-controls">                  
+      <li id="menu-label">
+       menu items
       </li>
       <li>
-        <%= link_to "add item", new_store_store_item_path, id: "new_store_item_top", data: { toggle: "modal", target: "#modal" , remote: new_store_store_item_path} , class: 'btn btn-primary lowercase'%>
+        <%= link_to "ADD ITEM", new_store_store_item_path, id: "new_store_item_top", data: { toggle: "modal", target: "#modal" , remote: new_store_store_item_path} , class: 'btn btn-primary'%>
       </li>      
       <li>
-        <%= link_to "manage subscriptions", subscription_plans_store_path(@store.id), id: "manage-subscriptions-link" , class: 'btn btn-primary lowercase'%>
+        
       </li>
       <li>
-        <%= link_to "archived items", archived_items_store_path(@store.id), id: "archived-items-link" , class: 'btn btn-primary lowercase'%>
+        <%= link_to "ARCHIVED ITEMS", archived_items_store_path(@store.id), id: "archived-items-link" , class: 'btn btn-primary '%>
       </li>
     </ul>
 
 
-<h3 class="item-menu-edit">item menu</h3>
+
 
 <% content_for :head do %>
   <script type='text/javascript' src='https://www.google.com/jsapi'></script>
@@ -87,7 +91,7 @@
       var view = new google.visualization.DataView(data);
       view.setColumns([0,2,3,4,5,6,7,8,9,10,11,12]); /** drop hidden column 1 **/
 
-      var cssClassNames = {headerRow: "simple-weed-google-table-header", headerCell: "simple-weed-google-table-header-cell"};
+      var cssClassNames = {headerRow: "simple-weed-google-table-header", headerCell: "simple-weed-google-table-header-cell-menu-editor", tableCell: "simple-weed-google-table-table-cell-menu-editor", hoverTableRow: "simple-weed-google-table-hover-row", selectedTableRow: "simple-weed-google-table-selectedrow"};
       table.draw(view, {showRowNumber: false, allowHtml: true, cssClassNames: cssClassNames});
 
       
@@ -117,4 +121,4 @@
 <div id='table_div'></div>
 
 </br>
-<%= link_to "Add Item", new_store_store_item_path, id: "new_store_item", data: { toggle: "modal", target: "#modal" , remote: new_store_store_item_path} , class: 'btn btn-primary lowercase'%>
+<%= link_to "ADD ITEM", new_store_store_item_path, id: "new_store_item", data: { toggle: "modal", target: "#modal" , remote: new_store_store_item_path} , class: 'btn btn-primary'%>

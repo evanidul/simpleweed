@@ -1278,9 +1278,17 @@ body .ui-tooltip {
 	margin-right: 7px;
 }
 
+#menu-label {
+	font-size: 16px;
+	font-weight: 800;
+	margin-right:20px;
+}
+
 #menu-editor-controls {
 	list-style-type: none;	
 	padding-left:0;
+	margin-bottom: 20px;
+	margin-top: 5px;
 }
 
 #menu-editor-controls li{

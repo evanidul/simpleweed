@@ -364,6 +364,34 @@ h3 {
 }
  
 .simple-weed-google-table-header-cell {
-  background: #D8E0D8 !important;   //slightly darker gray than row select gray
-  //background: #9AA9B8         //dark blue gray
+  background: #D8E0D8 !important;   
+}
+
+.simple-weed-google-table-header-cell-menu-editor {
+  background: #429538 !important; 
+  color: white !important;  
+  padding-bottom: 2px !important;
+  padding-left: 10px !important;
+  padding-top: 12px !important;
+  font-size: 15px !important;
+  
+}
+
+.simple-weed-google-table-table-cell-menu-editor {
+  padding-left:5px !important;
+  border-bottom: 1px solid lightgray;
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
+}
+
+.simple-weed-google-table-hover-row {
+  
+  background-color: #8CC63E !important;   
+  color:white;
+}
+
+.simple-weed-google-table-selectedrow {
+  background-color: #CDE0B3 !important;  /** lighter than our light green **/ 
+ 
+ color:white;
 }
