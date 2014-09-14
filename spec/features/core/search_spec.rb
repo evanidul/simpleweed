@@ -197,10 +197,7 @@ feature "search page" , :js => true , :search =>true do
         header.search_button.click
         searchresults_page = SearchResultsItemPageComponent.new
         searchresults_page.searchresults_item_names.size.should == 0
-
-        header.group_search_button.click
-        search_results_page = SearchResultsStoresPageComponent.new
-        search_results_page.search_results_store_names.size.should == 0
+        
     end
 
     scenario "group search: entering no item query should yield group search page, collapsed view" do
@@ -233,14 +230,7 @@ feature "search page" , :js => true , :search =>true do
         # items should be collapsed if item query is empty
         search_results_page.search_results_item_names.size.should == 0
 
-        # items should show if group button is clicked
-        header.group_search_button.click
-        search_results_page.search_results_store_names.size.should == 1
-        search_results_page.search_results_store_names.map {|name| name.text}.should == [@store_name]
-    
-        search_results_page.search_results_item_names.size.should == 2
-        search_results_page.search_results_item_names.map {|name| name.text}.should == [@item1.name, @item2.name]
-
+        
         header = HeaderPageComponent.new    
         header.search_input.set "San Diego, CA"
         header.item_query_input.set "cookies"

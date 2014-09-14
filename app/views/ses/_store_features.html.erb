@@ -1,0 +1,49 @@
+<%
+				  	
+	badges = [ ]
+	if group.hits[0].stored(:store_deliveryservice)
+		badges.push("deliveryservice")
+	end
+	if group.hits[0].stored(:store_acceptscreditcards)
+		badges.push("acceptscreditcards")
+	end
+	if group.hits[0].stored(:store_atmaccess)
+		badges.push("atmaccess")
+	end
+	if group.hits[0].stored(:store_automaticdispensingmachines)
+		badges.push("automaticdispensingmachines")
+	end
+	if group.hits[0].stored(:store_firsttimepatientdeals)
+		badges.push("firsttimepatientdeals")
+	end
+	if group.hits[0].stored(:store_handicapaccess)
+		badges.push("handicapaccess")
+	end
+	if group.hits[0].stored(:store_loungearea)
+		badges.push("loungearea")
+	end
+	if group.hits[0].stored(:store_petfriendly)
+		badges.push("petfriendly")
+	end
+	if group.hits[0].stored(:store_securityguard)
+		badges.push("securityguard")
+	end
+	if group.hits[0].stored(:store_eighteenplus)
+		badges.push("eighteenplus")
+	end
+	if group.hits[0].stored(:store_twentyoneplus)
+		badges.push("twentyoneplus")
+	end
+	if group.hits[0].stored(:store_hasphotos)
+		badges.push("hasphotos")
+	end
+	if group.hits[0].stored(:store_labtested)
+		badges.push("labtested")
+	end
+	if group.hits[0].stored(:store_onsitetesting)
+		badges.push("onsitetesting")
+	end
+	%>
+	<% badges.each do |badge| %>								    
+		<div class=""><%= badge %></div>
+	<% end %>

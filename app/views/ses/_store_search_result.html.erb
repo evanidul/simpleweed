@@ -1,0 +1,74 @@
+<div class="item-search-result-container" latitude="<%= group.hits[0].stored(:store_latitude) %>" longitude="<%= group.hits[0].stored(:store_longitude) %>" store-name="<%= group.hits[0].stored(:store_name)%>" 
+								item-name="" >
+  		<div class = "image-and-meta-container">
+  			<table>
+  				<tr>
+  					<td>
+						
+					</td>
+					<td>
+						<h4>
+					  		<!-- name -->
+					  		<a class = "search-results-store-name" href="<%= store_path(group.hits[0].stored(:store_id))%>" data-no-turbolink='true' >
+								<% if group.hits[0].highlights(:store_name).size == 0 %>								
+									<!-- have to do because just loading directly renders brackets and newlines -->
+									<% group.hits[0].stored(:store_name).each do |word| %>
+										<%= word %>
+									<% end %>
+								<% end %>
+								<% group.hits[0].highlights(:store_name).each do |highlight| %>								    
+								    <%= raw highlight.format  { |word| "<span class='highlight'> #{word} </span>"  } %>
+								<% end %>
+							</a>
+							
+						</h4>
+						<div class="star-rank" >
+							<!-- not pulling out of index, want most recent value -->
+							<% store = Store.find(group.hits[0].stored(:store_id)) %>
+							<%= render partial: 'layouts/stars', locals: {score: store.stars} %>						
+						</div>
+						<div class="search-results-store-info">
+						</div>
+						<div class ="search-results-store-badges">
+							<%= render partial: 'ses/store_features', locals: {group: group} %>						
+						</div>	
+					    <!-- store address -->
+						<% if  group.hits[0].stored(:store_addressline1) && !group.hits[0].stored(:store_addressline1).empty?  %>
+							<% group.hits[0].stored(:store_addressline1).each do |word| %>
+								<%= word %>
+							<% end %>								
+						<% end %>
+						<% if  group.hits[0].stored(:store_addressline2) && !group.hits[0].stored(:store_addressline2).empty?  %>
+							<% group.hits[0].stored(:store_addressline2).each do |word| %>
+								<%= word %>
+							<% end %>								
+						<% end %>
+						<% if  group.hits[0].stored(:store_city) && !group.hits[0].stored(:store_city).empty?  %>
+							<% group.hits[0].stored(:store_city).each do |word| %>
+								<%= word %>
+							<% end %>
+						<% end %>
+						<% if  group.hits[0].stored(:store_state) && !group.hits[0].stored(:store_state).empty?  %>
+							<% group.hits[0].stored(:store_state).each do |word| %>
+								<%= word %>
+							<% end %>
+						<% end %>
+						<% if  group.hits[0].stored(:store_zip) && !group.hits[0].stored(:store_zip).empty?  %>
+							<% group.hits[0].stored(:store_zip).each do |word| %>
+								<%= word %>
+							<% end %>
+						<% end %>
+						</br>
+						<% if  group.hits[0].stored(:store_phonenumber) && !group.hits[0].stored(:store_phonenumber).empty?  %>
+							<% group.hits[0].stored(:store_phonenumber).each do |word| %>
+								<%= word %>
+							<% end %>
+						<% end %>
+
+		
+					</td>
+				</tr>
+			</table>
+		  	
+		</div>
+  	</div>
