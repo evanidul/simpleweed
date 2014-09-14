@@ -1,32 +1,33 @@
-
-<%= render partial: 'nav_feed' %>
-
-<div class="activities col-md-9">
-
-	
-	<h3>
-		<%= link_to 'feed home', feeds_path %>
-		<span> / </span>
-		<span id="feed-name"><%= @feed.name %></span>
-		<span class="add-new-post-button">				
-			<% if !current_user.nil? %>			
-				<%= link_to 'write a post', new_feed_feed_post_path(@feed.id) , data: { toggle: "modal", target: "#modal", remote: new_feed_feed_post_path(@feed.id)} , id: "add-new-post-button" , class: "btn btn-primary pull-right" %>
-			<% else %>
-				<%= link_to 'write a post', login_path , data: { toggle: "modal", target: "#modal", remote: login_path} , id: "add-new-post-button", class: "btn btn-primary pull-right" %>
+<div class="row">
+    <div class="col-md-9">		
+    	<h3 class="feed-headers">
+			<%= link_to 'feed home', feeds_path %>
+			<span> / </span>
+			<span id="feed-name"><%= @feed.name %></span>
+			<span class="add-new-post-button">				
+				<% if !current_user.nil? %>			
+					<%= link_to 'write a post', new_feed_feed_post_path(@feed.id) , data: { toggle: "modal", target: "#modal", remote: new_feed_feed_post_path(@feed.id)} , id: "add-new-post-button" , class: "btn btn-primary pull-right" %>
+				<% else %>
+					<%= link_to 'write a post', login_path , data: { toggle: "modal", target: "#modal", remote: login_path} , id: "add-new-post-button", class: "btn btn-primary pull-right" %>
+				<% end %>
+			</span>			
+		</h3>
+		<hr>
+		<div class="posts">			
+			<% @feed.feed_posts.order("created_at desc").each do | post | %>					
+				<%= render partial: 'feed_posts/feed_post', locals: {post: post , render_feedname: false} %>			
 			<% end %>
-		</span>			
-	</h3>
 
-
-
-	<hr>
-	
-
-
-	<div class="posts">			
-		<% @feed.feed_posts.order("created_at desc").each do | post | %>					
-			<%= render partial: 'feed_posts/feed_post', locals: {post: post , render_feedname: false} %>			
-		<% end %>
-
-	</div>
+		</div>
+    </div>
+    <div class="col-md-3" id="feed-top-nav-container">		
+    	<%= render partial: 'nav_feed' %>
+    </div>
 </div>
+
+
+
+
+
+	
+	

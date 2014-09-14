@@ -1,23 +1,25 @@
-
-<%= render partial: 'nav_feed' %>
-
-<div class="activities col-md-9">
-	
-	<h3>feed home
+<div class="row">
+    <div class="col-md-9">		
+    	<h3 class="feed-headers">feed home
 		<% if @roleservice.canAddCommunityFeed(current_user) %>
 			<span class="add-feed-button">				
 			<%= link_to 'add new feed', new_feed_path() , data: { toggle: "modal", target: "#modal", remote: new_feed_path()} , id: "add-new-feed-button" , class: "btn btn-primary pull-right" %>
 			</span>			
 		<% end %>
-
-		
-	</h3>
-	
-	<hr>
-	
-	<% @top_posts.each do |post| %>		
-		<%= render partial: 'feed_posts/feed_post', locals: {post: post, render_feedname: true} %>			
-	<% end %>
-
-	
+		</h3>	
+		<hr>	
+		<% @top_posts.each do |post| %>		
+			<%= render partial: 'feed_posts/feed_post', locals: {post: post, render_feedname: true} %>			
+		<% end %>
+    </div>
+    <div class="col-md-3" id="feed-top-nav-container">		
+    	<%= render partial: 'nav_feed' %>
+    </div>
 </div>
+
+
+
+
+
+	
+	

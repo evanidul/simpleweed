@@ -222,6 +222,7 @@ feature "review a store" , :js => true, :search =>true do
 		community_home_page.dynamic_feed_links.first.click
 
 		feed_page = CommunityFeedPage.new		
+
 		expect(feed_page.feed_name_span.text).to have_text(new_feed_name)
 
 		# add new post

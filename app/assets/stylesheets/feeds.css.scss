@@ -11,12 +11,34 @@
 	margin-bottom: 10px;
 }
 
+#add-new-post-button {
+	margin-top: 12px;
+	margin-right: 3px;
+}
+
+.feed-headers {
+	font-size: 36px;
+	font-weight: 200;
+}
+
 .post-title {
-	font-size: 16px;
+	font-size: 20px;
+	font-weight: 500;
 }
 
 .post {	
 	padding-bottom: 10px;
+}
+
+#feed-top-nav a {
+	color: black;
+	font-weight: 800;
+	font-size: 18px;
+}
+
+#feed-top-nav-container {
+	padding-top: 12px;
+	background-color: rgb(241, 241, 241);
 }
 
 #feed-top-nav {
@@ -27,8 +49,7 @@
 
 #feed-top-nav li {
 	list-style-type: none;
-	display: inline;
-	margin-right: 5px;
+	margin: 10px 0 10px 5px;
 }
 
 .post-user-actions {

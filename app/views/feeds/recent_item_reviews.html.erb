@@ -1,26 +1,26 @@
-
-<%= render partial: 'nav_feed' %>
-
-<div class="activities col-md-9">
-
-	
-	<h3>
-		<%= link_to 'feed home', feeds_path %>
-		<span> / </span>
-		recent item reviews
-		
-	</h3>
-
-
-
-	<hr>
-	
-	<% @reviews.each do |store_item_review| %>
-	  
-	  	<% @feed = true %>
-	    <%= render partial: 'store_item_reviews/store_item_review', locals: {store_item_review: store_item_review} %>
-	  
-	<% end %>  		
-	
+<div class="row">
+    <div class="col-md-9">			
+		<h3>
+			<%= link_to 'feed home', feeds_path %>
+			<span> / </span>
+			recent item reviews
+			
+		</h3>
+		<hr>		
+		<% @reviews.each do |store_item_review| %>		  
+		  	<% @feed = true %>
+		    <%= render partial: 'store_item_reviews/store_item_review', locals: {store_item_review: store_item_review} %>		  
+		<% end %>  		
+    </div>
+    <div class="col-md-3" id="feed-top-nav-container">		
+    	<%= render partial: 'nav_feed' %>
+    </div>
 </div>
+
+
+
+
+
+	
+	
 

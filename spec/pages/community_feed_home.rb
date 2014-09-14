@@ -7,7 +7,7 @@ class CommunityFeedHomePage < SitePrism::Page
   element :new_feed_name_input, '#feed_name'
   element :save_feed_button, '#save_feed'
 
-  elements :dynamic_feed_links ,'.dynamic-feed'
+  elements :dynamic_feed_links ,'.dynamic-feed a'
   
   
 end
