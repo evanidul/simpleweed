@@ -8,25 +8,39 @@
 						<%= counter %>
 					</td>
 					<td class="item-search-result-meta">
-						<h4>
+						<h4 style="display:inline;">
 				  		<!-- name -->
 				  		<a class = "search-results-store-name" href="<%= store_path(group.hits[0].stored(:store_id))%>" data-no-turbolink='true' >
 							<% if group.hits[0].highlights(:store_name).size == 0 %>								
 								<!-- have to do because just loading directly renders brackets and newlines -->
 								<% group.hits[0].stored(:store_name).each do |word| %>
-									<%= word %>
+									<% if !store.promo.blank? %>
+										<% if word.size > 15 %>
+											<%= word[0...15]+"..." %>
+										<% else %>
+											<%= word %>
+										<% end %>
+									<% else %>
+										<%= word %>
+									<% end %>
 								<% end %>
 							<% end %>
 							<% group.hits[0].highlights(:store_name).each do |highlight| %>								    
-							    <%= raw highlight.format  { |word| "<span class='highlight'> #{word} </span>"  } %>
+							    <%= raw highlight.format  { |word| "<span class='highlight'> #{word[0...15]} </span>"  } %>
 							<% end %>
 						</a>
 						
 						</h4>
 						<% if !store.promo.blank? %>
-							<div class="search-store-promo">
-								<%= store.promo %>
-							</div>
+							<!--<div class="search-store-promo">-->
+							<span class="search-result-store-promo pull-right">																<% if store.promo.size > 45 %>					
+									<%= store.promo[0...45] + "..." %>
+								<% else %>
+									<%= store.promo %>
+								<% end %>
+							</span>
+							<!--</div>-->
+							<div class="clear:both;"></div>
 						<% end %>
 						<div class="search-store-result-star-rank" >
 							<!-- not pulling out of index, want most recent value -->							
