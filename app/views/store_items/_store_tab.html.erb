@@ -11,30 +11,17 @@
 				<h4 class="item-pop-up-store-name inline-header">
 					<a href="<%= store_path(@store.id)%>" data-no-turbolink='true' > <%= @store.name %></a>													
 				</h4>
-				<% if !@store.facebook.blank? %>						
-					<a id="facebook" href="<%= @urlservice.url_with_protocol(@store.facebook) %>">
-						<span class="fa-stack fa store-header-icons-item-modal">
-						  <i class="fa fa-circle fa-stack-2x"></i>
-						  <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+				<% if @store.deliveryservice? %>											
+						<span class="fa-stack fa-lg store-header-icons-item-modal">						  
+						  <i class="fa fa-truck fa-stack-1x fa"></i>
+						</span>									
+				<% else %>
+						<span class="fa-stack fa-lg store-header-icons-item-modal">						  
+						  <i class="fa fa-home fa-stack-1x fa"></i>
 						</span>
-					</a>
-				<% end %>
-				<% if !@store.twitter.blank? %>						
-					<a id="twitter" href="<%= @urlservice.url_with_protocol(@store.twitter) %>">
-						<span class="fa-stack fa store-header-icons-item-modal">
-						  <i class="fa fa-circle fa-stack-2x"></i>
-						  <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-						</span>
-					</a>
+					
 				<% end %>	
-				<% if !@store.instagram.blank? %>						
-					<a id="instagram" href="<%= @urlservice.url_with_protocol(@store.instagram) %>">
-						<span class="fa-stack fa store-header-icons-item-modal">
-						  <i class="fa fa-circle fa-stack-2x"></i>
-						  <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
-						</span>
-					</a>
-				<% end %>
+				
 			</td>
 		</tr>
 	</table>  	
@@ -104,6 +91,31 @@
 						 <i class="glyphicon glyphicon-envelope"></i>					
 						 <span id="email"><%= @store.email  %></span>
 						 <br />
+					<% end %>
+					<div id="store-social-links">
+					<% if !@store.facebook.blank? %>						
+						<a id="facebook" href="<%= @urlservice.url_with_protocol(@store.facebook) %>">
+							<span class="fa-stack fa store-header-icons">
+							  <i class="fa fa-circle fa-stack-2x"></i>
+							  <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+							</span>
+						</a>					
+					<% end %>
+					<% if !@store.twitter.blank? %>						
+						<a id="twitter" href="<%= @urlservice.url_with_protocol(@store.twitter) %>">
+							<span class="fa-stack fa store-header-icons">
+							  <i class="fa fa-circle fa-stack-2x"></i>
+							  <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+							</span>
+						</a>
+					<% end %>	
+					<% if !@store.instagram.blank? %>						
+						<a id="instagram" href="<%= @urlservice.url_with_protocol(@store.instagram) %>">
+							<span class="fa-stack fa store-header-icons">
+							  <i class="fa fa-circle fa-stack-2x"></i>
+							  <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+							</span>
+						</a>
 					<% end %>
 					<div id="ts-store-status"></div>
 					 

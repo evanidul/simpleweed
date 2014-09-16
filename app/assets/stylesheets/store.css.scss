@@ -1516,8 +1516,14 @@ tr.hours-row > td {
 }
 
 .store-header-icons {
-	position:relative;
-	bottom:10px;
+	margin-top: 10px;	
+}
+
+#store-social-links a {
+	color:black;
+}
+#store-social-links a:hover {
+	color: #8CC63E;
 }
 
 .store-name-and-edit a {
