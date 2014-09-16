@@ -1,6 +1,6 @@
 module WaitForAjax
   def wait_for_ajax
-    Timeout.timeout(10) do
+    Timeout.timeout(15) do
       loop until finished_all_ajax_requests?
     end
   end
