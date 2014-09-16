@@ -492,13 +492,13 @@ feature "review a store" , :js => true, :search =>true do
 
 		# plugin some email verification gem and verify account creation
 		# http://stackoverflow.com/questions/8886748/testing-account-confirmation-with-rails-rspec-capybara-devise	
-        sleep 2
+        sleep 3
 		emailproxy = open_email(email)
 		emailproxy.should deliver_to(email)
 		
 		# click_link "Confirm my account"
 		click_first_link_in_email		
-		sleep 2
+		sleep 10
 
 		# see full login page and login
 		login_page = LoginPage.new
