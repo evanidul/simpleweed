@@ -14,8 +14,6 @@ require 'pages/search_results_items'
 require 'pages/itempopup'
 require 'page_components/profile_nav'
 require 'pages/profile_myreviews'
-require 'page_components/community_nav'
-require 'pages/community_recent_item_reviews'
 
 feature "store item archive tests" , :js => true, :search =>true do
 
@@ -254,13 +252,6 @@ feature "store item archive tests" , :js => true, :search =>true do
         myreviews_page = ProfileMyReviewsPageComponent.new
         myreviews_page.item_review_tab.click
         myreviews_page.item_reviews.size.should == 1      
-
-        # go to recent item reviews in comm, it should be there        
-        header.community_home_link.click
-        community_nav = CommunityNavPageComponent.new
-        community_nav.recent_item_reviews_link.click
-        community_recent_item_reviews_page = CommunityRecentItemReviewsPageComponent.new
-        community_recent_item_reviews_page.recent_item_reviews.size.should == 1
         
         # archive the item
         page.visit(store_store_items_path(@store))
@@ -291,14 +282,7 @@ feature "store item archive tests" , :js => true, :search =>true do
         myreviews_page.item_review_tab.click
         # the review for the archived item should be soft deleted as well
         myreviews_page.item_reviews.size.should == 0
-
-        # go to recent item reviews in comm, it should NOT be there        
-        header.community_home_link.click
-        community_nav = CommunityNavPageComponent.new
-        community_nav.recent_item_reviews_link.click
-        community_recent_item_reviews_page = CommunityRecentItemReviewsPageComponent.new
-        community_recent_item_reviews_page.recent_item_reviews.size.should == 0
-
+        
         # now unarchive it
         page.visit(store_store_items_path(@store))
 		items_page.archived_items_button.click
@@ -326,12 +310,6 @@ feature "store item archive tests" , :js => true, :search =>true do
         # the review for the archived item should be soft deleted as well
         myreviews_page.item_reviews.size.should == 1
 
-        # go to recent item reviews in comm, it should be there again
-        header.community_home_link.click
-        community_nav = CommunityNavPageComponent.new
-        community_nav.recent_item_reviews_link.click
-        community_recent_item_reviews_page = CommunityRecentItemReviewsPageComponent.new
-        community_recent_item_reviews_page.recent_item_reviews.size.should == 1
 	end
 
 end	

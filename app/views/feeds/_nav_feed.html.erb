@@ -2,13 +2,7 @@
 	<li>
 		<a href="<%= feeds_path %> ">feed home </a>
 	</li>
-	<li>
-		<a id="community-recent-store-reviews" href="<%= feeds_recent_store_reviews_path %> ">store reviews</a>
-	</li>
-	<li>
-		<a id="community-recent-item-reviews" href="<%= feeds_recent_item_reviews_path %> ">item reviews</a>
-	</li>
-
+	
 	<% @feeds.each do |feed| %>
 		<li class="dynamic-feed"><%= link_to feed.name, feed_path(feed.id) %></li>
 	<% end %>
