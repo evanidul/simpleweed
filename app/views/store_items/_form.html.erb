@@ -90,6 +90,12 @@
   <%= f.check_box :haze, {}, "true","false" %>
   <%= f.label :haze, "haze" %><br>
 
+  <h4>use type </h4>
+  <%= f.label :usetype, 'medical' %>
+  <%= f.radio_button :usetype, 'medical', :checked => true %> 
+  <%= f.label :usetype, 'recreational' %>
+  <%= f.radio_button :usetype, 'recreational' %> 
+
   <h4>lab information</h4>          
   <table id="lab-information">
   	<tr>

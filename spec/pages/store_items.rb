@@ -46,6 +46,10 @@ class StoreItemsPage < SitePrism::Page
 	element :kush, '#store_item_kush'
 	element :haze, '#store_item_haze'
 
+	# usetype
+	element :medical, '#store_item_usetype_medical'
+	element :recreational,'#store_item_usetype_recreational'
+
 	# Misc Attributes
 	element :store_item_privatereserve, '#store_item_privatereserve' 
 	element :store_item_topshelf, '#store_item_topshelf'

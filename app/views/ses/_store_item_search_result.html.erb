@@ -51,7 +51,8 @@
 								store_name: full_store_name,
 								strain: item.stored(:strain),
 								maincategory: item.stored(:maincategory),
-								subcategory: item.stored(:subcategory)
+								subcategory: item.stored(:subcategory),
+								usetype: item.stored(:usetype)
 							} %>
 							
 							<%= render partial: 'store_items/badges', locals: {

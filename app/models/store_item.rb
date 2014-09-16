@@ -36,6 +36,10 @@ class StoreItem < ActiveRecord::Base
 	validates_inclusion_of :cultivation, :in => CULTIVATION,:allow_nil => true,
 	      :message => "{{value}} must be in #{CULTIVATION.join ','}"
 
+    USETYPES = ['medical', 'recreational']
+    validates_inclusion_of :usetype, :in => USETYPES,:allow_nil => true,
+	      :message => "{{value}} must be in #{USETYPES.join ','}"
+
 	def location 
 		return Sunspot::Util::Coordinates.new(store.latitude, store.longitude)
 	end
@@ -65,6 +69,7 @@ class StoreItem < ActiveRecord::Base
 	    string   :strain, :stored => true
 	    string   :subcategory, :stored => true
 	    string   :cultivation, :stored => true
+	    string   :usetype, :stored => true
 	    boolean  :privatereserve, :stored => true
 	    boolean  :topshelf, :stored => true
 	    boolean  :supersize, :stored => true

@@ -62,13 +62,14 @@
       data.addColumn('string', 'strain');
       data.addColumn('string', 'category');
       data.addColumn('string', 'sub-category');
-      data.addColumn('string', '.5 g');
-      data.addColumn('string', '1 g');
-      data.addColumn('string', '1/8 oz');
-      data.addColumn('string', '1/4 oz');
-      data.addColumn('string', '1/2 oz');
-      data.addColumn('string', '1 oz');
-      data.addColumn('string', 'per unit');
+      data.addColumn('string', 'use');
+      data.addColumn('string', '.5g');
+      data.addColumn('string', '1g');
+      data.addColumn('string', '1/8oz');
+      data.addColumn('string', '1/4oz');
+      data.addColumn('string', '1/2oz');
+      data.addColumn('string', '1oz');
+      data.addColumn('string', 'perunit');
 
       <% @store_items.each do |store_item| %>
         data.addRow([
@@ -78,6 +79,7 @@
           '<%= store_item.strain %>' ,
           '<%= store_item.maincategory %>' ,          
           '<%= store_item.subcategory %>' ,
+          '<%= store_item.usetype %>' ,
           '<%= store_item.costhalfgram %>',
           '<%= store_item.costonegram %>', 
           '<%= store_item.costeighthoz %>',
@@ -89,7 +91,7 @@
       <% end %>      
       var table = new google.visualization.Table(document.getElementById('table_div'));
       var view = new google.visualization.DataView(data);
-      view.setColumns([0,2,3,4,5,6,7,8,9,10,11,12]); /** drop hidden column 1 **/
+      view.setColumns([0,2,3,4,5,6,7,8,9,10,11,12,13]); /** drop hidden column 1 **/
 
       var cssClassNames = {headerRow: "simple-weed-google-table-header", headerCell: "simple-weed-google-table-header-cell-menu-editor", tableCell: "simple-weed-google-table-table-cell-menu-editor", hoverTableRow: "simple-weed-google-table-hover-row", selectedTableRow: "simple-weed-google-table-selectedrow"};
       table.draw(view, {showRowNumber: false, allowHtml: true, cssClassNames: cssClassNames});

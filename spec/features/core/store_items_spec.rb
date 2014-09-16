@@ -358,6 +358,7 @@ feature "store item edit and add" , :js => true, :search =>true do
 		items_page.store_item_strain.select 'sativa'
 		items_page.store_item_maincategory.select 'flower'
 		items_page.store_item_subcategory.select 'bud'
+		items_page.recreational.click
 
 		items_page.save_store_item_button.click
 
@@ -391,6 +392,9 @@ feature "store item edit and add" , :js => true, :search =>true do
 		items_page.kush.should_not be_checked
 		items_page.haze.should_not be_checked
 
+		items_page.recreational.should be_checked
+		items_page.medical.should_not be_checked
+		
 		# update values
 		items_page.store_item_privatereserve.set true
 		items_page.store_item_topshelf.set true
@@ -403,6 +407,8 @@ feature "store item edit and add" , :js => true, :search =>true do
 		items_page.og.set true
 		items_page.kush.set true
 		items_page.haze.set true
+
+		items_page.medical.click
 		
 		items_page.save_store_item_button.click
 
@@ -432,6 +438,9 @@ feature "store item edit and add" , :js => true, :search =>true do
 		items_page.og.should be_checked
 		items_page.kush.should be_checked
 		items_page.haze.should be_checked
+
+		items_page.recreational.should_not be_checked
+		items_page.medical.should be_checked
 
 		# update values, set all to false
 		items_page.store_item_privatereserve.set false
