@@ -67,7 +67,7 @@ describe StoreReviewVote do
 		expect(vote).to have(1).errors_on(:user)
 	end
 
-	it "requires a store" do
+	it "requires a store review" do
 		vote = build(:store_review_vote, :user => @alice, :store_review => nil, :vote => 1)		
 		expect(vote).to be_invalid
 		expect(vote).to have(1).errors_on(:store_review)
