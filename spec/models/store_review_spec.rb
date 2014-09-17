@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe StoreReview do
-  before(:each) do
+  	before(:each) do
 		@admin = create(:admin)		
 	end
 
