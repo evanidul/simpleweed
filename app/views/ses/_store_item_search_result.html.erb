@@ -48,6 +48,7 @@
 						<span class="meta-and-badges-container">	
 							<%= render partial: 'store_items/store_item_meta_data', locals: {
 								store_id: item.stored(:store_id),
+								store_deliveryservice: item.stored(:store_deliveryservice),
 								store_name: full_store_name,
 								strain: item.stored(:strain),
 								maincategory: item.stored(:maincategory),

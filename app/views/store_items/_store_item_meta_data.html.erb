@@ -1,12 +1,21 @@
 <table class="search-item-results-meta-table">
 	<tr>
-		<td >													
+		<td style="vertical-align:top;">													
 			<span class="item-results-field-type">shop info:</span>													
 		</td>
-		<td>
+		<td>			
 			<a class="search-results-store-links" href="<%= store_path(store_id) %>" data-no-turbolink='true' >
 				<%= store_name %>
 			</a>	
+			<% if store_deliveryservice == true %>											
+				<span class="fa-stack fa-lg store-store-delivery-icons-search-and-popup">						  
+				  <i class="fa fa-truck fa-stack-1x fa"></i>
+				</span>									
+			<% else %>
+				<span class="fa-stack fa-lg store-store-delivery-icons-search-and-popup">						  
+				  <i class="fa fa-home fa-stack-1x fa"></i>
+				</span>				
+			<% end %>	
 		</td>
 	</tr>
 

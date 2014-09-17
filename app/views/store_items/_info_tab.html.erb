@@ -29,6 +29,7 @@
 		<%= render partial: 'store_items/store_item_meta_data', locals: {
 								store_id: @store_item.store.id,
 								store_name: @store_item.store.name,
+								store_deliveryservice: @store.deliveryservice,
 								strain: @store_item.strain,
 								maincategory: @store_item.maincategory,
 								subcategory: @store_item.subcategory,
