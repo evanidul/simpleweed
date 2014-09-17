@@ -15,8 +15,8 @@
 								<!-- have to do because just loading directly renders brackets and newlines -->
 								<% group.hits[0].stored(:store_name).each do |word| %>
 									<% if !store.promo.blank? %>
-										<% if word.size > 15 %>
-											<%= word[0...15]+"..." %>
+										<% if word.size > 11 %>
+											<%= word[0...11]+"..." %>
 										<% else %>
 											<%= word %>
 										<% end %>
