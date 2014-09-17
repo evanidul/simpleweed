@@ -61,6 +61,11 @@ class StoreReviewVotesController < ApplicationController
 					@message = 'You cannot cast more than 1 vote per review'
 					return render 'votecannotbecast' 
 				end
+
+				if messagearray.include? "Store owners and managers cannot vote on reviews"
+					@message = "Store owners and managers cannot vote on reviews"
+					return render 'votecannotbecast'
+				end
 				
 				@message = "Your vote could not be saved."
 				return render 'votecannotbecast' 

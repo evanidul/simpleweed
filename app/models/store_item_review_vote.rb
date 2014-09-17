@@ -11,6 +11,7 @@ class StoreItemReviewVote < ActiveRecord::Base
   validates :store_item_review_id, uniqueness: {scope: :user_id}  #does not allow user to vote for the same post twice
 
   validate :users_cant_vote_their_reviews
+  validate :storeowner_and_manager_cannot_vote_on_review
 
   def users_cant_vote_their_reviews
 	  return if user.nil? or store_item_review.nil?
@@ -18,4 +19,13 @@ class StoreItemReviewVote < ActiveRecord::Base
 	    errors[:base] = "A user can't vote on their own reviews"
 	  end
   end
+
+  def storeowner_and_manager_cannot_vote_on_review
+    return if user.nil?
+    @role_service = Simpleweed::Security::Roleservice.new
+    if @role_service.isStoreManager(user) || @role_service.isStoreOwner(user)
+      errors[:base] = "Store owners and managers cannot vote on reviews"
+    end
+  end
+
 end
