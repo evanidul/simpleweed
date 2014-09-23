@@ -33,7 +33,8 @@ class SesController < ApplicationController
 		  	# they typed in gibberish for search coordinates
 		  	
 		  	@store_items = []	
-		  	@isLastPage = true	  			  	
+		  	@isLastPage = true	  	
+		  	@searchbadges = searchbadges		  			  
 		  	render 'search'
 		  	return
 		  end 
