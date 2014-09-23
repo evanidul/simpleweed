@@ -71,7 +71,7 @@
 
 .search-items-map {
 	position: fixed !important;
-	top: 100px;
+	top: 146px;
 	left: 66%;
 }
 
@@ -254,4 +254,23 @@
 .store-store-delivery-icons-search-and-popup {
 	bottom: 3px;
 	color: #8CC63E;
+}
+
+.search-summary {
+	margin-top: 15px;
+}
+
+.search-query-summary {	
+	font-size:42px;
+	font-weight: 100;
+}
+
+.search-summary-hr {
+	margin: 0 !important;
+}
+
+.search-badge {
+	
+	background-color: #8CC63E !important;
+
 }

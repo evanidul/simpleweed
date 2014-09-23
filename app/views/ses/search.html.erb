@@ -61,6 +61,22 @@ if !@store_items || @store_items.empty? %>
 	    <strong>Sorry!</strong> Your search returned 0 results.
 	</div>
 <% end %>
+
+<div class="row search-summary">
+  <div class="search-query-summary col-md-3">
+    "<%= @search.itemsearch %>, <%= @search.isl %>"
+  </div>
+
+
+  <span class="search-badges col-md-5">
+    <% @searchbadges.each do |searchbadge| %>
+      <span class="search-badge badge" %><%= searchbadge %> </span>
+    <% end %>
+  </span>
+</div> <!-- row -->
+
+<hr class="search-summary-hr" />
+
 <div id="search-results">
  
 
