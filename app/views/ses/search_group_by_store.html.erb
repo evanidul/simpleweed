@@ -52,20 +52,22 @@ var g_map;
 	    <strong>Sorry!</strong> Your search returned 0 results.
 	</div>
 <% end %>
-<div class="row search-summary">
-  <div class="search-query-summary col-md-3">
-    "<%= @search.isl %>"
-  </div>
-
-
-  <span class="search-badges col-md-5">
-    <% @searchbadges.each do |searchbadge| %>
-      <span class="search-badge badge" %><%= searchbadge %> </span>
+<div class="search-summary">
+  <div>
+    <span class="search-query-summary">"<%= @search.isl %>" </span>
+    <hr class="search-summary-hr" />
+    <div>
+    <% if @searchbadges.size > 0 %>	
+    	<span class="search-filter-label">filters:</span>
     <% end %>
-  </span>
-</div> <!-- row -->
+    <% @searchbadges.each do |searchbadge| %>
+      <span class="search-badge" %><%= searchbadge %> </span>
+    <% end %>
+    </div>
+  </div>
+</div> 
 
-<hr class="search-summary-hr" />
+
 <div id="search-results">
 <%
 @itemsearch.group(:store_id_str).groups.each do |group|

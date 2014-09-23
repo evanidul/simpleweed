@@ -71,7 +71,7 @@
 
 .search-items-map {
 	position: fixed !important;
-	top: 146px;
+	top: 98px;
 	left: 66%;
 }
 
@@ -258,6 +258,7 @@
 
 .search-summary {
 	margin-top: 15px;
+	width: 66%;
 }
 
 .search-query-summary {	
@@ -267,10 +268,17 @@
 
 .search-summary-hr {
 	margin: 0 !important;
+	padding-bottom: 10px;
 }
 
-.search-badge {
-	
-	background-color: #8CC63E !important;
+.search-badge {	
+	color: #8CC63E !important;
+	margin-right: 20px;
+}
 
+
+.search-filter-label {
+	font-style: italic;
+	font-weight: 100;
+	margin-right: 20px;
 }
