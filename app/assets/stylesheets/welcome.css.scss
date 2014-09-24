@@ -10,20 +10,53 @@ body {
 	margin: 0px; 
 	padding: 0px
 }
-#homepage-map {
-	 width: 100%; 
-	 height: 100%; 	
+
+
+.welcome-header {
+	font-size: 5em;
+	font-family: arial,helvetica;
+	color: #fff;
+	width: 800px;
+	margin:0 auto;
+	
+	position:relative;
+	top: 300px;
+	
+
 }
 
-#home-page-search-container {
-	display:inline;
-	background-color: white;
-	z-index:1000;
+.welcome-h1 {
+	font-size:76px;
+	font-weight: 400;
+}
 
-	/** center it **/  
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	margin-top: -50px;
-	margin-left: -100px;
+.welcome-paragraph {
+	color: #fff	;
+	width: 800px;
+	margin:0 auto;
+	position:relative;
+	top: 300px;
+}
+
+.home-page-image {
+	
+}
+
+
+#section0 {
+	background-image: url(asset-path('welcomepage.jpg'));
+	background-repeat: no-repeat;	
+	background-size: 100% 100%;
+	opacity: 0.8;
+}
+
+
+.section {
+	text-align:center;
+}
+
+
+#take-tour-button {
+	position: relative;
+	top: 320px;
 }

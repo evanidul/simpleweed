@@ -7,43 +7,79 @@
 			margin-bottom:0px !important;
 		}
 	</style>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+	<% javascript_include_tag "jquery.fullPage.min.js" %>
+	<% javascript_include_tag "jquery.slimscroll.min.js" %>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#fullpage').fullpage({
+				anchors: ['welcome', 'why-users-love-us', 'why-stores-love-us'],
+				sectionsColor: ['#FFFFFF', '#FFFFFF', '#FFFFFF'],
+				navigation: true,
+				navigationPosition: 'right',
+				navigationTooltips: ['First page', 'Second page', 'Third and last page']
+			});
+		});
+
+		$(document).ready(function() {
+			$("#take-tour-button").click(function() {
+				console.log("scroll");
+				// Create a new jQuery.Event object with specified event properties.
+var e = jQuery.Event( "DOMMouseScroll",{delta: -650} );
+
+// trigger an artificial DOMMouseScroll event with delta -650
+jQuery( "section1" ).trigger( e );
+			})
+		});
+		
+	</script>
+
+
+
 <% end %>
+
+
 	
-	<div id="homepage-map"></div>
+<div id="fullpage">
+	<div class="section " id="section0">
+		<div class="intro">
 			
-			<script type="text/javascript">
+			<span class="welcome-header">
+				<h1 class="welcome-h1">Welcome to Simpleweed</h1>
+			</span>
 
-	  			function codeAddress() {
-					    //In this case it gets the address from an element on the page, but obviously you  could just pass it to the method instead
+			<p class="welcome-paragraph">Simpleweed is a medical marijuana discovery engine and community that connects users with dispensaries and other like minded
+				individuals from around the world that share a common interest.  Our goal is to help standardize the industry and make the
+				dispensary experience, well, simple.
+			</p>
+			
+			<a id="take-tour-button" href="#why-users-love-us" class="active btn btn-default btn-lg take-tour-button">TAKE A TOUR</a>
 
-					    geocoder = new google.maps.Geocoder();					    
-					    var address = "la, ca";
+		</div>
+	</div>
+	<div class="section" id="section1">
+	    <div class="slide" id="slide1">
+			<div class="intro">
+				<h1>Clickable</h1>
+				<p>
+					You can even click on the navigation and jump directly to another section.
+				</p>
+			</div>
+		</div>
 
-					    geocoder.geocode( { 'address': address}, function(results, status) {
-					      if (status == google.maps.GeocoderStatus.OK) {
-					        //In this case it creates a marker, but you can get the lat and lng from the location.LatLng
-					        console.log(results[0].geometry.location);
-							var myOptions = {
-								zoom:15,
-								center: new google.maps.LatLng(results[0].geometry.location),
-								mapTypeId: google.maps.MapTypeId.ROADMAP
-							}
-					        map = new google.maps.Map(document.getElementById("homepage-map"), myOptions);
-					        map.setCenter(results[0].geometry.location);
-					        var marker = new google.maps.Marker({
-					            map: map, 
-					            position: results[0].geometry.location,				            
-					        });
-					        						
-					      } else {
-					      	//breaking selenium?
-					        //alert("Geocode was not successful for the following reason: " + status);
-					      }
-					    });
-					  }
-				google.maps.event.addDomListener(window, "load", codeAddress);
-				
-			</script>
+	    <div class="slide" id="slide2">
+			<h1>Slide 2</h1>
+		</div>
+
+	</div>
+	<div class="section" id="section2">
+		<div class="intro">
+			<h1>Enjoy it</h1>
+		</div>
+	</div>
+
+</div>
 	
 
 	
