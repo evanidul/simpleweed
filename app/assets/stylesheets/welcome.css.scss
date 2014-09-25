@@ -50,6 +50,9 @@ body {
 	opacity: 0.9;
 }
 
+#section1 {
+	background-color: gray;	
+}
 
 .section {
 	text-align:center;
@@ -59,4 +62,8 @@ body {
 #take-tour-button {
 	position: relative;
 	top: 320px;
+}
+
+.homepage-spacer {
+	height: 70px;
 }

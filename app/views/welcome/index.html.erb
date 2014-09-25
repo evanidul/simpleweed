@@ -15,7 +15,7 @@
 		$(document).ready(function() {
 			$('#fullpage').fullpage({
 				anchors: ['welcome', 'why-users-love-us', 'why-stores-love-us'],
-				sectionsColor: ['#FFFFFF', '#FFFFFF', '#FFFFFF'],
+				sectionsColor: ['#FFFFFF', '#414141', '#FFFFFF'],
 				navigation: true,
 				navigationPosition: 'right',
 				navigationTooltips: ['First page', 'Second page', 'Third and last page'],
@@ -27,10 +27,10 @@
 			$("#take-tour-button").click(function() {
 				console.log("scroll");
 				// Create a new jQuery.Event object with specified event properties.
-var e = jQuery.Event( "DOMMouseScroll",{delta: -650} );
+				var e = jQuery.Event( "DOMMouseScroll",{delta: -650} );
 
-// trigger an artificial DOMMouseScroll event with delta -650
-jQuery( "section1" ).trigger( e );
+				// trigger an artificial DOMMouseScroll event with delta -650
+				jQuery( "section1" ).trigger( e );
 			})
 		});
 		
@@ -62,21 +62,18 @@ jQuery( "section1" ).trigger( e );
 	<div class="section" id="section1">
 	    <div class="slide" id="slide1">
 			<div class="intro">
-				<h1>Clickable</h1>
+				<div class="homepage-spacer"></div>
 				<p>
 					You can even click on the navigation and jump directly to another section.
 				</p>
 			</div>
 		</div>
 
-	    <div class="slide" id="slide2">
-			<h1>Slide 2</h1>
-		</div>
-
+	    
 	</div>
 	<div class="section" id="section2">
 		<div class="intro">
-			<h1>Enjoy it</h1>
+			<div class="homepage-spacer"></div>
 		</div>
 	</div>
 
