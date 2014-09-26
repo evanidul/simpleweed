@@ -36,6 +36,7 @@ body {
 	margin:0 auto;
 	position:relative;
 	top: 300px;
+	font-size: 16px;
 }
 
 .home-page-image {
@@ -51,7 +52,32 @@ body {
 }
 
 #section1 {
-	background-color: gray;	
+	background-image: url(asset-path('explorergreen.jpg'));	
+	background-repeat: no-repeat;	
+	background-size: 100% 100%;
+	
+}
+
+#section2 {
+	background-image: url(asset-path('sharegreen.jpg'));	
+	background-repeat: no-repeat;	
+	background-size: 100% 100%;
+	
+}
+
+#section3 {
+	background-image: url(asset-path('follow.jpg'));	
+	background-repeat: no-repeat;	
+	background-size: 100% 100%;
+	
+}
+
+
+#section4 {
+	background-image: url(asset-path('dispensaryshelf1green.jpg'));	
+	background-repeat: no-repeat;	
+	background-size: 100% 100%;
+	
 }
 
 .section {
@@ -66,4 +92,9 @@ body {
 
 .homepage-spacer {
 	height: 70px;
+}
+
+.homepage-explore-disc {
+	background-color:white;
+	height:300px;
 }
