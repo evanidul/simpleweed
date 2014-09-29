@@ -13,30 +13,38 @@ body {
 
 
 .welcome-header {
-	font-size: 5em;
-	font-family: arial,helvetica;
-	color: #fff;
-	width: 800px;
-	margin:0 auto;
+	font-size: 5em;	
+	color: #8CC63E;	
 	
 	position:relative;
 	top: 300px;
-	
-
+	background-color: black;
+	opacity: 0.5;
+	font-weight: 100;
 }
+
 
 .welcome-h1 {
 	font-size:76px;
-	font-weight: 400;
+	text-align: left;
+	margin-left:128px;
 }
 
 .welcome-paragraph {
 	color: #fff	;
-	width: 800px;
-	margin:0 auto;
+	
 	position:relative;
 	top: 300px;
 	font-size: 16px;
+	background-color: black;
+	opacity: 0.5;
+
+}
+
+.welcome-paragraph-text {
+	width: 800px;
+	margin-left:128px;
+	padding-bottom:20px;
 }
 
 .home-page-image {
@@ -80,14 +88,13 @@ body {
 	
 }
 
-.section {
-	text-align:center;
-}
 
 
 #take-tour-button {
 	position: relative;
 	top: 320px;
+	margin-left:128px;
+	text-align:center;
 }
 
 .homepage-spacer {
