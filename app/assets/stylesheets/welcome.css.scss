@@ -11,18 +11,15 @@ body {
 	padding: 0px
 }
 
-
 .welcome-header {
 	font-size: 5em;	
-	color: #8CC63E;	
-	
+	color: #8CC63E;		
 	position:relative;
 	top: 300px;
 	background-color: black;
 	opacity: 0.5;
 	font-weight: 100;
 }
-
 
 .welcome-h1 {
 	font-size:76px;
@@ -31,14 +28,12 @@ body {
 }
 
 .welcome-paragraph {
-	color: #fff	;
-	
+	color: #fff	;	
 	position:relative;
 	top: 300px;
 	font-size: 16px;
 	background-color: black;
 	opacity: 0.5;
-
 }
 
 .welcome-paragraph-text {
@@ -47,9 +42,7 @@ body {
 	padding-bottom:20px;
 }
 
-.home-page-image {
-	
-}
+
 
 
 #section0 {
@@ -104,4 +97,62 @@ body {
 .homepage-explore-disc {
 	background-color:white;
 	height:300px;
+}
+
+.business-header {
+	font-size: 5em;	
+		
+	position:relative;
+	top: 50px;
+	background-color: black;
+	opacity: 0.5;
+	font-weight: 100;
+}
+
+.business-h1 {
+	color: #DACF53 ;
+	font-size:76px;
+	text-align: right;
+	margin-right: 128px;
+}
+
+.business-paragraph {
+	color: #fff	;	
+	position:relative;
+	top: 50px;
+	font-size: 16px;
+	background-color: black;
+	opacity: 0.5;
+}
+
+.business-paragraph-text {
+	
+	text-align:right;
+	margin-left:128px;
+	margin-right: 128px;
+	padding-bottom:20px;
+}
+
+.business-icon-section {
+	position:relative;
+	top: 50px;
+	background-color: black;
+	opacity: 0.5;
+}
+
+.business-icons {	
+	margin-left: 128px;
+	margin-right: 128px;
+}
+
+.business-feature-table {
+	color: white;
+}
+
+.business-feature-table td {
+	padding: 10px;
+}
+
+.business-feature-label {
+	color: #DACF53;
 }
