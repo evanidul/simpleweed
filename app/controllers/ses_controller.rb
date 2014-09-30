@@ -31,12 +31,13 @@ class SesController < ApplicationController
 		geocoordiantes = Geocoder.coordinates(searchLocation);
 		  if !geocoordiantes
 		  	# they typed in gibberish for search coordinates
-		  	
-		  	@store_items = []	
-		  	@isLastPage = true	  	
-		  	@searchbadges = searchbadges		  			  
-		  	render 'search'
-		  	return
+		  	# so use their browser's ip address
+		  	geocoordiantes = request.location
+		  	# @store_items = []	
+		  	# @isLastPage = true	  	
+		  	# @searchbadges = searchbadges		  			  
+		  	# render 'search'
+		  	# return
 		  end 
 		
 		@itemsearch = StoreItem.search do											
