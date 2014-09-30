@@ -16,6 +16,10 @@
 
  */
 
+body {
+  font-family: "Helvetica Neue", "HelveticaNeue-Light", "Helvetica Neue Light", Helvetica, Arial, "Lucida Grande", sans-serif;    
+}
+
  input[type=range].vertical
 {
     writing-mode: bt-lr; /* IE */
