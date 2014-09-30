@@ -3,8 +3,8 @@ module Simpleweed
 		
 		class Subscriptionservice
 
-			@@plan_name = ['','gram','quarter ounce', 'ounce']
-			@@plan_cost_per_month = ['','19','99','299']
+			@@plan_name = ['','free','basic', 'plus']
+			@@plan_cost_per_month = ['','0','79','349']
 
 			@@feature_to_plan_hash = Hash.new
 			@@feature_to_plan_hash["store-address-contact-hours"] = 1
