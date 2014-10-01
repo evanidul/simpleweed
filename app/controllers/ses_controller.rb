@@ -31,8 +31,9 @@ class SesController < ApplicationController
 		geocoordiantes = Geocoder.coordinates(searchLocation);
 		
 		  if !geocoordiantes
-		  	# they typed in gibberish for search coordinates
+		  	# they typed in gibberish for search coordinates, or left it blank
 		  	# so use their browser's ip address
+		  	# except in dev, localhost will not geolocate so will get empty results
 		  	geocoordiantes = []
 		  	#geocoordiantes = request.location
 
@@ -76,12 +77,16 @@ class SesController < ApplicationController
 
 			end # if
 			
+			# when people type in key words like indica, hybrid, indoor, they are asking for all items which satisfy these
+			# attributes.  Therefore, we don't want to filter item name on these keywords.  We filter the matched items by
+			# these attributes later on...
+
 			if itemquery
-		  		fulltext itemquery do
+		  		fulltext itemquery.downcase.gsub("indica","").gsub("sativa","").gsub("hybrid","").gsub("indoor","").gsub("outdoor","").gsub("hydroponic","").gsub("greenhouse","") do
 				  	highlight :name
 				  	highlight :description
 				  	highlight :store_name
-				  	highlight :promo
+				  	highlight :promo				  	
 				end # fulltext
 		    end # if
 
@@ -113,17 +118,17 @@ class SesController < ApplicationController
   		  #:indica, :sativa, :hybrid, :og, :kush, :haze, :indoor, :outdoor, :hydroponic, :greenhouse, :organic, :privatereserve, :topshelf, :glutenfree, :sugarfree,
   		  
   		  acceptable_strains = []
-  		  if search.o == "1"
+  		  if ((search.o == "1") || (itemquery.downcase.include? "indica"))
   		  	 acceptable_strains.push("indica")
   		  	 searchbadges.push("indica")
   		  end	
   		  
-  		  if search.p == "1"	  		  	
+  		  if ((search.p == "1") || (itemquery.downcase.include? "sativa"))	  		  	
   		  	acceptable_strains.push("sativa")
   		  	searchbadges.push("sativa")
   		  end
 
-		  if search.q == "1"	  		  	
+		  if ((search.q == "1") || (itemquery.downcase.include? "hybrid"))
   		  	acceptable_strains.push("hybrid")
   		  	searchbadges.push("hybrid")
   		  end
@@ -156,20 +161,20 @@ class SesController < ApplicationController
   		  #:indoor, :outdoor, :hydroponic, :greenhouse, :organic
   		  #['','indoor', 'outdoor', 'hydroponic', 'greenhouse', 'organic']
   		  acceptable_cultivation = []
-  		  if search.u == "1"
+  		  if ((search.u == "1") || (itemquery.downcase.include? "indoor"))
   		  	acceptable_cultivation.push("indoor")
   		  	searchbadges.push("indoor")
   		  end
-  		  if search.v == "1"
+  		  if ((search.v == "1") || (itemquery.downcase.include? "outdoor"))
   		  	acceptable_cultivation.push("outdoor")
   		  	searchbadges.push("outdoor")
   		  end
-  		  if search.w == "1"
+  		  if ((search.w == "1") || (itemquery.downcase.include? "hydroponic"))
   		  	acceptable_cultivation.push("hydroponic")
   		  	searchbadges.push("hydroponic")
   		  end
-  		  if search.x == "1"
-  		  	acceptable_cultivation.push("greenhouse")
+  		  if ((search.x == "1") || (itemquery.downcase.include? "greenhouse"))
+  		  	acceptable_cultivation.push("greenhouse") 
   		  	searchbadges.push("greenhouse")
   		  end  		  
   		  
