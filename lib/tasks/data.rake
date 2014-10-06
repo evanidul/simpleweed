@@ -27,8 +27,8 @@ namespace :data do
     totalitemsread = 0
     totalitemssaved = 0
     totalitemsskipped = 0
-    file.each do |line|
-      attrs = line.split("<")            
+    file.each do |line|      
+      attrs = line.split("<")                  
       totalitemsread = totalitemsread + 1
       #WM Store ID[0]<Store Name[1]<WM Item ID[2]<Item Name[3]<Category[4]<1g[5]<1/2g[6]<1/8oz[7]<1/4oz[8]<1/2oz[9]<1oz[10]<each[11]
       #<Weird Import[12]<item id[13]<Parent Category[14]<Sub-Category[15]<Strain Type[16]<Strain/Item Name[17]<Promo Field[18]
@@ -92,53 +92,54 @@ namespace :data do
 
   end
 
+  # WAS USING THIS FOR TESTING THE FIRST 57 STORES ONLY
   #assumes dispensaries are created already
   #can be run to refresh addresses
-  task :importAddresses => :environment do
-    #file = File.open("./lib/tasks/addresses.txt")
-    file = File.open("./lib/tasks/FULLaddresses.txt")
-    totalitemsread = 0
-    totalitemssaved = 0
-    totalitemsskipped = 0
-    file.each do |line|
-      attrs = line.split("<")            
-      totalitemsread = totalitemsread + 1
-      #@store = Store.find_or_initialize_by_id(attrs[0])
-      #@store = Store.find_or_initialize_by(syncid: attrs[0])      
+  # task :importAddresses => :environment do
+  #   #file = File.open("./lib/tasks/addresses.txt")
+  #   file = File.open("./lib/tasks/FULLaddresses.txt")
+  #   totalitemsread = 0
+  #   totalitemssaved = 0
+  #   totalitemsskipped = 0
+  #   file.each do |line|
+  #     attrs = line.split("<")            
+  #     totalitemsread = totalitemsread + 1
+  #     #@store = Store.find_or_initialize_by_id(attrs[0])
+  #     #@store = Store.find_or_initialize_by(syncid: attrs[0])      
 
-      syncid = attrs[0].to_i      
+  #     syncid = attrs[0].to_i      
 
-      if syncid != 0  #if attrs[0] is an error string "Error", don't import
-        @store = Store.find_by(syncid: syncid)
+  #     if syncid != 0  #if attrs[0] is an error string "Error", don't import
+  #       @store = Store.find_by(syncid: syncid)
 
-        if (@store)
-        	if( attrs.last != "ERROR: check fields")      		
-        		@store.addressline1 = attrs[2];
-        		@store.addressline2 = attrs[3];
-        		@store.city = attrs[4];
-        		@store.state = attrs[5];
-        		@store.zip = attrs[6];
+  #       if (@store)
+  #       	if( attrs.last != "ERROR: check fields")      		
+  #       		@store.addressline1 = attrs[2];
+  #       		@store.addressline2 = attrs[3];
+  #       		@store.city = attrs[4];
+  #       		@store.state = attrs[5];
+  #       		@store.zip = attrs[6];
         		
-            if @store.save
-              totalitemssaved = totalitemssaved + 1
-            else         
-              totalitemsskipped = totalitemsskipped + 1
-              puts @store.errors.full_messages  
-            end
-        	end
-        else
-        	totalitemsskipped = totalitemsskipped + 1
-  	  end #if
-    else
-      totalitemsskipped = totalitemsskipped + 1
-    end #if
+  #           if @store.save
+  #             totalitemssaved = totalitemssaved + 1
+  #           else         
+  #             totalitemsskipped = totalitemsskipped + 1
+  #             puts @store.errors.full_messages  
+  #           end
+  #       	end
+  #       else
+  #       	totalitemsskipped = totalitemsskipped + 1
+  # 	  end #if
+  #   else
+  #     totalitemsskipped = totalitemsskipped + 1
+  #   end #if
 
-    end # file.each do
-    puts 'totalread = ' + totalitemsread.to_s
-    puts 'totalsaved = ' + totalitemssaved.to_s
-    puts 'totalskipped = ' + totalitemsskipped.to_s
+  #   end # file.each do
+  #   puts 'totalread = ' + totalitemsread.to_s
+  #   puts 'totalsaved = ' + totalitemssaved.to_s
+  #   puts 'totalskipped = ' + totalitemsskipped.to_s
     
-  end # task
+  # end # task
 
   task :importAddressesModified => :environment do
     #file = File.open("./lib/tasks/addresses.txt")
