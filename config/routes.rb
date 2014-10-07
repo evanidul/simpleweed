@@ -10,12 +10,10 @@ Smellyleaf::Application.routes.draw do
   get "modals/login", :as => 'login'
   get "modals/registration", :as => 'registration_modal'
 
-  #nuke this, these views no longer exist...
-  # get "feeds/recent_store_reviews", to: 'feeds#recent_store_reviews'
-  # get "feeds/recent_item_reviews", to: 'feeds#recent_item_reviews'
+  get "pages/tos", :as => 'terms_of_service'
+  get "pages/privacy_policy", :as => 'privacy_policy'
 
-  # resources :stores
-
+  
   #get "solr", :as => 'store/solr'
   #get 'search' => 's#search'
 

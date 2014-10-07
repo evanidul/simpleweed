@@ -26,6 +26,11 @@
 		    <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'form-control', :required => true %></div>
 
 		  <br/>
+		  <div class="acccept-tos-and-policy">
+		  	<input type="checkbox" required name="terms">
+		  I have read and agree to the <%= link_to "Terms of Service", terms_of_service_path %> and <%= link_to "Privacy Policy", privacy_policy_path %>
+		  </div>
+
 		  <div><%= f.submit "CREATE ACCOUNT" , :id => 'create-account-button', :class => 'btn btn-warning pull-right' %></div>
 		  <br/>
 		  <br/>
