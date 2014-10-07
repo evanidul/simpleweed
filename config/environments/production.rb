@@ -84,6 +84,7 @@ Smellyleaf::Application.configure do
     config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     :address => 'email-smtp.us-west-2.amazonaws.com',
+    :domain => 'www.simpleweed.org',
     :authentication => :login,
     :user_name => 'AKIAI7KIHYQMCDCSKIVQ',
     :password => 'Aog1ZpSRfb0NvDD9xmiUMFybS/dKb8/VNeX3yhbLfcg9',
