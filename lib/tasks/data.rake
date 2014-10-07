@@ -92,55 +92,60 @@ namespace :data do
 
   end
 
-  # WAS USING THIS FOR TESTING THE FIRST 57 STORES ONLY
+  # this works with the schema from the crawler, but chon usually scrubs that file and we use the 'modified' address task
+  # below to crawl in the file with his changes..
+  
   #assumes dispensaries are created already
   #can be run to refresh addresses
-  # task :importAddresses => :environment do
-  #   #file = File.open("./lib/tasks/addresses.txt")
-  #   file = File.open("./lib/tasks/FULLaddresses.txt")
-  #   totalitemsread = 0
-  #   totalitemssaved = 0
-  #   totalitemsskipped = 0
-  #   file.each do |line|
-  #     attrs = line.split("<")            
-  #     totalitemsread = totalitemsread + 1
-  #     #@store = Store.find_or_initialize_by_id(attrs[0])
-  #     #@store = Store.find_or_initialize_by(syncid: attrs[0])      
+  task :importAddresses => :environment do
+    #file = File.open("./lib/tasks/addresses.txt")
+    file = File.open("./lib/tasks/FULLaddresses.txt")
+    totalitemsread = 0
+    totalitemssaved = 0
+    totalitemsskipped = 0
+    file.each do |line|
+      attrs = line.split("<")            
+      totalitemsread = totalitemsread + 1
+      #@store = Store.find_or_initialize_by_id(attrs[0])
+      #@store = Store.find_or_initialize_by(syncid: attrs[0])      
 
-  #     syncid = attrs[0].to_i      
+      syncid = attrs[0].to_i      
 
-  #     if syncid != 0  #if attrs[0] is an error string "Error", don't import
-  #       @store = Store.find_by(syncid: syncid)
+      if syncid != 0  #if attrs[0] is an error string "Error", don't import
+        @store = Store.find_by(syncid: syncid)
 
-  #       if (@store)
-  #       	if( attrs.last != "ERROR: check fields")      		
-  #       		@store.addressline1 = attrs[2];
-  #       		@store.addressline2 = attrs[3];
-  #       		@store.city = attrs[4];
-  #       		@store.state = attrs[5];
-  #       		@store.zip = attrs[6];
+        if (@store)
+        	if( attrs.last != "ERROR: check fields")      		
+        		@store.addressline1 = attrs[2];
+        		@store.addressline2 = attrs[3];
+        		@store.city = attrs[4];
+        		@store.state = attrs[5];
+        		@store.zip = attrs[6];
         		
-  #           if @store.save
-  #             totalitemssaved = totalitemssaved + 1
-  #           else         
-  #             totalitemsskipped = totalitemsskipped + 1
-  #             puts @store.errors.full_messages  
-  #           end
-  #       	end
-  #       else
-  #       	totalitemsskipped = totalitemsskipped + 1
-  # 	  end #if
-  #   else
-  #     totalitemsskipped = totalitemsskipped + 1
-  #   end #if
+            if @store.save
+              totalitemssaved = totalitemssaved + 1
+            else         
+              totalitemsskipped = totalitemsskipped + 1
+              puts @store.errors.full_messages  
+            end
+        	end
+        else
+        	totalitemsskipped = totalitemsskipped + 1
+  	  end #if
+    else
+      totalitemsskipped = totalitemsskipped + 1
+    end #if
 
-  #   end # file.each do
-  #   puts 'totalread = ' + totalitemsread.to_s
-  #   puts 'totalsaved = ' + totalitemssaved.to_s
-  #   puts 'totalskipped = ' + totalitemsskipped.to_s
+    end # file.each do
+    puts 'totalread = ' + totalitemsread.to_s
+    puts 'totalsaved = ' + totalitemssaved.to_s
+    puts 'totalskipped = ' + totalitemsskipped.to_s
     
-  # end # task
+  end # task
 
+
+  ## DVU: this assumes Chon's schema.  I fed the crawler schema into this and it doesn't really work haha.  oops.  use
+  ## the above task if you want to import the crawler's schema
   task :importAddressesModified => :environment do
     #file = File.open("./lib/tasks/addresses.txt")
     file = File.open("./lib/tasks/FULLaddressesModified.txt")
