@@ -1,7 +1,7 @@
 <div class="col-md-3">		
 	<div class="plan-description-container">
 		<div class="plan-name">
-			free
+			starter
 			
 			<% if @store.plan_id != 1 %>
 				<%= form_tag subscribe_store_store_path , :class => "stripe-button-form" do %>
@@ -27,17 +27,17 @@
 				/MO
 			</span>
 
-			<div class="subscription-dollar-cost center-zero">
+			<div class="subscription-dollar-cost center">
 				<span>
-				0	
+				19	
 				</span>			
 			</div>
 			<div class="subscription-free-trial center">
-				free, always free
+				1 month free trial
 			</div>
 		</div>
 		<div class="cancel-text">
-			try simple weed for free and see what we help you sell
+			try simple weed for a month, and see if we can help you sell an extra gram
 		</div>
 	</div>
 	<%= render partial: 'stores/free_subscription_features' %>
