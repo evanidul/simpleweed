@@ -96,9 +96,9 @@
 	  		<div class="followed-items">		
 				<% @following_store_items.each do |item| %>
 					<div class="store-item" id="<%=item.id%>">
-						<table>
+						<table style="width:100%;">
 							<tr>
-								<td>
+								<td style="width:80%">
 									<%= render partial: 'store_items/store_item', locals: {store_item: item} %>	
 								</td>
 								<td>
