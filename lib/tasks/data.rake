@@ -202,6 +202,64 @@ namespace :data do
     
   end # task
 
+#daniel scrubed store promos, store names and emails in this alpha one off
+task :importPromosStoreNamesAndEmails => :environment do
+    #schema
+    #store id<store name<promo<email
+    #file = File.open("./lib/tasks/addresses.txt")
+    file = File.open("./lib/tasks/FULLpromosAndNames.txt")
+    totalitemsread = 0
+    totalitemssaved = 0
+    totalitemsskipped = 0
+    logger = Logger.new('logfile.log')
+    logger.info "Start importing scrubbed store names, promos and emails"
+
+    file.each do |line|
+      attrs = line.split("<")            
+      totalitemsread = totalitemsread + 1
+      #@store = Store.find_or_initialize_by_id(attrs[0])
+      #@store = Store.find_or_initialize_by(syncid: attrs[0])      
+
+      syncid = attrs[0].to_i      
+
+      if syncid != 0  #if attrs[0] is an error string "Error", don't import
+        @store = Store.find_by(syncid: syncid)
+
+        if (@store)
+          if( attrs.last != "ERROR: check fields")          
+            @store.name = attrs[1];
+            @store.promo = attrs[2];
+            @store.email = attrs[3];
+            
+            if @store.save
+              totalitemssaved = totalitemssaved + 1
+            else         
+              totalitemsskipped = totalitemsskipped + 1
+              puts @store.errors.full_messages  
+              logger.info "item skipped : syncid : " + @store.syncid.to_s
+              logger.info @store.errors.full_messages
+              # these stores probably had addresses, but no store items, and therefore not created in storeitem import.
+            end
+          end
+        else
+          totalitemsskipped = totalitemsskipped + 1
+          logger.info 'skipped because couldnt find store with id'
+          logger.info syncid
+      end #if
+    else
+      totalitemsskipped = totalitemsskipped + 1
+      
+    end #if
+
+    end # file.each do
+    puts 'totalread = ' + totalitemsread.to_s
+    puts 'totalsaved = ' + totalitemssaved.to_s
+    puts 'totalskipped = ' + totalitemsskipped.to_s
+    
+  end # task
+
+
+
 task :importGeo1 => :environment do
     #file = File.open("./lib/tasks/addresses.txt")
     file = File.open("./lib/tasks/FULLgeo.txt")
