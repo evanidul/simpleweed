@@ -90,7 +90,8 @@ feature "login page" , :js => true do
       header.register_email.set email
   		header.register_password.set password
   		header.register_password_confirmation.set password
-  		header.create_account_button.click
+  		header.accept_tos_checkbox.click
+      header.create_account_button.click
 
   		expect(page).to have_text("A message with a confirmation link has been sent to your email address"), "or else!"          
   	end 	
@@ -108,7 +109,8 @@ feature "login page" , :js => true do
       header.register_email.set email
   		header.register_password.set password
   		header.register_password_confirmation.set password  		
-  		header.create_account_button.click
+  		header.accept_tos_checkbox.click
+      header.create_account_button.click
   		
   		expect(page).to have_text("Email has already been taken"), "or else!" 
       expect(page).to have_text("Username has already been taken"), "or else!" 
@@ -118,7 +120,9 @@ feature "login page" , :js => true do
       registrationPage.user_email.set "john123@gmail.com"
   		registrationPage.user_password.set "password"
   		registrationPage.user_password_confirmation.set "password"
-  		registrationPage.create_user_account_button.click
+  		registrationPage.accept_tos_checkbox.click
+      registrationPage.create_user_account_button.click
+
 
   		expect(page).to have_text("A message with a confirmation link has been sent to your email address"), "or else!"          
 
@@ -176,6 +180,7 @@ feature "login page" , :js => true do
       header.register_email.set email
       header.register_password.set password
       header.register_password_confirmation.set password
+      header.accept_tos_checkbox.click
       header.create_account_button.click
 
       expect(page).to have_text("A message with a confirmation link has been sent to your email address"), "or else!"   
@@ -207,6 +212,7 @@ feature "login page" , :js => true do
       header.register_email.set email
       header.register_password.set password
       header.register_password_confirmation.set password
+      header.accept_tos_checkbox.click
       header.create_account_button.click
 
       expect(page).to have_text("A message with a confirmation link has been sent to your email address"), "or else!"   

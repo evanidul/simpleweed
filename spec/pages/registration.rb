@@ -5,5 +5,6 @@ class RegistrationPageComponent < SitePrism::Page
   element :user_password, "#user_password"
   element :user_password_confirmation, "#user_password_confirmation"
   element :create_user_account_button, "#create-user-account-button"
+  element :accept_tos_checkbox, '#accept-tos'
 
 end

@@ -486,7 +486,8 @@ feature "review a store" , :js => true, :search =>true do
       	registrationPage.user_email.set email
   		registrationPage.user_password.set password
   		registrationPage.user_password_confirmation.set password
-  		registrationPage.create_user_account_button.click
+  		registrationPage.accept_tos_checkbox.click
+        registrationPage.create_user_account_button.click
 
   		expect(page).to have_text("A message with a confirmation link has been sent to your email address"), "or else!"  
 
