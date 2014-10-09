@@ -309,14 +309,27 @@ describe StoresController do
     		expect(@store.announcement).to eq('none.')
 		end
 
-		it "redirects to subscription page if plan_id is 1 " do						
+		it "redirects to subscription page if plan_id is 1 and logged in as store owner " do						
+			@store.plan_id = 1
+			@store.save		
+			role_service = Simpleweed::Security::Roleservice.new							
+			role_service.addStoreOwnerRoleToStore(@user, @store)								
+			sign_in @user
+			new_announcement = 'new stuff here'
+    		put :update_announcement, id: @store.id, store: {announcement: new_announcement}    		
+    		expect(response).to redirect_to subscription_plans_store_url
+    		expect(@store.announcement).to eq('none.')
+		end
+
+		it "if plan_id is 1 but admin user changes announcement, change goes through " do						
 			@store.plan_id = 1
 			@store.save										
 			sign_in @admin
 			new_announcement = 'new stuff here'
-    		put :update_announcement, id: @store.id, store: {announcement: new_announcement}
-    		expect(response).to redirect_to subscription_plans_store_url
-    		expect(@store.announcement).to eq('none.')
+    		put :update_announcement, id: @store.id, store: {announcement: new_announcement}    		
+    		expect(response).to redirect_to store_url
+    		@store.reload
+    		expect(@store.announcement).to eq(new_announcement)
 		end
 
 	end #update_announcement

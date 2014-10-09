@@ -44,6 +44,17 @@ feature "plan one" , :js => true do
 		@store = Store.new(:name => @store_name , :addressline1 => @store_addressline1, :city => @store_city, :state => @store_ca, :zip => @store_zip)
 		@store.plan_id = 1
 		@store.save	
+		
+		# make store manager
+	  	@storemanageremail = "storemanager@gmail.com"
+	  	@storemanagerusername = "storemanager"
+	  	@storemanagerpassword = "password"        
+		store_manager_user = User.new(:email => @storemanageremail, :password => @storemanagerpassword, :password_confirmation => @storemanagerpassword, :username => @storemanagerusername)
+		store_manager_user.skip_confirmation!
+		store_manager_user.save
+		role_service = Simpleweed::Security::Roleservice.new							
+		role_service.addStoreOwnerRoleToStore(store_manager_user, @store)								
+
 
 		@item1 =  @store.store_items.create(:name => "og" , :strain =>"indica")
 		@item1.cultivation = "indoor"		
@@ -58,12 +69,12 @@ feature "plan one" , :js => true do
 		page.visit("/users/sign_in")
 		login_page = LoginPage.new
 
-		login_page.username_input.set @adminusername
-    	login_page.username_password_input.set @adminpassword
+		login_page.username_input.set @storemanagerusername
+    	login_page.username_password_input.set @storemanagerpassword
     	login_page.sign_in_button.click
 
     	header = HeaderPageComponent.new
-    	expect(header.edituserlink.text).to have_text(@adminusername)
+    	expect(header.edituserlink.text).to have_text(@storemanagerusername)
 
 		# go to store
 		page.visit(store_path(@store))		
@@ -82,12 +93,12 @@ feature "plan one" , :js => true do
 		page.visit("/users/sign_in")
 		login_page = LoginPage.new
 
-		login_page.username_input.set @adminusername
-    	login_page.username_password_input.set @adminpassword
+		login_page.username_input.set @storemanagerusername
+    	login_page.username_password_input.set @storemanagerpassword
     	login_page.sign_in_button.click
 
     	header = HeaderPageComponent.new
-    	expect(header.edituserlink.text).to have_text(@adminusername)
+    	expect(header.edituserlink.text).to have_text(@storemanagerusername)
 
 		# go to store
 		page.visit(store_path(@store))		
@@ -106,12 +117,12 @@ feature "plan one" , :js => true do
 		page.visit("/users/sign_in")
 		login_page = LoginPage.new
 
-		login_page.username_input.set @adminusername
-    	login_page.username_password_input.set @adminpassword
+		login_page.username_input.set @storemanagerusername
+    	login_page.username_password_input.set @storemanagerpassword
     	login_page.sign_in_button.click
 
     	header = HeaderPageComponent.new
-    	expect(header.edituserlink.text).to have_text(@adminusername)
+    	expect(header.edituserlink.text).to have_text(@storemanagerusername)
 
 		# go to store
 		page.visit(store_path(@store))		
@@ -130,12 +141,12 @@ feature "plan one" , :js => true do
 		page.visit("/users/sign_in")
 		login_page = LoginPage.new
 
-		login_page.username_input.set @adminusername
-    	login_page.username_password_input.set @adminpassword
+		login_page.username_input.set @storemanagerusername
+    	login_page.username_password_input.set @storemanagerpassword
     	login_page.sign_in_button.click
 
     	header = HeaderPageComponent.new
-    	expect(header.edituserlink.text).to have_text(@adminusername)
+    	expect(header.edituserlink.text).to have_text(@storemanagerusername)
 
 		# go to store
 		page.visit(store_path(@store))		
@@ -154,12 +165,12 @@ feature "plan one" , :js => true do
 		page.visit("/users/sign_in")
 		login_page = LoginPage.new
 
-		login_page.username_input.set @adminusername
-    	login_page.username_password_input.set @adminpassword
+		login_page.username_input.set @storemanagerusername
+    	login_page.username_password_input.set @storemanagerpassword
     	login_page.sign_in_button.click
 
     	header = HeaderPageComponent.new
-    	expect(header.edituserlink.text).to have_text(@adminusername)
+    	expect(header.edituserlink.text).to have_text(@storemanagerusername)
 
 		# go to store
 		page.visit(store_path(@store))		
@@ -178,12 +189,12 @@ feature "plan one" , :js => true do
 		page.visit("/users/sign_in")
 		login_page = LoginPage.new
 
-		login_page.username_input.set @adminusername
-    	login_page.username_password_input.set @adminpassword
+		login_page.username_input.set @storemanagerusername
+    	login_page.username_password_input.set @storemanagerpassword
     	login_page.sign_in_button.click
 
     	header = HeaderPageComponent.new
-    	expect(header.edituserlink.text).to have_text(@adminusername)
+    	expect(header.edituserlink.text).to have_text(@storemanagerusername)
 
 		# go to store
 		page.visit(store_path(@store))		
@@ -201,12 +212,12 @@ feature "plan one" , :js => true do
 		page.visit("/users/sign_in")
 		login_page = LoginPage.new
 
-		login_page.username_input.set @adminusername
-    	login_page.username_password_input.set @adminpassword
+		login_page.username_input.set @storemanagerusername
+    	login_page.username_password_input.set @storemanagerpassword
     	login_page.sign_in_button.click
 
     	header = HeaderPageComponent.new
-    	expect(header.edituserlink.text).to have_text(@adminusername)
+    	expect(header.edituserlink.text).to have_text(@storemanagerusername)
 
 		# go to store
 		page.visit(store_path(@store))		

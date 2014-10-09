@@ -239,7 +239,7 @@ class StoresController < ApplicationController
 
 	def edit_announcement		
 		subscription_service = Simpleweed::Subscription::Subscriptionservice.new
-		if !subscription_service.canStoreUseFeature(@store, "store-announcements")
+		if !subscription_service.canStoreUseFeature(@store, "store-announcements") && (!current_user.has_role?(:admin))
 			redirect_to subscription_plans_store_path(@store) and return
 		end
 		render layout: false		
@@ -247,14 +247,14 @@ class StoresController < ApplicationController
 
 	def update_announcement		
 		subscription_service = Simpleweed::Subscription::Subscriptionservice.new
-		if !subscription_service.canStoreUseFeature(@store, "store-announcements")
+		if !subscription_service.canStoreUseFeature(@store, "store-announcements") && (!current_user.has_role?(:admin))			
 			redirect_to subscription_plans_store_path(@store) and return
 		end
 		
-	    if @store.update(params[:store].permit(:announcement))
+	    if @store.update(params[:store].permit(:announcement))	    	
 			@store.create_activity key: 'store.update_announcement'
 			redirect_to store_path(@store)			
-		else
+		else			
 			redirect_to edit_announcement_store_path(@store)
 		end
 	end
