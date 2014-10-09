@@ -16,7 +16,7 @@ class SubscriptionTests < ActiveSupport::TestCase
 
 		test_plan_name = @subscriptionservice.getPlanNameFromID(test_plan_id)
 				
-		assert_equal( 'gram', test_plan_name, 'mismatched plan')
+		assert_equal( 'starter', test_plan_name, 'mismatched plan')
 
 		test_plan_cost = @subscriptionservice.getPlanCostPerMonthFromID(test_plan_id)
 
