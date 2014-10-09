@@ -249,7 +249,7 @@ feature "plan three" , :js => true do
 		store_page.firsttimepatientdeals.should be_checked
 	end
 
-	scenario "plan 3 cannot change daily specials" do
+	scenario "plan 3 can change daily specials" do
 				
 		page.visit("/users/sign_in")
 		login_page = LoginPage.new
