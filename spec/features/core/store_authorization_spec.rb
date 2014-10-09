@@ -49,9 +49,9 @@ feature "authorization tests" , :js => true, :search =>true do
 	  	@plain_user_email = "plain_user@gmail.com"
 	  	@plain_user_password = "password"
         @plain_user_username = "sally123"
-		store_manager_user = User.new(:email => @plain_user_email, :password => @plain_user_password, :password_confirmation => @plain_user_password, :username => @plain_user_username)
-		store_manager_user.skip_confirmation!
-		store_manager_user.save
+		plainuser = User.new(:email => @plain_user_email, :password => @plain_user_password, :password_confirmation => @plain_user_password, :username => @plain_user_username)
+		plainuser.skip_confirmation!
+		plainuser.save
 
 	end
 
