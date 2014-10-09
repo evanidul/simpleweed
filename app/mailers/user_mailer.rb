@@ -12,7 +12,7 @@ class UserMailer < ActionMailer::Base
   	subject = "#{stalker.username} is now following you"
   	@stalker = stalker
   	@notify = notify
-  	mail(:to => notify.email, :subject => subject)
+  	#mail(:to => notify.email, :subject => subject)
   end
 
   def user_following_store(store, follower)
@@ -22,7 +22,7 @@ class UserMailer < ActionMailer::Base
   	
   	# switch this once we go live
   	#mail(:to => store.email, :subject => subject)
-  	mail(:to => "evanidul@gmail.com", :subject => subject)
+  	#mail(:to => "evanidul@gmail.com", :subject => subject)
   end
 
   def user_following_item(item, follower)
@@ -32,7 +32,7 @@ class UserMailer < ActionMailer::Base
   	
   	# switch this once we go live
   	#mail(:to => item.store.email, :subject => subject)
-  	mail(:to => "evanidul@gmail.com", :subject => subject)
+  	#mail(:to => "evanidul@gmail.com", :subject => subject)
   end
 
   # NOTIFY STORE OWNERS OF NEW REVIEWS
@@ -43,7 +43,7 @@ class UserMailer < ActionMailer::Base
   	
   	# switch this once we go live
   	#mail(:to => review.store.email, :subject => subject)
-  	mail(:to => "evanidul@gmail.com", :subject => subject)
+  	#mail(:to => "evanidul@gmail.com", :subject => subject)
   end
 
   def store_has_new_item_review(itemreview)
@@ -52,7 +52,7 @@ class UserMailer < ActionMailer::Base
   	
   	# switch this once we go live
   	#mail(:to => review.store.email, :subject => subject)
-  	mail(:to => "evanidul@gmail.com", :subject => subject)
+  	#mail(:to => "evanidul@gmail.com", :subject => subject)
   end	
 
   # NOTIFY STORE FOLLOWERS OF AN UPDATE
@@ -61,14 +61,14 @@ class UserMailer < ActionMailer::Base
   	subject = "#{store.name} has updated first time patient deals"
   	@follower = follower
   	@store = store
-  	mail(:to => follower.email, :subject => subject)
+  	#mail(:to => follower.email, :subject => subject)
   end
 
   def store_has_updated_dailyspecials(follower, store)
   	subject = "#{store.name} has updated daily specials"
   	@follower = follower
   	@store = store
-  	mail(:to => follower.email, :subject => subject)
+  	#mail(:to => follower.email, :subject => subject)
   end
 
   # COMMENTS
@@ -77,21 +77,21 @@ class UserMailer < ActionMailer::Base
   	subject = "#{commenter.username} commented on your review of #{review.store.name}"
   	@commenter = commenter
   	@review = review
-  	mail(:to => review.user.email, :subject => subject)
+  	#mail(:to => review.user.email, :subject => subject)
   end
 
   def user_commented_on_item_review(commenter, itemreview)
-	subject = "#{commenter.username} commented on your review of #{itemreview.store_item.name}"
-	@commenter = commenter
-	@itemreview = itemreview	
-	mail(:to => itemreview.user.email, :subject => subject)
+  	subject = "#{commenter.username} commented on your review of #{itemreview.store_item.name}"
+  	@commenter = commenter
+  	@itemreview = itemreview	
+  	#mail(:to => itemreview.user.email, :subject => subject)
   end
 
   def user_commented_on_post(commenter, post)
   	subject = "#{commenter.username} commented on #{post.title}"
   	@commenter = commenter
   	@post = post
-  	mail(:to => post.user.email, :subject => subject)
+  	#mail(:to => post.user.email, :subject => subject)
   end
 
 end
