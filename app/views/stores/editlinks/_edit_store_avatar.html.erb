@@ -1,6 +1,6 @@
 <% if @store.avatar_url.blank? %>
 	<% if @role_service.canManageStore(current_user, @store) %>
-		<% if @subscription_service.canStoreUseFeature(@store, "store-image-hosting") %>	
+		<% if @subscription_service.canStoreUseFeature(@store, "store-image-hosting") || current_user.has_role?(:admin) %>	
 			<%= link_to edit_photo_store_path(@store), data: { toggle: "modal", target: "#modal", remote: edit_photo_store_path(@store)} , id: "edit-store-photo-link",  class: "btn edit-store-photo-link" do %>
 				<span class="glyphicon glyphicon-tree-deciduous user-pic"></span>    				
 			<% end %>	
@@ -16,7 +16,7 @@
 	<% end %>
 <% else %>
 	<% if @role_service.canManageStore(current_user, @store) %> 
-		<% if @subscription_service.canStoreUseFeature(@store, "store-image-hosting") %>	
+		<% if @subscription_service.canStoreUseFeature(@store, "store-image-hosting") || current_user.has_role?(:admin) %>	
 			<%= link_to edit_photo_store_path(@store), data: { toggle: "modal", target: "#modal", remote: edit_photo_store_path(@store)} , id: "edit-store-photo-link",  class: "btn edit-store-photo-link" do %>
 				<img class="user-pic-borderless" width="40px" height="40px" src = "http:<%= @store.avatar_url %>"></img>
 			<% end %>	
