@@ -136,7 +136,7 @@ class StoresController < ApplicationController
 
 	def edit_firsttimepatientdeals		
 		subscription_service = Simpleweed::Subscription::Subscriptionservice.new
-		if !subscription_service.canStoreUseFeature(@store, "store-first-time-patient-deals")
+		if !subscription_service.canStoreUseFeature(@store, "store-first-time-patient-deals") && (!current_user.has_role?(:admin))
 			redirect_to subscription_plans_store_path(@store) and return
 		end
 
@@ -145,7 +145,7 @@ class StoresController < ApplicationController
 
 	def update_firsttimepatientdeals				
 		subscription_service = Simpleweed::Subscription::Subscriptionservice.new
-		if !subscription_service.canStoreUseFeature(@store, "store-first-time-patient-deals")
+		if !subscription_service.canStoreUseFeature(@store, "store-first-time-patient-deals") && (!current_user.has_role?(:admin))
 			redirect_to subscription_plans_store_path(@store) and return
 		end
 

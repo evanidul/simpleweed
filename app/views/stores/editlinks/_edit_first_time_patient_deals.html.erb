@@ -1,5 +1,5 @@
 <% if @role_service.canManageStore(current_user, @store) %>
-	<% if @subscription_service.canStoreUseFeature(@store, "store-first-time-patient-deals") %>									
+	<% if @subscription_service.canStoreUseFeature(@store, "store-first-time-patient-deals") || current_user.has_role?(:admin) %>									
 		<%= link_to edit_firsttimepatientdeals_store_path(@store), data: { toggle: "modal", target: "#modal", remote: edit_firsttimepatientdeals_store_path(@store)} , id: "edit-first-time-patient-deals-link",  class: "btn edit-store-link" do %>
 				<span class="glyphicon glyphicon-edit"></span>
 		<% end %>
