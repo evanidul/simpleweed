@@ -499,10 +499,23 @@ describe StoresController do
 		it "redirects to subscription page if plan_id is 1 " do						
 			@store.plan_id = 1
 			@store.save										
-			sign_in @admin
+			role_service = Simpleweed::Security::Roleservice.new							
+			role_service.addStoreOwnerRoleToStore(@user, @store)
+			sign_in @user
 
 			put :update_features, id: @store.id, store: {acceptscreditcards: true, atmaccess: true}
     		expect(response).to redirect_to subscription_plans_store_url
+		end
+		it "works if plan_id is 1, but user is admin" do						
+			@store.plan_id = 1
+			@store.save										
+			sign_in @admin
+
+			put :update_features, id: @store.id, store: {acceptscreditcards: true, atmaccess: true}
+    		expect(response).to redirect_to store_url
+    		@store.reload
+    		expect(@store.acceptscreditcards).to eq(true)
+    		expect(@store.atmaccess).to eq(true)
 		end
 	end #update_features
 

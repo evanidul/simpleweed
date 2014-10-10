@@ -215,7 +215,7 @@ class StoresController < ApplicationController
 
 	def edit_features		
 		subscription_service = Simpleweed::Subscription::Subscriptionservice.new
-		if !subscription_service.canStoreUseFeature(@store, "store-features")
+		if !subscription_service.canStoreUseFeature(@store, "store-features") && (!current_user.has_role?(:admin))
 			redirect_to subscription_plans_store_path(@store) and return
 		end
 
@@ -225,7 +225,7 @@ class StoresController < ApplicationController
 	def update_features		
 		
 		subscription_service = Simpleweed::Subscription::Subscriptionservice.new
-		if !subscription_service.canStoreUseFeature(@store, "store-features")
+		if !subscription_service.canStoreUseFeature(@store, "store-features") && (!current_user.has_role?(:admin))
 			redirect_to subscription_plans_store_path(@store) and return
 		end
 
