@@ -85,7 +85,9 @@ RSpec.configure do |config|
 
   config.before(:each) do
     DatabaseCleaner.start
-    page.driver.browser.manage.window.maximize
+    if defined? page
+      page.driver.browser.manage.window.maximize
+    end
   end
 
   config.after(:each) do
