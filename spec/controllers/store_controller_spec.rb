@@ -619,11 +619,25 @@ describe StoresController do
 		it "redirects to subscription page if plan_id is 2 " do						
 			@store.plan_id = 2
 			@store.save										
-			sign_in @admin
+			role_service = Simpleweed::Security::Roleservice.new							
+			role_service.addStoreOwnerRoleToStore(@user, @store)
+			sign_in @user
 
 			dailyspecialsmonday = "cookies"
 			put :update_dailyspecials, id: @store.id, store: {dailyspecialsmonday: dailyspecialsmonday}
     		expect(response).to redirect_to subscription_plans_store_url
+		end
+
+		it "works if plan_id is 2, but user is admin " do						
+			@store.plan_id = 2
+			@store.save										
+			sign_in @admin
+
+			dailyspecialsmonday = "cookies"
+			put :update_dailyspecials, id: @store.id, store: {dailyspecialsmonday: dailyspecialsmonday}
+    		expect(response).to redirect_to store_url
+    		@store.reload    		
+    		expect(@store.dailyspecialsmonday).to eq(dailyspecialsmonday)    		
 		end
 	end #update_dailyspecials
 
