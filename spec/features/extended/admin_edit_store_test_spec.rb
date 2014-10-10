@@ -69,12 +69,12 @@ feature "plan one" , :js => true do
 		page.visit("/users/sign_in")
 		login_page = LoginPage.new
 
-		login_page.username_input.set @storemanagerusername
-    	login_page.username_password_input.set @storemanagerpassword
+		login_page.username_input.set @adminusername
+    	login_page.username_password_input.set @adminpassword
     	login_page.sign_in_button.click
 
     	header = HeaderPageComponent.new
-    	expect(header.edituserlink.text).to have_text(@storemanagerusername)
+    	expect(header.edituserlink.text).to have_text(@adminusername)
 
 		# go to store
 		page.visit(store_path(@store))		

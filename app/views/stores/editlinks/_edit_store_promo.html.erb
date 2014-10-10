@@ -1,5 +1,5 @@
 <% if @role_service.canManageStore(current_user, @store) %>					
-	<% if @subscription_service.canStoreUseFeature(@store, "store-promo") %>
+	<% if @subscription_service.canStoreUseFeature(@store, "store-promo") || current_user.has_role?(:admin) %>
 		<%= link_to edit_promo_store_path(@store), data: { toggle: "modal", target: "#modal", remote: edit_promo_store_path(@store)} , id: "edit-promo-link",  class: "btn edit-store-link" do %>
 			<span class="glyphicon glyphicon-edit"></span>
 		<% end %>

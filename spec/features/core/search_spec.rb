@@ -370,6 +370,8 @@ feature "search page" , :js => true , :search =>true do
         }
 
         expect(store_page.name_header.text).to have_text(@store2_name)
+        # just trying to stabilize this test
+        store_page.write_review_button.click
 
     end
 
