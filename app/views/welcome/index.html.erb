@@ -19,7 +19,7 @@
 				sectionsColor: ['#FFFFFF', '#FFFFFF', '#386C8F'],
 				navigation: true,
 				navigationPosition: 'right',
-				navigationTooltips: ['First page', 'Second page', 'Third and last page'],
+				navigationTooltips: ['welcome', 'explore', 'share', 'follow', 'business'],
 				resize:false
 			});
 		});
@@ -36,7 +36,84 @@
 		});
 		
 	</script>
+<style>
 
+#fp-nav {
+    position: fixed;
+    z-index: 100;
+    margin-top: -32px;
+    top: 28%;
+    opacity: 1;
+}
+#fp-nav.right {
+    right: 17px;
+}
+#fp-nav.left {
+    left: 17px;
+}
+
+#fp-nav ul,
+.fp-slidesNav ul {
+  margin: 0;
+  padding: 0;
+}
+#fp-nav li,
+.fp-slidesNav li {
+    display: block;
+    width: 14px;
+    height: 13px;
+    margin: 7px;
+    position:relative;
+}
+.fp-slidesNav li {
+    display: inline-block;
+}
+#fp-nav li a,
+.fp-slidesNav li a {
+    display: block;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    text-decoration: none;
+}
+#fp-nav li .active span,
+.fp-slidesNav .active span {
+    /*background: #333;*/
+    background: white;
+}
+
+/* the color of the nav circle, unfilled border **/
+#fp-nav span,
+.fp-slidesNav span {
+    top: 2px;
+    left: 2px;
+    width: 8px;
+    height: 8px;
+    /*border: 1px solid #000;*/
+    border: 1px solid white;
+    background: rgba(0, 0, 0, 0);
+    border-radius: 50%;
+    position: absolute;
+    z-index: 1;
+}
+.fp-tooltip {
+    position: absolute;
+    top: -2px;
+    color: #fff;
+    font-size: 14px;
+    font-family: arial, helvetica, sans-serif;
+    white-space: nowrap;
+    max-width: 220px;
+}
+.fp-tooltip.right {
+    right: 20px;
+}
+.fp-tooltip.left {
+    left: 20px;
+}
+</style>
 
 
 <% end %>
@@ -118,104 +195,116 @@
 	<div class="section" id="section4">
 		<div class="intro">
 			<div class="homepage-spacer"></div>
-				<div class="business-header">
-					<div class="business-h1">					
-						dispensaries
-					</div>
+			<div class="business-header">
+				<div class="business-h1">					
+					dispensaries
 				</div>
-				<div class="business-paragraph">
-					<div class="business-paragraph-text">
-					get discovered and gain new fans by listing your dispensary and menu for free.  we have over 2,500 dispensaries already listed on simpleweed.  find your listing and claim it today, or create a new listing.
-					</div>
-				</div>				
-				<div class="business-icon-section">
-					<div class="business-icons">
-						<table class="business-feature-table">
-							<tr>
-								<td>
-									<%= image_tag("metadata.png")  %>          
-								</td>
-								<td>
-									<div class="business-feature-label">metadata</div>
-									dispensaries and items are searchable by over 20 different attributes that increases your exposure and viewability.
-								</td>
-								<td>
-									<%= image_tag("equaloppty.png")  %>
-								</td>
-								<td>
-									<div class="business-feature-label">equal opportunity</div>
-									we do not manipulate search rankings or ratings, or issue absurdly big map markers for dispensaries that pay more.
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<%= image_tag("searchability.png")  %>
-								</td>
-								<td>
-									<div class="business-feature-label">searchability</div>
-									everything on your dispensary profile is searchable, including your first-time patient deals.
-								</td>
-								<td>
-									<%= image_tag("simpleprice.png")  %>
-								</td>
-								<td>
-									<div class="business-feature-label">simple pricing</div>
-									choose from our three packages: free ($0), basic ($79), or plus ($349).
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<%= image_tag("alerts.png")  %>
-								</td>
-								<td>
-									<div class="business-feature-label">member alerts</div>
-									users who follow your dispensary or items will receive automatic alerts when an update, like price change, is detected.
-								</td>
-								<td>
-									<%= image_tag("claim.png")  %>
-								</td>
-								<td>
-									<div class="business-feature-label">claim or create</div>
-									claim your listing today by searching for your dispensary's page.  don't see your business listed?  email us today!
-								</td>
-							</tr>
-						</table>
-						
-					</div>
-				</div> <!-- business icon section -->
-
-				<div class="homepage-footer">
-					<a id="hp-facebook" href="https://www.facebook.com/simpleweed">
-						<span class="fa-stack fa store-header-icons">
-						  <i class="fa fa-circle fa-stack-2x"></i>
-						  <i style="color:black;" class="fa fa-facebook fa-stack-1x"></i>
-						</span>
-					</a>					
-					<a id="hp-twitter" href="https://twitter.com/simpleweed">
-						<span class="fa-stack fa store-header-icons">
-						  <i class="fa fa-circle fa-stack-2x"></i>
-						  <i style="color:black;" class="fa fa-twitter fa-stack-1x"></i>
-						</span>
-					</a>					
-					<a id="hp-mail-link" href="mailto:support@simpleweed.org">
-						<span class="fa-stack fa store-header-icons">
-						  <i class="fa fa-circle fa-stack-2x"></i>
-						  <i style="color:black;" class="fa fa-envelope fa-stack-1x"></i>
-						</span>
-					</a>					
+			</div>
+			<div class="business-paragraph">
+				<div class="business-paragraph-text">
+				get discovered and gain new fans by listing your dispensary and menu for free.  we have over 2,500 dispensaries already listed on simpleweed.  find your listing and claim it today, or create a new listing.
+				</div>
+			</div>				
+			<div class="business-icon-section">
+				<div class="business-icons">
+					<table class="business-feature-table">
+						<tr>
+							<td>
+								<%= image_tag("metadata.png")  %>          
+							</td>
+							<td>
+								<div class="business-feature-label">metadata</div>
+								dispensaries and items are searchable by over 20 different attributes that increases your exposure and viewability.
+							</td>
+							<td>
+								<%= image_tag("equaloppty.png")  %>
+							</td>
+							<td>
+								<div class="business-feature-label">equal opportunity</div>
+								we do not manipulate search rankings or ratings, or issue absurdly big map markers for dispensaries that pay more.
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<%= image_tag("searchability.png")  %>
+							</td>
+							<td>
+								<div class="business-feature-label">searchability</div>
+								everything on your dispensary profile is searchable, including your first-time patient deals.
+							</td>
+							<td>
+								<%= image_tag("simpleprice.png")  %>
+							</td>
+							<td>
+								<div class="business-feature-label">simple pricing</div>
+								choose from our three packages: free ($0), basic ($79), or plus ($349).
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<%= image_tag("alerts.png")  %>
+							</td>
+							<td>
+								<div class="business-feature-label">member alerts</div>
+								users who follow your dispensary or items will receive automatic alerts when an update, like price change, is detected.
+							</td>
+							<td>
+								<%= image_tag("claim.png")  %>
+							</td>
+							<td>
+								<div class="business-feature-label">claim or create</div>
+								claim your listing today by searching for your dispensary's page.  don't see your business listed?  email us today!
+							</td>
+						</tr>
+					</table>
 					
-					<span class="home-page-allrights">
-						simpleweed, llc. 2014.  all rights reserved.
-					</span>
-
-					<span class="homepage-tos-privacy-links">
-						<%= link_to "terms of service", terms_of_service_path %> | <%= link_to "privacy policy", privacy_policy_path %>
-					</span>
 				</div>
-		</div>
-	</div>
+			</div> <!-- business icon section -->
 
+			<div class="homepage-footer">
+				<a id="hp-facebook" href="https://www.facebook.com/simpleweed">
+					<span class="fa-stack fa store-header-icons">
+					  <i class="fa fa-circle fa-stack-2x"></i>
+					  <i style="color:black;" class="fa fa-facebook fa-stack-1x"></i>
+					</span>
+				</a>					
+				<a id="hp-twitter" href="https://twitter.com/simpleweed">
+					<span class="fa-stack fa store-header-icons">
+					  <i class="fa fa-circle fa-stack-2x"></i>
+					  <i style="color:black;" class="fa fa-twitter fa-stack-1x"></i>
+					</span>
+				</a>					
+				<a id="hp-mail-link" href="mailto:support@simpleweed.org">
+					<span class="fa-stack fa store-header-icons">
+					  <i class="fa fa-circle fa-stack-2x"></i>
+					  <i style="color:black;" class="fa fa-envelope fa-stack-1x"></i>
+					</span>
+				</a>					
+				
+				<span class="home-page-allrights">
+					simpleweed, llc. 2014.  all rights reserved.
+				</span>
+
+				<span class="homepage-tos-privacy-links">
+					<%= link_to "terms of service", terms_of_service_path %> | <%= link_to "privacy policy", privacy_policy_path %>
+				</span>
+			</div> <!-- footer -->
+		</div><!-- intro -->
+	</div><!-- section, business -->
+
+</div> <!-- full page -->
+
+<!-- <div id="fp-nav" class="right" style="color: rgb(0, 0, 0); margin-top: -33.5px;">
+	<ul>
+		<li data-tooltip="First page">
+			<a href="#firstPage" class=""><span></span></a>
+		</li>
+		<li data-tooltip="Second page">
+			<a href="#secondPage" class=""><span></span></a>
+		</li>
+		<li data-tooltip="Third and last page"><a href="#3rdPage" class="active"><span></span></a></li>
+	</ul>
 </div>
-	
+ -->	
 
 	
