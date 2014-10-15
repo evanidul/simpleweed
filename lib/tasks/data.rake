@@ -1356,7 +1356,7 @@ task :alphaPatchImportPromosStoreNamesAndEmails => :environment do
     logger.info "Start importing geo part1"
 
     file.each do |line|
-      attrs = line.split(",")            
+      attrs = line.split("<")            
       totalitemsread = totalitemsread + 1
       #@store = Store.find_or_initialize_by_id(attrs[0])
       #@store = Store.find_or_initialize_by(syncid: attrs[0])      
