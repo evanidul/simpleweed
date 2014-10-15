@@ -1,0 +1,350 @@
+ID<name<address<address 2<city<state<zip
+31508<All Green Gardens<<<ventura<CA<
+31511<Patients Choice Broadway - Recreational<2251 S. Broadway <<Denver<CO<80210
+31526<High Sierra Wellness<<<chico<CA<
+31536<GOLDEN GATE P.C.<14519 Victory Blvd <<Van Nuys<CA<91411
+31562<e5o element 5 organic Free Top Shelf Gram for FTP!! King Louis OG is BACK and only 200 an oz!!<1920 Warner Ave.<Unit 3-M <Santa Ana<CA<92705
+31562<{e5o}Walk-Ins+FREE delivery FTP 5g1/8ths!! $50 min donation. {e50}<<<beach-cities<CA<
+31577<420GREENBUDDHA<<<fresno<CA<
+31583<BE Collective<<<oakland<CA<
+31584<Tailored Health Care(1 FREE PURE GOLD WITH )<<<south-bay-sd<CA<
+31590<The Herbal Community CALL TO VERIFY<<<<<
+31591<Herbal Express Service<<<pasadena<CA<
+31594<35 CAP - Western Holistics<1803 S. Western<<Los Angeles<CA<90006
+31603<Healing Garden Organics<<<<<
+31604<Best Buds (844) 420-2837<<<dana-point<CA<
+31606<Pharm O.C.<<<dana-point<CA<
+31622<PharmaJanes - Burbank / North Hollywood<<<north-hollywood<CA<
+31622<PharmaJanes - Hollywood<<<hollywood<CA<
+31622<PharmaJanes - Los Angeles<<<downtown-la<CA<
+31622<PharmaJanes - Westside / Culver City<<<west-los-angeles<CA<
+31626<Plant It Earth Collective<<<san-luis-obispo<CA<
+31633<Green Dragon Aspen<400 E. Hyman Ave.<Unit 1A<Aspen<CO<81611
+31635<Green Bay Delivery - SF<<<san-francisco<CA<
+31639<SEVEN SHADES OF GREEN<4905 S..Western Ave <<Los Angeles<CA<90062
+31640<High Level Health - Colfax - Adult Use<2028 E. Colfax <<Denver<CO<80206
+31641<Feelgood - $90 GoldPen with 1 gr. cartridge<<<san-francisco<CA<
+31641<Feelgood Sunset - GSC $220 1 oz<<<san-francisco<CA<
+31645<Cope RN 420<<<palm-springs<CA<
+31657<WEST COAST COLLECTIVE<1500 Esperanza St <<Boyle Heights Los Angeles<CA<90023
+31674<Green Speedy GRAND OPENING<<<hollywood<CA<
+31676<DabLabz- WAX SUPERSTORE- Voted #1 Wax Selection in OC<2727 North Bristol Street <<Santa Ana<CA<92706
+31676<DabLabz- 2727 N Bristol St- Wax Superstore<<<santa-ana<CA<
+31682<Metro Cannabis Inc. - Adult Use<8151 E. Colfax Ave. <<Denver<CO<80220
+31693<Leimert Park Collective - Western Avenue Caregivers<4820 Western Ave <<Los Angeles<CA<90062
+31698<TRINITY HOUSE COURIERS<<<sacramento<CA<
+31701<Bohemian Botanica<<<sonoma-county<CA<
+31705<Affordable Herbal Meds<<<lake-tahoe<CA<
+31710<SDOC - Now Accepting Credit Cards! OZ Specials (San Diego Organic Collective)<<<ocean-beach<CA<
+31712<Kannabis Express<<<north-las-vegas<NV<
+31713<leimert Park Collective - SC Caregivers<2220 Hoover St. <<Los Angeles<CA<90007
+31719<Green Budz Medical Collective<7560 Yakima Valley Hwy <<Zillah<WA<98953
+31787<Compassionate Pain Management - Recreational<1116-7 West Dillon Road <<Louisville<CO<80027-9446
+31790<T.H.C.<12743 Rosedale Highway <<Bakersfield<CA<93312
+31792<Feather Sky Caregivers<3262 E. Gage Ave <<Huntington Park<CA<90255
+31800<Happy's Wellness<<<west-las-vegas<NV<
+31803<Releaf NELA- Lab testing and New strains!<<<pasadena<CA<
+31806<Natures Pharmacy Woodland Hills Delivery<<<woodland-hills-tarzana-canoga-park<CA<
+31808<Coastal Care Association<<<north-san-diego<CA<
+31835<Wake and Bake Group<3327 W. First St<Unit B <Santa Ana<CA<92703
+31838<Green Thumb<<<west-hollywood<CA<
+31852<Slab labs<<<south-bay-sd<CA<
+31854<Best Choice Relief<<<bakersfield<CA<
+31860<Star Buds<2012 North Larch Street <<Lansing<MI<48906
+31865<SmokingAces 10am-10pm<4717 W. Washington <<Los Angeles<CA<90016
+31867<Organic Kind - Eagle Rock -<<<<<
+31867<Organic Kind - Echo Park-<<<<<
+31867<Organic Kind - Silverlake-<<<<<
+31872<Hopeful Remedies<<<san-luis-obispo<CA<
+31877<Herb Nerds - Open til 10pm!<12928 E Indiana Ave <Suite 1<Spokane Valley<WA<99216
+31892<TKO Delivery (FREE EDIBLES!!)<<<chino<CA<
+31892<TKO Delivery (FREE EDIBLES)<<<coronanorco<CA<
+31900<Presidential Greens - TIL MIDNIGHT<2425 Camino Del Rio South <#130 <San Diego<CA<92108
+31901<GREEN QUEEN<<<yucca-valley<CA<
+31915<Pure Positive Collective 24 HR DELIVERIES FREE 1G NEW PATIENT GIFT<<<santa-clarita<CA<
+31917<Colorado Harvest Company - Adult Use<1178 South Kalamath <<Denver<CO<80223
+31924<Herbal Remedies 215 ~ Open 10AM - 10PM<<<alameda-county-haywardtri-valley<CA<
+31930<House Of Kush $10 Private Reserve<1558 N Waterman Ave <Suite D<San Bernardino<CA<91780
+31932<Locali Grown<<<victorvillehigh-desert<CA<
+31954<LaContes Clone Bar + Dispensary - Adult Use<5194 Washington St <<Denver<CO<80216
+31960<High Street Growers - Adult Use<330 N. Federal Blvd <<Denver<CO<80219
+31963<Back to the Garden - Adult Use<1755 S. Broadway <<Denver<CO<80210
+31965<Golden Meds - Adult Use<4620 Peoria St <<Denver<CO<80239
+32003<MKC Delivery - We take CREDIT CARDS!!!<<<north-oc<CA<
+32011<Havoc Collective<<<san-luis-obispo<CA<
+32021<WONDERMEDS - ALL 1/4 ARE 8 Grams !<4326 Melrose Ave <<Hollywood<CA<90029
+32025<Blossom San Diego Delivery Services?‰Û<<<south-bay-sd<CA<
+32036<?ÉƒÎEARLY BIRD SPECIAL ?ÉƒÎ10:30am - 1:00pm?ÉÊ? $4.00 preRolls WestSide Collective - Pico Caregivers<6110 W. Pico Blvd <<Los Angeles<CA<90035
+32046<Patient Care Providers (Best Deals)<<<victorvillehigh-desert<CA<
+32088<MED MEN COLLECTIVE - $8/G TOP SHELF FTP (EIGHTH)<320 S. Main St. <<Santa Ana<CA<92701
+32090<Vulcan Mountain Herbals<<<eastside-seattle<WA<
+32098<Natural Kind Wellness<<<north-county<CA<
+32099<805 Greens<<<santa-barbara<CA<
+32103<Blowout Sale fri/sat all ounces $100-$200 Wax- buy 2 get 1 free<212 21St Street<<Bakersfield<CA<93301
+32107<Simple Solutions<<<ann-arbor<MI<
+32116<10 A GRAM ALL PRIVATE RESERVE<3260 N.E. Street <Suite #A<San Bernardino<CA<92407
+32121<Bay Meds Delivery (Top Shelf 220) *5Gram 1/8ths*<<<<<
+32140<GO GREEN BEAR<5359 East Valley Blvd <<Los Angeles<CA<90032
+32143<The Deli Delivery Service - CREDIT/DEBIT CARDS ACCEPTED!!<<<alameda-county-haywardtri-valley<CA<
+32170<Canasociety<<<thousand-palmspalm-desert<CA<
+32175<Botanical Elements<<<san-luis-obispo<CA<
+32187<"Fig Tree Health ""Get 1/8th free"" special. Quick Delivery. Quality Guarantee"<<<north-san-diego<CA<
+32192<SOS ( Supplemental Organic Solutions )<555 Rose Ave. <<Venice<CA<90291
+32195<So Green Collective<1325 Venice Blvd. <<Venice<CA<90291
+32197<Ur Meds<<<south-east-san-diego<CA<
+32216<Pearblossom Safe Access (PSA)15/40 CAP!!!<12132 Pearblossom Hwy <<Pearblossom<CA<93553
+32219<Collective Care Source Shop<1031 S San Gabriel Blvd <<San Gabriel Valley<CA<91776
+32221<GreenMarket Selections<<<tucson<AZ<
+32231<REHAB KURUPTS MOON ROCKS<<<moreno-valley<CA<
+32237<Green Wellness 4GRAM 8TH CALL TO VERIFY ADDRESS!!<Sweetwater Rd<<Spring Valley<CA<91976
+32243<Cannasseur Adult Use<41 N Precision Drive <<Pueblo<CO<81007
+32253<Medi Cali----Cheap >>Quality Meds Found Here!!!!<<<north-county<CA<
+32263<Green Medic Delivery<<<aliso-viejolaguna-beach<CA<
+32268<Rollingreens Delivery<<<beach-cities<CA<
+32277<Kushmart<1343 S. Hill St <<Los Angeles<CA<90015
+32278<The People's Choice Delivery (Min. Donation 2g's)<<<redlandsmentone<CA<
+32300<"HGC ""HAPPY HOUR 6:30 - 8:30"" NEW OG'S IN"<<<south-bay-sd<CA<
+32317<705 BOGO! FTP 9 GRAM DOGO 1/8th - 5g Top Shelf 1/8th<705 West 17Th Street <<Santa Ana<CA<92706
+32320<Potent Meds Delivery<<<santa-barbara<CA<
+32326<CALI QUALITY<<<victorvillehigh-desert<CA<
+32339<THC 10AM-11PM 40CAP<4285 Crenshaw Blvd. <<Los Angeles<CA<90008
+32346<THC *Wax Special*<<<santa-barbara<CA<
+32356<Next Harvest<2748 W. Alameda Ave. <<Denver<CO<80219
+32359<Sweet Relief Natural Medicine<1444 Commercial St. <<Astoria<OR<97103
+32364<The Amsterdam Exchange Farmers' Market<13524 Lake City Way Ne <<Seattle<WA<98125
+32370<BY THE SEA<<<downtown-la<CA<
+32385<Trees By Healthy Living (Serving all Central Valley)<<<stockton<CA<
+32390<Orange County Growers Association (OCGA)<2522 North Grand Ave <<Santa Ana<CA<92705
+32399<Dharma - 24/7 Appointments<<<east-phoenix<AZ<
+32403<EB - DOGO SPECIALS - 8g 1/8, 16g 1/4, 32g 1/2<<<<<
+32426<CannaLUMA Health and Wellness - Petaluma Medical Marijuana Provider<<<sonoma-county<CA<
+32435<NOW VOTED #1 SHOP IN POMONA<918 E. Holt Ave <<Pomona<CA<91767
+32455<50% OFF EVERY 4th DONATION GreenFlower Express<<<oceansidecarlsbad<CA<
+32459<Green Guy Delivery<<<west-detroit<MI<
+32466<Top Shelf<121 W. 1St St <<Port Angeles<WA<98362
+32476<FREE1/8TH The Holistic Collective<<<san-luis-obispo<CA<
+32478<Cannabis Connection<<<west-las-vegas<NV<
+32484<5 Star Healing<<<<<
+32489<Central Valley's Finest<1340 Roberts Ln. <<Bakersfield<CA<93308
+32493<Open 24-7 Hype Delivery #1 store<<<san-fernando-santa-clarita<CA<
+32502<Wellness On Wheels W.O.W Ca.<<<the-foothils-sacramento<CA<
+32509<Menifee Herbalistic Care HHC<<<perris<CA<
+32510<A-1 Medz<<<west-las-vegas<NV<
+32520<Green Heaven Delivery<<<stockton<CA<
+32521<Chronic Therapy Recreational<10030 W. 27Th Ave. <<Wheat Ridge<CO<80215
+32538<Topshelf Wellness Delivery Service Fresno<<<fresno<CA<
+32542<Green Cross<<<riverside<CA<
+32548<kind remedies<<<sacramento<CA<
+32553<All Natural Collective<15605 Mack Ave. <<Detroit<MI<48224
+32554<FREE DELIVERY - Cali Green Express<<<northridgechatsworth<CA<
+32557<County Line Organic Vape pens<<<antelope-valley<CA<
+32569<Natural Healing Health Care<<<pomona<CA<
+32571<Collective Minds Delivery - Area Closed.<<<stockton<CA<
+32572<Deep Roots Organics - OPEN NOW!!!!<<<north-county<CA<
+32575<Alternative Care OC<<<lake-forest<CA<
+32587<TWI FTP ALL GRAMS ARE 10 and 35 an 1/8TH Reseda/Tampa<7550 Tampa Ave <#C <Reseda<CA<91335
+32612<Herbal Collective<7962 Salt Lake Ave.<Suite B<Huntington Park<CA<90255
+32615<DaBud Group Collective<<<north-inland<CA<
+32619<Green Breeze | 24/7 Delivery<<<west-hollywood<CA<
+32620<Green Fellas Bonita/Eastlake<<<south-bay-sd<CA<
+32620<Green Fellas Home of the 5 GRAM 1/8THs<<<east-san-diego<CA<
+32620<Green Fellas Serving All of San Diego<<<south-bay-sd<CA<
+32620<Green Fellas [5GRAM 1/8ths + 8GRAM 1/4ths]<<<south-bay-sd<CA<
+32629<RGG ****FTP 10/G T/S PREMIUM****<16400 S. Vermont Ave. <<Gardena<CA<90247
+32634<Green Mountain ReLeaf<6504 Green Mountain Road <<Woodland<WA<98674
+32635<The Health Farm<319 East 19Th Street <<Bakersfield<CA<93305
+32641<ELAGHC - $35CAP ALLDAY! DABCITY!?ÉÏ¸?É≈Ì?ÉÏ¸<3643 Whittier Blvd <<Los Angeles<CA<90023
+32650<Boulder Botanics - Adult Use<<<<<
+32660<Hollywood M.P.S. (Medical Patient Service)<<<west-hollywood<CA<
+32674<Bubba Kush's Deliveries<<<victorvillehigh-desert<CA<
+32675<Connoisseur Connection<<<north-las-vegas<NV<
+32688<Have A Heart Wenatchee<3014 Gs Center Rd. <<Wenatchee<WA<98801
+32690<Fly High Delivery<<<<<
+32693<Alternative Health Remedy B.O.G.O. Specials<<<bloomington-rialto-colton<CA<
+32708<Crown Collective LLC<<<sonoma-county<CA<
+32763<SANTA ANA MMC - $8/G TOP SHELF FTP (EIGHTH)<320 S. Main Street <<Santa Ana<CA<92701
+32770<Mendocino Organics Collective<3702 Petaluma Blvd North <<Petaluma<CA<94952
+32785<The Rosamond Collective<9009 Rosamond Blvd <<Rosamond<CA<93560
+32797<Loud<2803 W Florence Ave <<Los Angeles<CA<90043
+32801<Nevada Care Group - Free Meds!<<<east-las-vegas-the-strip<NV<
+32805<Global Remidiez<9321 Avalon Blvd <<Los Angeles<CA<90003
+32809<Elevated Garden Delivery<<<san-jose-southcampbell<CA<
+32814<DragonflyProvisions.com Delivery<<<flint<MI<
+32818<T.G.C. Delivery. Top Shelf 1/8s $45!!<<<south-contra-costa<CA<
+32820<INC *Home of 5G 8ths and DOGOs* Enter in back<2610 West Martin Luther King Jr. <<Los Angeles<CA<90008
+32824<7 Points Wellness (15 ALL T.S. Gs)<1542 S. Santa Fe Avenue <<S.D. County<CA<92084
+32832<Remedies.com BEST OG's IN SOUTH L.A<7610 South Figueroa <<Los Angeles<CA<90003
+32837<Gold Coast Garden<<<santa-cruz<CA<
+32845<Natures Herbs (Recreational )<522 27Th St. <<Garden City<CO<80631
+32852<Top collective<<<upland<CA<
+32855<Mediflowers Collective<<<monterey-county<CA<
+32859<"GEP ""Green Earth Pharmacy"""<7559 Melrose Ave. <<Los Angeles<CA<90046
+32866<Headquarters Cannabis Company - Adult Use<537 Canyon Blvd <<Boulder<CO<80302
+32867<Living Green Cooperative<4417 Rainier Ave <<San Diego<CA<92120
+32870<MMJ Express<<<east-las-vegas-the-strip<NV<
+32873<Club Meds -FREE Dab to Go!! (with donation)<9870 Marconi Dr. <Ste. F <Otay Mesa<CA<92154
+32880<Good Vibes **BEST IN TOWN**<<<rancho-cucamongafontana<CA<
+32890<SGV MED EXPRESS<<<covina<CA<
+32893<Harry Pothead Deliveries-HACIENDA HEIGHTS<<<city-of-industry<CA<
+32893<West Covina Harry Pothead Delivery<<<city-of-industry<CA<
+32898<Metro-West Medical Collective<<<west-detroit<MI<
+32899<Davey Jones Locker<<<coronanorco<CA<
+32904<Herbal Wellness - Recreational<400 West South Boulder Road<Unit 2700 <Lafayette<CO<80026
+32908<Cali Fresh Collective<3267 East Gage <<Huntington Park<CA<90255
+32915<4906<4906 Melrose Ave <<Los Angeles<CA<90029
+32920<NOR CAL 420 Patients Collective<<<east-bay<CA<
+32932<T.L.C. The Leaves of Compassion<<<east-bay<CA<
+32936<(NEW MENU) *Tourist Friendly* -TOP SHELF only!<<<san-luis-obispo<CA<
+32959<Pacific Green<710 Ne Killingworth St. <<Portland<OR<97211
+32965<Laughing Buddha CO-OP<<<ventura<CA<
+32984<UGC $105 OZ DEAL<<<high-desert<CA<
+33006<George and Martha's Home Grown<<<eastside-seattle<WA<
+33013<Herbal Sensations<<<stockton<CA<
+33016<West Valley Patients Group (PRE-ICO)<23043 Ventura Blvd. <<Woodland Hills<CA<91364
+33026<Total Accountability Patient Care<226 East 4Th Street <<Benson<AZ<85602
+33036<Sugar Work Labs<<<redlandsmentone<CA<
+33038<DNPM - TOP SHELF SALE - 9AM-12AM<1232 East Edinger Ave <<Santa Ana<CA<92707
+33063<Now Hiring<<<stockton<CA<
+33076<Patient 420 Delivery-OPEN TIL 5AM- EVERYDAY/NIGHT<<<pasadena<CA<
+33077<LP Therapeutics<<<redlandsmentone<CA<
+33085<SUPREME COLLECTIVE<1400 S. Gaffey St. <<San Pedro<CA<90731
+33093<*SATHC * HOME OF THE PLANET OGS!! 11am-11pm $375 BOGOS!<1234 E Edinger Ave <<Santa Ana<CA<92707
+33102<AMGCARE.ORG Wax House<<<victorvillehigh-desert<CA<
+33111<Emerald Bay Organics<<<lake-tahoe<CA<
+33121<Oasis 420 best alternative deals!<<<oceansidecarlsbad<CA<
+33126<TFH :FTP $30 ANY TOP SHELF 8TH! THE FAMOUS HEALERS: NORTH HOLLYWOOD GLENDALE LOS ANGELES SILVER LAKE BEVERLY HILLS PASADENA EAGLE ROCK DOWNTOWN<650 N. Hoover St <<Los Angeles<CA<90004
+33147<Green Valley Wellness<<<sacramento<CA<
+33148<(4 gram 8th) High Desert Organic Healing<<<victorvillehigh-desert<CA<
+33165<California Emerald Club<<<ventura<CA<
+33167<Bridge City Collective<4312 N Williams Ave <<Portland<OR<97217
+33170<The Skunky Monkey<<<west-hollywood<CA<
+33173<House of Ounces<<<long-beach<CA<
+33185<FREE Edible / Joint: Canna-Dote DELIVERY (909.233.5862) 24/7<<<rancho-cucamongafontana<CA<
+33189<GTO<3010 S. Vermont Ave <<Los Angeles<CA<90007
+33199<Natural Access Inc.<<<north-county<CA<
+33200<Shaver Lake Organics<42167 Tollhouse Rd <<Shaver Lake<CA<93664
+33204<SLU Cannabis Delivery<<<seattleking-county<WA<
+33208<Fresh Alternative Medicine<27206 88Th Ave Nw <<Stanwood<WA<98292
+33216<The Psyso Center<2500 Overland Ave <Suite D<Los Angeles<CA<90064
+33220<PLANET EXPRESS! Shatter Sale 2gs for 80 !!<<<riverside<CA<
+33234<The Green Front<6814 Ne Glisan St. <<Portland<OR<97213
+33237<K.B Cooperative<<<palm-springs<CA<
+33239<Maggie's Farm Pueblo West... Adult Use<74 N Component Drive <<Pueblo<CO<81007
+33260<GREEN COAST XPRESS - FREE PREROLLS TODAY!<<<midtownculver-city<CA<
+33267<FLYING ANGEL 5 GRAMS 45 ALL TOP SHELF<1216 West Florence Ave <<Los Angeles<CA<90044
+33281<Talent Health Club<1007 South Pacific Hwy <Suite G<Talent<OR<97540
+33306<FHC pain management center<1649 West Florence Ave. <<Los Angeles<CA<90047
+33308<Green On The Go<<<stockton<CA<
+33313<Medi-state Deliveries<<<stockton<CA<
+33314<Green Star HDS Inc.<<<dana-point<CA<
+33334<Trailblazers<<<san-gabriel-valley<CA<
+33339<L T H<<<east-las-vegas-the-strip<NV<
+33341<Mountain View Holistic Health<40407 Eatonville Cutoff Road East <<Eatonville<WA<98328
+33346<Club Medz<8201 W 8 Mile <<Detroit<MI<48221
+33359<Baytonic Express<<<monterey-county<CA<
+33369<Green Umbrella Delivery<<<seattleking-county<WA<
+33374<Nature's Meds<<<high-desert<CA<
+33379<The Cannabis Health Nexus<<<stockton<CA<
+33388<smart meds- NEW INDOOR FIRE<779 Tuolumne St <<Vallejo<CA<94590
+33404<"PALM ""HOUSE OF TOP SHELF"""<<<city-of-industry<CA<
+33404<"PALM ""HOUSE OF TOP SHELF?«• Covina"<<<city-of-industry<CA<
+33439<Left Coast Collective - Pacific Beach<1737 Garnet Avenue <<San Diego<CA<92109
+33449<ELEVATED THERAPY ** Free Gram for new patients, with $40 donation.<<<temecula-a-murrieta<CA<
+33456<High Rise Patients Group<1269 Broadway <<El Cajon<CA<92021
+33469<Healing Herbs<<<fresno<CA<
+33478<Nature's Alternative, Inc.<15350 Ne Sandy Blvd. <<Portland<OR<97230
+33500<Golden State Flower House<<<marin<CA<
+33510<Canna Meds (On Site Parking)<4429 Whittier Blvd. <<Los Angeles<CA<90022
+33514<Greener Pastures<<<east-phoenix<AZ<
+33516<Green Dream Delivery<<<fresno<CA<
+33524<Firehouse Caregivers Agoura<<<ventura<CA<
+33524<Firehouse Caregivers Camarillo<<<ventura<CA<
+33524<Firehouse Caregivers Moorpark<<<ventura<CA<
+33524<Firehouse Caregivers Oxnard<<<ventura<CA<
+33524<Firehouse Caregivers Simi Valley<<<ventura<CA<
+33524<Firehouse Caregivers Thousand Oaks<<<ventura<CA<
+33524<Firehouse Caregivers Ventura<<<ventura<CA<
+33533<First Essential Care<2717 W. Vernon Ave. <<Los Angeles<CA<90008
+33534<Relief Wellness of Sacramento<<<sacramento<CA<
+33542<ROYALTY GREENS (FREE 1/8TH'S) BLOWOUT!!<<<covina<CA<
+33553<TheHighestCal: Open<<<sacramento<CA<
+33555<Green Tree Northglenn<10575 Melody Dr<Unit 102 <Northglenn<CO<80234
+33562<GHC 420 Collective<2095 N. E St. <<San Bernardino<CA<92405
+33565<VARIETIES FOR LIFE 5G 1/8TH FTP!<895 East Yorba Linda Blvd <Suite 104<Placentia<CA<92870
+33567<10 Dollars A Gram All Day<2220 N. Golden Ave.<Unit B <San Bernardino<CA<92404
+33587<Simple Organic Solutions<<<yucaipa-beaumont<CA<
+33589<@THE BAKERY SD! (MOONROCKS IN STOCK!)<6559 El Cajon Bvd. <<San Diego<CA<92115
+33590<Cultivated Passion<<<sacramento<CA<
+33591<California Care Group<<<lake-elsinore<CA<
+33595<CannaXpress Delivery. 4G 1/8th Sunday Special<<<pasadena<CA<
+33603<Greenway Collective***TOP SHELF 2X$25****BEST OGS IN THE IE*****<24275 Sunnymead Blvd <<Moreno Valley<CA<92553
+33605<Blue Bird Delivery Dana Point<<<dana-point<CA<
+33605<Blue Bird Delivery Ladera Ranch<<<rancho-santa-margarita<CA<
+33605<Blue Bird Delivery Laguna Niguel<<<aliso-viejolaguna-beach<CA<
+33605<Blue Bird Delivery South OC South Orange County<<<south-oc<CA<
+33612<THE COLLECTIVE<<<north-san-diego<CA<
+33620<ROYALTY GREENS - (FREE 1/8TH'S) BLOWOUT!!<<<san-gabriel-valley<CA<
+33626<Ocean Flore Delivery<<<thousand-palmspalm-desert<CA<
+33633<AAAMEDS420<509 E Pico Blvd <<Los Angeles<CA<90015
+33648<Station 420/Verde Valley - Recreational<4007 Main St. <<Union Gap<WA<98903
+33649<Top Shelf Cannabis - Recreational<3863 Hannegan Rd. <Suite 107<Bellingham<WA<98226
+33663<Cali Crops Delivery (FTP 5 Gram 1/8th)<<<pacific-beach<CA<
+33665<Superior Organic Strands<<<hemet<CA<
+33670<Kind Meds Inc.<2152 South Vineyard Ave.<#120 <Mesa<AZ<85210
+33672<Freedom Market - Recreational<820A Westside Highway <<Kelso<WA<98626
+33681<2020 Solutions - Recreational<2018 Iron St. <<Bellingham<WA<98225
+33688<Cloverleaf Compassionate Care<<<high-desert<CA<
+33694<PSM Delivery $100 Oz's<<<bakersfield<CA<
+33731<South Coast : Wax On Wax!<<<east-las-vegas-the-strip<NV<
+33739<Nice Guy Meds<<<east-phoenix<AZ<
+33746<The Good Spot<2Nd Street <<El Cajon<CA<92021
+33751<Good Earth Herb Collective<<<pasadena<CA<
+33754<Sebago Lakes Medical Cannabis<<<maine<ME<
+33790<CHEA *Shatter, Crumble and OZ deals!<<<oceansidecarlsbad<CA<
+33795<9th Street Medical Center (LARGEST SELECTION OF OG, BOGOS, WAX) VISIT US TODAY!!!<522 W. 9Th Street <<San Pedro<CA<90731
+33811<Elevated Distribution Med Delivery<<<san-gabriel-valley<CA<
+33819<The Clinic Capitol Hill - Adult Use<745 E 6Th Ave <<Denver<CO<80203
+33820<The Clinic Highlands Adult Use<3460 W. 32Nd Ave <<Denver<CO<80211
+33835<H2H - STORE and 24 HOUR DELIVERY<12108 Victory Blvd <<North Hollywood<CA<91606
+33836<CA Collective<6970 Santa Teresa Blvd. <<San Jose<CA<95119
+33859<i and i Rose Garden New Location!!!<505 Asbury St. <<San Jose<CA<95110
+33873<Tender Leaf Remedies-GRAND OPENING!!!!!!!<1336 Height St. <<Bakersfield<CA<93305
+33878<McBuds Delivery<<<la-habra<CA<
+33881<WWC OPEN FROM 8AM-2AM<217 E. Washington Blvd <<Los Angeles<CA<90015
+33883<Sonoma Medical Assistance SALE!!!!!<<<city-of-industry<CA<
+33895<KingTut's Garden $200 oz<<<east-las-vegas-the-strip<NV<
+33910<Alpo Medical *Delivery Only*<25031 Basel Dr. <<Crestline<CA<92325
+33916<Quality R Us ?ˇ‡?ˇ‡?ˇ‡?ˇ‡?ˇ‡<<<south-bay<CA<
+33920<Green Star Health G. TOP SHELF SPECIALS<10122 South Figueroa St <Unit F<Los Angeles<CA<90003
+33926<Wake N Bake Barstow 24/7<<<barstowneedles<CA<
+33936<PATIENTS AGAINST PAIN (P.A.P.) PROP D COMPLIANT<15422 Devonshire Street <<Mission Hills<CA<91345
+33950<Life Enhancement Services<1966 Broadway <<Vallejo<CA<94589
+33965<Cloud 5 Collective<<<vancouver-washington<WA<
+33966<The Dank Bank<<<yucca-valley<CA<
+33968<BEACH COLLECTIVE #101- VIP NOW OPEN!!!<716 S. Beach Blvd <#101 <Anaheim<CA<92804
+33969<Discount 420 Delivery<<<temecula-a-murrieta<CA<
+33982<KLUB MED<<<ventura<CA<
+33984<THE DAB LINE!<Cook St And Sheryl <<Palm Desert<CA<92260
+33997<Green Cross Walk-In (Call to Verify)<<<Oceanside<CA<92058
+34007<ORIGINAL GREENS FTP **FREE** 4G 8TH<<<north-oc<CA<
+34015<Sticky Connections<<<temecula-a-murrieta<CA<
+34018<Green Viper Delivery ($99.00 for 1 OZ)<<<south-oc<CA<
+34018<Green Viper Delivery ($99.00 for 1OZ)<<<aliso-viejolaguna-beach<CA<
+34026<Santa Fe Collective (WALK IN)<1987 S Santa Fe St. A.K.A. 24490 S. Santa Fe <<San Jacinto<CA<92585
+34028<Whole Meds<3355 West 38Th Avenue <<Denver<CO<80211
+34035<Trabuco Holistic Care<<<south-oc<CA<
+34070<Compassionate Care Co-Op<38 Silicon <<Pueblo<CO<81007
+34085<Desert Care Group<<<yucaipa-beaumont<CA<
+34090<The Lion's Den: open 9/8<<<Vista<CA<92083
+34128<Kush Kingz **GREAT NEW TOP SHELF DEALS**<9800 San Pedro <<Los Angeles<CA<90003
+34131<Formerly CT<907 E Filmore Street <<Colorado Springs<CO<80907
+34132<Compassion Union<432 S San Vicente <<Los Angeles<CA<90048
+34140<Green Giant (Best top Shelf in town)<13121 Perris Blvd <<Moreno Valley<CA<92553
+34194<Wilmingtons Finest 35 CAP (5G@50)<1208 W. Anaheim St. <<Wilmington<CA<90744
+34201<Control Alt Delete FTP $20g Wax<<<Anaheim<CA<92802
+34319<OCS FTP:5G/40 ALL STRAINS, WAX DOGOS, HIGHEST QUALITY FLOWERS AND WAX IN O.C NEW FIRES !!! Snow White ((Frosty)) 7g/50 !!! Jilly bean fruity 7g/45<<<anaheim<CA<
+34096<MJ DELIVERIES<<<east-bay<CA<
+34124<Baron-Vaughan<<<vancouver-washington<WA<
+34160<Mrs.Hollyweed<<<barstowneedles<CA<
+34185<Coastal Delivery Express<<<santa-cruz<CA<
+34319<OCS FTP:5G/40 ALL STRAINS, WAX DOGOS, HIGHEST QUALITY FLOWERS AND WAX IN O.C NEW FIRE !!SNOW WHITE!! 7g/50<<<huntington-beach<CA<
