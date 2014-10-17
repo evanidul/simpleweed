@@ -20,9 +20,7 @@ class StoresControllerTest < ActionController::TestCase
 		@store = Store.new(:name => @store_name , :addressline1 => @store_addressline1, :city => @store_city, :state => @store_ca, :zip => @store_zip)
 		@store.save	
 		
-		user = 'ddadmin'
-    	pw = 'idontreallysmoke'
-    	request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials(user,pw)
+		
 	end
 
   	test "show store page" do

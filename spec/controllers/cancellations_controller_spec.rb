@@ -3,12 +3,6 @@ require 'spec_helper'
 describe CancellationsController do
 	include Devise::TestHelpers
 
-	before(:each) do
-		user = 'ddadmin'
-		pw = 'idontreallysmoke'
-		request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials(user,pw)    	
-  	end
-
   	before(:each) do
   		@store = create(:store)
   	end
