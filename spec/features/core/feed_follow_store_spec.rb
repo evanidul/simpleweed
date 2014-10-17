@@ -31,10 +31,7 @@ feature "review a store" , :js => true, :search =>true do
 
 	before :each do
 		StoreItem.remove_all_from_index!
-	  	@basicauthname = "ddadmin"
-	  	@basicauthpassword = "idontreallysmoke" 
-	  	page.visit("http://#{@basicauthname}:#{@basicauthpassword}@#{Capybara.current_session.server.host}:#{Capybara.current_session.server.port}/")
-
+	  	
 	  	@adminemail = "evanidul@gmail.com"
 	  	@adminpassword = "password"
 		@adminusername = "evanidul"
@@ -424,6 +421,7 @@ feature "review a store" , :js => true, :search =>true do
 	end	
 	
 	scenario "find a store, follow a store, get login prompt, login, follow a store , should see success message" do
+		page.visit("/")
 		# search for it		
         header = HeaderPageComponent.new	
 		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
@@ -465,6 +463,7 @@ feature "review a store" , :js => true, :search =>true do
 
 	# add item for followed store should yield feed item
 	scenario "find a store, follow a store, get login prompt, login, follow a store , add item, should see new item in feed" do
+		page.visit("/")
 		# search for it		
         header = HeaderPageComponent.new	
 		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
@@ -524,8 +523,9 @@ feature "review a store" , :js => true, :search =>true do
 
 	# add item for followed store should yield feed item
 	scenario "find a store, follow a store, get login prompt, login, follow a store , login as user 2, review that store, login as user 1 and see review in feed" do
+		page.visit("/")
 		# search for it		
-        header = HeaderPageComponent.new	
+        header = HeaderPageComponent.new	        
 		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
         header.search_button.click
 
@@ -691,7 +691,7 @@ feature "review a store" , :js => true, :search =>true do
 	end
 
 	scenario "search item, follow a store from store tab, see login prompt, login and follow again, should see success message, update store announcement, see on feed" do	
-				
+		page.visit("/")				
 		# search for it		
         header = HeaderPageComponent.new	
 		header.search_input.set "7110 Rock Valley Court, San Diego, CA"

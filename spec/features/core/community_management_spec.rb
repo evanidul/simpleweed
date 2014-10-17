@@ -31,10 +31,7 @@ feature "review a store" , :js => true, :search =>true do
 
 	before :each do
 		StoreItem.remove_all_from_index!
-	  	@basicauthname = "ddadmin"
-	  	@basicauthpassword = "idontreallysmoke" 
-	  	page.visit("http://#{@basicauthname}:#{@basicauthpassword}@#{Capybara.current_session.server.host}:#{Capybara.current_session.server.port}/")
-
+	  	
 	  	@adminemail = "evanidul@gmail.com"
 	  	@adminpassword = "password"
 		@adminusername = "evanidul"

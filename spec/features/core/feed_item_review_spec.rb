@@ -32,10 +32,7 @@ feature "things that trigger item review feed items" , :js => true, :search =>tr
 
 	before :each do
 		StoreItem.remove_all_from_index!
-	  	@basicauthname = "ddadmin"
-	  	@basicauthpassword = "idontreallysmoke" 
-	  	page.visit("http://#{@basicauthname}:#{@basicauthpassword}@#{Capybara.current_session.server.host}:#{Capybara.current_session.server.port}/")
-
+	  	
 	  	@adminemail = "evanidul@gmail.com"
 	  	@adminpassword = "password"
 		@adminusername = "evanidul"
@@ -279,7 +276,8 @@ feature "things that trigger item review feed items" , :js => true, :search =>tr
     end
 
 	scenario "if you follow store, store item and user, and that user writes a review, it should only yield 1 feed item" do
-		# search for it		
+		page.visit("/")
+        # search for it		
         header = HeaderPageComponent.new	
 		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
         header.search_button.click

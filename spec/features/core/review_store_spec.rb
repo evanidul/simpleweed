@@ -29,10 +29,7 @@ feature "review a store" , :js => true, :search =>true do
 
 	before :each do
 		StoreItem.remove_all_from_index!
-	  	@basicauthname = "ddadmin"
-	  	@basicauthpassword = "idontreallysmoke" 
-	  	page.visit("http://#{@basicauthname}:#{@basicauthpassword}@#{Capybara.current_session.server.host}:#{Capybara.current_session.server.port}/")
-
+	  	
 	  	@adminemail = "evanidul@gmail.com"
 	  	@adminpassword = "password"
 		@adminusername = "evanidul"
@@ -58,7 +55,8 @@ feature "review a store" , :js => true, :search =>true do
 
 	
 	scenario "no reviews for store, should see prompt to be first" do	
-		# search for it		
+		page.visit("/")
+        # search for it		
         header = HeaderPageComponent.new	
 		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
         header.search_button.click
@@ -352,7 +350,7 @@ feature "review a store" , :js => true, :search =>true do
 	end
 
 	scenario "logged out, try to review, fill out login modal, write review" do
-		
+		page.visit("/")
 		# search for it		
         header = HeaderPageComponent.new	
 		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
@@ -398,7 +396,7 @@ feature "review a store" , :js => true, :search =>true do
 	end
 
 	scenario "logged out, try to review, fill out login modal BADLY, see login page, login correctly, write review" do
-		
+		page.visit("/")
 		# search for it		
         header = HeaderPageComponent.new	
 		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
@@ -451,7 +449,7 @@ feature "review a store" , :js => true, :search =>true do
 	end
 	
 	scenario "logged out, try to review, see login modal, hit register link, see reg page, register, confirm email" do
-		
+		page.visit("/")
 		# search for it		
         header = HeaderPageComponent.new	
 		header.search_input.set "7110 Rock Valley Court, San Diego, CA"

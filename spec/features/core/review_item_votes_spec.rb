@@ -28,10 +28,7 @@ feature "item review votes" , :js => true, :search =>true do
 
 	before :each do
 		StoreItem.remove_all_from_index!
-	  	@basicauthname = "ddadmin"
-	  	@basicauthpassword = "idontreallysmoke" 
-	  	page.visit("http://#{@basicauthname}:#{@basicauthpassword}@#{Capybara.current_session.server.host}:#{Capybara.current_session.server.port}/")
-
+	  	
 	  	@adminemail = "evanidul@gmail.com"
 	  	@adminpassword = "password"
 		@adminusername = "evanidul"
@@ -77,7 +74,7 @@ feature "item review votes" , :js => true, :search =>true do
 	end
 
 	scenario "users must login before voting, and cannot vote on their own review" do
-
+        page.visit("/")
 		# search for it     
         header = HeaderPageComponent.new    
         header.search_input.set "7110 Rock Valley Court, San Diego, CA"

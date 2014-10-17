@@ -28,10 +28,7 @@ feature "things that trigger store review feed items" , :js => true, :search =>t
 
 	before :each do
 		StoreItem.remove_all_from_index!
-	  	@basicauthname = "ddadmin"
-	  	@basicauthpassword = "idontreallysmoke" 
-	  	page.visit("http://#{@basicauthname}:#{@basicauthpassword}@#{Capybara.current_session.server.host}:#{Capybara.current_session.server.port}/")
-
+	  	
 	  	@adminemail = "evanidul@gmail.com"
 	  	@adminpassword = "password"
 		@adminusername = "evanidul"
@@ -63,7 +60,8 @@ feature "things that trigger store review feed items" , :js => true, :search =>t
 	end
 	
 	scenario "find a store, follow a store, get login prompt, login, follow a store , login as user 2, review that store, login as user 1 and see review in feed" do
-		# search for it		
+		page.visit("/")
+        # search for it		
         header = HeaderPageComponent.new	
 		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
         header.search_button.click

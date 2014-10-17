@@ -31,10 +31,7 @@ feature "store item reviews" , :js => true, :search =>true do
 
 	before :each do
 		StoreItem.remove_all_from_index!
-	  	@basicauthname = "ddadmin"
-	  	@basicauthpassword = "idontreallysmoke" 
-	  	page.visit("http://#{@basicauthname}:#{@basicauthpassword}@#{Capybara.current_session.server.host}:#{Capybara.current_session.server.port}/")
-
+	  	
 	  	@adminemail = "evanidul@gmail.com"
 	  	@adminpassword = "password"
 		@adminusername = "evanidul"
@@ -61,7 +58,8 @@ feature "store item reviews" , :js => true, :search =>true do
 
 	
 	scenario "no reviews for store, should see prompt to be first" do	
-		# search for it		
+		page.visit("/")
+        # search for it		
         header = HeaderPageComponent.new	
 		header.search_input.set "7110 Rock Valley Court, San Diego, CA"
         header.item_query_input.set @item1_name
@@ -490,6 +488,7 @@ feature "store item reviews" , :js => true, :search =>true do
     end
 
     scenario "logged out, try to review, fill out login modal, write review" do
+        page.visit("/")
         # search for it     
         header = HeaderPageComponent.new    
         header.search_input.set "7110 Rock Valley Court, San Diego, CA"
