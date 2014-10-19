@@ -12,7 +12,7 @@
 
 		  <div>	  	
 			<%= f.label :username , "username" %><br />
-	    	<%= f.text_field :username , :class => 'form-control', :required => true %>
+	    	<%= f.text_field :username , :class => 'form-control', :required => true, "data-validation" =>"alphanumeric" %>
 		  </div>
 
 
@@ -36,7 +36,7 @@
 		  <br/>
 		  <%= link_to "didn't receive confirmation instructions?", new_confirmation_path(resource_name), :id => 'resend-confirmation-email-link', :class=>"pull-right" %><br 
 		<% end %>
-		
+		<script> $.validate(); </script>
 	  </div> <!-- modal-body -->
 	  <div class="modal-footer">
 	  	<h4 style="float:left;">already registered?  </h4>
