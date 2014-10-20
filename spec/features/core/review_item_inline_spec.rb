@@ -69,6 +69,7 @@ feature "item review comments" , :js => true, :search =>true do
 	end
 
 	scenario "writing a new review displays inline and is commentable immediately" do
+        page.visit("/")
         # login as user 2 
         header = HeaderPageComponent.new    
         header.loginlink.click       

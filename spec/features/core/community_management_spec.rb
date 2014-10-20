@@ -107,10 +107,10 @@ feature "review a store" , :js => true, :search =>true do
 		feed_page.post_upvote_buttons.size.should == 1
 		feed_page.post_upvote_buttons.first.click
 		wait_for_ajax
-		feed_page.post_flash_notices.size.should == 1
-
-		expect(feed_page.post_flash_notices.first.text).to have_text("A user can't vote on their own posts")
-		
+		feed_page.post_flash_notices.size.should == 2
+		expect(feed_page.post_flash_notices.first.text).to have_text("your post has been created.")
+		expect(feed_page.post_flash_notices.last.text).to have_text("A user can't vote on their own posts")
+				
 		feed_page.post_flag_links.size.should == 1
 		feed_page.post_flag_links.first.click
 		feed_page.close_button.click
@@ -192,9 +192,9 @@ feature "review a store" , :js => true, :search =>true do
 		feed_page.post_upvote_buttons.size.should == 1
 		feed_page.post_upvote_buttons.first.click
 		wait_for_ajax
-		feed_page.post_flash_notices.size.should == 1
-
-		expect(feed_page.post_flash_notices.first.text).to have_text("A user can't vote on their own posts")
+		feed_page.post_flash_notices.size.should == 2
+		expect(feed_page.post_flash_notices.first.text).to have_text("your post has been created.")
+		expect(feed_page.post_flash_notices.last.text).to have_text("A user can't vote on their own posts")
 		
 		feed_page.post_flag_links.size.should == 1
 		feed_page.post_flag_links.first.click
@@ -269,9 +269,9 @@ feature "review a store" , :js => true, :search =>true do
 		feed_page.post_upvote_buttons.size.should == 1
 		feed_page.post_upvote_buttons.first.click
 		wait_for_ajax
-		feed_page.post_flash_notices.size.should == 1
-
-		expect(feed_page.post_flash_notices.first.text).to have_text("A user can't vote on their own posts")
+		feed_page.post_flash_notices.size.should == 2
+		expect(feed_page.post_flash_notices.first.text).to have_text("your post has been created.")
+		expect(feed_page.post_flash_notices.last.text).to have_text("A user can't vote on their own posts")
 		
 		# log out
 		header.logoutlink.click
@@ -312,6 +312,7 @@ feature "review a store" , :js => true, :search =>true do
 
 		# go to community
 		header.community_home_link.click        
+		community_home_page = CommunityFeedHomePage.new
 		community_home_page.dynamic_feed_links.first.click
 
 		# click on the username of the first post

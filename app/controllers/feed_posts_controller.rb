@@ -6,10 +6,8 @@ class FeedPostsController < ApplicationController
 		if(!authenticate_user!("You must be logged in to create a post"))
 			return
 		end
-		if @post.user != current_user
-			render "stores/error_authorization" and return
-		end			
 		@post = @feed.feed_posts.build			
+		
 		render layout: false		
 	end
 

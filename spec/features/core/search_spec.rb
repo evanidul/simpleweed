@@ -361,14 +361,16 @@ feature "search page" , :js => true , :search =>true do
         # click second store
         search_results_page.search_results_store_names.each {|store_link|             
             if store_link.text.include? @store2_name
+
                 store_link.click
+                expect(store_page.name_header.text).to have_text(@store2_name)
+                # just trying to stabilize this test
+                store_page.write_review_button.click
+
                 break
             end
         }
 
-        expect(store_page.name_header.text).to have_text(@store2_name)
-        # just trying to stabilize this test
-        store_page.write_review_button.click
 
     end
 

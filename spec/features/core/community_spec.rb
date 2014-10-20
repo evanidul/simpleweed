@@ -106,9 +106,10 @@ feature "basic com features" , :js => true, :search =>true do
 		feed_page.post_upvote_buttons.size.should == 1
 		feed_page.post_upvote_buttons.first.click
 		wait_for_ajax
-		feed_page.post_flash_notices.size.should == 1
-
-		expect(feed_page.post_flash_notices.first.text).to have_text("A user can't vote on their own posts")
+		# one for successful post creation, one for error
+		feed_page.post_flash_notices.size.should == 2
+		expect(feed_page.post_flash_notices.first.text).to have_text("your post has been created.")
+		expect(feed_page.post_flash_notices.last.text).to have_text("A user can't vote on their own posts")
 		
 
         # logout
