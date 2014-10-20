@@ -40,7 +40,7 @@
 							<%= link_to @post.user.username , activity_profile_path(@post.user), :class => 'user-link', 'data-no-turbolink' => true %>
 						</div>
 						<div class="post-post">		
-							<%= simple_format(@post.post) %>
+							<%= auto_link(simple_format(@post.post)) %>							
 						</div>					
 
 					</div>
