@@ -14,6 +14,8 @@ require 'pages/profile_feed'
 require 'pages/community_feed_home'
 require 'pages/community_feed'
 require 'pages/community_post'
+require 'page_components/profile_nav'
+require 'pages/profile_myreviews'
 
 feature "community extended spec" , :js => true, :search =>true do
 
@@ -160,6 +162,129 @@ feature "community extended spec" , :js => true, :search =>true do
 		
 		# will return error if <br> hasn't been inserted
 		feed_post.post_post_content.first.find("a")
+	end
+
+	scenario "login as admin, create a feed, create a post, go to profile and edit post" do	
+		# login as admin
+		page.visit("/")
+
+		header = HeaderPageComponent.new
+		header.has_loginlink?
+		header.loginlink.click
+    	
+    	# login modal
+    	header.username.set @adminemail
+    	header.password.set @adminpassword
+		header.logininbutton.click
+
+		expect(header.edituserlink.text).to have_text(@adminusername)
+
+		# go to community
+		header.community_home_link.click
+
+		community_home_page = CommunityFeedHomePage.new
+		
+		# add new feed
+		community_home_page.add_new_feed_button.click
+
+		new_feed_name = "new stuff"
+		community_home_page.new_feed_name_input.set new_feed_name
+		community_home_page.save_feed_button.click
+
+		community_home_page.dynamic_feed_links.first.click
+
+		feed_page = CommunityFeedPage.new		
+		expect(feed_page.feed_name_span.text).to have_text(new_feed_name)
+
+		# add new post
+		feed_page.add_new_post_button.click
+		post_title = "my first post"
+		post_content = "nothing special here"
+
+		feed_page.feed_post_title_input.set post_title
+		feed_page.feed_post_content_input.set post_content
+		feed_page.save_post_button.click
+		
+		expect(feed_page.post_titles.first.text).to have_text(post_title)
+
+		# nav to profile
+		header.edituserlink.click
+
+		# in profile, nav to my reviews
+		profile_nav = ProfileNavPageComponent.new
+		profile_nav.my_reviews_link.click
+
+		# my reviews page
+		my_reviews_page = ProfileMyReviewsPageComponent.new
+		my_reviews_page.com_posts_tab.click
+
+		# edit the review
+		my_reviews_page.edit_post_links.first.click
+
+		new_post_content = "my edit"
+		my_reviews_page.post_content_input.set new_post_content
+		my_reviews_page.save_post_button.click
+
+		community_post_detail = CommunityPostPage.new
+		expect(community_post_detail.post_post_content.first.text).to have_text(new_post_content)
+	end
+
+	scenario "login as admin, create a feed, create a post, go to community and edit post" do	
+		# login as admin
+		page.visit("/")
+
+		header = HeaderPageComponent.new
+		header.has_loginlink?
+		header.loginlink.click
+    	
+    	# login modal
+    	header.username.set @adminemail
+    	header.password.set @adminpassword
+		header.logininbutton.click
+
+		expect(header.edituserlink.text).to have_text(@adminusername)
+
+		# go to community
+		header.community_home_link.click
+
+		community_home_page = CommunityFeedHomePage.new
+		
+		# add new feed
+		community_home_page.add_new_feed_button.click
+
+		new_feed_name = "new stuff"
+		community_home_page.new_feed_name_input.set new_feed_name
+		community_home_page.save_feed_button.click
+
+		community_home_page.dynamic_feed_links.first.click
+
+		feed_page = CommunityFeedPage.new		
+		expect(feed_page.feed_name_span.text).to have_text(new_feed_name)
+
+		# add new post
+		feed_page.add_new_post_button.click
+		post_title = "my first post"
+		post_content = "nothing special here"
+
+		feed_page.feed_post_title_input.set post_title
+		feed_page.feed_post_content_input.set post_content
+		feed_page.save_post_button.click
+		
+		expect(feed_page.post_titles.first.text).to have_text(post_title)
+
+		
+		# edit the review
+		feed_page.post_titles.first.click
+
+		community_post_detail = CommunityPostPage.new
+		community_post_detail.edit_post_links.first.click
+
+		new_post_content = "my edit"
+		community_post_detail.post_content_input.set new_post_content
+		community_post_detail.save_post_button.click
+
+		
+		expect(community_post_detail.post_post_content.first.text).to have_text(new_post_content)
 	end
 
 	

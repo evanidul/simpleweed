@@ -14,4 +14,8 @@ class CommunityPostPage < SitePrism::Page
   # delete post modal
   element :delete_post_verify_button, '#delete_post_submit'
 
+  # editing posts
+  elements :edit_post_links, '.edit-post-links'
+  element :post_content_input, '#feed_post_post'
+  element :save_post_button, '#save_feed_post'
 end
