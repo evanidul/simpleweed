@@ -25,10 +25,14 @@
 					</span>
 					<span> by </span>
 					<%= link_to post.user.username , activity_profile_path(post.user), :class => 'user-link', 'data-no-turbolink' => true %>
+					<% if current_user == post.user %>
+					<%= link_to '[edit]', edit_feed_feed_post_path(post.feed, post) , data: { toggle: "modal", target: "#modal", remote: edit_feed_feed_post_path(post.feed, post)} , id: "edit-post-link" , class: "" %>
+					<% end %>
 				</div>
 				<div class="post-post">		
 					<%= auto_link(simple_format(post.post)) %>							
 				</div>					
+				
 
 			</div>
 			<div id="comments_for_feed_post_<%= post.id %>" class="feed-post-comments">

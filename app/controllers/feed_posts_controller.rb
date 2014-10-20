@@ -5,8 +5,38 @@ class FeedPostsController < ApplicationController
 	def new
 		if(!authenticate_user!("You must be logged in to create a post"))
 			return
+		end
+		if @post.user != current_user
+			render "stores/error_authorization" and return
+		end			
+		@post = @feed.feed_posts.build			
+		render layout: false		
+	end
+
+	def edit
+		if(!authenticate_user!("You must be logged in to create a post"))
+			return
+		end
+		if @post.user != current_user
+			render "stores/error_authorization" and return
 		end			
 		render layout: false		
+	end
+
+	def update
+		if(!authenticate_user!("You must be logged in to create a post"))
+			return
+		end
+		if @post.user != current_user
+			render "stores/error_authorization" and return
+		end			
+		if @post.update(feed_post_params)
+			flash[:notice] = "your post has been updated."
+			redirect_to :action => 'show'
+		else
+			render 'edit'
+		end
+
 	end
 
 	def create		
@@ -19,6 +49,7 @@ class FeedPostsController < ApplicationController
 
 		# need to verify that it has at least :post or :link set.  maybe check at model layer
 		@feed_post.save		
+		flash[:notice] = "your post has been created."
 		redirect_to feed_path(@feed.id)
 	end
 
