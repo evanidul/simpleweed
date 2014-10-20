@@ -15,7 +15,7 @@ require 'pages/community_feed_home'
 require 'pages/community_feed'
 require 'pages/community_post'
 
-feature "review a store" , :js => true, :search =>true do
+feature "basic com features" , :js => true, :search =>true do
 
   	before :each do
 	    if ENV['TARGETBROWSER'] == "chrome"
