@@ -7,6 +7,7 @@
 	<ul class="nav nav-tabs">
   		<li class="active"><a id="tabs-store-reviews" href="#store-reviews" data-toggle="tab">store reviews</a></li>
   		<li><a id="tabs-reviews" href="#item-reviews" data-toggle="tab">item reviews</a></li>  
+  		<li><a id="tabs-comm-posts" href="#community-posts" data-toggle="tab">posts</a></li>  
 	</ul>
 
 	<div id="my-reviews-tab-content" class="tab-content">
@@ -31,6 +32,17 @@
 			<% end %>		
 			<% @store_item_reviews.each do |store_item_review| %>			  
 			    <%= render partial: 'store_item_reviews/store_item_review', locals: {store_item_review: store_item_review} %>		
+			<% end %>  		
+  		</div>
+  		<div class="tab-pane" id="community-posts">
+  			<br/>
+  			<% if @community_posts.size <= 0 %>
+				<div class="well">you have not created any posts.</div>
+				<div class="well">creating posts are a great way to meet other people.					
+				</div>  					
+			<% end %>		
+			<% @community_posts.each do |community_post| %>			  
+			    <%= render partial: 'feed_posts/feed_post', locals: {post: community_post, render_feedname: false} %>		
 			<% end %>  		
   		</div>
   	</div>

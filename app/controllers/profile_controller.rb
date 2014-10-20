@@ -104,6 +104,7 @@ class ProfileController < ApplicationController
 		@feed = true 
 		@store_reviews = StoreReview.order("created_at desc").where(user_id: current_user.id)
 		@store_item_reviews = StoreItemReview.order("created_at desc").where(user_id: current_user.id)
+		@community_posts = FeedPost.order("created_at desc").where(user_id: current_user.id)
 
 		@active_tab = "my-reviews-li"
 	end

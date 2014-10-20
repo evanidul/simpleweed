@@ -1,22 +1,22 @@
-<div class="post">
-	<table class="post-snippet-on-feed">
-		<tr>
-			<td class="vote-controls-post-snippet">
-				<%= render partial: 'feed_post_votes/feed_post_vote', locals: {post: post} %>			
-			</td>
-			<td>
+<table class = "post-full-view">
+	<tr>
+		<td class="vote-controls-post-snippet">
+			<%= render partial: 'feed_post_votes/feed_post_vote', locals: {post: post} %>			
+		</td>
+		<td>				
+			<div class="post-full">
 				<div id="bootstrap-alert-feed-post-id-<%= post.id%>"></div>
-
-				<div class="post-title">
-					<% if post.link && !post.link.empty? %>
-						<% 
+				<div class="post-title">	
+					<% 
+						if !post.link.empty?
 							urlservice = Simpleweed::Url::Urlservice.new
 							nicelink = urlservice.url_with_protocol(post.link)
-						%>
-						<a href="<%= nicelink %>"><%= post.title %></a>
-					<% else %>						
-						<%= link_to post.title, feed_feed_post_path(post.feed.id, post.id) , 'data-no-turbolink' => true %>		
-					<% end %>
+						else 
+							nicelink = feed_feed_post_url(post.feed, post.id)
+						end
+					%>
+					<h2><a href="<%= nicelink %>"><%= post.title %></a></h2>
+					
 				</div>
 				<div class="post-submitted-text">
 					<span>submitted </span>
@@ -25,28 +25,34 @@
 					</span>
 					<span> by </span>
 					<%= link_to post.user.username , activity_profile_path(post.user), :class => 'user-link', 'data-no-turbolink' => true %>
-					
-					<% if render_feedname == true %>
-						<span> to <%= link_to post.feed.name, feed_path(post.feed.id) , 'data-no-turbolink' => true %>		</span>
-					<% end %>
 				</div>
-				<ul class="post-user-actions">
-					<li>
-						<a class="post_comment_link" href="<%= feed_feed_post_path(post.feed.id, post.id) %>"><%= post.feed_post_comments.count %> comments</a>
-					</li>
-					
-					<li>
-						<% if !current_user.nil? %>
-							<%= link_to 'flag', add_flag_feed_feed_post_path(post.feed.id, post.id), data: { toggle: "modal", target: "#modal", remote: add_flag_feed_feed_post_path(post.feed.id, post.id)} , id: "add-flag-on-post-link", class: "flag-post" %>
-						<% else %>
-							<%= link_to 'flag', login_path , data: { toggle: "modal", target: "#modal", remote: login_path} , id: "add-flag-on-post-link", class: "flag-post" %>
-						<% end %>
-						
-					</li>
-					
-				</ul>
-			</td>
-		</tr>
-	</table>
-	
-</div>	
+				<div class="post-post">		
+					<%= auto_link(simple_format(post.post)) %>							
+				</div>					
+
+			</div>
+			<div id="comments_for_feed_post_<%= post.id %>" class="feed-post-comments">
+				<% post.feed_post_comments.order("created_at asc").each do | feed_post_comment | %>					
+					<%= render partial: 'feed_post_comments/feed_post_comment', locals: {feed_post_comment: feed_post_comment} %>			
+				<% end %>
+			</div>
+
+			<% if current_user.nil? %>
+				<!-- maybe just close modal and click login button -->
+				<br/>
+				<a href="#" class="login-to-comment-on-post">log in to comment </a>
+				<script>
+					$(".login-to-comment-on-post").click(function(e){
+						e.preventDefault();				
+						$("#log-in-link").click();
+					})
+				</script>
+			<% else %>
+				<%= form_for ([post.feed, post, post.feed_post_comments.build]), :remote => true, :html => { :id => "new_comment_on_#{post.id}" , :class=> "new-feed-post-comment-form"} do |f| %>
+					<%= f.text_area :comment, :class => 'form-control new-feed-post-comment-input', :required => true, :rows => 1 %>
+					<%= f.submit 'post comment', :class => 'btn btn-primary lowercase pull-right save-new-feed-post-comment btn-sm' , :id => "save_comment_on_#{post.id}"  %>
+				<% end %>	
+			<% end #if current_user.nil? %>	
+		</td>
+	</tr>
+</table>

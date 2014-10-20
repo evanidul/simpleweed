@@ -16,7 +16,7 @@
 		<hr>
 		<div class="posts">			
 			<% @feed.feed_posts.order("created_at desc").each do | post | %>					
-				<%= render partial: 'feed_posts/feed_post', locals: {post: post , render_feedname: false} %>			
+				<%= render partial: 'feed_posts/feed_post_summary', locals: {post: post , render_feedname: false} %>			
 			<% end %>
 
 		</div>
