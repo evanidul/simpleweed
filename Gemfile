@@ -117,6 +117,9 @@ group :development, :test do
   # build objects for testing
   gem 'factory_girl_rails'
 
+  # generate sitemap , https://github.com/viseztrance/rails-sitemap
+  gem 'sitemap'
+
 end
 
 group :doc do

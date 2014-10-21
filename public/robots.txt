@@ -3,4 +3,4 @@
 # To ban all spiders from the entire site uncomment the next two lines:
 # User-agent: *
 # Disallow: /
-Sitemap: http://www.simpleweed.org/sitemap_location.xml
+Sitemap: http://www.simpleweed.org/sitemap.xml
