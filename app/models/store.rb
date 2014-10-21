@@ -61,8 +61,9 @@ class Store < ActiveRecord::Base
 
 	# slug only gets created on new, not on updates to name
 	# http://railscasts.com/episodes/314-pretty-urls-with-friendlyid?view=asciicast
-	def should_generate_new_friendly_id?
-    	new_record?
-  	end
+	# comment this out for first Store.find_each(&:save), import
+	# def should_generate_new_friendly_id?
+ #    	new_record?
+ #  	end
 
 end
