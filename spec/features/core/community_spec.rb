@@ -291,7 +291,7 @@ feature "basic com features" , :js => true, :search =>true do
 
 		# go to community
 		header.community_home_link.click        
-
+		community_home_page = CommunityFeedHomePage.new
 		community_home_page.dynamic_feed_links.first.click
 
 		# add new post, see login prompt

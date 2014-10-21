@@ -87,6 +87,9 @@ gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 # autolink, turns links in text into <a> tags, https://github.com/tenderlove/rails_autolink
 gem 'rails_autolink'
 
+# change ids into slugs in URLS for seo, https://github.com/norman/friendly_id
+gem 'friendly_id'
+
 group :development, :test do
   # automated testing
   gem 'rspec-rails', '~> 3.0.0.beta'

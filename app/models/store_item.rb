@@ -93,6 +93,10 @@ class StoreItem < ActiveRecord::Base
 	    # store info	   
 	    # NOTE, store id is fetched above
 
+	    text :store_slug , :stored => true do
+		   store.slug
+	  	end
+
 	    text :store_name , :stored => true do
 		   store.name 
 	  	end

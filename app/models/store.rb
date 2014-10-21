@@ -1,4 +1,7 @@
 class Store < ActiveRecord::Base
+	extend FriendlyId
+  	friendly_id :name, use: [:slugged, :finders]
+
 	has_many :store_items
 	has_many :store_reviews
 	has_many :cancellations
@@ -55,5 +58,11 @@ class Store < ActiveRecord::Base
 	def address
 		"#{addressline1}, #{city}, #{state} #{zip}"
 	end
+
+	# slug only gets created on new, not on updates to name
+	# http://railscasts.com/episodes/314-pretty-urls-with-friendlyid?view=asciicast
+	def should_generate_new_friendly_id?
+    	new_record?
+  	end
 
 end
