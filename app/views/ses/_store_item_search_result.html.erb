@@ -53,7 +53,8 @@
 								strain: item.stored(:strain),
 								maincategory: item.stored(:maincategory),
 								subcategory: item.stored(:subcategory),
-								usetype: item.stored(:usetype)
+								usetype: item.stored(:usetype),
+								store_slug: item.stored(:store_slug)
 							} %>
 							
 							<%= render partial: 'store_items/badges', locals: {

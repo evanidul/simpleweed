@@ -33,7 +33,8 @@
 								strain: @store_item.strain,
 								maincategory: @store_item.maincategory,
 								subcategory: @store_item.subcategory,
-								usetype: @store_item.usetype
+								usetype: @store_item.usetype,
+								store_slug: @store_item.store.slug
 							} %>
 		<%= render partial: 'store_items/badges', locals: {
 								cultivation: @store_item.cultivation,

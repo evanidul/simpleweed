@@ -9,7 +9,7 @@
 			</td>
 			<td>
 				<h4 class="item-pop-up-store-name inline-header">
-					<a href="<%= store_path(@store.id)%>" data-no-turbolink='true' > <%= @store.name %></a>													
+					<a href="<%= store_path(@store.slug)%>" data-no-turbolink='true' > <%= @store.name %></a>													
 				</h4>
 				<% if @store.deliveryservice? %>											
 						<span class="fa-stack fa-lg store-header-icons-item-modal">						  
