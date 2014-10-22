@@ -15,7 +15,7 @@
 						%>
 						<a href="<%= nicelink %>"><%= post.title %></a>
 					<% else %>						
-						<%= link_to post.title, feed_feed_post_path(post.feed.id, post.id) , 'data-no-turbolink' => true %>		
+						<%= link_to post.title, feed_feed_post_path(post.feed.slug, post.id) , 'data-no-turbolink' => true %>		
 					<% end %>
 				</div>
 				<div class="post-submitted-text">
@@ -27,17 +27,17 @@
 					<%= link_to post.user.username , activity_profile_path(post.user), :class => 'user-link', 'data-no-turbolink' => true %>
 					
 					<% if render_feedname == true %>
-						<span> to <%= link_to post.feed.name, feed_path(post.feed.id) , 'data-no-turbolink' => true %>		</span>
+						<span> to <%= link_to post.feed.name, feed_path(post.feed.slug) , 'data-no-turbolink' => true %>		</span>
 					<% end %>
 				</div>
 				<ul class="post-user-actions">
 					<li>
-						<a class="post_comment_link" href="<%= feed_feed_post_path(post.feed.id, post.id) %>"><%= post.feed_post_comments.count %> comments</a>
+						<a class="post_comment_link" href="<%= feed_feed_post_path(post.feed.slug, post.id) %>"><%= post.feed_post_comments.count %> comments</a>
 					</li>
 					
 					<li>
 						<% if !current_user.nil? %>
-							<%= link_to 'flag', add_flag_feed_feed_post_path(post.feed.id, post.id), data: { toggle: "modal", target: "#modal", remote: add_flag_feed_feed_post_path(post.feed.id, post.id)} , id: "add-flag-on-post-link", class: "flag-post" %>
+							<%= link_to 'flag', add_flag_feed_feed_post_path(post.feed.slug, post.id), data: { toggle: "modal", target: "#modal", remote: add_flag_feed_feed_post_path(post.feed.slug, post.id)} , id: "add-flag-on-post-link", class: "flag-post" %>
 						<% else %>
 							<%= link_to 'flag', login_path , data: { toggle: "modal", target: "#modal", remote: login_path} , id: "add-flag-on-post-link", class: "flag-post" %>
 						<% end %>

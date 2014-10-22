@@ -48,7 +48,7 @@ class FeedPostsController < ApplicationController
 		# need to verify that it has at least :post or :link set.  maybe check at model layer
 		@feed_post.save		
 		flash[:notice] = "your post has been created."
-		redirect_to feed_path(@feed.id)
+		redirect_to feed_path(@feed.slug)
 	end
 
 	def show
@@ -77,7 +77,7 @@ class FeedPostsController < ApplicationController
 			@post.destroy
 	    	flash[:danger] = "post has been deleted"
 	    end
-		redirect_to feed_path(@feed.id)
+		redirect_to feed_path(@feed.slug)
 	end
 
 	# show modal for adding flag reason
