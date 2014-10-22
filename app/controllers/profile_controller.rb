@@ -86,7 +86,7 @@ class ProfileController < ApplicationController
 		# params[:id] = the owner of the profile
 		# @profile_owner_id = params[:id].to_i
 		# @profile_user = User.find(@profile_owner_id)
-		@activities = PublicActivity::Activity.order("created_at desc").where(owner_id: params[:id], owner_type: "User").first(20)
+		@activities = PublicActivity::Activity.order("created_at desc").where(owner_id: @profile_user.id, owner_type: "User").first(20)
 		# @user_is_viewing_own_profile = false;
 		# if current_user.id == @profile_owner_id
 		# 	@user_is_viewing_own_profile = true;
@@ -111,7 +111,7 @@ class ProfileController < ApplicationController
 
 	# when a user follows another user, this endpoint handles what happens after clicking the star
 	def follow
-		if(!authenticate_user!("You must be logged in to create a store"))
+		if(!authenticate_user!("You must be logged in to follow"))
 			return
 		end			
 		# @profile_owner_id = params[:id].to_i
@@ -137,10 +137,10 @@ class ProfileController < ApplicationController
 	end
 
 	def unfollow
-		if(!authenticate_user!("You must be logged in to create a store"))
+		if(!authenticate_user!("You must be logged in to unfollow"))
 			return
 		end			
-		id_of_person_to_unfollow = params[:id].to_i
+		id_of_person_to_unfollow = @profile_user.id
 
 		@user_to_unfollow = User.find(id_of_person_to_unfollow)
 
@@ -202,7 +202,8 @@ class ProfileController < ApplicationController
 
 private
     def load_profile_user
-      	@profile_owner_id = params[:id].to_i
+    	
+      	@profile_owner_id = params[:id] #this is now a user slug, not an int id
 		@profile_user = User.find(@profile_owner_id)
 		@user_is_viewing_own_profile = false
 		
@@ -210,7 +211,7 @@ private
 			@user_is_viewing_own_profile = false
 			return
 		end
-		if current_user.id == @profile_owner_id
+		if current_user.id == @profile_user.id
 			@user_is_viewing_own_profile = true
 		end
     end
