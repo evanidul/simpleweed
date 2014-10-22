@@ -20,9 +20,9 @@ class Store < ActiveRecord::Base
 	# geocode all the stores...  Just comment it out and turn it back on later...
 	# Comment this back in: rake geocode:all CLASS=Store will not work otherwise
 	# Unit tests will also fail if this is commented out.
-	
-	# geocoded_by :address
-	# after_validation :geocode
+	# SEL tests will also fail, since stores won't have lat/long, therefore no items from that store will be in search index
+	geocoded_by :address
+	after_validation :geocode
 
 	# init default values
 	after_initialize :init

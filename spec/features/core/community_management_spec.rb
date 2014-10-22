@@ -316,6 +316,7 @@ feature "review a store" , :js => true, :search =>true do
 		community_home_page.dynamic_feed_links.first.click
 
 		# click on the username of the first post
+		feed_page = CommunityFeedPage.new		
 		feed_page.post_username_links.first.click
 
 		# must be logged in to see a user profile
