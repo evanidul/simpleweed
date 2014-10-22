@@ -1,4 +1,7 @@
 class FeedPost < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :title, use: [:slugged, :finders]
+
   belongs_to :feed
   belongs_to :user
 
