@@ -11,8 +11,8 @@ end
 					<td >
 						<h4 >
 							<!-- dvu: we don't use link_to because the link name is too complicated to embed -->
-						  	<a class="item-search-item-name" data-remote="<%= store_store_item_path(@store_item.store.id, @store_item.id, :reviewtab => "false") %>" data-target="#modal" data-toggle="modal" 
-						  		href="<%= store_store_item_path(@store_item.store.id, @store_item.id, :reviewtab => "false") %>" >
+						  	<a class="item-search-item-name" data-remote="<%= store_store_item_path(@store_item.store.slug, @store_item.id, :reviewtab => "false") %>" data-target="#modal" data-toggle="modal" 
+						  		href="<%= store_store_item_path(@store_item.store.slug, @store_item.id, :reviewtab => "false") %>" >
 								<%= @store_item.name %>
 							</a>						
 														
@@ -73,7 +73,7 @@ end
 						<div>
 							<div class="search-result-item-available-at">
 								available at 
-								<a href="<%= store_path(@store_item.store.id)%>" data-no-turbolink='true' >
+								<a href="<%= store_path(@store_item.store.slug)%>" data-no-turbolink='true' >
 									<%= @store_item.store.name %>
 								</a>							
 							</div>

@@ -583,7 +583,7 @@ feature "store item reviews" , :js => true, :search =>true do
         header.search_button.click
 
         search_results_page = SearchResultsItemPageComponent.new        
-                
+binding.pry                
         search_results_page.searchresults_item_names.size.should == 1
         search_results_page.searchresults_item_names.map {|name| name.text}.should == [@item1_name]
 

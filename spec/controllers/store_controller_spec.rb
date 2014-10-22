@@ -32,13 +32,13 @@ describe StoresController do
 
 			sign_in @user
 			put :update_claim, id: @store.id
-			expect(response).to redirect_to store_url			
+			expect(response).to redirect_to store_url(@store.slug)			
 			expect(request.flash[:notice]).to eq("This store has already been claimed.  Please contact support if you feel like this is in error.")
 		end
 		it 'doesnt work if your email doesnt match the store email' do
 			sign_in @user
 			put :update_claim, id: @store.id
-			expect(response).to redirect_to store_url			
+			expect(response).to redirect_to store_url(@store.slug)			
 			expect(request.flash[:notice]).to eq("Your email must match the email of this store, in order to claim it.")
 		end
 		it 'should work if its unclaimed and your email matches' do
@@ -48,7 +48,7 @@ describe StoresController do
 			sign_in @user
 			put :update_claim, id: @store.id
 			extra_params = "?show_edit_popover=true"
-			expect(response).to redirect_to store_url + extra_params			#has extra query param to show popup
+			expect(response).to redirect_to store_url(@store.slug) + extra_params			#has extra query param to show popup
 			expect(request.flash[:notice]).to eq("You have successfully claimed this store.  We've added new edit links below to allow you to manage this store.")
 		end
 	end
@@ -121,7 +121,7 @@ describe StoresController do
 
 			new_delivery_area = "ohio"
 			put :update_deliveryarea, id: @store.id, store: {deliveryarea: new_delivery_area}
-			expect(response).to redirect_to store_url
+			expect(response).to redirect_to store_url(@store.slug)
     		@store.reload    		
     		expect(@store.deliveryarea).to eq(new_delivery_area)
 		end
@@ -133,7 +133,7 @@ describe StoresController do
 			
 			new_delivery_area = "ohio"
 			put :update_deliveryarea, id: @store.id, store: {deliveryarea: new_delivery_area}
-			expect(response).to redirect_to store_url
+			expect(response).to redirect_to store_url(@store.slug)
     		@store.reload    		
     		expect(@store.deliveryarea).to eq(new_delivery_area)
 		end
@@ -161,7 +161,7 @@ describe StoresController do
 
 			new_sundayopen = 10
 			put :update_hours, id: @store.id, date: {storehourssundayopenhour: new_sundayopen}, store: {}
-			expect(response).to redirect_to store_url
+			expect(response).to redirect_to store_url(@store.slug)
     		@store.reload    		
     		expect(@store.storehourssundayopenhour).to eq(new_sundayopen)
 		end
@@ -173,7 +173,7 @@ describe StoresController do
 			
 			new_sundayopen = 10
 			put :update_hours, id: @store.id, date: {storehourssundayopenhour: new_sundayopen}, store: {}
-			expect(response).to redirect_to store_url
+			expect(response).to redirect_to store_url(@store.slug)
     		@store.reload    		
     		expect(@store.storehourssundayopenhour).to eq(new_sundayopen)
 		end
@@ -201,7 +201,7 @@ describe StoresController do
 
 			new_city = 'las vegas'
 			put :update_contact, id: @store.id, store: {city: new_city}
-			expect(response).to redirect_to store_url
+			expect(response).to redirect_to store_url(@store.slug)
     		@store.reload
     		expect(@store.city).to eq(new_city)
     		expect(@store.plan_id).to be_nil
@@ -214,7 +214,7 @@ describe StoresController do
 			
 			new_city = 'las vegas'
 			put :update_contact, id: @store.id, store: {city: new_city}
-			expect(response).to redirect_to store_url
+			expect(response).to redirect_to store_url(@store.slug)
     		@store.reload
     		expect(@store.city).to eq(new_city)
     		expect(@store.plan_id).to be_nil
@@ -241,7 +241,7 @@ describe StoresController do
 
 			new_city = 'las vegas'
 			put :update_contact, id: @store.id, store: {city: new_city}
-			expect(response).to redirect_to store_url
+			expect(response).to redirect_to store_url(@store.slug)
     		@store.reload
     		expect(@store.city).to eq(new_city)
 		end
@@ -269,7 +269,7 @@ describe StoresController do
 			
 			new_announcement = 'new stuff here'
     		put :update_announcement, id: @store.id, store: {announcement: new_announcement}
-    		expect(response).to redirect_to store_url
+    		expect(response).to redirect_to store_url(@store.slug)
     		@store.reload
     		expect(@store.announcement).to eq(new_announcement)
 		end
@@ -283,7 +283,7 @@ describe StoresController do
 			
 			new_announcement = 'new stuff here'
     		put :update_announcement, id: @store.id, store: {announcement: new_announcement}
-    		expect(response).to redirect_to store_url
+    		expect(response).to redirect_to store_url(@store.slug)
     		@store.reload
     		expect(@store.announcement).to eq(new_announcement)
 		end
@@ -312,7 +312,7 @@ describe StoresController do
 			sign_in @user
 			new_announcement = 'new stuff here'
     		put :update_announcement, id: @store.id, store: {announcement: new_announcement}    		
-    		expect(response).to redirect_to subscription_plans_store_url
+    		expect(response).to redirect_to subscription_plans_store_url(@store.slug)
     		expect(@store.announcement).to eq('none.')
 		end
 
@@ -322,7 +322,7 @@ describe StoresController do
 			sign_in @admin
 			new_announcement = 'new stuff here'
     		put :update_announcement, id: @store.id, store: {announcement: new_announcement}    		
-    		expect(response).to redirect_to store_url
+    		expect(response).to redirect_to store_url(@store.slug)
     		@store.reload
     		expect(@store.announcement).to eq(new_announcement)
 		end
@@ -337,7 +337,7 @@ describe StoresController do
 			
 			new_promo = 'first store promo'
     		put :update_promo, id: @store.id, store: {promo: new_promo}
-    		expect(response).to redirect_to store_url
+    		expect(response).to redirect_to store_url(@store.slug)
     		@store.reload
     		expect(@store.promo).to eq(new_promo)
 		end
@@ -351,7 +351,7 @@ describe StoresController do
 			
 			new_promo = 'first store promo'
     		put :update_promo, id: @store.id, store: {promo: new_promo}
-    		expect(response).to redirect_to store_url
+    		expect(response).to redirect_to store_url(@store.slug)
     		@store.reload
     		expect(@store.promo).to eq(new_promo)
 		end
@@ -378,7 +378,7 @@ describe StoresController do
 			sign_in @user
 			new_promo = 'first store promo'
     		put :update_promo, id: @store.id, store: {promo: new_promo}
-    		expect(response).to redirect_to subscription_plans_store_url
+    		expect(response).to redirect_to subscription_plans_store_url(@store.slug)
 		end
 
 		it "works if plan_id is 1 but user is admin" do						
@@ -387,7 +387,7 @@ describe StoresController do
 			sign_in @admin
 			new_promo = 'first store promo'
     		put :update_promo, id: @store.id, store: {promo: new_promo}    		
-    		expect(response).to redirect_to store_url
+    		expect(response).to redirect_to store_url(@store.slug)
     		@store.reload
     		expect(@store.promo).to eq(new_promo)
 		end
@@ -401,7 +401,7 @@ describe StoresController do
 			
 			new_description = 'this store is awesome'
 			put :update_description, id: @store.id, store: {description: new_description}
-			expect(response).to redirect_to store_url
+			expect(response).to redirect_to store_url(@store.slug)
     		@store.reload
     		expect(@store.description).to eq(new_description)
 		end
@@ -415,7 +415,7 @@ describe StoresController do
 			
 			new_description = 'this store is awesome'
 			put :update_description, id: @store.id, store: {description: new_description}
-			expect(response).to redirect_to store_url
+			expect(response).to redirect_to store_url(@store.slug)
     		@store.reload
     		expect(@store.description).to eq(new_description)
 		end
@@ -445,7 +445,7 @@ describe StoresController do
 
 			new_description = 'this store is awesome'
     		put :update_description, id: @store.id, store: {description: new_description}
-    		expect(response).to redirect_to subscription_plans_store_url
+    		expect(response).to redirect_to subscription_plans_store_url(@store.slug)
 		end
 
 		it "works if plan_id is 1 but user is admin" do						
@@ -455,7 +455,7 @@ describe StoresController do
 
 			new_description = 'this store is awesome'
     		put :update_description, id: @store.id, store: {description: new_description}
-    		expect(response).to redirect_to store_url
+    		expect(response).to redirect_to store_url(@store.slug)
     		@store.reload
     		expect(@store.description).to eq(new_description)
 		end
@@ -468,7 +468,7 @@ describe StoresController do
 			sign_in @admin
 						
 			put :update_features, id: @store.id, store: {acceptscreditcards: true, atmaccess: true}
-			expect(response).to redirect_to store_url
+			expect(response).to redirect_to store_url(@store.slug)
     		@store.reload
     		expect(@store.acceptscreditcards).to eq(true)
     		expect(@store.atmaccess).to eq(true)
@@ -482,7 +482,7 @@ describe StoresController do
 			sign_in @user
 			
 			put :update_features, id: @store.id, store: {acceptscreditcards: true, atmaccess: true}
-			expect(response).to redirect_to store_url
+			expect(response).to redirect_to store_url(@store.slug)
     		@store.reload
     		expect(@store.acceptscreditcards).to eq(true)
     		expect(@store.atmaccess).to eq(true)
@@ -512,7 +512,7 @@ describe StoresController do
 			sign_in @user
 
 			put :update_features, id: @store.id, store: {acceptscreditcards: true, atmaccess: true}
-    		expect(response).to redirect_to subscription_plans_store_url
+    		expect(response).to redirect_to subscription_plans_store_url(@store.slug)
 		end
 		it "works if plan_id is 1, but user is admin" do						
 			@store.plan_id = 1
@@ -520,7 +520,7 @@ describe StoresController do
 			sign_in @admin
 
 			put :update_features, id: @store.id, store: {acceptscreditcards: true, atmaccess: true}
-    		expect(response).to redirect_to store_url
+    		expect(response).to redirect_to store_url(@store.slug)
     		@store.reload
     		expect(@store.acceptscreditcards).to eq(true)
     		expect(@store.atmaccess).to eq(true)
@@ -535,7 +535,7 @@ describe StoresController do
 			
 			avatar_url = "http://something.com/image.jpg"			
 			put :update_photo, id: @store.id, store: {avatar_url: avatar_url}
-			expect(response).to redirect_to store_url
+			expect(response).to redirect_to store_url(@store.slug)
     		@store.reload
     		expect(@store.avatar_url).to eq(avatar_url)    		
 		end
@@ -549,7 +549,7 @@ describe StoresController do
 			
 			avatar_url = "http://something.com/image.jpg"			
 			put :update_photo, id: @store.id, store: {avatar_url: avatar_url}
-			expect(response).to redirect_to store_url
+			expect(response).to redirect_to store_url(@store.slug)
     		@store.reload
     		expect(@store.avatar_url).to eq(avatar_url)    		
 		end
@@ -579,7 +579,7 @@ describe StoresController do
 
 			avatar_url = "http://something.com/image.jpg"			
 			put :update_photo, id: @store.id, store: {avatar_url: avatar_url}
-    		expect(response).to redirect_to subscription_plans_store_url
+    		expect(response).to redirect_to subscription_plans_store_url(@store.slug)
 		end
 
 		it "works if plan_id is 1 and user is admin" do						
@@ -589,7 +589,7 @@ describe StoresController do
 
 			avatar_url = "http://something.com/image.jpg"			
 			put :update_photo, id: @store.id, store: {avatar_url: avatar_url}
-    		expect(response).to redirect_to store_url
+    		expect(response).to redirect_to store_url(@store.slug)
     		@store.reload
     		expect(@store.avatar_url).to eq(avatar_url)    		
 		end
@@ -604,7 +604,7 @@ describe StoresController do
 			
 			dailyspecialsmonday = "cookies"
 			put :update_dailyspecials, id: @store.id, store: {dailyspecialsmonday: dailyspecialsmonday}
-			expect(response).to redirect_to store_url
+			expect(response).to redirect_to store_url(@store.slug)
     		@store.reload    		
     		expect(@store.dailyspecialsmonday).to eq(dailyspecialsmonday)    		
 		end
@@ -618,7 +618,7 @@ describe StoresController do
 			
 			dailyspecialsmonday = "cookies"
 			put :update_dailyspecials, id: @store.id, store: {dailyspecialsmonday: dailyspecialsmonday}
-			expect(response).to redirect_to store_url
+			expect(response).to redirect_to store_url(@store.slug)
     		@store.reload    		
     		expect(@store.dailyspecialsmonday).to eq(dailyspecialsmonday)    		
 		end
@@ -648,7 +648,7 @@ describe StoresController do
 
 			dailyspecialsmonday = "cookies"
 			put :update_dailyspecials, id: @store.id, store: {dailyspecialsmonday: dailyspecialsmonday}
-    		expect(response).to redirect_to subscription_plans_store_url
+    		expect(response).to redirect_to subscription_plans_store_url(@store.slug)
 		end
 
 		it "works if plan_id is 2, but user is admin " do						
@@ -658,7 +658,7 @@ describe StoresController do
 
 			dailyspecialsmonday = "cookies"
 			put :update_dailyspecials, id: @store.id, store: {dailyspecialsmonday: dailyspecialsmonday}
-    		expect(response).to redirect_to store_url
+    		expect(response).to redirect_to store_url(@store.slug)
     		@store.reload    		
     		expect(@store.dailyspecialsmonday).to eq(dailyspecialsmonday)    		
 		end
@@ -672,7 +672,7 @@ describe StoresController do
 			
 			firsttimepatientdeals = "i'll give you free pot"
 			put :update_firsttimepatientdeals, id: @store.id, store: {firsttimepatientdeals: firsttimepatientdeals}
-			expect(response).to redirect_to store_url
+			expect(response).to redirect_to store_url(@store.slug)
     		@store.reload    		
     		expect(@store.firsttimepatientdeals).to eq(firsttimepatientdeals)    		
 		end
@@ -686,7 +686,7 @@ describe StoresController do
 			
 			firsttimepatientdeals = "i'll give you free pot"
 			put :update_firsttimepatientdeals, id: @store.id, store: {firsttimepatientdeals: firsttimepatientdeals}
-			expect(response).to redirect_to store_url
+			expect(response).to redirect_to store_url(@store.slug)
     		@store.reload    		
     		expect(@store.firsttimepatientdeals).to eq(firsttimepatientdeals)    		
 		end
@@ -716,7 +716,7 @@ describe StoresController do
 
 			firsttimepatientdeals = "i'll give you free pot"
 			put :update_firsttimepatientdeals, id: @store.id, store: {firsttimepatientdeals: firsttimepatientdeals}
-    		expect(response).to redirect_to subscription_plans_store_url
+    		expect(response).to redirect_to subscription_plans_store_url(@store.slug)
 		end
 		it "works if plan_id is 2, but user is an admin " do						
 			@store.plan_id = 2
@@ -725,7 +725,7 @@ describe StoresController do
 
 			firsttimepatientdeals = "i'll give you free pot"
 			put :update_firsttimepatientdeals, id: @store.id, store: {firsttimepatientdeals: firsttimepatientdeals}
-    		expect(response).to redirect_to store_url
+    		expect(response).to redirect_to store_url(@store.slug)
     		@store.reload    		
     		expect(@store.firsttimepatientdeals).to eq(firsttimepatientdeals)    		
 		end

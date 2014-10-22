@@ -11,8 +11,8 @@
 						<% store_item = StoreItem.find(activity.trackable.id) %>
 
 						
-						<a class="item-search-item-name" data-remote="<%= store_store_item_path(store_item.store.id, store_item.id , :reviewtab => "false")  %>" data-target="#modal" data-toggle="modal" 
-								  		href="<%= store_store_item_path(store_item.store.id, store_item.id, :reviewtab => "false") %>" >
+						<a class="item-search-item-name" data-remote="<%= store_store_item_path(store_item.store.slug, store_item.id , :reviewtab => "false")  %>" data-target="#modal" data-toggle="modal" 
+								  		href="<%= store_store_item_path(store_item.store.slug, store_item.id, :reviewtab => "false") %>" >
 						<%= store_item.name %> 
 						</a>		  		
 						

@@ -13,7 +13,7 @@
 					<%= link_to store_review.user.username , activity_profile_path(store_review.user), :class => 'user-link', 'data-no-turbolink' => true %>							
 					<% if @feed == true %>
 						<span> reviewed 					
-							<a href="<%= store_path(@store.id)%>" data-no-turbolink='true' > <%= @store.name %></a>
+							<a href="<%= store_path(@store.slug)%>" data-no-turbolink='true' > <%= @store.name %></a>
 						</span>
 					<% end %>
 					<small><%= time_ago_in_words(store_review.created_at) %> ago</small>			

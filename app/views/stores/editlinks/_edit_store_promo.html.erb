@@ -4,7 +4,7 @@
 			<span class="glyphicon glyphicon-edit"></span>
 		<% end %>
 	<% else %>
-		<%= link_to subscription_plans_store_path(@store.id), id: "edit-promo-link" , class: 'btn edit-store-link' do %>
+		<%= link_to subscription_plans_store_path(@store.slug), id: "edit-promo-link" , class: 'btn edit-store-link' do %>
 			<span style="color: #429538;" class="glyphicon glyphicon-edit"></span>
 		<% end %>
 	<% end %>

@@ -14,8 +14,8 @@
 				<div class="item-feed-title">				
 					<%= link_to activity.trackable.user.username , activity_profile_path(activity.trackable.user), :class => 'user-link', 'data-no-turbolink' => true %>
 					<span> commented on the review of</span>
-					<a class="item-search-item-name" data-remote="<%= store_store_item_path(activity.trackable.store_item_review.store_item.store.id, activity.trackable.store_item_review.store_item.id, :reviewtab => "false") %>" data-target="#modal" data-toggle="modal" 
-							  		href="<%= store_store_item_path(activity.trackable.store_item_review.store_item.store.id, activity.trackable.store_item_review.store_item.id, :reviewtab => "false") %>" >
+					<a class="item-search-item-name" data-remote="<%= store_store_item_path(activity.trackable.store_item_review.store_item.store.slug, activity.trackable.store_item_review.store_item.id, :reviewtab => "false") %>" data-target="#modal" data-toggle="modal" 
+							  		href="<%= store_store_item_path(activity.trackable.store_item_review.store_item.store.slug, activity.trackable.store_item_review.store_item.id, :reviewtab => "false") %>" >
 							<%= activity.trackable.store_item_review.store_item.name %> 
 					</a>
 					

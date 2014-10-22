@@ -23,7 +23,7 @@
     </tr>
   </table>
   <%= render partial: 'layouts/stars', locals: {score: @store.stars} %>           
-  <%= link_to "MANAGE SUBSCRIPTIONS", subscription_plans_store_path(@store.id), id: "manage-subscriptions-link" , class: 'btn btn-primary pull-right'%>
+  <%= link_to "MANAGE SUBSCRIPTIONS", subscription_plans_store_path(@store.slug), id: "manage-subscriptions-link" , class: 'btn btn-primary pull-right'%>
   <hr />
 </div>
   
@@ -38,7 +38,7 @@
     
   </li>
   <li>
-    <%= link_to "ARCHIVED ITEMS", archived_items_store_path(@store.id), id: "archived-items-link" , class: 'btn btn-primary '%>
+    <%= link_to "ARCHIVED ITEMS", archived_items_store_path(@store.slug), id: "archived-items-link" , class: 'btn btn-primary '%>
   </li>
 </ul>
 

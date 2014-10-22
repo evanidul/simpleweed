@@ -2,7 +2,7 @@
     <h3>	    
 	    <a href = "<%= activity_profile_url(@follower.id) %>" style="text-decoration: none;" ><%= @follower.username %></a>
 		<span> is now following </span>								
-		<a href = "<%= store_url(@store.id) %>" style="text-decoration: none;" > <%= @store.name %> </a>
+		<a href = "<%= store_url(@store.slug) %>" style="text-decoration: none;" > <%= @store.name %> </a>
 	</h3>				
 </div>	
 <div>

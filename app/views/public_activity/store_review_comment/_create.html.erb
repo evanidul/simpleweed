@@ -12,7 +12,7 @@
 				<div class="item-feed-title">				
 					<%= link_to activity.trackable.user.username , activity_profile_path(activity.trackable.user), :class => 'user-link', 'data-no-turbolink' => true %>							
 					<span> commented on the review of </span>
-					<a href="<%= store_path(activity.trackable.store_review.store.id)%>" data-no-turbolink='true' > <%= activity.trackable.store_review.store.name %></a>
+					<a href="<%= store_path(activity.trackable.store_review.store.slug)%>" data-no-turbolink='true' > <%= activity.trackable.store_review.store.name %></a>
 					<div class="time-ago-feed-item"><%= time_ago_in_words(activity.trackable.updated_at) %> ago</div>
 				</div>
 				<div class = "feed-item-body">

@@ -107,7 +107,7 @@
                 <ul class="dropdown-menu" role="menu">
                   <% stores.each do |store| %>   
                   <li>
-                    <%= link_to store.name, store_path(store.id), 'data-no-turbolink' => true %>
+                    <%= link_to store.name, store_path(store.slug), 'data-no-turbolink' => true %>
                   </li>
                   <% end %>
                 </ul>

@@ -221,7 +221,7 @@ describe StoreItemsController do
 			sign_in @user
 									
 			expect{ delete :destroy, store_id: @store.id, id: @item.id }.to change(StoreItem, :count).by(-1)
-			expect(response).to redirect_to :store_store_items
+			expect(response).to redirect_to store_store_items_path(@store.slug)
 			expect(request.flash[:notice]).to eq(@item.name + " has been archived")
 		end
   	end #destroy
@@ -255,7 +255,7 @@ describe StoreItemsController do
 			expect{ delete :destroy, store_id: @store.id, id: @item.id }.to change(StoreItem, :count).by(-1)
 
 			expect{ post :undestroy, store_id: @store.id, id: @item.id}.to change(StoreItem, :count).by(1)
-			expect(response).to redirect_to :store_store_items
+			expect(response).to redirect_to store_store_items_path(@store.slug)
 			expect(request.flash[:notice]).to eq(@item.name + " has been unarchived")
 		end
   	end #undestroy
