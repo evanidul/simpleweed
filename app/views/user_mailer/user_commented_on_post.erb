@@ -2,11 +2,11 @@
     <h3>	    
 	    <a href = "<%= activity_profile_url(@commenter.id) %>" style="text-decoration: none;" ><%= @commenter.username %></a>
 		<span> commented on your post: </span>								
-		<a href = "<%= feed_feed_post_url(@post.feed.slug, @post.id) %>" style="text-decoration: none;" > <%= @post.title %> 
+		<a href = "<%= feed_feed_post_url(@post.feed.slug, @post.slug) %>" style="text-decoration: none;" > <%= @post.title %> 
 	</h3>				
 </div>	
 <div>
-	<a href = "<%= feed_feed_post_url(@post.feed.slug, @post.id) %>" style="color: white;
+	<a href = "<%= feed_feed_post_url(@post.feed.slug, @post.slug) %>" style="color: white;
 		background-color: #428bca;
 		border-color: #357ebd;
 		display: inline-block;

@@ -12,7 +12,7 @@
 							urlservice = Simpleweed::Url::Urlservice.new
 							nicelink = urlservice.url_with_protocol(post.link)
 						else 
-							nicelink = feed_feed_post_url(post.feed, post.id)
+							nicelink = feed_feed_post_url(post.feed, post.slug)
 						end
 					%>
 					<h2><a href="<%= nicelink %>"><%= post.title %></a></h2>
