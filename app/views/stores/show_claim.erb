@@ -3,7 +3,7 @@
 	<h3 id="name"><%= @store.name %> </h3>
 </div>	
 
-<% if current_user.email == @store.email %> 
+<% if current_user.email.strip == @store.email.strip %> 
 	<h3>
 		Your current email matches the email listed for the store (<%= @store.email %>).  That qualifies you to claim this store.
 		Would you like to claim it now?

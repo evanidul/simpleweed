@@ -344,7 +344,7 @@ class StoresController < ApplicationController
 			return
 		end
 
-		if current_user.email == @store.email
+		if current_user.email.strip == @store.email.strip
 								
 			role_service.addStoreOwnerRoleToStore(current_user, @store)
 			flash[:notice] = "You have successfully claimed this store.  We've added new edit links below to allow you to manage this store."
